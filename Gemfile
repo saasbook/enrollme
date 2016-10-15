@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+ruby '2.3.0'
 gem 'rails', '4.2.6'
+<<<<<<< Updated upstream
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -42,22 +42,55 @@ group :test do
 end
 
 
+=======
+# Bundle edge Rails instead:
+# gem 'rails',     :git => 'git://github.com/rails/rails.git'
+
+# for Heroku deployment - as described in Ap. A of ELLS book
+>>>>>>> Stashed changes
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'sqlite3'
   gem 'byebug'
+<<<<<<< Updated upstream
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'jasmine-rails' # if you plan to use JavaScript/CoffeeScript
+=======
+  gem 'database_cleaner', '1.4.1'
+  gem 'capybara', '2.4.4'
+  gem 'launchy'
+  gem 'rspec-rails', '3.4.2'
+  gem 'ZenTest', '4.11.0'
+>>>>>>> Stashed changes
 end
 
-group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+group :test do
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels'
 end
-
 group :production do
   gem 'pg'
 end
+
+# Gems used only for assets and not required
+# in production environments by default.
+
+  #gem 'therubyracer', '~> 0.12.0'
+gem 'sass-rails', '~> 5.0.3'
+gem 'coffee-rails', '~> 4.1.0'
+gem 'uglifier', '>= 2.7.1'
+
+gem 'jquery-rails'
+gem 'haml'
+
+# Use unicorn as the web server
+# gem 'unicorn'
+
+<<<<<<< Updated upstream
+group :production do
+  gem 'pg'
+end
+=======
+# Deploy with Capistrano
+# gem 'capistrano'
+>>>>>>> Stashed changes
