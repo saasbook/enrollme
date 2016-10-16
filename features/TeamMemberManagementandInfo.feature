@@ -26,7 +26,7 @@ Feature: remove or add team members
     Scenario: I should see approval status
         When PENDING: I am on the home page
         Then PENDING: I should see "Josh"
-        Then PENDING: I should see "Josh - Approved!"
+        Then PENDING: I should see "Josh - Approved"
         Then PENDING: I should not see "John - Approved"
         Then PENDING: I should see "John"
         Then PENDING: I should see "Jorge"
