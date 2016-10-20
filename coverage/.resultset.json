@@ -43,6 +43,11 @@
         0
       ]
     },
-    "timestamp": 1476951883
+    "timestamp": 1476979207
+  },
+  "RSpec": {
+    "coverage": {
+    },
+    "timestamp": 1476953264
   }
 }
