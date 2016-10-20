@@ -1,7 +1,7 @@
 <h1>Sign up</h1>
 
 <%= form_for @user, url: "create", html: { method: :put} do |f| %>
-    
+
     <% if @user.errors.any? %>
         <div class="error_messages">
             <h2>Form is invalid</h2>

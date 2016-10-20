@@ -1,9 +1,7 @@
 class Team < ActiveRecord::Base
+     has_many :users
     
-    has_many :user
-    
-    attr_accessor :approve, :comment
-    
+    attr_accessor :approve, :passcode
     
     
 end

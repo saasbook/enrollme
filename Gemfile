@@ -3,8 +3,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.6'
 
-gem 'devise' #can authenticate user login
-
 gem 'sass-rails', '~> 5.0.3'
 gem 'coffee-rails', '~> 4.1.0'
 
@@ -42,6 +40,7 @@ group :test do
   gem 'autotest-rails'
   gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
+  gem 'codeclimate-test-reporter', '0.6.0', require: nil
 end
 
 group :development, :test do

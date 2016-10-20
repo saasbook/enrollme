@@ -11,14 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020023028) do
+ActiveRecord::Schema.define(version: 20161020074955) do
 
   create_table "teams", force: :cascade do |t|
-    t.string   "name"
-    t.string   "hash"
-    t.boolean  "approved"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean "approved"
+    t.string  "passcode"
   end
 
   create_table "users", force: :cascade do |t|
@@ -27,6 +24,7 @@ ActiveRecord::Schema.define(version: 20161020023028) do
     t.string   "name"
     t.string   "email"
     t.string   "sid"
+    t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
