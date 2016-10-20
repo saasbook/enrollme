@@ -1,7 +1,48 @@
 {
   "Cucumber Features": {
     "coverage": {
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/application_helper.rb": [
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/models/team.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/models/user.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/application_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
     },
-    "timestamp": 1476946673
+    "timestamp": 1476950187
   }
 }

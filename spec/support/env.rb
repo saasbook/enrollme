@@ -5,7 +5,7 @@ SimpleCov.start do
   add_filter '/lib/'
   add_filter '/vendor/'
   add_filter '/features/'
-  add_filter '/coverage/'
+  #add_filter '/coverage/'
 
  
   add_group 'Controllers', 'app/controllers'
