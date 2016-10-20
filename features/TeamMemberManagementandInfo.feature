@@ -11,4 +11,5 @@ Feature: navigating to the team pag
    Scenario: I should see team members
         Given I am on the home page
         Then I should not see "Students"
-        
+        And I should see "Your team does not exist."
+        And I should see "Your team does not have any members."

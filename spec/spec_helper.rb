@@ -1,3 +1,15 @@
+if ENV['CI']
+  require 'codeclimate-test-reporter'
+  SimpleCov.start 'rails' do
+    add_filter '/coverage/'
+  end
+else
+  require 'simplecov'
+  SimpleCov.start 'rails' do
+    add_filter '/coverage/'
+  end
+end
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
