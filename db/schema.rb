@@ -24,7 +24,10 @@ ActiveRecord::Schema.define(version: 20161020074955) do
     t.string   "name"
     t.string   "email"
     t.string   "sid"
+<<<<<<< HEAD
+=======
     t.string   "password"
+>>>>>>> 1bf4845dcccd669b96a220e4100358792ab9d52c
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

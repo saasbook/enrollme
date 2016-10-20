@@ -13,7 +13,7 @@ Feature: New user can create profile
     When PENDING: I follow "New User"
     And PENDING: I fill in "First Name" with "Bob"
     And PENDING: I fill in "Last Name" with "Jones"
-    And PENDING: I fill in "Email" with "bobjones@berkeley.edu"
+    And PENDING: I fill in "Email" with "bobjones@berkeley.edu" git push origin master
     And PENDING: I fill in "SID" with "12345678"
     And PENDING: I select "Computer Science" from "Major"
     And PENDING: I press "Save"
