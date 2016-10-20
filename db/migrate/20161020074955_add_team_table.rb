@@ -1,6 +1,12 @@
-class CreateUsers < ActiveRecord::Migration
+class AddTeamTable < ActiveRecord::Migration
   def change
+    create_table teams do |e|
+      e.has_many :user, index: true
+      e.boolean :approve
+      e.timestamps null: false
+      
     create_table :users do |t|
+      t.belongs_to team, index: true
       t.string :team
       t.string :major
       t.string :name
@@ -9,6 +15,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password
 
       t.timestamps null: false
+    end
+
     end
   end
 end
