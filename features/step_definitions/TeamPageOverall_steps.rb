@@ -26,3 +26,19 @@
 When /^PENDING: / do |arg|
   pending
 end
+
+# Example usage:
+    # Note: use "0" as team to indicate that this student isn't on a team yet
+
+    # Given the following users exist
+    #  | team | major           |   name    |       email                    | sid |
+  	#  | 0    | Football Player | Jorge     |  legueoflegends667@hotmail.com | 999 |
+ 	#  | 1    | EECS            | Sahai     |  eecs666@hotmail.com			 | 000 |
+
+Given /^the following users exist$/ do |table|
+  table.rows.each do |team, major, name, email, sid|
+    next if name == "name" # skipping table header
+    team == nil if team == "0"
+    User.create!(:team => team, :major => major, :name => name, :email => email, :sid => sid)
+  end
+end
