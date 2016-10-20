@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'user/hello'
+
+  get 'login/hello'
+
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
   root "application#index"
