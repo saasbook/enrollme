@@ -13,13 +13,12 @@ class LoginController < ApplicationController
       flash[:warning] = 'invalid email or password'
       render 'new'
     end
-    
   end
   
   def destroy
     session[:user_id] = nil
     redirect_to user, notice: "Logged out!"
-  end  
+  end
   
   
 end

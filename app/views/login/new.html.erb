@@ -3,12 +3,12 @@
 
 <%= form_tag login_path do %>
     <div class="field">
-        <%= label_tag :email %> <br>
+        <%= label_tag :email, "Email" %> <br>
         <%= text_field_tag :email, params[:email] %>
     </div>
     
     <div class="field">
-        <%= label_tag :password %> <br>
+        <%= label_tag :password, "Password" %> <br>
         <%= password_field_tag :password, params[:password] %>
     </div>
     
