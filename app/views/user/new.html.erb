@@ -1,6 +1,8 @@
 <h1>Sign up</h1>
 
-<%= form_for @user, url: "create", html: { method: :put} do |f| %>
+<%= form_for :user do |f| %>
+    
+    <%= puts "fuck" %>
     
     <% if @user.errors.any? %>
         <div class="error_messages">
@@ -9,8 +11,8 @@
     <% end %>
     
     <div class="field">
-        <%= f.label :name, Name %> <br>
-        <%= f.text_field :name, params[:name] %>
+        <%= f.label :name %> <br>
+        <%= f.text_field :name %>
     </div>
     
     <div class="field">

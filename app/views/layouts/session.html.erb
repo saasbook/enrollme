@@ -1,21 +1,44 @@
 <h1>Login</h1>
 
 
-<%= form_tag login_path do %>
+<%= form_for :session, url: session_path do |f| %>
+    
+    <% if @user.errors.any? %>
+        <div class="error_messages">
+            <h2>Form is invalid</h2>
+        </div>
+    <% end %>
     
     <div class="field">
-        <%= label_tag :email %> <br>
-        <%= text_field_tag :email %>
+        <%= f.label :email %> <br>
+        <%= f.text_field :email %>
     </div>
     
     <div class="field">
-        <%= label_tag :password %> <br>
-        <%= password_field_tag :password %>
+        <%= f.label :password %> <br>
+        <%= f.text_field :password %>
     </div>
     
-    <div class="actions">
-        <%= submit_tag "Log In" %>
+    <div class="action">
+        <%= f.submit %>
     </div>
+    
+    
+    <!--<div class="field">-->
+    <!--    <%= label_tag :email %> <br>-->
+    <!--    <%= text_field_tag :email %>-->
+    <!--</div>-->
+    
+    <!--<div class="field">-->
+    <!--    <%= label_tag :password %> <br>-->
+    <!--    <%= password_field_tag :password %>-->
+    <!--</div>-->
+    
+    <!--<br>-->
+    
+    <!--<div class="actions">-->
+    <!--    <%= submit_tag "Log In" %>-->
+    <!--</div>-->
     
 <% end %>
 
