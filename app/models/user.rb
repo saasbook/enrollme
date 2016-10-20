@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
     
     #has_secure_password
     
-    attr_accessible :name, :email, :team, :major, :sid, :password
+    attr_accessible :name, :email, :major, :sid, :password, :team
     
     
     
