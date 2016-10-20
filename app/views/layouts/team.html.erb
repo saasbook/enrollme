@@ -18,14 +18,29 @@
         <div class="col-md-8">
           <h2>Members</h2>
           <% if @team != nil %>
-            <% User.where("team = ?", @team.name).each_with_index do |u, index| %>
-              <%= u.name %>
+            <table>
+              <tr>
+                  <td></td>
+                  <td>Student</td>
+                  <td>CS Major?</td>
+                  <td></td>
+                </tr>
+              
+              <% User.where("team = ?", @team.name).each_with_index do |u, index| %>
+                <tr>
+                  <td><%= index %></td>
+                  <td><%= u.name %></td>
+                  <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "" %></td>
+                  <td>Edit</td>
+                </tr>
+              <% end %>
+            </table>
           <% else %>
             <p>Your team does not have any members.</p>
           <% end %>
         </div>
         <div class="col-md-4">
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><h2>  CS 169 Enrollment</h2></a>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><h3>  CS 169 Enrollment</h3></a>
        </div>
       </div>
       <%= button_to "Submit changes", {action: "update"}, class: "btn btn-default" %>

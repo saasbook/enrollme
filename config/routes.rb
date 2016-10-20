@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   get '/login', to: 'login#new'
   get '/logout', to: 'login#destroy'
   
-  resources :users #?
-  resources :logins #?
+  resources :user
+  resources :login
   
   
 
