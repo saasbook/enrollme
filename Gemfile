@@ -41,7 +41,7 @@ group :test do
   gem 'autotest-rails'
   gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
-  gem 'codeclimate-test-reporter', "1.0.0.pre.rc2", require: nil
+  gem 'codeclimate-test-reporter', '0.6.0', require: nil
 end
 
 group :development, :test do
