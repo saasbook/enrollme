@@ -27,18 +27,20 @@ end
 
 tone = Team.new
 tone.approve = true
-tone.comment = "all eecs eecs eecs "
-tone << User.where(name: "Christian Grey")
-tone << User.where(name: "Ana Steele")
-tone << User.where(name: "Sahai")
+tone.passcode = "eecseecseecs"
 tone.save!
+tone.users << User.where(name: "Christian Grey")
+tone.users << User.where(name: "Ana Steele")
+tone.users << User.where(name: "Sahai")
+
 
 two = Team.new
 two.approve = false
-two.comment = "humanties majors are here so not approved "
-two << User.where(name: "Sonny Dykes")
-two << User.where(name: "John")
-two << User.where(name: "oski")
+two.passcode = "humantiesmajors"
 two.save!
+two.users << User.where(name: "Sonny Dykes")
+two.users << User.where(name: "John")
+two.users << User.where(name: "oski")
+
 
 #Client.find_by! first_name: 'does not exist'
