@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EnrollMe</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+    <div class="container">
+      
+      <h1>My Team</h1>
+      <h3><%= @team == nil ? "Your team does not exist." : @team.name %></h3>
+      <h3><%=  (@team == nil ? "" : "Team Password:" + @team.hash) %></h3>
+      
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Members</h2>
+          <% if @team != nil %>
+            <% User.where("team = ?", @team.name).each_with_index do |u, index| %>
+              <%= u.name %>
+          <% else %>
+            <p>Your team does not have any members.</p>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><h2>  CS 169 Enrollment</h2></a>
+       </div>
+      </div>
+      <%= button_to "Submit changes", {action: "update"}, class: "btn btn-default" %>
+    </div>
+    
+</body>
+</html>

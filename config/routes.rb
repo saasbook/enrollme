@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  get 'user/hello'
 
-  get 'login/hello'
+  get '/signup', to: 'users#new'
+  get '/login', to: 'login#new'
+  get '/logout', to: 'login#destroy'
+  
+  resources :users #?
+  resources :logins #?
+  
+  
 
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
