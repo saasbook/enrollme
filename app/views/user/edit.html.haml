@@ -1,0 +1,17 @@
+%h1 Edit Your Information
+
+= form_tag user_path(@user), :method => :put do
+
+  = label :user, :name, 'Name'
+  = text_field :user, 'name'
+
+  = label :user, :email, 'Email'
+  = text_field :user, :email
+  
+  = label :user, :sid, 'SID'
+  = text_field :user, :sid
+
+  = label :user, :major, 'Major'
+  = select :movie, :major, ['Computer Science','EECS','Other']
+
+  = submit_tag 'Update Info'
