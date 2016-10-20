@@ -4,11 +4,6 @@ class UserController < ApplicationController
   
   def new
     @user = User.new
-    
-    puts "params", params
-    puts params[:controller]
-    puts params[:user]
-    
   end
   
   # def index
@@ -22,18 +17,24 @@ class UserController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    render plain: params[:user].inspect
     
-    puts "in create", @user
+    # @user = User.new(user_params)
     
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "You signed up successfully!"
-      redirect_to @user
-    else
-      flash[:notice] = "Form is invalid"
-      render 'new'
-    end
+    # puts "in create"
+    # byebug
+    
+    # if @user.save
+      
+    #   puts " help "
+      
+    #   session[:user_id] = @user.id
+    #   flash[:notice] = "You signed up successfully!"
+    #   redirect_to @user
+    # else
+    #   flash[:notice] = "Form is invalid"
+    #   render 'new'
+    # end
   end
 
   def edit
