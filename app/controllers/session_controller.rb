@@ -8,19 +8,13 @@ class SessionController < ApplicationController
     puts "ice cream", params # so it prints something here
     puts Team.all
     puts User.all
-    byebug
-    puts "find by email", User.find_by_email(params[:email])
-
-    # params exist but for some reason User is not being created
-    
-    user = User.find_by_email!(params[:email])
     # user = User.find_by_email!(params[:users]) testing this through /login not /signup
     
     # user = User.find_by!(email: params[:users][:email]) #but can't find user. doesn't get saved in DB?
     
     
     ### data wonky so for now gonna do something hacky ###
-    # byebug
+    byebug
     # puts "find by email", User.find_by_email(params[:email])
 
     # # params exist but for some reason User is not being created
@@ -31,7 +25,7 @@ class SessionController < ApplicationController
     
     # user = User.find_by!(email: params[:users][:email]) #but can't find user. doesn't get saved in DB?
     
-    user = User.find(1)
+    user = User.find(session[:user_id])
     
     if !(user.nil?)
       session[:user_id] = user.id
