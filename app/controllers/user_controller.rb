@@ -27,7 +27,11 @@ class UserController < ApplicationController
   
   def join_team
     @user = User.find(session[:user_id])
+    @team = Team.find_by_passcode(params[:team_hash])
+    byebug
     @user.team = params[:team_hash]
+    @team = Team.find_by_passcode(@user.team)
+    
     redirect_to controller: 'team', action: 'index', id: @user.team
   end
 

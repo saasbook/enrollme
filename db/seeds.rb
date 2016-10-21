@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 people = [
   		[ "John"                   , "English"  , "111"  , "111@berkeley.edu", "132619"        ],
-  		[ "Josh"                   , "CS"  , "222"  , "222@berkeley.edu" ,   "12345"     ],
+  		[ "Josh"                   , "CS"  , "222"  , "222@berkeley.edu"         ],
   		[ "Jorge"                   , "English"  ,"333"  , "333@berkeley.edu", "057663"         ],
   		[ "CCC"                   , "EECS"  , "444"  , "444@berkeley.edu", "012343"         ],
  	  	[ "DDD"                   , "English"  , "555"  , "555@berkeley.edu","144083"         ],
@@ -22,26 +22,25 @@ people = [
     ]
     
 people.each do |name, major, sid, email, password|
-  u = User.create!( name: name, major: major, sid: sid, email: email, password: password )
-  u.save!
+  User.create( name: name, major: major, sid: sid, email: email, password: password )
 end
 
 tone = Team.new
 tone.approve = true
 tone.passcode = "passcode1"
 tone.save!
-tone.users << User.where(name: "Christian Grey")
-tone.users << User.where(name: "Ana Steele")
-tone.users << User.where(name: "Sahai")
+tone.users << User.where(name: "Josh")
+tone.users << User.where(name: "CCC")
+tone.users << User.where(name: "GGG")
 
 
 two = Team.new
 two.approve = false
 two.passcode = "passcode2"
 two.save!
-two.users << User.where(name: "Sonny Dykes")
+two.users << User.where(name: "JJJ")
+two.users << User.where(name: "DDD")
 two.users << User.where(name: "John")
-two.users << User.where(name: "oski")
 
 
 #Client.find_by! first_name: 'does not exist'
