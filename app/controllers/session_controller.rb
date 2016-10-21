@@ -5,17 +5,27 @@ class SessionController < ApplicationController
   end
   
   def create
-    puts "ice cream", params[:users][:email] # so it prints something here
+    puts "ice cream", params # so it prints something here
+    puts Team.all
+    puts User.all
+    
+    ### data wonky so for now gonna do something hacky ###
+    # byebug
+    # puts "find by email", User.find_by_email(params[:email])
 
-    puts "find by email", User.find_by_email(params[:users][:email])
-    puts params[:users]
-
-    user = params[:users]
+    # # params exist but for some reason User is not being created
+    
+    # user = User.find_by_email!(params[:email])
+    ###
+    # user = User.find_by_email!(params[:users]) testing this through /login not /signup
+    
     # user = User.find_by!(email: params[:users][:email]) #but can't find user. doesn't get saved in DB?
     
-    if user && user.authenticate(params[:users][:password])
+    user = User.find(1)
+    
+    if !(user.nil?)
       session[:user_id] = user.id
-      redirect_to user, notice: "Logged in!"
+      redirect_to without_team_path, notice: "Logged in!"
     else
       flash[:error] = 'invalid email or password'
       render 'new'

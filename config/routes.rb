@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   post 'login', to: 'session#create'
   delete 'logout', to: 'session#destroy'
   
+  get '/without_team', to: 'without#index'
+  post '/create_team', to: 'user#start_team'
+  post '/join_team', to: 'user#join_team'
+  
   
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
