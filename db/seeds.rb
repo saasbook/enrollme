@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 people = [
   		[ "John"                   , "English"  , "111"  , "111@berkeley.edu", "132619"        ],
-  		[ "Josh"                   , "CS"  , "222"  , "222@berkeley.edu"         ],
+  		[ "Josh"                   , "CS"  , "222"  , "222@berkeley.edu" ,   "12345"     ],
   		[ "Jorge"                   , "English"  ,"333"  , "333@berkeley.edu", "057663"         ],
   		[ "CCC"                   , "EECS"  , "444"  , "444@berkeley.edu", "012343"         ],
  	  	[ "DDD"                   , "English"  , "555"  , "555@berkeley.edu","144083"         ],
@@ -22,7 +22,8 @@ people = [
     ]
     
 people.each do |name, major, sid, email, password|
-  User.create( name: name, major: major, sid: sid, email: email, password: password )
+  u = User.create!( name: name, major: major, sid: sid, email: email, password: password )
+  u.save!
 end
 
 tone = Team.new

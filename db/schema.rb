@@ -14,17 +14,19 @@
 ActiveRecord::Schema.define(version: 20161020074955) do
 
   create_table "teams", force: :cascade do |t|
-    t.boolean "approved"
-    t.string  "passcode"
+    t.boolean  "approve"
+    t.string   "passcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password"
     t.string   "team"
     t.string   "major"
+    t.string   "name"
+    t.string   "email"
     t.string   "sid"
+    t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
