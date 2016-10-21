@@ -2,7 +2,7 @@
 
 <!--after login I want it to go the team page but it breaks-->
 <!--, url: team_path)-->
-<%= form_for @user do |f| %>
+<%= form_for :user do |f| %>
 
     <% if @user.errors.any? %>
         <div class="error_messages">
@@ -43,8 +43,7 @@
     <br>
     
     <div class="actions">
-        <%= link_to 'Submit', team_path %>
-        <!--<%= f.submit%>-->
+        <%= f.submit%>
     </div>
     
 <% end %>

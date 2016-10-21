@@ -8,6 +8,10 @@ class UserController < ApplicationController
   def create
     @user = User.new(user_params)
     
+    puts "fish"
+    puts @user
+    puts "tom brady"
+    
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You signed up successfully!"
@@ -23,13 +27,16 @@ class UserController < ApplicationController
   def start_team
     @user = User.find(session[:user_id])
     @user.team = Team.create!(:passcode => User.name + "'s team hash", :approve => false)
-    redirect_to controller: 'team', action: 'index', id: @user.team
+    redirect_to team_path(:id=>@user.team.id)
   end
   
   def join_team
     @user = User.find(session[:user_id])
+    @team = Team.find_by_passcode(params[:team_hash])
     @user.team = params[:team_hash]
-    redirect_to controller: 'team', action: 'index', id: @user.team
+    @team = Team.find_by_passcode(@user.team)
+    
+    redirect_to team_path(:id=>params[:team_hash])
   end
 
   private
