@@ -1,28 +1,25 @@
 Rails.application.routes.draw do
 
   get '/signup', to: 'user#new'
+  post '/signup', to: 'team#show'
   
-  # get "session/new"
-  # get "session/create"
-  # get "session/destroy"
-  
-  resources :user
+  resources :users
+  resources :team
   
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
   delete 'logout', to: 'session#destroy'
   
   
-
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
-  root "user#new"
+    root "user#new"
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -30,8 +27,6 @@ Rails.application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
 
   # Example resource route with options:
   #   resources :products do
@@ -72,7 +67,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  
-  resources :team
-  resources :user
+
 end

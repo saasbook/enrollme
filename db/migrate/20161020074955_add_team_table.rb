@@ -1,6 +1,6 @@
 class AddTeamTable < ActiveRecord::Migration
   def change
-    create_table teams do |e|
+    create_table :teams do |e|
       e.has_many :user, index: true
       e.boolean :approve
       e.string :passcode

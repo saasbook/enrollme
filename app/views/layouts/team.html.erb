@@ -11,8 +11,8 @@
     <div class="container">
       
       <h1>My Team</h1>
-      <h3><%= @team == nil ? "Your team does not exist." : @team.name %></h3>
-      <h3><%=  (@team == nil ? "" : "Team Password:" + @team.hash) %></h3>
+      <h3><%= @team == nil ? "Your team does not exist." : "" %></h3>
+      <h3><%=  (@team == nil ? "" : "Team Password:" + @team.passcode.to_s) %></h3>
       
       <div class="row">
         <div class="col-md-8">
@@ -26,7 +26,7 @@
                   <td></td>
                 </tr>
               
-              <% User.where("team = ?", @team.name).each_with_index do |u, index| %>
+              <% User.where("team = ?", @team.passcode).each_with_index do |u, index| %>
                 <tr>
                   <td><%= index %></td>
                   <td><%= u.name %></td>

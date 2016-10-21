@@ -1,30 +1,12 @@
 class UserController < ApplicationController
-  
   # before_filter :authenticate
   
   def new
     @user = User.new
-    
-    puts "params", params
-    puts params[:controller]
-    puts params[:user]
-    
   end
   
-  # def index
-  #   @users = User.all
-  # end
-  
-  def show
-  end
-
-  def edit
-  end
-
   def create
     @user = User.new(user_params)
-    
-    puts "in create", @user
     
     if @user.save
       session[:user_id] = @user.id

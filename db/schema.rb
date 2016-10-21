@@ -19,15 +19,12 @@ ActiveRecord::Schema.define(version: 20161020074955) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "team"
-    t.string   "major"
     t.string   "name"
     t.string   "email"
-    t.string   "sid"
-<<<<<<< HEAD
-=======
     t.string   "password"
->>>>>>> 1bf4845dcccd669b96a220e4100358792ab9d52c
+    t.string   "team"
+    t.string   "major"
+    t.string   "sid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

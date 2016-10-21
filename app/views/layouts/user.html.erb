@@ -1,6 +1,8 @@
 <h1>Sign up</h1>
 
-<%= form_for @user, url: "create", html: { method: :put} do |f| %>
+<!--after login I want it to go the team page but it breaks-->
+<!--, url: team_path)-->
+<%= form_for @user do |f| %>
 
     <% if @user.errors.any? %>
         <div class="error_messages">
@@ -9,8 +11,8 @@
     <% end %>
     
     <div class="field">
-        <%= f.label :name, Name %> <br>
-        <%= f.text_field :name, params[:name] %>
+        <%= f.label :name %> <br>
+        <%= f.text_field :name %>
     </div>
     
     <div class="field">
@@ -41,7 +43,8 @@
     <br>
     
     <div class="actions">
-        <%= submit_tag "Submit" %>
+        <%= link_to 'Submit', team_path %>
+        <!--<%= f.submit%>-->
     </div>
     
 <% end %>
