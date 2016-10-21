@@ -1,0 +1,47 @@
+<h1>Edit Information</h1>
+
+<%= form_for :user, url: login_path do |f| %>
+    
+    <% if @user.errors.any? %>
+        <div class="error_messages">
+            <h2>Form is invalid</h2>
+        </div>
+    <% end %>
+    
+    <div class="field">
+        <%= f.label :name %> <br>
+        <%= f.text_field :name %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :email %> <br>
+        <%= f.text_field :email %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :password %> <br>
+        <%= f.text_field :password %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :team %> <br>
+        <%= f.text_field :team %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :sid %> <br>
+        <%= f.text_field :sid %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :major %> <br>
+        <%= f.text_field :major %>
+    </div>
+    
+    <br>
+    
+    <div class="actions">
+        <%= submit_tag "Submit" %>
+    </div>
+    
+<% end %>
