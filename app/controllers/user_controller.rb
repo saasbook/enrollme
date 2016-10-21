@@ -28,14 +28,14 @@ class UserController < ApplicationController
   
   def start_team
     @user = User.find(session[:user_id])
-    @user.team = Team.create!(:passcode => User.name + "'s team hash", :approve => false)
+    @user.team = Team.create!(:passcode => User.name + "'s team hash", :approved => false)
     redirect_to team_path(:id=>@user.team.id)
   end  
   def join_team
     @team_id = params[:team_hash]
     @user = User.find(session[:user_id])
-    @user.team = @team_id
     @team = Team.find(@team_id)
+    @user.team = @team
     
     redirect_to team_path(:id=>params[:team_hash])
   end

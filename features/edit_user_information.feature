@@ -4,17 +4,18 @@ Feature: Existing user can edit information
   I should be able to edit my information
   
   Background:
-    Given PENDING: the following users exist
-     |   name    |       email        | SID        |       major      |
-     | Bob Jones | bobjones@gmail.com | 12345678   | Computer Science |
-    And PENDING: I am on the home page
+    Given the following users exist
+     |   name    |       email       |password |team | major        |       sid      |
+  	 | Bob    |    bobjones@berkeley.edu  | pikachu | 0 | Slavic Studies | 12345  |
+    Given PENDING: I am on the home page
     
   Scenario: An existing user can edit his or her information
-    Given PENDING: "Bob Jones" logs in
+    When PENDING: I fill in "email" with "bobjones@berkeley.edu"
+    And PENDING: I fill in "password" with "pikachu"
+    And PENDING: I press "Log In"
     When PENDING: I follow "Edit Profile"
     Then PENDING: I should see "Bob"
-    And PENDING: I should see "Jones"
-    And PENDING: I should see "12345678"
-    When PENDING: I fill in "SID" with "12345679"
-    And PENDING: I press "Save"
-    Then PENDING: I should see "12345679"
+    When PENDING: I fill in "SID" with "12346"
+    And PENDING: I press "Submit"
+    And PENDING: I follow "Edit Profile"
+    Then PENDING: I should see "112"

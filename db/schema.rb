@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020074955) do
+ActiveRecord::Schema.define(version: 20161021063449) do
 
   create_table "teams", force: :cascade do |t|
     t.boolean "approved"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20161020074955) do
     t.string   "sid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "team_id"
   end
+
+  add_index "users", ["team_id"], name: "index_users_on_team_id"
 
 end

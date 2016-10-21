@@ -1,9 +1,7 @@
-<h1>Sign up</h1>
+<h1>Edit Information</h1>
 
-<!--after login I want it to go the team page but it breaks-->
-<!--, url: team_path)-->
 <%= form_for :user do |f| %>
-
+    
     <% if @user.errors.any? %>
         <div class="error_messages">
             <h2>Form is invalid</h2>
@@ -43,9 +41,7 @@
     <br>
     
     <div class="actions">
-        <%= f.submit "Create User" %>
-
-        <!--<%= submit_tag "Log In", class: "btn btn-default" %>-->
+        <%= submit_tag "Submit" %>
     </div>
     
 <% end %>

@@ -6,24 +6,26 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 people = [
-  		[ "John"                   , "English"  , "111"  , "111@berkeley.edu", "132619"        ],
-  		[ "Josh"                   , "CS"  , "222"  , "222@berkeley.edu"         ],
-  		[ "Jorge"                   , "English"  ,"333"  , "333@berkeley.edu", "057663"         ],
-  		[ "CCC"                   , "EECS"  , "444"  , "444@berkeley.edu", "012343"         ],
- 	  	[ "DDD"                   , "English"  , "555"  , "555@berkeley.edu","144083"         ],
- 	  	[ "EEE"                   , "English"  , "666"  , "666@berkeley.edu" ,  "920114"        ],
- 	  	[ "FFF"                   , "EECS"  , "777" , "777@berkeley.edu", "783986"         ],
- 	  	[ "GGG"                   , "CS"  , "888" , "888@berkeley.edu", "564742"         ],
- 	  	[ "HHH"                   , "English"  , "999" , "999@berkeley.edu" , "634846"        ],
- 	  	[ "III"                   , "English"  , "1111" , "1111@berkeley.edu"     ,"663607"    ],
- 	  	[ "JJJ"                   , "English"  , "2222" , "2222@berkeley.edu", "464123"         ],
- 	  	[ "Kay"                   , "EECS"  , "3333" , "3333@berkeley.edu","370603"         ],
- 	  	[ "Ana"                   , "CS"  , "4444" , "4444@berkeley.edu" , "758603"        ]
+  		{ :name => "John"                   ,:major => "English"  , :sid => "111"  ,:email => "111@berkeley.edu",:password => "132619"        },
+  		{ :name =>  "Josh"                   ,:major => "CS"  ,:sid => "222"  ,:email => "222@berkeley.edu", :password => "666666"         },
+  		{ :name =>  "Jorge"                   ,:major => "English"  ,:sid => "333"  ,:email => "333@berkeley.edu",:password => "057663"         },
+  		{ :name =>  "CCC"                   ,:major => "EECS"  ,:sid => "444"  ,:email => "444@berkeley.edu",:password => "012343"         },
+ 	  	{ :name =>  "DDD"                   ,:major => "English"  ,:sid => "555"  ,:email => "555@berkeley.edu",:password =>"144083"         },
+ 	  	{:name =>  "EEE"                   , :major =>"English"  ,:sid => "666"  ,:email => "666@berkeley.edu" ,:password =>  "920114"        },
+ 	  	{:name => "FFF"                   ,:major => "EECS"  ,:sid => "777" ,:email => "777@berkeley.edu",:password => "783986"         },
+ 	  	{:name => "GGG"                   ,:major => "CS"  ,:sid => "888" ,:email => "888@berkeley.edu",:password => "564742"         },
+ 	  	{:name =>  "HHH"                   ,:major => "English"  ,:sid => "999" ,:email =>"999@berkeley.edu" ,:password => "634846"        },
+ 	  	{:name =>  "III"                   ,:major => "English"  ,:sid => "1111" ,:email => "1111@berkeley.edu"     ,:password => "663607"    },
+ 	  	{:name =>  "JJJ"                   ,:major => "English"  ,:sid => "2222" ,:email => "2222@berkeley.edu",:password => "464123"         },
+ 	  	{:name =>  "Kay"                   ,:major => "EECS"  ,:sid => "3333" ,:email => "3333@berkeley.edu",:password => "370603"         },
+ 	  	{:name =>  "Ana"                   ,:major => "CS"  ,:sid => "4444" ,:email => "4444@berkeley.edu" ,:password =>"758603"        }
     ]
     
-people.each do |name, major, sid, email, password|
-  User.create( name: name, major: major, sid: sid, email: email, password: password )
+people.each do |ue|
+  User.create!( ue)
 end
+
+
 
 tone = Team.new
 tone.approve = true
@@ -44,3 +46,12 @@ two.users << User.where(name: "John")
 
 
 #Client.find_by! first_name: 'does not exist'
+"""
+  ue = User.new
+  ue.name = names
+  ue.major = majors
+  ue.sid = sids
+  ue.email = emails
+  ue.password = passwords
+  ue.save!
+"""
