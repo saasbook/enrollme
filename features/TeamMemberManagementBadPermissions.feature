@@ -1,37 +1,16 @@
-Feature: remove or add team members
+Feature: navigating to the team page without the correct permissions should fail me.
   
   Background: users have been added to database
-  	Given PENDING: the following users exist:
-  		| Name                   | Major           | SID  | Email                         |
-  		| John                   | Gender Studies  | 666  | papajohn@berkeley.edu         |
-  		| Josh                   | CS              | 420  | legueoflegends666@berkeley.edu|
-  		| Jorge                  | Football Player | 999  | legueoflegends667@berkeley.edu|
- 	  	| Sahai                  | EECS            | 000  | eecs666@berkeley.edu		  |
- 
-
-        Given I am on the login page
-	    Given Josh logs in
-        
-       
-        
-        
-        
+  	Given the following users exist:
+  		| Name                   | Major           | SID  | Email                         | Password    |
+  		| John                   | Gender Studies  | 666  | papajohn@berkeley.edu         | 1           |
+  		| Josh                   | CS              | 420  | legueoflegends666@berkeley.edu| 2           |
+  		| Jorge                  | Football Player | 999  | legueoflegends667@berkeley.edu| 3           |
+ 	  	| Sahai                  | EECS            | 000  | eecs666@berkeley.edu		  | 4           |
+  
    Scenario: I should see team members
         Given I am on the home page
-        Then I should see "Students"
-        Then I should see "John"
-        Then I should see "Josh"
-        Then I should see "Jorge"
-        
-    Scenario: I should see approval status
-        When PENDING: I am on the home page
-        Then PENDING: I should see "Josh"
-        Then PENDING: I should see "Josh - Approved"
-        Then PENDING: I should not see "John - Approved"
-        Then PENDING: I should see "John"
-        Then PENDING: I should see "Jorge"
-        
-    Scenario: I should be able to kick bad team members
-        When PENDING: I press "Remove Jorge"
-        Given PENDING: I am on the home page
-        Then PENDING: I should not see "Jorge"
+        Then I should not see "Students"
+        And I should see "Your team does not exist."
+        And I should see "Your team does not have any members."
+

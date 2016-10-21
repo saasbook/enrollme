@@ -21,6 +21,17 @@ class UserController < ApplicationController
       render 'new'
     end
   end
+  
+  def edit
+    @user = User.find params[:id]
+  end
+  
+  def update
+    @user = User.find params[:id]
+    @user.update_attributes!(movie_params)
+    @team = @user != nil ? @user.team : nil
+    return redirect_to team_path({:id => @team === nil ? 1 : @team.id, :uid => user_id})
+  end
 
   private
     def user_params

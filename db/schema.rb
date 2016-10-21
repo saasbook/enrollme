@@ -11,22 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020074955) do
+ActiveRecord::Schema.define(version: 20161021063449) do
 
   create_table "teams", force: :cascade do |t|
-    t.boolean "approved"
-    t.string  "passcode"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password"
-    t.string   "team"
-    t.string   "major"
-    t.string   "sid"
+    t.boolean  "approve"
+    t.string   "passcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "email",      null: false
+    t.string   "password",   null: false
+    t.string   "major",      null: false
+    t.string   "sid",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "team_id"
+  end
+
+  add_index "users", ["team_id"], name: "index_users_on_team_id"
 
 end

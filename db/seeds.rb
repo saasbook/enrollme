@@ -22,9 +22,10 @@ people = [
     ]
     
 people.each do |ue|
-
   User.create!( ue)
 end
+
+
 
 tone = Team.new
 tone.approve = true
