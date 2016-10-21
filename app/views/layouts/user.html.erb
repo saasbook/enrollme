@@ -1,6 +1,8 @@
 <h1>Sign up</h1>
 
-<%= form_for :user, url: user_path do |f| %>
+<!--after login I want it to go the team page but it breaks-->
+<!--, url: team_path)-->
+<%= form_for @user do |f| %>
 
     <% if @user.errors.any? %>
         <div class="error_messages">
@@ -41,7 +43,8 @@
     <br>
     
     <div class="actions">
-        <%= f.submit %>
+        <%= link_to 'Submit', team_path %>
+        <!--<%= f.submit%>-->
     </div>
     
 <% end %>

@@ -6,19 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 people = [
-  		[ "John"                   , "Gender Studies"  , "666"  , "papajohn@berkeley.edu", "132619"        ],
-  		[ "Josh"                   , "CS"  , "420"  , "legueoflegends666@berkeley.edu"         ],
-  		[ "Jorge"                   , "Football Player"  ,"999"  , "legueoflegends667@berkeley.edu", "057663"         ],
-  		[ "Sahai"                   , "EECS"  , "4"  , "eecs666@berkeley.edu", "012343"         ],
- 	  	[ "oski"                   , "mmmm"  , "69"  , "drugz@berkeley.edu","144083"         ],
- 	  	[ "Sonny Dykes"                   , "Useless"  , "1"  , "football@berkeley.edu" ,  "920114"        ],
- 	  	[ "Christos"                   , "EECS"  , "23423" , "papad@berkeley.edu", "783986"         ],
- 	  	[ "Luca"                   , "CS"  , "11111" , "luca@berkeley.edu", "564742"         ],
- 	  	[ "Putin"                   , "badass"  , "696969" , "wolfsmilk@berkeley.edu" , "634846"        ],
- 	  	[ "Trump"                   , "chetoe"  , "420420" , "wtf@berkeley.edu"     ,"663607"    ],
- 	  	[ "Killary"                   , "President"  , "111111" , "ewwpeasants@berkeley.edu", "464123"         ],
- 	  	[ "Christian Grey"                   , "EECS"  , "123123" , "mmmmmm@berkeley.edu","370603"         ],
- 	  	[ "Ana Steele"                   , "CS"  , "33333" , "more_mmmmm@berkeley.edu" , "758603"        ]
+  		[ "John"                   , "English"  , "111"  , "111@berkeley.edu", "132619"        ],
+  		[ "Josh"                   , "CS"  , "222"  , "222@berkeley.edu"         ],
+  		[ "Jorge"                   , "English"  ,"333"  , "333@berkeley.edu", "057663"         ],
+  		[ "CCC"                   , "EECS"  , "444"  , "444@berkeley.edu", "012343"         ],
+ 	  	[ "DDD"                   , "English"  , "555"  , "555@berkeley.edu","144083"         ],
+ 	  	[ "EEE"                   , "English"  , "666"  , "666@berkeley.edu" ,  "920114"        ],
+ 	  	[ "FFF"                   , "EECS"  , "777" , "777@berkeley.edu", "783986"         ],
+ 	  	[ "GGG"                   , "CS"  , "888" , "888@berkeley.edu", "564742"         ],
+ 	  	[ "HHH"                   , "English"  , "999" , "999@berkeley.edu" , "634846"        ],
+ 	  	[ "III"                   , "English"  , "1111" , "1111@berkeley.edu"     ,"663607"    ],
+ 	  	[ "JJJ"                   , "English"  , "2222" , "2222@berkeley.edu", "464123"         ],
+ 	  	[ "Kay"                   , "EECS"  , "3333" , "3333@berkeley.edu","370603"         ],
+ 	  	[ "Ana"                   , "CS"  , "4444" , "4444@berkeley.edu" , "758603"        ]
     ]
     
 people.each do |name, major, sid, email, password|
@@ -27,7 +27,7 @@ end
 
 tone = Team.new
 tone.approve = true
-tone.passcode = "eecseecseecs"
+tone.passcode = "passcode1"
 tone.save!
 tone.users << User.where(name: "Christian Grey")
 tone.users << User.where(name: "Ana Steele")
@@ -36,7 +36,7 @@ tone.users << User.where(name: "Sahai")
 
 two = Team.new
 two.approve = false
-two.passcode = "humantiesmajors"
+two.passcode = "passcode2"
 two.save!
 two.users << User.where(name: "Sonny Dykes")
 two.users << User.where(name: "John")

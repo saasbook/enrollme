@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
 
-  # get '/signup', to: 'user#new'
+  get '/signup', to: 'user#new'
+  post '/signup', to: 'team#show'
   
-  resources :user
-  resources :session
+  resources :users
+  resources :team
   
-  # get 'login', to: 'session#new'
-  # post 'login', to: 'session#create'
-  # delete 'logout', to: 'session#destroy'
+  get 'login', to: 'session#new'
+  post 'login', to: 'session#create'
+  delete 'logout', to: 'session#destroy'
   
   
-
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
   root "application#index"
@@ -67,6 +67,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  
-  resources :team
+
 end
