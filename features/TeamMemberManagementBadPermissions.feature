@@ -10,6 +10,7 @@ Feature: navigating to the team page without the correct permissions should fail
   
    Scenario: I should see team members
         Given I am on the home page
+        And I follow "My Team"
         Then I should not see "Students"
         And I should see "Your team does not exist."
         And I should see "Your team does not have any members."

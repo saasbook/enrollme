@@ -23,6 +23,6 @@ end
 #     pending
 # end
 
-When /^PENDING: / do |arg|
+When /^PENDING: ^(the following users exist)/ do |arg|
   pending
 end
