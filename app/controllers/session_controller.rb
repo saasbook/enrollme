@@ -24,13 +24,11 @@ class SessionController < ApplicationController
     
     # user = User.find_by!(email: params[:users][:email]) #but can't find user. doesn't get saved in DB?
     
-    user = User.find_by_email(params[:email])
-    
-    #temp workaround until db works
-    if user.nil?
-      user= User.find(1)
+    if !(session[:user_id].nil?)
+      user = User.find(session[:user_id])
+    else
+      user = User.find(1)
     end
-    
     if !(user.nil?)
       session[:user_id] = user.id
       redirect_to without_team_path, notice: "Logged in!"

@@ -36,9 +36,13 @@ end
  	#  | 1    | EECS            | Sahai     |  eecs666@hotmail.com			 | 000 |
 
 Given /^the following users exist$/ do |table|
-  table.rows.each do |team, major, name, email, sid|
+  table.rows.each do |name, email, password, team, major, sid|
     next if name == "name" # skipping table header
     team == nil if team == "0"
-    User.create!(:team => team, :major => major, :name => name, :email => email, :sid => sid)
+    User.create!(:team => team, :major => major, :name => name, :email => email, :sid => sid, :password => password)
   end
+end
+
+And /^a team with id "([^"]*)" exists$/ do |id|
+  Team.create!(:id => id, :approved => false, :passcode => "idc")
 end

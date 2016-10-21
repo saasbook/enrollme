@@ -5,24 +5,28 @@ Feature: join or create a team
   I want to be able to join or create a team
   
   Background:
-    Given PENDING: the following users exist
-     |   name    |       email        | SID        |       major      |
-  	 | Jorge                  | Football Player | 999  | legueoflegends667@hotmail.com |
- 	   | Sahai                  | EECS            | 000  | eecs666@hotmail.com			  |
-    And PENDING: I am on the home page
+    Given the following users exist
+     |   name    |       email       |password |team | major        |       sid      |
+  	 | Jorge    |    legueoflegends667@hotmail.com  | password1 | 0 | Football Player | 999  |
+ 	   | Sahai     | eecs666@hotmail.com        | mypassword     | 1 | EECS            | 000  |
+
+    And I am on the login page
     
   Scenario: An existing user creates a new team and gets the password
-    Given PENDING: I am logged in as "Jorge"
-    When PENDING: I follow "Create"
-    Then PENDING: I should be on my team page
-    And PENDING: I should see "Team Password"
-    And PENDING: I should see "Jorge"
-    And PENDING: I should not see "Sahai"
+    Given I fill in "Email" with "legueoflegends667@hotmail.com"
+    And I fill in "Password" with "password1"
+
+    And I press "Log In"
+    Then I should see "Create or Join a Team"
+    And I press "Create"
+    And I should see "Team Password:"
     
   Scenario: An existing user joins an existing team
-    Given PENDING: I am logged in as "Jorge"
-    And PENDING: There is a team with password "12345"
-    And PENDING: I fill in "Team Hash" with "12345"
-    And PENDING: I press "Join"
-    Then PENDING: I should see "Your Team Password is 12345"
+    Given I fill in "Email" with "legueoflegends667@hotmail.com"
+    And a team with id "1" exists
+    And I fill in "Password" with "password1"
+    And I press "Log In"
+    And I fill in "team_hash" with "1"
+    And I press "Join"
+    Then I should be on the Team "1" page
     

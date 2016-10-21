@@ -21,23 +21,30 @@ class UserController < ApplicationController
       render 'new'
     end
   end
-
+  
+  def edit
+    @user = User.find params[:id]
+  end
   
   def start_team
     @user = User.find(session[:user_id])
     @user.team = Team.create!(:passcode => User.name + "'s team hash", :approve => false)
     redirect_to team_path(:id=>@user.team.id)
-  end
-  
+  end  
   def join_team
     @team_id = params[:team_hash]
     @user = User.find(session[:user_id])
     @user.team = @team_id
     @team = Team.find(@team_id)
-    byebug
-    @team.users << @user
     
     redirect_to team_path(:id=>params[:team_hash])
+  end
+
+  def update
+    @user = User.find params[:id]
+    @user.update_attributes!(movie_params)
+    @team = @user != nil ? @user.team : nil
+    return redirect_to team_path({:id => @team === nil ? 1 : @team.id, :uid => user_id})
   end
 
   private
