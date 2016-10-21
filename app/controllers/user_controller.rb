@@ -8,6 +8,10 @@ class UserController < ApplicationController
   def create
     @user = User.new(user_params)
     
+    puts "fish"
+    puts @user
+    puts "tom brady"
+    
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "You signed up successfully!"
