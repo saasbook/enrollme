@@ -14,7 +14,6 @@ class SessionController < ApplicationController
     
     
     ### data wonky so for now gonna do something hacky ###
-    byebug
     # puts "find by email", User.find_by_email(params[:email])
 
     # # params exist but for some reason User is not being created
@@ -25,7 +24,12 @@ class SessionController < ApplicationController
     
     # user = User.find_by!(email: params[:users][:email]) #but can't find user. doesn't get saved in DB?
     
-    user = User.find(session[:user_id])
+    user = User.find_by_email(params[:email])
+    
+    #temp workaround until db works
+    if user.nil?
+      user= User.find(1)
+    end
     
     if !(user.nil?)
       session[:user_id] = user.id
