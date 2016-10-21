@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get '/signup', to: 'user#new'
-  post '/signup', to: 'team#show'
+  post '/signup', to: 'without#index'
   
   resources :users
   resources :team
