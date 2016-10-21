@@ -23,7 +23,7 @@
 #     pending
 # end
 
-When /^PENDING: / do |arg|
+When /^PENDING: ^(the following users exist)/ do |arg|
   pending
 end
 # Example usage:
@@ -36,7 +36,11 @@ Given /^the following users exist$/ do |table|
   table.rows.each do |name, email, password, team, major, sid|
     next if name == "name" # skipping table header
     team == nil if team == "0"
-    User.create!(:team => Team.new(:approved => false, :passcode => name+team), :major => major, :name => name, :email => email, :sid => sid, :password => password)
+    if team != "0"
+      User.create!(:team => Team.new(:approved => false, :passcode => name+team), :major => major, :name => name, :email => email, :sid => sid, :password => password)
+    else
+      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :password => password)
+    end
   end
 end
 
