@@ -10,7 +10,11 @@ class SessionController < ApplicationController
     puts User.all
     puts "find by email", User.find_by_email(params[:email])
 
-    user = User.find_by_email!(params[:users])
+    # params exist but for some reason User is not being created
+    
+    user = User.find_by_email!(params[:email])
+    # user = User.find_by_email!(params[:users]) testing this through /login not /signup
+    
     # user = User.find_by!(email: params[:users][:email]) #but can't find user. doesn't get saved in DB?
     
     if !(user.nil?)

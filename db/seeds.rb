@@ -29,18 +29,18 @@ tone = Team.new
 tone.approve = true
 tone.passcode = "passcode1"
 tone.save!
-tone.users << User.where(name: "Christian Grey")
-tone.users << User.where(name: "Ana Steele")
-tone.users << User.where(name: "Sahai")
+tone.users << User.where(name: "Josh")
+tone.users << User.where(name: "CCC")
+tone.users << User.where(name: "GGG")
 
 
 two = Team.new
 two.approve = false
 two.passcode = "passcode2"
 two.save!
-two.users << User.where(name: "Sonny Dykes")
+two.users << User.where(name: "JJJ")
+two.users << User.where(name: "DDD")
 two.users << User.where(name: "John")
-two.users << User.where(name: "oski")
 
 
 #Client.find_by! first_name: 'does not exist'
