@@ -1,7 +1,7 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/home/ubuntu/workspace/enrollme/app/models/user.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/models/user.rb": [
         1,
         1,
         null,
@@ -20,14 +20,13 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/models/team.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/models/team.rb": [
         1,
-        null,
-        null,
+        1,
         null,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/controllers/application_controller.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -42,27 +41,27 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/helpers/application_helper.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/helpers/login_helper.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/login_helper.rb": [
         1,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/helpers/team_helper.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/team_helper.rb": [
         1,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/helpers/team_controller_helper.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/team_controller_helper.rb": [
         1,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/helpers/user_helper.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/user_helper.rb": [
         1,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/controllers/team_controller.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/team_controller.rb": [
         1,
         null,
         null,
@@ -85,7 +84,7 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/controllers/user_controller.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/user_controller.rb": [
         1,
         null,
         null,
@@ -143,7 +142,7 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/controllers/without_controller.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/without_controller.rb": [
         1,
         null,
         null,
@@ -154,7 +153,7 @@
         null,
         null
       ],
-      "/home/ubuntu/workspace/enrollme/app/controllers/session_controller.rb": [
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/session_controller.rb": [
         1,
         null,
         1,
@@ -162,9 +161,9 @@
         null,
         null,
         1,
-        4,
-        4,
-        4,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -204,11 +203,212 @@
         null
       ]
     },
-    "timestamp": 1477034645
+    "timestamp": 1477168546
   },
   "RSpec": {
     "coverage": {
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/login_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/team_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/team_controller_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/helpers/user_helper.rb": [
+        1,
+        null
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/models/team.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/models/user.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/user_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/application_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/without_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/session_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/ubuntu/workspace/EnrollMe/app/controllers/team_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
     },
-    "timestamp": 1476953264
+    "timestamp": 1477169132
   }
 }

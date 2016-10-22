@@ -1,7 +1,7 @@
 class AddTeamTable < ActiveRecord::Migration
   def change
     create_table :teams do |e|
-      e.boolean :approve
+      e.boolean :approved
       e.string :passcode
       e.timestamps null: false
 

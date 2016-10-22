@@ -28,7 +28,7 @@ end
 
 
 tone = Team.new
-tone.approve = true
+tone.approved = true
 tone.passcode = "passcode1"
 tone.save!
 tone.users << User.where(name: "Josh")
@@ -37,7 +37,7 @@ tone.users << User.where(name: "GGG")
 
 
 two = Team.new
-two.approve = false
+two.approved = false
 two.passcode = "passcode2"
 two.save!
 two.users << User.where(name: "JJJ")

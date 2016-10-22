@@ -1,14 +1,25 @@
-<h1>Create or Join a Team</h1>
+<html>
 
-<%= form_tag join_team_path do %>
-    <div class="field">
-        <%= label_tag "Team Hash" %> <br>
-        <%= text_field_tag :team_hash, params[:team_hash] %>
-    </div>
+<head>
+  <title>EnrollMe</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+        <div class = "text-center">
+    <h1>Create or Join a Team</h1>
+
+    <%= form_tag join_team_path do %>
+        <div class="field">
+            <%= label_tag "Team Hash" %> <br>
+            <%= text_field_tag :team_hash, params[:team_hash] %>
+        </div>
     
-    <div class="actions">
-        <%= submit_tag "Join" %>
-    </div>
+        <div class="actions">
+            <%= submit_tag "Join" %>
+        </div>
     
 <% end %>
 
@@ -18,3 +29,7 @@
     </div>
 
 <% end %>
+</div>
+</div>
+</body>
+</html>

@@ -5,9 +5,9 @@ class SessionController < ApplicationController
   end
   
   def create
-    puts "ice cream", params # so it prints something here
-    puts Team.all
-    puts User.all
+    # puts "ice cream", params # so it prints something here
+    # puts Team.all
+    # puts User.all
     # user = User.find_by_email!(params[:users]) testing this through /login not /signup
     
     # user = User.find_by!(email: params[:users][:email]) #but can't find user. doesn't get saved in DB?

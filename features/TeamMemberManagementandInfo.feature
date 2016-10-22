@@ -6,7 +6,7 @@
 #   		| John                   | Gender Studies  | 666  | papajohn@berkeley.edu         |
 #   		| Josh                   | CS              | 420  | legueoflegends666@berkeley.edu|
 #   		| Jorge                  | Football Player | 999  | legueoflegends667@berkeley.edu|
-#  	  	| Sahai                  | EECS            | 000  | eecs666@berkeley.edu		  |
+#  	  	    | Sahai                  | EECS            | 000  | eecs666@berkeley.edu		  |
  
 
 #         Given PENDING: I am on the login page
