@@ -22,6 +22,10 @@ class UserController < ApplicationController
     @user = User.find params[:id]
   end
   
+  def without
+  	render :layout => "layouts/without_team"
+  end  
+
   def start_team
     @user = User.find(session[:user_id])
     @user.team = Team.create!(:passcode => User.name + "'s team hash", :approved => false)
