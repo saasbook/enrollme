@@ -23,7 +23,6 @@ Feature: join or create a team
     
   Scenario: An existing user joins an existing team
     Given I fill in "Email" with "legueoflegends667@hotmail.com"
-    And a team exists
     And I fill in "Password" with "password1"
     And I press "Log In"
     And I fill in "team_hash" with "penguindrool"

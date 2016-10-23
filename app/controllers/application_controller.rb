@@ -5,12 +5,10 @@ class ApplicationController < ActionController::Base
   
   def index
     @user_id = session[:user_id]
-    return redirect_to login_path if @user_id.nil?
+    @user = User.where(:id => @user_id).first
+    return redirect_to login_path if @user_id.nil? or @user.nil?
 
-    @user = User.find(@user_id)
-    if @user.team.nil?
-      return redirect_to without_team_path
-    end
+    return redirect_to without_team_path if @user.team.nil?
 
     return redirect_to team_path(:id => @user.team.id)
   end
