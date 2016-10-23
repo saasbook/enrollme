@@ -1,7 +1,6 @@
 class SessionController < ApplicationController
   
   def new
-    # if user already logged in, redirect to team page
     if !(session[:user_id].nil?)
       return redirect_to team_index_path
     else
