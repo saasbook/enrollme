@@ -33,11 +33,11 @@ end
   	#  | 0    | Football Player | Jorge     |  legueoflegends667@hotmail.com | 999 |
  	#  | 1    | EECS            | Sahai     |  eecs666@hotmail.com			 | 000 |
 Given /^the following users exist$/ do |table|
-  table.rows.each do |name, email, password, team, major, sid|
+  table.rows.each do |name, email, password, team_passcode, major, sid|
     next if name == "name" # skipping table header
-    team == nil if team == "0"
-    if team != "0"
-      User.create!(:team => Team.new(:approved => false, :passcode => name+team), :major => major, :name => name, :email => email, :sid => sid, :password => password)
+    if team_passcode != "0"
+      @team = Team.create!(:approved => false, :passcode => team_passcode)
+      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :password => password)
     else
       User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :password => password)
     end
