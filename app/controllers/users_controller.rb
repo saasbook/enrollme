@@ -1,10 +1,10 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   # before_filter :authenticate
   
   def new
-    #TODO: REMEMBER TO CHECK WEN SOMEONE CREATES A NEW USER THAT THE USER DOESNT ALREAY EXIST
     @user = User.new
     session[:user_id] = @user.id
+    render 'new'
   end
   
   def create
@@ -12,8 +12,7 @@ class UserController < ApplicationController
     
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "You signed up successfully!"
-      redirect_to @user
+      redirect_to without_team_path, :notice => "You signed up successfully!"
     else
       flash[:notice] = "Form is invalid"
       render 'new'
@@ -36,6 +35,7 @@ class UserController < ApplicationController
     # TODO: function in team_controller to generate team hashes
     @user = User.find(session[:user_id])
     @user.team = Team.create!(:passcode => @user.name + "'s team hash", :approved => false)
+    flash[:notice] = "Successfully created a team!"
     redirect_to team_path(:id=>@user.team.id)
   end
 
@@ -45,10 +45,16 @@ class UserController < ApplicationController
       flash[:notice] = "Please enter a valid team passcode"
       redirect_to without_team_path
     else
-      flash[:notice] = "Successfully created a team!"
-      @user = User(session[:user_id])
+      # TODO: when editing info, pre-fill in boxes
+      # also when we integrate calnet, email/password box shouldn't be there
+      # actually the user shouldn't be able to edit their info at all...
+      # should be given by their calnet info
+      # but while we have this, this page's button should be "Save changes", not "Create User"
+      # probably best idea to get rid of this page completely
+      @user = User.find(session[:user_id])
       @team = Team.find_by_passcode(@team_passcode)
       @user.team = @team
+      @team.users << @user
       redirect_to team_path(:id=>@team.id)
     end
     

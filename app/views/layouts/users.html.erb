@@ -1,7 +1,17 @@
-<h1>Edit Information</h1>
+<html>
+<head>
+  <%= yield %>
+  <title>Login</title>
 
-<%= form_for :user do |f| %>
-    
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<h1>Sign up</h1>
+
+<%= form_for @user, url: {action: "create"} do |f| %>
+
     <% if @user.errors.any? %>
         <div class="error_messages">
             <h2>Form is invalid</h2>
@@ -24,11 +34,6 @@
     </div>
     
     <div class="field">
-        <%= f.label :team %> <br>
-        <%= f.text_field :team %>
-    </div>
-    
-    <div class="field">
         <%= f.label :sid %> <br>
         <%= f.text_field :sid %>
     </div>
@@ -41,7 +46,7 @@
     <br>
     
     <div class="actions">
-        <%= submit_tag "Submit" %>
+        <%= f.submit "Create User" %>
     </div>
     
 <% end %>
