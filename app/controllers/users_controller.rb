@@ -34,9 +34,11 @@ class UsersController < ApplicationController
   def start_team
     # TODO: function in team_controller to generate team hashes
     @user = User.find(session[:user_id])
-    @user.team = Team.create!(:passcode => @user.name + "'s team hash", :approved => false)
+    @team = Team.create!(:passcode => @user.name + "'s team hash", :approved => false)
+    @user.team = @team
+    @team.users << @user
     flash[:notice] = "Successfully created a team!"
-    redirect_to team_path(:id=>@user.team.id)
+    redirect_to team_path(:id=>@team.id)
   end
 
   def join_team

@@ -9,5 +9,6 @@ Feature: Login to my account
     And I fill in "Email" with "david@berkeley.edu"
     And I fill in "Sid" with "12345678"
     And I fill in "Major" with "Declared"
+    And I fill in "Password" with "bestpasswordeva"
     And I press "Create User"
     Then I should see "Create or Join a Team"
