@@ -1,8 +1,16 @@
+<html>
+<head>
+  <%= yield %>
+  <title>Login</title>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
 <h1>Sign up</h1>
 
-<!--after login I want it to go the team page but it breaks-->
-<!--, url: team_path)-->
-<%= form_for :user do |f| %>
+<%= form_for @user, url: {action: "create"} do |f| %>
 
     <% if @user.errors.any? %>
         <div class="error_messages">
@@ -26,11 +34,6 @@
     </div>
     
     <div class="field">
-        <%= f.label :team %> <br>
-        <%= f.text_field :team %>
-    </div>
-    
-    <div class="field">
         <%= f.label :sid %> <br>
         <%= f.text_field :sid %>
     </div>
@@ -44,8 +47,6 @@
     
     <div class="actions">
         <%= f.submit "Create User" %>
-
-        <!--<%= submit_tag "Log In", class: "btn btn-default" %>-->
     </div>
     
 <% end %>

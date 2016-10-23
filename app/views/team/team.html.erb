@@ -1,23 +1,11 @@
-<h1>@team.name</h1>
-
-<h2>Team Password: @team.pw</h2>
-
-  <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="http://www.thedailybeast.com/articles/2012/04/16/50-shades-of-grey-speed-read-14-naughtiest-bits.html" role="button">View details &raquo;</a></p>
-      </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-default" href="http://www.thedailybeast.com/articles/2012/04/16/50-shades-of-grey-speed-read-14-naughtiest-bits.html" role="button">View details &raquo;</a></p>
-     </div>
-      <div class="col-md-4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-default" href="http://www.thedailybeast.com/articles/2012/04/16/50-shades-of-grey-speed-read-14-naughtiest-bits.html" role="button">View details &raquo;</a></p>
-      </div>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert alert-info" %>
+<% end %>
+<h3><a href="/signup">Edit My Info</a></h3>
+<h3><%= form_tag logout_path do %>
+    <div class="actions">
+        <%= submit_tag "Logout" %>
     </div>
+</h3>
+<% end %>
+

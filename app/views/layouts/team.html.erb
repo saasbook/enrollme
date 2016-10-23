@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%= yield %>
   <title>EnrollMe</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -11,33 +12,29 @@
     <div class="container">
       
       <h1>My Team</h1>
-      <h3><%= @team == nil ? "Your team does not exist." : "" %></h3>
-      <h3><%=  (@team == nil ? "" : "Team Password:" + @team.passcode.to_s) %></h3>
+      <h3><%=  "Team Password: " + @team.passcode.to_s %></h3>
       
       <div class="row">
         <div class="col-md-8">
           <h2>Members</h2>
-          <% if @team != nil %>
-            <table class="table table-striped table-hoverra>
-              <tr>
-                  <td></td>
-                  <td>Student</td>
-                  <td>CS Major?</td>
-                  <td></td>
-                </tr>
+          <table class="table table-striped table-hover">
+            <tr>
+                <td></td>
+                <td>Student</td>
+                <td>CS Major?</td>
+                <td></td>
+              </tr>
               
-              <% User.where("team_id is ?", @team.id).each_with_index do |u, index| %>
-                <tr>
-                  <td><%= index %></td>
-                  <td><%= u.name %></td>
-                  <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "No" %></td>
-                  <td>Edit</td>
-                </tr>
-              <% end %>
-            </table>
-          <% else %>
-            <p>Your team does not have any members.</p>
-          <% end %>
+            
+            <% User.where("team_id is ?", @team.id).each_with_index do |u, index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= u.name %></td>
+                <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "No" %></td>
+                <td>Edit</td>
+              </tr>
+            <% end %>
+          </table>
         </div>
         <div class="col-md-4">
           <a href="http://eecs.jimren.com/"><h3>  CS 169 Enrollment</h3></a>
@@ -45,8 +42,14 @@
       </div>
       <div class="actions">
         <%= submit_tag "Submit changes" %>
+      </div>
     </div>
-    <h2><a href="/signup">Edit My Info</a></h2>
-    </div>
+    
+    <h3><%= form_tag leave_team_path do %>
+        <div class="actions">
+            <%= submit_tag "Leave team" %>
+        </div>
+    </h3>
+    <% end %>
 </body>
 </html>

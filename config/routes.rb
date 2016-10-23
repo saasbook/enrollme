@@ -1,18 +1,22 @@
 Rails.application.routes.draw do
 
-  get '/signup', to: 'user#new'
-  post '/signup', to: 'without#index'
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#new'
   
   resources :users
   resources :team
   
+  post 'leave_team', to: 'team#leave'
+  
+  # TODO: something for route not found
+  
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
-  delete 'logout', to: 'session#destroy'
+  post 'logout', to: 'session#destroy'
   
-  get '/without_team', to: 'without#index'
-  post '/create_team', to: 'user#start_team'
-  post '/join_team', to: 'user#join_team'
+  get '/without_team', to: 'users#without'
+  post '/create_team', to: 'users#start_team'
+  post '/join_team', to: 'users#join_team'
   
   
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)

@@ -6,12 +6,11 @@ Feature: A user can edit their profile
   
   Background:
     Given the following users exist
-     |   name    |       email       |password |team | major        |       sid      |
-  	 | Jorge    |    legueoflegends667@hotmail.com  | password1 | 0 | Football Player | 999  |
+     |   name    |       email       |password |team_passcode | major        |       sid      |
  	   | Sahai     | eecs666@hotmail.com        | mypassword     | 1 | EECS            | 000  |
     And I am on the login page
-    And I fill in "Email" with "legueoflegends667@hotmail.com"
-    And I fill in "Password" with "password1"  
+    And I fill in "Email" with "eecs666@hotmail.com"
+    And I fill in "Password" with "mypassword"  
     And I press "Log In"
 
   Scenario: An edit button is on the home page
@@ -19,6 +18,6 @@ Feature: A user can edit their profile
     Then I should see "Edit"
 
   Scenario:
-    Given I am on the Team "1" page
+    Given I am on the team_index page
     Then I should see "Edit"
     

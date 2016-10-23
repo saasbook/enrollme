@@ -1,7 +1,7 @@
 <html>
 <head>
-    
-  <title>Loggin</title>
+  <%= yield %>
+  <title>Login</title>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -29,6 +29,13 @@
     </div>
     
 <% end %>
+
+<h3><%= form_tag signup_path do %>
+    <div class="actions">
+        <%= submit_tag "Sign up" %>
+    </div></h3>
+<% end %>
+
 
 </div>
 
