@@ -5,7 +5,10 @@ class TeamController < ApplicationController
     return redirect_to login_path if @user_id.nil?
 
     @user = User.find(@user_id)
-    return redirect_to without_team_path if @user.team.nil?
+    if @user.team.nil?
+      flash[:notice] = "Your team does not exist"
+      return redirect_to without_team_path
+    end
 
     return redirect_to team_path(:id => @user.team.id)
   end
