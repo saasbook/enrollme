@@ -1,5 +1,14 @@
 class SessionController < ApplicationController
   
+  def new
+    # if user already logged in, redirect to team page
+    if !(session[:user_id].nil?)
+      return redirect_to team_index_path
+    else
+      render 'new'
+    end
+  end
+  
   def create
     @user = User.where(:email => params[:email]).first
     if @user.nil? or @user.password != params[:password]
@@ -7,7 +16,7 @@ class SessionController < ApplicationController
         return
     end
     session[:user_id] = @user.id
-    redirect_to without_team_path, notice: "Logged in!"
+    redirect_to team_index_path, notice: "Logged in!"
   end
   
   def destroy

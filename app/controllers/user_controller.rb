@@ -45,9 +45,6 @@ class UserController < ApplicationController
       flash[:notice] = "Please enter a valid team passcode"
       redirect_to without_team_path
     else
-      # TODO: on team page, only show current user's team
-      # if user not logged in, redirect to login page
-      # if user not on a team, redirect to without_team page
       flash[:notice] = "Successfully created a team!"
       @user = User(session[:user_id])
       @team = Team.find_by_passcode(@team_passcode)

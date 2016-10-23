@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   resources :users
   resources :team
   
+  # TODO: something for route not found
+  
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
-  delete 'logout', to: 'session#destroy'
+  post 'logout', to: 'session#destroy'
   
   get '/without_team', to: 'user#without'
   post '/create_team', to: 'user#start_team'
