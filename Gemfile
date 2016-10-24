@@ -52,6 +52,7 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails', '3.4.2'
   gem 'ZenTest', '4.11.1'
+  gem 'le'
 end
 
 group :production do

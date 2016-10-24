@@ -153,6 +153,7 @@ GEM
     json_pure (2.0.2)
     launchy (2.4.3)
       addressable (~> 2.3)
+    le (2.7.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -335,6 +336,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  le
   metric_fu
   pg
   rails (= 4.2.6)
