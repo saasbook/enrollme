@@ -1,7 +1,7 @@
 <% flash.each do |name, msg| %>
   <%= content_tag :div, msg, class: "alert alert-info" %>
 <% end %>
-<h3><a href="/signup">Edit My Info</a></h3>
+<h3><a href="/edit">Edit My Info</a></h3>
 <h3><%= form_tag logout_path do %>
     <div class="actions">
         <%= submit_tag "Logout" %>

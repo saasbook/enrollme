@@ -6,7 +6,10 @@ class ApplicationController < ActionController::Base
   def index
     @user_id = session[:user_id]
     return redirect_to login_path if @user_id.nil?
-
+    
+    # @user = User.find_by_id(@user_id)
+    # return redirect_to login_path if @user.nil?
+    
     @user = User.find(@user_id)
     if @user.team.nil?
       return redirect_to without_team_path
