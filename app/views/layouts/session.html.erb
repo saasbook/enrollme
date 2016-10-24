@@ -30,12 +30,7 @@
     
 <% end %>
 
-<h3><%= form_tag signup_path do %>
-    <div class="actions">
-        <%= submit_tag "Sign up" %>
-    </div></h3>
-<% end %>
-
+<h3><%= button_to "Sign up", signup_path, class: "btn btn-default" %></h3>
 
 </div>
 

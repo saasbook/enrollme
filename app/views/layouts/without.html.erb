@@ -19,17 +19,13 @@
         </div>
     
         <div class="actions">
-            <%= submit_tag "Join" %>
+            <%= submit_tag "Join", class: "btn btn-default" %>
         </div>
     
 <% end %>
 
-<%= form_tag create_team_path do %>
-    <div class="actions">
-        <%= submit_tag "Create" %>
-    </div>
+<h3><%= button_to "Create", create_team_path, class: "btn btn-default" %></h3>
 
-<% end %>
 </div>
 </div>
 </body>

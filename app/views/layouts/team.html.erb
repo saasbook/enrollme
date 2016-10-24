@@ -41,15 +41,10 @@
        </div>
       </div>
       <div class="actions">
-        <%= submit_tag "Submit changes" %>
+        <%= submit_tag "Submit changes", class: "btn btn-default" %>
       </div>
     </div>
     
-    <h3><%= form_tag leave_team_path do %>
-        <div class="actions">
-            <%= submit_tag "Leave team" %>
-        </div>
-    </h3>
-    <% end %>
+  <h3><%= button_to "Leave team", leave_team_path, class: "btn btn-default" %></h3>
 </body>
 </html>
