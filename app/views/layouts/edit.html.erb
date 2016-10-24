@@ -7,46 +7,52 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<body>
+    <div class="container">
+        
+        <h1>Edit Info</h1>
 
-<h1>Edit Info</h1>
-
-<%= form_for @user, :url => user_path(@user.id), :method => :put do |f| %>
-
-    <% if @user.errors.any? %>
-        <div class="error_messages">
-            <h2>Form is invalid</h2>
-        </div>
-    <% end %>
-    
-    <div class="field">
-        <%= f.label :name %> <br>
-        <%= f.text_field :name %>
+        <%= form_for @user, :url => user_path(@user.id), :method => :put, class: "form-horizontal" do |f| %>
+            <fieldset>
+                <% if @user.errors.any? %>
+                    <div class="error_messages alert alert-dismissible alert-danger">
+                        <h2>Form is invalid</h2>
+                    </div>
+                <% end %>
+        
+                <div class="field form-group">
+                    <%= f.label :name, class: "col-lg-2 control-label" %> <br>
+                    <%= f.text_field :name, class: "form-control" %>
+                </div>
+        
+                <div class="field form-group">
+                    <%= f.label :email, class: "col-lg-2 control-label"  %> <br>
+                    <%= f.text_field :email, class: "form-control", type: "email" %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :password, class: "col-lg-2 control-label"  %> <br>
+                    <%= f.text_field :password, class: "form-control" %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :sid, class: "col-lg-2 control-label"  %> <br>
+                    <%= f.text_field :sid, class: "form-control"  %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :major, class: "col-lg-2 control-label"  %> <br>
+                    <%= f.text_field :major, class: "form-control" %>
+                </div>
+                
+                <br>
+                
+                <div class="actions form-group">
+                    <a href="/" class="btn btn-default">Cancel</a>
+                    <%= f.submit "Update Information", class: "btn btn-primary" %>
+                </div>
+            </fieldset>
+        <% end %>
+        
     </div>
-    
-    <div class="field">
-        <%= f.label :email %> <br>
-        <%= f.text_field :email %>
-    </div>
-    
-    <div class="field">
-        <%= f.label :password %> <br>
-        <%= f.text_field :password %>
-    </div>
-    
-    <div class="field">
-        <%= f.label :sid %> <br>
-        <%= f.text_field :sid %>
-    </div>
-    
-    <div class="field">
-        <%= f.label :major %> <br>
-        <%= f.text_field :major %>
-    </div>
-    
-    <br>
-    
-    <div class="actions">
-        <%= f.submit "Update Information" %>
-    </div>
-    
-<% end %>
+</body>
