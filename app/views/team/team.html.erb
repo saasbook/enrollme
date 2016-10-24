@@ -1,13 +1,10 @@
-<body>
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, class: "alert alert-info" %>
-  <% end %>
-  <div class="container">
-    <br>
-    <br>
-    <br>
-    <div class="col-xs-2">
-      <a href="/signup" class="btn btn-primary">Edit My Info</a>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert alert-info" %>
+<% end %>
+<h3><a href="/edit">Edit My Info</a></h3>
+<h3><%= form_tag logout_path do %>
+    <div class="actions">
+        <%= submit_tag "Logout" %>
     </div>
     <div class="col-xs-2">
       <%= button_to "Logout", logout_path, class: "btn btn-default" %>

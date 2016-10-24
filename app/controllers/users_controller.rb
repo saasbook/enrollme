@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find params[:id]
+    @user = User.find session[:user_id]
+    render :layout => "layouts/edit"
   end
   
   def without
@@ -66,10 +67,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find params[:id]
-    @user.update_attributes!(movie_params)
+    @user = User.find session[:user_id]
+    @user.update_attributes!(user_params)
     @team = @user != nil ? @user.team : nil
-    return redirect_to team_path({:id => @team === nil ? 1 : @team.id, :uid => user_id})
+    return redirect_to team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
   end
 
   private

@@ -1,0 +1,52 @@
+<html>
+<head>
+  <%= yield %>
+  <title>Edit Info</title>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<h1>Edit Info</h1>
+
+<%= form_for @user, :url => user_path(@user.id), :method => :put do |f| %>
+
+    <% if @user.errors.any? %>
+        <div class="error_messages">
+            <h2>Form is invalid</h2>
+        </div>
+    <% end %>
+    
+    <div class="field">
+        <%= f.label :name %> <br>
+        <%= f.text_field :name %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :email %> <br>
+        <%= f.text_field :email %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :password %> <br>
+        <%= f.text_field :password %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :sid %> <br>
+        <%= f.text_field :sid %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :major %> <br>
+        <%= f.text_field :major %>
+    </div>
+    
+    <br>
+    
+    <div class="actions">
+        <%= f.submit "Update Information" %>
+    </div>
+    
+<% end %>
