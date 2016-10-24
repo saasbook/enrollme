@@ -11,6 +11,13 @@ class User < ActiveRecord::Base
   
   #has_secure_password
   
+  
+  def leave_team
+    @team = self.team
+    @team.users.delete(self)
+    self.team = nil
+  end
+  
     
   
     

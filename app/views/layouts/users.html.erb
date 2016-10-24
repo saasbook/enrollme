@@ -14,7 +14,6 @@
         <%= form_for @user, url: {action: "create"}, class: "form-horizontal" do |f| %>
             <fieldset>
                 <% if @user.errors.any? %>
-                    <% puts @user.errors.details %>
                     <div class="error_messages alert alert-dismissible alert-danger">
                         Form is invalid
                     </div>

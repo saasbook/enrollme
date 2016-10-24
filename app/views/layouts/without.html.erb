@@ -11,6 +11,7 @@
     <div class="container">
         <div class = "text-center">
             <h1>Create or Join a Team</h1>
+            <br>
 
             <%= form_tag join_team_path, class: "form-group" do %>
                 <div class="input-group">
@@ -22,17 +23,7 @@
                 </div>
             <% end %>
             
-            <br>
-            <br>
-            <br>
-            <br>
-        
-            <%= form_tag create_team_path do %>
-                <div class="actions">
-                    <%= button_to "Create a Team", create_team_path, class: "btn btn-default btn-large btn-block" %>
-                </div>
-            
-            <% end %>
+            <%= button_to "Create a Team", create_team_path, class: "btn btn-default btn-large btn-block" %>
         </div>
     </div>
 </body>

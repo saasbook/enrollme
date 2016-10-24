@@ -14,8 +14,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to without_team_path, :notice => "You signed up successfully!"
     else
-      flash[:notice] = "Form is invalid"
-      render 'new'
+      render 'new', :notice => "Form is invalid"
     end
   end
   
@@ -24,17 +23,18 @@ class UsersController < ApplicationController
   end
   
   def without
-    if session[:user_id].nil?
-      redirect_to login_path
-    else
-    	render :layout => "layouts/without"
-    end
+    return redirect_to login_path if session[:user_id].nil?
+    
+    render :layout => "layouts/without"
   end
 
   def start_team
-    # TODO: function in team_controller to generate team hashes
     @user = User.find(session[:user_id])
-    @team = Team.create!(:passcode => @user.name + "'s team hash", :approved => false)
+    
+    @user.leave_team if !(@user.team.nil?)
+    
+    
+    @team = Team.create!(:passcode => Team.generate_hash, :approved => false)
     @user.team = @team
     @team.users << @user
     redirect_to team_path(:id=>@team.id), :notice => "Successfully created a team!"
@@ -42,6 +42,10 @@ class UsersController < ApplicationController
 
   def join_team
     # TODO: How to make all other views use application view for header?
+    @user = User.find(session[:user_id])
+
+    @user.leave_team if !(@user.team.nil?)
+    
     @team_passcode = params[:team_hash]
     if @team_passcode.empty? or !(Team.exists?(:passcode => @team_passcode))
       redirect_to without_team_path, :notice => "Please enter a valid team passcode"
