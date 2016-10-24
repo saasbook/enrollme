@@ -26,9 +26,8 @@
               </tr>
               
             
-            <% User.where("team_id is ?", @team.id).each_with_index do |u, index| %>
+            <% Team.find(@team.id).users.each do |u| %>
               <tr>
-                <td><%= index + 1 %></td>
                 <td><%= u.name %></td>
                 <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "No" %></td>
                 <td>Edit</td>

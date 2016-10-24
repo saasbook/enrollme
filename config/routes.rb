@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   
   post 'leave_team', to: 'team#leave'
   
+  get '/', to: redirect('/login')
+  
   # TODO: something for route not found
   
   get 'login', to: 'session#new'
