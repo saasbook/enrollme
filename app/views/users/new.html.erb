@@ -39,9 +39,14 @@
                     <%= f.text_field :sid, placeholder: "12345678", class: "form-control" %>
                 </div>
                 
+                <!--<div class="field form-group">-->
+                <!--    %= f.label :major, class: "col-lg-2 control-label" %> <br>-->
+                <!--    %= f.text_field :major, placeholder: "Computer Science", class: "form-control" %>-->
+                <!--</div>-->
+                
                 <div class="field form-group">
-                    <%= f.label :major, class: "col-lg-2 control-label" %> <br>
-                    <%= f.text_field :major, placeholder: "Computer Science", class: "form-control" %>
+                  <%= f.label :major %> <br>
+                  <%= f.collection_select :major, User::MAJOR, :to_s, :to_s, :include_blank => false %>
                 </div>
                 
                 <br>

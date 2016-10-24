@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class UsersController < ApplicationController
   def new
     @user = User.new
@@ -30,9 +32,9 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
     
     @user.leave_team if !(@user.team.nil?)
-    
-    
-    @team = Team.create!(:passcode => Team.generate_hash, :approved => false)
+
+    #@team = Team.create!(:passcode => Team.generate_hash, :approved => false)
+    @team = Team.create!(:passcode => generate_hash, :approved => false)
     @user.team = @team
     @team.users << @user
     redirect_to team_path(:id=>@team.id), :notice => "Successfully created a team!"
@@ -56,6 +58,7 @@ class UsersController < ApplicationController
     @team = Team.find_by_passcode(@team_passcode)
     @user.team = @team
     @team.users << @user
+    
     redirect_to team_path(:id=>@team.id)
   end
 
@@ -71,5 +74,9 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :team, :sid, :major)
     end
   
+    def generate_hash
+      random_string = SecureRandom.base64
+      return random_string
+    end
   
 end
