@@ -8,8 +8,4 @@ class Team < ActiveRecord::Base
         @@temp_hash += 1
         return @@temp_hash
     end
-    
-    def remove(user)
-        user.leave_team
-    end
 end

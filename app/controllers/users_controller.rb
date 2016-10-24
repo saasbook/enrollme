@@ -48,21 +48,18 @@ class UsersController < ApplicationController
     @user.leave_team if !(@user.team.nil?)
     
     @team_passcode = params[:team_hash]
-    if @team_passcode.empty? or !(Team.exists?(:passcode => @team_passcode))
-      redirect_to without_team_path, :notice => "Please enter a valid team passcode"
-    else
-      # TODO: when editing info, pre-fill in boxes
-      # also when we integrate calnet, email/password box shouldn't be there
-      # actually the user shouldn't be able to edit their info at all...
-      # should be given by their calnet info
-      # but while we have this, this page's button should be "Save changes", not "Create User"
-      # probably best idea to get rid of this page completely
-      @user = User.find(session[:user_id])
-      @team = Team.find_by_passcode(@team_passcode)
-      @user.team = @team
-      @team.users << @user
-      redirect_to team_path(:id=>@team.id)
-    end
+    
+    # TODO: when editing info, pre-fill in boxes
+    # also when we integrate calnet, email/password box shouldn't be there
+    # actually the user shouldn't be able to edit their info at all...
+    # should be given by their calnet info
+    # but while we have this, this page's button should be "Save changes", not "Create User"
+    # probably best idea to get rid of this page completely
+    @user = User.find(session[:user_id])
+    @team = Team.find_by_passcode(@team_passcode)
+    @user.team = @team
+    @team.users << @user
+    redirect_to team_path(:id=>@team.id)
     
   end
 
