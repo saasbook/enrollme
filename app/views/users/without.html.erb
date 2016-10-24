@@ -1,10 +1,29 @@
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: "alert alert-info" %>
-<% end %>
-    
-    <br>
-    <br>
-    <br>
+<html>
+<head>
+  <%= yield %>
+  <title>EnrollMe</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
     <div class="container">
-        <%= button_to "Logout", logout_path, class: "btn btn-default" %>
+        <div class = "text-center">
+            <h1>Create or Join a Team</h1>
+            <br>
+
+            <%= form_tag join_team_path, class: "form-group" do %>
+                <div class="input-group">
+                    <span class="input-group-addon">Team Passcode</span>
+                    <%= text_field_tag :team_hash, params[:team_hash], class: "form-control", placeholder: "My team" %>
+                    <span class="input-group-btn">
+                      <%= submit_tag "Join", class: "btn btn-primary" %>
+                    </span>
+                </div>
+            <% end %>
+            
+            <%= button_to "Create a Team", create_team_path, class: "btn btn-default btn-large btn-block" %>
+        </div>
     </div>
+</body>
+</html>

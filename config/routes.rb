@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
 
+  # get 'session/new'
+  # get 'session/create'
+  # get 'session/destroy'
+
+  # get 'team/index'
+  # get 'team/show'
+  # get 'team/leave'
+  # get 'team/update'
+
+  # get 'users/new'
+  # get 'users/create'
+  # get 'users/edit'
+  # get 'users/without'
+  # get 'users/start_team'
+  # get 'users/join_team'
+  # get 'users/update'
+
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#new'
   
