@@ -52,3 +52,7 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
     assert_not_equal path_to(page_name), current_path
   end
 end
+  
+Then /^print the page body$/ do
+  puts page.body
+end

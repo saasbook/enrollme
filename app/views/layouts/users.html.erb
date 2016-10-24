@@ -7,46 +7,52 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-
-<h1>Sign up</h1>
-
-<%= form_for @user, url: {action: "create"} do |f| %>
-
-    <% if @user.errors.any? %>
-        <div class="error_messages">
-            <h2>Form is invalid</h2>
-        </div>
-    <% end %>
-    
-    <div class="field">
-        <%= f.label :name %> <br>
-        <%= f.text_field :name %>
+<body>
+    <div class="container">
+        
+        <h1>Sign Up</h1>
+        <%= form_for @user, url: {action: "create"}, class: "form-horizontal" do |f| %>
+            <fieldset>
+                <% if @user.errors.any? %>
+                    <% puts @user.errors.details %>
+                    <div class="error_messages alert alert-dismissible alert-danger">
+                        Form is invalid
+                    </div>
+                <% end %>
+                
+                <div class="field form-group">
+                    <%= f.label :name, class: "col-lg-2 control-label" %> <br>
+                    <%= f.text_field :name, placeholder: "Name", class: "form-control" %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :email, class: "col-lg-2 control-label" %> <br>
+                    <%= f.text_field :email, class: "form-control", type: "email", placeholder: "you@berkeley.edu" %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :password, class: "col-lg-2 control-label" %> <br>
+                    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :sid, class: "col-lg-2 control-label" %> <br>
+                    <%= f.text_field :sid, placeholder: "12345678", class: "form-control" %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :major, class: "col-lg-2 control-label" %> <br>
+                    <%= f.text_field :major, placeholder: "Computer Science", class: "form-control" %>
+                </div>
+                
+                <br>
+                
+                <div class="actions form-group">
+                    <a href="/" class="btn btn-default">Cancel</a>
+                    <%= f.submit "Sign Up", class: "btn btn-primary" %>
+                </div>
+            </fieldset>
+        <% end %>
+        
     </div>
-    
-    <div class="field">
-        <%= f.label :email %> <br>
-        <%= f.text_field :email %>
-    </div>
-    
-    <div class="field">
-        <%= f.label :password %> <br>
-        <%= f.text_field :password %>
-    </div>
-    
-    <div class="field">
-        <%= f.label :sid %> <br>
-        <%= f.text_field :sid %>
-    </div>
-    
-    <div class="field">
-        <%= f.label :major %> <br>
-        <%= f.text_field :major %>
-    </div>
-    
-    <br>
-    
-    <div class="actions">
-        <%= f.submit "Create User" %>
-    </div>
-    
-<% end %>
+</body>

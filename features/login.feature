@@ -10,5 +10,5 @@ Feature: Login to my account
     And I fill in "Sid" with "12345678"
     And I fill in "Major" with "Declared"
     And I fill in "Password" with "bestpasswordeva"
-    And I press "Create User"
+    And I press "Sign Up"
     Then I should see "Create or Join a Team"

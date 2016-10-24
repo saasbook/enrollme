@@ -37,19 +37,20 @@
           </table>
         </div>
         <div class="col-md-4">
-          <a href="http://eecs.jimren.com/"><h3>  CS 169 Enrollment</h3></a>
+          <a href="http://eecs.jimren.com/" class="btn btn-primary">CS 169 Enrollment</a>
        </div>
       </div>
       <div class="actions">
-        <%= submit_tag "Submit changes" %>
+        <div class="col-xs-2">
+          <%= submit_tag "Submit changes", class: "btn btn-primary" %>
+        </div>
+        
+        <div class="col-xs-2">
+          <%= form_tag leave_team_path do %>
+            <%= submit_tag "Leave team", class: "btn btn-default" %>
+          <% end %>
+        </div>
       </div>
     </div>
-    
-    <h3><%= form_tag leave_team_path do %>
-        <div class="actions">
-            <%= submit_tag "Leave team" %>
-        </div>
-    </h3>
-    <% end %>
 </body>
 </html>

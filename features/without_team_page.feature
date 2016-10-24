@@ -15,7 +15,6 @@ Feature: join or create a team
   Scenario: An existing user creates a new team and gets the password
     Given I fill in "Email" with "legueoflegends667@hotmail.com"
     And I fill in "Password" with "password1"
-
     And I press "Log In"
     Then I should see "Create or Join a Team"
     And I press "Create"
