@@ -10,27 +10,30 @@
 <body>
     <div class="container">
         <div class = "text-center">
-    <h1>Create or Join a Team</h1>
+            <h1>Create or Join a Team</h1>
 
-    <%= form_tag join_team_path do %>
-        <div class="field">
-            <%= label_tag "Team Hash" %> <br>
-            <%= text_field_tag :team_hash, params[:team_hash] %>
+            <%= form_tag join_team_path, class: "form-group" do %>
+                <div class="input-group">
+                    <span class="input-group-addon">Team Passcode</span>
+                    <%= text_field_tag :team_hash, params[:team_hash], class: "form-control", placeholder: "My team" %>
+                    <span class="input-group-btn">
+                      <%= submit_tag "Join", class: "btn btn-primary" %>
+                    </span>
+                </div>
+            <% end %>
+            
+            <br>
+            <br>
+            <br>
+            <br>
+        
+            <%= form_tag create_team_path do %>
+                <div class="actions">
+                    <%= button_to "Create a Team", create_team_path, class: "btn btn-default btn-large btn-block" %>
+                </div>
+            
+            <% end %>
         </div>
-    
-        <div class="actions">
-            <%= submit_tag "Join" %>
-        </div>
-    
-<% end %>
-
-<%= form_tag create_team_path do %>
-    <div class="actions">
-        <%= submit_tag "Create" %>
     </div>
-
-<% end %>
-</div>
-</div>
 </body>
 </html>
