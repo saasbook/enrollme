@@ -20,13 +20,13 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find session[:user_id]
-    render :layout => "layouts/edit"
+    render 'edit'
   end
   
   def without
     return redirect_to login_path if session[:user_id].nil?
     
-    render :layout => "layouts/without"
+    render 'without'
   end
 
   def start_team
