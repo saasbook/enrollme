@@ -35,8 +35,9 @@ end
 Given /^the following users exist$/ do |table|
   table.rows.each do |name, email, password, team_passcode, major, sid|
     next if name == "name" # skipping table header
+    @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
-      @team = Team.create!(:approved => false, :passcode => team_passcode)
+      @team = Team.create!(:approved => false, :passcode => team_passcode) if @team.nil?
       User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :password => password)
     else
       User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :password => password)
