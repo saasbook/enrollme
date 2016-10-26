@@ -4,7 +4,7 @@ Feature: Login to my account
   I want to create an account and login
 
   Scenario: Successfully create an account and login
-    Given I am on the signup page
+    Given I am on the new_user page
     When I fill in "Name" with "David"
     And I fill in "Email" with "david@berkeley.edu"
     And I fill in "Sid" with "12345678"
