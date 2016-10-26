@@ -3,6 +3,8 @@ class SessionController < ApplicationController
   def new
     if !(session[:user_id].nil?)
       return redirect_to team_index_path
+    elsif session[:is_admin]
+      return redirect_to admin_path
     else
       render 'new'
     end

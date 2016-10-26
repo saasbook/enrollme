@@ -31,32 +31,22 @@ class UsersController < ApplicationController
 
   def start_team
     @user = User.find(session[:user_id])
-    
     @user.leave_team if !(@user.team.nil?)
     
-    
     @team = Team.create!(:passcode => Team.generate_hash, :approved => false)
+
     @user.team = @team
     @team.users << @user
-    redirect_to team_path(:id=>@team.id), :notice => "Successfully created a team!"
+    redirect_to team_path(:id=>@team.id)
   end
 
   def join_team
     # TODO: How to make all other views use application view for header?
     @user = User.find(session[:user_id])
-
     @user.leave_team if !(@user.team.nil?)
     
-    @team_passcode = params[:team_hash]
-    
-    # TODO: when editing info, pre-fill in boxes
-    # also when we integrate calnet, email/password box shouldn't be there
-    # actually the user shouldn't be able to edit their info at all...
-    # should be given by their calnet info
-    # but while we have this, this page's button should be "Save changes", not "Create User"
-    # probably best idea to get rid of this page completely
-    @user = User.find(session[:user_id])
-    @team = Team.find_by_passcode(@team_passcode)
+    @team = Team.find_by_passcode(params[:team_hash])
+
     @user.team = @team
     @team.users << @user
     redirect_to team_path(:id=>@team.id)
