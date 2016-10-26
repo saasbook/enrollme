@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>Admin Sign Up</title>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+        
+        <h1>Admin Sign Up</h1>
+        <%= form_for @admin, url: {action: "create"}, class: "form-horizontal" do |f| %>
+            <fieldset>
+                <% if @admin.errors.any? %>
+                    <div class="error_messages alert alert-dismissible alert-danger">
+                        Form is invalid
+                    </div>
+                <% end %>
+                
+                <div class="field form-group">
+                    <%= f.label :name, class: "col-lg-2 control-label" %> <br>
+                    <%= f.text_field :name, placeholder: "Name", class: "form-control" %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :email, class: "col-lg-2 control-label" %> <br>
+                    <%= f.text_field :email, class: "form-control", type: "email", placeholder: "you@berkeley.edu" %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :password, class: "col-lg-2 control-label" %> <br>
+                    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
+                </div>
+
+                <br>
+                
+                <div class="actions form-group">
+                    <a href="/" class="btn btn-default">Cancel</a>
+                    <%= f.submit "Sign Up", class: "btn btn-primary" %>
+                </div>
+            </fieldset>
+        <% end %>
+        
+    </div>
+</body>

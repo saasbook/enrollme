@@ -1,5 +1,5 @@
 Feature: Login to my account
-  As an student
+  As a student
   In order to create an account and login
   I want to create an account and login
 
