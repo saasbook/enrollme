@@ -5,25 +5,25 @@ Feature: edit user information
   I want to be able to edit my user information
   
   Background:
-    Given the following users exist
+    Given PENDING: the following users exist
      |   name    |       email       |password |team_passcode | major        |       sid      |
   	 | Jorge    |    legueoflegends667@hotmail.com  | password1 | 0 | Football Player | 999  |
  	   | Sahai     | eecs666@hotmail.com        | mypassword     | penguindrool | EECS            | 000  |
  	
- 	And I am on the login page
+ 	And PENDING: I am on the login page
  	
   Scenario: An existing user logs in, joins a team, and edits his information
-    Given I fill in "Email" with "legueoflegends667@hotmail.com"
-    And I fill in "Password" with "password1"
+    Given PENDING: I fill in "Email" with "legueoflegends667@hotmail.com"
+    And PENDING: I fill in "Password" with "password1"
 
-    And I press "Log In"
-    And I press "Create"
+    And PENDING: I press "Log In"
+    And PENDING: I press "Create"
     
-    And I fill in "team_hash" with "penguindrool"
-    And I press "Join"
+    And PENDING: I fill in "team_hash" with "penguindrool"
+    And PENDING: I press "Join"
 
-    Given I follow "Edit My Info"
-    And I fill in "Password" with "password2"
-    And I press "Update Information"
-    Then I should see "password2"
+    Given PENDING: I follow "Edit My Info"
+    And PENDING: I fill in "Password" with "password2"
+    And PENDING: I press "Update Information"
+    Then PENDING: I should see "password2"
     
