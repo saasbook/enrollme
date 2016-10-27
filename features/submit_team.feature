@@ -8,7 +8,10 @@ Feature: submit team
   	Given PENDING: the following users exist
   		|   name    |       email                       | password              | team      | major             |       sid         |  
   	    | Jorge     |    legueoflegends667@hotmail.com  | password1             | passcode1 | Football Player   | 999               |
-  	
+  	    | Bob1      |    bobjones1@berkeley.edu         | password1             | passcode1 | Slavic Studies    | 825               |
+  	    | Bob2      |    bobjones2@berkeley.edu         | password1             | passcode1 | Slavic Studies    | 826               |
+  	    | Bob3      |    bobjones3@berkeley.edu         | password1             | passcode1 | Slavic Studies    | 827               |
+  	    
     Given PENDING: I am on the login page
     
   Scenario: Submit button should not be present when team has only four members

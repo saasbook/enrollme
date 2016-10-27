@@ -15,9 +15,7 @@ Feature: edit user information
   Scenario: An existing user logs in, joins a team, and edits his information
     Given PENDING: I fill in "Email" with "legueoflegends667@hotmail.com"
     And PENDING: I fill in "Password" with "password1"
-
     And PENDING: I press "Log In"
-    And PENDING: I press "Create"
     
     And PENDING: I fill in "team_hash" with "penguindrool"
     And PENDING: I press "Join"
@@ -25,5 +23,6 @@ Feature: edit user information
     Given PENDING: I follow "Edit My Info"
     And PENDING: I fill in "Password" with "password2"
     And PENDING: I press "Update Information"
+    And PENDING: I follow "Edit My Info"
     Then PENDING: I should see "password2"
     
