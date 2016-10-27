@@ -11,21 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161021063449) do
+ActiveRecord::Schema.define(version: 20161025234954) do
 
-  create_table "teams", force: :cascade do |t|
-    t.boolean  "approved"
-    t.string   "passcode"
+  create_table "admins", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.boolean "approved"
+    t.string  "passcode"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "email",      null: false
-    t.string   "password",   null: false
-    t.string   "major",      null: false
-    t.string   "sid",        null: false
+    t.string   "name"
+    t.string   "email"
+    t.string   "password"
+    t.string   "team"
+    t.string   "major"
+    t.string   "sid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "team_id"

@@ -15,5 +15,5 @@ Feature: navigating to the team page without the correct permissions should fail
    Scenario: I should see team members
         Given I am on the team_index page
         Then I should not see "Students"
-        And I should see "Your team does not exist"
+        And I should be on the without_team page
 

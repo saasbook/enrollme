@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @team = Team.create!(:passcode => generate_hash, :approved => false)
     @user.team = @team
     @team.users << @user
-    redirect_to team_path(:id=>@team.id), :notice => "Successfully created a team!"
+    redirect_to team_path(:id=>@team.id)
   end
 
   def join_team

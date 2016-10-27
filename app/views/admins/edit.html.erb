@@ -1,11 +1,8 @@
-<div class="col-xs-2">
-  <%= button_to "Logout", logout_path, class: "btn btn-default" %>
-</div>
-
 <html>
 <head>
   <%= yield %>
   <title>Edit Info</title>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -15,9 +12,9 @@
         
         <h1>Edit Info</h1>
 
-        <%= form_for @user, :url => user_path(@user.id), :method => :put, class: "form-horizontal" do |f| %>
+        <%= form_for @admin, :url => admin_path(@admin.id), :method => :put, class: "form-horizontal" do |f| %>
             <fieldset>
-                <% if @user.errors.any? %>
+                <% if @admin.errors.any? %>
                     <div class="error_messages alert alert-dismissible alert-danger">
                         <h2>Form is invalid</h2>
                     </div>
@@ -37,17 +34,6 @@
                     <%= f.label :password, class: "col-lg-2 control-label"  %> <br>
                     <%= f.text_field :password, class: "form-control" %>
                 </div>
-                
-                <div class="field form-group">
-                    <%= f.label :sid, class: "col-lg-2 control-label"  %> <br>
-                    <%= f.text_field :sid, class: "form-control"  %>
-                </div>
-                
-                <div class="field form-group">
-                  <%= f.label :major %> <br>
-                  <%= f.collection_select :major, User::MAJOR, :to_s, :to_s, :include_blank => false %>
-                </div>
-                
                 <br>
                 
                 <div class="actions form-group">

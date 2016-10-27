@@ -1,3 +1,4 @@
+<<<<<<< HEAD:app/views/team/index.html.erb
 <html>
 <head>
   <%= yield %>
@@ -49,6 +50,24 @@
           <% end %>
         </div>
       </div>
+=======
+<body>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-info" %>
+  <% end %>
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="col-xs-2">
+      <%= button_to "Edit My Info", edit_user_path(session[:user_id]), {method: 'get', class: "btn btn-primary"} %>
+>>>>>>> 6d813ac32741c464680186784b1cb3c8d01712b9:app/views/layouts/team.html.erb
     </div>
+    <div class="col-xs-2">
+      <%= button_to "Logout", logout_path, class: "btn btn-default" %>
+    </div>
+    </div>
+  </div>
 </body>
-</html>
+
+<%= yield %>
