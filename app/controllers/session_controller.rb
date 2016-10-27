@@ -11,8 +11,10 @@ class SessionController < ApplicationController
   
   def create
 
-    @user = User.where(:email => params[:email]).first
-    @admin = Admin.where(:email => params[:email]).first
+    @user = User.find_by_email(params[:email])
+    @admin = Admin.find_by_email(params[:email])
+    
+
     if (@user.nil? or @user.password != params[:password]) and (@admin.nil? or @admin.password != params[:password])
       return redirect_to login_path, notice: "Invalid email or password"
     elsif @user.nil?
