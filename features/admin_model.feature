@@ -4,7 +4,7 @@ Feature: Login to my account
   I want to create an account
   
   Background:
-    Given PENDING: the following admins exist
+    Given the following admins exist
      | name | email                  | password |
   	 | Bob  | supreme_ruler@aol.com  | ilikcats |
 
@@ -14,5 +14,5 @@ Feature: Login to my account
     When I fill in "Email" with "supreme_ruler@aol.com"
     And I fill in "Password" with "ilikcats"
     And I press "Log In"
-    Then PENDING: I should see "Team List"
-    And PENDING: I should see "Welcome Back, Bob!"
+    Then I should see "Team List"
+    And I should see "Welcome Back, Bob!"

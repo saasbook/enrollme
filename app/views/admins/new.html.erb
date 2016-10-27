@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Sign up</title>
+  <title>Admin Sign Up</title>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -8,11 +8,11 @@
 </head>
 <body>
     <div class="container">
-        <%= yield %>
-        <h1>Sign Up</h1>
-        <%= form_for @user, url: {action: "create"}, class: "form-horizontal" do |f| %>
+        
+        <h1>Admin Sign Up</h1>
+        <%= form_for @admin, url: {action: "create"}, class: "form-horizontal" do |f| %>
             <fieldset>
-                <% if @user.errors.any? %>
+                <% if @admin.errors.any? %>
                     <div class="error_messages alert alert-dismissible alert-danger">
                         Form is invalid
                     </div>
@@ -32,17 +32,7 @@
                     <%= f.label :password, class: "col-lg-2 control-label" %> <br>
                     <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
                 </div>
-                
-                <div class="field form-group">
-                    <%= f.label :sid, class: "col-lg-2 control-label" %> <br>
-                    <%= f.text_field :sid, placeholder: "12345678", class: "form-control" %>
-                </div>
-                
-                <div class="field form-group">
-                    <%= f.label :major, class: "col-lg-2 control-label" %> <br>
-                    <%= f.text_field :major, placeholder: "Computer Science", class: "form-control" %>
-                </div>
-                
+
                 <br>
                 
                 <div class="actions form-group">

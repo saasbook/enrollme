@@ -68,10 +68,10 @@ Feature: go to the correct page
     Then I should not be on the team "2" page
     And I should see "Cannot access this team"
     
-  Scenario: Prevents access to a nonexistent team
+  Scenario: Prevents access to a non-logged in person
     Given I go to the team "0" page
     Then I should not be on the team "0" page
-    And I should see "This team does not exist"
+    And I should see "Please log in"
 
   Scenario: Successfully leave a team
     Given I fill in "Email" with "eecs666@hotmail.com"
