@@ -17,7 +17,6 @@ class TeamController < ApplicationController
   end
 
   def show
-
     @user = User.find_by_id(session[:user_id])
     return redirect_to login_path, :notice => "Please log in" if @user.nil?
     
