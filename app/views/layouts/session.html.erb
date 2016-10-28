@@ -1,38 +1,5 @@
-<html>
-<head>
-  <%= yield %>
-  <title>Login</title>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert alert-info" %>
+<% end %>
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-    <div class="container">
-        <div class = "text-center">
-            <h1>Log In!</h1>
-            
-            <%= form_tag login_path, class: "form-horizontal" do %>
-                
-                <div class="field form-group">
-                    <%= label_tag :email %> <br>
-                    <%= text_field_tag :email %>
-                </div>
-                
-                <div class="field form-group">
-                    <%= label_tag :password %> <br>
-                    <%= password_field_tag :password %>
-                </div>
-                
-                <br>
-                
-                <div class="actions">
-                    <%= submit_tag "Log In", class: "btn btn-primary" %>
-                    <a href=signup class="btn btn-default">Sign up</a>
-                </div>
-            <% end %>
-        </div>
-    </div>
-
-</body>
-</html>
+<%= yield %>

@@ -55,3 +55,13 @@ two.users << User.where(name: "John")
   ue.password = passwords
   ue.save!
 """
+
+
+admins = [
+  		{ :name => "Anna", :email => "aaa@berkeley.edu",:password => "appleaimer" },
+  		{ :name => "Bruce", :email => "bbb@berkeley.edu",:password => "bananabruiser" },
+  ]
+  
+admins.each do |a|
+  Admin.create!(a)
+end

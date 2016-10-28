@@ -15,6 +15,10 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+    when /^the (.*)_user page$/i
+      "/users/" + $1
+    when /^the (.*)_admin page$/i
+      "/admins/" + $1
     when /^the team "([^"]*)" page$/i
       team_path(:id=>$1)
     # Add more mappings here.

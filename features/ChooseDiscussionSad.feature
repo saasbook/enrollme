@@ -19,4 +19,3 @@ Feature: When I log in I want to be able to choose my discussion section
     Given I log in as "Sahai"
     Then I should see "Disucssion Times"
     Then the "Disucssion Times" drop-down should contain the option "10am - Tuesday"
-

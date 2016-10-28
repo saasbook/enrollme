@@ -153,7 +153,6 @@ GEM
     json_pure (2.0.2)
     launchy (2.4.3)
       addressable (~> 2.3)
-    le (2.7.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -220,9 +219,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails_12factor (0.0.3)
-      rails_serve_static_assets
-      rails_stdout_logging
     rails_best_practices (1.17.0)
       activesupport
       code_analyzer (>= 0.4.3)
@@ -231,8 +227,6 @@ GEM
       json
       require_all
       ruby-progressbar
-    rails_serve_static_assets (0.0.5)
-    rails_stdout_logging (0.0.5)
     railties (4.2.6)
       actionpack (= 4.2.6)
       activesupport (= 4.2.6)
@@ -341,11 +335,9 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
-  le
   metric_fu
   pg
   rails (= 4.2.6)
-  rails_12factor
   rspec-rails (= 3.4.2)
   sass-rails (~> 5.0.3)
   sdoc (~> 0.4.0)

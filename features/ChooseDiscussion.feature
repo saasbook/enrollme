@@ -10,7 +10,7 @@ Feature: When I log in I want to be able to choose my discussion section
  	 | Trump    | wall@hotmail.com               |  password3 | ok            | EECS  | 26131977 |
 
     And I am on the login page
-    And I all the discussions are open 
+    And all the discussions are open 
     And all these people are on the same team 
 
 
@@ -21,7 +21,6 @@ Feature: When I log in I want to be able to choose my discussion section
     When I select "10am - Tuesday" from "First Choice"
     When I select "10am - Wednesday" from "Second Choice"
     When I select "10am - Friday" from "Third Choice"
-    And I click "Submit Team"
+    And I press "Submit Team"
+    Then I should be on the team page
     Then I should see "Success! Team submitted"
-    And I click "Back"
-    Then I should see "Approval Pending"

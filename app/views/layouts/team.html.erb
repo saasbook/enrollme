@@ -1,55 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <%= yield %>
-  <title>EnrollMe</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
 <body>
-  
-    <div class="container">
-      
-      <h1>My Team</h1>
-      <h3><%=  "Team Password: " + @team.passcode.to_s %></h3>
-      
-      <div class="row">
-        <div class="col-md-8">
-          <h2>Members</h2>
-          <table class="table table-striped table-hover">
-            <tr>
-                <td></td>
-                <td>Student</td>
-                <td>CS Major?</td>
-                <td></td>
-              </tr>
-              
-            
-            <% Team.find(@team.id).users.each do |u| %>
-              <tr>
-                <td><%= u.name %></td>
-                <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "No" %></td>
-                <td>Edit</td>
-              </tr>
-            <% end %>
-          </table>
-        </div>
-        <div class="col-md-4">
-          <a href="http://eecs.jimren.com/" class="btn btn-primary">CS 169 Enrollment</a>
-       </div>
-      </div>
-      <div class="actions">
-        <div class="col-xs-2">
-          <%= submit_tag "Submit changes", class: "btn btn-primary" %>
-        </div>
-        
-        <div class="col-xs-2">
-          <%= form_tag leave_team_path do %>
-            <%= submit_tag "Leave team", class: "btn btn-default" %>
-          <% end %>
-        </div>
-      </div>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert alert-info" %>
+  <% end %>
+  <div class="container">
+    <br>
+    <br>
+    <br>
+    <div class="col-xs-2">
+      <%= button_to "Edit My Info", edit_user_path(session[:user_id]), {method: 'get', class: "btn btn-primary"} %>
     </div>
+    <div class="col-xs-2">
+      <%= button_to "Logout", logout_path, class: "btn btn-default" %>
+    </div>
+    </div>
+  </div>
 </body>
-</html>
+
+<%= yield %>

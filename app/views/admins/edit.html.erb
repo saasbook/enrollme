@@ -12,9 +12,9 @@
         
         <h1>Edit Info</h1>
 
-        <%= form_for @user, :url => user_path(@user.id), :method => :put, class: "form-horizontal" do |f| %>
+        <%= form_for @admin, :url => admin_path(@admin.id), :method => :put, class: "form-horizontal" do |f| %>
             <fieldset>
-                <% if @user.errors.any? %>
+                <% if @admin.errors.any? %>
                     <div class="error_messages alert alert-dismissible alert-danger">
                         <h2>Form is invalid</h2>
                     </div>
@@ -34,17 +34,6 @@
                     <%= f.label :password, class: "col-lg-2 control-label"  %> <br>
                     <%= f.text_field :password, class: "form-control" %>
                 </div>
-                
-                <div class="field form-group">
-                    <%= f.label :sid, class: "col-lg-2 control-label"  %> <br>
-                    <%= f.text_field :sid, class: "form-control"  %>
-                </div>
-                
-                <div class="field form-group">
-                    <%= f.label :major, class: "col-lg-2 control-label"  %> <br>
-                    <%= f.text_field :major, class: "form-control" %>
-                </div>
-                
                 <br>
                 
                 <div class="actions form-group">
