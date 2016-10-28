@@ -27,9 +27,15 @@
             
             <% Team.find(@team.id).users.each do |u| %>
               <tr>
+                <td></td>
                 <td><%= u.name %></td>
                 <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "No" %></td>
-                <td>Edit</td>
+                <td>
+                  <%= form_tag edit_team_path(@team), method: :get do %>
+                    <%= hidden_field_tag :unwanted_user, u.id %>
+                    <%= submit_tag "Remove", {class: "btn btn-default", id: "remove_"+u.name}  %>
+                  <% end %>                  
+                </td>
               </tr>
             <% end %>
           </table>

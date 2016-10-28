@@ -1,0 +1,36 @@
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert alert-info" %>
+<% end %>
+
+<html>
+<head>
+  <title>Validate</title>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+        <div class = "text-center">
+            <h1>Validate</h1>
+            
+            <%= form_tag '/admins/new', {method: 'get', class: "form-horizontal"} do %>
+                
+                <div class="field form-group">
+                    <%= label_tag :passcode %> <br>
+                    <%= text_field_tag :passcode %>
+                </div>
+                
+                <br>
+                
+                <div class="actions">
+                    <%= submit_tag "Enter Passcode", class: "btn btn-primary" %>
+                </div>
+
+            <% end %>
+        </div>
+    </div>
+
+</body>
+</html>

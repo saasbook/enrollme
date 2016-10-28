@@ -35,9 +35,9 @@ class TeamController < ApplicationController
     return redirect_to without_team_path
   end
   
-  # TODO: edit users in the team page (for now, it's just text)
-  # but we need to change that to a button + add some kind of form?
-  # what were we going to do with that anyway, add/delete?
-  # we could just have a "remove" button and some kind of 
-  # "Are you sure?" thing--can ask MDS what he wants idk
+  def edit
+    @user_to_remove = User.find(params[:unwanted_user])
+    @user_to_remove.leave_team
+    return redirect_to '/', notice: "Removed " + @user_to_remove.name + " from team."
+  end
 end
