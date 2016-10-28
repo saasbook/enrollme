@@ -56,3 +56,23 @@ end
 Then /^print the page body$/ do
   puts page.body
 end
+
+Given(/^all the discussions are open$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given(/^all these people are on the same team$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given(/^I log in as "([^"]*)"$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given(/^the discussion on Tuesday is not open$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^the "([^"]*)" drop\-down should contain the option "([^"]*)"$/) do |arg1, arg2|
+  pending # Write code here that turns the phrase above into concrete actions
+end
