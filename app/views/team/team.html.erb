@@ -35,12 +35,14 @@
           </table>
         </div>
         <div class="col-md-4">
-          <a href="http://eecs.jimren.com/" class="btn btn-primary">CS 169 Enrollment</a>
+          <a href="http://imgur.com/HMC0MK8" class="btn btn-primary">CS 169 Enrollment</a>
        </div>
       </div>
       <div class="actions">
         <div class="col-xs-2">
-          <%= submit_tag "Submit changes", class: "btn btn-primary" %>
+          <%= form_tag submit_team_path do %>
+            <%= submit_tag "Submit team", class: "btn btn-primary" %>
+          <% end %>
         </div>
         
         <div class="col-xs-2">

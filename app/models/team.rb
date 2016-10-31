@@ -8,4 +8,8 @@ class Team < ActiveRecord::Base
         @@temp_hash += 1
         return @@temp_hash
     end
+    
+    def eligible?
+        self.users.count >= 5 ? true : false
+    end
 end
