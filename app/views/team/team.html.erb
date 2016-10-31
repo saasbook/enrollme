@@ -39,12 +39,11 @@
        </div>
       </div>
       <div class="actions">
-        <div class="col-xs-2">
-          <%= form_tag submit_team_path do %>
+        <% if @team.eligible? %>
+          <div class="col-xs-2">
             <%= submit_tag "Submit team", class: "btn btn-primary" %>
-          <% end %>
-        </div>
-        
+          </div>
+        <% end %>
         <div class="col-xs-2">
           <%= form_tag leave_team_path do %>
             <%= submit_tag "Leave team", class: "btn btn-default" %>
