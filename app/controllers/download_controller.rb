@@ -23,6 +23,5 @@ class DownloadController < ApplicationController
     end
       
     send_data(content, :filename => filename)
-    
   end
 end
