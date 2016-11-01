@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get '/', to: redirect('/login')
-
   resources :users
   get '/without_team', to: 'users#without'
   post '/create_team', to: 'users#start_team'
@@ -16,7 +14,7 @@ Rails.application.routes.draw do
   
   resources :admins
   
-  root "application#index"
+  root 'session#new'
 
   # TODO: something for route not found
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)

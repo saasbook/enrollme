@@ -19,6 +19,7 @@ class SessionController < ApplicationController
       return redirect_to login_path, notice: "Invalid email or password"
     elsif @user.nil?
       session[:user_id] = @admin.id
+      session[:is_admin] = true
       return redirect_to admin_path(:id => @admin.id), notice: "Logged in!"
     else
       session[:user_id] = @user.id
