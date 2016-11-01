@@ -16,6 +16,15 @@ Feature: Create and use an admin account
     And I press "Sign Up"
     Then I should see "Welcome Back, David!"
     
+  Scenario: An admin cancels editing their information
+    Given I am on the login page
+    Then I fill in "Email" with "supreme_ruler@aol.com"
+    And I fill in "Password" with "ilikcats"
+    And I press "Log In"
+    And I press "Edit My Info"
+    And I follow "Cancel"
+    Then I should see "Welcome Back, Bob!"
+
   Scenario: Successfully edit my account information
     Given I am on the login page
     Then I fill in "Email" with "supreme_ruler@aol.com"
