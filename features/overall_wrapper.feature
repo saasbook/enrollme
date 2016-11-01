@@ -7,7 +7,7 @@ Feature: A user can edit their profile
   Background:
     Given the following users exist
      |   name    |       email          | password   |team_passcode | major | sid  |
- 	   |  Sahai    | eecs666@hotmail.com  | mypassword | 1            | EECS  | 000  |
+ 	   |  Jason    | eecs666@hotmail.com  | mypassword | 1            | EECS  | 000  |
     And I am on the login page
     And I fill in "Email" with "eecs666@hotmail.com"
     And I fill in "Password" with "mypassword"  
@@ -16,7 +16,7 @@ Feature: A user can edit their profile
   Scenario: Successfully edit my account information
     Given I am on the team_index page
     Then I press "Edit My Info"
-    And I fill in "Name" with "EECSxxSahaixxEECS"
+    And I fill in "Name" with "GaoxxJasonxxGao"
     And I press "Update Information"
-    Then I should see "EECSxxSahaixxEECS"
+    Then I should see "GaoxxJasonxxGao"
     

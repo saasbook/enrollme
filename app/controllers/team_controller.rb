@@ -36,8 +36,14 @@ class TeamController < ApplicationController
   end
   
   def edit
+    @user = User.find_by_id(session[:user_id])
     @user_to_remove = User.find(params[:unwanted_user])
-    @user_to_remove.leave_team
-    return redirect_to '/', notice: "Removed " + @user_to_remove.name + " from team."
+
+    if @user.team == @user_to_remove.team
+      @user_to_remove.leave_team
+      return redirect_to '/', notice: "Removed " + @user_to_remove.name + " from team."
+    else
+      return redirect_to '/', notice: "Removal failed"
+    end
   end
 end
