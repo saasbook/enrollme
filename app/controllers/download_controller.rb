@@ -13,12 +13,12 @@ class DownloadController < ApplicationController
     content = columns + "\n"
     Team.all.each do |t|
         content << t.id.to_s + ","
-        content << "["
+        content << "[ "
         t.users.each do |u|
             content << u.name + " "
         end
         content << "]" + ","
-        content << t.approved.to_s
+        content << (t.approved ? 'Approved' : 'Pending')
         content << "\n"
     end
       
