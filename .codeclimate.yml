@@ -18,6 +18,8 @@ exclude_paths:
   - "**/vendor/**/*"
   - features/**/*
   - coverage/**/*
+  - bin/spring
+  - lib/tasks/cucumber.rake
 ratings: 
   paths: 
     - app/**
