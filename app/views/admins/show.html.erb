@@ -31,7 +31,15 @@
       
       <div class="row">
         <div class="col-md-8">
-          <h2>Team List</h2>
+          
+          <div class='page-header'>
+            <div class='btn-toolbar pull-right'>
+              <div class='btn-group'>
+                <%= button_to "Download Team Information", download_team_info_txt_path, {method: 'get', class: "btn btn-primary"} %>
+              </div>
+            </div>
+            <h2>Team List</h2>
+          </div>
           <table class="table table-striped table-hover">
             <tr>
               <td>Team ID</td>

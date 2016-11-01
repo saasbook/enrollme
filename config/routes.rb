@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   
   resources :admins
   
+  get "download/team_info_txt"
+  
   root 'session#new'
 
   # TODO: something for route not found
