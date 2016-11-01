@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post 'logout', to: 'session#destroy'
   
   resources :admins
+  get 'approve_team', to: 'admins#approve'
+  get 'disapprove_team', to: 'admins#disapprove'
   
   get "download/team_info_txt"
   
