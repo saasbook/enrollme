@@ -44,6 +44,14 @@ two.users << User.where(name: "JJJ")
 two.users << User.where(name: "DDD")
 two.users << User.where(name: "John")
 
+tthree = Team.new
+tthree.approved = false
+tthree.passcode = "passcode3"
+tthree.save!
+tthree.users << User.where(name: "Kay")
+tthree.users << User.where(name: "Ana")
+tthree.users << User.where(name: "III")
+
 
 admins = [
   		{ :name => "Anna", :email => "aaa@berkeley.edu",:password => "appleaimer" },
@@ -53,3 +61,13 @@ admins = [
 admins.each do |a|
   Admin.create!(a)
 end
+
+full = Discussion.create!(:number => 666, :time=> "Wed, 3pm", :capacity => 3, :seats_open => 3)
+somewhat_full = Discussion.create!(:number => 420, :time=> "Thu, 3pm", :capacity => 5, :seats_open => 5)
+empty = Discussion.create!(:number => 1337, :time=> "Fri, 3pm", :capacity => 5, :seats_open => 5)
+
+full.teams << two
+full.update(seats_open: full.seats_open - two.users.length)
+
+somewhat_full.teams << tone
+somewhat_full.update(seats_open: somewhat_full.seats_open - tone.users.length)
