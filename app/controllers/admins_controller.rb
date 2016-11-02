@@ -35,7 +35,7 @@ class AdminsController < ApplicationController
   end
   
   def approve
-    return redirect_to "/" if not session[:is_admin] or not session[:user_id]
+    return redirect_to "/", :notice => "Permission denied" if not session[:is_admin] or not session[:user_id]
 
     @admin = Admin.find session[:user_id]
     @team = Team.find_by_id(params[:team_id])
@@ -45,7 +45,7 @@ class AdminsController < ApplicationController
   end
   
   def disapprove
-    return redirect_to "/" if not session[:is_admin] or not session[:user_id]
+    return redirect_to "/", :notice => "Permission denied" if not session[:is_admin] or not session[:user_id]
     
     @admin = Admin.find session[:user_id]
     @team = Team.find_by_id(params[:team_id])
