@@ -23,6 +23,9 @@ class TeamController < ApplicationController
     return redirect_to without_team_path, :notice => "Your team does not exist" if @user.team.nil?
     
     @team = Team.find_by_id(params[:id])
+    
+    @discussions = Discussion.all
+    
     return redirect_to '/', notice: "This team does not exist" if @team.nil?
   
     return redirect_to team_path(:id => @user.team.id), notice: "Cannot access this team" if @user.team != @team
