@@ -39,6 +39,7 @@
               </tr>
             <% end %>
           </table>
+          
         </div>
         <div class="col-md-4">
           <a href="http://eecs.jimren.com/" class="btn btn-primary">CS 169 Enrollment</a>
@@ -69,6 +70,23 @@
           </div>
         <% end %>
       </div>
+      
+      <table class="table table-striped table-hover">
+        <tr>
+            <td></td>
+            <td>Discussions</td>
+            <td>Seats Open</td>
+            <td></td>
+          </tr>
+          
+        <% @discussions.each do |d| %>
+          <tr>
+            <td></td>
+            <td><%= d.time %></td>
+            <td><%= d.seats_open %></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
 </body>
 </html>
