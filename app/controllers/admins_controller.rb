@@ -34,6 +34,26 @@ class AdminsController < ApplicationController
     render 'show'
   end
   
+  def approve
+    return redirect_to "/", :notice => "Permission denied" if not session[:is_admin] or not session[:user_id]
+
+    @admin = Admin.find session[:user_id]
+    @team = Team.find_by_id(params[:team_id])
+    @team.approved = true
+    @team.save!
+    redirect_to admin_path(@admin)
+  end
+  
+  def disapprove
+    return redirect_to "/", :notice => "Permission denied" if not session[:is_admin] or not session[:user_id]
+    
+    @admin = Admin.find session[:user_id]
+    @team = Team.find_by_id(params[:team_id])
+    @team.approved = false
+    @team.save!
+    redirect_to admin_path(@admin)
+  end
+  
   private
     def admin_params
       params.require(:admin).permit(:name, :email, :password)

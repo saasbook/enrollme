@@ -45,18 +45,6 @@ two.users << User.where(name: "DDD")
 two.users << User.where(name: "John")
 
 
-#Client.find_by! first_name: 'does not exist'
-"""
-  ue = User.new
-  ue.name = names
-  ue.major = majors
-  ue.sid = sids
-  ue.email = emails
-  ue.password = passwords
-  ue.save!
-"""
-
-
 admins = [
   		{ :name => "Anna", :email => "aaa@berkeley.edu",:password => "appleaimer" },
   		{ :name => "Bruce", :email => "bbb@berkeley.edu",:password => "bananabruiser" },
