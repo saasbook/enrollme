@@ -1,4 +1,4 @@
-class DownloadController < ApplicationController
+class FileController < ApplicationController
   def index
   end
 
@@ -25,9 +25,14 @@ class DownloadController < ApplicationController
   end
   
   def upload_discussions_txt
-    data = attachments[:discussions]
-    File.open(Rails.root.join('discussion_info.txt'), 'wb') do |f|
-      f.write(data)
+    data = params[:discussions]
+    if data.nil? or data.content_type != "text/plain"
+      redirect_to admin_path(session[:user_id]), :notice => "File is of wrong format"
+    else
+      File.open(Rails.root.join('discussion_info.txt'), 'wb') do |f|
+        f.write(data.read)
+      end
+      redirect_to admin_path(session[:user_id]), :notice => "Successfully uploaded file"
     end
   end
   
