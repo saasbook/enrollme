@@ -21,7 +21,15 @@ class DownloadController < ApplicationController
         content << (t.approved ? 'Approved' : 'Pending')
         content << "\n"
     end
-      
     send_data(content, :filename => filename)
   end
+  
+  def upload_discussions_txt
+    data = attachments[:discussions]
+    File.open(Rails.root.join('discussion_info.txt'), 'wb') do |f|
+      f.write(data)
+    end
+  end
+  
+  
 end

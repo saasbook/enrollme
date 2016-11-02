@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   get 'approve_team', to: 'admins#approve'
   get 'disapprove_team', to: 'admins#disapprove'
   
-  get "download/team_info_txt"
+  get 'download_team_info', to: "file#team_info_txt"
+  post 'upload_discussions', to: 'file#upload_discussions_txt'
   
   root 'session#new'
 

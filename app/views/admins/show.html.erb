@@ -28,14 +28,24 @@
         <h1>Admin Home</h1>
       
       <h3><%= "Welcome Back, " + @admin.name + "!" %></h3>
-      
+
       <div class="row">
         <div class="col-md-8">
           <div class='page-header'>
-            <h3 <span class='text-primary'> Enrollment Info </span> <span class="text-info"> Percent Filled: 00.00% </span></h3>
+            <div class='btn-toolbar pull-right'>
+              
+            <label class="control-label">Select File</label>
+            <input id="form-control" type="file" class="file" data-show-preview="false">
+            
+              <div class='btn-group'>
+                <%= button_to "Upload Discussions", upload_discussions_path, {method: 'get', class: "btn btn-default"} %>
+              </div>
+            </div>
+            <h3 class='text-primary'> Enrollment Info </h3>
+            <h4 class='text-info'>Percent Filled: 00.00%</h4>
             <div class='btn-toolbar pull-right'>
               <div class='btn-group'>
-                <%= button_to "Download Team Information", download_team_info_txt_path, {method: 'get', class: "btn btn-primary"} %>
+                <%= button_to "Download Team Information", download_team_info_path, {method: 'get', class: "btn btn-primary"} %>
               </div>
             </div>
 
