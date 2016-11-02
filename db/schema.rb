@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025234954) do
+ActiveRecord::Schema.define(version: 20161102225326) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -21,10 +21,20 @@ ActiveRecord::Schema.define(version: 20161025234954) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "discussions", force: :cascade do |t|
+    t.integer "number"
+    t.string  "time"
+    t.integer "capacity"
+    t.integer "seats_open"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.boolean "approved"
     t.string  "passcode"
+    t.integer "discussion_id"
   end
+
+  add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
