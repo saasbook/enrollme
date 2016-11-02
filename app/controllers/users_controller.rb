@@ -54,7 +54,9 @@ class UsersController < ApplicationController
     @team.users << @user
     
     if @team.users.length == 5 or @team.users.length == 6
-      UserMailer.submit_email(@user).deliver_later
+      @team.users.each do |user|
+        UserMailer.submit_email(user).deliver_later
+      end
     end
     
     redirect_to team_path(:id=>@team.id)
