@@ -1,5 +1,6 @@
 {
   "result": {
+<<<<<<< 6fb33a20bdeef070b844be7136ccac924a32b12c
 <<<<<<< 24276835098a597886ff7cac1af95cec1f23d6e7
 <<<<<<< 618b1bd413a886e147cd0f0576d5546b90abaf30
 <<<<<<< a1394c2406709fd59be028fc738e6e36cd11c0b3
@@ -13,5 +14,8 @@
 =======
     "covered_percent": 88.78
 >>>>>>> Created migration
+=======
+    "covered_percent": 99.49
+>>>>>>> Changed Team Controller
   }
 }
