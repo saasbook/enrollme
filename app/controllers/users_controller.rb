@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
     @user.leave_team if !(@user.team.nil?)
     
-    @team = Team.create!(:passcode => Team.generate_hash, :approved => false)
+    @team = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => true)
 
     @user.team = @team
     @team.users << @user
