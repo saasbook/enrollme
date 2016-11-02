@@ -27,28 +27,41 @@
             
             <% Team.find(@team.id).users.each do |u| %>
               <tr>
+                <td></td>
                 <td><%= u.name %></td>
                 <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "No" %></td>
-                <td>Edit</td>
+                <td>
+                  <%= form_tag edit_team_path(@team), method: :get do %>
+                    <%= hidden_field_tag :unwanted_user, u.id %>
+                    <%= submit_tag "Remove", {class: "btn btn-default", id: "remove_"+u.name}  %>
+                  <% end %>                  
+                </td>
               </tr>
             <% end %>
           </table>
         </div>
         <div class="col-md-4">
-          <a href="http://imgur.com/HMC0MK8" class="btn btn-primary">CS 169 Enrollment</a>
+          <a href="http://eecs.jimren.com/" class="btn btn-primary">CS 169 Enrollment</a>
        </div>
       </div>
       <div class="actions">
-        <% if @team.eligible? %>
-          <div class="col-xs-2">
-            <%= submit_tag "Submit team", class: "btn btn-primary" %>
-          </div>
-        <% end %>
         <div class="col-xs-2">
           <%= form_tag leave_team_path do %>
             <%= submit_tag "Leave team", class: "btn btn-default" %>
           <% end %>
         </div>
+        <% if @team.eligible? %>
+          <div class="col-xs-2">
+            <%= submit_tag "Submit team", class: "btn btn-primary" %>
+          </div>
+          <div class="col-xs-2">  
+            Warning: You need to submit your team to be considered for enrollment.
+          </div>
+        <% else %>
+          <div class="col-xs-2">
+            <%= submit_tag "Submit team", class: "btn btn-primary", disabled: true %>
+          </div>
+        <% end %>
       </div>
     </div>
 </body>
