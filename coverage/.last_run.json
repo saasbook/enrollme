@@ -1,9 +1,13 @@
 {
   "result": {
+<<<<<<< 618b1bd413a886e147cd0f0576d5546b90abaf30
 <<<<<<< a1394c2406709fd59be028fc738e6e36cd11c0b3
     "covered_percent": 99.47
 =======
     "covered_percent": 86.6
 >>>>>>> Added discssion.rb
+=======
+    "covered_percent": 99.49
+>>>>>>> Added spec
   }
 }
