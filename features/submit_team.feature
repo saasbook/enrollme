@@ -23,7 +23,10 @@ Feature: submit team
   Scenario: Submit button should be present when team has five or more members, and warning should be displayed
     Given the following users exist
         |   name    |       email                       | password              | team      | major             | sid         |
-        | Sahai     | eecs666@hotmail.com               | mypassword            | passcode1 | EECS              | 000         |
+        | Sahai     | eecs666@hotmail.com               | mypassword            | passcode1 | EECS              | 000       |
+    And the following discussions exist
+        |   number   |       time           | capacity | seats_open | 
+        |   111      | Wed 3pm              | 20       | 20         |
     
     And I am on the login page
     Given I fill in "Email" with "eecs666@hotmail.com"
@@ -32,5 +35,6 @@ Feature: submit team
     Then I should see "Submit" button
     And I should see "Warning:"
     When I press "Submit"
-    Then I should not see "Submit" button
-    And I should see "submitted"
+    Then I should see "Choose Discussions"
+    When I press "Submit"
+    And I should see "Team has been submitted!"
