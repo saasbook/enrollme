@@ -20,7 +20,7 @@ end
 Given /^the following discussions exist$/ do |table|
   table.rows.each do |number, time, capacity, seats_open|
     next if number == :number # skipping table header
-    Discussion.create!(:number => number.to_i, :time => time, :capacity => capacity.to_i, :seats_open => seats_open.to_i)
+    Discussion.create!(:number => number.to_i, :time => time, :capacity => capacity.to_i)
   end
 end
 

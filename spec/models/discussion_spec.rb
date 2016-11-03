@@ -112,20 +112,20 @@ RSpec.describe Discussion, type: :model do
        end
        
        it "add team to somewhat somewhat_full disc" do
-          expect(@somewhat_full.can_take_team(@addthis) == true)
+          expect(@somewhat_full.can_take_team?(@addthis) == true)
           
        end
        
        it "add team to empty disc" do
-          expect(@empty.can_take_team(@addthis) == true) 
+          expect(@empty.can_take_team?(@addthis) == true) 
        end
        
        it "add team to somewhat full but closed disc" do
-          expect(@somewhat_full_closed.can_take_team(@addthis) == false) 
+          expect(@somewhat_full_closed.can_take_team?(@addthis) == false) 
        end
        
         it "add team to full disc" do
-          expect(@full.can_take_team(@addthis) == false) 
+          expect(@full.can_take_team?(@addthis) == false) 
        end
        
        

@@ -12,7 +12,7 @@ class Discussion < ActiveRecord::Base
         end
     end
     
-    def is_full
+    def is_full?
        if (count_students >= capacity)
            return true
        else
