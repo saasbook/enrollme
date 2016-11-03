@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20161103081543) do
     t.integer "number"
     t.string  "time"
     t.integer "capacity"
-    t.integer "seats_open"
     t.integer "application_id"
   end
 

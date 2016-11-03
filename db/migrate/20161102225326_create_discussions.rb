@@ -4,7 +4,6 @@ class CreateDiscussions < ActiveRecord::Migration
       t.integer :number
       t.string :time
       t.integer :capacity
-      t.integer :seats_open
     end
     
     change_table :teams do |f|

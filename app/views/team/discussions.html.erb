@@ -14,17 +14,17 @@
             <fieldset>
                 <div class="field form-group">
                     <%= f.label :choice_1, class: "col-lg-2 control-label" %> <br>
-                    <%= f.collection_select(:discussion_id, Discussion.where("seats_open > 0"), :id, :time, {}, {name: :disc1, id: :disc1}) %>
+                    <%= f.collection_select(:discussion_id, Discussion.all_valid_disc(@team), :id, :time, {}, {name: :disc1, id: :disc1}) %>
                 </div>
                 
                 <div class="field form-group">
                     <%= f.label :choice_2, class: "col-lg-2 control-label" %> <br>
-                    <%= f.collection_select(:discussion_id, Discussion.where("seats_open > 0"), :id, :time, {}, {name: :disc2, id: :disc2}) %>
+                    <%= f.collection_select(:discussion_id, Discussion.all_valid_disc(@team), :id, :time, {}, {name: :disc2, id: :disc2}) %>
                 </div>
                 
                 <div class="field form-group">
                     <%= f.label :choice_3, class: "col-lg-2 control-label" %> <br>
-                    <%= f.collection_select(:discussion_id, Discussion.where("seats_open > 0"), :id, :time, {}, {name: :disc3, id: :disc3}) %>
+                    <%= f.collection_select(:discussion_id, Discussion.all_valid_disc(@team), :id, :time, {}, {name: :disc3, id: :disc3}) %>
                 </div>
                 
                 <br>
