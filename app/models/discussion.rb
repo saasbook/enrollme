@@ -20,6 +20,10 @@ class Discussion < ActiveRecord::Base
        end
     end
     
+    def seats_open
+        return self.capacity - count_students
+    end
+    
     def count_students
         @total_students = 0
         self.teams.each do |team|
