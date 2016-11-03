@@ -25,8 +25,8 @@ Feature: submit team
         |   name    |       email                       | password              | team      | major             | sid         |
         | Sahai     | eecs666@hotmail.com               | mypassword            | passcode1 | EECS              | 000       |
     And the following discussions exist
-        |   number   |       time           | capacity | seats_open | 
-        |   111      | Wed 3pm              | 20       | 20         |
+        |   number   |       time           | capacity |
+        |   111      | Wed 3pm              | 20       |
     
     And I am on the login page
     Given I fill in "Email" with "eecs666@hotmail.com"

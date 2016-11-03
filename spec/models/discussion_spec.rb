@@ -4,10 +4,10 @@ RSpec.describe Discussion, type: :model do
   describe "#submit" do
 
     before do
-      @full = Discussion.new(:number => 666, :time=> "Wed, 3pm", :capacity => 5, :seats_open => 5)
-      @somewhat_full = Discussion.new(:number => 420, :time=> "Wed, 3pm", :capacity => 5, :seats_open => 5)
-      @somewhat_full_closed = Discussion.new(:number => 420, :time=> "Wed, 3pm", :capacity => 5, :seats_open => 5)
-      @empty = Discussion.new(:number => 1337, :time=> "Wed, 3pm", :capacity => 5, :seats_open => 5)
+      @full = Discussion.new(:number => 666, :time=> "Wed, 3pm", :capacity => 5)
+      @somewhat_full = Discussion.new(:number => 420, :time=> "Wed, 3pm", :capacity => 5)
+      @somewhat_full_closed = Discussion.new(:number => 420, :time=> "Wed, 3pm", :capacity => 5)
+      @empty = Discussion.new(:number => 1337, :time=> "Wed, 3pm", :capacity => 5)
       people = [
   		{ :name => "John"                   ,:major => "English"  , :sid => "111"  ,:email => "111@berkeley.edu",:password => "132619"        },
   		{ :name =>  "Josh"                   ,:major => "CS"  ,:sid => "222"  ,:email => "222@berkeley.edu", :password => "666666"         },
