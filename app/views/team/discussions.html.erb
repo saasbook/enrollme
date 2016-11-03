@@ -10,34 +10,30 @@
 <body>
     <div class="container">
         <h1>Choose Discussions</h1>
-        <div class="form-group">
-          <div class="col-lg-10">
-          <label for="choice_1" class="col-lg control-label">Choice 1</label>
-            <select class="form-control" id="select">
-              <% Discussion.all.each do |d| %>
-                <option><%=d.number.to_s + " " + d.time + " Capacity: " + d.capacity.to_s + " Seats open: " + d.seats_open.to_s %></option>
-              <% end %>
-            </select>
-          <label for="choice_2" class="col-lg control-label">Choice 2</label>
-            <select class="form-control" id="select">
-              <% Discussion.all.each do |d| %>
-                <option><%=d.number.to_s + " " + d.time + " Capacity: " + d.capacity.to_s + " Seats open: " + d.seats_open.to_s %></option>
-              <% end %>
-            </select>
-          <label for="choice_3" class="col-lg control-label">Choice 3</label>
-            <select class="form-control" id="select">
-              <% Discussion.all.each do |d| %>
-                <option><%=d.number.to_s + " " + d.time + " Capacity: " + d.capacity.to_s + " Seats open: " + d.seats_open.to_s %></option>
-              <% end %>
-            </select>
-            <br>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-lg-10 col-lg-offset-2">
-            <a href="/" class="btn btn-default">Cancel</a>
-            <%= button_to "Submit", choose_discussions_path, class: 'btn btn-primary' %>
-          </div>
-        </div>
+        <%= form_for @team, url: {action: "choose_discussions"}, class: "form-horizontal" do |f| %>
+            <fieldset>
+                <div class="field form-group">
+                    <%= f.label :choice_1, class: "col-lg-2 control-label" %> <br>
+                    <%= f.collection_select(:discussion_id, Discussion.where("seats_open > 0"), :id, :time, {}, {name: :disc1, id: :disc1}) %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :choice_2, class: "col-lg-2 control-label" %> <br>
+                    <%= f.collection_select(:discussion_id, Discussion.where("seats_open > 0"), :id, :time, {}, {name: :disc2, id: :disc2}) %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label :choice_3, class: "col-lg-2 control-label" %> <br>
+                    <%= f.collection_select(:discussion_id, Discussion.where("seats_open > 0"), :id, :time, {}, {name: :disc3, id: :disc3}) %>
+                </div>
+                
+                <br>
+                
+                <div class="actions form-group">
+                    <a href="/" class="btn btn-default">Cancel</a>
+                    <%= f.submit "Submit", class: "btn btn-primary" %>
+                </div>
+            </fieldset>
+          <% end %>
     </div>
 </body>

@@ -1,6 +1,8 @@
 class Discussion < ActiveRecord::Base
     has_many :teams
-    attr_accessor :open_seats
+    belongs_to :application
+    
+    
     
     def can_take_team(team)
         if (team.users.length + count_students <= self.capacity)
@@ -16,7 +18,7 @@ class Discussion < ActiveRecord::Base
             @total_students += team.users.length
         end
         
-        self.open_seats = self.capacity - @total_students
+        self.seats_open = self.capacity - @total_students
         
         return @total_students
     end

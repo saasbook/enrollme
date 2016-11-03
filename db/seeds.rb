@@ -28,12 +28,16 @@ end
 
 
 tone = Team.new
-tone.approved = true
+tone.approved = false
 tone.passcode = "passcode1"
 tone.save!
 tone.users << User.where(name: "Josh")
 tone.users << User.where(name: "CCC")
 tone.users << User.where(name: "GGG")
+tone.users << User.where(name: "Jorge")
+tone.users << User.where(name: "EEE")
+
+
 
 
 two = Team.new
@@ -65,6 +69,9 @@ end
 full = Discussion.create!(:number => 666, :time=> "Wed, 3pm", :capacity => 3, :seats_open => 3)
 somewhat_full = Discussion.create!(:number => 420, :time=> "Thu, 3pm", :capacity => 5, :seats_open => 5)
 empty = Discussion.create!(:number => 1337, :time=> "Fri, 3pm", :capacity => 5, :seats_open => 5)
+empty2 = Discussion.create!(:number => 1338, :time=> "Sat, 3pm", :capacity => 5, :seats_open => 5)
+empty3 = Discussion.create!(:number => 1339, :time=> "Sun, 3pm", :capacity => 5, :seats_open => 5)
+
 
 full.teams << two
 full.update(seats_open: full.seats_open - two.users.length)
