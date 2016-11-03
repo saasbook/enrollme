@@ -46,7 +46,7 @@ Feature: go to the correct page
     Given I fill in "Email" with "eecs666@hotmail.com"
     And I fill in "Password" with "mypassword"
     And I press "Log In"
-    Then I press "Logout"
+    Then I follow "Logout"
     Then I should be on the home page
     
   Scenario: Prevents access to team page when no one is signed in

@@ -21,7 +21,7 @@ Feature: Create and use an admin account
     Then I fill in "Email" with "supreme_ruler@aol.com"
     And I fill in "Password" with "ilikcats"
     And I press "Log In"
-    And I press "Edit My Info"
+    And I follow "Edit My Info"
     And I follow "Cancel"
     Then I should see "Welcome Back, Bob!"
 
@@ -30,7 +30,7 @@ Feature: Create and use an admin account
     Then I fill in "Email" with "supreme_ruler@aol.com"
     And I fill in "Password" with "ilikcats"
     And I press "Log In"
-    Then I press "Edit My Info"
+    Then I follow "Edit My Info"
     And I fill in "Name" with "BetterBob"
     And I press "Update Information"
     Then I should see "Welcome Back, BetterBob!"
