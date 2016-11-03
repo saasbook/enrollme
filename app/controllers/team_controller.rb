@@ -42,11 +42,18 @@ class TeamController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     @team = Team.find_by_id(@user.team.id)
     if @team.eligible?
-      @team.update(submitted: true)
-      return redirect_to team_path(:id => @team.id), notice: "Thanks for submitting your team for enrollment."
+      render 'discussions'
     else
       return redirect_to team_path(:id => @team.id), notice: "Team was not eligible! (Theoretically this should not be happening but just in case)"
     end
+  end
+  
+  def choose_discussions
+    @user = User.find_by_id(session[:user_id])
+    @team = Team.find_by_id(@user.team.id)
+    @team.update(submitted: true)
+    return redirect_to team_path(@team), notice: "Thanks for submitting your team for enrollment."
+
   end
   
   def edit

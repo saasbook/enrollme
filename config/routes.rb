@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :team
   post 'leave_team', to: 'team#leave'
   post 'submit_team', to: 'team#submit'
+  post 'choose_discussions', to: 'team#choose_discussions'
   
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   
   get 'download_team_info', to: "file#team_info_txt"
   post 'upload_discussions', to: 'file#upload_discussions_txt'
+
   
   root 'session#new'
 
