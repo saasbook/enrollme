@@ -15,7 +15,7 @@ Feature: A user can edit their profile
 
   Scenario: Successfully edit my account information
     Given I am on the team_index page
-    Then I press "Edit My Info"
+    Then I follow "Edit My Info"
     And I fill in "Name" with "MasihxxSidxxMasih"
     And I press "Update Information"
     Then I should see "MasihxxSidxxMasih"
