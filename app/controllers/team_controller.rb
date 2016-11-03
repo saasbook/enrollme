@@ -38,6 +38,24 @@ class TeamController < ApplicationController
     return redirect_to without_team_path
   end
   
+  def submit
+    @user = User.find_by_id(session[:user_id])
+    @team = Team.find_by_id(@user.team.id)
+    if @team.eligible?
+      render 'discussions'
+    else
+      return redirect_to team_path(:id => @team.id), notice: "Team was not eligible! (Theoretically this should not be happening but just in case)"
+    end
+  end
+  
+  def choose_discussions
+    @user = User.find_by_id(session[:user_id])
+    @team = Team.find_by_id(@user.team.id)
+    @team.update(submitted: true)
+    return redirect_to team_path(@team), notice: "Thanks for submitting your team for enrollment."
+
+  end
+  
   def edit
     @user = User.find_by_id(session[:user_id])
     @user_to_remove = User.find(params[:unwanted_user])

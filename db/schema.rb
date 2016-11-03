@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(version: 20161102225326) do
   create_table "teams", force: :cascade do |t|
     t.boolean "approved"
     t.string  "passcode"
+<<<<<<< HEAD
+=======
+    t.boolean "submitted"
+>>>>>>> cfe42ee8a2018ee39ecc8767908e3d27a6ccb329
     t.integer "discussion_id"
   end
 

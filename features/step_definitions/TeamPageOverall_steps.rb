@@ -50,7 +50,13 @@ Then(/^the "([^"]*)" drop\-down should contain the option "([^"]*)"$/) do |arg1,
   pending # Write code here that turns the phrase above into concrete actions
 end
 
+Then /^I should see "([^"]*)" button/ do |name|
+  should have_button name
+end
 
+Then /^I should not see "([^"]*)" button/ do |name|
+  should have_no_button name
+end
 
 
 

@@ -1,5 +1,25 @@
 {
   "result": {
+<<<<<<< HEAD
     "covered_percent": 99.49
+=======
+<<<<<<< 6fb33a20bdeef070b844be7136ccac924a32b12c
+<<<<<<< 24276835098a597886ff7cac1af95cec1f23d6e7
+<<<<<<< 618b1bd413a886e147cd0f0576d5546b90abaf30
+<<<<<<< a1394c2406709fd59be028fc738e6e36cd11c0b3
+    "covered_percent": 99.47
+=======
+    "covered_percent": 86.6
+>>>>>>> Added discssion.rb
+=======
+    "covered_percent": 99.49
+>>>>>>> Added spec
+=======
+    "covered_percent": 88.78
+>>>>>>> Created migration
+=======
+    "covered_percent": 99.49
+>>>>>>> Changed Team Controller
+>>>>>>> cfe42ee8a2018ee39ecc8767908e3d27a6ccb329
   }
 }

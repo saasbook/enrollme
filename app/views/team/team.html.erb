@@ -47,14 +47,28 @@
       </div>
       <div class="actions">
         <div class="col-xs-2">
-          <%= submit_tag "Submit changes", class: "btn btn-primary" %>
-        </div>
-        
-        <div class="col-xs-2">
           <%= form_tag leave_team_path do %>
             <%= submit_tag "Leave team", class: "btn btn-default" %>
           <% end %>
         </div>
+        <% if @team.submitted == true %>
+          <div class="col-xs-2">
+            Team has been submitted!
+          </div>
+        <% elsif @team.eligible? %>
+          <div class="col-xs-2">
+            <%= form_tag submit_team_path do %>
+              <%= submit_tag "Submit team", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+          <div class="col-xs-2">  
+            Warning: You need to submit your team to be considered for enrollment.
+          </div>
+        <% else %>
+          <div class="col-xs-2">
+            <%= submit_tag "Submit team", class: "btn btn-primary", disabled: true %>
+          </div>
+        <% end %>
       </div>
       
       <table class="table table-striped table-hover">
