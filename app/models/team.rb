@@ -10,6 +10,6 @@ class Team < ActiveRecord::Base
     end
     
     def eligible?
-        self.users.count >= 5 ? true : false
+        self.users.count == 5 or self.users.count == 6 ? true : false
     end
 end
