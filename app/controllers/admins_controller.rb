@@ -54,6 +54,13 @@ class AdminsController < ApplicationController
     redirect_to admin_path(@admin)
   end
   
+  def test_email
+    @admin = Admin.find session[:user_id]
+    AdminMailer.welcome_email(@admin).deliver_now
+    
+    redirect_to admin_path(@admin)
+  end
+  
   private
     def admin_params
       params.require(:admin).permit(:name, :email, :password)
