@@ -17,6 +17,13 @@ Given /^the following users exist$/ do |table|
   end
 end
 
+Given /^the following discussions exist$/ do |table|
+  table.rows.each do |number, time, capacity, seats_open|
+    next if number == :number # skipping table header
+    Discussion.create!(:number => number.to_i, :time => time, :capacity => capacity.to_i, :seats_open => seats_open.to_i)
+  end
+end
+
 Then /^(?:|I )should not be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
