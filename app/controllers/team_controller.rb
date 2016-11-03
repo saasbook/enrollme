@@ -49,4 +49,9 @@ class TeamController < ApplicationController
       return redirect_to '/', notice: "Removal failed"
     end
   end
+  
+  def submit
+    @team = Team.find_by_id(params[:id])
+    
+  end
 end

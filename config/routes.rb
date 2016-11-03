@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   resources :team
   post 'leave_team', to: 'team#leave'
+  get "/team/:id/submit", to: "team#submit"
   
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   post 'upload_discussions', to: 'file#upload_discussions_txt'
   
   root 'session#new'
+  
 
   # TODO: something for route not found
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
