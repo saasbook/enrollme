@@ -23,6 +23,9 @@ class TeamController < ApplicationController
     return redirect_to without_team_path, :notice => "Your team does not exist" if @user.team.nil?
     
     @team = Team.find_by_id(params[:id])
+    
+    @discussions = Discussion.all
+    
     return redirect_to '/', notice: "This team does not exist" if @team.nil?
   
     return redirect_to team_path(:id => @user.team.id), notice: "Cannot access this team" if @user.team != @team
@@ -39,11 +42,27 @@ class TeamController < ApplicationController
     @user = User.find_by_id(session[:user_id])
     @team = Team.find_by_id(@user.team.id)
     if @team.eligible?
-      @team.update(submitted: true)
-      return redirect_to team_path(:id => @team.id), notice: "Thanks for submitting your team for enrollment."
+      render 'discussions'
     else
       return redirect_to team_path(:id => @team.id), notice: "Team was not eligible! (Theoretically this should not be happening but just in case)"
     end
+  end
+  
+  def choose_discussions
+    @user = User.find_by_id(session[:user_id])
+    @team = Team.find_by_id(@user.team.id)
+    @application = Application.new
+    @application.team = @team
+    @application.discussions << Discussion.find(params["disc1"])
+    @application.discussions << Discussion.find(params["disc2"])
+    @application.discussions << Discussion.find(params["disc3"])
+    @application.disc1id = params["disc1"]
+    @application.disc2id = params["disc2"]
+    @application.disc3id = params["disc3"]
+    @application.save!
+    @team.update(submitted: true)
+    return redirect_to team_path(@team), notice: "Thanks for submitting your team for enrollment."
+
   end
   
   def edit
@@ -57,4 +76,5 @@ class TeamController < ApplicationController
       return redirect_to '/', notice: "Removal failed"
     end
   end
+  
 end

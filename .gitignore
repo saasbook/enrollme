@@ -20,3 +20,5 @@
 /coverage/*
 
 /db/schema.rb
+
+.byebug_history
