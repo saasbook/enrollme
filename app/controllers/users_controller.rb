@@ -28,6 +28,7 @@ class UsersController < ApplicationController
   def without
     return redirect_to login_path if session[:user_id].nil?
     
+    @user = User.find(session[:user_id])
     render 'without'
   end
 
@@ -43,11 +44,13 @@ class UsersController < ApplicationController
   end
 
   def join_team
-    # TODO: How to make all other views use application view for header?
+    @passcode = params[:team_hash]
+    @team = Team.find_by_passcode(@passcode)
+    return redirect_to without_team_path, :notice => "Please enter a valid team passcode" if @passcode.empty? or @team.nil?
+    
     @user = User.find(session[:user_id])
     @user.leave_team if !(@user.team.nil?)
     
-    @team = Team.find_by_passcode(params[:team_hash])
 
     @user.team = @team
     @team.users << @user
@@ -59,7 +62,6 @@ class UsersController < ApplicationController
     end
     
     redirect_to team_path(:id=>@team.id)
-    
   end
 
   def update
@@ -73,6 +75,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :sid, :major)
     end
-
-
 end
