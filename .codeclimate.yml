@@ -20,6 +20,7 @@ exclude_paths:
   - coverage/**/*
   - bin/spring
   - lib/tasks/cucumber.rake
+  - db/schema.rb
 ratings: 
   paths: 
     - app/**
