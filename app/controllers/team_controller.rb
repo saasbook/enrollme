@@ -41,11 +41,7 @@ class TeamController < ApplicationController
   def submit
     @user = User.find_by_id(session[:user_id])
     @team = Team.find_by_id(@user.team.id)
-    if @team.eligible?
-      render 'discussions'
-    else
-      return redirect_to team_path(:id => @team.id), notice: "Team was not eligible! (Theoretically this should not be happening but just in case)"
-    end
+    render 'discussions'
   end
   
   def choose_discussions
