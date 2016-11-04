@@ -127,8 +127,18 @@ RSpec.describe Discussion, type: :model do
         it "add team to full disc" do
           expect(@full.can_take_team?(@addthis) == false) 
        end
-       
-       
+    end
+    
+    describe "is_full? works" do
+      it "for full discussions" do
+        expect(@full.is_full? == true) 
+      end
+      
+      it "for non-full discussions" do
+        expect(@somewhat_full_closed.is_full? == true)
+        expect(@somewhat_full.is_full? == true)
+        expect(@empty.is_full? == true) 
+      end
     end
     
     

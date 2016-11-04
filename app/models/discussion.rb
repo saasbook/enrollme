@@ -33,9 +33,6 @@ class Discussion < ActiveRecord::Base
         return @total_students
     end
     
-    def added_team_script
-        self.count_students
-    end
     
     def self.all_valid_disc(team)
         retVal = []
