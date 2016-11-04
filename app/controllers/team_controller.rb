@@ -27,7 +27,7 @@ class TeamController < ApplicationController
     @discussions = Discussion.all
     
     return redirect_to '/', notice: "This team does not exist" if @team.nil?
-  
+    
     return redirect_to team_path(:id => @user.team.id), notice: "Cannot access this team" if @user.team != @team
 
     render "team"

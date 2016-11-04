@@ -11,6 +11,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      # send welcome email after save
+      UserMailer.welcome_email(@user).deliver_later
+      
       session[:user_id] = @user.id
       redirect_to without_team_path, :notice => "You signed up successfully!"
     else
@@ -49,6 +52,11 @@ class UsersController < ApplicationController
 
     @user.team = @team
     @team.users << @user
+    
+    if @team.users.length == 5 or @team.users.length == 6
+      UserMailer.submit_email(@user).deliver_later
+    end
+    
     redirect_to team_path(:id=>@team.id)
     
   end
@@ -62,7 +70,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :team, :sid, :major)
+      params.require(:user).permit(:name, :email, :password, :sid, :major)
     end
 
 
