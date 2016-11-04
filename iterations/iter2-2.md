@@ -2,7 +2,7 @@ Create MDS (admin) model
 - Model for MDS to log in 
 
 Notification Emails for MDS
-- Send emails to MDS twice a day ONLY if people sign up
+- [CHANGED: We need more customer feedback on exactly what he wants so that we don't spam him unnecessarily] Send emails to MDS twice a day ONLY if people sign up
 - List team details
 
 Have a submit button
