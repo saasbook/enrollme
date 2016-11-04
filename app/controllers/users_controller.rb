@@ -11,8 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      # send welcome email after save
-      UserMailer.welcome_email(@user).deliver_later
+      EmailStudents.welcome_email(@user).deliver_later
       
       session[:user_id] = @user.id
       redirect_to without_team_path, :notice => "You signed up successfully!"
@@ -55,7 +54,7 @@ class UsersController < ApplicationController
     
     if @team.users.length == 5 or @team.users.length == 6
       @team.users.each do |user|
-        UserMailer.submit_email(user).deliver_later
+        EmailStudents.submit_email(user).deliver_later
       end
     end
     

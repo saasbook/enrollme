@@ -28,17 +28,6 @@ class TeamController < ApplicationController
     
     return redirect_to '/', notice: "This team does not exist" if @team.nil?
     
-    # #email everyone on team
-    # if @team.users.length == 5 or @team.users.length == 6
-    #   @team.users.each do |user|
-    #     EmailStudents.welcome_email(user).deliver_later
-    #   end
-    # end
-    
-    # if @user.name == "David"
-    #   EmailStudents.welcome_email(@user).deliver_later
-    # end
-  
     return redirect_to team_path(:id => @user.team.id), notice: "Cannot access this team" if @user.team != @team
 
     render "team"

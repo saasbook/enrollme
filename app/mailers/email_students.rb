@@ -3,7 +3,6 @@ class EmailStudents < ApplicationMailer
     
     def welcome_email(user)
         @user = user
-        puts "WOWOWOW", @user.email
         mail(to: @user.email, subject: 'Welcome')
     end
     
