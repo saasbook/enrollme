@@ -13,6 +13,8 @@
         <h1>Admin Home</h1>
       
       <h3><%= "Welcome Back, " + @admin.name + "!" %></h3>
+      
+      <%= button_to "Email Me", admins_email_path, {method: 'post', class: 'btn btn-primary'} %>
 
       <div class="row">
         <div class="col-md-8">

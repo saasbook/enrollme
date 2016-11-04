@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'download_team_info', to: "file#team_info_txt"
   post 'upload_discussions', to: 'file#upload_discussions_txt'
   
-  post '/admin/email', to: "admins#test_email", as: 'admins_email'
+  post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
   root 'session#new'
 
