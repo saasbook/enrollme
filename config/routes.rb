@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   post 'upload_discussions', to: 'file#upload_discussions_txt'
 
   
+  post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
+  
   root 'session#new'
   
 
