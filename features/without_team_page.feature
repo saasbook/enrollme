@@ -9,6 +9,10 @@ Feature: join or create a team
      |   name    |       email       |password |team_passcode | major        |       sid      |
   	 | Jorge    |    legueoflegends667@hotmail.com  | password1 | 0 | Football Player | 999  |
  	   | Sahai     | eecs666@hotmail.com        | mypassword     | penguindrool | EECS            | 000  |
+ 	   | Saha1     | eecs667@hotmail.com        | mypassword     | penguindrool | EECS            | 001  |
+ 	   | Saha2     | eecs668@hotmail.com        | mypassword     | penguindrool | EECS            | 002  |
+ 	   | Saha3     | eecs669@hotmail.com        | mypassword     | penguindrool | EECS            | 003  |
+ 	   | Saha4     | eecs660@hotmail.com        | mypassword     | penguindrool | EECS            | 004  |
 
     And I am on the login page
     
