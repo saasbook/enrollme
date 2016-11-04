@@ -17,4 +17,6 @@
 /tmp
 
 #Ignore the coverage generation.
-/coverage
+/coverage/*
+
+/db/schema.rb

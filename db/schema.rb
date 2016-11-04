@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20161102194757) do
     t.string   "passcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "submitted"
   end
 
   create_table "users", force: :cascade do |t|
