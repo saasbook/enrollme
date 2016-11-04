@@ -1,14 +1,7 @@
 <html>
-<head>
-  <title>Sign up</title>
-
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
 <body>
+  <title>Sign Up</title>
     <div class="container">
-        <%= yield %>
         <h1>Sign Up</h1>
         <%= form_for @user, url: {action: "create"}, class: "form-horizontal" do |f| %>
             <fieldset>
