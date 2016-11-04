@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   resources :team
   post 'leave_team', to: 'team#leave'
+  post 'submit_team', to: 'team#submit'
   
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
