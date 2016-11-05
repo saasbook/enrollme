@@ -18,9 +18,10 @@ exclude_paths:
   - "**/vendor/**/*"
   - features/**/*
   - coverage/**/*
-  - bin/spring
-  - lib/tasks/cucumber.rake
-  - db/schema.rb
+  - config/environments/*
+  - bin/*
+  - lib/**/*
+  - db/**/*
 ratings: 
   paths: 
     - app/**
