@@ -25,7 +25,11 @@
                   </ul>
               </li>
             <% else %>
-              <li><%= link_to "Edit My Info", edit_user_path(session[:user_id]), {method: 'get'} %></li>
+              <% if session[:is_admin].nil? %>
+                <li><%= link_to "Edit My Info", edit_user_path(session[:user_id]), {method: 'get'} %></li>
+              <% else %>
+                  <li><%= link_to "Edit My Info", edit_admin_path(session[:user_id]), {method: 'get'} %></li>
+              <% end %>
               <li><%= link_to "Logout", logout_path, {method: 'post'} %></li>
             <% end %>
         </ul>

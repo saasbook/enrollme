@@ -37,25 +37,6 @@ Then /^print the page body$/ do
   puts page.body
 end
 
-Given(/^all the discussions are open$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^all these people are on the same team$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^I log in as "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^the discussion on Tuesday is not open$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^the "([^"]*)" drop\-down should contain the option "([^"]*)"$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
 
 Then /^I should see "([^"]*)" button/ do |name|
   should have_button name
@@ -68,43 +49,8 @@ end
 
 
 ######################
-Given(/^PENDING: the following admins exist$/) do |table|
-  # table is a Cucumber::MultilineArgument::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
-end
 
 When(/^PENDING: the time is (\d+):(\d+)$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-
-
-Given(/^PENDING: the following users exist$/) do |table|
-  # table is a Cucumber::MultilineArgument::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^PENDING: I am on the login page$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^PENDING: I fill in "([^"]*)" with "([^"]*)"$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^PENDING: I press "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^PENDING: I follow "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^PENDING: I should see "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^PENDING: I should not see "([^"]*)"$/) do |arg1|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
