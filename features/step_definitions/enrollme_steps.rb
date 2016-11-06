@@ -1,6 +1,5 @@
-
-When /^PENDING: ^(the following users exist)/ do |arg|
-  pending
+Then /^the "([^"]*)" drop-down should contain the option "([^"]*)"$/ do |dropdown, text|
+  expect(page).to have_select(dropdown, :options => [text])
 end
 
 # Note: use "0" as team to indicate that this student isn't on a team yet
@@ -47,12 +46,23 @@ Then /^I should not see "([^"]*)" button/ do |name|
 end
 
 
-
-######################
-
-When(/^PENDING: the time is (\d+):(\d+)$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
+Given /^the following admins exist$/ do |table|
+  table.rows.each do |name, email, password|
+    next if name == "name" # skipping table header
+    Admin.create!(:name => name, :email => email, :password => password)
+  end
 end
 
+Then /^I should have downloaded a team information file$/ do
+   page.response_headers['Content-Disposition'].should include("team_info.txt")
+end
 
-
+When /^I upload a discussion file$/ do
+  attach_file(:discussions, File.join('features', 'test_files', 'discussion_info.txt'))
+  click_button "Upload"
+end
+ 
+When /^I upload an invalid file$/ do
+  attach_file(:discussions, File.join('features', 'test_files', 'bad_file.rb'))
+  click_button "Upload"
+end

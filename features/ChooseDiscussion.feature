@@ -8,19 +8,23 @@ Feature: When I log in I want to be able to choose my discussion section
  	 | Copy     | anotheremail@hotmail.com       | anotherpsw | ok            | EECS  | 26131975 |
  	 | Charles  | oskithebear@hotmail.com        |  password2 | ok            | EECS  | 26131976 |
  	 | Trump    | wall@hotmail.com               |  password3 | ok            | EECS  | 26131977 |
-
+  And the following discussions exist
+ 	 | number  | time         |  capacity |
+ 	 | 54321   | Tues, 3pm    |  25       |
+ 	 | 54322   | Wed, 3pm     |  25       |
+ 	 | 54323   | Thurs, 3pm   |  25       |
     And I am on the login page
-    And all the discussions are open 
-    And all these people are on the same team 
 
 
 
   Scenario: Successfully choose a discussion
-    Given I log in as "Sahai"
-    Then I should see "Disucssion Times"
-    When I select "10am - Tuesday" from "First Choice"
-    When I select "10am - Wednesday" from "Second Choice"
-    When I select "10am - Friday" from "Third Choice"
-    And I press "Submit Team"
-    Then I should be on the team page
-    Then I should see "Success! Team submitted"
+    Given I fill in "Email" with "eecs666@hotmail.com"
+    And I fill in "Password" with "mypassword"
+    And I press "Log In"
+    When I press "Submit"
+    Then I select "Tues, 3pm" from "disc1"
+    And I select "Wed, 3pm" from "disc2"
+    And I select "Thurs, 3pm" from "disc3"
+    And I press "Submit"
+    Then I should see "Thanks for submitting your team for enrollment."
+    And I should see "My Team"
