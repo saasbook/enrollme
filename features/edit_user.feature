@@ -13,7 +13,7 @@ Feature: edit user information
  	And PENDING: I am on the login page
  	
   Scenario: An existing user logs in, joins a team, and edits his information
-    Given P I fill in "Email" with "legueoflegends667@hotmail.com"
+    Given I fill in "Email" with "legueoflegends667@hotmail.com"
     And I fill in "Password" with "password1"
     And I press "Log In"
     
