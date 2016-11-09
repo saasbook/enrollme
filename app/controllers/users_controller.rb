@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   def join_team
     @passcode = params[:team_hash]
     @team = Team.find_by_passcode(@passcode)
-    return redirect_to without_team_path, :notice => "Please enter a valid team passcode" if @passcode.empty? or @team.nil?
+    return redirect_to without_team_path, :notice => "Unable to join team" if @passcode.empty? or @team.nil? or @team.approved
     
     @user = User.find(session[:user_id])
     @user.leave_team if !(@user.team.nil?)
@@ -54,6 +54,7 @@ class UsersController < ApplicationController
 
     @user.team = @team
     @team.users << @user
+    @team.withdraw_submission
     
     if @team.users.length == 5 or @team.users.length == 6
       @team.users.each do |user|

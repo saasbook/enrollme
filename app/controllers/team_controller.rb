@@ -33,15 +33,16 @@ class TeamController < ApplicationController
     render "team"
   end
   
-  def leave
-    User.find(session[:user_id]).leave_team
-    return redirect_to without_team_path
-  end
-  
   def submit
     @user = User.find_by_id(session[:user_id])
-    @team = Team.find_by_id(@user.team.id)
+    @team = Team.find_by_id(@user.team)
     render 'discussions'
+  end
+  
+  def unsubmit
+    @team = User.find_by_id(session[:user_id]).team
+    @team.withdraw_submission
+    redirect_to team_path(@team)
   end
   
   def choose_discussions
@@ -62,14 +63,18 @@ class TeamController < ApplicationController
   end
   
   def edit
-    @user = User.find_by_id(session[:user_id])
-    @user_to_remove = User.find(params[:unwanted_user])
+    @team = User.find_by_id(session[:user_id]).team
+    @user_to_remove = User.find_by_id(params[:unwanted_user])
 
-    if @user.team == @user_to_remove.team
+    if @team == @user_to_remove.team
+      return redirect_to team_path(@team), notice: "Removal failed." if @team.approved
+      
+      notice = @team.submitted ? "Your team's submission has been withdrawn." : ""
+      @team.withdraw_submission
       @user_to_remove.leave_team
-      return redirect_to '/', notice: "Removed " + @user_to_remove.name + " from team."
+      return redirect_to team_path(@team), notice: "Removed " + @user_to_remove.name + " from team. " + notice
     else
-      return redirect_to '/', notice: "Removal failed"
+      return redirect_to team_path(@team), notice: "Removal failed"
     end
   end
   
