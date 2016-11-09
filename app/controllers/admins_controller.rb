@@ -30,7 +30,12 @@ class AdminsController < ApplicationController
   end
 
   def show
-    @admin = Admin.find(session[:user_id])
+    @admin = Admin.find_by_id(session[:user_id])
+    if @admin.nil?
+      session[:user_id] = nil
+      session[:is_admin] = false
+      return redirect_to '/'
+    end
     render 'show'
   end
   
