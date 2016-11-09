@@ -10,17 +10,17 @@ class FileController < ApplicationController
 
     filename = time + '_team_info.csv'
     
-    f = CSV.generate do |csv|
-      csv << ["Team ID", "Discussion Number", "Student ID", "Student Name"]
-      Team.approved_teams.each do |t|
-        discussion = Discussion.find_by_id(t.discussion_id)
-        t.users.each do |u|
-          csv << [t.id, discussion.number, u.sid, u.name]
-        end
+    rows = []
+    rows << ["Team ID", "Discussion Number", "Student ID", "Student Name"]
+    Team.approved_teams.each do |t|
+      discussion = Discussion.find_by_id(t.discussion_id)
+      t.users.each do |u|
+        rows << [t.id, discussion.number, u.sid, u.name]
       end
     end
-    send_data(f, :type => 'text/csv; charset=utf-8; header=present', :disposition => "attachment; filename=#{filename}")
 
+    csv_str = rows.inject([]) { |csv, row|  csv << CSV.generate_line(row) }.join("")
+    send_data(csv_str, type: 'text/csv', filename: filename)
   end
   
   def upload_discussions_txt
