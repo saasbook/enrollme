@@ -1,7 +1,6 @@
 class Team < ActiveRecord::Base
     has_many :users
-    belongs_to :application
-    
+
     # THIS IS A TEMPORARY HASH-MAKING FUNCTION. TODO: REPLACE
     @@temp_hash = 1
 

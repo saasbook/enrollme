@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">EnrollMe</a>
+    </div>
+    
+
+    <div class="navbar-collapse collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href='/'>Home</a></li>
+          <li><%= link_to "Edit My Info", edit_user_path(session[:user_id]), {method: 'get'} %></li>
+          <li><%= link_to "Logout", logout_path, {method: 'post'} %></li>
+        </ul>
+    </div>
+  </div>
+</nav>
+
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert" %>
+<% end %>
+
+<head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<%= yield %>
+
