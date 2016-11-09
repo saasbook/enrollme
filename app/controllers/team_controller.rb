@@ -39,6 +39,12 @@ class TeamController < ApplicationController
     redirect_to new_submission_path
   end
   
+  def unsubmit
+    @team = User.find_by_id(session[:user_id]).team
+    @team.withdraw_submission
+    redirect_to team_path(@team)
+  end
+  
   def edit
     @team = User.find_by_id(session[:user_id]).team
     @user_to_remove = User.find_by_id(params[:unwanted_user])

@@ -20,4 +20,4 @@ Feature: When I log in I want to be able to choose my discussion section
     And I press "Log In"
     Then I should see "Discussions"
     When I press "Submit"
-    Then the "disc1" drop-down should contain the option "Tues, 3pm"
+    Then the "submission[disc1id]" drop-down should contain the option "Tues, 3pm"

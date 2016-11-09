@@ -6,15 +6,9 @@ Rails.application.routes.draw do
   post '/join_team', to: 'users#join_team'
   
   resources :team
-<<<<<<< 38a3177ce806eaf6052b348e464e48200d69db8e
 
   post 'submit_team', to: 'team#submit'
   post 'unsubmit_team', to: 'team#unsubmit'
-  patch 'choose_discussions', to: 'team#choose_discussions'
-=======
-  post 'leave_team', to: 'team#leave'
-  post 'submit_team', to: 'team#submit'
->>>>>>> moved team submissions under submission controller
 
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
