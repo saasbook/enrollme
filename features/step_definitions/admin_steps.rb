@@ -18,3 +18,7 @@ When /^I upload an invalid file$/ do
   attach_file(:discussions, File.join('features', 'test_files', 'bad_file.rb'))
   click_button "Upload"
 end
+
+Then(/^I should not see that team$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
