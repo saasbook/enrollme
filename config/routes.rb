@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   post '/join_team', to: 'users#join_team'
   
   resources :team
-  post 'leave_team', to: 'team#leave'
 
   post 'submit_team', to: 'team#submit'
+  post 'unsubmit_team', to: 'team#unsubmit'
   patch 'choose_discussions', to: 'team#choose_discussions'
 
   get 'login', to: 'session#new'

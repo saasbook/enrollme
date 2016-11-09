@@ -10,6 +10,11 @@ class Team < ActiveRecord::Base
         return @@temp_hash
     end
     
+    def withdraw_submission
+        self.submitted = false
+        self.save!
+    end
+    
     def eligible?
         self.users.count == 5 or self.users.count == 6 ? true : false
     end
