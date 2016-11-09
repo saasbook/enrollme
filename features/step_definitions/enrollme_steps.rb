@@ -1,3 +1,52 @@
+Given /^I log in as an admin with email "([^"]*)"$/ do | email |
+  password = Admin.find_by_email(email).password
+  step "I am on the login page"
+  step %Q{I fill in "Email" with "#{email}"}
+  step %Q{I fill in "Password" with "#{password}"}
+  step %Q{I press "Log In"}
+end
+
+Given /^I log in as a user with email "([^"]*)"$/ do | email |
+  password = User.find_by_email(email).password
+  step "I am on the login page"
+  step %Q{I fill in "Email" with "#{email}"}
+  step %Q{I fill in "Password" with "#{password}"}
+  step %Q{I press "Log In"}
+end
+
+And /^I log out$/ do
+  step %Q{I follow "Logout"}
+end
+
+When /^I remove "([^"]*)"$/ do | user |
+  step %Q{I press "remove_#{user}"}
+end
+
+When /^I leave my team$/ do
+  step %Q{I press "Leave team"}
+end
+
+And /^I join a team with passcode "([^"]*)"$/ do | passcode |
+  step %Q{I fill in "team_hash" with "#{passcode}"}
+  step %Q{I press "Join"}
+end
+
+And /^the team with passcode "([^"]*)" is approved$/ do | passcode |
+  Team.find_by_passcode(passcode).update(:approved => true)
+end
+
+And /^the team with passcode "([^"]*)" is submitted$/ do | passcode |
+  Team.find_by_passcode(passcode).update(:submitted => true)
+end
+And /^the team with passcode "([^"]*)" should be submitted$/ do | passcode |
+  expect(Team.find_by_passcode(passcode).submitted).to be_truthy
+end
+
+And /^the team with passcode "([^"]*)" should not be submitted$/ do | passcode |
+  expect(Team.find_by_passcode(passcode).submitted).to be_falsy
+end
+
+
 Then /^the "([^"]*)" drop-down should contain the option "([^"]*)"$/ do |dropdown, text|
   expect(page).to have_select(dropdown, :options => [text])
 end

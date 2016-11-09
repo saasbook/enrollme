@@ -51,7 +51,6 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
     @user.leave_team if !(@user.team.nil?)
     
-
     @user.team = @team
     @team.users << @user
     @team.withdraw_submission

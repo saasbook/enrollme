@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
     @team = self.team
     @team.users.delete(self)
     self.team = nil
+    @team.withdraw_submission
   end
 
 end
