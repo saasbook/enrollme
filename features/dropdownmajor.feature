@@ -1,4 +1,4 @@
-Feature:
+Feature: I should choose my major from a dropdown menu when filling my information 
 
 Background:
     Given PENDING: the following users exist
@@ -20,7 +20,7 @@ Background:
     And I select "EECS/CS Declared" from "Major"
     And I press "Update Information"
     And I follow "Edit My Info"
-    Then I should see "My Team"
+    Then I should see "My Team" or "Create or Join a Team"
     
   Scenario: Successfully create an account and login
     Given I am on the new_user page
@@ -30,4 +30,4 @@ Background:
     And I select  "EECS/CS Declared" from "Major"
     And I fill in "Password" with "bestpasswordeva"
     And I press "Sign Up"
-    Then I should see "My Team"
+    Then I should see "Create or Join a Team"

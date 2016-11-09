@@ -1,4 +1,4 @@
-Feature: Login to my account
+Feature: and login with my Berkeley credentials/email/account
   As a student
   In order to create an account and login
   I want to use OAUTH

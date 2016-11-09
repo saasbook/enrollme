@@ -22,3 +22,11 @@ end
 Then(/^I should not see that team$/) do
   pending # Write code here that turns the phrase above into concrete actions
 end
+
+Then(/^PENDING: I check "([^"]*)"$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I should see "([^"]*)" or "([^"]*)"$/) do |arg1, arg2|
+  pending # Write code here that turns the phrase above into concrete actions
+end
