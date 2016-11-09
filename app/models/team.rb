@@ -9,6 +9,10 @@ class Team < ActiveRecord::Base
         return @@temp_hash
     end
     
+    def self.approved_teams
+        return Team.where(:approved => true)
+    end
+    
     def withdraw_submission
         self.submitted = false
         self.save!

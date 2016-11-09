@@ -2,16 +2,16 @@ class FileController < ApplicationController
   def index
   end
 
-  def team_info_txt
+  def download_approved_teams
     time_zone = "Pacific Time (US & Canada)"
     time_format = "%Y%m%d%H%M"
     time = Time.now.in_time_zone(time_zone).strftime(time_format)
 
-    filename = time + '_team_info.txt'
+    filename = time + '_team_info.csv'
     
     columns = "Team ID,Members,Status"
     content = columns + "\n"
-    Team.all.each do |t|
+    Team.approved_teams.each do |t|
         content << t.id.to_s + ","
         content << "[ "
         t.users.each do |u|

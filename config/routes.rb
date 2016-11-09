@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'disapprove_team', to: 'admins#disapprove'
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
-  get 'download_team_info', to: "file#team_info_txt"
+  get 'download_team_info', to: "file#download_approved_teams"
   post 'upload_discussions', to: 'file#upload_discussions_txt'
   
   resources :submissions

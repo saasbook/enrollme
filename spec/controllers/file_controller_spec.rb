@@ -3,9 +3,6 @@ require 'rails_helper'
 RSpec.describe FileController, type: :controller do
     render_views
     describe "GET #team_info_text" do
-      
-      # TODO: change all "team_info_txt" -> "download_approved_teams"
-    
         before do
             @empty = Discussion.new(:number => 1337, :time=> "Wed, 3pm", :capacity => 5)
             people = [
@@ -56,25 +53,22 @@ RSpec.describe FileController, type: :controller do
             @three.users << User.where(name: "Chris")
             
             
-            get :team_info_txt
+            get :download_approved_teams
         end
     
         it "shows all approved teams" do
-            skip
             expect(response.body).to include("Josh")
             expect(response.body).to include("GGG")
             expect(response.body).to include("EEE")
         end
         
         it "does not show submitted teams" do
-            skip
             expect(response.body).not_to include("JJJ")
             expect(response.body).not_to include("III")
             expect(response.body).not_to include("Ana")
         end
         
         it "does not show invalid teams" do
-            skip
             expect(response.body).not_to include("Chris")
         end
     end
