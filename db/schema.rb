@@ -39,10 +39,7 @@ ActiveRecord::Schema.define(version: 20161109045812) do
     t.boolean "approved"
     t.string  "passcode"
     t.boolean "submitted"
-    t.integer "discussion_id"
   end
-
-  add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -52,9 +49,7 @@ ActiveRecord::Schema.define(version: 20161109045812) do
     t.string   "sid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "team_id"
   end
 
-  add_index "users", ["team_id"], name: "index_users_on_team_id"
 
 end
