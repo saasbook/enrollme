@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe FileController, type: :controller do
     render_views
-    describe "GET #team_info_text" do
+    describe "GET #download_approved_teams" do
         before do
-            @empty = Discussion.new(:number => 1337, :time=> "Wed, 3pm", :capacity => 5)
+            @disc = Discussion.create!(:number => 1337, :time=> "Wed, 3pm", :capacity => 5)
             people = [
               { :name => "John"                   ,:major => "English"  , :sid => "111"  ,:email => "111@berkeley.edu",:password => "132619"        },
               { :name =>  "Josh"                   ,:major => "CS"  ,:sid => "222"  ,:email => "222@berkeley.edu", :password => "666666"         },
@@ -29,6 +29,8 @@ RSpec.describe FileController, type: :controller do
             @tone = Team.new
             @tone.approved = true
             @tone.passcode = "passcode1"
+            @tone.discussion_id = @disc.id
+            @disc.teams << @tone
             @tone.save!
             @tone.users << User.where(name: "Josh")
             @tone.users << User.where(name: "CCC")

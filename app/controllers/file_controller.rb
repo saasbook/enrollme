@@ -1,3 +1,4 @@
+require 'csv'
 class FileController < ApplicationController
   def index
   end
@@ -9,19 +10,17 @@ class FileController < ApplicationController
 
     filename = time + '_team_info.csv'
     
-    columns = "Team ID,Members,Status"
-    content = columns + "\n"
-    Team.approved_teams.each do |t|
-        content << t.id.to_s + ","
-        content << "[ "
+    f = CSV.generate do |csv|
+      csv << ["Team ID", "Discussion Number", "Student ID", "Student Name"]
+      Team.approved_teams.each do |t|
+        discussion = Discussion.find_by_id(t.discussion_id)
         t.users.each do |u|
-            content << u.name + " "
+          csv << [t.id, discussion.number, u.sid, u.name]
         end
-        content << "]" + ","
-        content << (t.approved ? 'Approved' : 'Pending')
-        content << "\n"
+      end
     end
-    send_data(content, :filename => filename)
+    send_data(f, :type => 'text/csv; charset=utf-8; header=present', :disposition => "attachment; filename=#{filename}")
+
   end
   
   def upload_discussions_txt
