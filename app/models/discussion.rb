@@ -1,8 +1,5 @@
 class Discussion < ActiveRecord::Base
     has_many :teams
-    belongs_to :application
-    
-    
     
     def can_take_team?(team)
         if (team.users.length + count_students <= self.capacity)

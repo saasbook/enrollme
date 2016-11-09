@@ -35,31 +35,14 @@ class TeamController < ApplicationController
   
   def submit
     @user = User.find_by_id(session[:user_id])
-    @team = Team.find_by_id(@user.team)
-    render 'discussions'
+    @team = Team.find_by_id(@user.team.id)
+    redirect_to new_submission_path
   end
   
   def unsubmit
     @team = User.find_by_id(session[:user_id]).team
     @team.withdraw_submission
     redirect_to team_path(@team)
-  end
-  
-  def choose_discussions
-    @user = User.find_by_id(session[:user_id])
-    @team = Team.find_by_id(@user.team.id)
-    @application = Application.new
-    @application.team = @team
-    @application.discussions << Discussion.find(params["disc1"])
-    @application.discussions << Discussion.find(params["disc2"])
-    @application.discussions << Discussion.find(params["disc3"])
-    @application.disc1id = params["disc1"]
-    @application.disc2id = params["disc2"]
-    @application.disc3id = params["disc3"]
-    @application.save!
-    @team.update(submitted: true)
-    return redirect_to team_path(@team), notice: "Thanks for submitting your team for enrollment."
-
   end
   
   def edit
