@@ -31,13 +31,18 @@ And /^I join a team with passcode "([^"]*)"$/ do | passcode |
   step %Q{I press "Join"}
 end
 
-And /^the team with passcode "([^"]*)" is approved$/ do | passcode |
-  Team.find_by_passcode(passcode).update(:approved => true)
+Given(/^the team with passcode "([^"]*)" is approved with discussion number "([^"]*)"$/) do |passcode, number|
+  Team.find_by_passcode(passcode).approve_with_discussion(Discussion.find_by_number(number).id)
 end
 
 And /^the team with passcode "([^"]*)" is submitted$/ do | passcode |
   Team.find_by_passcode(passcode).update(:submitted => true)
 end
+
+And /^my team is submitted$/ do
+  @team.update(:submitted => true)
+end
+
 And /^the team with passcode "([^"]*)" should be submitted$/ do | passcode |
   expect(Team.find_by_passcode(passcode).submitted).to be_truthy
 end
@@ -103,11 +108,11 @@ Given /^the following admins exist$/ do |table|
 end
 
 Then /^I should have downloaded a team information file$/ do
-   page.response_headers['Content-Disposition'].should include("team_info.txt")
+   page.response_headers['Content-Disposition'].should include("team_info.csv")
 end
 
 When /^I upload a discussion file$/ do
-  attach_file(:discussions, File.join('features', 'test_files', 'discussion_info.txt'))
+  attach_file(:discussions, File.join('features', 'test_files', 'discussion_info.csv'))
   click_button "Upload"
 end
  

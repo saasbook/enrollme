@@ -21,8 +21,12 @@ Feature: get a csv with the information of all approved teams
   	And the following admins exist
   	 | name  | email                  | password |
   	 | Bob   | supreme_ruler@aol.com  | ilikcats |
+    And the following discussions exist
+   	 | number  | time         |  capacity |
+   	 | 54321   | Tues, 3pm    |  25       |
+  	
     And I log in as an admin with email "supreme_ruler@aol.com"
-  	And the team with passcode "penguindrool" is approved
+  	And the team with passcode "penguindrool" is approved with discussion number "54321"
   	And the team with passcode "anotherteam" is submitted
 
   Scenario: An admin successfully downloads approved team information

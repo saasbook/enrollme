@@ -27,9 +27,8 @@ RSpec.describe FileController, type: :controller do
             end
         
             @tone = Team.new
-            @tone.approved = true
+            @tone.approve_with_discussion(@disc.id)
             @tone.passcode = "passcode1"
-            @tone.discussion_id = @disc.id
             @disc.teams << @tone
             @tone.save!
             @tone.users << User.where(name: "Josh")

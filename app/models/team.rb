@@ -18,6 +18,12 @@ class Team < ActiveRecord::Base
         self.save!
     end
     
+    def approve_with_discussion(id)
+        self.approved = true
+        self.discussion_id = id
+        self.save!
+    end
+    
     def eligible?
         self.users.count == 5 or self.users.count == 6 ? true : false
     end

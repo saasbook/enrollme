@@ -13,7 +13,10 @@ Feature: editing a team is impossible after approval
      | Saha4 | eecs669@hotmail.com            | mypassword | penguindrool | EECS            | 003  |
   	 | Jorge | legueoflegends667@hotmail.com  | password1  | penguindrool | Football Player | 999  |
   	 | Kandi | justanotheremail@aol.com       | myname555  | 0            | EECS            | 567  |
-  	And the team with passcode "penguindrool" is approved
+    And the following discussions exist
+   	 | number  | time         |  capacity |
+   	 | 54321   | Tues, 3pm    |  25       |
+  	And the team with passcode "penguindrool" is approved with discussion number "54321"
 
   Scenario: A user cannot remove another user from an approved team
     Given I log in as a user with email "eecs666@hotmail.com"
