@@ -2,12 +2,9 @@ require 'rails_helper'
 
 RSpec.describe FileController, type: :controller do
     render_views
-    describe "GET #team_info_text" do
-      
-      # TODO: change all "team_info_txt" -> "download_approved_teams"
-    
+    describe "GET #download_approved_teams" do
         before do
-            @empty = Discussion.new(:number => 1337, :time=> "Wed, 3pm", :capacity => 5)
+            @disc = Discussion.create!(:number => 1337, :time=> "Wed, 3pm", :capacity => 5)
             people = [
               { :name => "John"                   ,:major => "English"  , :sid => "111"  ,:email => "111@berkeley.edu",:password => "132619"        },
               { :name =>  "Josh"                   ,:major => "CS"  ,:sid => "222"  ,:email => "222@berkeley.edu", :password => "666666"         },
@@ -30,8 +27,9 @@ RSpec.describe FileController, type: :controller do
             end
         
             @tone = Team.new
-            @tone.approved = true
+            @tone.approve_with_discussion(@disc.id)
             @tone.passcode = "passcode1"
+            @disc.teams << @tone
             @tone.save!
             @tone.users << User.where(name: "Josh")
             @tone.users << User.where(name: "CCC")
@@ -56,25 +54,22 @@ RSpec.describe FileController, type: :controller do
             @three.users << User.where(name: "Chris")
             
             
-            get :team_info_txt
+            get :download_approved_teams
         end
     
         it "shows all approved teams" do
-            skip
             expect(response.body).to include("Josh")
             expect(response.body).to include("GGG")
             expect(response.body).to include("EEE")
         end
         
         it "does not show submitted teams" do
-            skip
             expect(response.body).not_to include("JJJ")
             expect(response.body).not_to include("III")
             expect(response.body).not_to include("Ana")
         end
         
         it "does not show invalid teams" do
-            skip
             expect(response.body).not_to include("Chris")
         end
     end

@@ -46,11 +46,11 @@
             <%= submit_tag "Leave team", {class: "btn btn-default", id: "leave_team"}  %>
           <% end %>
         </div>
-        <% if @team.approved == true %>
+        <% if @team.approved %>
           <div class="col-xs-2">
             Team has been approved!
           </div>
-        <% elsif @team.submitted == true %>
+        <% elsif @team.submitted %>
           <div class="col-xs-2">
             <%= form_tag unsubmit_team_path do %>
               <%= submit_tag "Withdraw Team Submission", class: "btn btn-primary btn-xs" %>

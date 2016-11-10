@@ -1,27 +1,26 @@
+require 'csv'
 class FileController < ApplicationController
   def index
   end
 
-  def team_info_txt
+  def download_approved_teams
     time_zone = "Pacific Time (US & Canada)"
     time_format = "%Y%m%d%H%M"
     time = Time.now.in_time_zone(time_zone).strftime(time_format)
 
-    filename = time + '_team_info.txt'
+    filename = time + '_team_info.csv'
     
-    columns = "Team ID,Members,Status"
-    content = columns + "\n"
-    Team.all.each do |t|
-        content << t.id.to_s + ","
-        content << "[ "
-        t.users.each do |u|
-            content << u.name + " "
-        end
-        content << "]" + ","
-        content << (t.approved ? 'Approved' : 'Pending')
-        content << "\n"
+    rows = []
+    rows << ["Team ID", "Discussion Number", "Student ID", "Student Name"]
+    Team.approved_teams.each do |t|
+      discussion = Discussion.find_by_id(t.discussion_id)
+      t.users.each do |u|
+        rows << [t.id, discussion.number, u.sid, u.name]
+      end
     end
-    send_data(content, :filename => filename)
+
+    csv_str = rows.inject([]) { |csv, row|  csv << CSV.generate_line(row) }.join("")
+    send_data(csv_str, type: 'text/csv', filename: filename)
   end
   
   def upload_discussions_txt

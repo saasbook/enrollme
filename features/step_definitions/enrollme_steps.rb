@@ -1,3 +1,57 @@
+Given /^I log in as an admin with email "([^"]*)"$/ do | email |
+  password = Admin.find_by_email(email).password
+  step "I am on the login page"
+  step %Q{I fill in "Email" with "#{email}"}
+  step %Q{I fill in "Password" with "#{password}"}
+  step %Q{I press "Log In"}
+end
+
+Given /^I log in as a user with email "([^"]*)"$/ do | email |
+  password = User.find_by_email(email).password
+  step "I am on the login page"
+  step %Q{I fill in "Email" with "#{email}"}
+  step %Q{I fill in "Password" with "#{password}"}
+  step %Q{I press "Log In"}
+end
+
+And /^I log out$/ do
+  step %Q{I follow "Logout"}
+end
+
+When /^I remove "([^"]*)"$/ do | user |
+  step %Q{I press "remove_#{user}"}
+end
+
+When /^I leave my team$/ do
+  step %Q{I press "Leave team"}
+end
+
+And /^I join a team with passcode "([^"]*)"$/ do | passcode |
+  step %Q{I fill in "team_hash" with "#{passcode}"}
+  step %Q{I press "Join"}
+end
+
+Given(/^the team with passcode "([^"]*)" is approved with discussion number "([^"]*)"$/) do |passcode, number|
+  Team.find_by_passcode(passcode).approve_with_discussion(Discussion.find_by_number(number).id)
+end
+
+And /^the team with passcode "([^"]*)" is submitted$/ do | passcode |
+  Team.find_by_passcode(passcode).update(:submitted => true)
+end
+
+And /^my team is submitted$/ do
+  @team.update(:submitted => true)
+end
+
+And /^the team with passcode "([^"]*)" should be submitted$/ do | passcode |
+  expect(Team.find_by_passcode(passcode).submitted).to be_truthy
+end
+
+And /^the team with passcode "([^"]*)" should not be submitted$/ do | passcode |
+  expect(Team.find_by_passcode(passcode).submitted).to be_falsy
+end
+
+
 Then /^the "([^"]*)" drop-down should contain the option "([^"]*)"$/ do |dropdown, text|
   expect(page).to have_select(dropdown, :options => [text])
 end
@@ -54,11 +108,11 @@ Given /^the following admins exist$/ do |table|
 end
 
 Then /^I should have downloaded a team information file$/ do
-   page.response_headers['Content-Disposition'].should include("team_info.txt")
+   page.response_headers['Content-Disposition'].should include("team_info.csv")
 end
 
 When /^I upload a discussion file$/ do
-  attach_file(:discussions, File.join('features', 'test_files', 'discussion_info.txt'))
+  attach_file(:discussions, File.join('features', 'test_files', 'discussion_info.csv'))
   click_button "Upload"
 end
  

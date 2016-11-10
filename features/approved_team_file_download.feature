@@ -18,16 +18,19 @@ Feature: get a csv with the information of all approved teams
   	 | Kand4 | justanotheremai4@aol.com       | myname555  | anotherteam  | EECS            | 970  |
   	 | Kand5 | justanotheremai5@aol.com       | myname555  | anotherteam  | Football Player | 971  |
   	 | Someo | blahblah@aol.com               | noone      | 0            | EECS            | 567  |
-  	And PENDING: the following admins exist
+  	And the following admins exist
   	 | name  | email                  | password |
   	 | Bob   | supreme_ruler@aol.com  | ilikcats |
-    And PENDING: I log in with email "supreme_ruler@aol.com"
-  	And PENDING: the team with passcode "penguindrool" is approved
-  	And PENDING: the team with passcode "anotherteam" is submitted
+    And the following discussions exist
+   	 | number  | time         |  capacity |
+   	 | 54321   | Tues, 3pm    |  25       |
+  	
+    And I log in as an admin with email "supreme_ruler@aol.com"
+  	And the team with passcode "penguindrool" is approved with discussion number "54321"
+  	And the team with passcode "anotherteam" is submitted
 
   Scenario: An admin successfully downloads approved team information
-  	Given PENDING: I press "Download Team Information"
-  	Then PENDING: The downloaded file should contain "Sahai"
-  	Then PENDING: The downloaded file should not contain "Kandi"
-  	Then PENDING: The downloaded file should contain "Someo"
+    Given I should see "Welcome Back, Bob!"
+    And I press "Download Team Information"
+  	Then I should have downloaded a team information file
     
