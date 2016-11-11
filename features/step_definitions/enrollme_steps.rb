@@ -43,12 +43,12 @@ And /^my team is submitted$/ do
   @team.update(:submitted => true)
 end
 
-And /^the team with passcode "([^"]*)" should be submitted$/ do | passcode |
-  expect(Team.find_by_passcode(passcode).submitted).to be_truthy
+And /^the team with passcode "([^"]*)" should be (.*)$/ do | passcode, status |
+  expect(Team.find_by_passcode(passcode).send(status)).to be_truthy
 end
 
-And /^the team with passcode "([^"]*)" should not be submitted$/ do | passcode |
-  expect(Team.find_by_passcode(passcode).submitted).to be_falsy
+And /^the team with passcode "([^"]*)" should not be (.*)$/ do | passcode, status |
+  expect(Team.find_by_passcode(passcode).send(status)).to be_falsy
 end
 
 
