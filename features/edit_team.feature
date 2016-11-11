@@ -25,6 +25,7 @@ Feature: edit team
     Given I am on the team_index page
     And I press "remove_Sahai"
     Then I should be on the without_team page
+    And PENDING: Team "penguindrool" should not exist
     
   Scenario: A user fails removal of a user not on their own team
     Given I am on the team_index page
