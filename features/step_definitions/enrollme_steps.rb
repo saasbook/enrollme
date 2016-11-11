@@ -1,3 +1,7 @@
+Given /^PENDING: .*$/ do
+  pending
+end
+
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
   password = Admin.find_by_email(email).password
   step "I am on the login page"
