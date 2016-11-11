@@ -1,11 +1,11 @@
 Feature: I should choose my major from a dropdown menu when filling my information 
 
 Background:
-    Given PENDING: the following users exist
+    Given the following users exist
      |   name    |       email       |password |team_passcode | major        |       sid      |
   	 | Jorge    |    legueoflegends667@hotmail.com  | password1 | 0 | Football Player | 999  |
  	   | Sahai     | eecs666@hotmail.com        | mypassword     | penguindrool | EECS            | 000  |
-  
+    And I am on the login page
   
   
  Scenario: An existing user logs in, joins a team, and edits his major
