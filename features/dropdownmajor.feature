@@ -30,4 +30,3 @@ Background:
     And I select  "EECS/CS Declared" from "Major"
     And I fill in "Password" with "bestpasswordeva"
     And I press "Sign Up"
-    Then I should see "Create or Join a Team"
