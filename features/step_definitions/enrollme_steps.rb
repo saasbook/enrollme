@@ -1,3 +1,7 @@
+Given /^PENDING: .*$/ do
+  pending
+end
+
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
   password = Admin.find_by_email(email).password
   step "I am on the login page"
@@ -35,20 +39,24 @@ Given(/^the team with passcode "([^"]*)" is approved with discussion number "([^
   Team.find_by_passcode(passcode).approve_with_discussion(Discussion.find_by_number(number).id)
 end
 
-And /^the team with passcode "([^"]*)" is submitted$/ do | passcode |
-  Team.find_by_passcode(passcode).update(:submitted => true)
+And /^the team with passcode "([^"]*)" is( not)? submitted$/ do | passcode, negate |
+  negate ? Team.find_by_passcode(passcode).update(:submitted => false) : Team.find_by_passcode(passcode).update(:submitted => true)
+end
+
+And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |
+  Team.find_by_passcode(passcode).update(:approved => false)
 end
 
 And /^my team is submitted$/ do
   @team.update(:submitted => true)
 end
 
-And /^the team with passcode "([^"]*)" should be submitted$/ do | passcode |
-  expect(Team.find_by_passcode(passcode).submitted).to be_truthy
+And /^the team with passcode "([^"]*)" should be (.*)$/ do | passcode, status |
+  expect(Team.find_by_passcode(passcode).send(status)).to be_truthy
 end
 
-And /^the team with passcode "([^"]*)" should not be submitted$/ do | passcode |
-  expect(Team.find_by_passcode(passcode).submitted).to be_falsy
+And /^the team with passcode "([^"]*)" should not be (.*)$/ do | passcode, status |
+  expect(Team.find_by_passcode(passcode).send(status)).to be_falsy
 end
 
 
@@ -135,46 +143,6 @@ end
 Given(/^P I fill in "([^"]*)" with "([^"]*)"$/) do |arg1, arg2|
   pending # Write code here that turns the phrase above into concrete actions
 end
-Given(/^PENDING: the following admins exist$/) do |table|
-  # table is a Cucumber::MultilineArgument::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-When(/^PENDING: the time is (\d+):(\d+)$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-
-
-Given(/^PENDING: the following users exist$/) do |table|
-  # table is a Cucumber::MultilineArgument::DataTable
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^PENDING: I am on the login page$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^PENDING: I fill in "([^"]*)" with "([^"]*)"$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^PENDING: I press "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^PENDING: I follow "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^PENDING: I should see "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^PENDING: I should not see "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
 
 
 Then(/^I should not see that team$/) do
@@ -188,8 +156,3 @@ end
 Given(/^P I fill in "([^"]*)" with "([^"]*)"$/) do |arg1, arg2|
   pending # Write code here that turns the phrase above into concrete actions
 end
-
-Then(/^PENDING: I check "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-

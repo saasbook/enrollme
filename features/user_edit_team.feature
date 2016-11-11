@@ -1,4 +1,4 @@
-Feature: edit team
+Feature: A User edits their team
 
   As a student
   So that I can work with people I like
@@ -10,25 +10,17 @@ Feature: edit team
  	   | Sahai | eecs666@hotmail.com            | mypassword | penguindrool | EECS            | 000  |
   	 | Jorge | legueoflegends667@hotmail.com  | password1  | penguindrool | Football Player | 999  |
   	 | Kandi | justanotheremail@aol.com       | myname555  | anotherteam  | EECS            | 567  |
- 	
- 	And I am on the login page
-    And I fill in "Email" with "eecs666@hotmail.com"
-    And I fill in "Password" with "mypassword"
-    And I press "Log In"
+    And I log in as a user with email "eecs666@hotmail.com"
+    And I am on the team_index page
  	
   Scenario: A user removes another user from their team
-    Given I am on the team_index page
-    And I press "remove_Jorge"
+    When I press "remove_Jorge"
     Then I should see "Removed Jorge from team."
 
   Scenario: A user removes themself from the team using the Edit button
-    Given I am on the team_index page
-    And I press "remove_Sahai"
+    When I press "remove_Sahai"
     Then I should be on the without_team page
-    And PENDING: Team "penguindrool" should not exist
     
   Scenario: A user fails removal of a user not on their own team
-    Given I am on the team_index page
-    And I go to the removal page for "Kandi"
+    When I go to the removal page for "Kandi"
     Then I should see "Removal failed"
-    
