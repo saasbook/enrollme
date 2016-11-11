@@ -38,8 +38,8 @@ Feature: admin adds discussion times
     When PENDING: I click on "add disscussion times"
     And PENDING: I fill in "CCN" with "#{discussion[:ccn]}"
     And PENDING: I select "#{discussion[:times]}" from "Times"
-    And PENDING: I press "Add Discussion"
-    Then PENDING: I should see "discussion added"
+    And PENDING: I press "Delete Discussion"
+    Then PENDING: I should see "discussion deleted"
     
     
   Scenario: A non-admin fails to add discussion times
