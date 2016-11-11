@@ -17,16 +17,15 @@ Background:
     And PENDING: I press "Join"
 
     Given I follow "Edit My Info"
-    And I select "EECS/CS Declared" from "Major"
+    And PENDING: I select "EECS/CS Declared" from "Major"
     And I press "Update Information"
-    And I follow "Edit My Info"
-    Then I should see "My Team" or "Create or Join a Team"
+    Then I should see "My Team"
     
   Scenario: Successfully create an account and login
     Given I am on the new_user page
     When I fill in "Name" with "David"
     And I fill in "Email" with "david@berkeley.edu"
     And I fill in "Sid" with "12345678"
-    And I select  "EECS/CS Declared" from "Major"
+    And PENDING: I select "EECS/CS Declared" from "Major"
     And I fill in "Password" with "bestpasswordeva"
     And I press "Sign Up"
