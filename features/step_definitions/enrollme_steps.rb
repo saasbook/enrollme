@@ -39,8 +39,12 @@ Given(/^the team with passcode "([^"]*)" is approved with discussion number "([^
   Team.find_by_passcode(passcode).approve_with_discussion(Discussion.find_by_number(number).id)
 end
 
-And /^the team with passcode "([^"]*)" is submitted$/ do | passcode |
-  Team.find_by_passcode(passcode).update(:submitted => true)
+And /^the team with passcode "([^"]*)" is( not)? submitted$/ do | passcode, negate |
+  negate ? Team.find_by_passcode(passcode).update(:submitted => false) : Team.find_by_passcode(passcode).update(:submitted => true)
+end
+
+And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |
+  Team.find_by_passcode(passcode).update(:approved => false)
 end
 
 And /^my team is submitted$/ do
