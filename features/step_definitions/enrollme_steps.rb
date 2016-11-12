@@ -118,13 +118,3 @@ end
 Then /^I should have downloaded a team information file$/ do
    page.response_headers['Content-Disposition'].should include("team_info.csv")
 end
-
-When /^I upload a discussion file$/ do
-  attach_file(:discussions, File.join('features', 'test_files', 'discussion_info.csv'))
-  click_button "Upload"
-end
- 
-When /^I upload an invalid file$/ do
-  attach_file(:discussions, File.join('features', 'test_files', 'bad_file.rb'))
-  click_button "Upload"
-end

@@ -24,6 +24,12 @@ class Team < ActiveRecord::Base
         self.save!
     end
     
+    def send_submission_reminder_email
+        self.users.each do |user|
+            EmailStudents.submit_email(user).deliver_later
+        end
+    end
+    
     def eligible?
         self.users.count == 5 or self.users.count == 6 ? true : false
     end

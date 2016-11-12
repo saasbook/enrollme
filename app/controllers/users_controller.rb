@@ -55,12 +55,8 @@ class UsersController < ApplicationController
     @team.users << @user
     @team.withdraw_submission
     
-    if @team.users.length == 5 or @team.users.length == 6
-      @team.users.each do |user|
-        EmailStudents.submit_email(user).deliver_later
-      end
-    end
-    
+    @team.send_submission_reminder_email if @team.eligible?
+     
     redirect_to team_path(:id=>@team.id)
   end
 
