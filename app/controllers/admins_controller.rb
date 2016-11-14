@@ -2,17 +2,14 @@ class AdminsController < ApplicationController
   
   def new
     @admin = Admin.new
-    session[:is_admin] = true
     render 'new'
   end
   
   def create
     @admin = Admin.new(admin_params)
 
-    if @admin.save
-      session[:is_admin] = true
-      session[:user_id] = @admin.id
-      redirect_to admin_path(@admin.id), :notice => "You signed up successfully!"
+    if session[:is_admin] == true and @admin.save
+      redirect_to admin_path(session[:user_id]), :notice => "You created admin " + admin_params["name"] + " successfully!"
     else
       render 'new', :notice => "Form is invalid"
     end
