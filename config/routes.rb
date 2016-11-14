@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   
   resources :team
 
-  post 'submit_team', to: 'team#submit'
-  post 'unsubmit_team', to: 'team#unsubmit'
+  post 'team/:id/submit', to: 'team#submit', as: "submit_team"
+  post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
 
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'

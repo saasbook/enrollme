@@ -22,7 +22,7 @@ module NavigationHelpers
     when /^the team "([^"]*)" page$/i
       team_path(:id=>$1)
     when /^the removal page for "([^"]*)"$/i
-      edit_team_path(:id => 0, :unwanted_user=>User.find_by_name($1))
+      edit_team_path(:id => @team, :unwanted_user=>User.find_by_name($1))
     when /^the approve team "([^"]*)" page$/i
       approve_team_path(:team_id=>$1)
     when /^the disapprove team "([^"]*)" page$/i

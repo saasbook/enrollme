@@ -58,7 +58,7 @@ Feature: go to the correct page
     And I fill in "Password" with "password1"
     And I press "Log In"
     Then I go to the team "1" page
-    Then I should see "Your team does not exist"
+    Then I should see "Permission denied"
     
   Scenario: Prevents access to another team's page
     Given I fill in "Email" with "eecs666@hotmail.com"
@@ -66,7 +66,7 @@ Feature: go to the correct page
     And I press "Log In"
     Then I go to the team "2" page
     Then I should not be on the team "2" page
-    And I should see "Cannot access this team"
+    And I should see "Permission denied"
     
   Scenario: Prevents access to a non-logged in person
     Given I go to the team "0" page
@@ -77,10 +77,10 @@ Feature: go to the correct page
     Given I fill in "Email" with "eecs666@hotmail.com"
     And I fill in "Password" with "mypassword"
     And I press "Log In"
-    Then I go to the team "1" page
+    Then I go to the team_index page
     And I press "Leave team"
     Then I should be on the without_team page
     
   Scenario: Only an admin can access that specific admin's page
     When I go to the 999_admin page
-    Then I should be on the home page
+    Then I should be on the login page
