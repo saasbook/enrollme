@@ -19,7 +19,11 @@
                     </span>
                 </div>
             <% end %>
-            <%= button_to "Create a Team", create_team_path, class: "btn btn-default btn-large btn-block", data: {confirm: "You are already on a team. Do you want to leave your current team and join a different one?"} %>
+            <% if @user.team.nil? %>
+               <%= button_to "Create a Team", create_team_path, class: "btn btn-default btn-large btn-block" %>
+            <% else %>
+              <%= button_to "Create a Team", create_team_path, class: "btn btn-default btn-large btn-block", data: {confirm: "You are already on a team. Do you want to leave your current team and join a different one?"} %>
+            <% end %>
         </div>
     </div>
 </body>
