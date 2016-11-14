@@ -1,6 +1,6 @@
 <html>
 <body>
-  <title>Discussion</title>
+  <title>Upload Discussion</title>
   
     <div class="container">
       
@@ -10,33 +10,24 @@
         <div class="col-md-8">
           <h2>Members</h2>
           <table class="table table-striped table-hover">
-            <tr>
-                <td></td>
-                <td>Student</td>
-                <td>CS Major?</td>
-                <td></td>
-              </tr>
-              
+
             
-            <% Team.find(@team.id).users.each do |u| %>
-              <tr>
-                <td></td>
-                <td><%= u.name %></td>
-                <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "No" %></td>
-                <td>
-                  <%= form_tag edit_team_path(@team), method: :get do %>
-                    <%= hidden_field_tag :unwanted_user, u.id %>
-                    <%= submit_tag "Remove", {class: "btn btn-default", id: "remove_"+u.name, data: { confirm: "Are you sure you want to remove " +u.name+" from your team?" }}  %>
-                  <% end %>                  
-                </td>
-              </tr>
-            <% end %>
+            <!--<% Team.find(@team.id).users.each do |u| %>-->
+            <!--  <tr>-->
+            <!--    <td></td>-->
+            <!--    <td><%= u.name %></td>-->
+            <!--    <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "No" %></td>-->
+            <!--    <td>-->
+            <!--      <%= form_tag edit_team_path(@team), method: :get do %>-->
+            <!--        <%= hidden_field_tag :unwanted_user, u.id %>-->
+            <!--        <%= submit_tag "Remove", {class: "btn btn-default", id: "remove_"+u.name, data: { confirm: "Are you sure you want to remove " +u.name+" from your team?" }}  %>-->
+            <!--      <% end %>                  -->
+            <!--    </td>-->
+            <!--  </tr>-->
+            <!--<% end %>-->
           </table>
           
         </div>
-        <div class="col-md-4">
-          <a href="http://i.imgur.com/HMC0MK8.jpg" class="btn btn-primary">CS 169 Enrollment</a>
-       </div>
       </div>
       <div class="actions">
         <div class="col-xs-2">

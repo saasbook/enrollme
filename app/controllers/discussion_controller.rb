@@ -1,4 +1,4 @@
-class UploadDiscussionController < ApplicationController
+class DiscussionController < ApplicationController
    
    def show
    
