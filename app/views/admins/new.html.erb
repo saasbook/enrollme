@@ -3,7 +3,7 @@
   <title>Admin Sign Up</title>
     <div class="container">
         
-        <h1>Admin Sign Up</h1>
+        <h1>Create a New Admin</h1>
         <%= form_for @admin, url: {action: "create"}, class: "form-horizontal" do |f| %>
             <fieldset>
                 <% if @admin.errors.any? %>
@@ -31,7 +31,7 @@
                 
                 <div class="actions form-group">
                     <a href="/" class="btn btn-default">Cancel</a>
-                    <%= f.submit "Sign Up", class: "btn btn-primary" %>
+                    <%= f.submit "Create", class: "btn btn-primary" %>
                 </div>
             </fieldset>
         <% end %>

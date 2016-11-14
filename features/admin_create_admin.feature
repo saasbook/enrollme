@@ -10,18 +10,19 @@ Feature: Create a new admin
 
     And I am on the login page
 
-  Scenario: Successfully create an new admin
+  Scenario: Successfully create an new admin, and new admin logs in
     Given I fill in "Email" with "supreme_ruler@aol.com"
     And I fill in "Password" with "ilikcats"
     And I press "Log In"
-    And PENDING: I press "Create New Admin"
-    And PENDING: I fill in "Email" with "enrollmeberkeley@gmail.com"
-    And PENDING: I fill in "Password" with "aaa"
-    And PENDING: I fill in "Name" with "Enroll Me"
-    And PENDING: I press "Submit"
-    Then PENDING: I should see "Welcome Back, Bob!"
-
-  Scenario: New admin creates an account
-    Given PENDING: I fill in "Email" with "enrollmeberkeley@gmail.com"
-    And PENDING: I fill in "Password" with "aaa"
-    Then PENDING: I should see "Welcome Back, Enroll Me!"
+    And I press "Create New Admin"
+    And I fill in "Email" with "enrollmeberkeley@gmail.com"
+    And I fill in "Password" with "aaa"
+    And I fill in "Name" with "Enroll Me"
+    And I press "Create"
+    Then I should see "Welcome Back, Bob!"
+    And I should see "You created admin Enroll Me successfully!"
+    And I follow "Logout"
+    And I fill in "Email" with "enrollmeberkeley@gmail.com"
+    And I fill in "Password" with "aaa"
+    And I press "Log In"
+    And I should see "Welcome Back, Enroll Me!"

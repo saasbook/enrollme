@@ -20,5 +20,5 @@ Feature: Login to my account
     
   Scenario: Create an invalid admin account
     Given I am on the new_admin page
-    And I press "Sign Up"
-    Then I should see "Form is invalid"
+    And I press "Create"
+    Then I should not see "You created admin"
