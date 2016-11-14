@@ -18,8 +18,11 @@ Feature: A User edits their team
     Then I should see "Removed Jorge from team."
 
   Scenario: A user removes themself from the team using the Edit button
-    When I press "remove_Sahai"
+    When I press "remove_Jorge"
+    And I am on the team_index page
+    And I press "remove_Sahai"
     Then I should be on the without_team page
+    And the team with passcode "penguindrool" should not exist
     
   Scenario: A user fails removal of a user not on their own team
     When I go to the removal page for "Kandi"
