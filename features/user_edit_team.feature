@@ -19,7 +19,6 @@ Feature: A User edits their team
 
   Scenario: A user removes themself from the team using the Edit button
     When I press "remove_Jorge"
-    And I am on the team_index page
     And I press "remove_Sahai"
     Then I should be on the without_team page
     And the team with passcode "penguindrool" should not exist
