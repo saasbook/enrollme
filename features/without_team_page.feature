@@ -22,20 +22,21 @@ Feature: join or create a team
     And I press "Log In"
     And I should see "Create or Join a Team"
     And I fill in "team_hash" with "barbequed_crickets"
-    Then I should see "Your team does not exist"
-    
-  Scenario: An existing user creates a new team and gets the password
-    Given I fill in "Email" with "legueoflegends667@hotmail.com"
-    And I fill in "Password" with "password1"
-    And I press "Log In"
-    Then I should see "Create or Join a Team"
-    And I press "Create"
-    And I should see "Team Password:"
-    
-  Scenario: An existing user joins an existing team
-    Given I fill in "Email" with "legueoflegends667@hotmail.com"
-    And I fill in "Password" with "password1"
-    And I press "Log In"
-    And I fill in "team_hash" with "penguindrool"
     And I press "Join"
-    Then I should see "Team Password: penguindrool"
+    Then I should see "Unable to join team"
+    
+  # Scenario: An existing user creates a new team and gets the password
+  #   Given I fill in "Email" with "legueoflegends667@hotmail.com"
+  #   And I fill in "Password" with "password1"
+  #   And I press "Log In"
+  #   Then I should see "Create or Join a Team"
+  #   And I press "Create"
+  #   And I should see "Team Password:"
+    
+  # Scenario: An existing user joins an existing team
+  #   Given I fill in "Email" with "legueoflegends667@hotmail.com"
+  #   And I fill in "Password" with "password1"
+  #   And I press "Log In"
+  #   And I fill in "team_hash" with "penguindrool"
+  #   And I press "Join"
+  #   Then I should see "Team Password: penguindrool"

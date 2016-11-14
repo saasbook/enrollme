@@ -118,10 +118,7 @@ end
 Then /^I should have downloaded a team information file$/ do
    page.response_headers['Content-Disposition'].should include("team_info.csv")
 end
-<<<<<<< f1d641183cc342d5f6b07ea734b440e95f038a13
 
 Then(/^the team with passcode "([^"]*)" should not exist$/) do |passcode|
   Team.where(:passcode => passcode).length.should eq 0
 end
-=======
->>>>>>> tried to increase CI a little, removed uploading discussion file

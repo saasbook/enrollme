@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  # before_filter :authenticate
-  
+
+  skip_before_filter :authenticate, :only => ['new', 'create']
+  before_filter :set_user, :except => ['new', 'create']
+
   def new
     @user = User.new
     session[:user_id] = @user.id
@@ -21,19 +23,14 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find session[:user_id]
     render 'edit'
   end
   
   def without
-    return redirect_to login_path if session[:user_id].nil?
-    
-    @user = User.find(session[:user_id])
     render 'without'
   end
 
   def start_team
-    @user = User.find(session[:user_id])
     @user.leave_team if !(@user.team.nil?)
     
     @team = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
@@ -48,7 +45,6 @@ class UsersController < ApplicationController
     @team = Team.find_by_passcode(@passcode)
     return redirect_to without_team_path, :notice => "Unable to join team" if @passcode.empty? or @team.nil? or @team.approved
     
-    @user = User.find(session[:user_id])
     @user.leave_team if !(@user.team.nil?)
     
     @user.team = @team
@@ -61,14 +57,21 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find session[:user_id]
     @user.update_attributes!(user_params)
     @team = @user != nil ? @user.team : nil
     return redirect_to team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :email, :password, :sid, :major)
+  def set_user
+    @user = User.find_by_id session[:user_id]
+    if @user.nil?
+      session[:user_id] = nil
+      return redirect_to '/'
     end
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :sid, :major)
+  end
 end
