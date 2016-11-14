@@ -17,7 +17,7 @@ Feature: An admin edits a team
    	 | number  | time         |  capacity |
    	 | 54321   | Tues, 3pm    |  25       |
     And I log in as an admin with email "supreme_ruler@aol.com"
-    And PENDING: I am on the team page with passcode "penguindrool"
+    And I am on the team "1" page
 
   Scenario: An admin successfully removes a user from an unsubmitted team
     Given the team with passcode "penguindrool" is not submitted

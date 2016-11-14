@@ -27,7 +27,7 @@ When /^I remove "([^"]*)"$/ do | user |
 end
 
 When /^I leave my team$/ do
-  step %Q{I press "Leave team"}
+  step %Q{I press "leave_team"}
 end
 
 And /^I join a team with passcode "([^"]*)"$/ do | passcode |
