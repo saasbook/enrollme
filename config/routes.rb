@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   
   get 'download_team_info', to: "file#download_approved_teams"
 
+  get 'upload_discussion_info', to: "admins#discussion"
+
   resources :submissions
   
   root 'session#new'
