@@ -53,13 +53,13 @@ RSpec.describe Discussion, type: :model do
     
     @tofone = Team.new
     @tofone.approved = false
-    @tofone.passcode = "passcode2"
+    @tofone.passcode = "passcode3"
     @tofone.save!
     @tofone.users << User.where(name: "HHH")
     
     @addthis = Team.new
     @addthis.approved = false
-    @addthis.passcode = "passcode2"
+    @addthis.passcode = "passcode4"
     @addthis.save!
     @addthis.users << User.where(name: "Ana")
     @addthis.users << User.where(name: "John")
