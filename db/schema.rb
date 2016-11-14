@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20161109063020) do
   end
 
   create_table "discussions", force: :cascade do |t|
+    # t.boolean "select"
     t.integer "number"
     t.string  "time"
     t.integer "capacity"
