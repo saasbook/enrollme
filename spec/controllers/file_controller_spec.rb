@@ -25,6 +25,8 @@ RSpec.describe FileController, type: :controller do
             people.each do |ue|
                 User.create!(ue)
             end
+            
+            Admin.create!({:name => "admin", :email => "admin@admin.com", :password => "123"})
         
             @tone = Team.new
             @tone.approve_with_discussion(@disc.id)
@@ -52,6 +54,9 @@ RSpec.describe FileController, type: :controller do
             @three = Team.new
             @three.passcode = "passcode3"
             @three.users << User.where(name: "Chris")
+            
+            session[:user_id] = 1
+            session[:is_admin] = true
             
             
             get :download_approved_teams
