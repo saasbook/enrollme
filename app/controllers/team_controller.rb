@@ -1,63 +1,68 @@
 class TeamController < ApplicationController
-    
-  def index
-    # TODO: can refactor index and show, also join/leave team in user controller
-    @user_id = session[:user_id]
-    return redirect_to login_path, :notice => "Please log in" if @user_id.nil?
-    
-    return redirect_to admin_path(@user_id) if session[:is_admin]
-    
-    @user = User.find(@user_id)
-    return redirect_to without_team_path, :notice => "Your team does not exist" if @user.team.nil?
+  
+  before_filter :set_user, :set_team
+  before_filter :set_permissions, :except => ['index']
+  before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
 
-    return redirect_to team_path(:id => @user.team.id)
+  def index
+    return redirect_to without_team_path if @user.team.nil?
+    return redirect_to team_path(@user.team.id)
   end
   
   def show
-    @user = User.find_by_id(session[:user_id])
-    return redirect_to login_path, :notice => "Please log in" if @user.nil?
-    
-    return redirect_to admin_path(@user.id) if session[:is_admin]
-
-    return redirect_to without_team_path, :notice => "Your team does not exist" if @user.team.nil?
-    
-    @team = Team.find_by_id(params[:id])
-    
     @discussions = Discussion.all
-    
-    return redirect_to '/', notice: "This team does not exist" if @team.nil?
-    
-    return redirect_to team_path(:id => @user.team.id), notice: "Cannot access this team" if @user.team != @team
-
     render "team"
   end
   
   def submit
-    @user = User.find_by_id(session[:user_id])
-    @team = Team.find_by_id(@user.team.id)
     redirect_to new_submission_path
   end
   
   def unsubmit
-    @team = User.find_by_id(session[:user_id]).team
     @team.withdraw_submission
-    redirect_to team_path(@team)
+    redirect_to team_path(@team.id)
   end
   
   def edit
-    @team = User.find_by_id(session[:user_id]).team
     @user_to_remove = User.find_by_id(params[:unwanted_user])
+    @user_to_remove.leave_team
+    @team.withdraw_submission
+    notice = ""
 
-    if @team == @user_to_remove.team
-      return redirect_to team_path(@team), notice: "Removal failed." if @team.approved
-      
-      notice = @team.submitted ? "Your team's submission has been withdrawn." : ""
-      @team.withdraw_submission
-      @user_to_remove.leave_team
-      return redirect_to team_path(@team), notice: "Removed " + @user_to_remove.name + " from team. " + notice
-    else
-      return redirect_to team_path(@team), notice: "Removal failed"
+    if @user.is_a? Admin and @team.approved
+      @team.withdraw_approval
+    elsif @team.submitted
+      notice = " Your team's submission has been withdrawn."
+    end
+    
+    return redirect_to without_team_path if @user_to_remove == @user
+    return redirect_to team_path(@team.id), notice: "Removed #{@user_to_remove.name} from team." + notice
+  end
+  
+  
+
+  private
+  
+  def set_user
+    @user = session[:is_admin] ? Admin.find(session[:user_id]) : User.find(session[:user_id]) 
+  end
+
+  def set_team
+    @team = Team.find_by_id(params[:id])
+  end
+
+  def set_permissions
+    # checking that the team we are looking for exists and that the user doing the action on the team is either an admin or a student on the same team
+    if @team.nil? or (session[:is_admin].nil? and @user.team != @team)
+      redirect_to '/', :notice => "Permission denied"
     end
   end
+  
+  def check_approved
+    redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
+  end
+
+  
+  
   
 end

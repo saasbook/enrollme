@@ -14,6 +14,11 @@ class Team < ActiveRecord::Base
         self.submitted = false
         self.save!
     end
+
+    def withdraw_approval
+        self.approved = false
+        self.save!
+    end
     
     def approve_with_discussion(id)
         self.approved = true

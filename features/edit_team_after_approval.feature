@@ -21,12 +21,12 @@ Feature: editing a team is impossible after approval
   Scenario: A user cannot remove another user from an approved team
     Given I log in as a user with email "eecs666@hotmail.com"
     And I remove "Jorge"
-    Then I should see "Removal failed"
+    Then I should see "Permission denied"
 
   Scenario: A user cannot remove themselves from an approved team
     Given I log in as a user with email "eecs666@hotmail.com"
     And I leave my team
-    Then I should see "Removal failed"
+    Then I should see "Permission denied"
     And I should see "My Team"
 
   Scenario: A user cannot join an approved team

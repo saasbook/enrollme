@@ -5,7 +5,7 @@
     <div class="container">
       
       <h1>My Team</h1>
-      <h3><%=  "Team Password: " + @team.passcode.to_s %></h3>
+      <h3><%= "Team Password: " + @team.passcode.to_s %></h3>
       
       <div class="row">
         <div class="col-md-8">
@@ -19,15 +19,15 @@
               </tr>
               
             
-            <% Team.find(@team.id).users.each do |u| %>
+            <% @team.users.each do |u| %>
               <tr>
                 <td></td>
                 <td><%= u.name %></td>
                 <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "No" %></td>
                 <td>
-                  <%= form_tag edit_team_path(@team), method: :get do %>
+                  <%= form_tag edit_team_path(:id => @team.id), method: :get do %>
                     <%= hidden_field_tag :unwanted_user, u.id %>
-                    <%= submit_tag "Remove", {class: "btn btn-default", id: "remove_"+u.name, data: { confirm: "Are you sure you want to remove " +u.name+" from your team?" }}  %>
+                    <%= submit_tag "Remove", :id=>"remove_#{u.name}", :class=>"btn btn-default", data: { confirm: "Are you sure you want to remove #{u.name} from your team?" }  %>
                   <% end %>                  
                 </td>
               </tr>
@@ -40,10 +40,10 @@
        </div>
       </div>
       <div class="actions">
-        <div class="col-xs-2">
-          <%= form_tag edit_team_path(@team), method: :get do %>
+        <div class="col-xs-2"> 
+          <%= form_tag edit_team_path(:id => @team.id), method: :get do %>
             <%= hidden_field_tag :unwanted_user, @user.id %>
-            <%= submit_tag "Leave team", {class: "btn btn-default", id: "leave_team"}  %>
+            <%= submit_tag "Leave team", :id=> "leave_team", :class=> "btn btn-default" %>
           <% end %>
         </div>
         <% if @team.approved %>
@@ -52,7 +52,7 @@
           </div>
         <% elsif @team.submitted %>
           <div class="col-xs-2">
-            <%= form_tag unsubmit_team_path do %>
+            <%= form_tag unsubmit_team_path(@team) do %>
               <%= submit_tag "Withdraw Team Submission", class: "btn btn-primary btn-xs" %>
               <% # TODO: css styling for this button so that it fits using white-space: normal;  %>
             <% end %>
@@ -62,7 +62,7 @@
           </div>
         <% elsif @team.eligible? %>
           <div class="col-xs-2">
-            <%= form_tag submit_team_path do %>
+            <%= form_tag submit_team_path(@team) do %>
               <%= submit_tag "Submit team", class: "btn btn-primary" %>
             <% end %>
           </div>

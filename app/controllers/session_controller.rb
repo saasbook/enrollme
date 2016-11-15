@@ -1,11 +1,14 @@
 class SessionController < ApplicationController
   
+  skip_before_filter :authenticate, :except => ['destroy']
+  
   def new
-    if !(session[:user_id].nil?)
-      return redirect_to admin_path(:id => session[:user_id]) if session[:is_admin]
+    if session[:user_id].nil?
+      render 'new'
+    elsif session[:is_admin].nil?
       return redirect_to team_index_path
     else
-      render 'new'
+      return redirect_to admin_path(:id => session[:user_id])
     end
   end
   
