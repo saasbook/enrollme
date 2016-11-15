@@ -13,9 +13,9 @@ Feature: A User edits their team
     And I log in as a user with email "eecs666@hotmail.com"
     And I am on the team_index page
  	
-  # Scenario: A user removes another user from their team
-  #   When I remove "Jorge"
-  #   Then I should see "Removed Jorge from team."
+  Scenario: A user removes another user from their team
+    When I remove "Jorge"
+    Then I should see "Removed Jorge from team."
 
   Scenario: A user removes themself from the team using the Edit button
     When I remove "Sahai"
