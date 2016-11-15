@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
     @team.users.delete(self)
     self.team = nil
     @team.withdraw_submission
+    
+    if User.where(:team_id => @team.id).length <= 0
+      @team.destroy!
+    end
   end
 
 end

@@ -118,3 +118,7 @@ end
 Then /^I should have downloaded a team information file$/ do
    page.response_headers['Content-Disposition'].should include("team_info.csv")
 end
+
+Then(/^the team with passcode "([^"]*)" should not exist$/) do |passcode|
+  Team.where(:passcode => passcode).length.should eq 0
+end
