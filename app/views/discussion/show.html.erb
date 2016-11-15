@@ -8,8 +8,7 @@
       
       <div class='btn-toolbar pull-right'>
         <div class='btn-group'>
-          <!--this should lead me back to the admin home page-->
-         <%= button_to "Add Discussions", 'admin_path', {method: :get, class: "btn"} %>
+         <%= button_to "Add Discussions", '/admins/' + session[:user_id].to_s, {method: :get, class: "btn"} %>
         </div>
       </div>
             
