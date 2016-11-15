@@ -8,8 +8,11 @@ Feature: go to the correct page
     Given the following users exist
      | name   |       email                    | password   | team_passcode | major           | sid  |
   	 | Jorge  | legueoflegends667@hotmail.com  | password1  | 0             | Football Player | 999  |
- 	 | Sahai  | eecs666@hotmail.com            | mypassword | penguindrool  | EECS            | 000  |
- 	 | Copy   | anotheremail@yahoo.com         | anotherpsw | ok            | CS              | 001  |
+   	 | Sahai  | eecs666@hotmail.com            | mypassword | penguindrool  | EECS            | 000  |
+   	 | Copy   | anotheremail@yahoo.com         | anotherpsw | ok            | CS              | 001  |
+    And the following admins exist
+      | name | email                  | password |
+  	  | Bob  | supreme_ruler@aol.com  | ilikcats |
 
     And I am on the login page
 
