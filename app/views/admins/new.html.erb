@@ -1,40 +1,15 @@
-<html>
 <body>
-  <title>Admin Sign Up</title>
+    <title>Admin Sign Up</title>
     <div class="container">
-        
         <h1>Create a New Admin</h1>
         <%= form_for @admin, url: {action: "create"}, class: "form-horizontal" do |f| %>
             <fieldset>
-                <% if @admin.errors.any? %>
-                    <div class="error_messages alert alert-dismissible alert-danger">
-                        Form is invalid
-                    </div>
-                <% end %>
-                
-                <div class="field form-group">
-                    <%= f.label :name, class: "col-lg-2 control-label" %> <br>
-                    <%= f.text_field :name, placeholder: "Name", class: "form-control" %>
-                </div>
-                
-                <div class="field form-group">
-                    <%= f.label :email, class: "col-lg-2 control-label" %> <br>
-                    <%= f.text_field :email, class: "form-control", type: "email", placeholder: "you@berkeley.edu" %>
-                </div>
-                
-                <div class="field form-group">
-                    <%= f.label :password, class: "col-lg-2 control-label" %> <br>
-                    <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
-                </div>
-
-                <br>
-                
+                <%= render 'shared/basic_info', {:f => f, :user => @admin} %>
                 <div class="actions form-group">
                     <a href="/" class="btn btn-default">Cancel</a>
                     <%= f.submit "Create", class: "btn btn-primary" %>
                 </div>
             </fieldset>
         <% end %>
-        
     </div>
 </body>

@@ -1,0 +1,14 @@
+<%= render 'shared/basic_info', {:f => f, :user => @user} %>
+
+<div class="field form-group">
+    <%= f.label :sid, class: "col-lg-2 control-label"  %> <br>
+    <%= f.text_field :sid, class: "form-control"  %>
+</div>
+
+<div class="field form-group">
+    <%= f.label :major, class: "col-lg-2 control-label" %>
+    <%= f.select :major, ['DECLARED CS/EECS Major', 'Intended-CS Major', 'Other Major'],  {}, {class: "form-control"}%>
+    <p class="text-danger"> <strong> Warning: </strong> Please do not select "DECLARED CS/EECS Major", if you are planning to or in the near future become a declared CS/EECS major.  Select the "Intended-CS Major" option instead, please. </p>
+</div>
+
+<br>

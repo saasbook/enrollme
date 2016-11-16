@@ -77,7 +77,7 @@ Feature: go to the correct page
     Given I fill in "Email" with "eecs666@hotmail.com"
     And I fill in "Password" with "mypassword"
     And I press "Log In"
-    Then I go to the team_index page
+    Then I go to the home page
     And I press "Leave team"
     Then I should be on the without_team page
     

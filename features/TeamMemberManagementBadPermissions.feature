@@ -13,7 +13,7 @@ Feature: navigating to the team page without the correct permissions should fail
       And I press "Log In"
   
    Scenario: I should see team members
-        Given I am on the team_index page
+        Given I am on the home page
         Then I should not see "Students"
         And I should be on the without_team page
 

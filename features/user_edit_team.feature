@@ -11,7 +11,7 @@ Feature: A User edits their team
   	 | Jorge | legueoflegends667@hotmail.com  | password1  | penguindrool | Football Player | 999  |
   	 | Kandi | justanotheremail@aol.com       | myname555  | anotherteam  | EECS            | 567  |
     And I log in as a user with email "eecs666@hotmail.com"
-    And I am on the team_index page
+    And I am on the home page
  	
   Scenario: A user removes another user from their team
     When I remove "Jorge"

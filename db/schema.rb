@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109063020) do
+ActiveRecord::Schema.define(version: 20161116015013) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -34,9 +34,11 @@ ActiveRecord::Schema.define(version: 20161109063020) do
     t.string  "time"
     t.integer "capacity"
     t.integer "application_id"
+    t.integer "submission_id"
   end
 
   add_index "discussions", ["application_id"], name: "index_discussions_on_application_id"
+  add_index "discussions", ["submission_id"], name: "index_discussions_on_submission_id"
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "disc1id"
@@ -60,12 +62,11 @@ ActiveRecord::Schema.define(version: 20161109063020) do
   add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password"
-    t.string   "team"
-    t.string   "major"
-    t.string   "sid"
+    t.string   "name",       null: false
+    t.string   "email",      null: false
+    t.string   "password",   null: false
+    t.string   "major",      null: false
+    t.string   "sid",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "team_id"
