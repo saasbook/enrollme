@@ -27,7 +27,7 @@ class AdminsController < ApplicationController
     return redirect_to admin_path(@admin.id)
   end
 
-  def show
+  def show_all
     @stat_loc = "Team List: Showing All Teams"
     @teams_li = Team.all.each
     render 'show'
