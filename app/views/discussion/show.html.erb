@@ -48,6 +48,7 @@
       <!--  <% Discussion.all.each do |d| %>-->
       <!--    <tr>-->
             <!--<td>%= check_box_tag "select[#{d}]", 1, session[:select] == nil ? true : session[:select].include?(d) %></td>-->
+<<<<<<< ed1838d436f3cec3386c93e365b21271acdba5be
             <!--, session[:select] == true-->
             <!--<p>%= "select[#{d.id}]" %></p>-->
       <!--      <td><%= check_box_tag "select[#{d.id}]", d.id %></td>-->
@@ -58,6 +59,15 @@
       <!--  <% end %>-->
       <!--</table>-->
       
+=======
+            <td><%= check_box_tag "select[#{d}]", 1, session[:select] == true %></td>
+            <td><%= d.number %></td>
+            <td><%= d.time %></td>
+            <td><%= text_field_tag 'capacity', 30 %></td>
+          </tr>
+        <% end %>
+      </table>
+>>>>>>> some cucumber test passes
     </div>
     
 </body>
