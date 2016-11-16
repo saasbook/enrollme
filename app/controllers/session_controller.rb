@@ -6,7 +6,9 @@ class SessionController < ApplicationController
     if session[:user_id].nil?
       render 'new'
     elsif session[:is_admin].nil?
-      return redirect_to team_index_path
+      @user = User.find_by_id(session[:user_id])
+      return redirect_to without_team_path if @user.team.nil?
+      return redirect_to team_path(@user.team)
     else
       return redirect_to admin_path(:id => session[:user_id])
     end
@@ -25,7 +27,8 @@ class SessionController < ApplicationController
       return redirect_to admin_path(:id => @admin.id), notice: "Logged in!"
     else
       session[:user_id] = @user.id
-      return redirect_to team_index_path, notice: "Logged in!"
+      return redirect_to without_team_path, notice: "Logged in!" if @user.team.nil?
+      return redirect_to team_path(@user.team), notice: "Logged in!"
     end
   end
   
