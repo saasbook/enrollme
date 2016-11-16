@@ -14,15 +14,15 @@
             
       <table class="table table-striped table-hover">
         <tr>
+          <td>Select</td>
           <td>CCN</td>
           <td>Discussion Times</td>
           <td>Seats Open</td>
-          <td></td>
         </tr>
           
         <% @discussions.each do |d| %>
           <tr>
-            <!--<td>%= d.checkbox :select %></td>-->
+            <td><%= check_box_tag :select %></td>
             <td><%= d.number %></td>
             <td><%= d.time %></td>
             <td><%= d.seats_open %></td>
