@@ -21,7 +21,7 @@ RSpec.describe AdminsController, type: :controller do
   
       Admin.find_by_id(1).destroy!
       get :show, {:id => 1}
-      response.should redirect_to(login_path)
+      response.should redirect_to(logout_path)
     end
   end
   

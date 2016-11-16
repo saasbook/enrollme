@@ -11,7 +11,7 @@ RSpec.describe UsersController, type: :controller do
   
       User.find_by_id(1).destroy!
       post :start_team
-      response.should redirect_to(login_path)
+      response.should redirect_to(logout_path)
     end
   end
   

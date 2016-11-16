@@ -50,7 +50,7 @@ Feature: go to the correct page
     And I fill in "Password" with "mypassword"
     And I press "Log In"
     Then I follow "Logout"
-    Then I should be on the home page
+    Then I should be on the login page
     
   Scenario: Prevents access to team page when no one is signed in
     Given I am on the team "1" page
