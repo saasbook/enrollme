@@ -1,40 +1,15 @@
-<html>
 <body>
+    <title>Edit Info</title>
     <div class="container">
-      <title>Edit Info</title>
-        
         <h1>Edit Info</h1>
-
         <%= form_for @admin, :url => admin_path(@admin.id), :method => :put, class: "form-horizontal" do |f| %>
             <fieldset>
-                <% if @admin.errors.any? %>
-                    <div class="error_messages alert alert-dismissible alert-danger">
-                        <h2>Form is invalid</h2>
-                    </div>
-                <% end %>
-        
-                <div class="field form-group">
-                    <%= f.label :name, class: "col-lg-2 control-label" %> <br>
-                    <%= f.text_field :name, class: "form-control" %>
-                </div>
-        
-                <div class="field form-group">
-                    <%= f.label :email, class: "col-lg-2 control-label"  %> <br>
-                    <%= f.text_field :email, class: "form-control", type: "email" %>
-                </div>
-                
-                <div class="field form-group">
-                    <%= f.label :password, class: "col-lg-2 control-label"  %> <br>
-                    <%= f.text_field :password, class: "form-control" %>
-                </div>
-                <br>
-                
+                <%= render 'shared/basic_info', {:f => f, :user => @admin} %>
                 <div class="actions form-group">
                     <a href="/" class="btn btn-default">Cancel</a>
                     <%= f.submit "Update Information", class: "btn btn-primary" %>
                 </div>
             </fieldset>
         <% end %>
-        
     </div>
 </body>
