@@ -10,13 +10,13 @@ Feature: admin adds discussion times
     And I am on the login page
 
   Scenario: Admin successfully goes to a new admin discussion list page
-    # Given PENDING: I fill in "Email" with "supreme_ruler@aol.com"
-    # And PENDING: I fill in "Password" with "ilikcats"
-    # And PENDING: I press "Log In"
-    Given PENDING: I log in as an admin with email "supreme_ruler@aol.com"
-    Then PENDING: I should see "Team List"
-    When PENDING: I click on "add disscussion times"
-    Then PENDING: I should see "Discussion List"
+    Given: I fill in "Email" with "supreme_ruler@aol.com"
+    And: I fill in "Password" with "ilikcats"
+    And: I press "Log In"
+    #Given: I log in as an admin with email "supreme_ruler@aol.com"
+    #Then: I should see "Team List"
+    #When: I press "Upload Discussions"
+    #Then: I should see "Discussion Sections"
 
     
   Scenario: Admin successfully adds discussion times
