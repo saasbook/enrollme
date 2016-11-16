@@ -15,6 +15,7 @@
 
     <div class="navbar-collapse collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+            <li><a href='/'>Home</a></li>
             <% if session[:user_id].nil? %>
                 <li><%= link_to "Sign up", new_user_path, {method: 'get'} %></li>
             <% else %>
