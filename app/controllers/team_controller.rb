@@ -1,3 +1,4 @@
+
 class TeamController < ApplicationController
   
   before_filter :set_user, :set_team
@@ -5,15 +6,6 @@ class TeamController < ApplicationController
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
   
   def show
-    @user = User.find_by_id(session[:user_id])
-    return redirect_to login_path, :notice => "Please log in" if @user.nil?
-    
-    return redirect_to admin_path(@user.id) if session[:is_admin]
-
-    return redirect_to without_team_path, :notice => "Your team does not exist" if @user.team.nil?
-    
-    @team = Team.find_by_id(params[:id])
-
     @discussions = Discussion.all
     render "team"
   end
