@@ -1,6 +1,7 @@
 class SessionController < ApplicationController
   
   skip_before_filter :authenticate, :except => ['destroy']
+  skip_before_filter :check_existence
 
   def new
     id = session[:user_id]
@@ -35,7 +36,7 @@ class SessionController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:is_admin] = nil
-    redirect_to root_url, notice: "Logged out!"
+    redirect_to login_path, notice: "Logged out!"
   end
   
 end
