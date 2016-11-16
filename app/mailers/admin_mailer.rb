@@ -9,7 +9,15 @@ class AdminMailer < ApplicationMailer
       end
    end
    
-   def look_at_submission
-      
+   def look_at_submission(email)
+      mail(to: email, subject: "Teams are awaiting your approval!") 
+   end
+   
+   def self.send_look_at_submission
+      if !(Team.where("approved = ? AND submitted = ?", false, true).nil?)
+         Admin.all.each do |admin|
+            look_at_submission(admin.email).deliver
+         end
+      end
    end
 end
