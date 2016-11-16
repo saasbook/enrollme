@@ -28,8 +28,25 @@ class AdminsController < ApplicationController
   end
 
   def show
+    @teams_li = Team.all.each
     render 'show'
   end
+  
+  def show_accepted
+    @teams_li = Team.where(approved: true)
+    render 'show'
+  end
+  
+  def show_pending
+    @teams_li = Team.where("approved = ? AND submitted = ?", false, true)
+    render 'show'
+  end
+  
+  def forming
+    @teams_li = Team.where("approved = ? AND submitted = ?", false, false)
+    render 'show'
+  end
+  
   
   def approve
     @team = Team.find_by_id(params[:team_id])
