@@ -33,6 +33,13 @@ class SessionController < ApplicationController
     end
   end
   
+  def create
+    user = User.user_from_oauth(env["omniauth.auth"])
+    session[:user_id] = user.id
+    return redirect_to without_team_path, notice: "Logged in!" if @user.team.nil?
+    return redirect_to team_path(@user.team), notice: "Logged in!"
+  end
+  
   def destroy
     session[:user_id] = nil
     session[:is_admin] = nil
