@@ -65,10 +65,6 @@ class UsersController < ApplicationController
   private
   def set_user
     @user = User.find_by_id session[:user_id]
-    if @user.nil?
-      session[:user_id] = nil
-      return redirect_to '/'
-    end
   end
 
   def user_params

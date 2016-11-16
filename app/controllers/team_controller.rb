@@ -21,7 +21,6 @@ class TeamController < ApplicationController
   def edit
     @user_to_remove = User.find_by_id(params[:unwanted_user])
     @user_to_remove.leave_team
-    @team.withdraw_submission
     notice = ""
 
     if @user.is_a? Admin and @team.approved
@@ -29,7 +28,8 @@ class TeamController < ApplicationController
     elsif @team.submitted
       notice = " Your team's submission has been withdrawn."
     end
-    
+
+    @team.withdraw_submission
     return redirect_to without_team_path if @user_to_remove == @user
     return redirect_to team_path(@team.id), notice: "Removed #{@user_to_remove.name} from team." + notice
   end
