@@ -22,11 +22,18 @@
           
         <% @discussions.each do |d| %>
           <tr>
+<<<<<<< 735565e0859b4f668f38ebc79a66f50b53fd45c1
             <!--<td>%= check_box_tag "select[#{d}]", 1, session[:select] == nil ? true : session[:select].include?(d) %></td>-->
             <td><%= check_box_tag "select[#{d}]", 1, session[:select] == true %></td>
             <td><%= d.number %></td>
             <td><%= d.time %></td>
             <td><%= text_field_tag 'capacity', 30 %></td>
+=======
+            <td><%= check_box_tag :select %></td>
+            <td><%= d.number %></td>
+            <td><%= d.time %></td>
+            <td><%= d.seats_open %></td>
+>>>>>>> added changes
           </tr>
         <% end %>
       </table>
