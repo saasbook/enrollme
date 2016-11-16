@@ -18,5 +18,9 @@ class User < ActiveRecord::Base
       @team.destroy!
     end
   end
+  
+  def user_from_oauth(auth)
+    return User.where(:email => auth.info.email)
+  end
 
 end
