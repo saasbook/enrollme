@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
   get 'download_team_info', to: "file#download_approved_teams"
+  
+  get 'upload_discussion_info', to: "discussion#show"
 
   resources :submissions
   
