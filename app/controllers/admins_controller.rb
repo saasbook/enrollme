@@ -30,21 +30,25 @@ class AdminsController < ApplicationController
   end
 
   def show
+    @stat_loc = "Team List: Showing All Teams"
     @teams_li = Team.all.each
     render 'show'
   end
   
   def show_accepted
+    @stat_loc = "Team List: Showing Accepted Teams"
     @teams_li = Team.where(approved: true)
     render 'show'
   end
   
   def show_pending
+    @stat_loc = "Team List: Showing Pending Teams"
     @teams_li = Team.where("approved = ? AND submitted = ?", false, true)
     render 'show'
   end
   
   def forming
+    @stat_loc = "Team List: Showing Forming Teams"
     @teams_li = Team.where("approved = ? AND submitted = ?", false, false)
     render 'show'
   end
