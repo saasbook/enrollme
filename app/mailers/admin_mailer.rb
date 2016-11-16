@@ -8,4 +8,8 @@ class AdminMailer < ApplicationMailer
         format.html
       end
    end
+   
+   def look_at_submission
+      
+   end
 end

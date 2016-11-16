@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   
   resources :team
 
-  post 'submit_team', to: 'team#submit'
-  post 'unsubmit_team', to: 'team#unsubmit'
+  post 'team/:id/submit', to: 'team#submit', as: "submit_team"
+  post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
 
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
@@ -20,8 +20,7 @@ Rails.application.routes.draw do
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
   get 'download_team_info', to: "file#download_approved_teams"
-  post 'upload_discussions', to: 'file#upload_discussions_txt'
-  
+
   resources :submissions
   
   root 'session#new'

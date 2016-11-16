@@ -14,13 +14,19 @@ Feature: A User edits their team
     And I am on the team_index page
  	
   Scenario: A user removes another user from their team
-    When I press "remove_Jorge"
+    When I remove "Jorge"
     Then I should see "Removed Jorge from team."
 
   Scenario: A user removes themself from the team using the Edit button
-    When I press "remove_Sahai"
+    When I remove "Sahai"
     Then I should be on the without_team page
+
+  Scenario: A user removes everyone from the team
+    When I press "remove_Jorge"
+    And I press "remove_Sahai"
+    Then I should be on the without_team page
+    And the team with passcode "penguindrool" should not exist
     
   Scenario: A user fails removal of a user not on their own team
     When I go to the removal page for "Kandi"
-    Then I should see "Removal failed"
+    Then I should see "Permission denied"

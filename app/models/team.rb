@@ -1,12 +1,9 @@
 class Team < ActiveRecord::Base
     has_many :users
+    validates :passcode, uniqueness: true
 
-    # THIS IS A TEMPORARY HASH-MAKING FUNCTION. TODO: REPLACE
-    @@temp_hash = 1
-
-    def self.generate_hash
-        @@temp_hash += 1
-        return @@temp_hash
+    def self.generate_hash(length=36)
+        return SecureRandom.urlsafe_base64(length, false)
     end
     
     def self.approved_teams
@@ -17,11 +14,22 @@ class Team < ActiveRecord::Base
         self.submitted = false
         self.save!
     end
+
+    def withdraw_approval
+        self.approved = false
+        self.save!
+    end
     
     def approve_with_discussion(id)
         self.approved = true
         self.discussion_id = id
         self.save!
+    end
+    
+    def send_submission_reminder_email
+        self.users.each do |user|
+            EmailStudents.submit_email(user).deliver_later
+        end
     end
     
     def eligible?

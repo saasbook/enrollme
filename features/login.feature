@@ -8,7 +8,7 @@ Feature: Login to my account
     When I fill in "Name" with "David"
     And I fill in "Email" with "david@berkeley.edu"
     And I fill in "Sid" with "12345678"
-    And I select  "EECS/CS Declared" from "Major"
+    And PENDING: I select "EECS/CS Declared" from "Major"
     And I fill in "Password" with "bestpasswordeva"
     And I press "Sign Up"
     Then I should see "Create or Join a Team"
@@ -20,5 +20,5 @@ Feature: Login to my account
     
   Scenario: Create an invalid admin account
     Given I am on the new_admin page
-    And I press "Sign Up"
-    Then I should see "Form is invalid"
+    And I press "Create"
+    Then I should not see "You created admin"

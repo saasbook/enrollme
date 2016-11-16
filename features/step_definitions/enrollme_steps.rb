@@ -27,7 +27,7 @@ When /^I remove "([^"]*)"$/ do | user |
 end
 
 When /^I leave my team$/ do
-  step %Q{I press "Leave team"}
+  step %Q{I press "leave_team"}
 end
 
 And /^I join a team with passcode "([^"]*)"$/ do | passcode |
@@ -119,40 +119,6 @@ Then /^I should have downloaded a team information file$/ do
    page.response_headers['Content-Disposition'].should include("team_info.csv")
 end
 
-When /^I upload a discussion file$/ do
-  attach_file(:discussions, File.join('features', 'test_files', 'discussion_info.csv'))
-  click_button "Upload"
-end
- 
-When /^I upload an invalid file$/ do
-  attach_file(:discussions, File.join('features', 'test_files', 'bad_file.rb'))
-  click_button "Upload"
-end
-
-
-
-
-
-#SIDS STEPS
-
-
-When(/^I select  "([^"]*)" from "([^"]*)"$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^P I fill in "([^"]*)" with "([^"]*)"$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-
-Then(/^I should not see that team$/) do
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Then(/^I should see "([^"]*)" or "([^"]*)"$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
-end
-
-Given(/^P I fill in "([^"]*)" with "([^"]*)"$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
+Then(/^the team with passcode "([^"]*)" should not exist$/) do |passcode|
+  Team.where(:passcode => passcode).length.should eq 0
 end

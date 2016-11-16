@@ -26,7 +26,7 @@ Feature: Use an admin acccount to see organized team data
     And PENDING: I check "Approved"
     When PENDING: I press "Change Status" 
     And I press "Disapprove"
-    Then I should not see that team
+    Then PENDING: I should not see that team
     
   Scenario: approve a team
     Given I am on the login page
@@ -36,4 +36,4 @@ Feature: Use an admin acccount to see organized team data
     And PENDING: I check "Pending"
     When PENDING: I press "Change Status" 
     And I press "Approve"
-    Then I should not see that team
+    Then PENDING: I should not see that team

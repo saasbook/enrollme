@@ -47,11 +47,13 @@ ActiveRecord::Schema.define(version: 20161109063020) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.boolean "approved"
-    t.string  "passcode"
-    t.boolean "submitted"
-    t.integer "discussion_id"
-    t.integer "application_id"
+    t.boolean  "approved"
+    t.string   "passcode"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.boolean  "submitted"
+    t.integer  "discussion_id"
+    t.integer  "application_id"
   end
 
   add_index "teams", ["application_id"], name: "index_teams_on_application_id"

@@ -22,7 +22,8 @@ Feature: join or create a team
     And I press "Log In"
     And I should see "Create or Join a Team"
     And I fill in "team_hash" with "barbequed_crickets"
-    Then I should see "Your team does not exist"
+    And I press "Join"
+    Then I should see "Unable to join team"
     
   Scenario: An existing user creates a new team and gets the password
     Given I fill in "Email" with "legueoflegends667@hotmail.com"
