@@ -1,3 +1,4 @@
+
 class TeamController < ApplicationController
   
   before_filter :set_user, :set_team
