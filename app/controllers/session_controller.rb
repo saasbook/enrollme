@@ -3,7 +3,7 @@ class SessionController < ApplicationController
   skip_before_filter :authenticate, :except => ['destroy']
   skip_before_filter :check_existence
 
-  def new
+  def new   
     id = session[:user_id]
     if id.nil?
       render 'new'
