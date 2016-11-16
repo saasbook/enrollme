@@ -30,7 +30,7 @@
               <% else %>
                   <li><%= link_to "Edit My Info", edit_admin_path(session[:user_id]), {method: 'get'} %></li>
               <% end %>
-              <li><%= link_to "Logout", logout_path, {method: 'post'} %></li>
+              <li><%= link_to "Logout", logout_path, {method: 'get'} %></li>
             <% end %>
         </ul>
     </div>

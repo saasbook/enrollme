@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109063020) do
+ActiveRecord::Schema.define(version: 20161116015013) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -21,27 +21,20 @@ ActiveRecord::Schema.define(version: 20161109063020) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "applications", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "disc1id"
-    t.integer  "disc2id"
-    t.integer  "disc3id"
-  end
-
   create_table "discussions", force: :cascade do |t|
     t.integer "number"
     t.string  "time"
     t.integer "capacity"
-    t.integer "application_id"
+    t.integer "submission_id"
   end
 
-  add_index "discussions", ["application_id"], name: "index_discussions_on_application_id"
+  add_index "discussions", ["submission_id"], name: "index_discussions_on_submission_id"
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "disc1id"
     t.integer  "disc2id"
     t.integer  "disc3id"
+    t.integer  "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -49,14 +42,13 @@ ActiveRecord::Schema.define(version: 20161109063020) do
   create_table "teams", force: :cascade do |t|
     t.boolean  "approved"
     t.string   "passcode"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.integer  "submission_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.boolean  "submitted"
     t.integer  "discussion_id"
-    t.integer  "application_id"
   end
 
-  add_index "teams", ["application_id"], name: "index_teams_on_application_id"
   add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"
 
   create_table "users", force: :cascade do |t|
