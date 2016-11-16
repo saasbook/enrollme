@@ -15,8 +15,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'session#destroy'
   
   
-  get '/admin', to: 'admins#show_all'
   resources :admins, except: :show
+  get '/admin', to: 'admins#show_all'
+  get '/admins/:id', to: 'admins#show_all'
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
   get '/admin/show_accepted', to: 'admins#show_accepted'
