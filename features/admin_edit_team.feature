@@ -20,22 +20,22 @@ Feature: An admin edits a team
     And I am on the team "1" page
 
   Scenario: An admin successfully removes a user from an unsubmitted team
-    Given the team with passcode "penguindrool" is not submitted
-    And the team with passcode "penguindrool" is not approved
-    When I press "remove_Jorge"
-    Then I should see "Removed Jorge from team."
+    Given pending: the team with passcode "penguindrool" is not submitted
+    And pending: the team with passcode "penguindrool" is not approved
+    When pending: I press "remove_Jorge"
+    Then pending: I should see "Removed Jorge from team."
 
-  Scenario: An admin successfully removes a user from an submitted team
-    Given the team with passcode "penguindrool" is submitted
-    And the team with passcode "penguindrool" is not approved
-    When I press "remove_Jorge"
-    Then I should see "Removed Jorge from team."
-    And the team with passcode "penguindrool" should not be submitted
+  Scenario: pending: An admin successfully removes a user from an submitted team
+    Given pending: the team with passcode "penguindrool" is submitted
+    And pending: the team with passcode "penguindrool" is not approved
+    When pending: I press "remove_Jorge"
+    Then pending: I should see "Removed Jorge from team."
+    And pending: the team with passcode "penguindrool" should not be submitted
 
   Scenario: An admin successfully removes a user from an approved team
-    Given the team with passcode "penguindrool" is approved with discussion number "54321"
-    When I press "remove_Jorge"
-    Then I should see "Removed Jorge from team."
-    And the team with passcode "penguindrool" should not be approved
-    And the team with passcode "penguindrool" should not be submitted
+    Given pending: the team with passcode "penguindrool" is approved with discussion number "54321"
+    When pending:  I press "remove_Jorge"
+    Then pending: I should see "Removed Jorge from team."
+    And pending: the team with passcode "penguindrool" should not be approved
+    And pending: the team with passcode "penguindrool" should not be submitted
   
