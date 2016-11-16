@@ -1,21 +1,21 @@
 class SessionController < ApplicationController
   
   skip_before_filter :authenticate, :except => ['destroy']
-  
+
   def new
-    if session[:user_id].nil?
+    id = session[:user_id]
+    if id.nil?
       render 'new'
-    elsif session[:is_admin].nil?
-      @user = User.find_by_id(session[:user_id])
-      return redirect_to without_team_path if @user.team.nil?
-      return redirect_to team_path(@user.team)
-    else
+    elsif session[:is_admin]
       return redirect_to admin_path(:id => session[:user_id])
+    else
+      user = User.find_by_id(id)
+      return redirect_to without_team_path if user.team.nil?
+      return redirect_to team_path(user.team)
     end
   end
   
   def create
-
     @user = User.find_by_email(params[:email])
     @admin = Admin.find_by_email(params[:email])
 
@@ -37,6 +37,5 @@ class SessionController < ApplicationController
     session[:is_admin] = nil
     redirect_to root_url, notice: "Logged out!"
   end
-  
   
 end
