@@ -14,5 +14,5 @@ Feature: Email me
     When I fill in "Email" with "enrollmeberkeley@gmail.com"
     And I fill in "Password" with "ilikcats"
     And I press "Log In"
-    And I press "Email Me"
+    And I follow "Email Me"
     And I should see "Welcome Back, Bob!"

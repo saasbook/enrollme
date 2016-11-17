@@ -31,6 +31,6 @@ Feature: get a csv with the information of all approved teams
 
   Scenario: An admin successfully downloads approved team information
     Given I should see "Welcome Back, Bob!"
-    And I press "Download Team Information"
+    And I follow "Download Approved Teams"
   	Then I should have downloaded a team information file
     
