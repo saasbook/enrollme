@@ -17,23 +17,6 @@ class SessionController < ApplicationController
   end
   
   def create
-    @user = User.find_by_email(params[:email])
-    @admin = Admin.find_by_email(params[:email])
-
-    if (@user.nil? or @user.password != params[:password]) and (@admin.nil? or @admin.password != params[:password])
-      return redirect_to login_path, notice: "Invalid email or password"
-    elsif @user.nil?
-      session[:user_id] = @admin.id
-      session[:is_admin] = true
-      return redirect_to admin_path(:id => @admin.id), notice: "Logged in!"
-    else
-      session[:user_id] = @user.id
-      return redirect_to without_team_path, notice: "Logged in!" if @user.team.nil?
-      return redirect_to team_path(@user.team), notice: "Logged in!"
-    end
-  end
-  
-  def create
     user = User.user_from_oauth(env["omniauth.auth"])
     session[:user_id] = user.id
     return redirect_to without_team_path, notice: "Logged in!" if @user.team.nil?

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
 
   get 'login', to: 'session#new'
-  post 'login', to: 'session#create'
+  post 'login', to: 'session#create' 
   get 'logout', to: 'session#destroy'
   
   get 'auth/:provider/callback', to: 'sessions#create'

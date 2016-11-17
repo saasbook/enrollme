@@ -15,14 +15,19 @@
 
     <div class="navbar-collapse collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href='/'>Home</a></li>
+            <li><a href='/'>Home</a></li>
             <% if session[:user_id].nil? %>
                 <li><%= link_to "Sign up", new_user_path, {method: 'get'} %></li>
                 <li></li><%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %></li>
+                
             <% else %>
               <% if session[:is_admin].nil? %>
                 <li><%= link_to "Edit My Info", edit_user_path(session[:user_id]), {method: 'get'} %></li>
               <% else %>
+                  <li><%= link_to "All", admin_show_all_path(session[:user_id]), {method: 'get'} %></li>
+                  <li><%= link_to "Forming", admin_show_forming_path(session[:user_id]), {method: 'get'} %></li>
+                  <li><%= link_to "Pending", admin_show_pending_path(session[:user_id]), {method: 'get'} %></li>
+                  <li><%= link_to "Accepted", admin_show_accepted_path(session[:user_id]), {method: 'get'} %></li>
                   <li><%= link_to "Edit My Info", edit_admin_path(session[:user_id]), {method: 'get'} %></li>
               <% end %>
               <li><%= link_to "Logout", logout_path, {method: 'get'} %></li>
