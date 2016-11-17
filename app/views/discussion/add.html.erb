@@ -27,7 +27,6 @@
                 </div>
                 
                 <div class="field form-group">
-                    
                     <p><strong>Capacity</strong></p>
                     <%= d.text_field :capacity, class: "col-md-4 form-control"   %>
                 </div>
@@ -36,8 +35,6 @@
                 
                 <div class="actions">
                     <%= submit_tag "Add Discussion", class: "btn btn-primary" %>
-                    <!--<%= link_to "Add Discussion", upload_discussion_info_path, {method: :post, class: "btn btn-default"} %>-->
-                    <!--%= submit_tag "Cancel", class: "btn btn-primary" %>-->
                     <%= link_to "Cancel", upload_discussion_info_path, {method: :get, class: "btn btn-default"} %>
                     <br>
                     <br>
