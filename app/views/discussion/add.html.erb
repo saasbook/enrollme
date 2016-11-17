@@ -1,32 +1,34 @@
-<html>
+
 <body>
   <title>Add New Discussion</title>
     <div class="container">
        
             <h1>Add New Discussion</h1>
-            
+            <br><vr>
             <%= form_for @disc, :html => {:class => "form-horizontal"}, :url => add_discussion_info_path(@disc.id), :method => :put do |d|%>
             <fieldset>
+            
                 <div class="field form-group">
-                    <%= d.label :number, class: "col-md-4 control-label"  %> <br>
+                    <p><strong>Number</strong></p>
                     <%= d.text_field(:number, class: "col-md-4 form-control") %>
                     <p>Please input your CCN here</p>
                 </div>
                 
                 <div class="field form-group">
-                    <%= d.label :day, class: "col-md-4 control-label" %>
+                    <p><strong>Day</strong></p>
                     <%= d.select :day, ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],  {}, {class: "col-md-4 form-control", :id => "day"}%>
     
                 </div>
                 
                 <div class="field form-group">
-                    <%= d.label :time , class: "col-md-4 control-label"%> <br>
+                 <p><strong>Time</strong></p>
                     <%= d.text_field :time, class: "col-md-4 form-control"   %>
                     <p class="text-danger"><strong>WARNING:</strong> please use the format H:MM AM/PM, for example 03:15 AM</p>
                 </div>
                 
                 <div class="field form-group">
-                    <%= d.label :capacity, class: "col-md-4 control-label" %> <br>
+                    
+                    <p><strong>Capacity</strong></p>
                     <%= d.text_field :capacity, class: "col-md-4 form-control"   %>
                 </div>
                 
@@ -43,7 +45,5 @@
                 </fieldset>
             <% end %>
 
-        
     </div>
 </body>
-</html>
