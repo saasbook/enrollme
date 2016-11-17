@@ -9,14 +9,13 @@
             <fieldset>
             
                 <div class="field form-group">
-                    <p><strong>Number</strong></p>
+                    <p><strong>CCN</strong></p>
                     <%= d.text_field(:number, class: "col-md-4 form-control", :id => "ccn") %>
-                    <p>Please input your CCN here</p>
                 </div>
                 
                 <div class="field form-group">
                     <p><strong>Day</strong></p>
-                    <%= d.select :day, ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],  {}, {class: "col-md-4 form-control", :id => "day"}%>
+                    <%= d.select :day, ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],  {}, {class: "col-md-4 form-control", :id => "day"}%>
     
                 </div>
                 

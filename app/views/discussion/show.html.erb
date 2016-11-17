@@ -22,9 +22,9 @@
           <td>Seats Open</td>
         </tr>
           
-        <% Discussion.all.each do |d| %>
+        <% @discussions.each do |d| %>
           <tr>
-            <td><%= check_box_tag "select[#{d.id}]", d.id %></td>
+            <!--<td>%= check_box_tag "select[#{d.id}]", d.id %></td>-->
             <td><%= d.number %></td>
             <td><%= d.time %></td>
             <td><%= d.capacity %></td>

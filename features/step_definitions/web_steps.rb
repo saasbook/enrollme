@@ -86,11 +86,9 @@ When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
 end
 
-# debug this
 When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
 end
-### check('##{field}')
 
 When /^(?:|I )uncheck "([^"]*)"$/ do |field|
   uncheck(field)
@@ -113,7 +111,6 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
-  puts "what?"
   regexp = Regexp.new(regexp)
 
   if page.respond_to? :should
@@ -124,7 +121,6 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
 end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
-  puts "LOL@@"
   if page.respond_to? :should
     page.should have_no_content(text)
   else
