@@ -10,7 +10,8 @@ class DiscussionController < ApplicationController
    end
    
    def show
-      @discussions = Discussion.all
+      @discussions = Discussion.where("number <> '' AND number IS NOT NULL")
+      .where("day <> '' AND day IS NOT NULL").where("time <> '' AND time IS NOT NULL")
    end
    
 
@@ -28,8 +29,8 @@ class DiscussionController < ApplicationController
    end
    
    
-#    def discussion_params
-#     params.require(:discussion).permit(:number, :day, :time, :capacity)
-#  end
+   def discussion_params
+      params.require(:discussion).permit(:number, :day, :time, :capacity)
+   end
    
 end
