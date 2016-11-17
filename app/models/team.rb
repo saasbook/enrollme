@@ -36,4 +36,19 @@ class Team < ActiveRecord::Base
     def eligible?
         self.users.count == 5 or self.users.count == 6 ? true : false
     end
+    
+    
+    def self.filter_by(status)
+        return Team.all.each if status.nil?
+        case status
+        when "All"
+            return Team.all.each
+        when "Approved"
+            return Team.where(approved: true)
+        when "Pending"
+            return Team.where("approved = ? AND submitted = ?", false, true)
+        when "Forming"
+            return Team.where("approved = ? AND submitted = ?", false, false)
+        end
+    end
 end
