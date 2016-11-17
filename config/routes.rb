@@ -30,7 +30,9 @@ Rails.application.routes.draw do
   get 'upload_discussion_info', to: "discussion#show"
   get 'submit_discussion_info', to: "discussion#submit"
   get 'add_discussion_info', to: "discussion#add"
-
+  #post 'add_discussion_info', to: "discussion#show"
+  # post 'cancel_discussion_info', to: "discussion#show"
+  
   resources :submissions
   
   root 'session#new'

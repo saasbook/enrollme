@@ -5,33 +5,34 @@
         <div class = "text-center">
             <h1>Add New Discussion</h1>
             
-            <%= form_tag add_discussion_info_path, class: "form-horizontal" do %>
-                
+            <%= form_for @disc, :html => {:class => "form-horizontal center"}, :url => add_discussion_info_path(@disc.id), :method => :put do |d|%>
+
                 <div class="field form-group">
-                    <%= label_tag :number %> <br>
-                    <%= text_field_tag :number %>
+                    <%= d.label :number, class: "col-lg-2 control-label"  %> <br>
+                    <%= d.text_field(:number, class: "form-control") %>
                 </div>
                 
                 <div class="field form-group">
-                    <%= label_tag :number %> <br>
-                    <%= text_field_tag "day" %>
+                    <%= d.label :day, class: "col-lg-2 control-label"%> <br>
+                    <%= d.text_field :day, class: "form-control"   %>
                 </div>
                 
                 <div class="field form-group">
-                    <%= label_tag :time %> <br>
-                    <%= password_field_tag :time %>
+                    <%= d.label :time , class: "col-lg-2 control-label"%> <br>
+                    <%= d.text_field :time, class: "form-control"   %>
                 </div>
                 
                 <div class="field form-group">
-                    <%= label_tag :capacity %> <br>
-                    <%= password_field_tag :capacity %>
+                    <%= d.label :capacity, class: "col-lg-2 control-label" %> <br>
+                    <%= d.text_field :capacity, class: "form-control"   %>
                 </div>
                 
                 <br>
                 
                 <div class="actions">
                     <%= submit_tag "Add Discussion", class: "btn btn-primary" %>
-                    <%= link_to "Sign Up", , {method: :get, class: "btn btn-default"} %>
+                    <%= submit_tag "Cancel", class: "btn btn-primary" %>
+                    <!--%= link_to "Add Discussion", upload_discussion_info_path, {method: :get, class: "btn btn-default"} %>-->
                     <br>
                     <br>
                 </div>

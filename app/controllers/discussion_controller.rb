@@ -11,7 +11,8 @@ class DiscussionController < ApplicationController
    end
    
    def add
-      puts "EECS"
+      @disc = Discussion.new
+      render "/discussion/add.html.erb"
    end
    
    def complete

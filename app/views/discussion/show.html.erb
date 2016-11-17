@@ -8,100 +8,38 @@
       
       <div class='btn-toolbar pull-right'>
         <div class='btn-group'>
-<<<<<<< a77bcb808b980227c029253a6ab7d14c20158f2b
-<<<<<<< 44989b81356ed20a12f3fed1ee782638c272aea6
-         <%= button_to "Add Discussions", add_discussion_info_path, {method: :get, class: "btn"} %>
-=======
-         <%= button_to "Submit Discussions", submit_discussion_info_path, {method: :get, class: "btn"} %>
->>>>>>> added a double check page
-        </div>
-      </div>
-        
-=======
          <%= button_to "Add Discussions", add_discussion_info_path, {method: :get, class: "btn"} %>
         </div>
       </div>
-        
       
->>>>>>> changed route and removed unnecessary layout/discussion.html.erb
-      <% form_tag upload_discussion_info_path, :method => :put do %>
-        <table class="table table-striped table-hover">
-          <tr>
-            <td>Select</td>
-            <td>CCN</td>
-            <td>Discussion Times</td>
-            <td>Seats Open</td>
-          </tr>
-            
-          <% Discussion.all.each do |d| %>
-            <tr>
-              <td>%= check_box_tag "select[#{d}]", 1, session[:select] == nil ? true : session[:select].include?(d) %></td>
-              , session[:select] == true
-              <p>%= "select[#{d.id}]" %></p>
-              <td><%= check_box_tag "select[]", d.id %></td>
-              <td><%= d.number %></td>
-              <td><%= d.time %></td>
-              <td><%= text_field_tag 'capacity', 20 %></td>
-            </tr>
-          <% end %>
-        </table>
-      <%= submit_tag "Mark as Complete" %>
-      <% end %>
+      <br>
       
-      
-      <!--<table class="table table-striped table-hover">-->
-      <!--  <tr>-->
-      <!--    <td>Select</td>-->
-      <!--    <td>CCN</td>-->
-      <!--    <td>Discussion Times</td>-->
-      <!--    <td>Seats Open</td>-->
-      <!--  </tr>-->
+      <table class="table table-striped table-hover">
+        <tr>
+          <td>Select</td>
+          <td>CCN</td>
+          <td>Discussion Times</td>
+          <td>Seats Open</td>
+        </tr>
           
-      <!--  <% Discussion.all.each do |d| %>-->
-      <!--    <tr>-->
-            <!--<td>%= check_box_tag "select[#{d}]", 1, session[:select] == nil ? true : session[:select].include?(d) %></td>-->
-<<<<<<< 44989b81356ed20a12f3fed1ee782638c272aea6
-<<<<<<< ed1838d436f3cec3386c93e365b21271acdba5be
-            <!--, session[:select] == true-->
-            <!--<p>%= "select[#{d.id}]" %></p>-->
-      <!--      <td><%= check_box_tag "select[#{d.id}]", d.id %></td>-->
-      <!--      <td><%= d.number %></td>-->
-      <!--      <td><%= d.time %></td>-->
-      <!--      <td><%= text_field_tag 'capacity', 20 %></td>-->
-      <!--    </tr>-->
-      <!--  <% end %>-->
-      <!--</table>-->
-      
-=======
-            <td><%= check_box_tag "select[#{d}]", 1, session[:select] == true %></td>
-=======
-            <!--, session[:select] == true-->
-<<<<<<< a77bcb808b980227c029253a6ab7d14c20158f2b
-            <!--<p>%= "select[#{d.number}]" %></p>-->
-<<<<<<< 1255b9cdb8881385632779d7f2815715e7350bce
-            <td><%= check_box_tag "select[]", d.id, 1 %></td>
->>>>>>> added a double check page
-=======
+        <% Discussion.all.each do |d| %>
+          <tr>
             <td><%= check_box_tag "select[#{d.id}]", d.id %></td>
->>>>>>> just doublechecking
             <td><%= d.number %></td>
             <td><%= d.time %></td>
             <td><%= text_field_tag 'capacity', 20 %></td>
           </tr>
         <% end %>
       </table>
->>>>>>> some cucumber test passes
-=======
-            <!--<p>%= "select[#{d.id}]" %></p>-->
-      <!--      <td><%= check_box_tag "select[#{d.id}]", d.id %></td>-->
-      <!--      <td><%= d.number %></td>-->
-      <!--      <td><%= d.time %></td>-->
-      <!--      <td><%= text_field_tag 'capacity', 20 %></td>-->
-      <!--    </tr>-->
-      <!--  <% end %>-->
-      <!--</table>-->
       
->>>>>>> changed route and removed unnecessary layout/discussion.html.erb
+      <br>
+      
+      <div class='btn-toolbar'>
+        <div class='btn-group'>
+         <%= button_to "Submit Discussions", '/admins/', {method: :get, class: "btn"} %>
+        </div>
+      </div>
+      
     </div>
     
 </body>
