@@ -14,5 +14,4 @@ Feature: Login to my account
     When I fill in "Email" with "supreme_ruler@aol.com"
     And I fill in "Password" with "ilikcats"
     And I press "Log In"
-    Then I should see "Team List"
     And I should see "Welcome Back, Bob!"
