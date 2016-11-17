@@ -1,0 +1,43 @@
+<html>
+<body>
+  <title>Add New Discussion</title>
+    <div class="container">
+        <div class = "text-center">
+            <h1>Add New Discussion</h1>
+            
+            <%= form_tag add_discussion_info_path, class: "form-horizontal" do %>
+                
+                <div class="field form-group">
+                    <%= label_tag :number %> <br>
+                    <%= text_field_tag :number %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= label_tag :number %> <br>
+                    <%= text_field_tag "day" %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= label_tag :time %> <br>
+                    <%= password_field_tag :time %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= label_tag :capacity %> <br>
+                    <%= password_field_tag :capacity %>
+                </div>
+                
+                <br>
+                
+                <div class="actions">
+                    <%= submit_tag "Add Discussion", class: "btn btn-primary" %>
+                    <%= link_to "Sign Up", , {method: :get, class: "btn btn-default"} %>
+                    <br>
+                    <br>
+                </div>
+            <% end %>
+
+        </div>
+    </div>
+</body>
+</html>

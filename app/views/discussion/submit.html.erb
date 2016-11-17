@@ -17,7 +17,7 @@
          <%= button_to "Add Discussions", '/admins/' + session[:user_id].to_s, {method: :get, class: "btn"} %>
         </div>
       </div>
-            
+      
       <table class="table table-striped table-hover">
         <tr>
           <td>Select</td>
@@ -31,7 +31,7 @@
             <!--<td>%= check_box_tag "select[#{d}]", 1, session[:select] == nil ? true : session[:select].include?(d) %></td>-->
             <!--, session[:select] == true-->
             <!--<p>%= "select[#{d.number}]" %></p>-->
-            <td><%= check_box_tag "select[#{d.id}]", d.id, 1 %></td>
+            <td><%= check_box_tag "select[]", d.id %></td>
             <td><%= d.number %></td>
             <td><%= d.time %></td>
             <td><%= text_field_tag 'capacity', 20 %></td>
