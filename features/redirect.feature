@@ -83,7 +83,3 @@ Feature: go to the correct page
     Then I go to the home page
     And I press "Leave team"
     Then I should be on the without_team page
-    
-  Scenario: Only an admin can access that specific admin's page
-    When I go to the 999_admin page
-    Then I should be on the login page

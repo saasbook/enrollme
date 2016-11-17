@@ -8,7 +8,7 @@ class SessionController < ApplicationController
     if id.nil?
       render 'new'
     elsif session[:is_admin]
-      return redirect_to admin_path(:id => session[:user_id])
+      return redirect_to admins_path
     else
       user = User.find_by_id(id)
       return redirect_to without_team_path if user.team.nil?

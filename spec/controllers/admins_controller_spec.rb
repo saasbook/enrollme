@@ -16,11 +16,11 @@ RSpec.describe AdminsController, type: :controller do
       Admin.create!({:name => "admin", :email => "admin@admin.com", :password => "123"})
       session[:user_id] = 1
       session[:is_admin] = true
-      get :show_all, {:id => 1}
+      get :index
       response.should render_template(:show)
   
       Admin.find_by_id(1).destroy!
-      get :show_all, {:id => 1}
+      get :index
       response.should redirect_to(logout_path)
     end
   end
