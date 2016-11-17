@@ -8,7 +8,11 @@
       
       <div class='btn-toolbar pull-right'>
         <div class='btn-group'>
+<<<<<<< 44989b81356ed20a12f3fed1ee782638c272aea6
          <%= button_to "Add Discussions", add_discussion_info_path, {method: :get, class: "btn"} %>
+=======
+         <%= button_to "Submit Discussions", submit_discussion_info_path, {method: :get, class: "btn"} %>
+>>>>>>> added a double check page
         </div>
       </div>
         
@@ -48,6 +52,7 @@
       <!--  <% Discussion.all.each do |d| %>-->
       <!--    <tr>-->
             <!--<td>%= check_box_tag "select[#{d}]", 1, session[:select] == nil ? true : session[:select].include?(d) %></td>-->
+<<<<<<< 44989b81356ed20a12f3fed1ee782638c272aea6
 <<<<<<< ed1838d436f3cec3386c93e365b21271acdba5be
             <!--, session[:select] == true-->
             <!--<p>%= "select[#{d.id}]" %></p>-->
@@ -61,9 +66,14 @@
       
 =======
             <td><%= check_box_tag "select[#{d}]", 1, session[:select] == true %></td>
+=======
+            <!--, session[:select] == true-->
+            <!--<p>%= "select[#{d.number}]" %></p>-->
+            <td><%= check_box_tag "select[]", d.id, 1 %></td>
+>>>>>>> added a double check page
             <td><%= d.number %></td>
             <td><%= d.time %></td>
-            <td><%= text_field_tag 'capacity', 30 %></td>
+            <td><%= text_field_tag 'capacity', 20 %></td>
           </tr>
         <% end %>
       </table>

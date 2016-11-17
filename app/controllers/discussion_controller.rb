@@ -6,7 +6,8 @@ class DiscussionController < ApplicationController
    end
    
    def submit
-      
+      @discussions = Discussion.all
+      # @discussions = Discussion.where("rating IN (?)", params[:ratings])
    end
    
 end

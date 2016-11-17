@@ -86,9 +86,11 @@ When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)
 end
 
+# debug this
 When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
 end
+### check('##{field}')
 
 When /^(?:|I )uncheck "([^"]*)"$/ do |field|
   uncheck(field)
@@ -225,6 +227,11 @@ Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label
       assert !field_checked
     end
   end
+end
+
+Then /^checkbox "([^"]*)" should be checked$/ do |id|
+  # expect(find("##{id}")).to be_checked
+  find('##{id}').should be_checked
 end
  
 Then /^(?:|I )should be on (.+)$/ do |page_name|
