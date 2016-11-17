@@ -22,11 +22,12 @@
               <% if session[:is_admin].nil? %>
                 <li><%= link_to "Edit My Info", edit_user_path(session[:user_id]), {method: 'get'} %></li>
               <% else %>
-                  <li><%= link_to "All", admins_path(:status => "All"), {method: 'get'} %></li>
-                  <li><%= link_to "Forming", admins_path(:status => "Forming"), {method: 'get'} %></li>
-                  <li><%= link_to "Pending", admins_path(:status => "Pending"), {method: 'get'} %></li>
-                  <li><%= link_to "Approved", admins_path(:status => "Approved"), {method: 'get'} %></li>
+                  <!--<li><%= link_to "All", admins_path(:status => "All"), {method: 'get'} %></li>-->
+                  <!--<li><%= link_to "Forming", admins_path(:status => "Forming"), {method: 'get'} %></li>-->
+                  <!--<li><%= link_to "Pending", admins_path(:status => "Pending"), {method: 'get'} %></li>-->
+                  <!--<li><%= link_to "Approved", admins_path(:status => "Approved"), {method: 'get'} %></li>-->
                   <li><%= link_to "Edit My Info", edit_admin_path(session[:user_id]), {method: 'get'} %></li>
+                  <li><%= link_to "Register New Admin", new_admin_path, {method: 'get'} %></li>
               <% end %>
               <li><%= link_to "Logout", logout_path, {method: 'get'} %></li>
             <% end %>
