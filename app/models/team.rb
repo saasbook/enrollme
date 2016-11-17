@@ -46,9 +46,9 @@ class Team < ActiveRecord::Base
         when "Approved"
             return Team.where(approved: true)
         when "Pending"
-            return Team.where("approved = ? AND submitted = ?", false, true)
+            return Team.where(approved: false, submitted: true)
         when "Forming"
-            return Team.where("approved = ? AND submitted = ?", false, false)
+            return Team.where(approved: false, submitted: false)
         end
     end
 end

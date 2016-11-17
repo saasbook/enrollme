@@ -29,6 +29,7 @@ RSpec.describe FileController, type: :controller do
             Admin.create!({:name => "admin", :email => "admin@admin.com", :password => "123"})
         
             @tone = Team.new
+            @tone.submitted = true
             @tone.approve_with_discussion(@disc.id)
             @tone.passcode = "passcode1"
             @disc.teams << @tone
@@ -52,6 +53,8 @@ RSpec.describe FileController, type: :controller do
             @ttwo.users << User.where(name: "Ana")
             
             @three = Team.new
+            @three.submitted = false
+            @three.approved = false
             @three.passcode = "passcode3"
             @three.users << User.where(name: "Chris")
             
