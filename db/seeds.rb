@@ -71,11 +71,11 @@ admins.each do |a|
 end
 
 
-full = Discussion.create!(:number => 666, :time=> "Wed, 3pm", :capacity => 3)
-somewhat_full = Discussion.create!(:number => 420, :time=> "Thu, 3pm", :capacity => 5)
+full = Discussion.create!(:number => 666, :day=> "Wed", :time=> "3pm", :capacity => 3)
+somewhat_full = Discussion.create!(:number => 420, :day=> "Thur", :time=> "3pm", :capacity => 5)
 Discussion.create!(:number => 1337, :day=>"Wed", :time=> "3pm", :capacity => 5)
-Discussion.create!(:number => 1338,:day=>"Thu", :time=> "3pm", :capacity => 5)
-Discussion.create!(:number => 1339,:day=>"Fri", :time=> "3pm", :capacity => 5)
+Discussion.create!(:number => 1338, :day=>"Thu", :time=> "3pm", :capacity => 5)
+Discussion.create!(:number => 1339, :day=>"Fri", :time=> "3pm", :capacity => 5)
 
 
 full.teams << two

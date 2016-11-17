@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20161117070139) do
     t.integer  "disc1id"
     t.integer  "disc2id"
     t.integer  "disc3id"
-    t.integer  "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,7 +42,6 @@ ActiveRecord::Schema.define(version: 20161117070139) do
   create_table "teams", force: :cascade do |t|
     t.boolean  "approved"
     t.string   "passcode"
-    t.integer  "submission_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.boolean  "submitted"
