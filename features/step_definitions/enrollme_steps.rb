@@ -70,7 +70,7 @@ Given /^the following users exist$/ do |table|
     next if name == "name" # skipping table header
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
-      @team = Team.create!(:approved => false, :passcode => team_passcode) if @team.nil?
+      @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
       User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :password => password)
     else
       User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :password => password)

@@ -29,6 +29,7 @@ end
 
 tone = Team.new
 tone.approved = false
+tone.submitted = false
 tone.passcode = "passcode1"
 tone.save!
 tone.users << User.where(name: "Josh")
@@ -42,6 +43,7 @@ tone.users << User.where(name: "EEE")
 
 two = Team.new
 two.approved = false
+two.submitted = false
 two.passcode = "passcode2"
 two.save!
 two.users << User.where(name: "JJJ")
@@ -50,6 +52,7 @@ two.users << User.where(name: "John")
 
 tthree = Team.new
 tthree.approved = false
+tthree.submitted = false
 tthree.passcode = "passcode3"
 tthree.save!
 tthree.users << User.where(name: "Kay")
