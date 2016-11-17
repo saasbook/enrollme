@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   
   get 'upload_discussion_info', to: "discussion#show"
   post 'upload_discussion_info', to: "discussion#create"
-  get 'submit_discussion_info', to: "discussion#submit"
   get 'add_discussion_info', to: "discussion#add"
   put 'add_discussion_info', to: "discussion#create"
   # post 'cancel_discussion_info', to: "discussion#show"

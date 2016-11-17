@@ -13,14 +13,7 @@ class DiscussionController < ApplicationController
       @discussions = Discussion.all
    end
    
-   def submit
-      # puts params[:id]
-      # @discussions = Discussion.all
-      # # @discussions = Discussion.where("select IN (?)", params[:id])
-      
-      @disc = Discussion.new()
-   end
-   
+
    def add
       @disc = Discussion.new()
       
@@ -32,12 +25,6 @@ class DiscussionController < ApplicationController
       # end
       
       render "/discussion/add.html.erb"
-   end
-   
-   def complete
-      params[:task_id]
-      # mark checkboxes as complete
-      redirect_to upload_discussion_info_path
    end
    
    

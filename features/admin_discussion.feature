@@ -15,12 +15,26 @@ Feature: admin adds discussion times
     When I press "Upload Discussions"
     Then I should see "Discussion Sections"
     
-  Scenario: Admin successfully adds discussion times
+  Scenario: Admin successfully sees add discussion form
     Given I log in as an admin with email "supreme_ruler@aol.com"
     When I press "Upload Discussions"
-    #And I fill in "capacity" with "30"
-    #When I check "select_1"
-    #Then checkbox "select_1" should not be checked
+    When I press "Add Discussions"
+    Then I should see "Add New Discussion"
+    
+  Scenario: Admin successfully adds a new discussion
+    Given I log in as an admin with email "supreme_ruler@aol.com"
+    When I press "Upload Discussions"
     And I press "Add Discussions"
-    Then I should see "Team List"
+    And I fill in "Number" with "12345"
+    And I fill in "Day" with "Mon"
+    And I fill in "Time" with "3"
+    And I fill in "Capacity" with "20"
+    And I press "Add Discussion"
+    Then I should see "Discussion Sections"
+    And I should see "Number" with "12345"
+    And I should see "Day" with "Mon"
+    And I should see "Time" with "3"
+    And I should see "Capacity" with "20"
+
+  
     
