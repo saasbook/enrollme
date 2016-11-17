@@ -12,7 +12,7 @@ class AdminsController < ApplicationController
     @admin = Admin.new(admin_params)
 
     if session[:is_admin] == true and @admin.save
-      redirect_to admin_path(session[:user_id]), :notice => "You created admin " + admin_params["name"] + " successfully!"
+      redirect_to admin_show_all_path, :notice => "You created admin " + admin_params["name"] + " successfully!"
     else
       render 'new', :notice => "Form is invalid"
     end
@@ -24,7 +24,7 @@ class AdminsController < ApplicationController
   
   def update
     @admin.update_attributes!(admin_params)
-    return redirect_to admin_path(@admin.id)
+    return redirect_to admin_show_all_path
   end
 
   def show_all
@@ -45,7 +45,7 @@ class AdminsController < ApplicationController
     render 'show'
   end
   
-  def forming
+  def show_forming
     @stat_loc = "Team List: Showing Forming Teams"
     @teams_li = Team.where("approved = ? AND submitted = ?", false, false)
     render 'show'
@@ -56,20 +56,20 @@ class AdminsController < ApplicationController
     @team = Team.find_by_id(params[:team_id])
     @team.approved = true
     @team.save!
-    redirect_to admin_path(@admin)
+    redirect_to admin_show_all_path
   end
   
   def disapprove
     @team = Team.find_by_id(params[:team_id])
     @team.approved = false
     @team.save!
-    redirect_to admin_path(@admin)
+    redirect_to admin_show_all_path
   end
   
   def team_list_email
     AdminMailer.team_list_email(@admin).deliver_now
     
-    redirect_to admin_path(@admin)
+    redirect_to admin_show_all_path
   end
   
   private
