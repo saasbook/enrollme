@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   post 'login', to: 'session#create' 
   get 'logout', to: 'session#destroy'
   
-  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/:provider/callback', to: 'session#create'
   get 'auth/failure', to: redirect('/'), :notice => "Gmail authentication failed, please try again!"
   
   resources :admins

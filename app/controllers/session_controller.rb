@@ -18,6 +18,7 @@ class SessionController < ApplicationController
   
   def create
     user = User.user_from_oauth(env["omniauth.auth"])
+    return redirect_to new_user_path, notice: "Account not created yet, please sign up!"
     session[:user_id] = user.id
     return redirect_to without_team_path, notice: "Logged in!" if @user.team.nil?
     return redirect_to team_path(@user.team), notice: "Logged in!"

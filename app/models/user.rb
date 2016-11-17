@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
     end
   end
   
-  def user_from_oauth(auth)
-    return User.where(:email => auth.info.email)
+  def self.user_from_oauth(auth)
+    return User.find_by(:email => auth.info.email)
   end
 
 end
