@@ -69,8 +69,12 @@
 =======
             <!--, session[:select] == true-->
             <!--<p>%= "select[#{d.number}]" %></p>-->
+<<<<<<< 1255b9cdb8881385632779d7f2815715e7350bce
             <td><%= check_box_tag "select[]", d.id, 1 %></td>
 >>>>>>> added a double check page
+=======
+            <td><%= check_box_tag "select[#{d.id}]", d.id %></td>
+>>>>>>> just doublechecking
             <td><%= d.number %></td>
             <td><%= d.time %></td>
             <td><%= text_field_tag 'capacity', 20 %></td>
