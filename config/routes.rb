@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
-  post 'logout', to: 'session#destroy'
+  get 'logout', to: 'session#destroy'
   
   resources :admins
   get 'approve_team', to: 'admins#approve'
@@ -22,7 +22,10 @@ Rails.application.routes.draw do
   get 'download_team_info', to: "file#download_approved_teams"
   
   get 'upload_discussion_info', to: "discussion#show"
+<<<<<<< HEAD
   get 'submit_discussion_info', to: "discussion#submit"
+=======
+>>>>>>> 13bcb82dd5c829b76a44fa12c97a031d036e31c2
 
   resources :submissions
   

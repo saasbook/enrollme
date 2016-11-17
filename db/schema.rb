@@ -1,3 +1,4 @@
+
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -11,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109063020) do
+ActiveRecord::Schema.define(version: 20161116015013) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 20161109063020) do
     t.integer  "disc1id"
     t.integer  "disc2id"
     t.integer  "disc3id"
+    t.integer  "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,6 +40,7 @@ ActiveRecord::Schema.define(version: 20161109063020) do
   create_table "teams", force: :cascade do |t|
     t.boolean  "approved"
     t.string   "passcode"
+
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.boolean  "submitted"

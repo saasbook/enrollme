@@ -8,8 +8,11 @@ Feature: go to the correct page
     Given the following users exist
      | name   |       email                    | password   | team_passcode | major           | sid  |
   	 | Jorge  | legueoflegends667@hotmail.com  | password1  | 0             | Football Player | 999  |
- 	 | Sahai  | eecs666@hotmail.com            | mypassword | penguindrool  | EECS            | 000  |
- 	 | Copy   | anotheremail@yahoo.com         | anotherpsw | ok            | CS              | 001  |
+   	 | Sahai  | eecs666@hotmail.com            | mypassword | penguindrool  | EECS            | 000  |
+   	 | Copy   | anotheremail@yahoo.com         | anotherpsw | ok            | CS              | 001  |
+    And the following admins exist
+      | name | email                  | password |
+  	  | Bob  | supreme_ruler@aol.com  | ilikcats |
 
     And I am on the login page
 
@@ -47,7 +50,7 @@ Feature: go to the correct page
     And I fill in "Password" with "mypassword"
     And I press "Log In"
     Then I follow "Logout"
-    Then I should be on the home page
+    Then I should be on the login page
     
   Scenario: Prevents access to team page when no one is signed in
     Given I am on the team "1" page
@@ -77,7 +80,7 @@ Feature: go to the correct page
     Given I fill in "Email" with "eecs666@hotmail.com"
     And I fill in "Password" with "mypassword"
     And I press "Log In"
-    Then I go to the team_index page
+    Then I go to the home page
     And I press "Leave team"
     Then I should be on the without_team page
     

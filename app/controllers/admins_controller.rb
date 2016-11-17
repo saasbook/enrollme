@@ -1,9 +1,7 @@
 class AdminsController < ApplicationController
   
   skip_before_filter :authenticate, :only => ['new', 'create']
-  before_filter :validate_admin, :except => ['new', 'create']
-  before_filter :set_admin, :except => ['new', 'create']
-
+  before_filter :validate_admin, :set_admin, :except => ['new', 'create']
   
   def new
     @admin = Admin.new
@@ -63,12 +61,6 @@ class AdminsController < ApplicationController
 
   def set_admin
     @admin = Admin.find_by_id session[:user_id]
-    if @admin.nil?
-      session[:user_id] = nil
-      session[:is_admin] = false
-      return redirect_to '/'
-    end
-      
   end
   
   def admin_params

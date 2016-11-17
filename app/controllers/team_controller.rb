@@ -1,13 +1,8 @@
 class TeamController < ApplicationController
   
   before_filter :set_user, :set_team
-  before_filter :set_permissions, :except => ['index']
+  before_filter :set_permissions
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
-
-  def index
-    return redirect_to without_team_path if @user.team.nil?
-    return redirect_to team_path(@user.team.id)
-  end
   
   def show
     @discussions = Discussion.all
@@ -26,7 +21,6 @@ class TeamController < ApplicationController
   def edit
     @user_to_remove = User.find_by_id(params[:unwanted_user])
     @user_to_remove.leave_team
-    @team.withdraw_submission
     notice = ""
 
     if @user.is_a? Admin and @team.approved
@@ -34,7 +28,8 @@ class TeamController < ApplicationController
     elsif @team.submitted
       notice = " Your team's submission has been withdrawn."
     end
-    
+
+    @team.withdraw_submission
     return redirect_to without_team_path if @user_to_remove == @user
     return redirect_to team_path(@team.id), notice: "Removed #{@user_to_remove.name} from team." + notice
   end
@@ -44,7 +39,12 @@ class TeamController < ApplicationController
   private
   
   def set_user
-    @user = session[:is_admin] ? Admin.find(session[:user_id]) : User.find(session[:user_id]) 
+    if session[:is_admin]
+      @user = Admin.find(session[:user_id])
+    else
+      @user = User.find(session[:user_id])
+      redirect_to without_team_path, :notice => "Permission denied" if @user.team.nil?
+    end
   end
 
   def set_team
