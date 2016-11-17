@@ -2,19 +2,11 @@ class Discussion < ActiveRecord::Base
     has_many :teams
     
     def can_take_team?(team)
-        if (team.users.length + count_students <= self.capacity)
-           return true 
-        else
-            return false
-        end
+        return !!(team.users.length + count_students <= self.capacity)
     end
     
     def is_full?
-       if (count_students >= capacity)
-           return true
-       else
-           return false
-       end
+       return !!(count_students >= capacity)
     end
     
     def seats_open
@@ -22,24 +14,20 @@ class Discussion < ActiveRecord::Base
     end
     
     def count_students
-        @total_students = 0
+        num_students = 0
         self.teams.each do |team|
-            @total_students += team.users.length
+            num_students += team.users.length
         end
-        
-        return @total_students
+        return num_students
     end
     
     
-    def self.all_valid_disc(team)
-        retVal = []
+    def self.valid_discs_for(team)
+        discs = []
         Discussion.all.each do |disc|
-             if (disc.can_take_team?(team))
-                retVal << disc 
-             end
+            discs << disc if (disc.can_take_team?(team))
         end
-        
-        return retVal
+        return discs
     end
 
 end

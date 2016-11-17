@@ -14,10 +14,10 @@ Background:
     And I press "Log In"
     
     And I fill in "team_hash" with "penguindrool"
-    And PENDING: I press "Join"
+    And I press "Join"
 
     Given I follow "Edit My Info"
-    And PENDING: I select "EECS/CS Declared" from "Major"
+    And I select "DECLARED CS/EECS Major" from "major"
     And I press "Update Information"
     Then I should see "My Team"
     
@@ -26,6 +26,6 @@ Background:
     When I fill in "Name" with "David"
     And I fill in "Email" with "david@berkeley.edu"
     And I fill in "Sid" with "12345678"
-    And PENDING: I select "EECS/CS Declared" from "Major"
+    And I select "DECLARED CS/EECS Major" from "major"
     And I fill in "Password" with "bestpasswordeva"
     And I press "Sign Up"
