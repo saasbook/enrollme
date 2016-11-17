@@ -11,7 +11,6 @@ Feature: admin adds discussion times
 
   Scenario: Admin successfully goes to a new admin discussion list page
     Given I log in as an admin with email "supreme_ruler@aol.com"
-    Then I should see "Team List"
     When I press "Choose Discussions"
     Then I should see "Discussion Sections"
     
