@@ -10,7 +10,7 @@
             
                 <div class="field form-group">
                     <p><strong>Number</strong></p>
-                    <%= d.text_field(:number, class: "col-md-4 form-control") %>
+                    <%= d.text_field(:number, class: "col-md-4 form-control", :id => "ccn") %>
                     <p>Please input your CCN here</p>
                 </div>
                 
@@ -22,13 +22,13 @@
                 
                 <div class="field form-group">
                  <p><strong>Time</strong></p>
-                    <%= d.text_field :time, class: "col-md-4 form-control"   %>
+                    <%= d.text_field :time, class: "col-md-4 form-control", :id => "time" %>
                     <p class="text-danger"><strong>WARNING:</strong> please use the format H:MM AM/PM, for example 03:15 AM</p>
                 </div>
                 
                 <div class="field form-group">
                     <p><strong>Capacity</strong></p>
-                    <%= d.text_field :capacity, class: "col-md-4 form-control"   %>
+                    <%= d.text_field :capacity, class: "col-md-4 form-control", :id => "capacity" %>
                 </div>
                 
                 <br>

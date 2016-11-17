@@ -25,16 +25,14 @@ Feature: admin adds discussion times
     Given I log in as an admin with email "supreme_ruler@aol.com"
     When I press "Upload Discussions"
     And I press "Add Discussions"
-    And I fill in "Number" with "12345"
-    And I fill in "Day" with "Mon"
-    And I fill in "Time" with "3"
-    And I fill in "Capacity" with "20"
+    Then I should see "Add New Discussion"
+    When I fill in "ccn" with "12345"
+    And I select "Mon" from "day"
+    And I fill in "time" with "3"
+    And I fill in "capacity" with "20"
     And I press "Add Discussion"
     Then I should see "Discussion Sections"
-    And I should see "Number" with "12345"
-    And I should see "Day" with "Mon"
-    And I should see "Time" with "3"
-    And I should see "Capacity" with "20"
-
+    And the team with ccn "12345", day "Mon", time "3", and capacity "20" should exist
+  
   
     

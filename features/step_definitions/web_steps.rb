@@ -113,6 +113,7 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
+  puts "what?"
   regexp = Regexp.new(regexp)
 
   if page.respond_to? :should
@@ -123,6 +124,7 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
 end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
+  puts "LOL@@"
   if page.respond_to? :should
     page.should have_no_content(text)
   else

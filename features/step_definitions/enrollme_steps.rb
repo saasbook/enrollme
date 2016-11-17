@@ -122,3 +122,7 @@ end
 Then(/^the team with passcode "([^"]*)" should not exist$/) do |passcode|
   Team.where(:passcode => passcode).length.should eq 0
 end
+
+Then(/^the team with ccn "([^"]*)", day "([^"]*)", time "([^"]*)", and capacity "([^"]*)" should exist$/) do |ccn, day, time, capacity|
+  Discussion.where(:number => ccn, :day => day, :time => time, :capacity => capacity).length.should eq 1
+end
