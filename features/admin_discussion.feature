@@ -18,8 +18,9 @@ Feature: admin adds discussion times
   Scenario: Admin successfully adds discussion times
     Given I log in as an admin with email "supreme_ruler@aol.com"
     When I press "Upload Discussions"
-    # And I fill in "capacity" with "30"
-    # And I check "select"
+    #And I fill in "capacity" with "30"
+    #When I check "select_1"
+    #Then checkbox "select_1" should not be checked
     And I press "Add Discussions"
     Then I should see "Team List"
     
