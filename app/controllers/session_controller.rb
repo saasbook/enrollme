@@ -17,16 +17,28 @@ class SessionController < ApplicationController
   end
   
   def create
+    # byebug
     user = User.user_from_oauth(env["omniauth.auth"])
-    return redirect_to new_user_path, notice: "Account not created yet, please sign up!"
-    session[:user_id] = user.id
-    return redirect_to without_team_path, notice: "Logged in!" if @user.team.nil?
-    return redirect_to team_path(@user.team), notice: "Logged in!"
+    admin = Admin.admin_from_oauth(env["omniauth.auth"])
+    session[:user_email] = env["omniauth.auth"].info.email
+    if user.nil?
+      if admin.nil?
+        return redirect_to new_user_path, notice: "Account not created yet, please sign up!"
+      else
+        # byebug
+        session[:user_id] = admin.id
+        session[:is_admin] = true
+        return redirect_to admins_path
+      end
+    else
+      session[:user_id] = user.id
+      return redirect_to without_team_path, notice: "Logged in!" if user.team.nil?
+      return redirect_to team_path(user.team), notice: "Logged in!"  
+    end
   end
   
   def destroy
-    session[:user_id] = nil
-    session[:is_admin] = nil
+    session.clear
     redirect_to login_path, notice: "Logged out!"
   end
   

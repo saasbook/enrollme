@@ -14,7 +14,7 @@
             <tr>
                 <td></td>
                 <td>Student</td>
-                <td>CS Major?</td>
+                <td>EECS/CS Major?</td>
                 <td></td>
               </tr>
               
@@ -23,7 +23,7 @@
               <tr>
                 <td></td>
                 <td><%= u.name %></td>
-                <td><%= u.major == "Computer Science" or u.major == "Electrical Engineering and Computer Science" ? "•" : "No" %></td>
+                <td><%= u.major == "DECLARED CS/EECS Major" ? "•" : "No" %></td>
                 <td>
                   <%= form_tag edit_team_path(:id => @team.id), method: :get do %>
                     <%= hidden_field_tag :unwanted_user, u.id %>

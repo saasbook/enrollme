@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    @user.email = session[:user_email]
 
     if @user.save
       EmailStudents.welcome_email(@user).deliver_later
@@ -68,6 +69,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :sid, :major)
+    params.require(:user).permit(:name, :sid, :major)
   end
 end

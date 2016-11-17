@@ -3,30 +3,12 @@
   <title>Login</title>
     <div class="container">
         <div class = "text-center">
-            <h1>Log In!</h1>
-            
-            <%= form_tag login_path, class: "form-horizontal" do %>
-                
-                <div class="field form-group">
-                    <%= label_tag :email %> <br>
-                    <%= text_field_tag :email %>
-                </div>
-                
-                <div class="field form-group">
-                    <%= label_tag :password %> <br>
-                    <%= password_field_tag :password %>
-                </div>
-                
-                <br>
-                
-                <div class="actions">
-                    <%= submit_tag "Log In", class: "btn btn-primary" %>
-                    <%= link_to "Sign Up", new_user_path, {method: :get, class: "btn btn-default"} %>
-                    <br>
-                    <br>
-                </div>
-            <% end %>
-
+            <h1>CS 169 EnrollMe</h1>
+            <br>
+            <%= link_to "Log In", "/auth/google_oauth2", {id: "sign_in", class: "btn btn-default"}  %>
+            <br>
+            <br>
+            <%= link_to "Sign Up", new_user_path, {method: :get, class: "btn btn-default"} %>
         </div>
     </div>
 </body>

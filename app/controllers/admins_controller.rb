@@ -28,6 +28,7 @@ class AdminsController < ApplicationController
   end
 
   def index
+    # byebug
     status = params[:status]
     @stat_loc = "Team List: Showing #{status} Teams"
     @teams_li = Team.filter_by(status)
@@ -57,6 +58,7 @@ class AdminsController < ApplicationController
   private
 
   def validate_admin
+    # byebug
     if !(session[:is_admin])
       redirect_to '/', :notice => "Permission denied"
     end
