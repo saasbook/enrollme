@@ -71,63 +71,6 @@ admins.each do |a|
 end
 
 
-
-discussions = [{:number => 1, :time => "Mon, 8-9am", :capacity => 30},
-              {:number => 2, :time => "Mon, 9-10am", :capacity => 30},
-              {:number => 3, :time => "Mon, 10-11am", :capacity => 30},
-              {:number => 4, :time => "Mon, 11-12pm", :capacity => 30},
-              {:number => 5, :time => "Mon, 12-1pm", :capacity => 30},
-              {:number => 6, :time => "Mon, 1-2pm", :capacity => 30},
-              {:number => 7, :time => "Mon, 2-3pm", :capacity => 30},
-              {:number => 8, :time => "Mon, 3-4pm", :capacity => 30},
-              {:number => 9, :time => "Mon, 4-5pm", :capacity => 30},
-              {:number => 10, :time => "Mon, 5-6pm", :capacity => 30},
-              {:number => 11, :time => "Tue, 8-9am", :capacity => 30},
-              {:number => 12, :time => "Tue, 9-10am", :capacity => 30},
-              {:number => 13, :time => "Tue, 10-11am", :capacity => 30},
-              {:number => 14, :time => "Tue, 11-12pm", :capacity => 30},
-              {:number => 15, :time => "Tue, 12-1pm", :capacity => 30},
-              {:number => 16, :time => "Tue, 1-2pm", :capacity => 30},
-              {:number => 17, :time => "Tue, 2-3pm", :capacity => 30},
-              {:number => 18, :time => "Tue, 3-4pm", :capacity => 30},
-              {:number => 19, :time => "Tue, 4-5pm", :capacity => 30},
-              {:number => 20, :time => "Tue, 5-6pm", :capacity => 30},
-              {:number => 21, :time => "Wed, 8-9am", :capacity => 30},
-              {:number => 22, :time => "Wed, 9-10am", :capacity => 30},
-              {:number => 23, :time => "Wed, 10-11am", :capacity => 30},
-              {:number => 24, :time => "Wed, 11-12pm", :capacity => 30},
-              {:number => 25, :time => "Wed, 12-1pm", :capacity => 30},
-              {:number => 26, :time => "Wed, 1-2pm", :capacity => 30},
-              {:number => 27, :time => "Wed, 2-3pm", :capacity => 30},
-              {:number => 28, :time => "Wed, 3-4pm", :capacity => 30},
-              {:number => 29, :time => "Wed, 4-5pm", :capacity => 30},
-              {:number => 30, :time => "Wed, 5-6pm", :capacity => 30},
-              {:number => 31, :time => "Thur, 8-9am", :capacity => 30},
-              {:number => 32, :time => "Thur, 9-10am", :capacity => 30},
-              {:number => 33, :time => "Thur, 10-11am", :capacity => 30},
-              {:number => 34, :time => "Thur, 11-12pm", :capacity => 30},
-              {:number => 35, :time => "Thur, 12-1pm", :capacity => 30},
-              {:number => 36, :time => "Thur, 1-2pm", :capacity => 30},
-              {:number => 37, :time => "Thur, 2-3pm", :capacity => 30},
-              {:number => 38, :time => "Thur, 3-4pm", :capacity => 30},
-              {:number => 39, :time => "Thur, 4-5pm", :capacity => 30},
-              {:number => 40, :time => "Thur, 5-6pm", :capacity => 30},
-              {:number => 41, :time => "Fri, 8-9am", :capacity => 30},
-              {:number => 42, :time => "Fri, 9-10am", :capacity => 30},
-              {:number => 43, :time => "Fri, 10-11am", :capacity => 30},
-              {:number => 44, :time => "Fri, 11-12pm", :capacity => 30},
-              {:number => 45, :time => "Fri, 12-1pm", :capacity => 30},
-              {:number => 46, :time => "Fri, 1-2pm", :capacity => 30},
-              {:number => 47, :time => "Fri, 2-3pm", :capacity => 30},
-              {:number => 48, :time => "Fri, 3-4pm", :capacity => 30},
-              {:number => 49, :time => "Fri, 4-5pm", :capacity => 30},
-              {:number => 50, :time => "Fri, 5-6pm", :capacity => 30},
-              ]
-              
-discussions.each do |discussion|
-  Discussion.create!(discussion)
-end
-
 full = Discussion.create!(:number => 666, :time=> "Wed, 3pm", :capacity => 3)
 somewhat_full = Discussion.create!(:number => 420, :time=> "Thu, 3pm", :capacity => 5)
 Discussion.create!(:number => 1337, :time=> "Fri, 3pm", :capacity => 5)
