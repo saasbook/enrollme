@@ -25,7 +25,7 @@
             <!--<td>%= check_box_tag "select[#{d}]", 1, session[:select] == nil ? true : session[:select].include?(d) %></td>-->
             <!--, session[:select] == true-->
             <!--<p>%= "select[#{d.number}]" %></p>-->
-            <td><%= check_box_tag "select[]", d.id, 1 %></td>
+            <td><%= check_box_tag "select[#{d.id}]", d.id %></td>
             <td><%= d.number %></td>
             <td><%= d.time %></td>
             <td><%= text_field_tag 'capacity', 20 %></td>

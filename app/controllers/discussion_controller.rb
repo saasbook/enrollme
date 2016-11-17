@@ -6,8 +6,11 @@ class DiscussionController < ApplicationController
    end
    
    def submit
+      puts params[:id]
       @discussions = Discussion.all
-      # @discussions = Discussion.where("rating IN (?)", params[:ratings])
+      
+      
+      # @discussions = Discussion.where("select IN (?)", params[:id])
    end
    
 end
