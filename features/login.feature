@@ -8,7 +8,7 @@ Feature: Login to my account
     When I fill in "Name" with "David"
     And I fill in "Email" with "david@berkeley.edu"
     And I fill in "Sid" with "12345678"
-    And PENDING: I select "EECS/CS Declared" from "Major"
+    And I select "DECLARED CS/EECS Major" from "major"
     And I fill in "Password" with "bestpasswordeva"
     And I press "Sign Up"
     Then I should see "Create or Join a Team"

@@ -15,17 +15,17 @@
             <fieldset>
                 <div class="field form-group">
                     <%= f.label :disc1id, class: "col-lg-2 control-label" %> <br>
-                    <%= f.collection_select(:disc1id, Discussion.all_valid_disc(@team), :id, :time, {}) %>
+                    <%= f.collection_select(:disc1id, Discussion.valid_discs_for(@team), :id, :time, {}) %>
                 </div>
                 
                 <div class="field form-group">
                     <%= f.label :disc2id, class: "col-lg-2 control-label" %> <br>
-                    <%= f.collection_select(:disc2id, Discussion.all_valid_disc(@team), :id, :time, {}) %>
+                    <%= f.collection_select(:disc2id, Discussion.valid_discs_for(@team), :id, :time, {}) %>
                 </div>
                 
                 <div class="field form-group">
                     <%= f.label :disc3id, class: "col-lg-2 control-label" %> <br>
-                    <%= f.collection_select(:disc3id, Discussion.all_valid_disc(@team), :id, :time, {}) %>
+                    <%= f.collection_select(:disc3id, Discussion.valid_discs_for(@team), :id, :time, {}) %>
                 </div>
                 
                 <br>

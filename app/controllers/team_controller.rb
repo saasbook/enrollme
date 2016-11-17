@@ -6,7 +6,7 @@ class TeamController < ApplicationController
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
   
   def show
-    @discussions = Discussion.all
+    @discussions = Discussion.valid_discs_for(@team)
     render "team"
   end
   
