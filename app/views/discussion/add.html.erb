@@ -2,43 +2,48 @@
 <body>
   <title>Add New Discussion</title>
     <div class="container">
-        <div class = "text-center">
+       
             <h1>Add New Discussion</h1>
             
-            <%= form_for @disc, :html => {:class => "form-horizontal center"}, :url => add_discussion_info_path(@disc.id), :method => :put do |d|%>
-
+            <%= form_for @disc, :html => {:class => "form-horizontal"}, :url => add_discussion_info_path(@disc.id), :method => :put do |d|%>
+            <fieldset>
                 <div class="field form-group">
-                    <%= d.label :number, class: "col-lg-2 control-label"  %> <br>
-                    <%= d.text_field(:number, class: "form-control") %>
+                    <%= d.label :number, class: "col-md-4 control-label"  %> <br>
+                    <%= d.text_field(:number, class: "col-md-4 form-control") %>
+                    <p>Please input your CCN here</p>
                 </div>
                 
                 <div class="field form-group">
-                    <%= d.label :day, class: "col-lg-2 control-label"%> <br>
-                    <%= d.text_field :day, class: "form-control"   %>
+                    <%= d.label :day, class: "col-md-4 control-label" %>
+                    <%= d.select :day, ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],  {}, {class: "col-md-4 form-control", :id => "day"}%>
+    
                 </div>
                 
                 <div class="field form-group">
-                    <%= d.label :time , class: "col-lg-2 control-label"%> <br>
-                    <%= d.text_field :time, class: "form-control"   %>
+                    <%= d.label :time , class: "col-md-4 control-label"%> <br>
+                    <%= d.text_field :time, class: "col-md-4 form-control"   %>
+                    <p class="text-danger"><strong>WARNING:</strong> please use the format H:MM AM/PM, for example 03:15 AM</p>
                 </div>
                 
                 <div class="field form-group">
-                    <%= d.label :capacity, class: "col-lg-2 control-label" %> <br>
-                    <%= d.text_field :capacity, class: "form-control"   %>
+                    <%= d.label :capacity, class: "col-md-4 control-label" %> <br>
+                    <%= d.text_field :capacity, class: "col-md-4 form-control"   %>
                 </div>
                 
                 <br>
                 
                 <div class="actions">
                     <%= submit_tag "Add Discussion", class: "btn btn-primary" %>
-                    <%= submit_tag "Cancel", class: "btn btn-primary" %>
-                    <!--%= link_to "Add Discussion", upload_discussion_info_path, {method: :get, class: "btn btn-default"} %>-->
+                    <!--<%= link_to "Add Discussion", upload_discussion_info_path, {method: :post, class: "btn btn-default"} %>-->
+                    <!--%= submit_tag "Cancel", class: "btn btn-primary" %>-->
+                    <%= link_to "Cancel", upload_discussion_info_path, {method: :get, class: "btn btn-default"} %>
                     <br>
                     <br>
                 </div>
+                </fieldset>
             <% end %>
 
-        </div>
+        
     </div>
 </body>
 </html>
