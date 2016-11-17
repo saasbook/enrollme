@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -26,13 +25,15 @@ ActiveRecord::Schema.define(version: 20161116015013) do
     t.integer "number"
     t.string  "time"
     t.integer "capacity"
+    t.integer "submission_id"
   end
+
+  add_index "discussions", ["submission_id"], name: "index_discussions_on_submission_id"
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "disc1id"
     t.integer  "disc2id"
     t.integer  "disc3id"
-    t.integer  "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,7 +41,6 @@ ActiveRecord::Schema.define(version: 20161116015013) do
   create_table "teams", force: :cascade do |t|
     t.boolean  "approved"
     t.string   "passcode"
-
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.boolean  "submitted"
