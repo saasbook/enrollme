@@ -3,11 +3,13 @@ Given /^PENDING: .*$/ do
 end
 
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
-  password = Admin.find_by_email(email).password
-  step "I am on the login page"
-  step %Q{I fill in "Email" with "#{email}"}
-  step %Q{I fill in "Password" with "#{password}"}
-  step %Q{I press "Log In"}
+  # password = Admin.find_by_email(email).password
+  # step "I am on the login page"
+  # step %Q{I fill in "Email" with "#{email}"}
+  # step %Q{I fill in "Password" with "#{password}"}
+  # step %Q{I press "Log In"}
+  mock_auth_hash(email)
+  click_link "log_in"
 end
 
 Given /^I log in as a user with email "([^"]*)"$/ do | email |
@@ -73,9 +75,9 @@ Given /^the following users exist$/ do |table|
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
       @team = Team.create!(:approved => false, :passcode => team_passcode) if @team.nil?
-      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :password => password)
+      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid)
     else
-      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :password => password)
+      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid)
     end
   end
 end
