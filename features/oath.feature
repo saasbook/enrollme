@@ -1,8 +1,9 @@
-Feature: and login with my Berkeley credentials/email/account
+Feature: Login with gmail oauth
   As a student
   In order to create an account and login
-  I want to use OAUTH
+  I want to use gmail OAUTH
 
   Scenario: Successfully see login using OAUTH
     Given I am on the login page
-    Then PENDING: I should see "Login using Bmail"
+    And I follow "log_in"
+    Then I should see "Choose an account"
