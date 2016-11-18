@@ -73,13 +73,12 @@ end
 
 full = Discussion.create!(:number => 666, :day=> "Wednesday", :time=> "3pm", :capacity => 3)
 somewhat_full = Discussion.create!(:number => 420, :day=> "Thursday", :time=> "3pm", :capacity => 5)
-empty = Discussion.create!(:number => 421, :day=> "Thursday", :time=> "3pm", :capacity => 5)
+spank = Discussion.create!(:number => 504, :day=> "Friday", :time=> "2pm", :capacity => 20)
 Discussion.create!(:number => 1337, :day=>"Wednesday", :time=> "3pm", :capacity => 5)
 Discussion.create!(:number => 1338, :day=>"Thusday", :time=> "3pm", :capacity => 5)
 Discussion.create!(:number => 1339, :day=>"Friday", :time=> "3pm", :capacity => 5)
 
 
 full.teams << two
-
 somewhat_full.teams << tone
-empty.teams << tthree
+spank.teams << tthree

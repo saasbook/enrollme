@@ -14,6 +14,12 @@ class FileController < ApplicationController
     rows << ["Team ID", "Discussion Number", "Student ID", "Student Name"]
     Team.approved_teams.each do |t|
       discussion = Discussion.find_by_id(t.discussion_id)
+      
+      if(discussion.nil?)
+        byebug
+      end
+      
+      
       t.users.each do |u|
         rows << [t.id, discussion.number, u.sid, u.name]
       end
