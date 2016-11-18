@@ -20,15 +20,18 @@ Rails.application.routes.draw do
   resources :admins, except: :show
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
-  # get '/admin/show_accepted', to: 'admins#show_accepted'
-  # get '/admin/show_pending', to: 'admins#show_pending'
-  # get '/admin/show_forming', to: 'admins#show_forming'
-  # get '/admin/show_all', to: 'admins#show_all'
 
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
   get 'download_team_info', to: "file#download_approved_teams"
-
+  
+  
+  get 'upload_discussion_info', to: "discussion#show"
+  post 'upload_discussion_info', to: "discussion#create"
+  get 'add_discussion_info', to: "discussion#add"
+  put 'add_discussion_info', to: "discussion#create"
+  # post 'cancel_discussion_info', to: "discussion#show"
+  
   resources :submissions
   
   root 'session#new'

@@ -30,7 +30,7 @@ class AdminsController < ApplicationController
   def index
     # byebug
     status = params[:status]
-    @stat_loc = "Team List: Showing #{status} Teams"
+    @status = status
     @teams_li = Team.filter_by(status)
     render 'show'
   end

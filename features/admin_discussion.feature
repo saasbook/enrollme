@@ -10,44 +10,28 @@ Feature: admin adds discussion times
     And I am on the login page
 
   Scenario: Admin successfully goes to a new admin discussion list page
-    # Given PENDING: I fill in "Email" with "supreme_ruler@aol.com"
-    # And PENDING: I fill in "Password" with "ilikcats"
-    # And PENDING: I press "Log In"
-    Given PENDING: I log in as an admin with email "supreme_ruler@aol.com"
-    Then PENDING: I should see "Team List"
-    When PENDING: I click on "add disscussion times"
-    Then PENDING: I should see "Discussion List"
-
+    Given I log in as an admin with email "supreme_ruler@aol.com"
+    When I press "Choose Discussions"
+    Then I should see "Discussion Sections"
     
-  Scenario: Admin successfully adds discussion times
-    # Given PENDING: I fill in "Email" with "supreme_ruler@aol.com"
-    # And PENDING: I fill in "Password" with "ilikcats"
-    # And PENDING: I press "Log In"
-    Given PENDING: I log in as an admin with email "supreme_ruler@aol.com"
-    When PENDING: I click on "add disscussion times"
-    And PENDING: I fill in "CCN" with "#{discussion[:ccn]}"
-    And PENDING: I select "#{discussion[:times]}" from "Times"
-    And PENDING: I press "Add Discussion"
-    Then PENDING: I should see "discussion added"
+  Scenario: Admin successfully sees add discussion form
+    Given I log in as an admin with email "supreme_ruler@aol.com"
+    When I press "Choose Discussions"
+    When I press "Add Discussions"
+    Then I should see "Add New Discussion"
     
-  Scenario: Admin deletes discussion time he accidentally added
-    # Given PENDING: I fill in "Email" with "supreme_ruler@aol.com"
-    # And PENDING: I fill in "Password" with "ilikcats"
-    # And PENDING: I press "Log In"
-    Given PENDING: I log in as an admin with email "supreme_ruler@aol.com"
-    When PENDING: I click on "add disscussion times"
-    And PENDING: I fill in "CCN" with "#{discussion[:ccn]}"
-    And PENDING: I select "#{discussion[:times]}" from "Times"
-    And PENDING: I press "Delete Discussion"
-    Then PENDING: I should see "discussion deleted"
+  Scenario: Admin successfully adds a new discussion
+    Given I log in as an admin with email "supreme_ruler@aol.com"
+    When I press "Choose Discussions"
+    And I press "Add Discussions"
+    Then I should see "Add New Discussion"
+    When I fill in "ccn" with "12345"
+    And I select "Monday" from "day"
+    And I fill in "time" with "3"
+    And I fill in "capacity" with "20"
+    And I press "Add Discussion"
+    Then I should see "Discussion Sections"
+    And the team with ccn "12345", day "Monday", time "3", and capacity "20" should exist
+  
+  
     
-    
-  Scenario: A non-admin fails to add discussion times
-    Given PENDING: I fill in "Email" with "legueoflegends667@hotmail.com"
-    And PENDING: I fill in "Password" with "password1"
-    And PENDING: I press "Log In"
-    
-    When PENDING: I go to the approve team "1" page
-    Then PENDING: I should see "Permission denied"
-    And PENDING: I go to the disapprove team "1" page
-    Then PENDING: I should see "Permission denied"

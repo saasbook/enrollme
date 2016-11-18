@@ -1,0 +1,46 @@
+<html>
+<body>
+  <title>Upload Discussion Sections</title>
+  
+    <div class="container">
+      
+      <h1>Discussion Sections</h1>
+      
+      <div class='btn-toolbar pull-right'>
+        <div class='btn-group'>
+         <%= button_to "Add Discussions", add_discussion_info_path, {method: :get, class: "btn"} %>
+        </div>
+      </div>
+      
+      <br>
+      
+      <table class="table table-striped table-hover">
+        <tr>
+          <!--<td>Select</td>-->
+          <td>CCN</td>
+          <td>Discussion Times</td>
+          <td>Seats Open</td>
+        </tr>
+          
+        <% @discussions.each do |d| %>
+          <tr>
+            <!--<td>%= check_box_tag "select[#{d.id}]", d.id %></td>-->
+            <td><%= d.number %></td>
+            <td><%= d.time %></td>
+            <td><%= d.capacity %></td>
+          </tr>
+        <% end %>
+      </table>
+      
+      <br>
+      
+      <div class='btn-toolbar'>
+        <div class='btn-group'>
+         <%= button_to "Submit Discussions", '/admins/', {method: :get, class: "btn"} %>
+        </div>
+      </div>
+      
+    </div>
+    
+</body>
+</html>

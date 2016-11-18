@@ -1,0 +1,36 @@
+class DiscussionController < ApplicationController
+   
+   def create
+      innerparams = params[:discussion]
+      @disc = Discussion.new({:number => innerparams[:number].to_i, :day => innerparams[:day], :time=>innerparams[:time],
+      :capacity => innerparams[:capacity].to_i})
+      
+      @disc.save!
+      redirect_to upload_discussion_info_path
+   end
+   
+   def show
+      @discussions = Discussion.where("number <> '' AND number IS NOT NULL")
+      .where("day <> '' AND day IS NOT NULL").where("time <> '' AND time IS NOT NULL")
+   end
+   
+
+   def add
+      @disc = Discussion.new()
+      
+      # discussion_params
+      # if @disc.save
+      #    redirect_to upload_discussion_info_path, :notice => "You signed up successfully!"
+      # else
+      #    render upload_discussion_info_path, :notice => "Form is invalid"
+      # end
+      
+      render "/discussion/add.html.erb"
+   end
+   
+   
+   def discussion_params
+      params.require(:discussion).permit(:number, :day, :time, :capacity)
+   end
+   
+end

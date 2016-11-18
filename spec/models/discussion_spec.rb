@@ -32,6 +32,7 @@ RSpec.describe Discussion, type: :model do
     
     @tone = Team.new
     @tone.approved = true
+    @tone.submitted = true
     @tone.passcode = "passcode1"
     @tone.save!
     @tone.users << User.where(name: "Josh")
@@ -43,6 +44,7 @@ RSpec.describe Discussion, type: :model do
     
     @ttwo = Team.new
     @ttwo.approved = false
+    @ttwo.submitted = false
     @ttwo.passcode = "passcode2"
     @ttwo.save!
     @ttwo.users << User.where(name: "JJJ")
@@ -53,12 +55,14 @@ RSpec.describe Discussion, type: :model do
     
     @tofone = Team.new
     @tofone.approved = false
+    @tofone.submitted = false
     @tofone.passcode = "passcode3"
     @tofone.save!
     @tofone.users << User.where(name: "HHH")
     
     @addthis = Team.new
     @addthis.approved = false
+    @addthis.submitted = false
     @addthis.passcode = "passcode4"
     @addthis.save!
     @addthis.users << User.where(name: "Ana")
