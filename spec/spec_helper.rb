@@ -51,4 +51,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+  
+  # Oauth mocking macro
+  config.include(OmniAuthMacros)
 end
+
+OmniAuth.config.test_mode = true

@@ -11,18 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20161117054042) do
-=======
 ActiveRecord::Schema.define(version: 20161117070139) do
->>>>>>> d5ce21dc3581e40f71e1f9deadf8e673f8526b96
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false  
+    t.datetime "updated_at", null: false
   end
 
   create_table "discussions", force: :cascade do |t|
@@ -39,6 +35,7 @@ ActiveRecord::Schema.define(version: 20161117070139) do
     t.integer  "disc1id"
     t.integer  "disc2id"
     t.integer  "disc3id"
+    t.integer  "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,6 +43,7 @@ ActiveRecord::Schema.define(version: 20161117070139) do
   create_table "teams", force: :cascade do |t|
     t.boolean  "approved"
     t.string   "passcode"
+    t.integer  "submission_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.boolean  "submitted"
