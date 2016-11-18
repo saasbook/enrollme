@@ -26,7 +26,7 @@
           <tr>
             <!--<td>%= check_box_tag "select[#{d.id}]", d.id %></td>-->
             <td><%= d.number %></td>
-            <td><%= d.time %></td>
+            <td><%= "#{d.day} #{d.time}" %></td>
             <td><%= d.capacity %></td>
           </tr>
         <% end %>
