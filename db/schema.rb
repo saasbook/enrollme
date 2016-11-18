@@ -11,27 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116015013) do
+ActiveRecord::Schema.define(version: 20161117070139) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "updated_at", null: false  
   end
 
   create_table "discussions", force: :cascade do |t|
     t.integer "number"
     t.string  "time"
     t.integer "capacity"
+    t.integer "submission_id"
+    t.string  "day"
   end
+
+  add_index "discussions", ["submission_id"], name: "index_discussions_on_submission_id"
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "disc1id"
     t.integer  "disc2id"
     t.integer  "disc3id"
-    t.integer  "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,7 +42,6 @@ ActiveRecord::Schema.define(version: 20161116015013) do
   create_table "teams", force: :cascade do |t|
     t.boolean  "approved"
     t.string   "passcode"
-
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.boolean  "submitted"

@@ -14,7 +14,7 @@ Feature: Create a new admin
     Given I fill in "Email" with "supreme_ruler@aol.com"
     And I fill in "Password" with "ilikcats"
     And I press "Log In"
-    And I press "Create New Admin"
+    And I follow "Register New Admin"
     And I fill in "Email" with "enrollmeberkeley@gmail.com"
     And I fill in "Password" with "aaa"
     And I fill in "Name" with "Enroll Me"
