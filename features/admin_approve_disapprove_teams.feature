@@ -5,8 +5,8 @@ Feature: Approve/Disapprove teams
   
   Background:
     Given the following admins exist
-      | name | email                  | password |
-  	  | Robert  | supreme_ruler@aol.com  | ilikcats |
+      | name | email                  |
+  	  | Robert  | supreme_ruler@aol.com  |
   	And the following users exist
       |   name    |       email                       | team      | major             |       sid         |  
       | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               |
@@ -29,6 +29,7 @@ Feature: Approve/Disapprove teams
 
   Scenario: Admin successfully changes a team's status from approved to disapproved and back
     Given I log in as an admin with email "supreme_ruler@aol.com"
+    Then print the page body
     When I go to the approve team "1" page
     And I follow "Approved"
     Then I should see "Bob"

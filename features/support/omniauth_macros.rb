@@ -14,8 +14,8 @@ module OmniauthMacros
     # 'token' => 'mock_token',
     # 'secret' => 'mock_secret'
     # }
-      'info' => {
-        'email' => email
+      :info => {
+        :email => email
       }
     }
   end

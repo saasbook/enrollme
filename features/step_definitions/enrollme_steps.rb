@@ -70,7 +70,7 @@ end
 
 # Note: use "0" as team to indicate that this student isn't on a team yet
 Given /^the following users exist$/ do |table|
-  table.rows.each do |name, email, password, team_passcode, major, sid|
+  table.rows.each do |name, email, team_passcode, major, sid|
     next if name == "name" # skipping table header
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
@@ -113,9 +113,9 @@ end
 
 
 Given /^the following admins exist$/ do |table|
-  table.rows.each do |name, email, password|
+  table.rows.each do |name, email|
     next if name == "name" # skipping table header
-    Admin.create!(:name => name, :email => email, :password => password)
+    Admin.create!(:name => name, :email => email)
   end
 end
 
