@@ -6,19 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 people = [
-  		{ :name => "John"                   ,:major => "English"  , :sid => "111"  ,:email => "111@berkeley.edu"       },
-  		{ :name =>  "Josh"                   ,:major => "CS"  ,:sid => "222"  ,:email => "222@berkeley.edu"     },
-  		{ :name =>  "Jorge"                   ,:major => "English"  ,:sid => "333"  ,:email => "333@berkeley.edu"       },
-  		{ :name =>  "CCC"                   ,:major => "EECS"  ,:sid => "444"  ,:email => "444@berkeley.edu"  },
- 	  	{ :name =>  "DDD"                   ,:major => "English"  ,:sid => "555"  ,:email => "555@berkeley.edu"    },
- 	  	{:name =>  "EEE"                   , :major =>"English"  ,:sid => "666"  ,:email => "666@berkeley.edu"     },
- 	  	{:name => "FFF"                   ,:major => "EECS"  ,:sid => "777" ,:email => "777@berkeley.edu"  },
- 	  	{:name => "GGG"                   ,:major => "CS"  ,:sid => "888" ,:email => "888@berkeley.edu"  },
- 	  	{:name =>  "HHH"                   ,:major => "English"  ,:sid => "999" ,:email =>"999@berkeley.edu"       },
- 	  	{:name =>  "III"                   ,:major => "English"  ,:sid => "1111" ,:email => "1111@berkeley.edu"  },
- 	  	{:name =>  "JJJ"                   ,:major => "English"  ,:sid => "2222" ,:email => "2222@berkeley.edu" },
- 	  	{:name =>  "Kay"                   ,:major => "EECS"  ,:sid => "3333" ,:email => "3333@berkeley.edu" },
- 	  	{:name =>  "Ana"                   ,:major => "CS"  ,:sid => "4444" ,:email => "4444@berkeley.edu" }
+  		{ :name => "John"                   ,:major => "English"  , :sid => "111"  ,:email => "111@berkeley.edu",:password => "132619"        },
+  		{ :name =>  "Josh"                   ,:major => "CS"  ,:sid => "222"  ,:email => "222@berkeley.edu", :password => "666666"         },
+  		{ :name =>  "Jorge"                   ,:major => "English"  ,:sid => "333"  ,:email => "333@berkeley.edu",:password => "057663"         },
+  		{ :name =>  "CCC"                   ,:major => "EECS"  ,:sid => "444"  ,:email => "444@berkeley.edu",:password => "012343"         },
+ 	  	{ :name =>  "DDD"                   ,:major => "English"  ,:sid => "555"  ,:email => "555@berkeley.edu",:password =>"144083"         },
+ 	  	{:name =>  "EEE"                   , :major =>"English"  ,:sid => "666"  ,:email => "666@berkeley.edu" ,:password =>  "920114"        },
+ 	  	{:name => "FFF"                   ,:major => "EECS"  ,:sid => "777" ,:email => "777@berkeley.edu",:password => "783986"         },
+ 	  	{:name => "GGG"                   ,:major => "CS"  ,:sid => "888" ,:email => "888@berkeley.edu",:password => "564742"         },
+ 	  	{:name =>  "HHH"                   ,:major => "English"  ,:sid => "999" ,:email =>"999@berkeley.edu" ,:password => "634846"        },
+ 	  	{:name =>  "III"                   ,:major => "English"  ,:sid => "1111" ,:email => "1111@berkeley.edu"     ,:password => "663607"    },
+ 	  	{:name =>  "JJJ"                   ,:major => "English"  ,:sid => "2222" ,:email => "2222@berkeley.edu",:password => "464123"         },
+ 	  	{:name =>  "Kay"                   ,:major => "EECS"  ,:sid => "3333" ,:email => "3333@berkeley.edu",:password => "370603"         },
+ 	  	{:name =>  "Ana"                   ,:major => "CS"  ,:sid => "4444" ,:email => "4444@berkeley.edu" ,:password =>"758603"        }
     ]
     
 people.each do |ue|
@@ -61,10 +61,9 @@ tthree.users << User.where(name: "III")
 
 
 admins = [
-  		{ :name => "Anna", :email => "sid.masih@berkeley.edu"},
-  		{ :name => "Bruce", :email => "dkoh@berkeley.edu"},
-  		{ :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com"},
-  		{ :name => "Susan", :email => "v.mathuria@berkeley.edu"}
+  		{ :name => "Anna", :email => "sid.masih@berkeley.edu",:password => "appleaimer" },
+  		{ :name => "Bruce", :email => "dkoh@berkeley.edu",:password => "bananabruiser" },
+  		{ :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :password => "eecseecseecs" }
   ]
   
 admins.each do |a|
@@ -72,13 +71,14 @@ admins.each do |a|
 end
 
 
-full = Discussion.create!(:number => 666, :day=> "Wed", :time=> "3pm", :capacity => 3)
-somewhat_full = Discussion.create!(:number => 420, :day=> "Thur", :time=> "3pm", :capacity => 5)
-Discussion.create!(:number => 1337, :day=>"Wed", :time=> "3pm", :capacity => 5)
-Discussion.create!(:number => 1338, :day=>"Thu", :time=> "3pm", :capacity => 5)
-Discussion.create!(:number => 1339, :day=>"Fri", :time=> "3pm", :capacity => 5)
+full = Discussion.create!(:number => 666, :day=> "Wednesday", :time=> "3pm", :capacity => 3)
+somewhat_full = Discussion.create!(:number => 420, :day=> "Thursday", :time=> "3pm", :capacity => 5)
+spank = Discussion.create!(:number => 504, :day=> "Friday", :time=> "2pm", :capacity => 20)
+Discussion.create!(:number => 1337, :day=>"Wednesday", :time=> "3pm", :capacity => 5)
+Discussion.create!(:number => 1338, :day=>"Thusday", :time=> "3pm", :capacity => 5)
+Discussion.create!(:number => 1339, :day=>"Friday", :time=> "3pm", :capacity => 5)
 
 
 full.teams << two
-
 somewhat_full.teams << tone
+spank.teams << tthree

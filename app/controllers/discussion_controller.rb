@@ -10,8 +10,7 @@ class DiscussionController < ApplicationController
    end
    
    def show
-      @discussions = Discussion.where("number <> '' AND number IS NOT NULL")
-      .where("day <> '' AND day IS NOT NULL").where("time <> '' AND time IS NOT NULL")
+      @discussions = Discussion.all
    end
    
 

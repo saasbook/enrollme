@@ -87,7 +87,7 @@
         <% @discussions.each do |d| %>
           <tr>
             <td></td>
-            <td><%= d.time %></td>
+            <td><%= "#{d.day} #{d.time}" %></td>
             <td><%= d.seats_open %></td>
           </tr>
         <% end %>

@@ -5,8 +5,8 @@ Feature: admin adds discussion times
   
   Background:
     Given the following admins exist
-      | name | email                  |
-  	  | Bob  | supreme_ruler@aol.com  |
+      | name | email                  | password |
+  	  | Bob  | supreme_ruler@aol.com  | ilikcats |
     And I am on the login page
 
   Scenario: Admin successfully goes to a new admin discussion list page
