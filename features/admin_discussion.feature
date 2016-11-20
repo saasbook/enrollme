@@ -5,8 +5,8 @@ Feature: admin adds discussion times
   
   Background:
     Given the following admins exist
-      | name | email                  | password |
-  	  | Bob  | supreme_ruler@aol.com  | ilikcats |
+      | name | email                  |
+  	  | Bob  | supreme_ruler@aol.com  |
     And I am on the login page
 
   Scenario: Admin successfully goes to a new admin discussion list page
@@ -33,5 +33,3 @@ Feature: admin adds discussion times
     Then I should see "Discussion Sections"
     And the team with ccn "12345", day "Monday", time "3", and capacity "20" should exist
   
-  
-    

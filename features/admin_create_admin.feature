@@ -18,5 +18,5 @@ Feature: Create a new admin
     Then I should see "Welcome Back, Bob!"
     And I should see "You created admin Enroll Me successfully!"
     And I follow "Logout"
-    And I log in as an admin with email "enrollme@aol.com"
+    And I log in as an admin with email "enrollmeberkeley@gmail.com"
     Then I should see "Welcome Back, Enroll Me!"
