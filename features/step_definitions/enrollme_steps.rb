@@ -74,7 +74,7 @@ Given /^the following users exist$/ do |table|
     next if name == "name" # skipping table header
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
-      @team = Team.create!(:approved => false, :passcode => team_passcode) if @team.nil?
+      @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
       User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid)
     else
       User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid)
@@ -102,6 +102,17 @@ Then /^print the page body$/ do
   puts page.body
 end
 
+Then /^byebug$/ do
+  byebug
+end
+
+Then /^save and open page$/ do
+  save_and_open_page
+end
+
+Then /^screenshot and open image$/ do
+  Capybara::Screenshot.screenshot_and_open_image
+end
 
 Then /^I should see "([^"]*)" button/ do |name|
   should have_button name

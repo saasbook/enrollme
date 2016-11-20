@@ -96,3 +96,7 @@ module OmniauthMacros
 end
 
 World(OmniauthMacros)
+
+require 'capybara-screenshot/cucumber'
+
+Capybara::Screenshot.autosave_on_failure = false

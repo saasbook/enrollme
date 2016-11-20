@@ -7,4 +7,3 @@ Feature: Login with gmail oauth
     Given I am on the login page
     And I log in as a user with email "flimflam@berkeley.edu"
     Then I should see "Account not created yet, please sign up!"
-
