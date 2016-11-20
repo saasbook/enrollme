@@ -6,16 +6,17 @@ Feature: An admin edits a team
   
   Background:
     Given the following users exist
-     | name  |       email                    | password   |team_passcode | major           | sid  |
- 	 | Sahai | eecs666@hotmail.com            | mypassword | penguindrool | EECS            | 000  |
-  	 | Jorge | legueoflegends667@hotmail.com  | password1  | penguindrool | Football Player | 999  |
-  	 | Kandi | justanotheremail@aol.com       | myname555  | anotherteam  | EECS            | 567  |
+     | name  |       email                    |team_passcode | major           | sid  |
+ 	 | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  |
+  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  |
+  	 | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  |
     And the following admins exist
-      | name | email                  | password |
-  	  | Bob  | supreme_ruler@aol.com  | ilikcats |
+      | name | email                  |
+  	  | Bob  | supreme_ruler@aol.com  |
     And the following discussions exist
    	 | number  | time         |  capacity |
    	 | 54321   | Tues, 3pm    |  25       |
+    And I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
     And I am on the team "1" page
 
