@@ -39,8 +39,6 @@ Feature: Approve/Disapprove teams
   Scenario: Admin only sees unsubmitted teams under the Forming page
     Given I log in as an admin with email "supreme_ruler@aol.com"
     When I follow "Forming"
-    Then print the page body
-    Then byebug
     Then I should see "Jorge"
     And I should not see "Bob"
     And I should not see "Sahai"
