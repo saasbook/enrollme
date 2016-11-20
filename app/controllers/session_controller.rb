@@ -17,14 +17,10 @@ class SessionController < ApplicationController
   end
   
   def create
-    if Rails.env.test?
-      user = User.user_from_oauth(OmniAuth.config.mock_auth[:google])
-      admin = Admin.admin_from_oauth(OmniAuth.config.mock_auth[:google])
-    else
-      user = User.user_from_oauth(env["omniauth.auth"])
-      admin = Admin.admin_from_oauth(env["omniauth.auth"])
-    end
-    session[:user_email] = env["omniauth.auth"].info.email
+    oauth_hash = Rails.env.test? ? OmniAuth.config.mock_auth[:google] : env["omniauth.auth"]
+    user = User.user_from_oauth(oauth_hash)
+    admin = Admin.admin_from_oauth(oauth_hash)
+    session[:user_email] = oauth_hash[:info][:email]
     if user.nil?
       if admin.nil?
         return redirect_to new_user_path, notice: "Account not created yet, please sign up!"

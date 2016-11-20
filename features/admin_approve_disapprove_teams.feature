@@ -30,6 +30,7 @@ Feature: Approve/Disapprove teams
   Scenario: Admin successfully changes a team's status from approved to disapproved and back
     Given I log in as an admin with email "supreme_ruler@aol.com"
     When I go to the approve team "1" page
+    Then print the page body
     And I follow "Approved"
     Then I should see "Bob"
     And I go to the disapprove team "1" page
