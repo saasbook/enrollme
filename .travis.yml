@@ -1,18 +1,17 @@
 language: ruby
 rvm:
- - 2.2
-
+- 2.2
 before_script:
-  - gpg --passphrase "$KEY" --output config/application.yml \
-       --decrypt config/application.yml.asc
+- gpg --passphrase "$KEY" --output config/application.yml \ --decrypt config/application.yml.asc
 script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
-  - bundle exec rspec
-  - bundle exec cucumber
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec
+- bundle exec cucumber
 after_script:
-  - bundle exec rake send_to_codeclimate 
-
+- bundle exec rake send_to_codeclimate
 addons:
-    code_climate:
-        repo_token: 46e45a2fe953633bb2ecd54b9c1591d951cb25efa6c6987ccd9335aebfa95fe6
+  code_climate:
+    repo_token: 46e45a2fe953633bb2ecd54b9c1591d951cb25efa6c6987ccd9335aebfa95fe6
+KEY=169fall2016vsjdad:
+  secure: jIX9JppMe+fuPqdzhqgOeJzy8RSA535E/ez2ADOIJSkCHWNX0XxIgtIctqPUeJOHDhz6pFgz/LeYNqfRA8ihETq3ytCMusnpou0UcPxGBVVQUEE6Vxf1CoUDGU1NF26e6/mLJAY6W/esILMfBjQLUc1ofImcxt8dWcsUDy094M8qMvV0OwIv28ouuBQTELLEvO8TEexuELxgs+fcTs9BVsuDSM7UNU3CrhCGCODiHkM3DgR7gstBiSHp+MdzjRO3DTwXMwNmWfQPhruZRJMwmzb7bi4A85/DAikbl8o+ur5DepFzTiIYq71+6G75NEIo+TEk3bonTHGnsuef41l2ojYMMnzm4LJXKDpk9uBXznWDpo6b1kKPHgcbHVQo/CMUVCyWFLv1PDYUN2FrZVhpvQqiLb4nrviFYNi3s/2p4H8P53jSS3dpDsXNRWXv3OhX8jERsjgnj/BjlLqJ2hkUxJpJx8c9bI1TAtffVrdy3KdlXb4wKLxgFYYOnWkV0FRbd8ZT1XiW/NDKNnnbmbHGKtNZYEUqHmVLKe/yb0dyde01KmaNIg+9mAvWR0xi6kqpeN6IX6IJJV3oT0UadLAttl01fpFMekOPbwwwfaw/1yhMcEbWUY+1Ky1v04gJdf9K5zCPHlZB7O6+hkgNCa0qWRaxpIewmaoCaqo5/vZhfm0=
