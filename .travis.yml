@@ -2,6 +2,9 @@ language: ruby
 rvm:
  - 2.2
 
+before_script:
+  - gpg --passphrase "$KEY" --output config/application.yml \
+       --decrypt config/application.yml.asc
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare
