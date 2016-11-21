@@ -5,7 +5,6 @@ class Admin < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, length: { maximum: 50 }, format: VALID_EMAIL_REGEX
   
   def self.admin_from_oauth(auth)
-    # byebug
     return Admin.find_by(:email => auth[:info][:email])
   end
 
