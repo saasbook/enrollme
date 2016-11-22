@@ -33,5 +33,3 @@ Feature: admin adds discussion times
     Then I should see "Discussion Sections"
     And the team with ccn "12345", day "Monday", time "3", and capacity "20" should exist
   
-  
-    

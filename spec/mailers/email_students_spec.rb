@@ -6,7 +6,7 @@ RSpec.describe EmailStudents, type: :mailer do
     ActionMailer::Base.delivery_method = :test
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
-    @user = User.create(:name => "David", :email => "nemosalsa@gmail.com", :password => "password", :sid => "12345678", :major => "EECS")
+    @user = User.create(:name => "David", :email => "nemosalsa@gmail.com", :sid => "12345678", :major => "EECS")
     EmailStudents.submit_email(@user).deliver_later
   end
   

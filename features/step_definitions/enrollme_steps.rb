@@ -3,19 +3,13 @@ Given /^PENDING: .*$/ do
 end
 
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
-  password = Admin.find_by_email(email).password
-  step "I am on the login page"
-  step %Q{I fill in "Email" with "#{email}"}
-  step %Q{I fill in "Password" with "#{password}"}
-  step %Q{I press "Log In"}
+  mock_auth_hash(email)
+  click_link "log_in"
 end
 
 Given /^I log in as a user with email "([^"]*)"$/ do | email |
-  password = User.find_by_email(email).password
-  step "I am on the login page"
-  step %Q{I fill in "Email" with "#{email}"}
-  step %Q{I fill in "Password" with "#{password}"}
-  step %Q{I press "Log In"}
+  mock_auth_hash(email)
+  click_link "log_in"
 end
 
 And /^I log out$/ do
@@ -66,14 +60,14 @@ end
 
 # Note: use "0" as team to indicate that this student isn't on a team yet
 Given /^the following users exist$/ do |table|
-  table.rows.each do |name, email, password, team_passcode, major, sid|
+  table.rows.each do |name, email, team_passcode, major, sid|
     next if name == "name" # skipping table header
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
       @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
-      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :password => password)
+      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid)
     else
-      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :password => password)
+      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid)
     end
   end
 end
@@ -98,6 +92,17 @@ Then /^print the page body$/ do
   puts page.body
 end
 
+Then /^byebug$/ do
+  byebug
+end
+
+Then /^save and open page$/ do
+  save_and_open_page
+end
+
+Then /^screenshot and open image$/ do
+  Capybara::Screenshot.screenshot_and_open_image
+end
 
 Then /^I should see "([^"]*)" button/ do |name|
   should have_button name
@@ -109,9 +114,9 @@ end
 
 
 Given /^the following admins exist$/ do |table|
-  table.rows.each do |name, email, password|
+  table.rows.each do |name, email|
     next if name == "name" # skipping table header
-    Admin.create!(:name => name, :email => email, :password => password)
+    Admin.create!(:name => name, :email => email)
   end
 end
 

@@ -13,7 +13,7 @@ RSpec.describe AdminsController, type: :controller do
   
   describe "session has information for an admin that does not exist" do
     it "should not show the page for a deleted account" do
-      Admin.create!({:name => "admin", :email => "admin@admin.com", :password => "123"})
+      Admin.create!({:name => "admin", :email => "admin@admin.com"})
       session[:user_id] = 1
       session[:is_admin] = true
       get :index

@@ -2,16 +2,14 @@ Feature: I should choose my major from a dropdown menu when filling my informati
 
 Background:
     Given the following users exist
-     |   name    |       email       |password |team_passcode | major        |       sid      |
-  	 | Jorge    |    legueoflegends667@hotmail.com  | password1 | 0 | Football Player | 999  |
- 	   | Sahai     | eecs666@hotmail.com        | mypassword     | penguindrool | EECS            | 000  |
+     |   name    |       email       |team_passcode | major        |       sid      |
+  	 | Jorge    |    legueoflegends667@hotmail.com  | 0 | Football Player | 999  |
+ 	   | Sahai     | eecs666@hotmail.com        | penguindrool | EECS            | 000  |
     And I am on the login page
   
   
  Scenario: An existing user logs in, joins a team, and edits his major
-    Given I fill in "Email" with "legueoflegends667@hotmail.com"
-    And I fill in "Password" with "password1"
-    And I press "Log In"
+    Given I log in as a user with email "legueoflegends667@hotmail.com"
     
     And I fill in "team_hash" with "penguindrool"
     And I press "Join"
@@ -27,5 +25,4 @@ Background:
     And I fill in "Email" with "david@berkeley.edu"
     And I fill in "Sid" with "12345678"
     And I select "DECLARED CS/EECS Major" from "major"
-    And I fill in "Password" with "bestpasswordeva"
     And I press "Sign Up"

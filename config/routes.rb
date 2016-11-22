@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post 'login', to: 'session#create'
   get 'logout', to: 'session#destroy'
   
+  get 'auth/:provider/callback', to: 'session#create'
+  get 'auth/failure', to: redirect('/')
   
   resources :admins, except: :show
   get '/admin/approve_team', to: 'admins#approve'
@@ -37,8 +39,6 @@ Rails.application.routes.draw do
 
   # TODO: something for route not found
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
-
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

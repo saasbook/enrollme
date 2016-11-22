@@ -5,21 +5,21 @@ Feature: Approve/Disapprove teams
   
   Background:
     Given the following admins exist
-      | name | email                  | password |
-  	  | Robert  | supreme_ruler@aol.com  | ilikcats |
+      | name | email                  |
+  	  | Robert  | supreme_ruler@aol.com  |
   	And the following users exist
-      |   name    |       email                       | password              | team      | major             |       sid         |  
-      | Bob       |    bobjones0@berkeley.edu         | password1             | passcode1 | Slavic Studies    | 824               |
-      | Bob1      |    bobjones1@berkeley.edu         | password1             | passcode1 | Slavic Studies    | 825               |
-      | Bob2      |    bobjones2@berkeley.edu         | password1             | passcode1 | Slavic Studies    | 826               |
-      | Bob3      |    bobjones3@berkeley.edu         | password1             | passcode1 | Slavic Studies    | 827               |
-      | Bob4      |    bobjones4@berkeley.edu         | password1             | passcode1 | Slavic Studies    | 828               |
-      | Sahai     |    xxx@berkeley.edu         | password1             | passcode2 | Slav1c Studies    | 830               |
-      | Saha2     |    xx2@berkeley.edu         | password1             | passcode2 | Slav1c Studies    | 831               |
-      | Saha3     |    xx3@berkeley.edu         | password1             | passcode2 | Slav1c Studies    | 832               |
-      | Saha4     |    xx4@berkeley.edu         | password1             | passcode2 | Slav1c Studies    | 833               |
-      | Saha5     |    xx5@berkeley.edu         | password1             | passcode2 | Slav1c Studies    | 834               |
-      | Jorge     |    legueoflegends667@hotmail.com  | password1             | passcode3 | Football Player   | 999               |
+      |   name    |       email                       | team      | major             |       sid         |  
+      | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               |
+      | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               |
+      | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               |
+      | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               |
+      | Bob4      |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               |
+      | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               |
+      | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               |
+      | Saha3     |    xx3@berkeley.edu         | passcode2 | Slav1c Studies    | 832               |
+      | Saha4     |    xx4@berkeley.edu         | passcode2 | Slav1c Studies    | 833               |
+      | Saha5     |    xx5@berkeley.edu         | passcode2 | Slav1c Studies    | 834               |
+      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               |
     And the following discussions exist
    	 | number  | time         |  capacity |
    	 | 54321   | Tues, 3pm    |  25       |
@@ -30,6 +30,7 @@ Feature: Approve/Disapprove teams
   Scenario: Admin successfully changes a team's status from approved to disapproved and back
     Given I log in as an admin with email "supreme_ruler@aol.com"
     When I go to the approve team "1" page
+    Then print the page body
     And I follow "Approved"
     Then I should see "Bob"
     And I go to the disapprove team "1" page

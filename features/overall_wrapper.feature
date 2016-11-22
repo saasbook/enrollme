@@ -6,12 +6,10 @@ Feature: A user can edit their profile
   
   Background:
     Given the following users exist
-     |   name    |       email          | password   |team_passcode | major | sid  |
- 	   |  Sid      | eecs666@hotmail.com  | mypassword | 1            | EECS  | 000  |
+     |   name    |       email          |team_passcode | major | sid  |
+ 	   |  Sid      | eecs666@hotmail.com  | 1            | EECS  | 000  |
     And I am on the login page
-    And I fill in "Email" with "eecs666@hotmail.com"
-    And I fill in "Password" with "mypassword"  
-    And I press "Log In"
+    And I log in as a user with email "eecs666@hotmail.com"
 
   Scenario: Successfully edit my account information
     Given I follow "Edit My Info"

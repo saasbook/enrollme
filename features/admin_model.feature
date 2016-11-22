@@ -5,13 +5,11 @@ Feature: Login to my account
   
   Background:
     Given the following admins exist
-     | name | email                  | password |
-  	 | Bob  | supreme_ruler@aol.com  | ilikcats |
+     | name | email                  |
+  	 | Bob  | supreme_ruler@aol.com  |
 
     And I am on the login page
 
   Scenario: Successfully create an account with my name and email
-    When I fill in "Email" with "supreme_ruler@aol.com"
-    And I fill in "Password" with "ilikcats"
-    And I press "Log In"
-    And I should see "Welcome Back, Bob!"
+    When I log in as an admin with email "supreme_ruler@aol.com"
+    Then I should see "Welcome Back, Bob!"

@@ -8,13 +8,12 @@ Feature: submit team correct behavior
     Given I am on the new_user page
     
   Scenario: I start a team
-    Given I press "Sign Up"
-    And I fill in "Name" with "Bob Jones"
+    Given I fill in "Name" with "Bob Jones"
     And I fill in "Email" with "jonesbob@berkeley.edu"
-    And I fill in "Password" with "bobeecs"
     And I fill in "Sid" with "825825"
     And I select "DECLARED CS/EECS Major" from "major"
     And I press "Sign Up"
+    Then print the page body
     And I press "Create a Team"
     Then I should not see "Team has been submitted!"
     

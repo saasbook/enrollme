@@ -9,6 +9,9 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'haml'
 
+gem "omniauth-google-oauth2", "~> 0.2.1"
+gem "figaro"
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -41,6 +44,7 @@ group :test do
   gem 'factory_girl_rails' # if using FactoryGirl
   gem 'metric_fu'        # collect code metrics
   gem 'codeclimate-test-reporter', '0.6.0', require: nil
+  gem 'capybara-screenshot'
 end
 
 group :development, :test do
