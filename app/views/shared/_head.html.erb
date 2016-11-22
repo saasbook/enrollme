@@ -17,7 +17,8 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a href='/'>Home</a></li>
             <% if session[:user_id].nil? %>
-                <li><%= link_to "Sign up", new_user_path, {method: 'get'} %></li>
+                <li><%= link_to "Sign Up", new_user_path, {method: 'get'} %></li>
+                <li><%= link_to "Log In", "/auth/google_oauth2", id: "log_in_header" %></li>
             <% else %>
               <% if session[:is_admin].nil? %>
                 <li><%= link_to "Edit My Info", edit_user_path(session[:user_id]), {method: 'get'} %></li>

@@ -3,7 +3,7 @@ class SessionController < ApplicationController
   skip_before_filter :authenticate, :except => ['destroy']
   skip_before_filter :check_existence
 
-  def new   
+  def new
     id = session[:user_id]
     if id.nil?
       render 'new'
@@ -17,25 +17,27 @@ class SessionController < ApplicationController
   end
   
   def create
-    @user = User.find_by_email(params[:email])
-    @admin = Admin.find_by_email(params[:email])
-
-    if (@user.nil? or @user.password != params[:password]) and (@admin.nil? or @admin.password != params[:password])
-      return redirect_to login_path, notice: "Invalid email or password"
-    elsif @user.nil?
-      session[:user_id] = @admin.id
-      session[:is_admin] = true
-      return redirect_to admins_path, notice: "Logged in!"
+    oauth_hash = Rails.env.test? ? OmniAuth.config.mock_auth[:google] : env["omniauth.auth"]
+    user = User.user_from_oauth(oauth_hash)
+    admin = Admin.admin_from_oauth(oauth_hash)
+    session[:user_email] = oauth_hash[:info][:email]
+    if user.nil?
+      if admin.nil?
+        return redirect_to new_user_path, notice: "Account not created yet, please sign up!"
+      else
+        session[:user_id] = admin.id
+        session[:is_admin] = true
+        return redirect_to admins_path
+      end
     else
-      session[:user_id] = @user.id
-      return redirect_to without_team_path, notice: "Logged in!" if @user.team.nil?
-      return redirect_to team_path(@user.team), notice: "Logged in!"
+      session[:user_id] = user.id
+      return redirect_to without_team_path, notice: "Logged in!" if user.team.nil?
+      return redirect_to team_path(user.team), notice: "Logged in!"  
     end
   end
   
   def destroy
-    session[:user_id] = nil
-    session[:is_admin] = nil
+    session.clear
     redirect_to login_path, notice: "Logged out!"
   end
   

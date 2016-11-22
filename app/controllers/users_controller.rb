@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       EmailStudents.welcome_email(@user).deliver_later
       
       session[:user_id] = @user.id
+      # session[:user_email] = @user.email
       redirect_to without_team_path, :notice => "You signed up successfully!"
     else
       render 'new', :notice => "Form is invalid"
@@ -68,6 +69,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :sid, :major)
+    params.require(:user).permit(:name, :email, :sid, :major)
   end
 end

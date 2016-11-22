@@ -2,15 +2,13 @@ Feature: navigating to the team page without the correct permissions should fail
   
   Background: users have been added to database
     Given the following users exist
-     |   name    |       email       |password |team | major        |       sid      |
-  		| John         | papajohn@berkeley.edu           | 0  |0    | Gender Studies  | 666    |
-  		| Josh             | legueoflegends666@berkeley.edu | 1 |0    | CS              | 420  |
-  		| Jorge       | legueoflegends667@berkeley.edu         | 2| 0  | Football Player | 999  | 
- 	  	| Sahai       | eecs666@berkeley.edu          | 3 | 0| EECS            | 000  		  |
+     |   name    |       email       |team | major        |       sid      |
+  		| John         | papajohn@berkeley.edu           |0    | Gender Studies  | 666    |
+  		| Josh             | legueoflegends666@berkeley.edu |0    | CS              | 420  |
+  		| Jorge       | legueoflegends667@berkeley.edu         | 0  | Football Player | 999  | 
+ 	  	| Sahai       | eecs666@berkeley.edu          | 0| EECS            | 000  		  |
  	    Given I am on the login page
-      And I fill in "Email" with "papajohn@berkeley.edu"
-      And I fill in "Password" with "0"
-      And I press "Log In"
+ 	    And I log in as a user with email "papajohn@berkeley.edu"
   
    Scenario: I should see team members
         Given I am on the home page

@@ -5,24 +5,18 @@ Feature: Create a new admin
   
   Background:
     Given the following admins exist
-     | name | email                  | password |
-  	 | Bob  | supreme_ruler@aol.com  | ilikcats |
-
+     | name | email                  |
+  	 | Bob  | supreme_ruler@aol.com  |
     And I am on the login page
 
   Scenario: Successfully create an new admin, and new admin logs in
-    Given I fill in "Email" with "supreme_ruler@aol.com"
-    And I fill in "Password" with "ilikcats"
-    And I press "Log In"
+    Given I log in as an admin with email "supreme_ruler@aol.com"
     And I follow "Register New Admin"
     And I fill in "Email" with "enrollmeberkeley@gmail.com"
-    And I fill in "Password" with "aaa"
     And I fill in "Name" with "Enroll Me"
     And I press "Create"
     Then I should see "Welcome Back, Bob!"
     And I should see "You created admin Enroll Me successfully!"
     And I follow "Logout"
-    And I fill in "Email" with "enrollmeberkeley@gmail.com"
-    And I fill in "Password" with "aaa"
-    And I press "Log In"
-    And I should see "Welcome Back, Enroll Me!"
+    And I log in as an admin with email "enrollmeberkeley@gmail.com"
+    Then I should see "Welcome Back, Enroll Me!"

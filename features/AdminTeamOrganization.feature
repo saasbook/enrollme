@@ -3,19 +3,19 @@ Feature: Use an admin acccount to see organized team data
   
   Background:
     Given the following admins exist
-     | name | email                  | password |
-  	 | Bob  | supreme_ruler@aol.com  | ilikcats |
+     | name | email                  |
+  	 | Bob  | supreme_ruler@aol.com  |
     And the following users exist
-     | name  |       email                    | password   |team_passcode | major           | sid  |
-     | Sahai | eecs666@hotmail.com            | mypassword | penguindrool | EECS            | 000  |
-     | Saha2 | eecs667@hotmail.com            | mypassword | penguindrool | EECS            | 001  |
-     | Saha3 | eecs668@hotmail.com            | mypassword | penguindrool | EECS            | 002  |
-     | Saha4 | eecs669@hotmail.com            | mypassword | penguindrool | EECS            | 003  |
-  	 | Jorge | legueoflegends667@hotmail.com  | password1  | penguindrool | Football Player | 999  |
+     | name  |       email                    |team_passcode | major           | sid  |
+     | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  |
+     | Saha2 | eecs667@hotmail.com            | penguindrool | EECS            | 001  |
+     | Saha3 | eecs668@hotmail.com            | penguindrool | EECS            | 002  |
+     | Saha4 | eecs669@hotmail.com            | penguindrool | EECS            | 003  |
+  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  |
     And the following discussions exist
    	 | number  | time         |  capacity |
    	 | 54321   | Tues, 3pm    |  25       |
-
+    And I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
 
   Scenario: See organized data and aprove or not 

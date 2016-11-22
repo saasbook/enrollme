@@ -6,9 +6,9 @@ Feature: edit user information
   
   Background:
     Given the following users exist
-     |   name    |       email       |password |team_passcode | major        |       sid      |
-  	 | Jorge    |    legueoflegends667@hotmail.com  | password1 | 0 | Football Player | 999  |
- 	   | Sahai     | eecs666@hotmail.com        | mypassword     | penguindrool | EECS            | 000  |
+     |   name    |       email       |team_passcode | major        |       sid      |
+  	 | Jorge    |    legueoflegends667@hotmail.com  | 0 | Football Player | 999  |
+ 	   | Sahai     | eecs666@hotmail.com        | penguindrool | EECS            | 000  |
  	
  	And I am on the login page
  	
