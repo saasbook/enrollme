@@ -78,11 +78,17 @@
       
       
       <% if @team.approved %>
-      <br>
+        <br>
+        <br>
+        <br>
         <h3>Team Discussion Information</h3>
         <% disc = Discussion.find(@team.discussion_id) %>
         <h4><%= "CCN: #{disc.number}    Time: #{disc.day} #{disc.time}" %></h4>
       <% else %>
+        <br>
+        <br>
+        <br>
+        <h3>Available Discussions</h3>
         <table class="table table-striped table-hover">
           <tr>
               <td></td>
