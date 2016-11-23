@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   # TODO: something for route not found
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
-  match "*path" => redirect("/")
+  match "*path" => redirect("/"), :via => [:get, post]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
