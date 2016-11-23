@@ -1,4 +1,4 @@
-Feature: Student creates a new account
+Feature: Student gets help 
   As a student
   I want to get help on how to use this website as a student
   I want to click a button that brings me to an info page
