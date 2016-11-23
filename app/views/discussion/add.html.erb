@@ -5,7 +5,7 @@
        
             <h1>Add New Discussion</h1>
             <br><vr>
-            <%= form_for @disc, :html => {:class => "form-horizontal"}, :url => discussion_index_path(@disc.id), :method => :put do |d|%>
+            <%= form_for @disc, :html => {:class => "form-horizontal"}, :url => discussion_index_path, :method => :post do |d|%>
             <fieldset>
             
                 <div class="field form-group">
