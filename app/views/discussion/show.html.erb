@@ -6,11 +6,13 @@
       
       <h1>Discussion Sections</h1>
       
-      <div class='btn-toolbar pull-right'>
-        <div class='btn-group'>
-         <%= button_to "Add Discussions", add_discussion_info_path, {method: :get, class: "btn"} %>
+     <% if session[:is_admin] %>
+        <div class='btn-toolbar pull-right'>
+          <div class='btn-group'>
+           <%= button_to "Add Discussions", add_discussion_info_path, {method: :get, class: "btn"} %>
+          </div>
         </div>
-      </div>
+     <% end %>
       
       <br>
       
@@ -36,7 +38,7 @@
       
       <div class='btn-toolbar'>
         <div class='btn-group'>
-         <%= button_to "Back", '/admins/', {method: :get, class: "btn"} %>
+         <%= button_to "Back", '/', {method: :get, class: "btn"} %>
         </div>
       </div>
       
