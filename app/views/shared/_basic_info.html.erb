@@ -8,5 +8,5 @@
     <%= f.label :name, class: "col-lg-2 control-label" %> <br>
     <%= f.text_field :name, class: "form-control" %>
     <%= f.label :email, class: "col-lg-2 control-label" %> <br>
-    <%= f.text_field :email, {class: "form-control", :readonly => @user.nil? ? false : true} %>
+    <%= f.text_field :email, {class: "form-control", :readonly => (@user.nil? and @admin.nil?) ? true : true} %>
 </div>
