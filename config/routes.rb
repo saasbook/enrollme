@@ -26,8 +26,6 @@ Rails.application.routes.draw do
   get 'download_team_info', to: "file#download_approved_teams"
   
   resources :discussion
-  get 'add_discussion_info', to: "discussion#add"
-  put 'add_discussion_info', to: "discussion#create"
 
   resources :submissions
   
