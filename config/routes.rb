@@ -30,10 +30,10 @@ Rails.application.routes.draw do
   resources :submissions
   
   root 'session#new'
-  
 
   # TODO: something for route not found
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+  match "*path" => redirect("/")
 
 
   # The priority is based upon order of creation: first created -> highest priority.
