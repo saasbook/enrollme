@@ -14,7 +14,7 @@ class DiscussionController < ApplicationController
    end
    
 
-   def add
+   def new
       @disc = Discussion.new()
       
       # discussion_params

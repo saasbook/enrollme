@@ -9,7 +9,7 @@
      <% if session[:is_admin] %>
         <div class='btn-toolbar pull-right'>
           <div class='btn-group'>
-           <%= button_to "Add Discussions", discussion_index_path, {method: :get, class: "btn"} %>
+           <%= button_to "Add Discussions", new_discussion_path, {method: :get, class: "btn"} %>
           </div>
         </div>
      <% end %>
