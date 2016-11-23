@@ -87,14 +87,6 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
     assert_not_equal path_to(page_name), current_path
   end
 end
-  
-Then /^print the page body$/ do
-  puts page.body
-end
-
-Then /^byebug$/ do
-  byebug
-end
 
 Then /^save and open page$/ do
   save_and_open_page
@@ -104,11 +96,11 @@ Then /^screenshot and open image$/ do
   Capybara::Screenshot.screenshot_and_open_image
 end
 
-Then /^I should see "([^"]*)" button/ do |name|
+Then /^I should see the "([^"]*)" button/ do |name|
   should have_button name
 end
 
-Then /^I should not see "([^"]*)" button/ do |name|
+Then /^I should not see the "([^"]*)" button/ do |name|
   should have_no_button name
 end
 

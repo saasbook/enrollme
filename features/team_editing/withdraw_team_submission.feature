@@ -26,5 +26,5 @@ Feature: unsubmit a team
     
   Scenario: An approved team should not be able to change its status
     Given the team with passcode "penguindrool" is approved with discussion number "54321"
-    Then I should not see "Withdraw Team Submission" button
+    Then I should not see the "Withdraw Team Submission" button
     
