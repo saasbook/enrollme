@@ -6,10 +6,10 @@ class DiscussionController < ApplicationController
       :capacity => innerparams[:capacity].to_i})
       
       @disc.save!
-      redirect_to upload_discussion_info_path
+      redirect_to discussion_index_path
    end
    
-   def show
+   def index
       @discussions = Discussion.all
    end
    

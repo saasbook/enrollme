@@ -25,13 +25,10 @@ Rails.application.routes.draw do
   
   get 'download_team_info', to: "file#download_approved_teams"
   
-  
-  get 'upload_discussion_info', to: "discussion#show"
-  post 'upload_discussion_info', to: "discussion#create"
+  resources :discussion
   get 'add_discussion_info', to: "discussion#add"
   put 'add_discussion_info', to: "discussion#create"
-  # post 'cancel_discussion_info', to: "discussion#show"
-  
+
   resources :submissions
   
   root 'session#new'
