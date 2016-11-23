@@ -1,4 +1,4 @@
-Feature: editing a team is impossible after approval
+Feature: Users cannot edit an approved team
 
   As a student and a member of an approved team
   So that I know the final members of my team for CS 169

@@ -12,12 +12,6 @@ Feature: get a csv with the information of all approved teams
      | Saha3 | eecs668@hotmail.com            | penguindrool | EECS            | 002  |
      | Saha4 | eecs669@hotmail.com            | penguindrool | EECS            | 003  |
   	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  |
-  	 | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 967  |
-  	 | Kand2 | justanotheremai2@aol.com       | anotherteam  | EECS            | 968  |
-  	 | Kand3 | justanotheremai3@aol.com       | anotherteam  | EECS            | 969  |
-  	 | Kand4 | justanotheremai4@aol.com       | anotherteam  | EECS            | 970  |
-  	 | Kand5 | justanotheremai5@aol.com       | anotherteam  | Football Player | 971  |
-  	 | Someo | blahblah@aol.com               | 0            | EECS            | 567  |
   	And the following admins exist
   	 | name  | email                  |
   	 | Bob   | supreme_ruler@aol.com  |
@@ -27,10 +21,8 @@ Feature: get a csv with the information of all approved teams
   	And I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
   	And the team with passcode "penguindrool" is approved with discussion number "54321"
-  	And the team with passcode "anotherteam" is submitted
 
   Scenario: An admin successfully downloads approved team information
-    Given I should see "Welcome Back, Bob!"
-    And I follow "Download Approved Teams"
+    Given I follow "Download Approved Teams"
   	Then I should have downloaded a team information file
     

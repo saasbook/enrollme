@@ -15,22 +15,18 @@ Feature: join or create a team
  	   | Saha4     | eecs660@hotmail.com        | penguindrool | EECS            | 004  |
 
     And I am on the login page
+    And I log in as a user with email "legueoflegends667@hotmail.com"
     
-  Scenario: I type in a bad password and the website freaks out
-    Given I log in as a user with email "legueoflegends667@hotmail.com"
-    And I should see "Create or Join a Team"
-    And I fill in "team_hash" with "barbequed_crickets"
+  Scenario: A user tries joining a nonexistent team
+    Given I fill in "team_hash" with "barbequed_crickets"
     And I press "Join"
     Then I should see "Unable to join team"
     
   Scenario: An existing user creates a new team and gets the password
-    Given I log in as a user with email "legueoflegends667@hotmail.com"
-    Then I should see "Create or Join a Team"
-    And I press "Create"
-    And I should see "Team Password:"
+    Given I press "Create"
+    Then I should see "Team Password:"
     
   Scenario: An existing user joins an existing team
-    Given I log in as a user with email "legueoflegends667@hotmail.com"
-    And I fill in "team_hash" with "penguindrool"
+    Given I fill in "team_hash" with "penguindrool"
     And I press "Join"
     Then I should see "Team Password: penguindrool"
