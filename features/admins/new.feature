@@ -9,13 +9,19 @@ Feature: Create an admin account
   	 | Bob   | supreme_ruler@aol.com  |
   	And I am on the login page
   	And I log in as an admin with email "supreme_ruler@aol.com"
+    And I follow "Register New Admin"
 
   Scenario: An admin successfully adds another admin
-    Given I follow "Register New Admin"
-    And I fill in "Name" with "Bob Clone"
+    Given I fill in "Name" with "Bob Clone"
     And I fill in "Email" with "ruler_clone@aol.com"
     And I press "Create"
     Then I log out
     When I log in as an admin with email "ruler_clone@aol.com"
     Then I should see "Welcome Back, Bob Clone!"
+
+  Scenario: An admin fails adding another admin
+    Given I fill in "Name" with "Bob Clone"
+    And I fill in "Email" with "supreme_ruler@aol.com"
+    And I press "Create"
+    Then I should see "Form is invalid"
     
