@@ -17,3 +17,14 @@ Feature: Student creates a new account
   Scenario: User fails to create an account
     And I press "Sign Up"
     Then I should see "Form is invalid"
+    
+  Scenario: An admin cannot sign up as a user
+    Given the following admins exist
+     | name  | email                  |
+  	 | Bob   | supreme_ruler@aol.com  |
+  	And PENDING: I fill in "Name" with "Bob"
+  	And PENDING: I fill in "Email" with "supreme_ruler@aol.com"
+    And PENDING: I fill in "Sid" with "98745632"
+    And PENDING: I select "Other Major" from "major"
+    And PENDING: I press "Sign Up"
+    Then PENDING: I should see "Form is invalid"
