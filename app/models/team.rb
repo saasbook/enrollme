@@ -51,4 +51,10 @@ class Team < ActiveRecord::Base
             return Team.where(approved: false, submitted: false)
         end
     end
+    
+    def add_submission(id)
+        self.update(submitted: true)
+        self.submission_id = id
+        self.save!
+    end
 end
