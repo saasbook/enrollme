@@ -12,6 +12,8 @@ class SubmissionsController < ApplicationController
         @submission.save!
         # TODO : email that submission has been created?
         @team.update(submitted: true)
+        @team.submission_id = @submission.id
+        @team.save!
         return redirect_to team_path(@team), notice: "Thanks for submitting your team for enrollment."
     end
     
