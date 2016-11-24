@@ -7,8 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 admins = [
       { :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :superadmin => false},
-  		{ :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => true},
-  		{ :name => "Tony Lee", :email => "tony.lee@berkeley.edu", :superadmin => false}
+      { :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => true},
+      { :name => "Tony Lee", :email => "tony.lee@berkeley.edu", :superadmin => false}
   ]
   
 admins.each do |a|
