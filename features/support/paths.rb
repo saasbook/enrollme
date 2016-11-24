@@ -28,7 +28,7 @@ module NavigationHelpers
     when /^the disapprove team "([^"]*)" page$/i
       admin_disapprove_team_path(:team_id=>$1)
     when /^the new discussion page$/i
-      discussion_index_path
+      new_discussion_path
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
