@@ -24,8 +24,8 @@ Feature: Super admin deletes an admin
   Scenario: Super Admin successfully transfers super admin ability to another
     When I log in as an admin with email "supreme_ruler@aol.com"
     And PENDING: I press "Edit Admins"
-    And PENDING: I check "transfer_Carol"
-    And PENDING: I press "Transfer to Carol"
+    And PENDING: I choose "transfer_Carol"
+    And PENDING: I press "Transfer"
     Then PENDING: I should see "Admin powers transferred!"
     And PENDING: I should be on the admin home page
     And PENDING: I should not see "Edit Admins"
