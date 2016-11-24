@@ -19,7 +19,7 @@ Feature: Student creates a new account
     Then I should see "Form is invalid"
     
   Scenario: An admin cannot sign up as a user
-    Given PENDING: the following admins exist
+    Given the following admins exist
      | name  | email                  |
   	 | Bob   | supreme_ruler@aol.com  |
   	And PENDING: I fill in "Name" with "Bob"

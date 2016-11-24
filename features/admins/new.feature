@@ -26,7 +26,7 @@ Feature: Create an admin account
     Then I should see "Form is invalid"
     
   Scenario: An admin fails adding a user as an admin
-    Given PENDING: the following users exist
+    Given the following users exist
      | name    |       email          |team_passcode | major | sid  |
  	   | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  |
     Given PENDING: I fill in "Name" with "Sahai"
