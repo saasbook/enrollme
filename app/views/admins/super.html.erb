@@ -1,0 +1,34 @@
+<body>
+    <title>Edit Admins</title>
+    <div class="container">
+        <h1>Edit Admins</h1>
+        <% if @admin.superadmin == true %>
+            <%= form_for @admin, url: {action: "transfer", confirm: "Are you sure?"}, class: "form-horizontal" do |f| %>
+                <fieldset>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                          <td>Admin Name</td> <td>Transfer SuperAdmin Status</td> <td>Delete Admin</td>
+                        </tr>
+                            <% Admin.all.each do |a| %>
+                                <% if a.id != @admin.id %>
+                                    <tr>
+                                        <td><%= a.name %></td>
+                                        <td>
+                                            <%= radio_button_tag "transfer_admin", a.id %>
+                                        </td>
+                                        <td>
+                                            <%= button_to "Delete #{a.name}", admins_path, {method: "delete", confirm: "Are you sure?", class: "btn"} %>
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                    </table>
+                    <div class="actions form-group">
+                        <a href="/" class="btn btn-default">Cancel</a>
+                        <%= f.submit "Transfer", class: "btn btn-primary" %>
+                    </div>
+                </fieldset>
+            <% end %>
+        <% end %>
+    </div>
+</body>

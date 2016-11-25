@@ -54,6 +54,23 @@ class AdminsController < ApplicationController
     redirect_to admins_path
   end
   
+  def superadmin
+    render "super"
+  end
+  
+  def transfer
+    if @admin.superadmin == true
+      other_admin = Admin.find(params[:transfer_admin])
+      @admin.superadmin = false
+      other_admin.superadmin = true
+      @admin.save!
+      other_admin.save!
+      redirect_to admins_path, :notice => "Successfully transferred superadmin powers."
+    else
+      redirect_to admins_path, :notice => "You don't have permission to do that."
+    end
+  end
+  
   private
 
   def validate_admin
@@ -68,6 +85,5 @@ class AdminsController < ApplicationController
   
   def admin_params
     params.require(:admin).permit(:name, :email)
-  end  
-  
+  end
 end
