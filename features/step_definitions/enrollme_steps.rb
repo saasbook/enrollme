@@ -107,9 +107,9 @@ end
 
 
 Given /^the following admins exist$/ do |table|
-  table.rows.each do |name, email|
+  table.rows.each do |name, email, password, superadmin|
     next if name == "name" # skipping table header
-    Admin.create!(:name => name, :email => email)
+    Admin.create!(:name => name, :email => email, :superadmin => superadmin == "true" ? true : false)
   end
 end
 

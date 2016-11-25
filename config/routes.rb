@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/admin/disapprove_team', to: 'admins#disapprove'
   
   get '/admin/superadmin', to: 'admins#superadmin', as: "superadmin"
-  delete 'admin/transfer', to: 'admins#transfer', as: 'admin_delete'
+  patch 'admin/transfer', to: 'admins#transfer', as: 'admin_transfer'
 
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   

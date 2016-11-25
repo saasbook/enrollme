@@ -59,20 +59,22 @@ class AdminsController < ApplicationController
   end
   
   def transfer
-    if @admin.superadmin == true
+    if @admin.superadmin == true and params[:transfer_admin] != nil
       other_admin = Admin.find(params[:transfer_admin])
       @admin.superadmin = false
       other_admin.superadmin = true
       @admin.save!
       other_admin.save!
-      redirect_to admins_path, :notice => "Successfully transferred superadmin powers."
+      notice = "Successfully transferred superadmin powers."
+    elsif @admin.superadmin == true and params[:transfer_admin] === nil
+      notice = "No admin selected for transfer."
     else
-      redirect_to admins_path, :notice => "You don't have permission to do that."
+      notice = "You don't have permission to do that."
     end
+    redirect_to admins_path, :notice => notice
   end
   
   def destroy
-    puts params
     if @admin.superadmin == true and params[:id] != nil
       a = Admin.find(params[:id])
       a.destroy!
