@@ -63,7 +63,15 @@
 
           </table>
           
-
+          <%= form_for @admin, url: {action: "destroy"}, class: "form-horizontal" do |f| %>
+            <fieldset>
+                <%= f.check_box :confirm %>
+                <div class="actions form-group">
+                    <a href="/" class="btn btn-default">Cancel</a>
+                    <%= f.submit "Delete Me", class: "btn btn-primary" %>
+                </div>
+            </fieldset>
+          <% end %>
         </div>
       </div>
     </div>

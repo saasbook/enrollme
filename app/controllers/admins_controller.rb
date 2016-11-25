@@ -26,6 +26,12 @@ class AdminsController < ApplicationController
     @admin.update_attributes!(admin_params)
     return redirect_to admins_path
   end
+  
+  def destroy
+    @admin.destroy!
+    puts session
+    redirect_to root
+  end
 
   def index
     status = params[:status]
