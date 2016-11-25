@@ -28,9 +28,13 @@ class AdminsController < ApplicationController
   end
   
   def destroy
-    @admin.destroy!
-    puts session
-    redirect_to root
+    if params[:confirm] == true
+      @admin.destroy!
+      puts session
+      redirect_to root
+    else
+      redirect_to admins_path, 'Please confirm that you wish to remove your admin account.'
+    end
   end
 
   def index
