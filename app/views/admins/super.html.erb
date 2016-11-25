@@ -17,7 +17,7 @@
                                             <%= radio_button_tag "transfer_admin", a.id %>
                                         </td>
                                         <td>
-                                            <%= button_to "Delete #{a.name}", admins_path, {method: "delete", confirm: "Are you sure?", class: "btn"} %>
+                                            <%= link_to "Delete #{a.name}", admin_path(:id => a.id), {method: "delete", confirm: "Are you sure?", class: "btn"} %>
                                         </td>
                                     </tr>
                                 <% end %>

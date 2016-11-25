@@ -71,6 +71,23 @@ class AdminsController < ApplicationController
     end
   end
   
+  def destroy
+    puts params
+    if @admin.superadmin == true and params[:id] != nil
+      a = Admin.find(params[:id])
+      a.destroy!
+      notice = "You have successfully deleted #{a.name}'s account."
+    elsif params[:confirm] == "true" and admin.superadmin == false
+      @admin.destroy!
+      notice = "You have successfully deleted your admin account."
+    elsif admin.superadmin == true
+      notice = "Please give someone else superadmin powers before deleting yourself."
+    else
+      notice = 'Please confirm that you wish to remove your admin account.'
+    end
+    redirect_to '/', :notice => notice
+  end
+  
   private
 
   def validate_admin
