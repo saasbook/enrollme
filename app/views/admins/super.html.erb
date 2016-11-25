@@ -17,7 +17,7 @@
                                             <%= radio_button_tag "transfer_admin", a.id %>
                                         </td>
                                         <td>
-                                            <%= link_to "Delete #{a.name}", admin_path(:id => a.id), {method: "delete", confirm: "Are you sure?", class: "btn"} %>
+                                            <%= link_to "Delete #{a.name}", admin_path(:id => a.id), class: "btn", data: {method: "delete", confirm: "Are you sure you want to delete #{a.name}?"} %>
                                         </td>
                                     </tr>
                                 <% end %>
@@ -25,7 +25,7 @@
                     </table>
                     <div class="actions form-group">
                         <a href="/" class="btn btn-default">Cancel</a>
-                        <%= f.submit "Transfer", class: "btn btn-primary" %>
+                        <%= f.submit "Transfer", class: "btn btn-primary", data: {confirm: "Are you sure you want to transfer superadmin privileges? You will no longer have access to this page."}  %>
                     </div>
                 </fieldset>
             <% end %>
