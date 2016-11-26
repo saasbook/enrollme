@@ -38,9 +38,7 @@ class AdminsController < ApplicationController
   end
   
   def disapprove
-    @team = Team.find_by_id(params[:team_id])
-    @team.approved = false
-    @team.save!
+    Team.find_by_id(params[:team_id]).withdraw_approval
     redirect_to admins_path
   end
   

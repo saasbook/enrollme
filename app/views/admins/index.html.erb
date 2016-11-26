@@ -31,14 +31,14 @@
               </div>
               <div class='btn-toolbar pull-right'>
                 <%= link_to "Download Approved Teams", download_team_info_path, {method: 'get', class: "btn btn-primary btn-sm"} %>
-                <%= link_to "Email Me", admins_email_path, {method: 'post', class: 'btn btn-success btn-sm'} %>
+                <%= link_to "Email Me", admins_email_path, {method: 'post', class: 'btn btn-info btn-sm'} %>
               </div>
             </h2>  
           </div>
 
           <table class="table table-striped table-hover">
             <tr>
-              <td>Team ID</td> <td>Members</td> <td>Status</td> <td></td>
+              <td>Team ID</td> <td>Members</td> <td>Status</td> <td>Discussions</td> <td></td>
             </tr>
             
             <% @teams_li.each do |t| %>
@@ -49,7 +49,23 @@
                     <%= link_to u.name, user_path(u.id) %> <br>
                   <% end %>
                 </td>
-                <td><%= t.approved ? 'Approved' : (t.submitted ? 'Pending' : 'Forming') %></td>
+                <% if t.approved? %>
+                  <td>Approved</td>
+                  <% d = Discussion.find_by_id(t.discussion_id) %>
+                  <td><%= "CCN: #{d.number}" %>
+                  <br>
+                  <%= "Time: #{d.day} #{d.time}" %>
+                  <br>
+                  <%= "Spots Filled: #{d.count_students} / #{d.capacity}" %></td>
+                <% elsif t.submitted? %>
+                  <td>Pending</td>
+                  <% s = Submission.find_by_id(t.submission_id) %>
+                  <td><%= Discussion.find_by_id(s.disc1id) %></td>
+                  <% s = Submission.find_by_id(t.submission_id) %>
+                  <% s = Submission.find_by_id(t.submission_id) %>
+                <% else %>
+                  <td>Forming</td>
+                <% end %>
                 <td>
                   <div class="btn-group">
                     <%= link_to "Change Status", '#', {:id=>"change_status_#{t.id}", 'data-toggle'=> 'dropdown', class: "btn btn-info btn-sm dropdown-toggle", 'aria-expanded'=> 'false'} %>
