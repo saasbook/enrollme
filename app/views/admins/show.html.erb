@@ -42,10 +42,10 @@
             
             <% @teams_li.each do |t| %>
               <tr>
-                <td><%= t.id %></td>
+                <td><%= link_to t.id, team_path(t.id) %></td>
                 <td>
                   <% t.users.each do |u| %>
-                    <%= u.name %> <br>
+                    <%= link_to u.name, user_path(u.id) %> <br>
                   <% end %>
                 </td>
                 <td><%= t.approved ? 'Approved' : (t.submitted ? 'Pending' : 'Forming') %></td>

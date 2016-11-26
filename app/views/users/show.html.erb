@@ -1,0 +1,16 @@
+<body>
+  <title>My Info</title>
+    <div class="container">
+        <h1>My Info</h1>
+        <br>
+        <% u = User.find_by_id(params[:id])%>
+        <h4>Name: <%= u.name %> </h4>
+        <h4>Email: <%= u.email %> </h4>
+        <h4>SID: <%= u.sid %> </h4>
+        <h4>Major: <%= u.major %> </h4>
+        <h4>Team Password: <%= u.team.nil? ? "Not yet on a team" : u.team.passcode %> </h4>
+        <br>
+        <%= link_to "Back", '#', onclick: "history.back()", class: 'btn btn-primary' %>
+        <%= link_to "Edit", edit_user_path(params[:id]), {class: 'btn', :method => 'get'} %>
+    </div>
+</body>
