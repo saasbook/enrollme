@@ -2,11 +2,14 @@
 <body>
   <title>My Team</title>
   
+  
+  
     <div class="container">
       
       <h1>My Team</h1>
+     
       <h3><%= "Team Password: " + @team.passcode.to_s %></h3>
-      
+     
       <div class="row">
         <div class="col-md-8">
           <h2>Members</h2>
@@ -35,11 +38,35 @@
           </table>
           
         </div>
-        <div class="col-md-4">
-          <a href="http://i.imgur.com/HMC0MK8.jpg" class="btn btn-primary">CS 169 Enrollment</a>
-       </div>
+       
+       
       </div>
+    
+      <h2>Discussions Seats Open</h2>
+      <table class="table table-striped table-hover">
+        <tr>
+            <td></td>
+            <td>Discussions</td>
+            <td>Seats Open</td>
+            <td></td>
+          </tr>
+          
+        <% @discussions.each do |d| %>
+          <tr>
+            <td></td>
+            <td><%= "#{d.day} #{d.time}" %></td>
+            <td><%= d.seats_open %></td>
+          </tr>
+        <% end %>
+      </table>
+      
       <div class="actions">
+        
+        <div class="col-xs-2">
+          <%= link_to '<button class="btn btn-default">Directions</button>'.html_safe, help_path %>
+          
+       </div>
+         
         <div class="col-xs-2"> 
           <%= form_tag edit_team_path(:id => @team.id), method: :get do %>
             <%= hidden_field_tag :unwanted_user, @user.id %>
@@ -75,23 +102,6 @@
           </div>
         <% end %>
       </div>
-      
-      <table class="table table-striped table-hover">
-        <tr>
-            <td></td>
-            <td>Discussions</td>
-            <td>Seats Open</td>
-            <td></td>
-          </tr>
-          
-        <% @discussions.each do |d| %>
-          <tr>
-            <td></td>
-            <td><%= "#{d.day} #{d.time}" %></td>
-            <td><%= d.seats_open %></td>
-          </tr>
-        <% end %>
-      </table>
     </div>
 </body>
 </html>
