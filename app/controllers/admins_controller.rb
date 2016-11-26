@@ -31,9 +31,10 @@ class AdminsController < ApplicationController
   end
   
   def approve
-    @team = Team.find_by_id(params[:team_id])
-    @team.approved = true
-    @team.save!
+    byebug
+    if !(params[:disc].nil?)
+      Team.find_by_id(params[:team_id]).approve_with_discussion(params[:disc])
+    end
     redirect_to admins_path
   end
   
