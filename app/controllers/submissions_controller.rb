@@ -10,8 +10,9 @@ class SubmissionsController < ApplicationController
         @team = Team.find_by_id(@user.team.id)
         @submission = Submission.new(submission_params)
         @submission.save!
-        # TODO : email that submission has been created?
-        @team.update(submitted: true)
+        
+        @team.add_submission(@submission.id)
+        
         return redirect_to team_path(@team), notice: "Thanks for submitting your team for enrollment."
     end
     

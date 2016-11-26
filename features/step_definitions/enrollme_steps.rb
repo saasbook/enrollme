@@ -42,7 +42,8 @@ And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |
 end
 
 And /^my team is submitted$/ do
-  @team.update(:submitted => true)
+  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1)
+  @team.add_submission(1)
 end
 
 And /^the team with passcode "([^"]*)" should be (.*)$/ do | passcode, status |

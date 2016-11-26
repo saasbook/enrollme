@@ -27,20 +27,15 @@ Rails.application.routes.draw do
   
   get 'download_team_info', to: "file#download_approved_teams"
   
-  
-  get 'upload_discussion_info', to: "discussion#show"
-  post 'upload_discussion_info', to: "discussion#create"
-  get 'add_discussion_info', to: "discussion#add"
-  put 'add_discussion_info', to: "discussion#create"
-  # post 'cancel_discussion_info', to: "discussion#show"
-  
+  resources :discussion
+
   resources :submissions
   
   root 'session#new'
-  
 
   # TODO: something for route not found
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+  get "*path", to: redirect("/")
 
 
   # The priority is based upon order of creation: first created -> highest priority.
