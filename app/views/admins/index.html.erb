@@ -1,7 +1,6 @@
 <body>
-  <title>Admin Information</title>
+  <title>Admin Home</title>
     <div class="container">
-<<<<<<< HEAD
       <h2><%= "Welcome Back, " + @admin.name + "!" %></h2>
 
       <div class="row">
@@ -15,8 +14,8 @@
             </div>
 
             </div>
-            <h2 class='text-primary'> Teams </h2>
-            
+            <h3 class='text-primary'> Enrollment Info </h3>
+            <h4 class='text-info'>Percent Filled: 00.00%</h4>
 
             <h2>
               <div class='btn-group'>
@@ -67,15 +66,5 @@
 
         </div>
       </div>
-=======
-        <h1>Admin Information</h1>
-        <br>
-        <% u = Admin.find_by_id(params[:id])%>
-        <h4>Name: <%= u.name %> </h4>
-        <h4>Email: <%= u.email %> </h4>
-        <br>
-        <%= link_to "Back", '#', onclick: "history.back()", class: 'btn btn-primary' %>
-        <%= link_to "Edit", edit_admin_path(params[:id]), {class: 'btn', :method => 'get'} %>
->>>>>>> admin can see team and student info, students can see own info, admins can see own info
     </div>
 </body>

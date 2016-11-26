@@ -23,22 +23,6 @@ class UsersController < ApplicationController
       render 'new', :notice => "Form is invalid"
     end
   end
-  
-  def show
-    render 'show'
-  end
-  
-  def edit
-    render 'edit'
-  end
-  
-  def user_help
-    render 'user_help'
-  end
-  
-  def without
-    render 'without'
-  end
 
   def start_team
     @user.leave_team if !(@user.team.nil?)
@@ -74,8 +58,10 @@ class UsersController < ApplicationController
 
   private
   def check_is_user
-    session[:return_to] ||= request.referer
-    return redirect_to session.delete(:return_to), :notice => 'Permission denied'
+    if session[:is_admin]
+      session[:return_to] ||= request.referer
+      return redirect_to session.delete(:return_to), :notice => 'Permission denied'
+    end
   end
   
   def set_user
