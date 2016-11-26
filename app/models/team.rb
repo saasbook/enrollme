@@ -18,6 +18,7 @@ class Team < ActiveRecord::Base
 
     def withdraw_approval
         self.approved = false
+        self.submitted = false
         self.save!
     end
     

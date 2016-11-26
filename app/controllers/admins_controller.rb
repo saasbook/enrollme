@@ -35,7 +35,6 @@ class AdminsController < ApplicationController
   end
   
   def approve
-    byebug
     if !(params[:disc].nil?)
       Team.find_by_id(params[:team_id]).approve_with_discussion(params[:disc])
     end
