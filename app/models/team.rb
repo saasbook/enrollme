@@ -39,7 +39,7 @@ class Team < ActiveRecord::Base
     
     
     def self.filter_by(status)
-        return Team.all.each if status.nil?
+        return Team.where(approved: true) + Team.where(approved: false, submitted: true) if status.nil?
         case status
         when "All"
             return Team.all.each
@@ -47,6 +47,8 @@ class Team < ActiveRecord::Base
             return Team.where(approved: true)
         when "Pending"
             return Team.where(approved: false, submitted: true)
+        when "Pending | Approved"
+            return Team.where(approved: true) + Team.where(approved: false, submitted: true)
         when "Forming"
             return Team.where(approved: false, submitted: false)
         end
