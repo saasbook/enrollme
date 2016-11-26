@@ -27,6 +27,10 @@ class UsersController < ApplicationController
     render 'edit'
   end
   
+  def user_help
+    render 'user_help'
+  end
+  
   def without
     render 'without'
   end

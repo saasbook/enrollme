@@ -70,4 +70,8 @@ class AdminsController < ApplicationController
     params.require(:admin).permit(:name, :email)
   end  
   
+  def admin_tutorial
+    render 'admin_tutorial'
+  end
+  
 end

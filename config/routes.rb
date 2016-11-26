@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/without_team', to: 'users#without'
   post '/create_team', to: 'users#start_team'
   post '/join_team', to: 'users#join_team'
+  get '/help', to: 'users#user_help'
   
   resources :team
 
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   resources :admins, except: :show
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
+  get '/admin/tutorial', to: 'admins#admin_tutorial'
 
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
