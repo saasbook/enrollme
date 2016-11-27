@@ -3,11 +3,40 @@
     <div class="container">
         <h1>Edit Admins</h1>
         <% if @admin.superadmin == true %>
-            <%= form_for @admin, url: {action: "transfer", confirm: "Are you sure?"}, class: "form-horizontal" do |f| %>
+            <h2>Delete Admins</h2>
+            <%= form_for @admin, url: {action: "delete"}, class: "form-horizontal" do |f| %>
                 <fieldset>
                     <table class="table table-striped table-hover">
                         <tr>
-                          <td>Admin Name</td> <td>Transfer SuperAdmin Status</td> <td>Delete Admin</td>
+                          <td>Admin Name</td> <td>Delete Admin</td>
+                        </tr>
+                            <% Admin.all.each do |a| %>
+                                <% if a.id != @admin.id %>
+                                    <tr>
+                                        <td><%= a.name %></td>
+                                        <td>
+                                            <%= check_box_tag "delete_#{a.name}", true %>
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                    </table>
+                    
+                    <%= label_tag "confirm", "Confirm: " %>
+                    <%= check_box_tag "confirm" %>
+                    <div class="actions form-group">
+                        <a href="/" class="btn btn-default">Cancel</a>
+                        <%= f.submit "Delete", class: "btn btn-primary", data: {confirm: "Are you sure you want to delete these admins? If you wish to reinstate their privileges you will need to sign them up again."}  %>
+                    </div>
+                </fieldset>
+            <% end %>
+            
+            <h2>Transfer SuperAdmin Status</h2>
+            <%= form_for @admin, url: {action: "transfer"}, class: "form-horizontal" do |f| %>
+                <fieldset>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                          <td>Admin Name</td> <td>Transfer SuperAdmin Status</td>
                         </tr>
                             <% Admin.all.each do |a| %>
                                 <% if a.id != @admin.id %>
@@ -16,13 +45,13 @@
                                         <td>
                                             <%= radio_button_tag "transfer_admin", a.id %>
                                         </td>
-                                        <td>
-                                            <%= link_to "Delete #{a.name}", admin_path(:id => a.id), class: "btn", data: {method: "delete", confirm: "Are you sure you want to delete #{a.name}?"} %>
-                                        </td>
                                     </tr>
                                 <% end %>
                             <% end %>
                     </table>
+                    <%= label_tag "confirm", "Confirm: " %>
+                    <%= check_box_tag "confirm" %>
+                    
                     <div class="actions form-group">
                         <a href="/" class="btn btn-default">Cancel</a>
                         <%= f.submit "Transfer", class: "btn btn-primary", data: {confirm: "Are you sure you want to transfer superadmin privileges? You will no longer have access to this page."}  %>
