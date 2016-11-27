@@ -14,18 +14,18 @@
         <%= form_for @submission, url: {action: "create"}, class: "form-horizontal" do |f| %>
             <fieldset>
                 <div class="field form-group">
-                    <%= f.label :disc1id, class: "col-lg-2 control-label" %> <br>
-                    <%= f.collection_select(:disc1id, Discussion.valid_discs_for(@team), :id, :time, {}) %>
+                    <%= f.label "1st Choice", class: "col-lg-2 control-label" %> <br>
+                    <%= f.collection_select(:disc1id, Discussion.valid_discs_for(@team), :id, :info, {}) %>
                 </div>
                 
                 <div class="field form-group">
-                    <%= f.label :disc2id, class: "col-lg-2 control-label" %> <br>
-                    <%= f.collection_select(:disc2id, Discussion.valid_discs_for(@team), :id, :time, {}) %>
+                    <%= f.label "2nd Choice", class: "col-lg-2 control-label" %> <br>
+                    <%= f.collection_select(:disc2id, Discussion.valid_discs_for(@team), :id, :info, {}) %>
                 </div>
                 
                 <div class="field form-group">
-                    <%= f.label :disc3id, class: "col-lg-2 control-label" %> <br>
-                    <%= f.collection_select(:disc3id, Discussion.valid_discs_for(@team), :id, :time, {}) %>
+                    <%= f.label "3rd Choice", class: "col-lg-2 control-label" %> <br>
+                    <%= f.collection_select(:disc3id, Discussion.valid_discs_for(@team), :id, :info, {}) %>
                 </div>
                 
                 <br>
