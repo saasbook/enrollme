@@ -14,8 +14,8 @@ Feature: Super admin deletes an admin
   Scenario: Super admin successfully deletes another admin
     When I log in as an admin with email "supreme_ruler@aol.com"
     And I follow "Manage Admins"
-    And I follow "Delete Carol"
-    And I follow "Manage Admins"
+    And I check "delete_Carol"
+    And I press "Delete"
     Then I should not see "Carol"
     
   Scenario: Regular admin cannot access the super admin page

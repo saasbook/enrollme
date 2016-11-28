@@ -22,8 +22,6 @@
                             <% end %>
                     </table>
                     
-                    <%= label_tag "confirm", "Confirm: " %>
-                    <%= check_box_tag "confirm" %>
                     <div class="actions form-group">
                         <a href="/" class="btn btn-default">Cancel</a>
                         <%= f.submit "Delete", class: "btn btn-primary", data: {confirm: "Are you sure you want to delete these admins? If you wish to reinstate their privileges you will need to sign them up again."}  %>
@@ -49,8 +47,6 @@
                                 <% end %>
                             <% end %>
                     </table>
-                    <%= label_tag "confirm", "Confirm: " %>
-                    <%= check_box_tag "confirm" %>
                     
                     <div class="actions form-group">
                         <a href="/" class="btn btn-default">Cancel</a>
