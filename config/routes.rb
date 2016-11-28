@@ -21,7 +21,11 @@ Rails.application.routes.draw do
   resources :admins, except: :show
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
+  get '/admin/superadmin', to: 'admins#superadmin', as: "superadmin"
+  patch '/admin/transfer', to: 'admins#transfer', as: 'admin_transfer'
+  patch '/admin/delete', to: 'admins#delete', as: 'admin_delete'
   get '/admin/tutorial', to: 'admins#admin_tutorial'
+
 
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   

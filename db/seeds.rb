@@ -64,7 +64,7 @@ tthree.users << User.where(name: "III")
 admins = [
   		{ :name => "Anna", :email => "sid.masih@berkeley.edu"},
   		{ :name => "Bruce", :email => "dkoh@berkeley.edu"},
-  		{ :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com"},
+  		{ :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :superadmin => true},
   		{ :name => "Rihanna", :email => "v.mathuria@berkeley.edu"}
   ]
   
