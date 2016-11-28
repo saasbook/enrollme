@@ -2,11 +2,14 @@
 <body>
   <title>My Team</title>
   
+  
+  
     <div class="container">
       
       <h1>My Team</h1>
+     
       <h3><%= "Team Password: " + @team.passcode.to_s %></h3>
-      
+     
       <div class="row">
         <div class="col-md-8">
           <h2>Members</h2>
@@ -36,7 +39,7 @@
           
         </div>
         <div class="col-md-4">
-          <a href="http://i.imgur.com/HMC0MK8.jpg" class="btn btn-primary">CS 169 Enrollment</a>
+          
           <%= button_to "Discussions", discussion_index_path, {method: :get, class: "btn"} %>
           <% if @team.approved %>
             <br>
@@ -62,7 +65,11 @@
           <% end %>
        </div>
       </div>
+      
       <div class="actions">
+        
+       
+         
         <div class="col-xs-2"> 
           <%= form_tag edit_team_path(:id => @team.id), method: :get do %>
             <%= hidden_field_tag :unwanted_user, @user.id %>
