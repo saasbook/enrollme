@@ -2,7 +2,11 @@
 <body>
   <title>Add New Discussion</title>
     <div class="container">
-       
+        <% if @disc.errors.any? %>
+            <div class="error_messages alert alert-dismissible alert-danger">
+                CCN is either already used or is not 5 digits. Please check your inputs and try again.
+            </div>
+        <% end %>
             <h1>Add New Discussion</h1>
             <br><vr>
             <%= form_for @disc, :html => {:class => "form-horizontal"}, :url => discussion_index_path, :method => :post do |d|%>
@@ -20,9 +24,8 @@
                 </div>
                 
                 <div class="field form-group">
-                 <p><strong>Time</strong></p>
-                    <%= d.text_field :time, class: "col-md-4 form-control", :id => "time" %>
-                    <p class="text-danger"><strong>WARNING:</strong> please use the format H:MM AM/PM, for example 03:15 AM</p>
+                 <p><strong>Starting Time</strong></p>
+                    <%= d.select :day, ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM' ],  {}, {class: "col-md-4 form-control", :id => "day"}%>
                 </div>
                 
                 <div class="field form-group">

@@ -5,8 +5,11 @@ class DiscussionController < ApplicationController
       @disc = Discussion.new({:number => innerparams[:number].to_i, :day => innerparams[:day], :time=>innerparams[:time],
       :capacity => innerparams[:capacity].to_i})
       
-      @disc.save!
-      redirect_to discussion_index_path
+      if @disc.save
+         return redirect_to discussion_index_path
+      else
+         render '/discussion/add.html.erb', :notice => "CCN is either already used or is not 5 digits. Please check your inputs and try again."
+      end
    end
    
    def index
@@ -30,6 +33,16 @@ class DiscussionController < ApplicationController
    
    def discussion_params
       params.require(:discussion).permit(:number, :day, :time, :capacity)
+   end
+   
+   def edit_index
+      @discussions = Discussion.all
+      render '/discussion/edit_index.html.erb'
+   end
+   
+   def edit_index_post
+      @disc = Discussion.find(params[:edit_disc][:edit_disc])
+      render "/discussion/add.html.erb"
    end
    
 end
