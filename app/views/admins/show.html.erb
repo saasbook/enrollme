@@ -62,16 +62,6 @@
             <% end %>
 
           </table>
-          
-          <%= form_for @admin, :url => admin_path(@admin.id), :method => :delete, class: "form-horizontal" do |f| %>
-            <fieldset>
-                <%= label_tag "confirm", "Confirm: " %>
-                <%= check_box_tag "confirm", true %>
-                <div class="actions form-group">
-                    <%= f.submit "Delete Me", class: "btn btn-primary" %>
-                </div>
-            </fieldset>
-          <% end %>
         </div>
       </div>
     </div>
