@@ -53,15 +53,11 @@
             <br>
             <br>
             <h3>Selected Discussion Sections</h3>
-            <% s = Submission.find(@team.submission_id) %>
-            <% d1 = Discussion.find(s.disc1id) %>
-            <% d2 = Discussion.find(s.disc2id) %>
-            <% d3 = Discussion.find(s.disc3id) %>
-            <%= "CCN: #{d1.number} Time: #{d1.day}, #{d1.time}" %>
+            <%= "CCN: #{@d1.number} Time: #{@d1.day}, #{@d1.time}" %>
             <br>
-            <%= "CCN: #{d2.number} Time: #{d2.day}, #{d2.time}" %>
+            <%= "CCN: #{@d2.number} Time: #{@d2.day}, #{@d2.time}" if !(@d2.nil?)%>
             <br>
-            <%= "CCN: #{d3.number} Time: #{d3.day}, #{d3.time}" %>
+            <%= "CCN: #{@d3.number} Time: #{@d3.day}, #{@d3.time}" if !(@d3.nil?)%>
           <% end %>
        </div>
       </div>
@@ -73,7 +69,7 @@
         <div class="col-xs-2"> 
           <%= form_tag edit_team_path(:id => @team.id), method: :get do %>
             <%= hidden_field_tag :unwanted_user, @user.id %>
-            <%= submit_tag "Leave team", :id=> "leave_team", :class=> "btn btn-default" %>
+            <%= submit_tag "Leave team", :id=> "leave_team", :class=> "btn btn-default", :disabled => (session[:is_admin] ? true : false) %>
           <% end %>
         </div>
         <% if @team.approved %>
@@ -90,10 +86,12 @@
           <div class="col-xs-2">  
             Team has been submitted!
           </div>
+        <% elsif Discussion.valid_discs_for(@team).count == 0 %>
+          There are no available discussions.
         <% elsif @team.eligible? %>
           <div class="col-xs-2">
             <%= form_tag submit_team_path(@team) do %>
-              <%= submit_tag "Submit team", class: "btn btn-primary" %>
+              <%= submit_tag "Submit team", class: "btn btn-primary", :disabled => (session[:is_admin] ? true : false) %>
             <% end %>
           </div>
           <div class="col-xs-2">  

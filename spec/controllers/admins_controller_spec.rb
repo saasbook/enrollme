@@ -17,7 +17,7 @@ RSpec.describe AdminsController, type: :controller do
       session[:user_id] = 1
       session[:is_admin] = true
       get :index
-      response.should render_template(:show)
+      response.should render_template(:index)
   
       Admin.find_by_id(1).destroy!
       get :index
