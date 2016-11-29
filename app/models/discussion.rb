@@ -29,5 +29,9 @@ class Discussion < ActiveRecord::Base
         end
         return discs
     end
+    
+    def info
+        return "CCN: #{self.number} | Time: #{self.day} #{self.time} | Enrolled: #{self.count_students} / #{self.capacity}"
+    end
 
 end

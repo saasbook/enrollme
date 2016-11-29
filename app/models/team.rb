@@ -18,6 +18,7 @@ class Team < ActiveRecord::Base
 
     def withdraw_approval
         self.approved = false
+        self.submitted = false
         self.save!
     end
     
@@ -39,15 +40,15 @@ class Team < ActiveRecord::Base
     
     
     def self.filter_by(status)
-        return Team.all.each if status.nil?
-        case status
-        when "All"
+        if status.nil? or status == "Pending | Approved"
+            return Team.where(approved: true) + Team.where(approved: false, submitted: true)
+        elsif status == "All"
             return Team.all.each
-        when "Approved"
+        elsif status == "Approved"
             return Team.where(approved: true)
-        when "Pending"
+        elsif status == "Pending"
             return Team.where(approved: false, submitted: true)
-        when "Forming"
+        elsif status == "Forming"
             return Team.where(approved: false, submitted: false)
         end
     end
