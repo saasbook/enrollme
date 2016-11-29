@@ -53,15 +53,11 @@
             <br>
             <br>
             <h3>Selected Discussion Sections</h3>
-            <% s = Submission.find(@team.submission_id) %>
-            <% d1 = Discussion.find(s.disc1id) %>
-            <% d2 = Discussion.find_by_id(s.disc2id) %>
-            <% d3 = Discussion.find_by_id(s.disc3id) %>
-            <%= "CCN: #{d1.number} Time: #{d1.day}, #{d1.time}" %>
+            <%= "CCN: #{@d1.number} Time: #{@d1.day}, #{@d1.time}" %>
             <br>
-            <%= "CCN: #{d2.number} Time: #{d2.day}, #{d2.time}" if !(d2.nil?)%>
+            <%= "CCN: #{@d2.number} Time: #{@d2.day}, #{@d2.time}" if !(@d2.nil?)%>
             <br>
-            <%= "CCN: #{d3.number} Time: #{d3.day}, #{d3.time}" if !(d3.nil?)%>
+            <%= "CCN: #{@d3.number} Time: #{@d3.day}, #{@d3.time}" if !(@d3.nil?)%>
           <% end %>
        </div>
       </div>
