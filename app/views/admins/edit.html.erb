@@ -11,5 +11,14 @@
                 </div>
             </fieldset>
         <% end %>
+        
+        <h2>Delete Myself</h2>
+        <%= form_for @admin, :url => admin_path(@admin.id), :method => :delete, class: "form-horizontal" do |f| %>
+            <fieldset>
+                <div class="actions form-group">
+                    <%= f.submit "Delete Me", class: "btn btn-danger", data: {confirm: "Are you sure you want to delete yourself? You will be unable to login again."} %>
+                </div>
+            </fieldset>
+          <% end %>
     </div>
 </body>

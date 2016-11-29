@@ -21,7 +21,6 @@ class SessionController < ApplicationController
     user = User.user_from_oauth(oauth_hash)
     admin = Admin.admin_from_oauth(oauth_hash)
     session[:user_email] = oauth_hash[:info][:email]
-    #byebug
     if user.nil?
       if admin.nil?
         return redirect_to new_user_path, notice: "Account not created yet, please sign up!"

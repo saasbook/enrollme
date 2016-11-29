@@ -32,8 +32,8 @@ class Discussion < ActiveRecord::Base
         return discs
     end
     
-    def toString
-       return self.number.to_s + " " + self.day + " " + self.time
+    def info
+        return "CCN: #{self.number} | Time: #{self.day} #{self.time} | Enrolled: #{self.count_students} / #{self.capacity}"
     end
 
 end

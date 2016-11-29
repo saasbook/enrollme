@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'session#create'
   get 'auth/failure', to: redirect('/')
   
-  resources :admins, except: :show
+  resources :admins
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
   get '/admin/superadmin', to: 'admins#superadmin', as: "superadmin"
