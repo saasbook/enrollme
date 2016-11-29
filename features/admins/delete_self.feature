@@ -11,7 +11,8 @@ Feature: Admin deletes his or her account
     And I log in as an admin with email "supreme_ruler@aol.com"
     
   Scenario: Admin successfully deletes his or her account
-    When I follow "Edit My Info"
+    When I follow "My Info"
+    And I follow "Edit"
     And I press "Delete Me"
     Then I should see "Logged out!"
     
