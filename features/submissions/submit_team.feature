@@ -17,10 +17,17 @@ Feature: student submits their team for approval
     
   Scenario: Submit button should not be present when team has only four members
     Given I log in as a user with email "leagueoflegends667@hotmail.com"
+    And I am on the team "1" page
     Then I should not see the "Submit" button
     
   Scenario: Submit button should be present when team has five or more members, and warning should be displayed
     Given I log in as a user with email "eecs666@hotmail.com"
+    And the following discussions exist
+      | number  | time         | capacity |
+   	  | 54321   | Tues, 3pm    |  25      |
+   	  | 54322   | Wed, 3pm     |  25      |
+   	  | 54323   | Thurs, 3pm   |  25      |
+   	And I am on the team "2" page
     Then I should see the "Submit" button
     And I should see "Warning: You need to submit your team"
 
@@ -31,6 +38,7 @@ Feature: student submits their team for approval
    	  | 54321   | Tues, 3pm    |  25      |
    	  | 54322   | Wed, 3pm     |  25      |
    	  | 54323   | Thurs, 3pm   |  25      |
+   	And I am on the team "2" page
    	When I press "Submit"
     And I select "Tues, 3pm" from "submission[disc1id]"
     And I select "Wed, 3pm" from "submission[disc2id]"
@@ -41,21 +49,19 @@ Feature: student submits their team for approval
     
   Scenario: There are no discussions that can take a user's team
     Given I log in as a user with email "eecs666@hotmail.com"
-    When I press "Submit"
-    Then PENDING: I should see "There are no available discussions."
+    Then I should see "There are no available discussions."
     
   Scenario: There is exactly one discussion that can take a user's team
     Given I log in as a user with email "eecs666@hotmail.com"
     And the following discussions exist
       | number  | time         | capacity |
    	  | 54321   | Tues, 3pm    |  25      |
+   	And I am on the team "2" page
     When I press "Submit"
     And I select "Tues, 3pm" from "submission[disc1id]"
-    And PENDING: I should not be able to select from "submission[disc2id]"
-    And PENDING: I should not be able to select from "submission[disc3id]"
-    When PENDING: I press "Submit"
-    Then PENDING: I should see "Team has been submitted!"
-    And PENDING: I should see "Selected Discussion Sections: CCN: 54321 Time: Tues, 3pm"
+    When I press "Submit"
+    Then I should see "Team has been submitted!"
+    And I should see "Selected Discussion Sections CCN: 54321 Time: , Tues, 3pm"
 
   Scenario: User cannot choose two of the same discussion
     Given I log in as a user with email "eecs666@hotmail.com"
@@ -63,6 +69,9 @@ Feature: student submits their team for approval
       | number  | time         | capacity |
    	  | 54321   | Tues, 3pm    |  25      |
    	  | 54322   | Wed, 3pm     |  25      |
+   	And I am on the team "2" page
     When I press "Submit"
     And I select "Tues, 3pm" from "submission[disc1id]"
-    Then PENDING: I should not see "Tues, 3pm" in "submission[disc2id]"
+    And I select "Tues, 3pm" from "submission[disc2id]"
+    And I press "Submit"
+    Then I should see "Please choose 2 different discussions"

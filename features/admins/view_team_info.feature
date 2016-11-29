@@ -24,12 +24,12 @@ Feature: admin can view more information about teams
     And I follow "Pending"
 
   Scenario: An admin accesses a submitted team's page
-  	Given PENDING: I follow "1"
-  	Then PENDING: I should see "Team has been submitted!"
-  	Then PENDING: I should see "Selected Discussion Sections:"
+  	Given I follow "1"
+  	Then I should see "Team has been submitted!"
+  	Then I should see "Selected Discussion Sections"
   	
   Scenario: An admin accesses a user's information
-    Given PENDING: I follow "Sahai"
-    Then PENDING: I should see "SID: 000"
-    And PENDING: I should see "Major: EECS"
+    Given I follow "Sahai"
+    Then I should see "SID: 000"
+    And I should see "Major: EECS"
     

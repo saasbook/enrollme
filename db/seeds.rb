@@ -18,9 +18,10 @@ people = [
  	  	{:name =>  "III"                   ,:major => "English"  ,:sid => "1111" ,:email => "1111@berkeley.edu"},
  	  	{:name =>  "JJJ"                   ,:major => "English"  ,:sid => "2222" ,:email => "2222@berkeley.edu"},
  	  	{:name =>  "Kay"                   ,:major => "EECS"  ,:sid => "3333" ,:email => "3333@berkeley.edu"},
- 	  	{:name =>  "Ana"                   ,:major => "CS"  ,:sid => "4444" ,:email => "4444@berkeley.edu"}
+ 	  	{:name =>  "Ana"                   ,:major => "CS"  ,:sid => "4444" ,:email => "4444@berkeley.edu"},
+ 	  	{:name =>  "Anant Sahai"                   ,:major => "EECS"  ,:sid => "26131973" ,:email => "sid.masih@gmail.com"}
     ]
-    
+
 people.each do |ue|
   User.create!( ue)
 end
@@ -63,7 +64,7 @@ tthree.users << User.where(name: "III")
 admins = [
   		{ :name => "Anna", :email => "sid.masih@berkeley.edu"},
   		{ :name => "Bruce", :email => "dkoh@berkeley.edu"},
-  		{ :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com"},
+  		{ :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :superadmin => true},
   		{ :name => "Rihanna", :email => "v.mathuria@berkeley.edu"}
   ]
   

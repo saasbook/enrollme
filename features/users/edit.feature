@@ -15,13 +15,15 @@ Feature: edit user information
   Scenario: An existing user edits their information
     Given I should not see "NewName"
     And I should see "Sahai"
-    When I follow "Edit My Info"
+    When I follow "My Info"
+    And I follow "Edit"
     And I fill in "Name" with "NewName"
     And I press "Update Information"
     Then I should see "NewName"
     
   Scenario: A user cancels editing their information
     Given I should see "Sahai"
-    When I follow "Edit My Info"
+    When I follow "My Info"
+    And I follow "Edit"
     And I follow "Cancel"
     Then I should see "Sahai"
