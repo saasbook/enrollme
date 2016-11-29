@@ -31,16 +31,14 @@ class AdminsController < ApplicationController
   end
   
   def approve
-    @team = Team.find_by_id(params[:team_id])
-    @team.approved = true
-    @team.save!
+    if !(params[:disc].nil?)
+      Team.find_by_id(params[:team_id]).approve_with_discussion(params[:disc])
+    end
     redirect_to admins_path
   end
   
   def disapprove
-    @team = Team.find_by_id(params[:team_id])
-    @team.approved = false
-    @team.save!
+    Team.find_by_id(params[:team_id]).withdraw_approval
     redirect_to admins_path
   end
   

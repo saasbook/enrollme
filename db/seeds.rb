@@ -21,7 +21,7 @@ people = [
  	  	{:name =>  "Ana"                   ,:major => "CS"  ,:sid => "4444" ,:email => "4444@berkeley.edu"},
  	  	{:name =>  "Anant Sahai"                   ,:major => "EECS"  ,:sid => "26131973" ,:email => "sid.masih@gmail.com"}
     ]
-    
+
 people.each do |ue|
   User.create!( ue)
 end
