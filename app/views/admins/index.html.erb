@@ -43,41 +43,38 @@
             
             <% @teams_li.each do |t| %>
               <tr>
-                <td><%= link_to t.id, team_path(t.id) %></td>
+                <td><%= t.id %></td>
                 <td>
                   <% t.users.each do |u| %>
-                    <%= link_to u.name, user_path(u.id) %> <br>
+                    <%= u.name %> <br>
                   <% end %>
                 </td>
                 <% if t.approved? %>
                   <td>Approved</td>
                   <% d = Discussion.find_by_id(t.discussion_id) %>
-                  <td><%= "CCN: #{d.number}" %>
-                  <br>
-                  <%= "Time: #{d.day} #{d.time}" %>
-                  <br>
-                  <%= "Spots Filled: #{d.count_students} / #{d.capacity}" %></td>
+                  <td>
+                    <%= link_to "Disapprove", admin_disapprove_team_path(:team_id => t.id), {:id=>"disapprove_#{t.id}", :class=>'btn btn-xs btn-info'} %>
+                    <%= d.info %>
+                    </td>
                 <% elsif t.submitted? %>
                   <td>Pending</td>
                   <% s = Submission.find_by_id(t.submission_id) %>
-                  <td><%= Discussion.find_by_id(s.disc1id) %></td>
-                  <% s = Submission.find_by_id(t.submission_id) %>
-                  <% s = Submission.find_by_id(t.submission_id) %>
+                  <td>
+                    <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc1id}"), {:id=>"approve_1", :class=>'btn btn-xs btn-success'} %>
+                    <%= label "disc_#{s.disc1id}", Discussion.find_by_id(s.disc1id).info %>
+                    <br>
+                    <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc2id}"), {:id=>"approve_2", :class=>'btn btn-xs btn-warning'} %>
+                    <%= label "disc_#{s.disc2id}", Discussion.find_by_id(s.disc2id).info %>
+                    <br>
+                    <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc3id}"), {:id=>"approve_3", :class=>'btn btn-xs btn-danger'} %>
+                    <%= label "disc_#{s.disc3id}", Discussion.find_by_id(s.disc3id).info %>
+                  </td>
                 <% else %>
                   <td>Forming</td>
+                  <td></td>
                 <% end %>
-                <td>
-                  <div class="btn-group">
-                    <%= link_to "Change Status", '#', {:id=>"change_status_#{t.id}", 'data-toggle'=> 'dropdown', class: "btn btn-info btn-sm dropdown-toggle", 'aria-expanded'=> 'false'} %>
-                    <ul class="dropdown-menu">
-                      <li><%= link_to "Approve", admin_approve_team_path(:team_id => t), {:id=>"approve_#{t.id}"} %></li>
-                      <li><%= link_to "Disapprove", admin_disapprove_team_path(:team_id => t), {:id=>"disapprove_#{t.id}"} %></li>
-                    </ul>
-                  </div>
-                </td>
               </tr>
             <% end %>
-
           </table>
           
 
