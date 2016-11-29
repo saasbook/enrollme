@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, length: { maximum: 50 }, \
     format: VALID_EMAIL_REGEX, exclusion: { in: Admin.pluck(:email) }
-  validates :major, presence: true, length: { maximum: 50 }
+  validates :major, presence: true
   validates :sid, presence: true, uniqueness: true, length: { maximum: 10 }
   
   def leave_team
