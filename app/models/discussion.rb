@@ -33,7 +33,7 @@ class Discussion < ActiveRecord::Base
     end
     
     def toString
-       return self.number.to_s + " " + self.day + " " + self.time
+       return "#{self.number} #{self.day} #{self.time}"
     end
 
 end

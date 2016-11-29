@@ -8,7 +8,7 @@ class DiscussionController < ApplicationController
       if @disc.save
          return redirect_to discussion_index_path
       else
-         render '/discussion/add.html.erb', :notice => "CCN is either already used or is not 5 digits. Please check your inputs and try again."
+         render '/discussion/add.html.erb'
       end
    end
    
