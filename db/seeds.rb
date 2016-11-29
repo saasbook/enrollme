@@ -18,7 +18,6 @@ people = [
  	  	{:name =>  "III"                   ,:major => "English"  ,:sid => "1111" ,:email => "1111@berkeley.edu"},
  	  	{:name =>  "JJJ"                   ,:major => "English"  ,:sid => "2222" ,:email => "2222@berkeley.edu"},
  	  	{:name =>  "Kay"                   ,:major => "EECS"  ,:sid => "3333" ,:email => "3333@berkeley.edu"},
- 	  	{:name =>  "Dasol"                   ,:major => "EECS"  ,:sid => "33223" ,:email => "dasolyoon@berkeley.edu"},
  	  	{:name =>  "Ana"                   ,:major => "CS"  ,:sid => "4444" ,:email => "4444@berkeley.edu"}
     ]
     
