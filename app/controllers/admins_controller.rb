@@ -10,7 +10,7 @@ class AdminsController < ApplicationController
   
   def create
     @admin = Admin.new(admin_params)
-
+    byebug
     if session[:is_admin] == true and @admin.save
       redirect_to admins_path, :notice => "You created admin " + admin_params["name"] + " successfully!"
     else
