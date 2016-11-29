@@ -94,8 +94,13 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
   end
 end
 
+<<<<<<< dd2bb8a05d181d31db654ef9c1be752650d0e8eb
 Then /^byebug$/ do
   byebug
+=======
+Then /^print page body$/ do
+  puts page.body
+>>>>>>> Can't figure out why cucumber tests are not behaving the same as when I run the app. Gonna move on to another story
 end
 
 Then /^save and open page$/ do
@@ -104,6 +109,10 @@ end
 
 Then /^screenshot and open image$/ do
   Capybara::Screenshot.screenshot_and_open_image
+end
+
+Then /^byebug$/ do
+  byebug
 end
 
 Then /^I should see the "([^"]*)" button/ do |name|
