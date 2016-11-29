@@ -11,6 +11,8 @@ class TeamController < ApplicationController
   end
   
   def submit
+    EmailStudents.successfully_submitted_email(@team).deliver_now
+    
     redirect_to new_submission_path
   end
   
@@ -63,7 +65,5 @@ class TeamController < ApplicationController
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
   end
 
-  
-  
   
 end
