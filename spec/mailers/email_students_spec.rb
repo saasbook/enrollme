@@ -23,7 +23,7 @@ RSpec.describe EmailStudents, type: :mailer do
   end
   
   it 'renders the sender email' do
-    ActionMailer::Base.deliveries.first.from.should == ['support@enrollme.com']
+    ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
   end
     
   after(:each) do
