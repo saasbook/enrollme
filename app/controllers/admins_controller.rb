@@ -34,6 +34,9 @@ class AdminsController < ApplicationController
     @team = Team.find_by_id(params[:team_id])
     @team.approved = true
     @team.save!
+    
+    AdminMailer.send_approved_email(@team).deliver_now
+    
     redirect_to admins_path
   end
   
@@ -41,6 +44,9 @@ class AdminsController < ApplicationController
     @team = Team.find_by_id(params[:team_id])
     @team.approved = false
     @team.save!
+    
+    AdminMailer.send_disapproved_email(@team).deliver_now
+    
     redirect_to admins_path
   end
   

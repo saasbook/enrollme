@@ -26,8 +26,6 @@ people.each do |ue|
   User.create!( ue)
 end
 
-
-
 tone = Team.new
 tone.approved = false
 tone.submitted = false
