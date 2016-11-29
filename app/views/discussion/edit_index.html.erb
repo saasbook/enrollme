@@ -1,0 +1,24 @@
+<html>
+<body>
+  <title>Edit Discussion Sections</title>
+  
+    <div class="container">
+      <h1>Select Discussion Section To Edit</h1>
+      <%= form_tag :html => {:class => "form-horizontal"}, :url => new_discussion_path, :method => :get %>
+          <fieldset>
+          <div class="field form-group">
+              <%= collection_select(:edit_disc, :edit_disc, Discussion.all, :id, :toString, {})%>
+          </div>
+          </fieldset>
+      
+      <div class='btn-toolbar'>
+        <div class="actions form-group">
+            <a href="/" class="btn btn-default">Cancel</a>
+            <%= submit_tag "Submit", class: "btn btn-primary" %>
+        </div>
+      </div>
+      
+    </div>
+    
+</body>
+</html>
