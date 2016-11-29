@@ -34,7 +34,12 @@ Given(/^the team with passcode "([^"]*)" is approved with discussion number "([^
 end
 
 And /^the team with passcode "([^"]*)" is( not)? submitted$/ do | passcode, negate |
-  negate ? Team.find_by_passcode(passcode).update(:submitted => false) : Team.find_by_passcode(passcode).update(:submitted => true)
+  if negate
+    Team.find_by_passcode(passcode).update(:submitted => false)
+  else
+    Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1)
+    Team.find_by_passcode(passcode).add_submission(1)
+  end
 end
 
 And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |

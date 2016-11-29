@@ -17,11 +17,7 @@ class AdminsController < ApplicationController
       render 'new', :notice => "Form is invalid"
     end
   end
-  
-  def edit
-    render 'edit'
-  end
-  
+
   def update
     @admin.update_attributes!(admin_params)
     return redirect_to admins_path
@@ -31,7 +27,7 @@ class AdminsController < ApplicationController
     status = params[:status]
     @status = status
     @teams_li = Team.filter_by(status)
-    render 'show'
+    render 'index'
   end
   
   def approve

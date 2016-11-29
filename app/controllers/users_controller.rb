@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   skip_before_filter :authenticate, :only => ['new', 'create']
+  before_filter :check_is_user, :except => ['new', 'create', 'show']
   before_filter :set_user, :except => ['new', 'create']
 
   def new
@@ -21,18 +22,6 @@ class UsersController < ApplicationController
     else
       render 'new', :notice => "Form is invalid"
     end
-  end
-  
-  def edit
-    render 'edit'
-  end
-  
-  def user_help
-    render 'user_help'
-  end
-  
-  def without
-    render 'without'
   end
 
   def start_team
@@ -68,6 +57,13 @@ class UsersController < ApplicationController
   end
 
   private
+  def check_is_user
+    if session[:is_admin]
+      session[:return_to] ||= request.referer
+      return redirect_to session.delete(:return_to), :notice => 'Permission denied'
+    end
+  end
+  
   def set_user
     @user = User.find_by_id session[:user_id]
   end
