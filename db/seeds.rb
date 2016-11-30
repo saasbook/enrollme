@@ -38,7 +38,8 @@ tone.users << User.where(name: "Josh")
 tone.users << User.where(name: "CCC")
 tone.users << User.where(name: "GGG")
 tone.users << User.where(name: "Jorge")
-tone.users << User.where(name: "Adnan")
+tone.users << User.where(name: "EEE")
+tone.users << User.where(name: "JJJ")
 
 
 
@@ -48,7 +49,6 @@ two.approved = false
 two.submitted = false
 two.passcode = "passcode2"
 two.save!
-two.users << User.where(name: "JJJ")
 two.users << User.where(name: "DDD")
 two.users << User.where(name: "John")
 
