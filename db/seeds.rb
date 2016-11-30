@@ -38,8 +38,7 @@ tone.users << User.where(name: "Josh")
 tone.users << User.where(name: "CCC")
 tone.users << User.where(name: "GGG")
 tone.users << User.where(name: "Jorge")
-tone.users << User.where(name: "EEE")
-tone.users << User.where(name: "JJJ")
+tone.users << User.where(name: "Adnan")
 
 
 
