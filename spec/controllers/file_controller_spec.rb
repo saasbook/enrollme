@@ -4,7 +4,7 @@ RSpec.describe FileController, type: :controller do
     render_views
     describe "GET #download_approved_teams" do
         before do
-            @disc = Discussion.create!(:number => 1337, :time=> "Wed, 3pm", :capacity => 5)
+            @disc = Discussion.create!(:number => 13397, :time=> "Wed, 3pm", :capacity => 5)
             people = [
               { :name => "John"                   ,:major => "English"  , :sid => "111"  ,:email => "111@berkeley.edu"},
               { :name =>  "Josh"                   ,:major => "CS"  ,:sid => "222"  ,:email => "222@berkeley.edu"},

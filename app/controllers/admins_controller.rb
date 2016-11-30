@@ -23,6 +23,11 @@ class AdminsController < ApplicationController
     @admin.update_attributes!(admin_params)
     return redirect_to admins_path
   end
+  
+  def destroy
+    @admin.destroy!
+    redirect_to '/', :notice => "You have successfully deleted your admin account."
+  end
 
   def index
     status = params[:status]
@@ -38,6 +43,9 @@ class AdminsController < ApplicationController
     
     AdminMailer.send_approved_email(@team).deliver_now
     
+    if !(params[:disc].nil?)
+      Team.find_by_id(params[:team_id]).approve_with_discussion(params[:disc])
+    end
     redirect_to admins_path
   end
   
@@ -48,6 +56,7 @@ class AdminsController < ApplicationController
     
     AdminMailer.send_disapproved_email(@team).deliver_now
     
+    Team.find_by_id(params[:team_id]).withdraw_approval
     redirect_to admins_path
   end
   
@@ -103,13 +112,11 @@ class AdminsController < ApplicationController
       a = Admin.find(params[:id])
       a.destroy!
       notice = "You have successfully deleted #{a.name}'s account."
-    elsif params[:confirm] == "true" and admin.superadmin == false
+    elsif @admin.superadmin == false
       @admin.destroy!
       notice = "You have successfully deleted your admin account."
-    elsif admin.superadmin == true
+    elsif @admin.superadmin == true
       notice = "Please give someone else superadmin powers before deleting yourself."
-    else
-      notice = 'Please confirm that you wish to remove your admin account.'
     end
     redirect_to '/', :notice => notice
   end

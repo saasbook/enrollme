@@ -79,9 +79,9 @@ Given /^the following users exist$/ do |table|
 end
 
 Given /^the following discussions exist$/ do |table|
-  table.rows.each do |number, time, capacity, seats_open|
+  table.rows.each do |number, time, day, capacity, seats_open|
     next if number == :number # skipping table header
-    Discussion.create!(:number => number.to_i, :time => time, :capacity => capacity.to_i)
+    Discussion.create!(:number => number.to_i, :time => time, :day => day, :capacity => capacity.to_i)
   end
 end
 

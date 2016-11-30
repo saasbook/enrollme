@@ -45,7 +45,7 @@ Feature: Use an admin acccount to see organized team data
     Then I should see "Sahai"
     
   Scenario: A team with less than 5 members should show up under "Forming"
-    Given I follow "all_teams"
+    Given I follow "All"
     Then I should see "Copy"
     And I should see "Sahai"
     When I follow "Forming"
@@ -53,15 +53,15 @@ Feature: Use an admin acccount to see organized team data
     And I should not see "Sahai"
     
   Scenario: An admin first sees teams under the "Pending" and "Approved" category only
-    Given PENDING: I am on the admin_index page
-    Then PENDING: I should see "Bob0"
-    And PENDING: I should see "Sahai"
-    And PENDING: I should not see "Copy"
+    Given I am on the home page
+    Then I should see "Bob0"
+    And I should see "Sahai"
+    And I should not see "Copy"
 
   Scenario: The "Pending | Approved" category should only contain teams that are pending or approved
-    Given PENDING: I follow "Approved | Pending"
-    Then PENDING: I should see "Bob0"
-    And PENDING: I should see "Sahai"
-    And PENDING: I should not see "Copy"
+    Given I follow "pending_or_approved"
+    Then I should see "Bob0"
+    And I should see "Sahai"
+    And I should not see "Copy"
     
   

@@ -30,6 +30,12 @@ Rails.application.routes.draw do
   
   get 'download_team_info', to: "file#download_approved_teams"
   
+  get '/discussion/edit', to: "discussion#edit_index", as: "edit_discussion_index"
+  
+  post '/discussion/edit', to: "discussion#edit_index_post"
+  
+  post '/discussion/edit_index', to:'discussion#edit_disc', as: "edit_discussion_post"
+  
   resources :discussion
 
   resources :submissions

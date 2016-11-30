@@ -42,7 +42,7 @@ class AdminMailer < ApplicationMailer
    end
    
    def look_at_submission(email)
-      mail(to: email, subject: "Teams are awaiting your approval!") 
+      mail(to: email, subject: "Teams are awaiting your approval!")
    end
    
    def self.send_look_at_submission
