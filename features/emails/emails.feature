@@ -12,12 +12,19 @@ Feature: Email Teams when status changes
   	 | tony | tony@gmail.com        | water         | CS    | 4747 |
   	 | fox  | fox@gmail.com         | water         | CS    | 5646 |
 
+    Given the following admins exist
+      | name | email                  | password |
+  	  | Bob  | supreme_ruler@aol.com  | ilikcats |
+    And I am on the login page
+    And I log in as an admin with email "supreme_ruler@aol.com"
+
   Scenario: Successfully emails all team members when the status changes from unapproved to approved
-    When PENDING: status is "unapproved"
-    And PENDING: admin changes status to "approved"
-    Then PENDING: send emails to team members
+    When I press "Change Status"
+    And I press "Approve"
+    Then "bob@gmail.com" should receive "1" email
       
   Scenario: Successfully emails all team members when the status changes from approved to unapproved
-    When PENDING: status is "approved"
-    And PENDING: admin changes status to "unapproved"
-    Then PENDING: send emails to team members
+    When I press "Change Status"
+    And I press "Disapprove"
+    Then "bob@gmail.com" should receive "1" email
+    

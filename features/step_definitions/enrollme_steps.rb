@@ -129,3 +129,7 @@ end
 Then(/^the team with ccn "([^"]*)", day "([^"]*)", time "([^"]*)", and capacity "([^"]*)" should exist$/) do |ccn, day, time, capacity|
   Discussion.where(:number => ccn, :day => day, :time => time, :capacity => capacity).length.should eq 1
 end
+
+Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
+  unread_emails_for(address).size.should == n.to_i
+end

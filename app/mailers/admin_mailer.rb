@@ -1,6 +1,14 @@
 class AdminMailer < ApplicationMailer
     default from: 'enrollmeberkeley@gmail.com'
    
+   def invite_new_admin(admin)
+      @admin = admin
+      @url = 'https://cs-169-dasolyoon.c9users.io'
+      mail(to: @admin.email, subject: "Superadmin gave you access as admin for EnrollMe") do |format|
+         format.html
+      end
+   end
+   
    def team_list_email(admin)
       @admin = admin
       @url  = 'http://www.gmail.com'
