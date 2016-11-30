@@ -1,6 +1,8 @@
 class Discussion < ActiveRecord::Base
     has_many :teams
     
+    validates :number, presence: true, uniqueness: true, length: { maximum: 5, minimum: 5 }, format: /[0-9]{5}/
+    
     def can_take_team?(team)
         return !!(team.users.length + count_students <= self.capacity)
     end
@@ -28,6 +30,10 @@ class Discussion < ActiveRecord::Base
             discs << disc if (disc.can_take_team?(team))
         end
         return discs
+    end
+    
+    def info
+        return "CCN: #{self.number} | Time: #{self.day} #{self.time} | Enrolled: #{self.count_students} / #{self.capacity}"
     end
 
 end

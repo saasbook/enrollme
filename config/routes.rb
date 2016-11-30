@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/without_team', to: 'users#without'
   post '/create_team', to: 'users#start_team'
   post '/join_team', to: 'users#join_team'
+  get '/help', to: 'users#user_help'
   
   resources :team
 
@@ -17,13 +18,22 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'session#create'
   get 'auth/failure', to: redirect('/')
   
-  resources :admins, except: :show
+  resources :admins
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
+  get '/admin/superadmin', to: 'admins#superadmin', as: "superadmin"
+  patch '/admin/transfer', to: 'admins#transfer', as: 'admin_transfer'
+  patch '/admin/delete', to: 'admins#delete', as: 'admin_delete'
+  get '/admin/tutorial', to: 'admins#admin_tutorial'
+
 
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
   get 'download_team_info', to: "file#download_approved_teams"
+  
+  get '/discussion/edit', to: "discussion#edit_index", as: "edit_discussion_index"
+  
+  post '/discussion/edit', to: "discussion#edit_index_post"
   
   resources :discussion
 

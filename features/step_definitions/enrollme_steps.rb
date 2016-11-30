@@ -34,7 +34,12 @@ Given(/^the team with passcode "([^"]*)" is approved with discussion number "([^
 end
 
 And /^the team with passcode "([^"]*)" is( not)? submitted$/ do | passcode, negate |
-  negate ? Team.find_by_passcode(passcode).update(:submitted => false) : Team.find_by_passcode(passcode).update(:submitted => true)
+  if negate
+    Team.find_by_passcode(passcode).update(:submitted => false)
+  else
+    Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1)
+    Team.find_by_passcode(passcode).add_submission(1)
+  end
 end
 
 And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |
@@ -107,9 +112,9 @@ end
 
 
 Given /^the following admins exist$/ do |table|
-  table.rows.each do |name, email|
+  table.rows.each do |name, email, password, superadmin|
     next if name == "name" # skipping table header
-    Admin.create!(:name => name, :email => email)
+    Admin.create!(:name => name, :email => email, :superadmin => superadmin == "true" ? true : false)
   end
 end
 

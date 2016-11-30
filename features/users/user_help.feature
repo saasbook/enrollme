@@ -16,9 +16,7 @@ Feature: Student gets help
     And I am on the login page
     And I log in as a user with email "legueoflegends667@hotmail.com"
 
-  Scenario: User successfully finds help and returns to main page
-    When PENDING: I press "Help"
-    Then I should see "EnrollMe Tutorial and Help"
-    When I press "Back"
-    Then I should see "My Team"
+  Scenario: User successfully finds help 
+    When I follow "Help"
+    Then I should see "Student Help"
 

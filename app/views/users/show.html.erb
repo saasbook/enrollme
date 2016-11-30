@@ -1,0 +1,15 @@
+<body>
+  <title>Student Information</title>
+    <div class="container">
+        <h1>Student Information</h1>
+        <br>
+        <h4>Name: <%= @user.name %> </h4>
+        <h4>Email: <%= @user.email %> </h4>
+        <h4>SID: <%= @user.sid %> </h4>
+        <h4>Major: <%= @user.major %> </h4>
+        <h4>Team Password: <%= @user.team.nil? ? "Not yet on a team" : @user.team.passcode %> </h4>
+        <br>
+        <%= link_to "Back", '#', onclick: "history.back()", class: 'btn btn-primary' %>
+        <%= link_to "Edit", edit_user_path(params[:id]), {class: 'btn', :method => 'get'} %>
+    </div>
+</body>

@@ -9,7 +9,8 @@ Feature: Create an admin account
   	 | Bob   | supreme_ruler@aol.com  |
     And I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
-    And I follow "Edit My Info"
+    And I follow "My Info"
+    And I follow "Edit"
 
   Scenario: An admin cancels editing their information
     When I follow "Cancel"
