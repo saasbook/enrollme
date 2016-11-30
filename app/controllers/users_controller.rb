@@ -12,15 +12,10 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-
+    
     if @user.save
-<<<<<<< dd2bb8a05d181d31db654ef9c1be752650d0e8eb
       EmailStudents.welcome_email(@user).deliver_later
 
-=======
-      # EmailStudents.welcome_email(@user).deliver_later
-      
->>>>>>> Can't figure out why cucumber tests are not behaving the same as when I run the app. Gonna move on to another story
       session[:user_id] = @user.id
       # session[:user_email] = @user.email
       redirect_to without_team_path, :notice => "You signed up successfully!"
