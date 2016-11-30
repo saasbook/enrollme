@@ -1,0 +1,48 @@
+
+<body>
+  <title>Add New Discussion</title>
+    <div class="container">
+        <% if @disc.errors.any? %>
+            <div class="error_messages alert alert-dismissible alert-danger">
+                CCN is either already used or is not 5 digits. Please check your inputs and try again.
+            </div>
+        <% end %>
+            <h1>Edit Discussion</h1>
+            <br><vr>
+            <%= form_for @disc, :html => {:class => "form-horizontal"}, :url => edit_discussion_post_path, :method => :post do |d|%>
+            <fieldset>
+                <%= d.hidden_field :id, :value => @disc.id %>
+                <div class="field form-group">
+                    <p><strong>CCN</strong></p>
+                    <%= d.text_field(:number, class: "col-md-4 form-control", :id => "ccn") %>
+                </div>
+                
+                <div class="field form-group">
+                    <p><strong>Day</strong></p>
+                    <%= d.select :day, ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],  {}, {class: "col-md-4 form-control", :id => "day"}%>
+    
+                </div>
+                
+                <div class="field form-group">
+                 <p><strong>Starting Time</strong></p>
+                    <%= d.select :time, ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM' ],  {}, {class: "col-md-4 form-control", :id => "time"}%>
+                </div>
+                
+                <div class="field form-group">
+                    <p><strong>Capacity</strong></p>
+                    <%= d.text_field :capacity, class: "col-md-4 form-control", :id => "capacity" %>
+                </div>
+                
+                <br>
+                
+                <div class="actions">
+                    <%= submit_tag "Edit Discussion Section", class: "btn btn-primary" %>
+                    <%= link_to "Cancel", discussion_index_path, {method: :get, class: "btn btn-default"} %>
+                    <br>
+                    <br>
+                </div>
+                </fieldset>
+            <% end %>
+
+    </div>
+</body>

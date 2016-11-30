@@ -42,7 +42,17 @@ class DiscussionController < ApplicationController
    
    def edit_index_post
       @disc = Discussion.find(params[:edit_disc][:edit_disc])
-      render "/discussion/add.html.erb"
+      render "/discussion/edit.html.erb"
+   end
+   
+   def edit_disc
+      @disc = Discussion.find(params[:discussion][:id])
+      @disc.number = params[:discussion][:number]
+      @disc.day = params[:discussion][:day]
+      @disc.time = params[:discussion][:time]
+      @disc.capacity = params[:discussion][:capacity]
+      @disc.save
+      redirect_to discussion_index_path
    end
    
 end
