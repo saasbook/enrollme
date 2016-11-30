@@ -48,6 +48,7 @@ two.approved = false
 two.submitted = false
 two.passcode = "passcode2"
 two.save!
+two.users << User.where(name: "JJJ")
 two.users << User.where(name: "DDD")
 two.users << User.where(name: "John")
 
