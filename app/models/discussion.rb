@@ -12,7 +12,12 @@ class Discussion < ActiveRecord::Base
     end
     
     def seats_open
-        return self.capacity - count_students
+        retVal = self.capacity - count_students
+        if retVal >= 0
+            return retVal
+        else
+            return 0
+        end
     end
     
     def count_students
