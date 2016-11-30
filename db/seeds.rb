@@ -19,7 +19,8 @@ people = [
  	  	{:name =>  "JJJ"                   ,:major => "English"  ,:sid => "2222" ,:email => "2222@berkeley.edu"},
  	  	{:name =>  "Kay"                   ,:major => "EECS"  ,:sid => "3333" ,:email => "3333@berkeley.edu"},
  	  	{:name =>  "Ana"                   ,:major => "CS"  ,:sid => "4444" ,:email => "4444@berkeley.edu"},
- 	  	{:name =>  "Anant Sahai"                   ,:major => "EECS"  ,:sid => "26131973" ,:email => "sid.masih@gmail.com"}
+ 	  	{:name =>  "Anant Sahai"                   ,:major => "EECS"  ,:sid => "26131973" ,:email => "sid.masih@gmail.com"},
+ 	  	{:name =>  "Adnan Hemani"                   ,:major => "CS"  ,:sid => "26726609" ,:email => "adnan.h@berkeley.edu"}
     ]
 
 people.each do |ue|
@@ -37,7 +38,7 @@ tone.users << User.where(name: "Josh")
 tone.users << User.where(name: "CCC")
 tone.users << User.where(name: "GGG")
 tone.users << User.where(name: "Jorge")
-tone.users << User.where(name: "EEE")
+tone.users << User.where(name: "Adnan")
 
 
 
@@ -73,12 +74,13 @@ admins.each do |a|
 end
 
 
-full = Discussion.create!(:number => 666, :day=> "Wednesday", :time=> "3pm", :capacity => 3)
-somewhat_full = Discussion.create!(:number => 420, :day=> "Thursday", :time=> "3pm", :capacity => 5)
-spank = Discussion.create!(:number => 504, :day=> "Friday", :time=> "2pm", :capacity => 20)
-Discussion.create!(:number => 1337, :day=>"Wednesday", :time=> "3pm", :capacity => 5)
-Discussion.create!(:number => 1338, :day=>"Thusday", :time=> "3pm", :capacity => 5)
-Discussion.create!(:number => 1339, :day=>"Friday", :time=> "3pm", :capacity => 5)
+full = Discussion.create!(:number => 66666, :day=> "Wednesday", :time=> "3pm", :capacity => 3)
+somewhat_full = Discussion.create!(:number => 42000, :day=> "Thursday", :time=> "3pm", :capacity => 5)
+spank = Discussion.create!(:number => 50400, :day=> "Friday", :time=> "2pm", :capacity => 20)
+Discussion.create!(:number => 13370, :day=>"Wednesday", :time=> "3pm", :capacity => 5)
+Discussion.create!(:number => 13380, :day=>"Thusday", :time=> "3pm", :capacity => 5)
+Discussion.create!(:number => 13390, :day=>"Friday", :time=> "3pm", :capacity => 5)
+Discussion.create!(:number => 54321, :day=>"Tuesday", :time=> "3:00 P.M.", :capacity => 25)
 
 
 full.teams << two

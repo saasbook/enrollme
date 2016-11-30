@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   
   post '/discussion/edit', to: "discussion#edit_index_post"
   
+  post '/discussion/edit_index', to:'discussion#edit_disc', as: "edit_discussion_post"
+  
   resources :discussion
 
   resources :submissions

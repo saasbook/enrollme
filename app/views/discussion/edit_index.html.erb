@@ -7,7 +7,7 @@
       <%= form_tag :html => {:class => "form-horizontal"}, :url => new_discussion_path, :method => :get %>
           <fieldset>
           <div class="field form-group">
-              <%= collection_select(:edit_disc, :edit_disc, Discussion.all, :id, :toString, {})%>
+              <%= collection_select(:edit_disc, :edit_disc, Discussion.all, :id, :info, {})%>
           </div>
           </fieldset>
       
