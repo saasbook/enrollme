@@ -94,6 +94,10 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
   end
 end
 
+Then /^byebug$/ do
+  byebug
+end
+
 Then /^save and open page$/ do
   save_and_open_page
 end
@@ -112,7 +116,7 @@ end
 
 
 Given /^the following admins exist$/ do |table|
-  table.rows.each do |name, email, password, superadmin|
+  table.rows.each do |name, email, superadmin|
     next if name == "name" # skipping table header
     Admin.create!(:name => name, :email => email, :superadmin => superadmin == "true" ? true : false)
   end
