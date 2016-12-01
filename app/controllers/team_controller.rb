@@ -21,9 +21,9 @@ class TeamController < ApplicationController
   end
   
   def unsubmit
-    @team.withdraw_submission
     @submission = @team.submission
     @submission.destroy!
+    @team.withdraw_submission
     redirect_to team_path(@team.id)
   end
   

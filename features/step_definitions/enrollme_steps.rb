@@ -47,7 +47,7 @@ And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |
 end
 
 And /^my team is submitted$/ do
-  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1)
+  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1, :team => @team)
   @team.add_submission(1)
 end
 
@@ -94,6 +94,10 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
   end
 end
 
+Then /^print page body$/ do
+  puts page.body
+end
+
 Then /^save and open page$/ do
   save_and_open_page
 end
@@ -112,7 +116,7 @@ end
 
 
 Given /^the following admins exist$/ do |table|
-  table.rows.each do |name, email, password, superadmin|
+  table.rows.each do |name, email, superadmin|
     next if name == "name" # skipping table header
     Admin.create!(:name => name, :email => email, :superadmin => superadmin == "true" ? true : false)
   end

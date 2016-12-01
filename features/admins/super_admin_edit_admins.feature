@@ -6,9 +6,9 @@ Feature: Super admin deletes an admin
   
   Background:
     Given the following admins exist
-      | name  | email                  | password | superadmin |
-  	  | Bob   | supreme_ruler@aol.com  | ilikcats | true       |
-  	  | Carol | abc@abc.com            | abc      | false      |
+      | name  | email                  | superadmin |
+  	  | Bob   | supreme_ruler@aol.com  | true       |
+  	  | Carol | abc@abc.com            | false      |
    	And I am on the login page
 
   Scenario: Super admin successfully deletes another admin
