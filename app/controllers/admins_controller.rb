@@ -11,7 +11,6 @@ class AdminsController < ApplicationController
   def create
     @admin = Admin.new(admin_params)
     @admin.superadmin = false
-
     if session[:is_admin] == true and @admin.save
       AdminMailer.invite_new_admin(@admin).deliver_now
       redirect_to admins_path, :notice => "You created admin " + admin_params["name"] + " successfully!"
@@ -24,12 +23,6 @@ class AdminsController < ApplicationController
     @admin.update_attributes!(admin_params)
     return redirect_to admins_path
   end
-  
-  # def destroy
-  #   byebug
-  #   @admin.destroy!
-  #   redirect_to '/', :notice => "You have successfully deleted your admin account."
-  # end
 
   def index
     status = params[:status]

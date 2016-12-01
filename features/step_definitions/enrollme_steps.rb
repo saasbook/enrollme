@@ -98,6 +98,10 @@ Then /^byebug$/ do
   byebug
 end
 
+Then /^print page body$/ do
+  puts page.body
+end
+
 Then /^save and open page$/ do
   save_and_open_page
 end

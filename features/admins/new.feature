@@ -29,7 +29,7 @@ Feature: Create an admin account
     Given the following users exist
      | name    |       email          |team_passcode | major | sid  |
  	   | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  |
-    Given PENDING: I fill in "Name" with "Sahai"
-    And PENDING: I fill in "Email" with "eecs666@hotmail.com"
-    And PENDING: I press "Create"
-    Then PENDING: I should see "Form is invalid"
+    Given I fill in "Name" with "Sahai"
+    And I fill in "Email" with "eecs666@hotmail.com"
+    And I press "Create"
+    Then I should see "Form is invalid"

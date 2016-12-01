@@ -12,9 +12,10 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-
+    
     if @user.save
       EmailStudents.welcome_email(@user).deliver_later
+
       session[:user_id] = @user.id
       # session[:user_email] = @user.email
       redirect_to without_team_path, :notice => "You signed up successfully!"
