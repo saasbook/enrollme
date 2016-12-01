@@ -13,6 +13,13 @@ class AdminMailer < ApplicationMailer
       mail(to: email, subject: "Teams are awaiting your approval!")
    end
    
+   def all_data(admin)
+      @admin = admin
+      mail(to: @admin.email, subject: 'Reset Semester: All data that was deleted') do |format|
+        format.html
+      end
+   end
+   
    def self.send_look_at_submission
       if !(Team.where("approved = ? AND submitted = ?", false, true).nil?)
          Admin.all.each do |admin|
