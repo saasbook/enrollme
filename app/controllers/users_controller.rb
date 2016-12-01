@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def join_team
     @passcode = params[:team_hash]
     @team = Team.find_by_passcode(@passcode)
-    return redirect_to without_team_path, :notice => "Unable to join team" if @passcode.empty? or @team.nil? or @team.approved
+    return redirect_to without_team_path, :notice => "Unable to join team" if @passcode.empty? or @team.nil? or @team.approved or @team.users.size == 6
     
     @user.leave_team if !(@user.team.nil?)
     
