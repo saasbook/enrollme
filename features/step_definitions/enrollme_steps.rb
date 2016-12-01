@@ -47,7 +47,7 @@ And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |
 end
 
 And /^my team is submitted$/ do
-  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1)
+  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1, :team => @team)
   @team.add_submission(1)
 end
 
@@ -94,10 +94,13 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
   end
 end
 
+<<<<<<< 43b6cfe9a7bf1a97a2c47e8816698c422fc98159
 Then /^byebug$/ do
   byebug
 end
 
+=======
+>>>>>>> Cuke test done, will wait for dasol to handle the security thing before making a pr
 Then /^print page body$/ do
   puts page.body
 end

@@ -72,11 +72,11 @@ class AdminsController < ApplicationController
   def reset_database
     @reset_password = params[:reset_password]
     if @reset_password == "eecs"
-      AdminMailer.all_data(@admin).deliver_now
-      # User.delete_all
-      # Team.delete_all
-      # Submission.delete_all
-      # Discussion.delete_all
+      AdminMailer.all_data(@admin).deliver_now if not Rails.env.test?
+      User.delete_all
+      Team.delete_all
+      Submission.delete_all
+      Discussion.delete_all
       redirect_to "/", :notice => "All data reset. Good luck with the new semester!"
     else
       redirect_to reset_semester_path, :notice => "Incorrect password"
