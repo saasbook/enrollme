@@ -7,7 +7,7 @@ class SessionController < ApplicationController
     id = session[:user_id]
     user = User.find_by_id(id)
     admin = Admin.find_by_id(id)
-    if (id.nil?) or (user.nil? and not session[:is_admin]) or (admin.nil? and session[:is_admin])
+    if id.nil?
       render 'new'
     elsif session[:is_admin]
       return redirect_to admins_path
