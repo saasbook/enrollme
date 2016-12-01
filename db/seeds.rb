@@ -61,10 +61,10 @@ tthree.users << User.where(name: "III")
 
 
 admins = [
-  		{ :name => "Anna", :email => "sid.masih@berkeley.edu"},
-  		{ :name => "Bruce", :email => "dkoh@berkeley.edu"},
+  		{ :name => "Anna", :email => "sid.masih@berkeley.edu", :superadmin => false},
+  		{ :name => "Bruce", :email => "dkoh@berkeley.edu", :superadmin => false},
   		{ :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :superadmin => true},
-  		{ :name => "Rihanna", :email => "v.mathuria@berkeley.edu"}
+  		{ :name => "Rihanna", :email => "v.mathuria@berkeley.edu", :superadmin => false}
   ]
   
 admins.each do |a|

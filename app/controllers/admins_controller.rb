@@ -10,6 +10,7 @@ class AdminsController < ApplicationController
   
   def create
     @admin = Admin.new(admin_params)
+    @admin.superadmin = false
 
     if session[:is_admin] == true and @admin.save
       AdminMailer.invite_new_admin(@admin).deliver_now
@@ -24,10 +25,11 @@ class AdminsController < ApplicationController
     return redirect_to admins_path
   end
   
-  def destroy
-    @admin.destroy!
-    redirect_to '/', :notice => "You have successfully deleted your admin account."
-  end
+  # def destroy
+  #   byebug
+  #   @admin.destroy!
+  #   redirect_to '/', :notice => "You have successfully deleted your admin account."
+  # end
 
   def index
     status = params[:status]
@@ -108,14 +110,10 @@ class AdminsController < ApplicationController
   end
   
   def destroy
-    if @admin.superadmin == true and params[:id] != nil
-      a = Admin.find(params[:id])
-      a.destroy!
-      notice = "You have successfully deleted #{a.name}'s account."
-    elsif @admin.superadmin == false
+    if @admin.superadmin == false
       @admin.destroy!
       notice = "You have successfully deleted your admin account."
-    elsif @admin.superadmin == true
+    else
       notice = "Please give someone else superadmin powers before deleting yourself."
     end
     redirect_to '/', :notice => notice
