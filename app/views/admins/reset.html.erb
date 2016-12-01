@@ -4,7 +4,7 @@
         <h1>Reset Semester</h1>
         <% if @admin.superadmin == true %>
             <br>
-            <p>Warning: Resetting the semester will result in all users, teams, and discussions being deleted. This is to be used at the end of the semester, to prepare for a new semester of enrollment. This action can only be performed by the super admin, and is passcode protected. </p>
+            <p>Warning: Resetting the semester will result in all users, teams, and discussions being deleted. This is to be used at the end of the semester, to prepare for a new semester of enrollment. This action can only be performed by the super admin, and is passcode protected. An email will be sent to you with all the data that has been deleted.</p>
             <br>
             <%= form_tag reset_database_path, class: "form-group" do %>
                 <div class="input-group">
