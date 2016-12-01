@@ -16,9 +16,6 @@ Feature: Email an admin information about approved teams
     And I should see "Welcome Back, Bob!"
     
   Scenario: Successfully emails an admin when they've been invited with a link to the site
-    When I follow "Invite New Admin"
+    When I follow "Register New Admin"
     Then I should see "Create a New Admin"
   
-  Scenario: Email Me button should send actual email with approved teams attached in CSV
-    When I follow "Email Me"
-    Then "enrollmeberkeley@gmail.com" should receive "1" emails

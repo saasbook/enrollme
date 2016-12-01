@@ -3,7 +3,7 @@ class AdminMailer < ApplicationMailer
    
    def invite_new_admin(admin)
       @admin = admin
-      @url = 'https://cs-169-dasolyoon.c9users.io'
+      @url = ENV["SERVER_EMAIL"]
       mail(to: @admin.email, subject: "Superadmin gave you access as admin for EnrollMe") do |format|
          format.html
       end
@@ -22,7 +22,7 @@ class AdminMailer < ApplicationMailer
       
       @team.users.each do |user|
          @user = user
-         @url = 'https://cs-169-dasolyoon.c9users.io'
+         @url = ENV["SERVER_EMAIL"]
          mail(to: @user.email, subject: 'Your team has been approved') do |format|
             format.html
          end
@@ -34,7 +34,7 @@ class AdminMailer < ApplicationMailer
       
       @team.users.each do |user|
          @user = user
-         @url = 'https://cs-169-dasolyoon.c9users.io'
+         @url = ENV["SERVER_EMAIL"]
          mail(to: @user.email, subject: 'Your team has been disapproved') do |format|
             format.html
          end

@@ -16,7 +16,7 @@ class EmailStudents < ApplicationMailer
       
       @team.users.each do |user|
          @user = user
-         @url = 'https://cs-169-dasolyoon.c9users.io'
+         @url = ENV["SERVER_EMAIL"]
          mail(to: @user.email, subject: 'Your team has successfully submitted team enrollment to EnrollMe') do |format|
             format.html
          end
