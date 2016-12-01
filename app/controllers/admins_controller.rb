@@ -65,6 +65,23 @@ class AdminsController < ApplicationController
     render "super"
   end
   
+  def reset_semester
+    render "reset"
+  end
+  
+  def reset_database
+    @reset_password = params[:reset_password]
+    if @reset_password == "eecs"
+      User.delete_all
+      Team.delete_all
+      Submission.delete_all
+      Discussion.delete_all
+      redirect_to "/", :notice => "All data reset. Good luck with the new semester!"
+    else
+      redirect_to reset_semester_path, :notice => "Incorrect password"
+    end
+  end
+      
   def transfer
     if @admin.superadmin == true and params[:transfer_admin] != nil
       other_admin = Admin.find(params[:transfer_admin])

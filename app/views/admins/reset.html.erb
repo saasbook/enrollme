@@ -1,0 +1,23 @@
+<body>
+    <title>Reset Semester</title>
+    <div class="container">
+        <h1>Reset Semester</h1>
+        <% if @admin.superadmin == true %>
+            <br>
+            <p>Warning: Resetting the semester will result in all users, teams, and discussions being deleted. This is to be used at the end of the semester, to prepare for a new semester of enrollment. This action can only be performed by the super admin, and is passcode protected. </p>
+            <br>
+            <%= form_tag reset_database_path, class: "form-group" do %>
+                <div class="input-group">
+                    <span class="input-group-addon">Password</span>
+                    <%= text_field_tag :reset_password, params[:team_hash], class: "form-control" %>
+                    <span class="input-group-btn">
+                        <input type='submit' class='btn btn-primary' value='Reset' data-confirm="Are you absolutely sure you want to do this?"/>
+                    </span>
+                </div>
+            <% end %>
+        <% else %>
+            <p>You don't have access to this page.</p>
+        <% end %>
+    </div>
+</body>
+        

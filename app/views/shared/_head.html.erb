@@ -29,6 +29,7 @@
                   <li><%= link_to "Register New Admin", new_admin_path, {method: 'get'} %></li>
                   <% if Admin.find(session[:user_id]).superadmin == true %>
                     <li><%= link_to "Manage Admins", superadmin_path, {method: :get} %></li>
+                    <li><%= link_to "Reset Semester", reset_semester_path, {method: :get} %></li>
                   <% end %>
               <% end %>
               <li><%= link_to "Logout", logout_path, {method: 'get'} %></li>
