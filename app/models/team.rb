@@ -42,8 +42,6 @@ class Team < ActiveRecord::Base
     def self.filter_by(status)
         if status.nil? or status == "Pending | Approved"
             return Team.where(approved: true) + Team.where(approved: false, submitted: true)
-        elsif status == "All"
-            return Team.all.each
         elsif status == "Approved"
             return Team.where(approved: true)
         elsif status == "Pending"
@@ -51,11 +49,16 @@ class Team < ActiveRecord::Base
         elsif status == "Forming"
             return Team.where(approved: false, submitted: false)
         end
+        return Team.all.each
     end
     
     def add_submission(id)
         self.update(submitted: true)
         self.submission_id = id
         self.save!
+    end
+    
+    def can_join?
+        !(self.passcode.nil? or self.approved or self.users.size == 6)
     end
 end
