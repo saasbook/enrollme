@@ -30,7 +30,7 @@ Feature: Super admin deletes all data
     When I follow "Reset Semester"
     Then I should see "Warning: Resetting the semester will result in all users, teams, and discussions being deleted."
     And I should see "Password"
-    When I fill in "reset_password" with API['ADMIN_DELETE_DATA_PASSWORD']
+    When I fill in "reset_password" with the correct password
     And I press "Reset"
     Then I should see "All data reset"
     And I should not see "Jorge"

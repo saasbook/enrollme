@@ -2,6 +2,10 @@ Given /^PENDING: .*$/ do
   pending
 end
 
+When /^I fill in "([^"]*)" with the correct password$/ do | field |
+  fill_in(field, :with => ENV['CORRECT_PASSWORD'])
+end
+
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
   mock_auth_hash(email)
   click_link "log_in"
