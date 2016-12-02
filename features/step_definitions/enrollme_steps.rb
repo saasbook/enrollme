@@ -3,7 +3,7 @@ Given /^PENDING: .*$/ do
 end
 
 When /^I fill in "([^"]*)" with the correct password$/ do | field |
-  fill_in(field, :with => ENV['CORRECT_PASSWORD'])
+  fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
 
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
@@ -153,5 +153,5 @@ Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
 end
 
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
-  fill_in(field, :with => API['ADMIN_DELETE_DATA_PASSWORD'])
+  fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
