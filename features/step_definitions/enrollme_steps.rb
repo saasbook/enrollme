@@ -94,10 +94,13 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
   end
 end
 
+<<<<<<< HEAD
 Then /^byebug$/ do
   byebug
 end
 
+=======
+>>>>>>> 5ead40ba88792de9f3ffc1224271da9cc6eaf07b
 Then /^print page body$/ do
   puts page.body
 end
