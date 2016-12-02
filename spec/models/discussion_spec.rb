@@ -79,6 +79,7 @@ RSpec.describe Discussion, type: :model do
     end
 
     describe "Checking Discussions Work" do
+      
       it "Full Discussion" do
         expect(@full.capacity == 10)
         expect(@full.seats_open == 0)
@@ -108,6 +109,15 @@ RSpec.describe Discussion, type: :model do
         expect(@empty.seats_open == 10)
         expect(@empty.eql? "Wed, 3pm")
       end
+      
+      it "Overfull Discussion" do
+        @full.teams << @addthis
+        expect(@full.capacity == 10)
+        expect(@full.seats_open == 0)
+        expect(@full.eql? "Wed, 3pm")
+        expect(@full.count_students == 7)
+      end
+      
     end
     
     describe "teams work" do 

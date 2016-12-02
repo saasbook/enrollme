@@ -10,8 +10,9 @@ class AdminsController < ApplicationController
   
   def create
     @admin = Admin.new(admin_params)
-
+    @admin.superadmin = false
     if session[:is_admin] == true and @admin.save
+      AdminMailer.invite_new_admin(@admin).deliver_now
       redirect_to admins_path, :notice => "You created admin " + admin_params["name"] + " successfully!"
     else
       render 'new', :notice => "Form is invalid"
@@ -22,11 +23,6 @@ class AdminsController < ApplicationController
     @admin.update_attributes!(admin_params)
     return redirect_to admins_path
   end
-  
-  def destroy
-    @admin.destroy!
-    redirect_to '/', :notice => "You have successfully deleted your admin account."
-  end
 
   def index
     status = params[:status]
@@ -36,6 +32,12 @@ class AdminsController < ApplicationController
   end
   
   def approve
+    @team = Team.find_by_id(params[:team_id])
+    @team.approved = true
+    @team.save!
+    
+    AdminMailer.send_approved_email(@team).deliver_now
+    
     if !(params[:disc].nil?)
       Team.find_by_id(params[:team_id]).approve_with_discussion(params[:disc])
     end
@@ -43,6 +45,12 @@ class AdminsController < ApplicationController
   end
   
   def disapprove
+    @team = Team.find_by_id(params[:team_id])
+    @team.approved = false
+    @team.save!
+    
+    AdminMailer.send_disapproved_email(@team).deliver_now
+    
     Team.find_by_id(params[:team_id]).withdraw_approval
     redirect_to admins_path
   end
@@ -57,6 +65,24 @@ class AdminsController < ApplicationController
     render "super"
   end
   
+  def reset_semester
+    render "reset"
+  end
+  
+  def reset_database
+    @reset_password = params[:reset_password]
+    if @reset_password == ENV["ADMIN_DELETE_DATA_PASSWORD"]
+      AdminMailer.all_data(@admin).deliver_now if not Rails.env.test?
+      User.delete_all
+      Team.delete_all
+      Submission.delete_all
+      Discussion.delete_all
+      redirect_to "/", :notice => "All data reset. Good luck with the new semester!"
+    else
+      redirect_to reset_semester_path, :notice => "Incorrect password"
+    end
+  end
+      
   def transfer
     if @admin.superadmin == true and params[:transfer_admin] != nil
       other_admin = Admin.find(params[:transfer_admin])
@@ -95,14 +121,10 @@ class AdminsController < ApplicationController
   end
   
   def destroy
-    if @admin.superadmin == true and params[:id] != nil
-      a = Admin.find(params[:id])
-      a.destroy!
-      notice = "You have successfully deleted #{a.name}'s account."
-    elsif @admin.superadmin == false
+    if @admin.superadmin == false
       @admin.destroy!
       notice = "You have successfully deleted your admin account."
-    elsif @admin.superadmin == true
+    else
       notice = "Please give someone else superadmin powers before deleting yourself."
     end
     redirect_to '/', :notice => notice

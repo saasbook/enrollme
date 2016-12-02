@@ -23,16 +23,15 @@ class SubmissionsController < ApplicationController
             @submission = Submission.new(submission_params)
         end
         
+        @submission.team = @team
         
         @submission.save!
-        
         @team.add_submission(@submission.id)
         
         return redirect_to team_path(@team), notice: "Thanks for submitting your team for enrollment."
     end
     
     def destroy
-        
     end
 
     private

@@ -8,18 +8,20 @@ Feature: admin edits discussion times
       | name | email                  | password |
   	  | Bob  | supreme_ruler@aol.com  | ilikcats |
     And the following discussions exist
-   	 | number  | time         |  capacity |
-   	 | 54321   | Tues, 3pm    |  25       |
+   	 | number  | time      | day       |  capacity |
+   	 | 54321   | 3:00 PM   | Tuesday   |  25       |
     And I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
 
   Scenario: Admin successfully edits a discussion
     Given I am on the discussion_index page
-    Then I should see "54321 Tues, 3pm 25"
-    When PENDING: I press "edit_1"
-    And PENDING: I select "Monday" from "day"
-    And PENDING: I fill in "time" with "4pm"
-    And PENDING: I fill in "capacity" with "10"
-    And PENDING: I press "Make Changes"
-    Then PENDING: I should see "Discussion Sections"
-    And PENDING: I should see "54321 Monday 4pm 10"
+    Then I should see "54321 Tuesday 3:00 PM 25"
+    When I press "Edit Discussions"
+    And I select "CCN: 54321 | Time: Tuesday 3:00 PM | Enrolled: 0 / 25" from "edit_disc[edit_disc]"
+    And I press "Submit"
+    And I select "Monday" from "day"
+    And I select "2:00 PM" from "time"
+    And I fill in "capacity" with "10"
+    And I press "Edit Discussion"
+    Then I should see "Discussion Sections"
+    And I should see "54321 Monday 2:00 PM 10"

@@ -47,7 +47,7 @@ And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |
 end
 
 And /^my team is submitted$/ do
-  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1)
+  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1, :team => @team)
   @team.add_submission(1)
 end
 
@@ -79,9 +79,9 @@ Given /^the following users exist$/ do |table|
 end
 
 Given /^the following discussions exist$/ do |table|
-  table.rows.each do |number, time, capacity, seats_open|
+  table.rows.each do |number, time, day, capacity, seats_open|
     next if number == :number # skipping table header
-    Discussion.create!(:number => number.to_i, :time => time, :capacity => capacity.to_i)
+    Discussion.create!(:number => number.to_i, :time => time, :day => day, :capacity => capacity.to_i)
   end
 end
 
@@ -92,6 +92,15 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
   else
     assert_not_equal path_to(page_name), current_path
   end
+end
+
+
+Then /^byebug$/ do
+  byebug
+end
+
+Then /^print page body$/ do
+  puts page.body
 end
 
 Then /^save and open page$/ do
@@ -112,7 +121,7 @@ end
 
 
 Given /^the following admins exist$/ do |table|
-  table.rows.each do |name, email, password, superadmin|
+  table.rows.each do |name, email, superadmin|
     next if name == "name" # skipping table header
     Admin.create!(:name => name, :email => email, :superadmin => superadmin == "true" ? true : false)
   end
@@ -128,4 +137,8 @@ end
 
 Then(/^the team with ccn "([^"]*)", day "([^"]*)", time "([^"]*)", and capacity "([^"]*)" should exist$/) do |ccn, day, time, capacity|
   Discussion.where(:number => ccn, :day => day, :time => time, :capacity => capacity).length.should eq 1
+end
+
+Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
+  unread_emails_for(address).size.should == n.to_i
 end

@@ -19,7 +19,6 @@
 #Ignore the coverage generation.
 /coverage/*
 
-/db/schema.rb
 
 .byebug_history
 

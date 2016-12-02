@@ -45,6 +45,7 @@ group :test do
   gem 'metric_fu'        # collect code metrics
   gem 'codeclimate-test-reporter', '0.6.0', require: nil
   gem 'capybara-screenshot'
+  gem 'email_spec'
 end
 
 group :development, :test do
