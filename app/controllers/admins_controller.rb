@@ -63,7 +63,7 @@ class AdminsController < ApplicationController
   
   def reset_database
     @reset_password = params[:reset_password]
-    if @reset_password == "eecs"
+    if @reset_password == ENV["ADMIN_DELETE_DATA_PASSWORD"]
       AdminMailer.all_data(@admin).deliver_now if not Rails.env.test?
       User.delete_all
       Team.delete_all
