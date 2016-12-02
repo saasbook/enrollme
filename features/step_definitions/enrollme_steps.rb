@@ -94,13 +94,10 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
   end
 end
 
-<<<<<<< 43b6cfe9a7bf1a97a2c47e8816698c422fc98159
 Then /^byebug$/ do
   byebug
 end
 
-=======
->>>>>>> Cuke test done, will wait for dasol to handle the security thing before making a pr
 Then /^print page body$/ do
   puts page.body
 end
