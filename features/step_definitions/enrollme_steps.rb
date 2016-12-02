@@ -33,6 +33,11 @@ Given(/^the team with passcode "([^"]*)" is approved with discussion number "([^
   Team.find_by_passcode(passcode).approve_with_discussion(Discussion.find_by_number(number).id)
 end
 
+Given(/^the team with passcode "([^"]*)" is submitted with discussion numbers "([^"]*)", "([^"]*)", and "([^"]*)"$/) do |passcode, d1, d2, d3|
+  s = Submission.create!(:disc1id => Discussion.find_by_number(d1).id, :disc2id => Discussion.find_by_number(d2).id, :disc3id => Discussion.find_by_number(d3).id)
+  Team.find_by_passcode(passcode).add_submission(s.id)
+end
+
 And /^the team with passcode "([^"]*)" is( not)? submitted$/ do | passcode, negate |
   if negate
     Team.find_by_passcode(passcode).update(:submitted => false)

@@ -40,9 +40,9 @@ Feature: student submits their team for approval
    	  | 54323   | 3:00 PM          | Thursday   | 25       |
    	And I am on the team "2" page
    	When I press "Submit"
-    And I select "CCN: 54321 | Time: Tuesday 3:00 PM | Enrolled: 0 / 25" from "edit_disc[edit_disc]" from "submission[disc1id]"
-    And I select "Wednesday, 3pm" from "submission[disc2id]"
-    And I select "Thursday, 3pm" from "submission[disc3id]"
+    And I select "CCN: 54321 | Time: Tuesday 3:00 PM | Enrolled: 0 / 25" from "submission[disc1id]"
+    And I select "CCN: 54322 | Time: Wednesday 3:00 PM | Enrolled: 0 / 25" from "submission[disc2id]"
+    And I select "CCN: 54323 | Time: Thursday 3:00 PM | Enrolled: 0 / 25" from "submission[disc3id]"
     And I press "Submit"
     Then I should see "Thanks for submitting your team for enrollment."
     And I should see "My Team"
