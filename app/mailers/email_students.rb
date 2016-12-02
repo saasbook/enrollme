@@ -21,6 +21,6 @@ class EmailStudents < ApplicationMailer
             format.html
          end
       end
-   end
+    end
     
 end
