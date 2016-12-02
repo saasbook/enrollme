@@ -47,7 +47,7 @@ And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |
 end
 
 And /^my team is submitted$/ do
-  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1)
+  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1, :team => @team)
   @team.add_submission(1)
 end
 
@@ -93,6 +93,7 @@ Then /^(?:|I )should not be on (.+)$/ do |page_name|
     assert_not_equal path_to(page_name), current_path
   end
 end
+
 
 Then /^byebug$/ do
   byebug

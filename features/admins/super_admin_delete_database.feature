@@ -5,9 +5,9 @@ Feature: Super admin deletes all data
   I want to be able to delete the entire database
   
   Background:
-    Given the following admin exists
-      | name | email                  | password |
-  	  | Bob  | supreme_ruler@aol.com  | ilikcats |
+    Given the following admins exist
+      | name | email                  | superadmin |
+  	  | Bob  | supreme_ruler@aol.com  | true       |
     Given the following users exist
   	  |   name    |       email                       | team      | major             |       sid         |  
 	    | Jorge     |    legueoflegends667@hotmail.com  | somepassc | Football Player   | 999               |
@@ -26,14 +26,13 @@ Feature: Super admin deletes all data
     And I log in as an admin with email "supreme_ruler@aol.com"
 
   Scenario: Super admin successfully deletes everything from database
-    When PENDING: I press "Delete All Data"
-    Then PENDING: I should see "Warning: this will delete all users, teams, discussions, and sections"
-    And PENDING: I should see "Enter a password to confirm this action"
-    When PENDING: I fill in "enrollme"
-    And PENDING: I press "Enter"
-    Then PENDING: I should see "All data deleted"
-    And PENDING: I should not see "Jorge"
-    And PENDING: I should not see "Pending"
-    When PENDING: I press "Choose Discussions"
-    Then PENDING: I should not see "54321"
-    
+    Then print page body
+    When I follow "Reset Semester"
+    Then I should see "Warning: Resetting the semester will result in all users, teams, and discussions being deleted."
+    And I should see "Password"
+    When I fill in "reset_password" with API['ADMIN_DELETE_DATA_PASSWORD']
+    And I press "Reset"
+    Then I should see "All data reset"
+    And I should not see "Jorge"
+    When I press "Discussions"
+    Then I should not see "54321"

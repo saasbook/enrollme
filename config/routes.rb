@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
   get '/admin/superadmin', to: 'admins#superadmin', as: "superadmin"
+  get '/admin/reset_semester', to: 'admins#reset_semester', as: "reset_semester"
+  post '/admin/reset_database', to: 'admins#reset_database', as: "reset_database"
   patch '/admin/transfer', to: 'admins#transfer', as: 'admin_transfer'
   patch '/admin/delete', to: 'admins#delete', as: 'admin_delete'
   get '/admin/tutorial', to: 'admins#admin_tutorial'
