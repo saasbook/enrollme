@@ -147,3 +147,7 @@ end
 Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
   unread_emails_for(address).size.should == n.to_i
 end
+
+When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
+  fill_in(field, :with => API['ADMIN_DELETE_DATA_PASSWORD'])
+end
