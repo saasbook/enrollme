@@ -27,19 +27,7 @@ Feature: Approve/Disapprove teams
    	 | 54323   | Thurs, 3pm   |  25       |
     And I am on the login page
     And the team with passcode "passcode1" is approved with discussion number "54321"
-    And PENDING: the team with passcode "passcode2" is submitted with discussion numbers "54321", "54322", and "54323"
-
-  Scenario: Admin successfully changes a team's status from approved to disapproved and back
-    Given I log in as an admin with email "supreme_ruler@aol.com"
-    When PENDING: I follow "approve_1"
-    Then PENDING: I should see ""
-    When PENDING: I select "54321"
-    And PENDING: I press "Approve Team"
-    And I follow "Approved"
-    Then I should see "Bob"
-    And I go to the disapprove team "1" page
-    And I follow "Approved"
-    Then I should not see "Bob"
+    And the team with passcode "passcode2" is submitted with discussion numbers "54321", "54322", and "54323"
     
   Scenario: Admin only sees unsubmitted teams under the Forming page
     Given I log in as an admin with email "supreme_ruler@aol.com"

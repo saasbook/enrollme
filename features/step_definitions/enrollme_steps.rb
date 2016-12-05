@@ -2,6 +2,10 @@ Given /^PENDING: .*$/ do
   pending
 end
 
+When /^I fill in "([^"]*)" with the correct password$/ do | field |
+  fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
+end
+
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
   mock_auth_hash(email)
   click_link "log_in"
@@ -31,6 +35,11 @@ end
 
 Given(/^the team with passcode "([^"]*)" is approved with discussion number "([^"]*)"$/) do |passcode, number|
   Team.find_by_passcode(passcode).approve_with_discussion(Discussion.find_by_number(number).id)
+end
+
+Given(/^the team with passcode "([^"]*)" is submitted with discussion numbers "([^"]*)", "([^"]*)", and "([^"]*)"$/) do |passcode, d1, d2, d3|
+  s = Submission.create!(:disc1id => Discussion.find_by_number(d1).id, :disc2id => Discussion.find_by_number(d2).id, :disc3id => Discussion.find_by_number(d3).id)
+  Team.find_by_passcode(passcode).add_submission(s.id)
 end
 
 And /^the team with passcode "([^"]*)" is( not)? submitted$/ do | passcode, negate |
@@ -141,4 +150,8 @@ end
 
 Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
   unread_emails_for(address).size.should == n.to_i
+end
+
+When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
+  fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
