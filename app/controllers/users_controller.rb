@@ -3,7 +3,11 @@ class UsersController < ApplicationController
   skip_before_filter :authenticate, :only => ['new', 'create']
   before_filter :check_is_user, :except => ['new', 'create', 'show']
   before_filter :set_user, :except => ['new', 'create']
-
+  
+  def show
+    @user = User.find_by_id(params[:id])
+  end
+  
   def new
     @user = User.new
     session[:user_id] = @user.id
