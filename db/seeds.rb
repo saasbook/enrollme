@@ -10,6 +10,15 @@ admins = [
       { :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => false}
   ]
   
+Admin.delete_all
 admins.each do |a|
   Admin.create!(a)
 end
+
+Option.delete_all
+Option.create!(
+  :minimum_team_size => 3,
+  :maximum_team_size => 3
+  )
+
+  

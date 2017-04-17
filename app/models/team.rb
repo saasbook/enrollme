@@ -35,7 +35,7 @@ class Team < ActiveRecord::Base
     end
     
     def eligible?
-        self.users.count == 5 or self.users.count == 6 ? true : false
+        users.count.between?(Option.minimum_team_size, Option.maximum_team_size)
     end
     
     
@@ -59,6 +59,8 @@ class Team < ActiveRecord::Base
     end
     
     def can_join?
-        !(self.passcode.nil? or self.approved or self.users.size == 6)
+      ! passcode.nil?  &&
+        ! approved     &&
+        users.size < Option.maximum_team_size
     end
 end

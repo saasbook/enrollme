@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124062115) do
+ActiveRecord::Schema.define(version: 20170417002226) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(version: 20161124062115) do
   end
 
   add_index "discussions", ["submission_id"], name: "index_discussions_on_submission_id"
+
+  create_table "options", force: :cascade do |t|
+    t.integer "minimum_team_size"
+    t.integer "maximum_team_size"
+  end
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "disc1id"
