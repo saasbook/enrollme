@@ -2,6 +2,16 @@ Given /^PENDING: .*$/ do
   pending
 end
 
+Given /^the allowed team size is (\d+)-(\d+)$/ do |min,max|
+  Option.first.update_attributes!(:minimum_team_size => min,
+    :maximum_team_size => max)
+end
+
+Given /^the allowed team size is (\d+)$/ do |num|
+  Option.first.update_attributes!(:minimum_team_size => num,
+    :maximum_team_size => num)
+end
+
 When /^I fill in "([^"]*)" with the correct password$/ do | field |
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end

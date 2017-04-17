@@ -5,7 +5,8 @@ Feature: editing a team changes its submission status
   I want to modify my team submission before it gets approved
   
   Background:
-    Given the following users exist
+    Given the allowed team size is 5-6
+    And   the following users exist
      | name  |       email                    |team_passcode | major           | sid  |
      | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  |
      | Saha2 | eecs667@hotmail.com            | penguindrool | EECS            | 001  |

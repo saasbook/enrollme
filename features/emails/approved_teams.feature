@@ -4,16 +4,13 @@ Feature: Email an admin information about approved teams
   I want to receive an email with all the teams that have been approved
   
   Background:
-    Given the following admins exist
-     | name | email                       |
-  	 | Bob  | enrollmeberkeley@gmail.com  |
-
+    Given the allowed team size is 5-6
     And I am on the login page
     And I log in as an admin with email "enrollmeberkeley@gmail.com"
 
   Scenario: Successfully create an account with my name and email
-    And I follow "Email Me"
-    And I should see "Welcome Back, Bob!"
+    When I follow "Email Me"
+    And I should see "Welcome Back, EnrollMe!"
     
   Scenario: Successfully emails an admin when they've been invited with a link to the site
     When I follow "Register New Admin"
