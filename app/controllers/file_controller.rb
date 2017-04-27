@@ -11,14 +11,12 @@ class FileController < ApplicationController
     filename = time + '_team_info.csv'
     
     rows = []
-    rows << ["Team ID", "Discussion Number", "Student ID", "Student Name"]
-    Team.approved_teams.each do |t|
+    rows << ["Team ID", "Discussion Number", "Student ID", "Student Name", "Approved?"]
+    # Team.approved_teams.each do |t|
+    Team.all.each do |t|
       discussion = Discussion.find_by_id(t.discussion_id)
-      
-    
-      
       t.users.each do |u|
-        rows << [t.id, discussion.number, u.sid, u.name]
+        rows << [t.id, discussion.number, u.sid, u.name, t.approved?.to_s]
       end
     end
 
