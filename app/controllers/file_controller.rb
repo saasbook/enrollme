@@ -16,7 +16,7 @@ class FileController < ApplicationController
     Team.all.each do |t|
       discussion = Discussion.find_by_id(t.discussion_id)
       t.users.each do |u|
-        rows << [t.id, discussion.number, u.sid, u.name, t.approved?.to_s]
+        rows << [t.id, discussion.try(:number), u.sid, u.name, t.approved?.to_s]
       end
     end
 
