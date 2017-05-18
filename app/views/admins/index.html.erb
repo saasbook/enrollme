@@ -30,8 +30,8 @@
                 </h4>
               </div>
               <div class='btn-toolbar pull-right'>
-                <%= link_to "Download Approved Teams", download_team_info_path, {method: 'get', class: "btn btn-primary btn-sm"} %>
-                <%= link_to "Email Me", admins_email_path, {method: 'post', class: 'btn btn-success btn-sm'} %>
+                <%= link_to "Download this data", download_team_info_path(:status => params[:status] ||= "Pending | Approved"), {method: 'get', class: "btn btn-primary btn-sm"} %>
+                <%= link_to "Email me this data", admins_email_path(:status => params[:status]  ||= "Pending | Approved"), {method: 'post', class: 'btn btn-success btn-sm'} %>
               </div>
             </h2>
           </div>

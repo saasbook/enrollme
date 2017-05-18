@@ -149,4 +149,5 @@ class AdminsController < ApplicationController
   def admin_tutorial
     render 'admin_tutorial'
   end
+
 end

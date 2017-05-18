@@ -58,9 +58,11 @@ group :development, :test do
   gem 'rspec-rails', '3.4.2'
   gem 'ZenTest', '4.11.1'
   gem 'clockwork'
+  gem 'mail'
 end
 
 group :production do
   gem 'pg'
   gem 'clockwork'
+  gem 'mail'
 end
