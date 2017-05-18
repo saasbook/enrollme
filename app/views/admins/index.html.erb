@@ -53,7 +53,8 @@
                   <td>Approved</td>
                   <% d = Discussion.find_by_id(t.discussion_id) %>
                   <td>
-                    <%= link_to "Disapprove", admin_disapprove_team_path(:team_id => t.id), {:id=>"disapprove_#{t.id}", :class=>'btn btn-xs btn-info'} %>
+                    <%= link_to "Disapprove", admin_disapprove_team_path(:team_id => t.id), {:id=>"disapprove_#{t.id}", :class=>'btn btn-xs btn-danger'} %>
+                    <%= link_to "Undo Approve", admin_undo_approve_team_path(:team_id => t.id), {:id=>"undo_approve_#{t.id}", :class=>'btn btn-xs btn-warning'} %>
                     <%= d.info %>
                     </td>
                 <% elsif t.submitted? %>

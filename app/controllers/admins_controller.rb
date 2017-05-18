@@ -51,6 +51,17 @@ class AdminsController < ApplicationController
     
     #AdminMailer.send_disapproved_email(@team).deliver_now
     
+    Team.find_by_id(params[:team_id]).disapprove
+    redirect_to admins_path
+  end
+
+  def undo_approve
+    @team = Team.find_by_id(params[:team_id])
+    @team.approved = false
+    @team.save!
+    
+    #AdminMailer.send_disapproved_email(@team).deliver_now
+    
     Team.find_by_id(params[:team_id]).withdraw_approval
     redirect_to admins_path
   end

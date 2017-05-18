@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       #EmailStudents.welcome_email(@user).deliver_later
 
       session[:user_id] = @user.id
-      # session[:user_email] = @user.email
+      session[:user_email] = @user.email
       redirect_to without_team_path, :notice => "You signed up successfully!"
     else
       render 'new', :notice => "Form is invalid"

@@ -35,7 +35,7 @@ class TeamController < ApplicationController
     notice = ""
 
     if @user.is_a? Admin and @team.approved
-      @team.withdraw_approval
+      @team.disapprove
     elsif @team.submitted
       notice = " Your team's submission has been withdrawn."
     end
