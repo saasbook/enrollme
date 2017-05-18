@@ -1,5 +1,5 @@
 class AdminMailer < ApplicationMailer
-    default from: 'postmaster@app1014350a6e744f17b67433b6805f8a62.mailgun.org'
+    default from: 'enrollmeberkeley@gmail.com'
    
    def invite_new_admin(admin)
       @admin = admin

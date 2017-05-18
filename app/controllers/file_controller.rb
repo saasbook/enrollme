@@ -16,10 +16,14 @@ class FileController < ApplicationController
     Team.filter_by(params[:status]).each do |t|
       discussion = Discussion.find_by_id(t.discussion_id)
       
-    
+      if discussion.nil?
+        disc_id = 00000
+      else
+        disc_id = discussion.number
+      end
       
       t.users.each do |u|
-        rows << [t.id, discussion.number, u.sid, u.name]
+        rows << [t.id, disc_id, u.sid, u.name]
       end
     end
 

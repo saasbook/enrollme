@@ -23,6 +23,6 @@ Feature: get a csv with the information of all approved teams
   	And the team with passcode "penguindrool" is approved with discussion number "54321"
 
   Scenario: An admin successfully downloads approved team information
-    Given I follow "Download Approved Teams"
+    Given I follow "Download this data"
   	Then I should have downloaded a team information file
     

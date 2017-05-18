@@ -59,10 +59,9 @@ RSpec.describe FileController, type: :controller do
             @three.users << User.where(name: "Chris")
             
             session[:user_id] = 1
-            session[:is_admin] = true
+            session[:is_admin] = true            
             
-            
-            get :download_approved_teams
+            get :download_approved_teams, :status => "Approved"
         end
     
         it "shows all approved teams" do
