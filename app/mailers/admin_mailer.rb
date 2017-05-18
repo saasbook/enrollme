@@ -12,7 +12,7 @@ class AdminMailer < ApplicationMailer
    def team_list_email(admin)
       @admin = admin
       @url  = 'http://www.gmail.com'
-      mail(to: @admin.email, subject: 'Here is list of approved teams in EnrollMe') do |format|
+      mail(to: @admin.email, subject: 'Here is list of' + params[:status] + 'teams in EnrollMe') do |format|
         format.html
       end
    end
