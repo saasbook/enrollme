@@ -65,5 +65,5 @@ group :production do
   gem 'pg'
   gem 'clockwork'
   gem 'mail'
-  gem 'rails_12factor'
+  # gem 'rails_12factor' #Only use when Heroku gives mysterious 500 errors, else it will flood your logs
 end
