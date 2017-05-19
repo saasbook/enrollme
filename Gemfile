@@ -65,4 +65,5 @@ group :production do
   gem 'pg'
   gem 'clockwork'
   gem 'mail'
+  gem 'rails_12factor'
 end
