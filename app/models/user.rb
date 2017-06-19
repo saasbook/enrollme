@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
     format: VALID_EMAIL_REGEX, exclusion: { in: lambda { |u| u.all_admin_emails } }
   validates :major, presence: true
   validates :sid, presence: true, uniqueness: true, length: { maximum: 10 }
+  before_save :downcase_email
+
+  def downcase_email
+    self.email.downcase!
+  end
   
   def leave_team
     @team = self.team
@@ -21,6 +26,8 @@ class User < ActiveRecord::Base
   
   def self.user_from_oauth(auth)
     return User.find_by(:email => auth[:info][:email])
+    # query = "%#{" << auth[:info][:email] << "}%"
+    # return User.where("email LIKE ?", query).first
   end
   
   def all_admin_emails
