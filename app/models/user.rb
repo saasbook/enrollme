@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   end
   
   def self.user_from_oauth(auth)
-    return User.find_by(:email => auth[:info][:email])
+    return User.find_by(:email => auth[:info][:email].downcase)
     # query = "%#{" << auth[:info][:email] << "}%"
     # return User.where("email LIKE ?", query).first
   end
