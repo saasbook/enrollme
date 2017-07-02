@@ -6,7 +6,7 @@
 
 [![Build Status](https://travis-ci.org/adnanhemani/enrollme.svg?branch=master)](https://travis-ci.org/adnanhemani/enrollme)
 
-[![Code Climate](https://codeclimate.com/github/DerekHs/enrollme/badges/gpa.svg?)]
+![Code Climate](https://codeclimate.com/github/DerekHs/enrollme/badges/gpa.svg?)
 (https://codeclimate.com/github/DerekHs/enrollme)
 
 
