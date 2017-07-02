@@ -30,7 +30,7 @@ This repository is a continuation of the original project started from 2016. We 
 *Pivotal Tracker* https://www.pivotaltracker.com/n/projects/1886001
 Deployed App: https://enrollme.herokuapp.com/
 
-=======
+=================
 
 Copyright (c) 2016 Jason Gao, Adnan Hemani, David Koh, Sid Masih, Varun Mathuria, Dasol Yoon
 
