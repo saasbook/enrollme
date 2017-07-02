@@ -1,5 +1,6 @@
 # EnrollMe
 ![Code Climate](https://codeclimate.com/github/DerekHs/enrollme/badges/gpa.svg?)
+
 ![Travis CI](https://travis-ci.org/DerekHs/enrollme.svg?branch=master)
 
 
