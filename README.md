@@ -28,8 +28,9 @@ This repository is a continuation of the original project started in Fall 2016. 
 - Refactor repetitive code
 - Increase readability for future teams
 
-*Pivotal Tracker* https://www.pivotaltracker.com/n/projects/1886001
-Deployed App: https://enrollme.herokuapp.com/
+**Pivotal Tracker** https://www.pivotaltracker.com/n/projects/1886001
+
+**Deployed App:** https://enrollme.herokuapp.com/
 
 ---
 
