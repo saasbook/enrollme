@@ -7,23 +7,24 @@
 
 Copyright (c) 2017 Brandon Jabr, Derek Hsiao, Ken Chiu, Hadi Zhang, Karl Hayek, George Su
 
-This repository is a continuation of the original project started from 2016. We plan to add the following features for the following users:
+## Goals
+This repository is a continuation of the original project started in Fall 2016. We plan to add the following features for the following users:
 
-## Students
+### Students
 - Capability to post student profile complete with bio, section availability, resume/LinkedIn, time commitment, and work preferences. Possibly find Facebook friends who are also taking class.
 - Integrate all course information into EnrollMe
 - Students receive group invitations via email with a button to accept/reject
 - Create a search service for connecting individuals to teams or vice versa
 - Match students to projects that will likely interest them
 
-## Administrators
+### Administrators
 - An email is sent to admins whenever a complete team of 6 is formed. Service may be performed by 3rd party mail service such as mailgun
 - Store data from semester to semester by compressing it into a .csv
 - Handle multiple semesters concurrently 
 - Add multiple sections at a time
 - Automate process of approving groups. Either with direct integration with CalCentral or through a list of data uploaded by an admin
 
-## Overall:
+### Overall:
 - Refactor repetitive code
 - Increase readability for future teams
 
