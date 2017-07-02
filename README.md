@@ -3,8 +3,6 @@
 
 ![Travis CI](https://travis-ci.org/DerekHs/enrollme.svg?branch=master)
 
-![
-
 
 
 
