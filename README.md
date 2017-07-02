@@ -1,6 +1,10 @@
 # EnrollMe
 ![Code Climate](https://codeclimate.com/github/DerekHs/enrollme/badges/gpa.svg?)
 
+<a href="https://codeclimate.com/github/rails/rails/coverage"><img src="https://codeclimate.com/github/rails/rails/badges/coverage.svg" /></a>
+
+<a href="https://codeclimate.com/github/rails/rails"><img src="https://codeclimate.com/github/rails/rails/badges/issue_count.svg" /></a>
+
 ![Travis CI](https://travis-ci.org/DerekHs/enrollme.svg?branch=master)
 
 
