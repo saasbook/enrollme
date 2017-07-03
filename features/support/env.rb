@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 if ENV['CI']
   require 'codeclimate-test-reporter'
   SimpleCov.start 'rails' do
