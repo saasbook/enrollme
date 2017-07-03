@@ -1,5 +1,5 @@
 # EnrollMe
-[![Code Climate](https://codeclimate.com/github/DerekHs/enrollme/badges/gpa.svg)](https://codeclimate.com/github/DerekHs/enrollme)!
+[![Code Climate](https://codeclimate.com/github/DerekHs/enrollme/badges/gpa.svg)](https://codeclimate.com/github/DerekHs/enrollme)
 
 [![Test Coverage](https://codeclimate.com/github/DerekHs/enrollme/badges/coverage.svg)](https://codeclimate.com/github/DerekHs/enrollme/coverage)
 
