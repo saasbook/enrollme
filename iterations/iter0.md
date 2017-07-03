@@ -8,7 +8,7 @@ https://www.youtube.com/watch?v=nLQtzU-a1ik
 https://www.youtube.com/watch?v=afocD4koixg
 
 #Hadi
-https://youtube/wcRVw1UTs1k
+https://www.youtube.com/watch?v=wcRVw1UTs1k
 
 #George
 https://www.youtube.com/watch?v=SsLhIepEY0c
