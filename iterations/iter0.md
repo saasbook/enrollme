@@ -1,17 +1,22 @@
-#Derek
+##Derek
+
 https://www.youtube.com/watch?v=TSmvcqUzelU
 
-#Brandon
+##Brandon
+
 https://www.youtube.com/watch?v=nLQtzU-a1ik
 
-#Ken
+##Ken
+
 https://www.youtube.com/watch?v=afocD4koixg
 
-#Hadi
+##Hadi
+
 https://www.youtube.com/watch?v=wcRVw1UTs1k
 
-#George
+##George
+
 https://www.youtube.com/watch?v=SsLhIepEY0c
 
-#Karl
+##Karl
 
