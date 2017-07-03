@@ -1,3 +1,6 @@
+**Client Meeting**
+https://www.youtube.com/watch?v=vQcCVKenzMc
+
 **Derek**
 
 https://www.youtube.com/watch?v=TSmvcqUzelU
