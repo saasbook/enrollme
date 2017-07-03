@@ -1,19 +1,17 @@
-env:
-  global:
-    - CC_TEST_REPORTER_ID=d1a851a1f846a2d91e08e854caa3fb8e8f2b2be08325fda40938c34e9bb1f83f
-    - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 language: ruby
 rvm:
-  - 2.2.0
+- 2.2
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
+- gpg --passphrase "$KEY" --decrypt --no-use-agent --output config/application.yml config/application.yml.asc
 script:
-  - bundle exec rspec
-  # Preferably you will run test-reporter on branch update events. But 
-  # if you setup travis to build PR updates only, you don't need to run 
-  # the line below
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
-  # In the case where travis is setup to build PR updates only, 
-  # uncomment the line below
-  # - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec
+- bundle exec cucumber
+after_script:
+- bundle exec rake send_to_codeclimate
+addons:
+  code_climate:
+    repo_token: d1a851a1f846a2d91e08e854caa3fb8e8f2b2be08325fda40938c34e9bb1f83f
+env:
+  - secure: "WqBTwwaITf4214Xvejf7KSAzo+4+2WQgBYMENhhtVQuXZQ+UPk5nPNEuT59vGiWpcdP+Xvk+XzYvRUVRMTBJw69dVeirii5vrPXNl5iC7qbnNtbIxWbczmkEdZofaZSGEZscbs136MX1UaPKlo3tdwIjYyAccuY1hrGDrn8aGubHKOScC+eGEirEqqYNPQsTX0NH+/xtaHlon0zLP/bvnedIn2a0XoN07WC7Qolfrcb9ugX9b+0FsJl50ImlyGp3d3p6UDyXr+g9wAreeRSDlnnmTV3f1vwWR0H3AEj171YP+eXfGFiqV7dELKRt8SWSYwZzmInMWBwFIULu3o/rpPfODP6lmYAnyXm+qZCOWymEzvvKxSQnSbCUFj30DTJ+LbgnPyd2xNl+IzBJYkkFzPwvOYoePAwiiQvv/3eLMDU1eEdyydW5+8kS7dUZOBwwl9kh8SfVAs3tGTugCnQBn4O3R1T1AJlHfNXY8B5Wiy3PC779ZuganrxfbDhK7pLPoSeBkhZP06Ffhs7MfgigZUR3h4K+t1mRFkEWuCEYh5OwkHGpuFSoxAWVjfRI+RMrlaPB4LJfHCeMvJw/3mXm11JGxQJLLdLFuhe8ruSpoRHtO/0PYg1Q6Qa8BFHJDZ0E8F4thnPFDb1fPnUVIgfKmkE8mnLaQoO7JTHuvyhvyDA="
