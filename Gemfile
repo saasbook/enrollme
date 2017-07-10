@@ -36,6 +36,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 # gem 'capistrano'
 
+gem 'simplecov', :require => false, :group => :test
+
 group :test do
   gem 'simplecov', :require => false
   gem 'cucumber-rails', :require => false
