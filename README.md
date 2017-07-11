@@ -8,7 +8,7 @@
 Copyright (c) 2017 Brandon Jabr, Derek Hsiao, Ken Chiu, Hadi Zhang, Karl Hayek, George Su
 
 ## Goals
-This repository is a continuation of the original project started in Fall 2016. Its purpose is to connect students to each other to form groups in the CS169 class, as well as streamline enrollment administration.
+This repository is a continuation of the original project started in Fall 2016. Its purpose is to connect students to each other to form groups in the CS169 class, as well as to streamline enrollment administration.
 We plan to add the following features for the following users:
 
 ### Students
