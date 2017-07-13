@@ -76,7 +76,7 @@ Feature: Table for finding and joining teams
   Scenario: User wants to leave a team
     Given I press "Leave" team
     Then I leave my team
-    And it displays a message saying "You have left your team."
+    And it displays "You have left your team."
     
   # User can cancel join requests
   Scenario: User wants to cancel a request to join a team

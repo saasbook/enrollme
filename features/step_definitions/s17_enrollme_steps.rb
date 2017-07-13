@@ -90,3 +90,8 @@ Then /I cancel my join "request"/ do
   # check that current request to selected team is no longer join
   pending
 end
+
+And /it displays ("You have left your team")/ do |message|
+  # Check that the message is flashed
+  pending
+end
