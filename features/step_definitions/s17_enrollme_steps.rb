@@ -1,3 +1,12 @@
+# Declarative step to populate DB with teams
+
+Given /a listing of teams with the following information/ do |teams_table|
+  @team_listing = teams_table
+  teams_table.hashes.each do |team|
+    Team.create!
+  end
+end
+
 Given /I? type "(.*)"/ do |text|
   pending
 end
@@ -18,31 +27,12 @@ Then /I? should see the file (.*)/ do |file|
   pending
 end
 
-And /the table should list the teams with (?:all)? (.*) first, then (?:the)? (.*)/ do |first, last|
-  pending
-end
 
-Given /I enter "([^"]*)" into (?:the)? "([^"]*)"/ do |text, field|
-  pending
-end
 
-Then /It should display the teams with (.*) as members/ do |members|
-  pending
-end
+################ Team Listing Step Defs ####################
 
-Given /I press on row (.*)/ do |row_num|
-  pending
-end
-
-Then /I visit the team profile of the team on (.*)/ do |row_num|
-  pending
-end
-
-Given /I? press the (.*) heading/ do |heading|
-  pending
-end
-
-Given /I open up teams page/ do
+Given /I? am on the team listings page/ do
+  # visit the team listings page; use wb_steps "am on" step
   pending
 end
 
@@ -52,4 +42,51 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   first = page.body.index(e1)
   second = page.body.index(e2)
   expect(first < second)
+end
+
+Given /I? check the (un?)declared filter/ do |undeclared|
+  if undeclared
+    check("undeclared") # name of checkbox depends on what you tag it in html file, so tag accordingly
+  else
+    check("declared")
+  end
+end
+
+Given /I press on row \d*/ do |row_num|
+  # Click on the team in row #{row_num} of the table
+  pending
+end
+
+Then /I visit the team profile of the team on row \d*/ do |row_num|
+  # @team_id =  # Set instance variable @team_id to equal the id of the team in that row on the table, then redirect to the url of that team's profile
+  pending
+end
+
+Given /I? press the (.*) heading, while (.*)/ do |heading, prev_order|
+  # Check if the heading was in descending, ascending, or unordered before somehow;
+  # Perhaps split this step into 2 steps: Given I press the (.*) heading, And the heading is in (.*) order
+  pending
+end
+
+Given /I? press ("[^\"]*" ) team/ do
+  # Use web_steps "press" step to press the button
+  # Set instance variable to track the current team_id
+  # Set instance variable to track the current state of the team request variable for user for particular team
+  # which we will use in following 3 step defs
+  pending
+end
+
+Then /I am linked to a page to send a join team message/ do
+  # Check that you are linked to page to send join team message for the corresponding team
+  pending
+end
+
+Then /I leave my team/ do
+  # check that user is no longer in a team
+  pending
+end
+
+Then /I cancel my join "request"/ do
+  # check that current request to selected team is no longer join
+  pending
 end
