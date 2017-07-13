@@ -70,7 +70,7 @@ end
 
 Given /I? press ("[^\"]*" ) team/ do
   # Use web_steps "press" step to press the button
-  # Set instance variable to track the current team_id
+  # Set instance variable to track the current team_idS
   # Set instance variable to track the current state of the team request variable for user for particular team
   # which we will use in following 3 step defs
   pending
