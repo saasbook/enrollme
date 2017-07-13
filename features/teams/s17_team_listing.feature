@@ -5,11 +5,11 @@ Feature: Table for finding and joining teams
   
   Background:
     Given a listing of teams with the following information
-    | group_id | group_members | num_members | num_pending_requests | declared | request |
-    | 0001 | George Su | 1 | 0 | No | Invite |
-    | 0002 | Derek Hsiao, Ken Chiu | 2 | 2 | Yes | Leave |
-    | 0003 | Hadi Zhang, George Poo | 2 | 1 | No | Join |
-    | 0004 | Karl Hayek, Brandon Jabr, Carina Boo | 3 | 10 | Yes | Join |
+    | group_members | num_members | num_pending_requests | declared | request |
+    | George Su | 1 | 0 | No | Invite |
+    | Derek Hsiao, Ken Chiu | 2 | 2 | Yes | Leave |
+    | Hadi Zhang, George Poo | 2 | 1 | No | Join |
+    | Karl Hayek, Brandon Jabr, Carina Boo | 3 | 10 | Yes | Join |
     
     And I am on the team listings page
   

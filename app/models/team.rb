@@ -2,7 +2,7 @@ class Team < ActiveRecord::Base
     has_many :users
     has_one :submission
     validates :passcode, uniqueness: true
-    attr_accessible :group_id, :group_members, :num_members, :num_pending_requests, :declared, :request # Added by George, Summer 2017
+    attr_accessible :group_members, :num_members, :num_pending_requests, :declared, :request # Added by George, Summer 2017
     
 
     def self.generate_hash(length=36)
