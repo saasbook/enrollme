@@ -6,26 +6,50 @@ Feature: Table for finding and joining teams
   Background:
     Given a listing of teams with the following information
     | group_members | number_of_members | number_of_pending_requests | all_declared | request |
-    | George Su | 1 | 0 | No | Join |
+    | George Su | 1 | 0 | No | Invite |
     | Derek Hsiao, Ken Chiu | 2 | 2 | Yes | Leave |
-    | Hadi Zhang, George Boo | 2 | 1 | No | Join |
+    | Hadi Zhang, George Poo | 2 | 1 | No | Join |
+    | Karl Hayek, Brandon Jabr, Carina Boo | 3 | 10 | Yes | Join |
   
-  # Sort listing by number of group members
-  Scenario: A user wants to sort teams by the number of group members, in ascending or descending order
-    Given I press the number_of_members heading
-    Then the table should sort the team listings by the number of team members, alternating between descending and ascending order
+  # Index should have teams sorted in descending order based on number_of_members
+  Scenario: User opens up table of teams page for first time, and teams should be sorted in descending order by default
+    Given I open up teams page
+    Then I should see "Karl Hayek, Brandon Jabr, Carina Boo" before "Derek Hsiao, Ken Chiu"
+    And I should see "Derek Hsiao, Ken Chiu" before "George Su"
+    And I should see "Hadi Zhang, George Poo" before "George Su"
+  
+  # Sort listing by number of group members in ascending order, when it was in descending order before
+  Scenario: A user wants to sort teams by the number of group members, while it is in descending order
+    Given I press the number_of_members heading, while in descending order
+    # Should change to ascending order and sort
+    Then I should see "George Su" before "Hadi Zhang, George Poo"
+    And I should see "George Su" before "Derek Hsiao, Ken Chiu"
+    And I should see "Hadi Zhang, George Poo" before "Karl Hayek, Brandon Jabr, Carina Boo"
+    And I should see "Derek Hsiao, Ken Chiu" before "Karl Hayek, Brandon Jabr, Carina Boo"
     
-  # Sort listing by number of pending requests
-  Scenario: A user wants to sort teams by the number of pending requests, in ascending or descending order
-    Given I press the number_of_pending_requests heading
-    Then the table should sort the team listings by the number of team members, in descending order
-    And the table should sort the team listings by the number of pending requests, alternating between ascending and descending order
-  
-  # Sort listing by whether all team members are declared CS/EECS
-  Scenario: A user wants to sort teams based on whether all team members are declared CS/EECS majors
-    Given I press the all_declared heading
-    Then the table should sort the team listings by the number of team members, in descending order
-    And the table should list the teams with all declared CS/EECS majors first, then the undeclared majors
+  # Sort listing by number of pending requests in descending order, when it was unordered before
+  Scenario: A user wants to sort teams by the number of pending requests, while it is unordered
+    Given I press the number_of_pending_requests heading, while unordered
+    # Should change to descending order and sort
+    Then I should see "Karl Hayek, Brandon Jabr, Carina Boo" before "Derek Hsiao, Ken Chiu"
+    And I should see "Derek Hsiao, Ken Chiu" before "Hadi Zhang, George Poo"
+    And I should see "Hadi Zhang, George Poo" before "George Su"
+    
+  # Sort listing by number of pending requests in ascending order, when it was in descending order before
+  Scenario: A user wants to sort teams by the number of pending requests, while it is in descending order
+    Given I press the number_of_pending_requests heading, while unordered
+    # Should change to ascending order and sort
+    Then I should see "George Su" before "Hadi Zhang, George Poo"
+    And I should see "Hadi Zhang, George Poo" before "Derek Hsiao, Ken Chiu"
+    And I should see "Derek Hsiao, Ken Chiu" before "Karl Hayek, Brandon Jabr, Carina Boo"
+    
+  # Filter listing by whether all team members are declared CS/EECS
+  Scenario: A user wants to filter teams based on whether all team members are declared CS/EECS majors
+    Given I press the declared filter
+    Then I should see "Derek Hsiao, Ken Chiu"
+    And I should see "Karl Hayek, Brandon Jabr, Carina Boo"
+    And I should not see "George Su"
+    And I should not see "Hadi Zhang, George Poo"
     
   # Search feature to find team with certain member's name
   Scenario: A user searches for a team with a certain member
