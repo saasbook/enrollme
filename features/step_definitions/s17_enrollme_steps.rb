@@ -22,7 +22,7 @@ And /the table should list the teams with (?:all)? (.*) first, then (?:the)? (.*
   pending
 end
 
-Given /I type "([^"]*)" into (?:the)? "([^"]*)"/ do |text, field|
+Given /I enter "([^"]*)" into (?:the)? "([^"]*)"/ do |text, field|
   pending
 end
 

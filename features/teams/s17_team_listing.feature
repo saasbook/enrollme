@@ -53,7 +53,7 @@ Feature: Table for finding and joining teams
     
   # Search feature to find team with certain member's name
   Scenario: A user searches for a team with a certain member
-    Given I type "George" into the "search bar"
+    Given I enter "George" into the "search bar"
     When I press the submit button
     Then It should display the teams with "George Su" and "George Su" as members
     
