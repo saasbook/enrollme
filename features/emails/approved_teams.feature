@@ -11,7 +11,7 @@ Feature: Email an admin information about approved teams
   Scenario: Successfully create an account with my name and email
     When I follow "Email me this data"
     And I should see "Welcome Back, EnrollMe!"
-    
+
   Scenario: Successfully emails an admin when they've been invited with a link to the site
     When I follow "Register New Admin"
     Then I should see "Create a New Admin"

@@ -95,3 +95,20 @@ And /it displays ("You have left your team")/ do |message|
   # Check that the message is flashed
   pending
 end
+
+
+
+
+
+################ Email step definitions ################
+
+Then /I should receive a confirmation email at "(.+)"/ do |user_email|
+  # this will get the first email, so we can check the email headers and body.
+  email = ActionMailer::Base.deliveries.first
+  email.from.should include "enrollmeberkeley@gmail.com"
+  email.to.should include user_email
+  email.subject.should include("Welcome to EnrollMe")
+end
+
+
+

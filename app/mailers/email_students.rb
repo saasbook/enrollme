@@ -3,7 +3,7 @@ class EmailStudents < ApplicationMailer
     
     def welcome_email(user)
         @user = user
-        mail(to: @user.email, subject: 'Welcome')
+        mail(to: @user.email, subject: 'Welcome to EnrollMe')
     end
     
     def submit_email(user)
