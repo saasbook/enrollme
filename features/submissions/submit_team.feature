@@ -48,7 +48,7 @@ Feature: student submits their team for approval
     And I press "Submit"
     Then I should see "Thanks for submitting your team for enrollment."
     ############################################
-    And a confirmation email should be sent to the admins
+    And a confirmation email should be sent to the admin
     And a confirmation email should be sent to the following team members: "bobjones0@berkeley.edu, bobjones1@berkeley.edu, bobjones2@berkeley.edu, bobjones3@berkeley.edu, eecs666@hotmail.com"
     ############################################
     And I should see "My Team"
