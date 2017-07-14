@@ -110,5 +110,24 @@ Then /I should receive a confirmation email at "(.+)"/ do |user_email|
   email.subject.should include("Welcome to EnrollMe")
 end
 
+And /a confirmation email should be sent to the admins/ do
+  # select the emails whose subject match the admin confirmation email's subject
+  email = ActionMailer::Base.deliveries.select { |e| e.subject == "A team is awaiting your approval!" }[0]
+  email.from.should include "enrollmeberkeley@gmail.com"
+  email.to.should include "enrollmeberkeley@gmail.com"
+end
+
+And /a confirmation email should be sent to the following team members: "(.+)"/ do |team_members|
+  # select the emails whose subject match the team members confirmation email's subject
+  email = ActionMailer::Base.deliveries.select { |e| e.subject == "Your team has successfully submitted team enrollment to EnrollMe" }[0]
+
+  email.from.should include "enrollmeberkeley@gmail.com"
+  team_members.split(',').each do |member|
+    email.to.should include member.strip
+  end
+
+end
+
+
 
 

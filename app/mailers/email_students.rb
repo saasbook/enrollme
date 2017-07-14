@@ -13,14 +13,10 @@ class EmailStudents < ApplicationMailer
     
     def successfully_submitted_email(team)
       @team = team
-      
-      @team.users.each do |student|
-         @user = student
-         @url = ENV["SERVER_EMAIL"]
-         mail(to: @user.email, subject: 'Your team has successfully submitted team enrollment to EnrollMe') do |format|
-            format.html
-         end
-      end
+      @url = ENV["SERVER_EMAIL"]
+      mail(to: @team.users.map { |member| member.email }, subject: 'Your team has successfully submitted team enrollment to EnrollMe') do |format|
+          format.html
+       end
     end
     
 end
