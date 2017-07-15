@@ -90,6 +90,7 @@ end
 
 
 
+
 ################ Email step definitions ################
 
 Then /I should receive a confirmation email at "(.+)"/ do |user_email|
