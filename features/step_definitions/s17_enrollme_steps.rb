@@ -1,10 +1,11 @@
 # Declarative step to populate DB with teams
 
 Given /a listing of teams with the following information/ do |teams_table|
-  @team_listing = teams_table
-  teams_table.hashes.each do |team|
-    Team.create!
-  end
+  pending
+  # @team_listing = teams_table
+  # teams_table.hashes.each do |team|
+  #  Team.create!
+  # end
 end
 
 Given /I? type "(.*)"/ do |text|
