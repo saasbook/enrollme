@@ -31,11 +31,6 @@ end
 
 ################ Team Listing Step Defs ####################
 
-Given /I? am on the team listings page/ do
-  # visit the team listings page; use wb_steps "am on" step
-  pending
-end
-
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
@@ -78,11 +73,6 @@ end
 
 Then /I am linked to a page to send a join team message/ do
   # Check that you are linked to page to send join team message for the corresponding team
-  pending
-end
-
-Then /I leave my team/ do
-  # check that user is no longer in a team
   pending
 end
 
