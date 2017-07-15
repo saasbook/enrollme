@@ -8,6 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/">EnrollMe</a>
     </div>
@@ -16,6 +17,7 @@
     <div class="navbar-collapse collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
             <li><a href='/'>Home</a></li>
+            <li><a href='/'>TeamList<a></a></li>
             <% if session[:user_id].nil? %>
                 <li><%= link_to "Sign Up", new_user_path, {method: 'get'} %></li>
                 <li><%= link_to "Log In", "/auth/google_oauth2", id: "log_in_header" %></li>
