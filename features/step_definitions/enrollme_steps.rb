@@ -165,3 +165,7 @@ end
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
+
+When /I check the following experience/ do
+  pending
+end

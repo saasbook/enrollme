@@ -11,6 +11,11 @@ Feature: Student creates a new account
     And I fill in "Email" with "david@berkeley.edu"
     And I fill in "Sid" with "12345678"
     And I select "DECLARED CS/EECS Major" from "major"
+    And I check the following experience: "CSS","HTML"
+    And I uncheck "Ruby"
+    And I fill in "Facebook" with "www.facebook.com/david/"
+    And I fill in "LinkedIn" with "www.linkedin.com/in/david/"
+    And I attach the file "picture" to "Profile Picture"
     And I press "Sign Up"
     Then I should see "Create or Join a Team"
     
@@ -28,3 +33,4 @@ Feature: Student creates a new account
     And I select "Other Major" from "major"
     And I press "Sign Up"
     Then I should see "Form is invalid"
+
