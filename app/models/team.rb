@@ -69,4 +69,22 @@ class Team < ActiveRecord::Base
         ! approved     &&
         users.size < Option.maximum_team_size
     end
+    
+    # Summer '17 Code
+    
+    def members # returns the names of all members in the group, to be displayed in proper format in the team listings table
+        names = ''
+        users.each do |u|
+           if names == ''
+               names = u.name # not sure if this is proper way to call user name
+           else
+               names = names + ', ' + u.name
+           end
+       end
+       return names
+    end
+    
+    def num_members # simple getter method for checking number of users in team
+        return users.size
+    end
 end

@@ -18,7 +18,6 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a href='/'>Home</a></li>
             <li><%= link_to "Team List", team_list_path, {method: 'get'} %></li>
-            
             <% if session[:user_id].nil? %>
                 <li><%= link_to "Sign Up", new_user_path, {method: 'get'} %></li>
                 <li><%= link_to "Log In", "/auth/google_oauth2", id: "log_in_header" %></li>

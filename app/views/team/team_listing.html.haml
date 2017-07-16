@@ -1,28 +1,28 @@
 -#  This file is app/views/movies/index.html.haml
-%h1 All Movies
+%h1 Teams -#All Movies
 
-= form_tag movies_path, :method => :get, :id => 'ratings_form' do
-  = hidden_field_tag "title_sort", true if @title_header
-  = hidden_field_tag ":release_date_sort", true if @date_header
+= form_tag team_path, :method => :get, :id => 'declared_form' do
+  = hidden_field_tag "num_members_sort", true if @title_header
+  = hidden_field_tag ":pending_requests_sort", true if @date_header
   Include: 
-  - @all_ratings.each do |rating|
-    = rating
-    = check_box_tag "ratings[#{rating}]", 1, @selected_ratings.include?(rating), :id => "ratings_#{rating}"
+  - @major.each do |declared|
+    = declared
+    = check_box_tag "declared[#{declared}]", 1, @majors.include?(declared), :id => "declared_#{declared}"
   = submit_tag 'Refresh', :id => 'ratings_submit'
 
-%table#movies
+%table#teams
   %thead
     %tr
-      %th{:class => @title_header}= link_to 'Movie Title', movies_path(:sort => 'title', :ratings => @selected_ratings), :id => 'title_header'
-      %th Rating
-      %th{:class => @date_header}= link_to 'Release Date', movies_path(:sort => 'release_date', :ratings => @selected_ratings), :id => 'release_date_header'
-      %th More Info
+      %th Group Members
+      %th{:class => @title_header}= link_to 'Number of Members', teams_path(:sort => 'num_members', :declared => @majors), :id => 'num_members_header'
+      %th{:class => @pending_requests_header}= link_to 'Number of Pending Requests', teams_path(:sort => 'pending_requests', :declared => @majors), :id => 'pending_requests_header'
+      %th All Declared?
+      %th Request
   %tbody
-    - @movies.each do |movie|
+    - @teams.each do |team|
       %tr
-        %td= movie.title 
-        %td= movie.rating
-        %td= movie.release_date
-        %td= link_to "More about #{movie.title}", movie_path(movie)
-
-= link_to 'Add new movie', new_movie_path
+        %td= team.users
+        %td= team.num_members
+        %td= team.pending_requests
+        %td= team.all_declared?
+        %td= team.join?
