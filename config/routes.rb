@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   
   resources :team
   get 'team/list', to: 'team#list'
-
   post 'team/:id/submit', to: 'team#submit', as: "submit_team"
   post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
 
