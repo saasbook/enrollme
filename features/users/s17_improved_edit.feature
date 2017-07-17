@@ -13,10 +13,9 @@ Background: A user exists and is signed in
 	Given I click "Edit"
 
 Scenario: Change bio
-	Given I click the "Bio" text field
-	Given I type "My name is Oski, I like Ruby"
-	Given I click "submit"
-	Given I click "MyInfo"
+	Given I click the "bio" text field
+	And I fill in "bio" with "My name is Oski, I like Ruby"
+	And I press "Update Information"
 	Then I should see "My name is Oski, I like Ruby"
 
 Scenario: Change Facebook
@@ -63,4 +62,4 @@ Scenario: Add Ability to add resume
 	Given I click "add resume"
 	Given I upload the file "my_resume.txt"
 	Given I click "MyInfo"
-	Then I should see the file "my_reume.txt"
+	Then I should see the file "my_resume.txt"
