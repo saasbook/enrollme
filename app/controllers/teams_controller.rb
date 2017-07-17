@@ -5,17 +5,19 @@ class TeamsController < ApplicationController
   end
   
   def index
-    sort = params[:sort] || session[:sort]
+    sort = params[:sort] || session[:sort] || 'default'
     case sort
+    when 'default'
+      ordering, @num_members_header = {:num_members => :desc}, 'hilite'
     when 'num_members'
-      if session[:sort] == sort # check if the session's sort option is also the one being pressed; if so, reverse the sort
-        ordering,@num_members_header = {:num_members => :reverse}, 'hilite'
+      if session[:ordering][:num_members] == :desc
+        ordering,@num_members_header = {:num_members => :asc}, 'hilite'
       else
         ordering,@num_members_header = {:num_members => :desc}, 'hilite'
       end
     when 'pending_requests'
-      if session[sort] == sort
-        ordering,@pending_requests_header = {:pending_requests => :reverse}, 'hilite'
+      if session[:ordering][:pending_requests] == :desc
+        ordering,@pending_requests_header = {:pending_requests => :asc}, 'hilite'
       else
         ordering,@pending_requests_header = {:pending_requests => :desc}, 'hilite'
       end
@@ -27,12 +29,14 @@ class TeamsController < ApplicationController
       @selected_majors = Hash[@majors.map {|major| [major, major]}]
     end
     
-    if params[:sort] != session[:sort] or params[:ratings] != session[:ratings]
+    if params[:sort] != session[:sort] or params[:declared] != session[:declared]
       session[:sort] = sort
-      session[:ratings] = @selected_ratings
-      redirect_to :sort => sort, :ratings => @selected_ratings and return
+      session[:declared] = @selected_majors
+      redirect_to :sort => sort, :declared => @selected_majors and return
     end
-    @movies = Movie.where(rating: @selected_ratings.keys).order(ordering)
+    
+    session[:ordering] = ordering
+    @teams = Team.where(declared: @selected_majors.keys).order(ordering)
   end
   
   
