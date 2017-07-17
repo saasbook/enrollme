@@ -87,4 +87,13 @@ class Team < ActiveRecord::Base
     def num_members # simple getter method for checking number of users in team
         return users.size
     end
+    
+    def declared?
+        result = true
+        users.each do |user|
+            if user.major != 'DECLARED CS/EECS Major'
+                return false;
+            end    
+        end
+    end
 end
