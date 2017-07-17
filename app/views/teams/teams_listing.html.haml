@@ -1,0 +1,28 @@
+-#  This file is app/views/movies/index.html.haml
+%h1 Teams -#All Movies
+
+= form_tag team_path, :method => :get, :id => 'declared_form' do
+  = hidden_field_tag "num_members_sort", true if @title_header
+  = hidden_field_tag ":pending_requests_sort", true if @date_header
+  Include: 
+  - @major.each do |declared|
+    = declared
+    = check_box_tag "declared[#{declared}]", 1, @majors.include?(declared), :id => "declared_#{declared}"
+  = submit_tag 'Refresh', :id => 'ratings_submit'
+
+%table#teams
+  %thead
+    %tr
+      %th Group Members
+      %th{:class => @title_header}= link_to 'Number of Members', teams_path(:sort => 'num_members', :declared => @majors), :id => 'num_members_header'
+      %th{:class => @pending_requests_header}= link_to 'Number of Pending Requests', teams_path(:sort => 'pending_requests', :declared => @majors), :id => 'pending_requests_header'
+      %th All Declared?
+      %th Request
+  %tbody
+    - @teams.each do |team|
+      %tr
+        %td= team.users
+        %td= team.num_members
+        %td= team.pending_requests
+        %td= team.all_declared?
+        %td= team.join?
