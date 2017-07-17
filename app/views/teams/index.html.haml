@@ -1,7 +1,7 @@
 -#  This file is app/views/movies/index.html.haml
-%h1 Teams -#All Movies
+%h1 Teams -#All Teams
 
-= form_tag team_path, :method => :get, :id => 'declared_form' do
+= form_tag teams_path, :method => :get, :id => 'declared_form' do
   = hidden_field_tag ":num_members_sort", true if @num_members_header
   = hidden_field_tag ":pending_requests_sort", true if @pending_requests_header
   Limit to Teams with all Declared CS or EECS Majors? 

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   
   resources :teams
-  get 'teams/list', to: 'teams#list'
+  get 'teams', to: 'teams#index'
   
   
   resources :admins
