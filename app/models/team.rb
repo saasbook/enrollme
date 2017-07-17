@@ -2,6 +2,7 @@ class Team < ActiveRecord::Base
     has_many :users
     has_one :submission
     validates :passcode, uniqueness: true
+  
 
     def self.generate_hash(length=36)
         return SecureRandom.urlsafe_base64(length, false)

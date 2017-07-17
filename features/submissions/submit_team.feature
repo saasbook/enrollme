@@ -32,6 +32,7 @@ Feature: student submits their team for approval
     Then I should see the "Submit" button
     And I should see "Warning: You need to submit your team"
 
+
   Scenario: Successfully choose discussions and submit team for approval
     Given I log in as a user with email "eecs666@hotmail.com"
     And the following discussions exist
@@ -46,8 +47,14 @@ Feature: student submits their team for approval
     And I select "CCN: 54323 | Time: Thursday 3:00 PM | Enrolled: 0 / 25" from "submission[disc3id]"
     And I press "Submit"
     Then I should see "Thanks for submitting your team for enrollment."
+    ############################################
+    And a confirmation email should be sent to the admin
+    And a confirmation email should be sent to the following team members: "bobjones0@berkeley.edu, bobjones1@berkeley.edu, bobjones2@berkeley.edu, bobjones3@berkeley.edu, eecs666@hotmail.com"
+    ############################################
     And I should see "My Team"
     
+
+
   Scenario: There are no discussions that can take a user's team
     Given I log in as a user with email "eecs666@hotmail.com"
     Then I should see "There are no available discussions."
