@@ -6,6 +6,10 @@ Given /I? click the following fields: (.*)/ do |fields|
   click(fields)
 end
 
+Given /I? click the (.*) text field/ do |field|
+  click(field)
+end
+
 Given /I? upload the image (.*)/ do |image|
   pending
 end
