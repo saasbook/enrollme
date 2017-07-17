@@ -60,10 +60,3 @@ Feature: edit user information
     And I follow "My Info"
     Then I should see "My name is Oski, I like Ruby"
 
-  Scenario: Change bio
-    When I follow "My Info"
-    And I follow "Edit"
-    And I fill in "Linkedin" with "My name is Oski, I like Ruby"
-    And I press "Update Information"
-    And I follow "My Info"
-    Then I should see "My name is Oski, I like Ruby"
