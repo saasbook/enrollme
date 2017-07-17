@@ -1,9 +1,9 @@
 Given /I? type "(.*)"/ do |text|
-  pending
+  puts text
 end
 
 Given /I? click the following fields: (.*)/ do |fields|
-  pending
+  click(fields)
 end
 
 Given /I? upload the image (.*)/ do |image|
@@ -11,11 +11,11 @@ Given /I? upload the image (.*)/ do |image|
 end
 
 Then /I? should see the image (.*)/ do |image|
-  pending
+  expect(page.body.index(image))
 end
 
 Then /I? should see the file (.*)/ do |file|
-  pending
+  expect(page.body.index(file))
 end
 
 And /the table should list the teams with (?:all)? (.*) first, then (?:the)? (.*)/ do |first, last|
