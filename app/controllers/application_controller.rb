@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate
-    redirect_to login_path, :notice => "Please log in" if session[:user_id].nil?
+    # redirect_to login_path, :notice => "Please log in" if session[:user_id].nil?
   end
   
   def check_existence
