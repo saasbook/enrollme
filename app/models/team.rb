@@ -92,4 +92,13 @@ class Team < ActiveRecord::Base
         %w(Yes No)
     end
     
+    
+    def declared?
+        result = true
+        users.each do |user|
+            if user.major != 'DECLARED CS/EECS Major'
+                return false;
+            end    
+        end
+    end
 end
