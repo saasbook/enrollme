@@ -88,17 +88,30 @@ class Team < ActiveRecord::Base
         return self.users.size
     end
 
+    def self.pending_requests # need to implement to return number of pending requests
+        return 0
+    end 
+
     def self.all_declared
         %w(Yes No)
     end
     
     
-    def declared?
+    def self.declared
         result = true
-        users.each do |user|
+        self.users.each do |user|
             if user.major != 'DECLARED CS/EECS Major'
-                return false;
-            end    
+                result = false
+            end
         end
+        if result == true
+            return 'Yes'
+        else
+            return 'No'
+        end
+    end
+    
+    def self.join # implement to return join/leave/invite properly depending on session user's relation to team
+        return 'Join'
     end
 end

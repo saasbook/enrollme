@@ -2,8 +2,8 @@
 %h1 Teams -#All Movies
 
 = form_tag team_path, :method => :get, :id => 'declared_form' do
-  = hidden_field_tag ":num_members_sort", true if @title_header
-  = hidden_field_tag ":pending_requests_sort", true if @date_header
+  = hidden_field_tag ":num_members_sort", true if @num_members_header
+  = hidden_field_tag ":pending_requests_sort", true if @pending_requests_header
   Include: 
   - @majors.each do |declared|
     = declared
@@ -21,8 +21,8 @@
   %tbody
     - @teams.each do |team|
       %tr
-        %td= team.users
+        %td= team.members
         %td= team.num_members
         %td= team.pending_requests
-        %td= team.declared?
-        %td= team.join?
+        %td= team.declared
+        %td= team.join
