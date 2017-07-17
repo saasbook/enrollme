@@ -19,12 +19,19 @@ Scenario: Change bio
 	Given I click "MyInfo"
 	Then I should see "My name is Oski, I like Ruby"
 
-Scenario: Change Facebook/linkedin
+Scenario: Change Facebook
 	Given I click the "Facebook" text field
 	Given I type "https://www.facebook.com/oski.bear.5"
 	Given I click "submit"
 	Given I click "MyInfo"
 	Then I should see "https://www.facebook.com/oski.bear.5"
+	
+Scenario: Change Linkedin
+	Given I click the "Linkedin" text field
+	Given I type "https://www.linkedin.com/oski.bear.5"
+	Given I click "submit"
+	Given I click "MyInfo"
+	Then I should see "https://www.linkedin.com/oski.bear.5"
 
 Scenario: Change time commitment
 	Given I click the "Time Commitment" text field
@@ -32,6 +39,13 @@ Scenario: Change time commitment
 	Given I click "submit"
 	Given I click "MyInfo"
 	Then I should see "5"
+
+Scenario: Add user experience
+	Given I click the "Experience" text field
+	Given I type "Java"
+	Given I click "submit"
+	Given I click "MyInfo"
+	Then I should see "Java"
 
 Scenario: Change skillset
 	Given I click the following fields: ruby css
