@@ -1,5 +1,5 @@
 -#  This file is app/views/movies/index.html.haml
-%h1 Teams -#All Teams
+%h1 Teams
 
 = form_tag teams_path, :method => :get, :id => 'declared_form' do
   = hidden_field_tag ":num_members_sort", true if @num_members_header
@@ -25,4 +25,4 @@
         %td= team.num_members
         %td= team.pending_requests
         %td= team.declared
-        %td= team.join
+        %td= link_to "Join Team"

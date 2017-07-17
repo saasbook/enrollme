@@ -7,9 +7,6 @@ class TeamController < ApplicationController
   before_filter :set_permissions
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
   
-  def list
-    render "test_listing"
-  end
   
   def show
     @discussions = Discussion.valid_discs_for(@team)

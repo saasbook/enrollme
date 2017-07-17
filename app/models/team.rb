@@ -2,6 +2,7 @@ class Team < ActiveRecord::Base
     has_many :users
     has_one :submission
     validates :passcode, uniqueness: true
+    attr_accessor :members, :num_members, :pending_requests, :declared
   
 
     def self.generate_hash(length=36)
@@ -72,7 +73,7 @@ class Team < ActiveRecord::Base
     
     # Summer '17 Code
     
-    def self.members # returns the names of all members in the group, to be displayed in proper format in the team listings table
+    def set_members # returns the names of all members in the group, to be displayed in proper format in the team listings table
         names = ''
         self.users.each do |u|
            if names == ''
@@ -81,23 +82,26 @@ class Team < ActiveRecord::Base
                names = names + ', ' + u.name
            end
        end
-       return names
+       self.members = names
     end
     
-    def self.num_members # simple getter method for checking number of users in team
-        return self.users.size
+    def set_num_members # simple getter method for checking number of users in team
+        self.num_members = self.users.size
     end
 
-    def self.pending_requests # need to implement to return number of pending requests
-        return 0
-    end 
+    def set_pending_requests(req)
+        if req == 'join'
+            self.pending_requests += 1
+        elsif req == 'leave'
+            self.pending_requests -= 1
+        end
+    end
 
     def self.all_declared
         %w(Yes No)
     end
     
-    
-    def self.declared
+    def set_declared
         result = true
         self.users.each do |user|
             if user.major != 'DECLARED CS/EECS Major'
@@ -105,13 +109,22 @@ class Team < ActiveRecord::Base
             end
         end
         if result == true
-            return 'Yes'
+            self.declared = 'Yes'
         else
-            return 'No'
+            self.declared = 'No'
         end
+        self.save!
     end
     
-    def self.join # implement to return join/leave/invite properly depending on session user's relation to team
-        return 'Join'
-    end
+    # def self.check_declared
+    #     if self.declared == true
+    #         return 'Yes'
+    #     else
+    #         return 'No'
+    #     end
+    # end
+    
+    # TODO def self.join # implement to return join/leave/invite properly depending on session user's relation to team
+    #    return 'Join'
+    # end
 end
