@@ -14,3 +14,10 @@
  *= require_self
  *= require_tree .
  */
+
+#navBar{
+    height: 55px;
+}
+
+
+
