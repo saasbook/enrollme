@@ -2,7 +2,7 @@ class Team < ActiveRecord::Base
     has_many :users
     has_one :submission
     validates :passcode, uniqueness: true
-    attr_accessor :members, :num_members, :pending_requests, :declared
+    attr_accessor :members, :pending_requests, :declared
   
 
     def self.generate_hash(length=36)
@@ -73,7 +73,7 @@ class Team < ActiveRecord::Base
     
     # Summer '17 Code
     
-    def set_members # returns the names of all members in the group, to be displayed in proper format in the team listings table
+    def members # returns the names of all members in the group, to be displayed in proper format in the team listings table
         names = ''
         self.users.each do |u|
            if names == ''
@@ -82,26 +82,18 @@ class Team < ActiveRecord::Base
                names = names + ', ' + u.name
            end
        end
-       self.members = names
-    end
-    
-    def set_num_members # simple getter method for checking number of users in team
-        self.num_members = self.users.size
+       return names
     end
 
-    def set_pending_requests(req)
-        if req == 'join'
-            self.pending_requests += 1
-        elsif req == 'leave'
-            self.pending_requests -= 1
-        end
+    def pending_requests
+        return 0
     end
 
     def self.all_declared
         %w(Yes No)
     end
     
-    def set_declared
+    def declared
         result = true
         self.users.each do |user|
             if user.major != 'DECLARED CS/EECS Major'
@@ -109,11 +101,10 @@ class Team < ActiveRecord::Base
             end
         end
         if result == true
-            self.declared = 'Yes'
+            return 'Yes'
         else
-            self.declared = 'No'
+            return 'No'
         end
-        self.save!
     end
     
     # def self.check_declared

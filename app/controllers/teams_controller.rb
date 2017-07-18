@@ -8,12 +8,12 @@ class TeamsController < ApplicationController
     sort = params[:sort] || session[:sort] || 'default'
     case sort
     when 'default'
-      ordering, @num_members_header = {:num_members => :desc}, 'hilite'
-    when 'num_members'
+      ordering, @num_members_header = {:users_count => :desc}, 'hilite'
+    when 'users_count'
       if session[:ordering][:num_members] == :desc
-        ordering,@num_members_header = {:num_members => :asc}, 'hilite'
+        ordering,@num_members_header = {:users_count => :asc}, 'hilite'
       else
-        ordering,@num_members_header = {:num_members => :desc}, 'hilite'
+        ordering,@num_members_header = {:users_count => :desc}, 'hilite'
       end
     when 'pending_requests'
       if session[:ordering][:pending_requests] == :desc

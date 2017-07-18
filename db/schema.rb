@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717044319) do
+ActiveRecord::Schema.define(version: 20170718185817) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170717044319) do
     t.string   "members"
     t.integer  "num_members"
     t.integer  "pending_requests"
+    t.integer  "users_count"
   end
 
   add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"

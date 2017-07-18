@@ -2,7 +2,7 @@
 %h1 Teams
 
 = form_tag teams_path, :method => :get, :id => 'declared_form' do
-  = hidden_field_tag ":num_members_sort", true if @num_members_header
+  = hidden_field_tag ":users_count_sort", true if @users_count_header
   = hidden_field_tag ":pending_requests_sort", true if @pending_requests_header
   Limit to Teams with all Declared CS or EECS Majors? 
   - @majors.each do |declared|
@@ -14,7 +14,7 @@
   %thead
     %tr
       %th Group Members
-      %th{:class => @num_members_header}= link_to 'Number of Members', teams_path(:sort => 'num_members', :declared => @majors), :id => 'num_members_header'
+      %th{:class => @users_count_header}= link_to 'Number of Members', teams_path(:sort => 'users_count', :declared => @majors), :id => 'users_count_header'
       %th{:class => @pending_requests_header}= link_to 'Number of Pending Requests', teams_path(:sort => 'pending_requests', :declared => @majors), :id => 'pending_requests_header'
       %th All Declared?
       %th Request
@@ -22,7 +22,7 @@
     - @teams.each do |team|
       %tr
         %td= team.members
-        %td= team.num_members
+        %td= team.users_count
         %td= team.pending_requests
         %td= team.declared
         %td= link_to "Join Team"
