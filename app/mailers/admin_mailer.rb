@@ -42,7 +42,7 @@ class AdminMailer < ApplicationMailer
    end
    
    def look_at_submission(email)
-      mail(to: email, subject: "Teams are awaiting your approval!")
+      mail(to: email, subject: "A team is awaiting your approval!")
    end
    
    def all_data(admin)
@@ -55,7 +55,7 @@ class AdminMailer < ApplicationMailer
    def self.send_look_at_submission
       if !(Team.where("approved = ? AND submitted = ?", false, true).nil?)
          Admin.all.each do |admin|
-            look_at_submission(admin.email).deliver
+            look_at_submission(admin.email).deliver_now
          end
       end
    end

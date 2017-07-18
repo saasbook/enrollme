@@ -18,6 +18,7 @@ Feature: Student creates a new account
     And I attach the file "picture" to "Profile Picture"
     And I press "Sign Up"
     Then I should see "Create or Join a Team"
+    Then I should receive a confirmation email at "david@berkeley.edu"
     
   Scenario: User fails to create an account
     And I press "Sign Up"
