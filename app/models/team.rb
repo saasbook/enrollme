@@ -2,6 +2,7 @@ class Team < ActiveRecord::Base
     has_many :users
     has_one :submission
     validates :passcode, uniqueness: true
+    attr_accessor :members, :num_members, :pending_requests, :declared
   
 
     def self.generate_hash(length=36)
@@ -69,4 +70,61 @@ class Team < ActiveRecord::Base
         ! approved     &&
         users.size < Option.maximum_team_size
     end
+    
+    # Summer '17 Code
+    
+    def set_members # returns the names of all members in the group, to be displayed in proper format in the team listings table
+        names = ''
+        self.users.each do |u|
+           if names == ''
+               names = u.name # not sure if this is proper way to call user name
+           else
+               names = names + ', ' + u.name
+           end
+       end
+       self.members = names
+    end
+    
+    def set_num_members # simple getter method for checking number of users in team
+        self.num_members = self.users.size
+    end
+
+    def set_pending_requests(req)
+        if req == 'join'
+            self.pending_requests += 1
+        elsif req == 'leave'
+            self.pending_requests -= 1
+        end
+    end
+
+    def self.all_declared
+        %w(Yes No)
+    end
+    
+    def set_declared
+        result = true
+        self.users.each do |user|
+            if user.major != 'DECLARED CS/EECS Major'
+                result = false
+            end
+        end
+        if result == true
+            self.declared = 'Yes'
+        else
+            self.declared = 'No'
+        end
+        self.save!
+    end
+    
+    # def self.check_declared
+    #     if self.declared == true
+    #         return 'Yes'
+    #     else
+    #         return 'No'
+    #     end
+    # end
+    
+    # TODO def self.join # implement to return join/leave/invite properly depending on session user's relation to team
+    #    return 'Join'
+    # end
 end

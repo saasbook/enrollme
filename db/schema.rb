@@ -49,10 +49,14 @@ ActiveRecord::Schema.define(version: 20170717042440) do
     t.boolean  "approved"
     t.string   "passcode"
     t.integer  "submission_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.boolean  "submitted"
     t.integer  "discussion_id"
+    t.string   "declared"
+    t.string   "members"
+    t.integer  "num_members"
+    t.integer  "pending_requests"
   end
 
   add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"
