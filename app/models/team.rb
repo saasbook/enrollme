@@ -86,7 +86,7 @@ class Team < ActiveRecord::Base
     end
 
     def pending_requests
-        return 0
+        @pending_requests = 0
     end
 
     def self.all_declared
@@ -101,9 +101,9 @@ class Team < ActiveRecord::Base
             end
         end
         if result == true
-            return 'Yes'
+            @declared = 'Yes'
         else
-            return 'No'
+            @declared = 'No'
         end
     end
     

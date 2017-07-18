@@ -36,7 +36,8 @@ class TeamsController < ApplicationController
     end
     
     session[:ordering] = ordering
-    @teams = Team.where(declared: @selected_majors.keys).order(ordering)
+    # @teams = Team.where(declared: @selected_majors.keys).order(ordering)
+    @teams = Team.order(ordering)
   end
   
   
