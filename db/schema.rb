@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20170718185817) do
     t.integer  "discussion_id"
     t.string   "declared"
     t.string   "members"
-    t.integer  "num_members"
     t.integer  "pending_requests"
     t.integer  "users_count"
   end
