@@ -1,21 +1,21 @@
 -#  This file is app/views/movies/index.html.haml
 %h1 Teams
 
-= form_tag teams_path, :method => :get, :id => 'declared_form' do
+= form_tag teams_path, :method => :get, :id => 'majors_form' do
   = hidden_field_tag ":users_count_sort", true if @users_count_header
   = hidden_field_tag ":pending_requests_sort", true if @pending_requests_header
   Limit to Teams with all Declared CS or EECS Majors? 
-  - @majors.each do |declared|
-    = declared
-    = check_box_tag "declared[#{declared}]", 1, @majors.include?(declared), :id => "declared_#{declared}"
-  = submit_tag 'Refresh', :id => 'declared_submit'
+  - @all_majors.each do |major|
+    = major
+    = check_box_tag "majors[#{major}]", 1, @selected_majors.include?(major), :id => "majors_#{major}"
+  = submit_tag 'Refresh', :id => 'majors_submit'
 
 %table#teams
   %thead
     %tr
       %th Group Members
-      %th{:class => @users_count_header}= link_to 'Number of Members', teams_path(:sort => 'users_count', :declared => @majors), :id => 'users_count_header'
-      %th{:class => @pending_requests_header}= link_to 'Number of Pending Requests', teams_path(:sort => 'pending_requests', :declared => @majors), :id => 'pending_requests_header'
+      %th{:class => @users_count_header}= link_to 'Number of Members', teams_path(:sort => 'users_count', :majors => @selected_majors), :id => 'users_count_header'
+      %th{:class => @pending_requests_header}= link_to 'Number of Pending Requests', teams_path(:sort => 'pending_requests', :majors => @selected_majors), :id => 'pending_requests_header'
       %th All Declared?
       %th Request
   %tbody
