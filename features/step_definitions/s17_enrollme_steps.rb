@@ -5,15 +5,20 @@ Given /a listing of teams with the following information/ do |teams_table|
   # @team_listing = teams_table
   # teams_table.hashes.each do |team|
   #  Team.create!
-  # end
+  @team_listing = teams_table
+  pending
 end
 
 Given /I? type "(.*)"/ do |text|
-  pending
+  puts text
 end
 
 Given /I? click the following fields: (.*)/ do |fields|
-  pending
+  click(fields)
+end
+
+Given /I? click the (.*) text field/ do |field|
+  click(field)
 end
 
 Given /I? upload the image (.*)/ do |image|
@@ -21,18 +26,16 @@ Given /I? upload the image (.*)/ do |image|
 end
 
 Then /I? should see the image (.*)/ do |image|
-  pending
+  expect(page.body.index(image))
 end
 
 Then /I? should see the file (.*)/ do |file|
-  pending
+  expect(page.body.index(file))
 end
 
 
 
 ################ Team Listing Step Defs ####################
-
-
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
@@ -87,3 +90,40 @@ And /it displays ("You have left your team")/ do |message|
   # Check that the message is flashed
   pending
 end
+
+
+
+
+
+
+################ Email step definitions ################
+
+Then /I should receive a confirmation email at "(.+)"/ do |user_email|
+  # this will get the first email, so we can check the email headers and body.
+  email = ActionMailer::Base.deliveries.first
+  email.from.should include "enrollmeberkeley@gmail.com"
+  email.to.should include user_email
+  email.subject.should include("Welcome to EnrollMe")
+end
+
+And /a confirmation email should be sent to the admin/ do
+  # select the emails whose subject match the admin confirmation email's subject
+  email = ActionMailer::Base.deliveries.select { |e| e.subject == "A team is awaiting your approval!" }[0]
+  email.from.should include "enrollmeberkeley@gmail.com"
+  email.to.should include "enrollmeberkeley@gmail.com"
+end
+
+And /a confirmation email should be sent to the following team members: "(.+)"/ do |team_members|
+  # select the emails whose subject match the team members confirmation email's subject
+  email = ActionMailer::Base.deliveries.select { |e| e.subject == "Your team has successfully submitted team enrollment to EnrollMe" }[0]
+
+  email.from.should include "enrollmeberkeley@gmail.com"
+  team_members.split(',').each do |member|
+    email.to.should include member.strip
+  end
+
+end
+
+
+
+

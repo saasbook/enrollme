@@ -8,6 +8,11 @@
         <h4>SID: <%= @user.sid %> </h4>
         <h4>Major: <%= @user.major %> </h4>
         <h4>Team Password: <%= @user.team.nil? ? "Not yet on a team" : @user.team.passcode %> </h4>
+        <h4>Bio: <%= @user.bio.nil? ? "None" : @user.bio %></h4>
+        <h4>Time Commitment:  <%= @user.time_commitment.nil? ? "None" : @user.time_commitment %></h4>
+        <h4>Experience:  <%= @user.experience.nil? ? "None" : @user.experience %></h4>
+        <h4>Facebook:  <%= @user.facebook.nil? ? "None" : @user.facebook %></h4>
+        <h4>Linkedin:  <%= @user.linkedin.nil? ? "None" : @user.linkedin %></h4>
         <br>
         <%= link_to "Back", '#', onclick: "history.back()", class: 'btn btn-primary' %>
         <%= link_to "Edit", edit_user_path(params[:id]), {class: 'btn', :method => 'get'} %>
