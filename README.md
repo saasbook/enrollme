@@ -1,15 +1,45 @@
 # EnrollMe
+[![Code Climate](https://codeclimate.com/github/DerekHs/enrollme/badges/gpa.svg)](https://codeclimate.com/github/DerekHs/enrollme)
 
-[![Code Climate](https://codeclimate.com/github/adnanhemani/enrollme/badges/gpa.svg?)](https://codeclimate.com/github/adnanhemani/enrollme)
-[![Test Coverage](https://codeclimate.com/github/adnanhemani/enrollme/badges/coverage.svg?)](https://codeclimate.com/github/adnanhemani/enrollme/coverage)
-[![Build Status](https://travis-ci.org/adnanhemani/enrollme.svg?branch=master)](https://travis-ci.org/adnanhemani/enrollme)
+[![Test Coverage](https://codeclimate.com/github/DerekHs/enrollme/badges/coverage.svg)](https://codeclimate.com/github/DerekHs/enrollme/coverage)
 
+[![Build Status](https://travis-ci.org/DerekHs/enrollme.svg?branch=master)](https://travis-ci.org/DerekHs/enrollme)
 
+Copyright (c) 2017 Brandon Jabr, Derek Hsiao, Ken Chiu, Hadi Zhang, Karl Hayek, George Su
+
+## Goals
+This repository is a continuation of the original project started in Fall 2016. Its purpose is to connect students to each other to form groups in the CS169 class, as well as to streamline enrollment administration.
+We plan to add the following features for the following users:
+
+### Students
+- Capability to post student profile complete with bio, section availability, resume/LinkedIn, time commitment, and work preferences. Possibly find Facebook friends who are also taking class.
+- Integrate all course information into EnrollMe
+- Students receive group invitations via email with a button to accept/reject
+- Create a search service for connecting individuals to teams or vice versa
+- Match students to projects that will likely interest them
+
+### Administrators
+- An email is sent to admins whenever a complete team of 6 is formed. Service may be performed by 3rd party mail service such as mailgun
+- Store data from semester to semester by compressing it into a .csv
+- Handle multiple semesters concurrently 
+- Add multiple sections at a time
+- Automate process of approving groups. Either with direct integration with CalCentral or through a list of data uploaded by an admin
+
+### Overall:
+- Refactor repetitive code
+- Increase readability for future teams
+
+**Pivotal Tracker:** https://www.pivotaltracker.com/n/projects/1886001
+
+**Deployed App:** https://enrollme.herokuapp.com/
+
+---
+```
 Copyright (c) 2016 Jason Gao, Adnan Hemani, David Koh, Sid Masih, Varun Mathuria, Dasol Yoon
 
 *Pivotal Tracker* https://www.pivotaltracker.com/n/projects/1886001
 
-Michael-David Sasson, Berkeley’s CS enrollment coordinator, would like a tool that students can use to submit requests for their teams to be enrolled into CS 169. Students will be able to specify their team members and submit information like SID and major which will be used to process enrollment. There currently does not exist a website.
+Michael-David Sasson, Berkeley’s CS enrollment coordinator, would like a tool that students can use to submit requests for their teams to be enrolled into CS 169. Students will be able to specify their team members and submit information like SID and major which will be used to process enrollment.
 
 Deployed App: https://enrollme.herokuapp.com/
 
@@ -31,4 +61,4 @@ Add new admins: Click on the "Register New Admin" button on the ribbon at the to
 
 Manage admins: Click on the "Manage Admins" button on the ribbon at the top of any page in the admin portal. If you are the SuperAdmin, on this new page you'll also see options to transfer your SuperAdmin status to another admin.
 
-Resetting the system for a new semester: Click on the "Reset Semester" button on the ribbon at the top of any page in the admin portal. You'll be asked to put in the master reset password to continue with the process - if you don't remember the password, contact your system administrator for help. The admin requesting this will get an email with all the data that is being wiped from the system. WARNING: there is NO going back once you reset the semester - the data is permanently wiped out of the database after this. Proceed only when you are 100% sure that this is what you want to do.
+Resetting the system for a new semester: Click on the "Reset Semester" button on the ribbon at the top of any page in the admin portal. You'll be asked to put in the master reset password to continue with the process - if you don't remember the password, contact your system administrator for help. The admin requesting this will get an email with all the data that is being wiped from the system. WARNING: there is NO going back once you reset the semester - the data is permanently wiped out of the database after this. Proceed only when you are 100% sure that this is what you want to do. ```

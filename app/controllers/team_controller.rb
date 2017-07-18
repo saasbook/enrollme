@@ -1,9 +1,12 @@
 
 class TeamController < ApplicationController
   
+
+  
   before_filter :set_user, :set_team
   before_filter :set_permissions
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
+  
   
   def show
     @discussions = Discussion.valid_discs_for(@team)
@@ -45,6 +48,7 @@ class TeamController < ApplicationController
     return redirect_to team_path(@team.id), notice: "Removed #{@user_to_remove.name} from team." + notice
   end
   
+
   
 
   private
