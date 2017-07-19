@@ -49,6 +49,11 @@ Feature: Manage requests for joining teams
 		Given I am accepted to team 4
 		My incoming requests to should be empty
 
+	Scenario: Other member should not see requests after they have been processed
+		Given I am accepted to team 4
+		A's incoming requests should be empty
+		A's outgoing requests should be empty
+
 
 
 
