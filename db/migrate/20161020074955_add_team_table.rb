@@ -5,7 +5,7 @@ class AddTeamTable < ActiveRecord::Migration
       e.string :passcode
       e.integer :submission_id
       e.timestamps null: false
-
+      
     end
   end
 end
