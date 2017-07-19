@@ -73,16 +73,20 @@ class Team < ActiveRecord::Base
     
     # Summer '17 Code
     
-    def members # returns the names of all members in the group, to be displayed in proper format in the team listings table
-        names = ''
-        self.users.each do |u|
-           if names == ''
-               names = u.name # not sure if this is proper way to call user name
-           else
-               names = names + ', ' + u.name
-           end
-       end
-       return names
+    # def members # returns the names of all members in the group, to be displayed in proper format in the team listings table
+    #     names = ''
+    #     self.users.each do |u|
+    #       if names == ''
+    #           names = u.name # not sure if this is proper way to call user name
+    #       else
+    #           names = names + ', ' + u.name
+    #       end
+    #   end
+    #   return names
+    # end
+    
+    def getMembers
+         self.Team.users
     end
 
     def pending_requests

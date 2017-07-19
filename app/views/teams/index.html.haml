@@ -21,8 +21,8 @@
   %tbody
     - @teams.each do |team|
       %tr
-        %td= team.members
-        %td= team.users_count
+        %td= team.getMembers
+        %td= team.users.count
         %td= team.pending_requests
         %td= team.declared
         %td= link_to "Join Team"
