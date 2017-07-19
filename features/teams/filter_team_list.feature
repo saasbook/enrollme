@@ -1,6 +1,6 @@
 Feature: display list of teams filtered by declared CS/EECS teams
   
-  As a user
+  As a student
   So that I can quickly browse teams based on my preferences
   I want to see only declared teams or undeclared teams
  
@@ -12,7 +12,13 @@ Background: teams have been added to database
     | Derek Hsiao, Ken Chiu | 2 | 2 | Yes | Leave |
     | Hadi Zhang, George Poo | 2 | 1 | No | Join |
     | Karl Hayek, Brandon Jabr, Carina Boo | 3 | 10 | Yes | Join |
-     
+    | 
+    And the following users exist
+     | name  | email                         | team_passcode | major           | sid |
+     | Jorge | legueoflegends667@hotmail.com | 0             | Football Player | 999 |
+    And I am on the login page
+    And I log in as a user with email "legueoflegends667@hotmail.com"
+    
     And  I am on the Team List page
     
 Scenario: restrict to CS/EECS declared teams
