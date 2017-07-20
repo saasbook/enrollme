@@ -14,7 +14,7 @@ Feature: Manage requests for joining teams
 			|team 1| Derek |
 			|team 2| An, Hezheng|
 			|team 3| George, Karl, Ken|
-			|team 4| A, B, C, D, E    |
+			|team 4| A, B, C, D, E|
 
 		And I am on the team_list page
 
@@ -23,6 +23,7 @@ Feature: Manage requests for joining teams
 	And I press the requests tab
 	Then I should see the people associated with team "0"
 
+	// rspec
 	Scenario: Team was merges, not yet full
 		IF team 1 was merged with team 3 before request sent
 		and I request to join team 1
