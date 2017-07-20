@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  belongs_to :team, counter_cache: true
+  belongs_to :team#, counter_cache: true
   
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   # get 'auth/:provider/callback', to: 'session#create'
   # get 'auth/failure', to: redirect('/')
   
+  
+  
   resources :teams
   get '/teams', to: 'teams#index'
   post 'teams/:id/submit', to: 'teams#submit', as: "submit_team"
