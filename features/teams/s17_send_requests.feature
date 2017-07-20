@@ -32,22 +32,22 @@ Feature: Manage requests for joining teams
 
     Scenario: I send a join request to a team that is not full
       Given I press the "Join" button on the same row as "An"
-      Then I should see a message that says "request sent"
+      Then I should see "request sent"
       Given I press "Requests"
-      Then I should see "An" under "Outgoing Requests"
+      Then I should see "An"
 
     Scenario: I send a join request to a team that is full
-      Given I press "Join" the button on the same row as "Hezheng"
+      Given I press the "Join" button on the same row as "Hezheng"
       Then I should see "Team is Full"
 
     Scenario: I want to cancel an active join request
-      Given I press the "Join" button to join the team containing "An"
+      Given I press the "Join" button on the same row as "An"
       Given I press "Requests"
       Given I press the "Cancel" button on the same row as "An"
       Then I should not see "An"
 
     Scenario: My request was accepted
-      Given that I press the "Join" button on the same row as "An"
+      Given I press the "Join" button on the same row as "An"
       Given I login as "An"
       Given I press "Requests"
       Given I press the "Accept" button on the same row as "Derek"
@@ -57,7 +57,7 @@ Feature: Manage requests for joining teams
       Then I should see "An"
 
     Scenario: My request was denied
-      Given that I press the "Join" button on the same row as "An"
+      Given I press the "Join" button on the same row as "An"
       Given I login as "An"
       Given I press "Requests"
       Given I press the "Reject" button on the same row as "Derek"
@@ -70,5 +70,5 @@ Feature: Manage requests for joining teams
       Given I create the user:
         |Name   | team_id |
         |Denero | 2       |
-      Given that I press the "Join" button on the same row as "An"
+      Given I press the "Join" button on the same row as "An"
       Then I should see "Team is now full"
