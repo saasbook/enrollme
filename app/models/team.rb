@@ -86,7 +86,7 @@ class Team < ActiveRecord::Base
     # end
     
     def getMembers
-         self.Team.users
+         self.users
     end
 
     def pending_requests

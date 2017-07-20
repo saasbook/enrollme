@@ -41,6 +41,7 @@ class TeamsController < ApplicationController
     # flash[:notice] = "all_majors is #{@all_majors}, and selected_majors is #{@selected_majors}, and selected_majors.keys is #{@selected_majors.keys}"
     #@teams = Team.where(declared: @selected_majors).order(ordering) # this line is bugged?
     @teams = Team.order(ordering)
+    
   end
   
   

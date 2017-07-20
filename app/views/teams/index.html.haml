@@ -22,7 +22,7 @@
     - @teams.each do |team|
       %tr
         %td= team.getMembers
-        %td= team.users.count
+        %td= team.getNumOfMembers
         %td= team.pending_requests
         %td= team.declared
         %td= link_to "Join Team"

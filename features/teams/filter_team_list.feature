@@ -12,7 +12,6 @@ Background: teams have been added to database
     | Derek Hsiao, Ken Chiu | 2 | 2 | Yes | Leave |
     | Hadi Zhang, George Poo | 2 | 1 | No | Join |
     | Karl Hayek, Brandon Jabr, Carina Boo | 3 | 10 | Yes | Join |
-    | 
     And the following users exist
      | name  | email                         | team_passcode | major           | sid |
      | Jorge | legueoflegends667@hotmail.com | 0             | Football Player | 999 |
