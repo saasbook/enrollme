@@ -20,7 +20,8 @@ Feature: Manage requests for joining teams
       |Hadi   | 1|
       |Brandon| 1|
     
-    And I am on the team listings page
+    And I login as "Hadi"
+    And I am on "Requests"
   
   Scenario: I want to see the requests to join my group that still need to be processed
     Given "An" requests to join my team
