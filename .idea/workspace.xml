@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3090ea25-bd24-458f-9907-5c6c641b884b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.generators" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.rakeTasks" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/enrollme.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/teams/s_17_process_request.feature" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/features/teams/s17_team_requests.feature" afterPath="$PROJECT_DIR$/features/teams/s17_send_requests.feature" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/teams/s17_send_requests.feature" afterPath="$PROJECT_DIR$/features/teams/s17_send_requests.feature" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -82,21 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="s17_send_requests.feature" pinned="false" current-in-tab="false">
+      <file leaf-file-name="s17_send_requests.feature" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/features/teams/s17_send_requests.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="s_17_process_request.feature" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/features/teams/s_17_process_request.feature">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="262">
+              <caret line="22" column="62" lean-forward="false" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -132,6 +114,7 @@
         <option value="$PROJECT_DIR$/features/step_definitions/s17_enrollme_steps.rb" />
         <option value="$PROJECT_DIR$/features/teams/filter_team_list.feature" />
         <option value="$PROJECT_DIR$/features/teams/s17_team_listing.feature" />
+        <option value="$PROJECT_DIR$/features/teams/s17_send_requests.feature" />
       </list>
     </option>
   </component>
@@ -665,10 +648,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10299000" />
+    <option name="totallyTimeSpent" value="11085000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="821" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3673611" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -677,16 +661,26 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292011" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4862259" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4862259" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292011" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4862259" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3673611" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -926,14 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/features/teams/s17_team_listing.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="52" column="49" lean-forward="false" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/features/teams/s17_send_requests.feature">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -946,6 +932,217 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/teams/s17_team_requests.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-730">
+          <caret line="14" column="16" lean-forward="true" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/teams/s17_team_listing.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="49" lean-forward="false" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="5" lean-forward="false" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/s17_enrollme_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="5" lean-forward="false" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+          <folding>
+            <marker date="1500519525000" expanded="true" signature="287:312" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="358:389" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="428:457" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="492:516" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="554:601" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="789:995" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="803:905" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1039:1212" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1057:1208" ph="if ... end" />
+            <marker date="1500519525000" expanded="true" signature="1241:1320" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1377:1554" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1602:1831" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1629:1817" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1867:2148" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1872:2134" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="2350:2432" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="2664:2956" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="3013:3319" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="3144:3200" ph="{ ... }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/support/paths.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+          <folding>
+            <marker date="1500519525000" expanded="true" signature="154:1460" ph=" ... end" />
+            <marker date="1500519525000" expanded="true" signature="157:284" ph="##..." />
+            <marker date="1500519525000" expanded="true" signature="309:1456" ph=" ... end" />
+            <marker date="1500519525000" expanded="true" signature="314:1450" ph="case ... end" />
+            <marker date="1500519525000" expanded="true" signature="915:1098" ph="case ... end" />
+            <marker date="1500519525000" expanded="true" signature="1114:1442" ph="begin ... end" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/teams/filter_team_list.feature" />
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="5" lean-forward="false" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/s17_enrollme_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="5" lean-forward="false" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+          <folding>
+            <marker date="1500519525000" expanded="true" signature="287:312" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="358:389" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="428:457" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="492:516" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="554:601" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="789:995" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="803:905" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1039:1212" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1057:1208" ph="if ... end" />
+            <marker date="1500519525000" expanded="true" signature="1241:1320" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1377:1554" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1602:1831" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1629:1817" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1867:2148" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1872:2134" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="2350:2432" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="2664:2956" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="3013:3319" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="3144:3200" ph="{ ... }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/support/paths.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+          <folding>
+            <marker date="1500519525000" expanded="true" signature="154:1460" ph=" ... end" />
+            <marker date="1500519525000" expanded="true" signature="157:284" ph="##..." />
+            <marker date="1500519525000" expanded="true" signature="309:1456" ph=" ... end" />
+            <marker date="1500519525000" expanded="true" signature="314:1450" ph="case ... end" />
+            <marker date="1500519525000" expanded="true" signature="915:1098" ph="case ... end" />
+            <marker date="1500519525000" expanded="true" signature="1114:1442" ph="begin ... end" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/teams/filter_team_list.feature" />
+    <entry file="file://$PROJECT_DIR$/features/emails/approved_teams.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/support/paths.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="9" />
+          <folding>
+            <marker date="1500519525000" expanded="true" signature="154:1460" ph=" ... end" />
+            <marker date="1500519525000" expanded="true" signature="157:284" ph="##..." />
+            <marker date="1500519525000" expanded="true" signature="309:1456" ph=" ... end" />
+            <marker date="1500519525000" expanded="true" signature="314:1450" ph="case ... end" />
+            <marker date="1500519525000" expanded="true" signature="915:1098" ph="case ... end" />
+            <marker date="1500519525000" expanded="true" signature="1114:1442" ph="begin ... end" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="59" column="5" lean-forward="false" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/step_definitions/s17_enrollme_steps.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+          <folding>
+            <marker date="1500519525000" expanded="true" signature="287:312" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="358:389" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="428:457" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="492:516" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="554:601" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="789:995" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="803:905" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1039:1212" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1057:1208" ph="if ... end" />
+            <marker date="1500519525000" expanded="true" signature="1241:1320" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1377:1554" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1602:1831" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1629:1817" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1867:2148" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="1872:2134" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="2350:2432" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="2664:2956" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="3013:3319" ph="do ... end" />
+            <marker date="1500519525000" expanded="true" signature="3144:3200" ph="{ ... }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/teams/filter_team_list.feature" />
+    <entry file="file://$PROJECT_DIR$/features/teams/sort_team_list.feature" />
+    <entry file="file://$PROJECT_DIR$/features/teams/search_team_list.feature" />
+    <entry file="file://$PROJECT_DIR$/features/teams/s17_team_listing.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="52" column="49" lean-forward="false" selection-start-line="52" selection-start-column="49" selection-end-line="52" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/teams/s_17_process_request.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features/teams/s17_send_requests.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="22" column="62" lean-forward="false" selection-start-line="22" selection-start-column="62" selection-end-line="22" selection-end-column="62" />
           <folding />
         </state>
       </provider>
