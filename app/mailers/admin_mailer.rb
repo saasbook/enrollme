@@ -1,5 +1,5 @@
 class AdminMailer < ApplicationMailer
-    default from: 'enrollmeberkeley@gmail.com'
+    default from: 'enrollmeberkeley@gmail.com', to: 'enrollmes17@gmail.com'
    
    def invite_new_admin(admin)
       @admin = admin

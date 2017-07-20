@@ -21,4 +21,21 @@ Option.create!(
   :maximum_team_size => 3
   )
 
-  
+
+
+
+team = Team.create!(:approved => false, :submitted => false, :passcode => "allstar")
+
+
+User.delete_all
+users = [
+		{ :name => "Karl", :email => "karl1@gmail.com", :major => "CS", :sid => "5138", :team => team },
+		{ :name => "Karl", :email => "karl2@gmail.com", :major => "CS", :sid => "5139", :team => team },
+		{ :name => "Karl", :email => "karl3@gmail.com", :major => "CS", :sid => "5140", :team => team },
+		{ :name => "Karl", :email => "karl4@gmail.com", :major => "CS", :sid => "5141", :team => team },
+		{ :name => "Karl", :email => "karl5@gmail.com", :major => "CS", :sid => "5142", :team => team }
+	]
+
+users.each do |u|
+	User.create!(u)
+end
