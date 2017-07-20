@@ -6,10 +6,21 @@ Rails.application.routes.draw do
   post '/join_team', to: 'users#join_team'
   get '/help', to: 'users#user_help'
   
-  resources :team
-  # get 'team/list', to: 'team#list'
-  post 'team/:id/submit', to: 'team#submit', as: "submit_team"
-  post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
+  # resources :team
+  # post 'team/:id/submit', to: 'team#submit', as: "submit_team"
+  # post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
+
+  # get 'login', to: 'session#new'
+  # post 'login', to: 'session#create'
+  # get 'logout', to: 'session#destroy'
+  
+  # get 'auth/:provider/callback', to: 'session#create'
+  # get 'auth/failure', to: redirect('/')
+  
+  resources :teams
+  get '/teams', to: 'teams#index'
+  post 'teams/:id/submit', to: 'teams#submit', as: "submit_team"
+  post 'teams/:id/unsubmit', to: 'teams#unsubmit', as: "unsubmit_team"
 
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
@@ -17,10 +28,6 @@ Rails.application.routes.draw do
   
   get 'auth/:provider/callback', to: 'session#create'
   get 'auth/failure', to: redirect('/')
-  
-  resources :teams
-  get '/teams', to: 'teams#index'
-  
   
   resources :admins
   get '/admin/approve_team', to: 'admins#approve'
