@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718185817) do
+ActiveRecord::Schema.define(version: 20170720224017) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170718185817) do
     t.string   "experience"
     t.string   "facebook"
     t.string   "linkedin"
+    t.string   "waitlisted"
   end
 
   add_index "users", ["team_id"], name: "index_users_on_team_id"

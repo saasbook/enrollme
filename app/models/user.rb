@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     format: VALID_EMAIL_REGEX, exclusion: { in: lambda { |u| u.all_admin_emails } }
   validates :major, presence: true
   validates :sid, presence: true, uniqueness: true, length: { maximum: 10 }
+  validates :waitlisted, presence: true
   before_save :downcase_email
 
   def downcase_email

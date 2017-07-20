@@ -165,3 +165,11 @@ end
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
+
+Then(/^the "([^"]*)" radio button should be checked$/) do |radio_button_name|
+  expect(find_field(radio_button_name)).to be_checked
+end
+
+Then(/^the "([^"]*)" radio button should not be checked$/) do |radio_button_name|
+  expect(find_field(radio_button_name)).to_not be_checked
+end
