@@ -3,7 +3,7 @@
 
 [![Test Coverage](https://codeclimate.com/github/DerekHs/enrollme/badges/coverage.svg)](https://codeclimate.com/github/DerekHs/enrollme/coverage)
 
-[![Build Status](https://travis-ci.org/DerekHs/enrollme.svg?branch=user_info)](https://travis-ci.org/DerekHs/enrollme)
+[![Build Status](https://travis-ci.org/DerekHs/enrollme.svg?branch=master)](https://travis-ci.org/DerekHs/enrollme)
 
 Copyright (c) 2017 Brandon Jabr, Derek Hsiao, Ken Chiu, Hadi Zhang, Karl Hayek, George Su
 
