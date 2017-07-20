@@ -19,5 +19,3 @@ Feature: Manage requests for joining teams
       |Ken    | 1|
       |Hadi   | 1|
       |Brandon| 1|
-
-  Scenario: I want to approve a request and my team has room
