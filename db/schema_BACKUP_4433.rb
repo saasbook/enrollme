@@ -54,10 +54,9 @@ ActiveRecord::Schema.define(version: 20170718185817) do
     t.boolean  "submitted"
     t.integer  "discussion_id"
     t.string   "declared"
-    t.integer  "pending_requests"
-    t.string   "integer"
     t.string   "members"
     t.integer  "num_members"
+    t.integer  "pending_requests"
     t.integer  "users_count"
   end
 
