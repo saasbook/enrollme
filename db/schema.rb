@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417002226) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20170721043937) do
+=======
+ActiveRecord::Schema.define(version: 20170718185817) do
+>>>>>>> 77de014ab636bd69be4fbe4e3f5a08760f81615b
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -49,22 +53,36 @@ ActiveRecord::Schema.define(version: 20170417002226) do
     t.boolean  "approved"
     t.string   "passcode"
     t.integer  "submission_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.boolean  "submitted"
     t.integer  "discussion_id"
+    t.string   "declared"
+    t.integer  "pending_requests"
+    t.string   "integer"
+<<<<<<< HEAD
+=======
+    t.string   "members"
+    t.integer  "num_members"
+>>>>>>> 77de014ab636bd69be4fbe4e3f5a08760f81615b
+    t.integer  "users_count"
   end
 
   add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "email",      null: false
-    t.string   "major",      null: false
-    t.string   "sid",        null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",            null: false
+    t.string   "email",           null: false
+    t.string   "major",           null: false
+    t.string   "sid",             null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "team_id"
+    t.string   "bio"
+    t.integer  "time_commitment"
+    t.string   "experience"
+    t.string   "facebook"
+    t.string   "linkedin"
   end
 
   add_index "users", ["team_id"], name: "index_users_on_team_id"

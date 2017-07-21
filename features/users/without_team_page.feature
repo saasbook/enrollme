@@ -23,11 +23,11 @@ Feature: join or create a team
     And I press "Join"
     Then I should see "Unable to join team"
     
-  Scenario: An existing user creates a new team and gets the password
-    Given I press "Create"
-    Then I should see "Team Password:"
+  # Scenario: An existing user creates a new team and gets the password
+  #   Given I press "Create"
+  #   Then I should see "Team Password:"
     
-  Scenario: An existing user joins an existing team
-    Given I fill in "team_hash" with "penguindrool"
-    And I press "Join"
-    Then I should see "Team Password: penguindrool"
+  # Scenario: An existing user joins an existing team
+  #   Given I fill in "team_hash" with "penguindrool"
+  #   And I press "Join"
+  #   Then I should see "Team Password: penguindrool"
