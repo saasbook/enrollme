@@ -36,9 +36,9 @@ class UsersController < ApplicationController
     @user.leave_team if !(@user.team.nil?)
     
     @team = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
-
+    
+    @team.users << @user
     @user.team = @team
-    # @team.users << @user
     redirect_to team_path(:id=>@team.id)
   end
 
@@ -50,8 +50,8 @@ class UsersController < ApplicationController
     
     @user.leave_team if !(@user.team.nil?)
     
-    # @user.team = @team
     @team.users << @user
+    @user.team = @team
     @team.withdraw_submission
     
     @team.send_submission_reminder_email if @team.eligible?

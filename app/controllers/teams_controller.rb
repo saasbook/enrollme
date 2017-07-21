@@ -11,13 +11,13 @@ class TeamsController < ApplicationController
     when 'default'
       ordering, @num_members_header = {:users_count => :desc}, 'hilite'
     when 'users_count'
-      if session[:ordering][:num_members] == :desc
+      if session[:ordering]["users_count"] == "desc"
         ordering,@num_members_header = {:users_count => :asc}, 'hilite'
       else
         ordering,@num_members_header = {:users_count => :desc}, 'hilite'
       end
     when 'pending_requests'
-      if session[:ordering][:pending_requests] == :desc
+      if session[:ordering]["pending_requests"] == "desc"
         ordering,@pending_requests_header = {:pending_requests => :asc}, 'hilite'
       else
         ordering,@pending_requests_header = {:pending_requests => :desc}, 'hilite'

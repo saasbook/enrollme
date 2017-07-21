@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
   def leave_team
     @team = self.team
     @team.users.delete(self)
-    self.team = nil
     @team.withdraw_submission
     
     if User.where(:team_id => @team.id).length <= 0
