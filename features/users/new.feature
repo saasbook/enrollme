@@ -31,3 +31,4 @@ Feature: Student creates a new account
     And I choose "Yes"
     And I press "Sign Up"
     Then I should see "Form is invalid"
+

@@ -1,13 +1,10 @@
 # Declarative step to populate DB with teams
 
-Given /a listing of teams with the following information/ do |teams_table|
-  @team_listing = teams_table
+Given /^the following teams exist:$/ do |teams_table|
   pending
-
-  # !!! The following code fails with this error: "Validation failed: Passcode has already been taken (ActiveRecord::RecordInvalid)"
-  # teams_table.hashes.each do |team|
-  #   Team.create!
-  # end
+    teams_table.hashes.each do |hash|
+    Team.create hash
+  end
 end
 
 Given /I? type "(.*)"/ do |text|
@@ -37,7 +34,6 @@ end
 
 
 ################ Team Listing Step Defs ####################
-
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
