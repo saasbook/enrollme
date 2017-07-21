@@ -86,7 +86,12 @@ class Team < ActiveRecord::Base
     # end
     
     def getMembersNames
-         self.users.name
+        puts "***********NAMEAS********"
+         users = self.users
+         names = []
+         users.each{|user| names.push(user.name)}
+         puts"#{names}"
+         return names
     end
     
     def getNumOfMembers
