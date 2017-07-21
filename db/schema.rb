@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170721043937) do
+=======
+ActiveRecord::Schema.define(version: 20170718185817) do
+>>>>>>> 77de014ab636bd69be4fbe4e3f5a08760f81615b
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -56,6 +60,11 @@ ActiveRecord::Schema.define(version: 20170721043937) do
     t.string   "declared"
     t.integer  "pending_requests"
     t.string   "integer"
+<<<<<<< HEAD
+=======
+    t.string   "members"
+    t.integer  "num_members"
+>>>>>>> 77de014ab636bd69be4fbe4e3f5a08760f81615b
     t.integer  "users_count"
   end
 
