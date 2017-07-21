@@ -77,6 +77,7 @@ class UsersController < ApplicationController
     @user = User.find_by_id session[:user_id]
   end
 
+
   def user_params
     params.require(:user).permit(:name, :email, :sid, :major, :bio, :time_commitment, :experience, :facebook, :linkedin)
   end
