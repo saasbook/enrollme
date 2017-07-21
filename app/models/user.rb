@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     format: VALID_EMAIL_REGEX, exclusion: { in: lambda { |u| u.all_admin_emails } }
   validates :major, presence: true
   validates :sid, presence: true, uniqueness: true, length: { maximum: 10 }
+  validates :waitlisted, presence: true
   before_save :downcase_email
 
   def downcase_email
@@ -16,7 +17,6 @@ class User < ActiveRecord::Base
   def leave_team
     @team = self.team
     @team.users.delete(self)
-    self.team = nil
     @team.withdraw_submission
     
     if User.where(:team_id => @team.id).length <= 0
