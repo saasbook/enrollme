@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     @user.leave_team if !(@user.team.nil?)
     
     @team = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
-    
+
     @team.users << @user
     @user.team = @team
     redirect_to team_path(:id=>@team.id)
