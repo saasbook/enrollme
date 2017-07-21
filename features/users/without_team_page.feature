@@ -7,13 +7,13 @@ Feature: join or create a team
   Background:
     Given the allowed team size is 5-6
     And   the following users exist
-     | name  | email                         | team_passcode | major           | sid |
-     | Jorge | legueoflegends667@hotmail.com | 0             | Football Player | 999 |
-     | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
-     | Saha1 | eecs667@hotmail.com           | penguindrool  | EECS            | 001 |
-     | Saha2 | eecs668@hotmail.com           | penguindrool  | EECS            | 002 |
-     | Saha3 | eecs669@hotmail.com           | penguindrool  | EECS            | 003 |
-     | Saha4 | eecs660@hotmail.com           | penguindrool  | EECS            | 004 |
+     | name  | email                         | team_passcode | major           | sid | waitlisted |
+     | Jorge | legueoflegends667@hotmail.com | 0             | Football Player | 999 | Yes        |
+     | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 | Yes        |
+     | Saha1 | eecs667@hotmail.com           | penguindrool  | EECS            | 001 | Yes        |
+     | Saha2 | eecs668@hotmail.com           | penguindrool  | EECS            | 002 | Yes        |
+     | Saha3 | eecs669@hotmail.com           | penguindrool  | EECS            | 003 | Yes        |
+     | Saha4 | eecs660@hotmail.com           | penguindrool  | EECS            | 004 | Yes        |
 
     And I am on the login page
     And I log in as a user with email "legueoflegends667@hotmail.com"
