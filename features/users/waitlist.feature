@@ -16,15 +16,15 @@ Feature: Student indicates whether they are on the waitlist for the class
     Then I should see "Form is invalid"
     
   Scenario: User should not be able to check both yes and no for waitlist status
-    Given I should see "Are you on the waitlist?"
-    And I check "waitlist_no"
-    And I check "waitlist_yes"
-    Then the "waitlist_yes" checkbox should be checked
-    And the "waitlist_no" checkbox should not be checked
+    Given I should see "Waitlisted?"
+    And I choose "No"
+    And I choose "Yes"
+    Then the "Yes" radio button should be checked
+    And the "No" radio button should not be checked
 
   Scenario: User should see waitlist status in my information
-    Given I check "waitlist_yes"
+    Given I choose "Yes"
     And I press "Sign Up"
-    And I press "MyInfo"
-    Then I should see "Waitlisted?: Yes"
+    And I follow "My Info"
+    Then I should see "Waitlisted? Yes"
 

@@ -85,14 +85,14 @@ end
 
 # Note: use "0" as team to indicate that this student isn't on a team yet
 Given /^the following users exist$/ do |table|
-  table.rows.each do |name, email, team_passcode, major, sid|
+  table.rows.each do |name, email, team_passcode, major, sid, waitlisted|
     next if name == "name" # skipping table header
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
       @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
-      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid)
+      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
     else
-      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid)
+      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
     end
   end
 end
@@ -166,6 +166,10 @@ When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
 
-When /I check the following experience/ do
-  pending
+Then(/^the "([^"]*)" radio button should be checked$/) do |radio_button_name|
+  expect(find_field(radio_button_name)).to be_checked
+end
+
+Then(/^the "([^"]*)" radio button should not be checked$/) do |radio_button_name|
+  expect(find_field(radio_button_name)).to_not be_checked
 end
