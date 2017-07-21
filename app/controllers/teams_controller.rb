@@ -3,7 +3,8 @@ class TeamsController < ApplicationController
   def show
     
   end
-  
+
+
   def index
     sort = params[:sort] || session[:sort] || 'default'
     case sort
