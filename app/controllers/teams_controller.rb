@@ -1,8 +1,8 @@
 class TeamsController < ApplicationController
   
-  before_filter :set_user, :set_team
-  before_filter :set_permissions
-  before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
+  # before_filter :set_user, :set_team
+  # before_filter :set_permissions
+  # before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit','index']
 
   def show
     @discussions = Discussion.valid_discs_for(@team)

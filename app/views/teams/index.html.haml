@@ -21,7 +21,7 @@
   %tbody
     - @teams.each do |team|
       %tr
-        %td= team.getMembers
+        %td= team.getMembersNames
         %td= team.getNumOfMembers
         %td= team.pending_requests
         %td= team.declared
