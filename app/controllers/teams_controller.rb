@@ -1,8 +1,8 @@
 class TeamsController < ApplicationController
   
-  # before_filter :set_user, :set_team
+  before_filter :set_user, :set_team
   # before_filter :set_permissions
-  # before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit','index']
+  # before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
 
   def show
     @discussions = Discussion.valid_discs_for(@team)
@@ -100,7 +100,8 @@ class TeamsController < ApplicationController
       @user = Admin.find(session[:user_id])
     else
       @user = User.find(session[:user_id])
-      redirect_to without_team_path, :notice => "Permission denied" if @user.team.nil?
+      #Dont need this to access team list
+      # redirect_to without_team_path, :notice => "Permission denied" if @user.team.nil?
     end
   end
 

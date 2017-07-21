@@ -88,6 +88,11 @@ class Team < ActiveRecord::Base
     def getMembersNames
          self.users.name
     end
+    
+    def getNumOfMembers
+         self.users.count
+    end 
+    
 
     def pending_requests
         @pending_requests = 0
