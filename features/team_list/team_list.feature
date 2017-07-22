@@ -5,17 +5,17 @@ Feature: Table for finding and joining teams
   
   Background:
     Given the following users exist
-      |   name    |       email                       | team      | major             |       sid         |  
-      | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               |
-      | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               |
-      | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               |
-      | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               |
-      | Bob4      |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               |
-      | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               |
-      | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               |
-      | Saha3     |    xx3@berkeley.edu         | passcode2 | Slav1c Studies    | 832               |
-      | Saha4     |    xx4@berkeley.edu         | passcode2 | Slav1c Studies    | 833               |
-      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               |
+      |   name    |       email                       | team      | major             |       sid         |  waitlisted |
+      | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | Yes |
+      | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | Yes |
+      | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               | Yes |
+      | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               | Yes |
+      | Bob4      |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               | Yes |
+      | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               | Yes |
+      | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               | Yes |
+      | Saha3     |    xx3@berkeley.edu         | passcode2 | Slav1c Studies    | 832               | Yes |
+      | Saha4     |    xx4@berkeley.edu         | passcode2 | Slav1c Studies    | 833               | Yes |
+      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               | Yes |
     
     And team "passcode1" has 0 pending requests
     And team "passcode2" has 2 pending requests

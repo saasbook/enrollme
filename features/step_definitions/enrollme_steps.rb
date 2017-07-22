@@ -187,4 +187,3 @@ end
 Then (/^the "([^"]*)" radio button should not be checked$/) do |radio_button_name|
   expect(find_field(radio_button_name)).to_not be_checked
 end
-end

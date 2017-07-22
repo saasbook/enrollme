@@ -5,12 +5,12 @@ Feature: Allow users to view team profiles from team list by clicking on them
   
   Background:
     Given the following users exist
-      |   name    |       email                       | team      | major             |       sid         |  
-      | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               |
-      | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               |
-      | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               |
-      | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               |
-      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               |
+      |   name    |       email                       | team      | major             |       sid         |  waitlisted |
+      | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | Yes |
+      | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | Yes |
+      | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               | Yes |
+      | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               | Yes |
+      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               | Yes |
     
     And team "passcode1" has 0 pending requests
     And team "passcode2" has 2 pending requests

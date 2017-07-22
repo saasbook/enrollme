@@ -54,11 +54,10 @@ ActiveRecord::Schema.define(version: 20170720224017) do
     t.boolean  "submitted"
     t.integer  "discussion_id"
     t.string   "declared"
-    t.integer  "pending_requests"
-    t.string   "integer"
-    t.string   "members"
     t.integer  "num_members"
+    t.integer  "pending_requests"
     t.integer  "users_count"
+    t.string   "integer"
   end
 
   add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"
