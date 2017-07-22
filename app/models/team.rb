@@ -73,20 +73,16 @@ class Team < ActiveRecord::Base
     
     # Summer '17 Code
     
-    # def members # returns the names of all members in the group, to be displayed in proper format in the team listings table
-    #     names = ''
-    #     self.users.each do |u|
-    #       if names == ''
-    #           names = u.name # not sure if this is proper way to call user name
-    #       else
-    #           names = names + ', ' + u.name
-    #       end
-    #   end
-    #   return names
-    # end
-    
-    def getMembers
-         self.users
+    def members # returns the names of all members in the group, to be displayed in proper format in the team listings table
+        names = ''
+        self.users.each do |u|
+          if names == ''
+              names = u.name # not sure if this is proper way to call user name
+          else
+              names = names + ', ' + u.name
+          end
+      end
+      return names
     end
 
     def pending_requests
@@ -111,15 +107,4 @@ class Team < ActiveRecord::Base
         end
     end
     
-    # def self.check_declared
-    #     if self.declared == true
-    #         return 'Yes'
-    #     else
-    #         return 'No'
-    #     end
-    # end
-    
-    # TODO def self.join # implement to return join/leave/invite properly depending on session user's relation to team
-    #    return 'Join'
-    # end
 end

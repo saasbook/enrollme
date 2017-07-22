@@ -166,10 +166,24 @@ When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
 
-Then(/^the "([^"]*)" radio button should be checked$/) do |radio_button_name|
+And /team "([^']*?)" has (\d*) pending requests?/ do |pass, n|
+  @team = Team.where(:passcode => pass).first
+  @team.pending_requests = n
+end
+
+And /team "([^']*?)" is (not )?declared/ do |pass, no|
+  @team = Team.where(:passcode => pass).first
+  if no
+    @team.declared = "Yes"
+  else
+    @team.declared = "No"
+  end
+end
+
+Then (/^the "([^"]*)" radio button should be checked$/) do |radio_button_name|
   expect(find_field(radio_button_name)).to be_checked
 end
 
-Then(/^the "([^"]*)" radio button should not be checked$/) do |radio_button_name|
+Then (/^the "([^"]*)" radio button should not be checked$/) do |radio_button_name|
   expect(find_field(radio_button_name)).to_not be_checked
 end
