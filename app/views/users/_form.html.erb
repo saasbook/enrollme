@@ -12,6 +12,14 @@
 </div>
 
 <div class="field form-group">
+  <%= f.label :waitlisted, "Waitlisted?"%> <br>
+  <%= f.radio_button(:waitlisted, "Yes") %>
+  <%= f.label(:waitlisted_yes, "Yes") %>
+  <%= f.radio_button(:waitlisted, "No") %>
+  <%= f.label(:waitlisted_no, "No") %>
+</div>
+
+<div class="field form-group">
   <%= f.label :bio, class: "col-lg-2 control-label"  %> <br>
   <%= f.text_field :bio, class: "form-control"  %>
 </div>

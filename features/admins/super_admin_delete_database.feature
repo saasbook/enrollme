@@ -9,13 +9,13 @@ Feature: Super admin deletes all data
       | name | email                  | superadmin |
   	  | Bob  | supreme_ruler@aol.com  | true       |
     Given the following users exist
-  	  |   name    |       email                       | team      | major             |       sid         |  
-	    | Jorge     |    legueoflegends667@hotmail.com  | somepassc | Football Player   | 999               |
-	    | Bob0      |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               |
-	    | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               |
-	    | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               |
-	    | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               |
-      | Sahai     |    eecs666@hotmail.com            | passcode1 | EECS              | 000               |
+  	  |   name    |       email                       | team      | major             |       sid         | waitlisted |
+	    | Jorge     |    legueoflegends667@hotmail.com  | somepassc | Football Player   | 999               | Yes |
+	    | Bob0      |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | Yes |
+	    | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | Yes |
+	    | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               | Yes |
+	    | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               | Yes |
+      | Sahai     |    eecs666@hotmail.com            | passcode1 | EECS              | 000               | Yes |
     And the following discussions exist
       | number  | time         | capacity |
    	  | 54321   | Tues, 3pm    |  25      |
