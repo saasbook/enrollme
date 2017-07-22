@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  belongs_to :team#, counter_cache: true
+  belongs_to :team, :counter_cache => true
   
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
   def leave_team
     @team = self.team
     @team.users.delete(self)
-    self.team = nil
     @team.withdraw_submission
     
     if User.where(:team_id => @team.id).length <= 0
@@ -27,8 +26,8 @@ class User < ActiveRecord::Base
   
   def self.user_from_oauth(auth)
     return User.find_by(:email => auth[:info][:email].downcase)
-    # query = "%#{" << auth[:info][:email] << "}%"
-    # return User.where("email LIKE ?", query).first
+    query = "%#{" << auth[:info][:email] << "}%"
+    return User.where("email LIKE ?", query).first
   end
   
   def all_admin_emails
