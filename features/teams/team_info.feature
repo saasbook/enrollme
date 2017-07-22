@@ -18,11 +18,10 @@ Background:
 
     And I am on the login page
     And I log in as a user with email "eecs666@hotmail.com"
-    And I am on the team info page for team_id "1"
 
     Scenario: User successfully goes to team info page from team list page
       Given I am on the team list page
-      When I go to the team info page for "Saha3, Saha4"
+      When I go to the team info page for team_id "2"
       Then I should see "Saha3"
       And I should see "Saha4's bio"
       And I should not see "Jorge"
