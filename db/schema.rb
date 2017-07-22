@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720224017) do
+ActiveRecord::Schema.define(version: 20170721043937) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -56,26 +56,28 @@ ActiveRecord::Schema.define(version: 20170720224017) do
     t.string   "declared"
     t.integer  "pending_requests"
     t.string   "integer"
-    t.string   "members"
-    t.integer  "num_members"
     t.integer  "users_count"
   end
 
   add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.string   "email",           null: false
-    t.string   "major",           null: false
-    t.string   "sid",             null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "name",               null: false
+    t.string   "email",              null: false
+    t.string   "major",              null: false
+    t.string   "sid",                null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "team_id"
     t.string   "bio"
     t.integer  "time_commitment"
     t.string   "experience"
     t.string   "facebook"
     t.string   "linkedin"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.string   "waitlisted"
   end
 
