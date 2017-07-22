@@ -1,7 +1,7 @@
 -#  This file is app/views/movies/index.html.haml
 %h1 Teams
 
-= form_tag teams_path, :method => :get, :id => 'declared_form' do
+= form_tag team_list_path, :method => :get, :id => 'declared_form' do
   = hidden_field_tag ":users_count_sort", true if @users_count_header
   = hidden_field_tag ":pending_requests_sort", true if @pending_requests_header
   Limit to Teams with all Declared CS or EECS Majors? 
@@ -14,8 +14,8 @@
   %thead
     %tr
       %th Group Members
-      %th{:class => @users_count_header}= link_to 'Number of Members', teams_path(:sort => 'users_count', :declared => @majors), :id => 'users_count_header'
-      %th{:class => @pending_requests_header}= link_to 'Number of Pending Requests', teams_path(:sort => 'pending_requests', :declared => @majors), :id => 'pending_requests_header'
+      %th{:class => @users_count_header}= link_to 'Number of Members', team_list_path(:sort => 'users_count', :declared => @majors), :id => 'users_count_header'
+      %th{:class => @pending_requests_header}= link_to 'Number of Pending Requests', team_list_path(:sort => 'pending_requests', :declared => @majors), :id => 'pending_requests_header'
       %th All Declared?
       %th Request
   %tbody

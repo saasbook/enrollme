@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       session[:user_email] = @user.email
       redirect_to without_team_path, :notice => "You signed up successfully!"
       # send a confirmation email
-      # EmailStudents.welcome_email(@user).deliver_now
+       #EmailStudents.welcome_email(@user).deliver_now
       # byebug
 
     else

@@ -166,6 +166,20 @@ When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
 
+And /team "([^']*?)" has (\d*) pending requests?/ do |pass, n|
+  @team = Team.where(:passcode => pass).first
+  @team.pending_requests = n
+end
+
+And /team "([^']*?)" is (not )?declared/ do |pass, no|
+  @team = Team.where(:passcode => pass).first
+  if no
+    @team.declared = "Yes"
+  else
+    @team.declared = "No"
+  end
+end
+
 When /I check the following experience/ do
   pending
 end

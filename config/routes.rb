@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # get 'team/list', to: 'team#list'
   post 'team/:id/submit', to: 'team#submit', as: "submit_team"
   post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
+  get 'teamlist', to: 'team#list', as: "team_list"
 
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
@@ -17,9 +18,6 @@ Rails.application.routes.draw do
   
   get 'auth/:provider/callback', to: 'session#create'
   get 'auth/failure', to: redirect('/')
-  
-  resources :teams
-  get '/teams', to: 'teams#index'
   
   
   resources :admins
