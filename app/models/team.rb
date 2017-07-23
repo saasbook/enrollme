@@ -1,5 +1,7 @@
 class Team < ActiveRecord::Base
     has_many :users
+    has_many :requests
+    has_many :users, through: :requests
     has_one :submission
     attr_accessor :num_pending_requests, :declared, :request
   

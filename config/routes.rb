@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :users do
-    resources: requests
+    resources :requests
   end
   get '/without_team', to: 'users#without'
   post '/create_team', to: 'users#start_team'
