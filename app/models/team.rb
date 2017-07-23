@@ -2,7 +2,7 @@ class Team < ActiveRecord::Base
     has_many :users
     has_one :submission
     validates :passcode, uniqueness: true
-    attr_accessor :group_members, :num_members, :num_pending_requests, :declared,:request
+    attr_accessor :num_pending_requests, :declared, :request
   
 
     def self.generate_hash(length=36)
@@ -73,21 +73,24 @@ class Team < ActiveRecord::Base
     
     # Summer '17 Code
     
-    # def members # returns the names of all members in the group, to be displayed in proper format in the team listings table
-    #     names = ''
-    #     self.users.each do |u|
-    #       if names == ''
-    #           names = u.name # not sure if this is proper way to call user name
-    #       else
-    #           names = names + ', ' + u.name
-    #       end
-    #   end
-    #   return names
-    # end
-    
-    def getMembers
-         self.users
+    def getMembers # returns the names of all members in the group, to be displayed in proper format in the team listings table
+        names = ''
+        self.users.each do |u|
+          if names == ''
+              names = u.name # not sure if this is proper way to call user name
+          else
+              names = names + ', ' + u.name
+          end
+      end
+      return names
     end
+
+    def getNumMembers # returns the number of members in this group
+        self.users.count
+    end
+    # def getMembers
+    #      self.users
+    # end
 
     def pending_requests
         @pending_requests = 0

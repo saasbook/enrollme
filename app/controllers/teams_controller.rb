@@ -1,9 +1,10 @@
 class TeamsController < ApplicationController
-  
+
   # before_filter :set_user, :set_team
   # before_filter :set_permissions
   # before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
-  
+
+
   def index
     sort = params[:sort] || session[:sort] || 'default'
     case sort
