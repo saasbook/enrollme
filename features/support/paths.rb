@@ -31,8 +31,8 @@ module NavigationHelpers
       new_discussion_path
     when /^the Team List page$/i
       teams_path
-    when /^the team info page for team_id "(.+)"$/
-      team_path($1)
+    when /^the team profile page for team_id "(.+)"$/
+      team_profile($1)
       
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
