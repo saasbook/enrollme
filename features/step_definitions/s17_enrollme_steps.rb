@@ -1,7 +1,6 @@
 # Declarative step to populate DB with teams
 
 Given /^the following teams exist:$/ do |teams_table|
-  pending
     teams_table.hashes.each do |hash|
     Team.create hash
   end
