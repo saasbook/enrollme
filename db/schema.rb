@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723181349) do
+ActiveRecord::Schema.define(version: 20170723181335) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -47,12 +47,14 @@ ActiveRecord::Schema.define(version: 20170723181349) do
 
   create_table "teams", force: :cascade do |t|
     t.boolean  "approved"
+    t.string   "passcode"
     t.integer  "submission_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.boolean  "submitted"
     t.integer  "discussion_id"
     t.string   "declared"
+    t.integer  "users_count"
   end
 
   add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"
@@ -70,7 +72,7 @@ ActiveRecord::Schema.define(version: 20170723181349) do
     t.string   "experience"
     t.string   "facebook"
     t.string   "linkedin"
-    t.string   "waitlisted"
+    t.boolean  "waitlisted"
   end
 
   add_index "users", ["team_id"], name: "index_users_on_team_id"
