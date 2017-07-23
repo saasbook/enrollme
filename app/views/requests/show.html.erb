@@ -1,6 +1,22 @@
 <body>
   <title>Requests</title>
     <div class="container">
-        
+=begin
+        <table>
+            #<% @incoming_requests.each do |incoming_request| %>
+            <tr>
+                
+                <td><%= incoming_request.id></td>
+            </tr>
+            <% end %>
+        </table>
+        <table>
+            #<% @outgoing_requests.each do |outgoing_request| %>
+            <tr>
+                
+                <td><%= outgoing_request.id></td>
+            </tr>
+        </table>
+=end
     </div>
 </body>
