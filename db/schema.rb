@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20170723050506) do
     t.string   "facebook"
     t.string   "linkedin"
     t.string   "waitlisted"
+    t.integer  "users_count"
   end
 
   add_index "users", ["team_id"], name: "index_users_on_team_id"
