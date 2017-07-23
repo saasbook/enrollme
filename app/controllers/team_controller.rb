@@ -3,8 +3,8 @@ class TeamController < ApplicationController
   
 
   
-  before_filter :set_user, :set_team
-  before_filter :set_permissions
+  before_filter :set_user, :set_team, :except => :list
+  before_filter :set_permissions, :except => :list
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
   
   
@@ -49,7 +49,41 @@ class TeamController < ApplicationController
     return redirect_to team_path(@team.id), notice: "Removed #{@user_to_remove.name} from team." + notice
   end
   
-
+  def list
+    sort = params[:sort] || session[:sort] || 'default'
+    case sort
+    when 'default'
+      ordering, @users_count_header = {:users_count => :desc}, 'hilite'
+    when 'users_count'
+      if session[:ordering]["users_count"] == "desc"
+        ordering,@users_count_header = {:users_count => :asc}, 'hilite'
+      else
+        ordering,@users_count_header = {:users_count => :desc}, 'hilite'
+      end
+    when 'pending_requests'
+      if session[:ordering]["pending_requests"] == "desc"
+        ordering,@pending_requests_header = {:pending_requests => :asc}, 'hilite'
+      else
+        ordering,@pending_requests_header = {:pending_requests => :desc}, 'hilite'
+      end
+    end
+    @majors = Team.all_declared
+    @selected_majors = params[:declared] || session[:declared] || {}
+    
+    if @selected_majors == {}
+      @selected_majors = Hash[@majors.map {|major| [major, major]}]
+    end
+    
+    if params[:sort] != session[:sort] or params[:declared] != session[:declared]
+      session[:sort] = sort
+      session[:declared] = @selected_majors
+      redirect_to :sort => sort, :declared => @selected_majors and return
+    end
+    
+    session[:ordering] = ordering
+    # @teams = Team.where(declared: @selected_majors.keys).order(ordering)
+    @teams = Team.order(ordering)
+  end
   
 
   private
@@ -77,6 +111,4 @@ class TeamController < ApplicationController
   def check_approved
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
   end
-
-  
 end
