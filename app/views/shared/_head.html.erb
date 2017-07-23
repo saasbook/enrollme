@@ -26,6 +26,7 @@
                 <li><%= link_to "Help", help_path %></li>
                 <li><%= link_to "My Info", user_path(session[:user_id]), {method: 'get'} %></li>
               <% else %>
+                  <li><%= link_to "Requests", route here %></li>
                   <li><%= link_to "Help", '/admin/tutorial' %></li>
                   <li><%= link_to "My Info", admin_path(session[:user_id]), {method: 'get'} %></li>
                   <li><%= link_to "Register New Admin", new_admin_path, {method: 'get'} %></li>
