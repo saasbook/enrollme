@@ -1,8 +1,8 @@
 class TeamsController < ApplicationController
   
-  before_filter :set_user, :set_team
-  before_filter :set_permissions
-  before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
+  # before_filter :set_user, :set_team
+  # before_filter :set_permissions
+  # before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
   
   def index
     sort = params[:sort] || session[:sort] || 'default'
@@ -45,7 +45,17 @@ class TeamsController < ApplicationController
   end
   
   def profile
-  puts "*******************"
+    @team = Team.find_by_id(params[:id])
+    puts "#{params[:id]}"
+    puts "*******"
+    puts "#{@team}"
+    # @discussions = Discussion.valid_discs_for(@team)
+    # if @team.submitted and !(@team.approved)
+    #   @s = Submission.find(@team.submission_id)
+    #   @d1 = Discussion.find(@s.disc1id)
+    #   @d2 = Discussion.find_by_id(@s.disc2id)
+    #   @d3 = Discussion.find_by_id(@s.disc3id)
+    # end
   end
   
   
