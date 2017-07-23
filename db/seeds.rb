@@ -16,7 +16,6 @@ admins.each do |a|
   Admin.create!(a)
 end
 
-<<<<<<< HEAD
 # users = [
 #   {:name => "user1", :email=>"user1@berkeley.com", :team_id => "10" , :major=> "DECLARED CS/EECS Major", :sid=>001, :waitlisted=> "Yes"},
 #   {:name => "user2", :email=>"user2@berkeley.com", :team_id => "10" , :major=> "DECLARED CS/EECS Major", :sid=>002, :waitlisted=> "Yes"},
@@ -26,11 +25,10 @@ end
 #   {:name => "user7", :email=>"user7@berkeley.com", :team_id => "10" , :major=> "DECLARED CS/EECS Major", :sid=>007, :waitlisted=> "Yes"}
 #   ]
   
-users.each do |user|
-  User.create!(user)
-end
-=======
->>>>>>> 16e0f78f6323709b68ed785e200fa083a5cdf5d5
+# users.each do |user|
+#   User.create!(user)
+# end
+
 
 Option.delete_all
 Option.create!(
