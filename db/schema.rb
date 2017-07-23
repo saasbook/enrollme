@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20170723050506) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "waitlisted"
+    t.integer  "users_count"
   end
 
   add_index "users", ["team_id"], name: "index_users_on_team_id"
