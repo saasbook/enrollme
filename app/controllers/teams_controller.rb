@@ -45,7 +45,7 @@ class TeamsController < ApplicationController
   end
   
   def profile
-  
+  puts "*******************"
   end
   
   
