@@ -53,12 +53,12 @@ class TeamController < ApplicationController
     sort = params[:sort] || session[:sort] || 'default'
     case sort
     when 'default'
-      ordering, @num_members_header = {:users_count => :desc}, 'hilite'
+      ordering, @users_count_header = {:users_count => :desc}, 'hilite'
     when 'users_count'
       if session[:ordering]["users_count"] == "desc"
-        ordering,@num_members_header = {:users_count => :asc}, 'hilite'
+        ordering,@users_count_header = {:users_count => :asc}, 'hilite'
       else
-        ordering,@num_members_header = {:users_count => :desc}, 'hilite'
+        ordering,@users_count_header = {:users_count => :desc}, 'hilite'
       end
     when 'pending_requests'
       if session[:ordering]["pending_requests"] == "desc"
