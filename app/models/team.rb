@@ -74,22 +74,15 @@ class Team < ActiveRecord::Base
     
     def getMembers # returns the names of all members in the group, to be displayed in proper format in the team listings table
         names = ''
-        self.users.each do |u|
-          if names == ''
-              names = u.name # not sure if this is proper way to call user name
-          else
-              names = names + ', ' + u.name
-          end
-      end
+        self.users.each {|user|
+          names.concat(user)
+        }
       return names
     end
 
     def getNumMembers # returns the number of members in this group
         self.users.count
     end
-    # def getMembers
-    #      self.users
-    # end
 
     def pending_requests
         @pending_requests = 0
