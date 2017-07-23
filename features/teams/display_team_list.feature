@@ -4,27 +4,17 @@ Feature: display all the teams
   I want to see all the currently open teams and be able to view, sort, and join/leave them
   
 Background: teams have been added to database
-  
-    Given the following teams exist:
-    | group_members | num_members | num_pending_requests | declared | request |
-    | George Su | 1 | 0 | No | Invite |
-    | Derek Hsiao, Ken Chiu | 2 | 2 | Yes | Leave |
-    | Hadi Zhang, George Poo | 2 | 1 | No | Join |
-    | Karl Hayek, Brandon Jabr, Carina Boo | 3 | 10 | Yes | Join |
-     
-#     |pending_requests|declared| request |
-     
-     
-      Given the following users exist
-     | name  | email                         | team_passcode | major           | sid | team_id|
-     | Derek Hsiao | eecs666@hotmail.com      | penguindrool | EECS            | 000  |     1|
-     | Ken Chiu | legueoflegends667@hotmail.com  | penguindrool | EECS           | 001  |      1|
+
+  Given the following users exist
+    |name              |email               |major |sid         |team_id  |waitlisted |
+    |Edsgar Dijkstra   |dijkstra@gmail.com  |'CS'  |11111111    |1        |"true"    |
+    |John Von Neuman   |neuman@gmail.com    |'CS'  |11111112    |2        |"true"     |
+    |Kurt Godel        |godel@gmail.com     |'CS'  |11111113    |3        |"true"     |
+
 
     And I am on the login page
-    And I log in as a user with email "legueoflegends667@hotmail.com"
-    
-    And I am on the Team List page
+    And I follow "Team List"
     
     Scenario: view different teams
-      Then I should see "Derek Hsiao, Ken Chiu"
-      And  I should not see "Peter"
+      Then show me the page
+      Then I should see "Dijkstra"

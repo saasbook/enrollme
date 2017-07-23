@@ -1,7 +1,6 @@
 class Team < ActiveRecord::Base
     has_many :users
     has_one :submission
-    validates :passcode, uniqueness: true
     attr_accessor :num_pending_requests, :declared, :request
   
 
