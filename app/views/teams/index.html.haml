@@ -25,4 +25,4 @@
         %td= team.getNumMembers
         %td= team.pending_requests
         %td= team.declared
-        %td= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id)
+        %td= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id), method: :post

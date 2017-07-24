@@ -1,10 +1,11 @@
 class RequestsController < ApplicationController
     def request_params
-        params.require([:user_id, :team_id])
+        params.require(:team_id)
+        params.require(:user_id)
     end
 
     def create
-        Request.create!(request_params)
+        Request.create!(:team_id => params[:team_id], :user_id => params[:user_id])
         redirect_to teams_path
     end
     
