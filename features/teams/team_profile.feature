@@ -7,13 +7,13 @@ Feature: display team members' profile
 Background:
   Given the following users exist
   
-       |   name    |       email       |team_passcode | major        |       sid      | waitlisted |team_id| bio |
-  	   | Jorge     |    legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | Yes | 1 |Jorge's bio|
- 	   | Sahai     | eecs666@hotmail.com        | penguindrool | EECS            | 000  | Yes | 1 |Sahai's bio|
- 	   | Saha1     | eecs667@hotmail.com        | penguindrool | EECS            | 001  | Yes | 1 |Saha1's bio|
- 	   | Saha2     | eecs668@hotmail.com        | penguindrool | EECS            | 002  | Yes | 1 |Saha2's bio|
- 	   | Saha3     | eecs669@hotmail.com        | teampass | EECS            | 003  | Yes | 2 |Saha3's bio|
- 	   | Saha4     | eecs660@hotmail.com        | teampass | EECS            | 004  | Yes | 2 |Saha4's bio|
+     |   name    |       email       |team_passcode | major        |       sid      | waitlisted |team_id| bio |
+  	 | Jorge     |    legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | Yes | 9 |Jorge's bio|
+ 	   | Sahai     | eecs666@hotmail.com        | penguindrool | EECS            | 000  | Yes | 9 |Sahai's bio|
+ 	   | Saha1     | eecs667@hotmail.com        | penguindrool | EECS            | 001  | Yes | 9 |Saha1's bio|
+ 	   | Saha2     | eecs668@hotmail.com        | penguindrool | EECS            | 002  | Yes | 9 |Saha2's bio|
+ 	   | Saha3     | eecs669@hotmail.com        | teampass | EECS            | 003  | Yes | 5 |Saha3's bio|
+ 	   | Saha4     | eecs660@hotmail.com        | teampass | EECS            | 004  | Yes | 5 |Saha4's bio|
 
 
     And I am on the login page
@@ -27,7 +27,6 @@ Background:
     #   And I should not see "Jorge"
     
     Scenario: User successfully views a team's profile
-      Given I am on the team profile page for team_id "2"
+      Given I am on the team profile page for team_id "5"
       Then I should see "Saha3"
-      And I should see "Saha4's bio"
       And I should not see "Jorge"
