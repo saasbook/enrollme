@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
 
   before_filter :set_user, :set_team
-  before_filter :set_permissions, :except => 'index'
+  before_filter :set_permissions, :except => ['index', 'profile']
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
 
 
