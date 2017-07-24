@@ -32,7 +32,7 @@ Feature: Manage requests for joining teams
 
     Scenario: I send a join request to a team that is not full
       Given I press the "Join" button on the same row as "An"
-      Then I should see "request sent"
+      Then I should see "Request Sent"
       Given I press "Requests"
       Then I should see "An"
 
@@ -61,7 +61,7 @@ Feature: Manage requests for joining teams
       Given I login as "An"
       Given I press "Requests"
       Given I press the "Reject" button on the same row as "Derek"
-      Then I should see "Request Approved"
+      Then I should see "Request Denied"
       Then I should not see "Derek"
       Given I login as "Derek"
       Then I should not see "An"
@@ -71,4 +71,4 @@ Feature: Manage requests for joining teams
         |Name   | team_id |
         |Denero | 2       |
       Given I press the "Join" button on the same row as "An"
-      Then I should see "Team is now full"
+      Then I should see "Team is Full"

@@ -2,13 +2,16 @@
   <title>Requests</title>
     <div class="container">
         <table>
+            <tr><td><h2>Incoming Requests</h2></td></tr>
             <% @incoming_requests.each do |incoming_request| %>
             <tr>
                 <td><%= incoming_request %></td>
+                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], team_id: incoming_request.team_id), method: :delete %>Cancel Request</td>
             </tr>
             <% end %>
         </table>
         <table>
+            <tr><td><h2>Outgoing Requests</h2></td></tr>
             <% @outgoing_requests.each do |outgoing_request| %>
             <tr>
                 <td><%= outgoing_request %></td>

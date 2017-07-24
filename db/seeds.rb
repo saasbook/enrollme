@@ -37,7 +37,7 @@ users = [
   {:name => "Karl Hayek", :email => "kh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123756, :team_id => 3},
   {:name => "Carina Boo", :email => "cb@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 1238556, :team_id => 3},
   {:name => "Oski Bear", :email => "ob@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123446, :team_id => 3},
-  {:name => "Aladdin", :email => "aladdin@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 193456, :team_id => 4},
+  {:name => "Aladdin", :email => "aladdin@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 193456, :team_id => 3},
   ]
   
   team1 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
@@ -47,6 +47,7 @@ users = [
 requests = [
 ]
 
+=begin
 counter = 0
 
 users.each do |u|
@@ -65,3 +66,4 @@ users.each do |u|
     counter += 1
   end
 end
+=end

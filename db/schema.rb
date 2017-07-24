@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 20170723194833) do
     t.boolean  "submitted"
     t.integer  "discussion_id"
     t.string   "declared"
+    t.string   "members"
+    t.integer  "num_members"
     t.integer  "users_count"
   end
 
@@ -79,7 +81,7 @@ ActiveRecord::Schema.define(version: 20170723194833) do
     t.string   "experience"
     t.string   "facebook"
     t.string   "linkedin"
-    t.boolean  "waitlisted"
+    t.string   "waitlisted"
   end
 
   add_index "users", ["team_id"], name: "index_users_on_team_id"
