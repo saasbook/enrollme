@@ -84,6 +84,12 @@ class Team < ActiveRecord::Base
       end
       return names
     end
+    
+    def getMembersNamesArray
+         names = []
+         self.users.each{|user| names.push(user.name)}    
+         return names
+    end
 
     def getNumMembers # returns the number of members in this group
         self.users.count

@@ -47,9 +47,6 @@ class TeamsController < ApplicationController
   
   def profile
     @team = Team.find_by_id(params[:id])
-    puts "#{params[:id]}"
-    puts "*******"
-    puts "#{@team}"
     # @discussions = Discussion.valid_discs_for(@team)
     # if @team.submitted and !(@team.approved)
     #   @s = Submission.find(@team.submission_id)
