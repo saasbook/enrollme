@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
 
   before_filter :set_user, :set_team
-  # before_filter :set_permissions
+  before_filter :set_permissions, :except => 'index'
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
 
 
@@ -113,7 +113,8 @@ class TeamsController < ApplicationController
       @user = Admin.find(session[:user_id])
     else
       @user = User.find(session[:user_id])
-      redirect_to without_team_path, :notice => "Permission denied" if @user.team.nil?
+      # Don't redirect it because user without team should still be able to view team list
+      # redirect_to without_team_path, :notice => "Permission denied" if @user.team.nil?
     end
   end
 
