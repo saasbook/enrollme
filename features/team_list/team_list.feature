@@ -25,7 +25,15 @@ Feature: Table for finding and joining teams
     And team "passcode2" is declared
     And team "passcode3" is not declared
     
-    And I am on the home page
+    And I am on the new_user page
+    And I fill in "Name" with "David"
+    And I fill in "Email" with "david@berkeley.edu"
+    And I fill in "Sid" with "12345678"
+    And I select "DECLARED CS/EECS Major" from "major"
+    And I choose "Yes"
+    And I press "Sign Up"
+    
+    
     And I follow "Team List"
   
   # Index should have teams sorted in descending order based on number_of_members
