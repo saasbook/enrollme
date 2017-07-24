@@ -90,7 +90,13 @@ class Team < ActiveRecord::Base
          self.users.each{|user| names.push(user.name)}    
          return names
     end
-
+    
+    def getMembersTimeCommitment
+        times = []
+        self.users.each{|user| times.push(user.time_commitment)}
+        return times
+    end
+    
     def getNumMembers # returns the number of members in this group
         self.users.count
     end

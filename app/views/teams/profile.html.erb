@@ -34,6 +34,7 @@
   enumeration = @team.users.count
   users = @team.users
   users_name_arr = @team.getMembersNamesArray
+  users_time_arr = @team.getMembersTimeCommitment
   @team.users.count <= 3? row = 1 : row = 2
   for i in 1..row 
 %>
@@ -43,6 +44,7 @@
     <div class = "col-md-4">
       <h3><%= users_name_arr.pop() %></h3>
       <img class="img-responsive" src="https://gravatar.com/avatar/ddc4bead487f5c1250fcc043e57787fe?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" alt="ProfilePicture">
+      <h4>Time commitment: <%= users_time_arr.pop() %> </h4>
     </div>
     <% enumeration-= 1 
       end %>
