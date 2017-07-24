@@ -25,7 +25,7 @@ Feature: Allow users to view team profiles from team list by clicking on them
 
   # Link to team profile page when you click on the team's row
   Scenario: A user wants to visits a team's profile page
-    Given I follow Jorge
+    Given I follow "Jorge"
     Then I should see "legueoflegends667@hotmail.com"
     And I should not see "Bob"
     And I should not see "Sahai"

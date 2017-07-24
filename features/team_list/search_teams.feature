@@ -26,7 +26,7 @@ Feature: Search Function for Team List
   # Search feature to find team with certain member's name
   Scenario: A user searches for a team with a certain member
     Given I fill in "search" with "Jorge"
-    When I press submit
+    When I press "Submit"
     Then I should see "Jorge"
     And I should not see "Bob"
     And I should not see "Sahai"
