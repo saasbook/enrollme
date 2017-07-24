@@ -7,9 +7,9 @@ class RequestsController < ApplicationController
         request = Request.new(request_params)
     end
     
-    def show
-        @incoming_requests = Request.where(team_id: params[:team_id])
-        @outgoing_requests = Request.where(user_id: params[:user_id])
+    def index
+        @incoming_requests = Request.where(team_id: params[:team_id]).map{|request| request.user.name}
+        @outgoing_requests = Request.where(user_id: params[:user_id]).map{|request| request.team.getMembers}
     end
     
     def destroy

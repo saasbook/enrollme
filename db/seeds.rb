@@ -44,6 +44,9 @@ users = [
   team2 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
   team3 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
 
+requests = [
+    {team_id }
+]
 
 counter = 0
 
