@@ -31,6 +31,9 @@ module NavigationHelpers
       new_discussion_pat
     when /^the team list page$/i
       teams_path
+    when /^the team profile page for team_id "(.+)"$/
+      teams_profile_path($1)
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

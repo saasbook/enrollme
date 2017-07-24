@@ -16,6 +16,19 @@ admins.each do |a|
   Admin.create!(a)
 end
 
+# users = [
+#   {:name => "user1", :email=>"user1@berkeley.com", :team_id => "10" , :major=> "DECLARED CS/EECS Major", :sid=>001, :waitlisted=> "Yes"},
+#   {:name => "user2", :email=>"user2@berkeley.com", :team_id => "10" , :major=> "DECLARED CS/EECS Major", :sid=>002, :waitlisted=> "Yes"},
+#   {:name => "user3", :email=>"user3@berkeley.com", :team_id => "10" , :major=> "DECLARED CS/EECS Major", :sid=>003, :waitlisted=> "Yes"},
+#   {:name => "user4", :email=>"user4@berkeley.com", :team_id => "10" , :major=> "DECLARED CS/EECS Major", :sid=>004, :waitlisted=> "Yes"},
+#   {:name => "user5", :email=>"user5@berkeley.com", :team_id => "10" , :major=> "DECLARED CS/EECS Major", :sid=>005, :waitlisted=> "Yes"},
+#   {:name => "user7", :email=>"user7@berkeley.com", :team_id => "10" , :major=> "DECLARED CS/EECS Major", :sid=>007, :waitlisted=> "Yes"}
+#   ]
+  
+# users.each do |user|
+#   User.create!(user)
+# end
+
 
 Option.delete_all
 Option.create!(

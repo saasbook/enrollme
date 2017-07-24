@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   
   resources :teams
   get '/teams', to: 'teams#index'
+  get '/teams/profile/:id', to: 'teams#profile', as: "teams_profile"
   post 'teams/:id/submit', to: 'teams#submit', as: "submit_team"
   post 'teams/:id/unsubmit', to: 'teams#unsubmit', as: "unsubmit_team"
 

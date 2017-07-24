@@ -23,7 +23,6 @@ end
 
 Given /^I log in as a user with email "([^"]*)"$/ do | email |
   mock_auth_hash(email)
-  byebug
   click_link "log_in"
 end
 

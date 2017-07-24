@@ -77,7 +77,19 @@ class Team < ActiveRecord::Base
     def getMembers # returns the names of all members in the group, to be displayed in proper format in the team listings table
         self.users.map {|user| user.name}.join(', ')
     end
-
+    
+    def getMembersNamesArray
+         names = []
+         self.users.each{|user| names.push(user.name)}    
+         return names
+    end
+    
+    def getMembersTimeCommitment
+        times = []
+        self.users.each{|user| times.push(user.time_commitment)}
+        return times
+    end
+    
     def getNumMembers # returns the number of members in this group
         self.users.count
     end

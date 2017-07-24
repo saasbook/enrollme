@@ -22,7 +22,7 @@
   %tbody
     - @teams.each do |team|
       %tr
-        %td= team.getMembers
+        %td= link_to "#{team.getMembers}",teams_profile_path(team.id)
         %td= team.getNumMembers
         %td= team.pending_requests
         %td= team.declared
