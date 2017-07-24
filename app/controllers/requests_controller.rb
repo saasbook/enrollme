@@ -6,11 +6,11 @@ class RequestsController < ApplicationController
 
     def create
         #If there is already a request with the same user id and team id, don't make a new one\
-        if !Request.exists?({:team_id => params[:team_id], :user_id => params[:user_id]}) || Team.find_by({:id => params[:team_id]}).getNumNumbers >= 6
+        if !Request.exists?({:team_id => params[:team_id], :user_id => params[:user_id]}) || Team.find_by({:id => params[:team_id]}).getNumMembers >= 6
             Request.create!(:team_id => params[:team_id], :user_id => params[:user_id])
             flash[:notice] = "Request Sent"
         end
-        if Team.find_by({:id => params[:team_id]}).getNumNumbers >= 6
+        if Team.find_by({:id => params[:team_id]}).getNumMembers >= 6
             flash[:notice] = "Team is Full"
         end
         #Also check if team is full
@@ -18,8 +18,8 @@ class RequestsController < ApplicationController
     end
     
     def index
-        @incoming_requests = Request.where(team_id: params[:team_id]).map{|request| request.user.name}
-        @outgoing_requests = Request.where(user_id: params[:user_id]).map{|request| request.team.getMembers}
+        @incoming_requests = Request.where(team_id: params[:team_id])
+        @outgoing_requests = Request.where(user_id: params[:user_id])
     end
     
     def accept

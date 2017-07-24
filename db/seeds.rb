@@ -47,7 +47,6 @@ users = [
 requests = [
 ]
 
-=begin
 counter = 0
 
 users.each do |u|
@@ -66,4 +65,3 @@ users.each do |u|
     counter += 1
   end
 end
-=end
