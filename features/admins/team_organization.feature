@@ -9,18 +9,18 @@ Feature: Use an admin acccount to see organized team data
      | name | email                  |
   	 | Bob  | supreme_ruler@aol.com  |
     And the following users exist
-     | name  |       email                    |team_passcode | major           | sid  |
-     | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  |
-     | Saha2 | eecs667@hotmail.com            | penguindrool | EECS            | 001  |
-     | Saha3 | eecs668@hotmail.com            | penguindrool | EECS            | 002  |
-     | Saha4 | eecs669@hotmail.com            | penguindrool | EECS            | 003  |
-  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  |
-   	 | Copy  | anotheremail@yahoo.com         | ok           | CS              | 009  |
-     | Bob0      |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               |
-     | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               |
-     | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               |
-     | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               |
-     | Bob4      |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               |
+     | name  |       email                    |team_passcode | major           | sid  | waitlisted |
+     | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | Yes |
+     | Saha2 | eecs667@hotmail.com            | penguindrool | EECS            | 001  | Yes |
+     | Saha3 | eecs668@hotmail.com            | penguindrool | EECS            | 002  | Yes |
+     | Saha4 | eecs669@hotmail.com            | penguindrool | EECS            | 003  | Yes |
+  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | Yes |
+   	 | Copy  | anotheremail@yahoo.com         | ok           | CS              | 009  | Yes |
+     | Bob0      |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | Yes |
+     | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | Yes |
+     | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               | Yes |
+     | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               | Yes |
+     | Bob4      |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               | Yes |
     And the following discussions exist
    	 | number  | time         |  capacity |
    	 | 54321   | Tues, 3pm    |  25       |

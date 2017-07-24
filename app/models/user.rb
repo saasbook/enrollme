@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  belongs_to :team
+  belongs_to :team, counter_cache: true
+  has_many :requests
+  #has_many :teams, through: :requests
   
   validates :name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -7,6 +9,7 @@ class User < ActiveRecord::Base
     format: VALID_EMAIL_REGEX, exclusion: { in: lambda { |u| u.all_admin_emails } }
   validates :major, presence: true
   validates :sid, presence: true, uniqueness: true, length: { maximum: 10 }
+  validates :waitlisted, presence: true
   before_save :downcase_email
 
   def downcase_email

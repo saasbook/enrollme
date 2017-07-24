@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       session[:user_email] = @user.email
       redirect_to without_team_path, :notice => "You signed up successfully!"
       # send a confirmation email
-      EmailStudents.welcome_email(@user).deliver_now
+      # EmailStudents.welcome_email(@user).deliver_now
       # byebug
 
     else
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     @team = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
 
     @user.team = @team
-    @team.users << @user
+    # @team.users << @user
     redirect_to team_path(:id=>@team.id)
   end
 
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     
     @user.leave_team if !(@user.team.nil?)
     
-    @user.team = @team
+    # @user.team = @team
     @team.users << @user
     @team.withdraw_submission
     
@@ -78,6 +78,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :sid, :major, :bio, :time_commitment, :experience, :facebook, :linkedin)
+    params.require(:user).permit(:name, :email, :sid, :major, :waitlisted, :bio, :time_commitment, :experience, :facebook, :linkedin)
   end
 end
