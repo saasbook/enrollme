@@ -4,7 +4,8 @@ class RequestsController < ApplicationController
     end
 
     def create
-        request = Request.new(request_params)
+        Request.create!(request_params)
+        redirect_to teams_path
     end
     
     def index
