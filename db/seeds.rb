@@ -42,21 +42,23 @@ User.delete_all
 Team.delete_all
 
 users = [
-  {:name => "George Su", :email => "gs@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123456},
-  {:name => "Hadi Zhang", :email => "hz@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 1234567},
-  {:name => "Derek Hsiao", :email => "dh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123453},
-  {:name => "Ken Chiu", :email => "kc@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123454},
-  {:name => "Brandon Jabr", :email => "bj@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 153456},
-  {:name => "Karl Hayek", :email => "kh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123756},
-  {:name => "Carina Boo", :email => "cb@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 1238556},
-  {:name => "Oski Bear", :email => "ob@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123446},
-  {:name => "Aladdin", :email => "aladdin@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 193456},
+  {:name => "George Su", :email => "gs@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123456, :team_id => nil},
+  {:name => "Hadi Zhang", :email => "hz@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 1234567, :team_id => 1},
+  {:name => "Derek Hsiao", :email => "dh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123453, :team_id => 2},
+  {:name => "Ken Chiu", :email => "kc@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123454, :team_id => 3},
+  {:name => "Brandon Jabr", :email => "bj@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 153456, :team_id => 3},
+  {:name => "Karl Hayek", :email => "kh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123756, :team_id => 3},
+  {:name => "Carina Boo", :email => "cb@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 1238556, :team_id => 3},
+  {:name => "Oski Bear", :email => "ob@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123446, :team_id => 3},
+  {:name => "Aladdin", :email => "aladdin@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 193456, :team_id => 3},
   ]
   
   team1 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
   team2 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
   team3 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
 
+requests = [
+]
 
 counter = 0
 

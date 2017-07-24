@@ -1,7 +1,3 @@
-When /^I login as "([^"]*)"$/ do |user|
-
-end
-
 Given /^"(.*)" requests to join my team$/ do |user|
 end
 

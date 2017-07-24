@@ -1,6 +1,7 @@
 -#  This file is app/views/movies/index.html.haml
 %h1 Teams
 
+= flash[:notice]
 = form_tag teams_path, :method => :get, :id => 'majors_form' do
   = hidden_field_tag ":users_count_sort", true if @users_count_header
   = hidden_field_tag ":pending_requests_sort", true if @pending_requests_header
@@ -25,4 +26,4 @@
         %td= team.getNumMembers
         %td= team.pending_requests
         %td= team.declared
-        %td= link_to "Join Team"
+        %td= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id), method: :post
