@@ -42,15 +42,15 @@ User.delete_all
 Team.delete_all
 
 users = [
-  {:name => "George Su", :email => "gs@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123456},
-  {:name => "Hadi Zhang", :email => "hz@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 1234567},
-  {:name => "Derek Hsiao", :email => "dh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123453},
-  {:name => "Ken Chiu", :email => "kc@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123454},
-  {:name => "Brandon Jabr", :email => "bj@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 153456},
-  {:name => "Karl Hayek", :email => "kh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123756},
-  {:name => "Carina Boo", :email => "cb@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 1238556},
-  {:name => "Oski Bear", :email => "ob@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123446},
-  {:name => "Aladdin", :email => "aladdin@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 193456},
+  {:name => "George Su", :email => "gs@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123456, :time_commitment=>20},
+  {:name => "Hadi Zhang", :email => "hz@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 1234567, :time_commitment=> 30},
+  {:name => "Derek Hsiao", :email => "dh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123453, :time_commitment=> 40},
+  {:name => "Ken Chiu", :email => "kc@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123454, :time_commitment=> 50},
+  {:name => "Brandon Jabr", :email => "bj@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 153456, :time_commitment=>10},
+  {:name => "Karl Hayek", :email => "kh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123756,  :time_commitment=>15},
+  {:name => "Carina Boo", :email => "cb@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 1238556 , :time_commitment=>20},
+  {:name => "Oski Bear", :email => "ob@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 123446,  :time_commitment=>100},
+  {:name => "Aladdin", :email => "aladdin@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'Yes', :sid => 193456, :time_commitment=>55},
   ]
   
   team1 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
