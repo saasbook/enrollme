@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   def update
     @user.update_attributes!(user_params)
     @team = @user != nil ? @user.team : nil
-    return redirect_to team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
+    return redirect_to user_path #team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
   end
 
   private
