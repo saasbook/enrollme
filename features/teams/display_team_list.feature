@@ -7,9 +7,9 @@ Background: teams have been added to database
 
   Given the following users exist
     |name              |email               |major |sid         |team_id  |waitlisted |
-    |Edsgar Dijkstra   |dijkstra@gmail.com  |'CS'  |11111111    |1        |"true"     |
-    |John Von Neuman   |neuman@gmail.com    |'CS'  |11111112    |2        |"true"     |
-    |Kurt Godel        |godel@gmail.com     |'CS'  |11111113    |3        |"true"     |
+    |Edsgar Dijkstra   |dijkstra@gmail.com  |'CS'  |11111111    |1        | true     |
+    |John Von Neuman   |neuman@gmail.com    |'CS'  |11111112    |2        | true     |
+    |Kurt Godel        |godel@gmail.com     |'CS'  |11111113    |3        | true     |
 
 
     And I am on the login page

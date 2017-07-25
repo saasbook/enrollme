@@ -11,7 +11,7 @@ class SessionController < ApplicationController
     elsif session[:is_admin]
       return redirect_to admins_path
     else
-      return redirect_to without_team_path if user.team.nil?
+      return redirect_to without_team_path if user.nil? or user.team.nil?
       return redirect_to team_path(user.team)
     end
   end
