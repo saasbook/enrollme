@@ -7,8 +7,8 @@ Feature: display team members' profile
 Background:
   Given the following users exist
   
-     |   name    |       email       |team_passcode | major        |       sid      | waitlisted |team_id| bio |
-  	 | Jorge     |    legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | Yes | 9 |Jorge's bio|
+      |   name    |       email       |team_passcode | major        |       sid      | waitlisted |team_id| bio |
+      | Jorge     |    legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | Yes | 9 |Jorge's bio|
  	   | Sahai     | eecs666@hotmail.com        | penguindrool | EECS            | 000  | Yes | 9 |Sahai's bio|
  	   | Saha1     | eecs667@hotmail.com        | penguindrool | EECS            | 001  | Yes | 9 |Saha1's bio|
  	   | Saha2     | eecs668@hotmail.com        | penguindrool | EECS            | 002  | Yes | 9 |Saha2's bio|

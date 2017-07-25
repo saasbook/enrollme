@@ -37,8 +37,8 @@ class UsersController < ApplicationController
     
     @team = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
 
+    @team.users << @user
     @user.team = @team
-    # @team.users << @user
     redirect_to team_path(:id=>@team.id)
   end
 
@@ -49,9 +49,9 @@ class UsersController < ApplicationController
     return redirect_to without_team_path, :notice => "Unable to join team" if @passcode.empty? or !(@team.can_join?)
     
     @user.leave_team if !(@user.team.nil?)
-    
-    # @user.team = @team
+
     @team.users << @user
+    @user.team = @team
     @team.withdraw_submission
     
     @team.send_submission_reminder_email if @team.eligible?

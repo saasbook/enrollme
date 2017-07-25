@@ -3,8 +3,8 @@ class TeamController < ApplicationController
   
 
   
-  before_filter :set_user, :set_team, :except => :list
-  before_filter :set_permissions, :except => :list
+  before_filter :set_user, :set_team, :except => ['list', 'profile']
+  before_filter :set_permissions, :except => ['list', 'profile']
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
   
   
@@ -84,8 +84,17 @@ class TeamController < ApplicationController
     # @teams = Team.where(declared: @selected_majors.keys).order(ordering)
     @teams = Team.order(ordering)
   end
-  
 
+  def profile
+    @team = Team.find_by_id(params[:id])
+    # @discussions = Discussion.valid_discs_for(@team)
+    # if @team.submitted and !(@team.approved)
+    #   @s = Submission.find(@team.submission_id)
+    #   @d1 = Discussion.find(@s.disc1id)
+    #   @d2 = Discussion.find_by_id(@s.disc2id)
+    #   @d3 = Discussion.find_by_id(@s.disc3id)
+    # end
+  end
   private
   
   def set_user
