@@ -9,17 +9,17 @@ Feature: Approve/Disapprove teams
   	  | Robert  | supreme_ruler@aol.com  |
   	And the following users exist
       |   name    |       email                       | team      | major             |       sid         |  waitlisted |
-      | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | Yes |
-      | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | Yes |
-      | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               | Yes |
-      | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               | Yes |
-      | Bob4      |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               | Yes |
-      | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               | Yes |
-      | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               | Yes |
-      | Saha3     |    xx3@berkeley.edu         | passcode2 | Slav1c Studies    | 832               | Yes |
-      | Saha4     |    xx4@berkeley.edu         | passcode2 | Slav1c Studies    | 833               | Yes |
-      | Saha5     |    xx5@berkeley.edu         | passcode2 | Slav1c Studies    | 834               | Yes |
-      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               | Yes |
+      | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | true |
+      | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | true |
+      | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               | true |
+      | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               | true |
+      | Bob4      |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               | true |
+      | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               | true |
+      | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               | true |
+      | Saha3     |    xx3@berkeley.edu         | passcode2 | Slav1c Studies    | 832               | true |
+      | Saha4     |    xx4@berkeley.edu         | passcode2 | Slav1c Studies    | 833               | true |
+      | Saha5     |    xx5@berkeley.edu         | passcode2 | Slav1c Studies    | 834               | true |
+      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               | true |
     And the following discussions exist
    	 | number  | time         |  capacity |
    	 | 54321   | Tues, 3pm    |  25       |

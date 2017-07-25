@@ -7,9 +7,9 @@ Feature: go to the correct page
   Background:
     Given the following users exist
      | name   |       email                    | team_passcode | major           | sid  | waitlisted |
-  	 | Jorge  | legueoflegends667@hotmail.com  | 0             | Football Player | 999  | Yes |
-   	 | Sahai  | eecs666@hotmail.com            | penguindrool  | EECS            | 000  | Yes |
-   	 | Copy   | anotheremail@yahoo.com         | ok            | CS              | 001  | Yes |
+  	 | Jorge  | legueoflegends667@hotmail.com  | 0             | Football Player | 999  | true |
+   	 | Sahai  | eecs666@hotmail.com            | penguindrool  | EECS            | 000  | true |
+   	 | Copy   | anotheremail@yahoo.com         | ok            | CS              | 001  | true |
     And the following admins exist
       | name | email                  |
   	  | Bob  | supreme_ruler@aol.com  |

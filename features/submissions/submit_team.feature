@@ -8,12 +8,12 @@ Feature: student submits their team for approval
     Given the allowed team size is 5-6
     Given the following users exist
         | name  | email                         | team      | major           | sid | waitlisted |
-        | Jorge | legueoflegends667@hotmail.com | somepassc | Football Player | 999 | Yes |
-        | Bob0  | bobjones0@berkeley.edu        | passcode1 | Slavic Studies  | 824 | Yes |
-        | Bob1  | bobjones1@berkeley.edu        | passcode1 | Slavic Studies  | 825 | Yes |
-        | Bob2  | bobjones2@berkeley.edu        | passcode1 | Slavic Studies  | 826 | Yes |
-        | Bob3  | bobjones3@berkeley.edu        | passcode1 | Slavic Studies  | 827 | Yes |
-        | Sahai | eecs666@hotmail.com           | passcode1 | EECS            | 000 | Yes |
+        | Jorge | legueoflegends667@hotmail.com | somepassc | Football Player | 999 | true |
+        | Bob0  | bobjones0@berkeley.edu        | passcode1 | Slavic Studies  | 824 | true |
+        | Bob1  | bobjones1@berkeley.edu        | passcode1 | Slavic Studies  | 825 | true |
+        | Bob2  | bobjones2@berkeley.edu        | passcode1 | Slavic Studies  | 826 | true |
+        | Bob3  | bobjones3@berkeley.edu        | passcode1 | Slavic Studies  | 827 | true |
+        | Sahai | eecs666@hotmail.com           | passcode1 | EECS            | 000 | true |
     And I am on the login page
     
   Scenario: Submit button should not be present when team has only four members

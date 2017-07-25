@@ -6,16 +6,16 @@ Feature: Table for finding and joining teams
   Background:
     Given the following users exist
       |   name    |       email                       | team      | major             |       sid         |  waitlisted |
-      | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | Yes |
-      | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | Yes |
-      | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               | Yes |
-      | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               | Yes |
-      | Bob4      |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               | Yes |
-      | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               | Yes |
-      | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               | Yes |
-      | Saha3     |    xx3@berkeley.edu         | passcode2 | Slav1c Studies    | 832               | Yes |
-      | Saha4     |    xx4@berkeley.edu         | passcode2 | Slav1c Studies    | 833               | Yes |
-      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               | Yes |
+      | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | true |
+      | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | true |
+      | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               | true |
+      | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               | true |
+      | Bob4      |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               | true |
+      | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               | true |
+      | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               | true |
+      | Saha3     |    xx3@berkeley.edu         | passcode2 | Slav1c Studies    | 832               | true |
+      | Saha4     |    xx4@berkeley.edu         | passcode2 | Slav1c Studies    | 833               | true |
+      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               | true |
     
     And team "passcode1" has 0 pending requests
     And team "passcode2" has 2 pending requests
@@ -30,7 +30,7 @@ Feature: Table for finding and joining teams
     And I fill in "Email" with "david@berkeley.edu"
     And I fill in "Sid" with "12345678"
     And I select "DECLARED CS/EECS Major" from "major"
-    And I choose "Yes"
+    And I choose "true"
     And I press "Sign Up"
     
     
@@ -66,7 +66,7 @@ Feature: Table for finding and joining teams
   # Replace these tests with wait_listed test once merged.  
   # # Filter listing by showing only teams where all team members are declared CS/EECS
   # Scenario: A user wants to filter teams based on whether all team members are declared CS/EECS majors
-  #   Given I check "Yes"
+  #   Given I check "true"
   #   Then I should see "Bob"
   #   And I should see "Sahai"
   #   And I should not see "Jorge"

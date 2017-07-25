@@ -38,7 +38,7 @@ class Team < ActiveRecord::Base
     
     def send_submission_reminder_email
         self.users.each do |user|
-            #EmailStudents.submit_email(user).deliver_later
+            EmailStudents.submit_email(user).deliver_later
         end
     end
     

@@ -17,13 +17,13 @@ Feature: Student indicates whether they are on the waitlist for the class
     
   Scenario: User should not be able to check both yes and no for waitlist status
     Given I should see "Waitlisted?"
-    And I choose "No"
-    And I choose "Yes"
-    Then the "Yes" radio button should be checked
-    And the "No" radio button should not be checked
+    And I choose "user_waitlisted_false"
+    And I choose "user_waitlisted_true"
+    Then the "user_waitlisted_true" radio button should be checked
+    And the "user_waitlisted_false" radio button should not be checked
 
   Scenario: User should see waitlist status in my information
-    Given I choose "Yes"
+    Given I choose "user_waitlisted_true"
     And I press "Sign Up"
     And I follow "My Info"
     Then I should see "Waitlisted? Yes"
