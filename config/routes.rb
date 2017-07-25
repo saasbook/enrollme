@@ -1,15 +1,31 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :users do
+    resources :requests
+  end
   get '/without_team', to: 'users#without'
   post '/create_team', to: 'users#start_team'
   post '/join_team', to: 'users#join_team'
   get '/help', to: 'users#user_help'
   
-  resources :team
+  # resources :team
+  # post 'team/:id/submit', to: 'team#submit', as: "submit_team"
+  # post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
 
-  post 'team/:id/submit', to: 'team#submit', as: "submit_team"
-  post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
+  # get 'login', to: 'session#new'
+  # post 'login', to: 'session#create'
+  # get 'logout', to: 'session#destroy'
+  
+  # get 'auth/:provider/callback', to: 'session#create'
+  # get 'auth/failure', to: redirect('/')
+  
+  
+  
+  resources :teams
+  get '/teams', to: 'teams#index'
+  get '/teams/profile/:id', to: 'teams#profile', as: "teams_profile"
+  post 'teams/:id/submit', to: 'teams#submit', as: "submit_team"
+  post 'teams/:id/unsubmit', to: 'teams#unsubmit', as: "unsubmit_team"
 
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'

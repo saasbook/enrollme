@@ -48,7 +48,7 @@ RSpec.describe EmailStudents, type: :mailer do
   
   it 'Submit Team renders the receiver email' do
     EmailStudents.successfully_submitted_email(@team).deliver_now
-    ActionMailer::Base.deliveries.first.to.should == [@user.email]
+    ActionMailer::Base.deliveries.first.to.should include @user.email
   end
     
   it 'Submit Team should set the subject to the correct subject' do
