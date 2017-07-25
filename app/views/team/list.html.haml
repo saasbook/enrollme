@@ -1,0 +1,27 @@
+%h1 Teams
+
+= form_tag team_list_path, :method => :get, :id => 'declared_form' do
+  = hidden_field_tag ":users_count_sort", true if @users_count_header
+  = hidden_field_tag ":pending_requests_sort", true if @pending_requests_header
+  Limit to Teams with all Declared CS or EECS Majors?
+  - @majors.each do |declared|
+    = declared
+    = check_box_tag "declared[#{declared}]", 1, @majors.include?(declared), :id => "declared_#{declared}"
+  = submit_tag 'Refresh', :id => 'declared_submit'
+
+%table#teams
+  %thead
+    %tr
+      %th Group Members
+      %th{:class => @users_count_header}= link_to 'Number of Members', team_list_path(:sort => 'users_count', :declared => @majors), :id => 'users_count_header'
+      %th{:class => @pending_requests_header}= link_to 'Number of Pending Requests', team_list_path(:sort => 'pending_requests', :declared => @majors), :id => 'pending_requests_header'
+      %th All Declared?
+      %th Request
+  %tbody
+    - @teams.each do |team|
+      %tr
+        %td= team.getMembers
+        %td= team.users_count
+        %td= team.pending_requests
+        %td= team.declared
+        %td= link_to "Join Team"

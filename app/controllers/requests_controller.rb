@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
             flash[:notice] = "Team is Full"
         end
         #Also check if team is full
-        redirect_to teams_path
+        redirect_to team_list_path
     end
     
     def index

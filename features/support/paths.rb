@@ -30,7 +30,7 @@ module NavigationHelpers
     when /^the new discussion page$/i
       new_discussion_pat
     when /^the team list page$/i
-      teams_path
+      team_list_path
     when /^the team profile page for team_id "(.+)"$/
       teams_profile_path($1)
       

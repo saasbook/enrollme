@@ -56,11 +56,12 @@ ActiveRecord::Schema.define(version: 20170724000755) do
     t.boolean  "approved"
     t.string   "passcode"
     t.integer  "submission_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.boolean  "submitted"
     t.integer  "discussion_id"
     t.string   "declared"
+    t.integer  "pending_requests"
     t.integer  "users_count"
   end
 
