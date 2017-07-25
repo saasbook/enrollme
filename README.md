@@ -31,7 +31,7 @@ We plan to add the following features for the following users:
 
 **Pivotal Tracker:** https://www.pivotaltracker.com/n/projects/1886001
 
-**Deployed App:** https://damp-cove-57929.herokuapp.com/
+**Deployed App:** https://frozen-savannah-96926.herokuapp.com/
 
 ---
 ```
