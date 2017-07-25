@@ -20,8 +20,8 @@
   %tbody
     - @teams.each do |team|
       %tr
-        %td= team.getMembers
-        %td= team.users_count
+        %td= link_to "#{team.getMembers}",team_profile_path(team.id)
+        %td= team.getNumMembers
         %td= team.pending_requests
         %td= team.declared
-        %td= link_to "Join Team"
+        %td= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id), method: :post
