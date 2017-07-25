@@ -53,12 +53,12 @@ class TeamController < ApplicationController
     sort = params[:sort] || session[:sort] || 'default'
     case sort
     when 'default'
-      ordering, @users_count_header = {:users_count => :desc}, 'hilite'
+      ordering, @num_members_header = {:users_count => :desc}, 'hilite'
     when 'users_count'
       if session[:ordering]["users_count"] == "desc"
-        ordering,@users_count_header = {:users_count => :asc}, 'hilite'
+        ordering,@num_members_header = {:users_count => :asc}, 'hilite'
       else
-        ordering,@users_count_header = {:users_count => :desc}, 'hilite'
+        ordering,@num_members_header = {:users_count => :desc}, 'hilite'
       end
     when 'pending_requests'
       if session[:ordering]["pending_requests"] == "desc"
@@ -111,4 +111,6 @@ class TeamController < ApplicationController
   def check_approved
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
   end
+
+
 end
