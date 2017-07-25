@@ -26,6 +26,15 @@ Feature: Table for finding and joining teams
     And team "passcode3" is not declared
     
     And I am on the home page
+    Then I should not see "Team List"
+    
+    And I am on the new_user page
+    And I fill in "Name" with "Oski"
+    And I fill in "Email" with "oskibear@berkeley.edu"
+    And I fill in "Sid" with "12345678"
+    And I select "DECLARED CS/EECS Major" from "major"
+    And I choose "user_waitlisted_true"
+    And I press "Sign Up"
     And I follow "Team List"
   
   # Index should have teams sorted in descending order based on number_of_members
