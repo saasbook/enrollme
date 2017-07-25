@@ -91,11 +91,42 @@ class Team < ActiveRecord::Base
          return names
     end
     
-    def getMembersTimeCommitment
+    def getMembersTimeCommitmentArray
         times = []
         self.users.each{|user| times.push(user.time_commitment)}
         return times
     end
+    
+    def getMembersBioArray
+         bios = []
+         self.users.each{|user| bios.push(user.bio)}    
+         return bios
+    end
+    
+    def getMembersFacebookArray
+         fbs = []
+         self.users.each{|user| fbs.push(user.facebook)}    
+         return fbs
+    end
+    
+    def getMembersLinkedinArray
+         lks = []
+         self.users.each{|user| lks.push(user.linkedin)}    
+         return lks
+    end    
+    
+    def getMembersExperiencesArray
+         exps = []
+         self.users.each{|user| exps.push(user.experience)}    
+         return exps
+    end
+    
+    def getMembersEmailsArray
+         emails = []
+         self.users.each{|user| emails.push(user.email)}    
+         return emails
+    end    
+    
     
     def getNumMembers # returns the number of members in this group
         self.users.count

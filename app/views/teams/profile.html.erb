@@ -1,40 +1,18 @@
 <title>Team Profile</title>
 <div class="container">
 <h1>Team Profile</h1>
-<!--<div class="row">-->
-<!--  <div class = "col-md-4"> -->
-<!--  <h3>Ken Chiu</h3> -->
-<!--  <img class="img-responsive" src="https://gravatar.com/avatar/ddc4bead487f5c1250fcc043e57787fe?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" alt="ProfilePicture">-->
-<!--  </div>-->
-  
-<!--    <div class = "col-md-4"> -->
-<!--      <h3>Lee Ho</h3> -->
-<!--    <img class="img-responsive" src="https://gravatar.com/avatar/ddc4bead487f5c1250fcc043e57787fe?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" alt="ProfilePicture"></div>-->
-<!--    <div class = "col-md-4">-->
-<!--      <h3>Carino Boo</h3> -->
-<!--    <img class="img-responsive" src="https://gravatar.com/avatar/ddc4bead487f5c1250fcc043e57787fe?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" alt="ProfilePicture"></div>-->
-<!--  </div>-->
-  
-<!--  <div class="row">-->
-<!--  <div class = "col-md-4"> -->
-<!--  <h3>User4</h3> -->
-<!--  <img class="img-responsive" src="https://gravatar.com/avatar/ddc4bead487f5c1250fcc043e57787fe?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" alt="ProfilePicture">-->
-<!--  </div>-->
-  
-<!--    <div class = "col-md-4"> -->
-<!--      <h3>User5</h3> -->
-<!--    <img class="img-responsive" src="https://gravatar.com/avatar/ddc4bead487f5c1250fcc043e57787fe?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" alt="ProfilePicture"></div>-->
-<!--    <div class = "col-md-4">-->
-<!--      <h3>User6</h3> -->
-<!--    <img class="img-responsive" src="https://gravatar.com/avatar/ddc4bead487f5c1250fcc043e57787fe?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" alt="ProfilePicture"></div>-->
-<!--  </div>-->
-<!--</div>-->
 
 <%
   enumeration = @team.users.count
   users = @team.users
   users_name_arr = @team.getMembersNamesArray
-  users_time_arr = @team.getMembersTimeCommitment
+  users_time_arr = @team.getMembersTimeCommitmentArray
+  users_bio_arr = @team.getMembersBioArray
+  users_exp_arr = @team.getMembersExperiencesArray
+  users_fb_arr = @team.getMembersFacebookArray
+  users_lk_arr =@team.getMembersLinkedinArray
+  users_email_arr = @team.getMembersEmailsArray
+  
   @team.users.count <= 3? row = 1 : row = 2
   for i in 1..row 
 %>
@@ -44,7 +22,13 @@
     <div class = "col-md-4">
       <h3><%= users_name_arr.pop() %></h3>
       <img class="img-responsive" src="https://gravatar.com/avatar/ddc4bead487f5c1250fcc043e57787fe?s=80&d=https://codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png" alt="ProfilePicture">
+      <h5>Bio: <%= users_bio_arr.pop() %></h5>
       <h5>Time commitment: <%= users_time_arr.pop() %>hrs/wk</h5>
+      <h5>Experience: <%= users_exp_arr.pop() %></h5>
+      <h5>Facebook: <%= users_fb_arr.pop() %></h5>
+      <h5>Linkedin: <%= users_lk_arr.pop() %></h5>
+      <% currentEmail =  users_email_arr.pop() %>
+      <h5>Email: <a href="mailto:<%= currentEmail %>"><%= currentEmail %></a></h5>
     </div>
     <% enumeration-= 1 
       end %>
