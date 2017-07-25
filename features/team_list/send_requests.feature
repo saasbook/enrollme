@@ -39,7 +39,7 @@ Feature: Manage requests for joining teams
 
     Scenario: I send a join request to a team that is not full
       Given I press the "Join" button on the same row as "An"
-      Then I should see "request sent"
+      Then I should see "Request Sent"
       Given I follow "Requests"
       Then I should see "An"
 
@@ -49,17 +49,17 @@ Feature: Manage requests for joining teams
 
     Scenario: I want to cancel an active join request
       Given I press the "Join" button on the same row as "An"
-      Given I press "Requests"
-      Given I press the "Cancel" button on the same row as "An"
+      And I follow "Requests"
+      And I press the "Cancel" button on the same row as "An"
       Then I should not see "An"
 
     Scenario: My request was accepted
       Given I press the "Join" button on the same row as "An"
-      Given I login as "An"
-      Given I press "Requests"
-      Given I press the "Accept" button on the same row as "Derek"
+      And I login as "An"
+      And I press "Requests"
+      And I press the "Accept" button on the same row as "Derek"
       Then I should see "Request Approved"
-      Then I should not see "Derek"
+      And I should not see "Derek"
       Given I login as "Derek"
       Then I should see "An"
 
@@ -72,10 +72,3 @@ Feature: Manage requests for joining teams
       Then I should not see "Derek"
       Given I login as "Derek"
       Then I should not see "An"
-
-    Scenario: My request was to a team that is full
-      Given I create the user:
-        |Name   | team_id |
-        |Denero | 2       |
-      Given I press the "Join" button on the same row as "An"
-      Then I should see "Team is now full"
