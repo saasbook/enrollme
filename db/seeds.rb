@@ -42,15 +42,15 @@ User.delete_all
 Team.delete_all
 
 users = [
-  {:name => "George Su", :email => "gs@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123456, :team_id => nil},
-  {:name => "Hadi Zhang", :email => "hz@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 1234567, :team_id => 1},
-  {:name => "Derek Hsiao", :email => "dh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123453, :team_id => 2},
-  {:name => "Ken Chiu", :email => "kc@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123454, :team_id => 3},
-  {:name => "Brandon Jabr", :email => "bj@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 153456, :team_id => 3},
-  {:name => "Karl Hayek", :email => "kh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123756, :team_id => 3},
-  {:name => "Carina Boo", :email => "cb@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 1238556, :team_id => 3},
-  {:name => "Oski Bear", :email => "ob@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123446, :team_id => 3},
-  {:name => "Aladdin", :email => "aladdin@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 193456, :team_id => 3},
+  {:name => "George Su", :email => "gs@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123456, :team_id =>, nil :time_commitment=>20},
+  {:name => "Hadi Zhang", :email => "hz@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 1234567, :team_id =>, 1:time_commitment=> 30},
+  {:name => "Derek Hsiao", :email => "dh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123453, :team_id =>, 2:time_commitment=> 40},
+  {:name => "Ken Chiu", :email => "kc@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123454, :team_id => 3, :time_commitment=> 50},
+  {:name => "Brandon Jabr", :email => "bj@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 153456, :team_id => 3, :time_commitment=>10},
+  {:name => "Karl Hayek", :email => "kh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123756, :team_id => 3,  :time_commitment=>15},
+  {:name => "Carina Boo", :email => "cb@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 1238556, :team_id => 3, :time_commitment=>20},
+  {:name => "Oski Bear", :email => "ob@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 123446, :team_id => 3,  :time_commitment=>100},
+  {:name => "Aladdin", :email => "aladdin@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => 'true', :sid => 193456, :team_id => 3, :time_commitment=>55},
   ]
   
   team1 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
