@@ -55,8 +55,8 @@ class TeamsController < ApplicationController
     #   @d3 = Discussion.find_by_id(@s.disc3id)
     # end
   end
-  
-  
+
+
   def update
   
   end
@@ -72,21 +72,21 @@ class TeamsController < ApplicationController
     end
     render "team"
   end
-  
+
   def submit
     EmailStudents.successfully_submitted_email(@team).deliver_now
     AdminMailer.send_look_at_submission
-    
+
     redirect_to new_submission_path
   end
-  
+
   def unsubmit
     @submission = @team.submission
     @submission.destroy!
     @team.withdraw_submission
     redirect_to team_path(@team.id)
   end
-  
+
   def edit
     @user_to_remove = User.find_by_id(params[:unwanted_user])
     @user_to_remove.leave_team
@@ -102,12 +102,12 @@ class TeamsController < ApplicationController
     return redirect_to without_team_path if @user_to_remove == @user
     return redirect_to team_path(@team.id), notice: "Removed #{@user_to_remove.name} from team." + notice
   end
-  
 
-  
+
+
 
   private
-  
+
   def set_user
     if session[:is_admin]
       @user = Admin.find(session[:user_id])
@@ -128,10 +128,10 @@ class TeamsController < ApplicationController
       redirect_to '/', :notice => "Permission denied"
     end
   end
-  
+
   def check_approved
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
   end
-  
-  
+
+
  end

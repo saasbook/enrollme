@@ -4,47 +4,53 @@ Feature: Ability to add information to profile
 	In order to attract people with complementary skillsets
 
 Background: I am creating an account
-	Given I click "Sign Up" 
+	Given I am on the new_user page
+    And I fill in "Name" with "Oski"
+    And I fill in "Email" with "oskibear@berkeley.edu"
+    And I fill in "Sid" with "12345678"
+    And I select "DECLARED CS/EECS Major" from "major"
+    And I choose "Yes"
 
 Scenario: Add bio
-	Given I click the "Bio" text field
-	Given I type "My name is Oski, I like Ruby"
-	Given I click "submit"
-	Given I click "MyInfo"
+	Given I fill in "Bio" with "My name is Oski, I like Ruby"
+	When I press "Sign Up"
+	And I follow "My Info"
 	Then I should see "My name is Oski, I like Ruby"
 
 Scenario: Add Facebook/linkedin
-	Given I click the "Facebook" text field
-	Given I type "https://www.facebook.com/oski.bear.5"
-	Given I click "submit"
-	Given I click "MyInfo"
+	Given I fill in "Facebook" with "https://www.facebook.com/oski.bear.5"
+	When I press "Sign Up"
+	And I follow "My Info"
 	Then I should see "https://www.facebook.com/oski.bear.5"
 
 Scenario: Specify time commitment
-	Given I click the "Time Commitment" text field
-	Given I type "5"
-	Given I click "submit"
-	Given I click "MyInfo"
+	Given I fill in "Time commitment" with "5"
+	When I press "Sign Up"
+	And I follow "My Info"
 	Then I should see "5"
 
 Scenario: Indicate skillset
-	Given I click the following fields: ruby css
-	Given I click "submit"
-	Given I click "MyInfo"
-	Then I should see the following elements: ruby css
+  
+	Given I check the following fields: "Ruby", "CSS"
+	When I press "Sign Up"
+	And I follow "MyInfo"
+	Then I should see "Ruby"
+	And I should see "CSS"
 
 Scenario: Ability to add photo
-	Given I click "upload photo"
-	Given I upload the image "oski.jpg"
-	Given I click "MyInfo"
+  
+  	Given I press "Upload Photo"
+  	When I upload "oski.jpg"
+	And I press "Sign Up"
+	And I follow "My Info"
 	Then I should see the image "oski.jpg"
 
 Scenario: Add Ability to add resume
-	Given I click "add resume"
-	Given I upload the file "my_resume.txt"
-	Given I click "MyInfo"
-	Then I should see the file "my_reume.txt"
-
+  	Given I press "Add Resume"
+  	And I upload "my_resume.txt"
+	When I press "Sign Up"
+	And I follow "My Info"
+	Then I should see the file "my_resume.txt"
 
 
 
