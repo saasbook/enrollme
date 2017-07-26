@@ -32,6 +32,7 @@ Feature: Use an admin acccount to see organized team data
   Scenario: A newly disapproved team should not be under the "Approved" category
     Given I follow "Approved"
     Then I should see "Bob0"
+    Then show me the page
     When I follow "disapprove_3"
     And I follow "Approved"
     Then I should not see "Bob0"
