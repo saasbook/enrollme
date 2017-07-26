@@ -18,7 +18,7 @@ Feature: Email all students on a team with one button.
     And I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
     And I am on the team "1" page
-    
+
     Scenario: I should send an e-mail to all team members with one click
       Given I press "E-Mail Team"
       Then "eecs666@hotmail.com" should receive 1 email

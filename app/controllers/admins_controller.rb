@@ -12,7 +12,7 @@ class AdminsController < ApplicationController
     @admin = Admin.new(admin_params)
     @admin.superadmin = false
     if session[:is_admin] == true and @admin.save
-      #AdminMailer.invite_new_admin(@admin).deliver_now
+      AdminMailer.invite_new_admin(@admin).deliver_now
       redirect_to admins_path, :notice => "You created admin " + admin_params["name"] + " successfully!"
     else
       render 'new', :notice => "Form is invalid"
@@ -36,7 +36,7 @@ class AdminsController < ApplicationController
     @team.approved = true
     @team.save!
     
-    #AdminMailer.send_approved_email(@team).deliver_now
+    AdminMailer.send_approved_email(@team).deliver_now
     
     if !(params[:disc].nil?)
       Team.find_by_id(params[:team_id]).approve_with_discussion(params[:disc])
@@ -49,7 +49,7 @@ class AdminsController < ApplicationController
     @team.approved = false
     @team.save!
     
-    #AdminMailer.send_disapproved_email(@team).deliver_now
+    AdminMailer.send_disapproved_email(@team).deliver_now
     
     Team.find_by_id(params[:team_id]).disapprove
     redirect_to admins_path
@@ -60,14 +60,14 @@ class AdminsController < ApplicationController
     @team.approved = false
     @team.save!
     
-    #AdminMailer.send_disapproved_email(@team).deliver_now
+    AdminMailer.send_disapproved_email(@team).deliver_now
     
     Team.find_by_id(params[:team_id]).withdraw_approval
     redirect_to admins_path
   end
   
   def team_list_email
-    #AdminMailer.team_list_email(@admin).deliver_now
+    AdminMailer.team_list_email(@admin).deliver_now
     
     redirect_to admins_path
   end
@@ -83,7 +83,7 @@ class AdminsController < ApplicationController
   def reset_database
     @reset_password = params[:reset_password]
     if @reset_password == ENV["ADMIN_DELETE_DATA_PASSWORD"]
-      #AdminMailer.all_data(@admin).deliver_now if not Rails.env.test?
+      AdminMailer.all_data(@admin).deliver_now if not Rails.env.test?
       User.delete_all
       Team.delete_all
       Submission.delete_all
