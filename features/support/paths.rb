@@ -33,6 +33,8 @@ module NavigationHelpers
       team_list_path
     when /^the team profile page for team_id "(.+)"$/
       teams_profile_path($1)
+    when /Requests/
+      user_requests
       
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

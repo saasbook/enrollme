@@ -26,15 +26,10 @@ Feature: Manage requests for joining teams
       | Papadimitriou |     papa@berkeley.edu         | passcode2 | Slavic Studies    | 834               | true |
       | Fox       |     fox@berkeley.edu              | passcode2 | Slavic Studies    | 835               | true |
       | Patterson |     pat@berkeley.edu              | passcode2 | Slavic Studies    | 836               | true |
+      | Derek     |   derek@berkeley.edu              | nil       | Slavic Studies    | 12345678          | true |
 
-
-    And I am on the new_user page
-    And I fill in "Name" with "Derek Chen"
-    And I fill in "Email" with "derekchen@berkeley.edu"
-    And I fill in "Sid" with "12345678"
-    And I select "DECLARED CS/EECS Major" from "major"
-    And I choose "user_waitlisted_true"
-    And I press "Sign Up"
+    And I am on the home page
+    And I log in as a user with email "derek@berkeley.edu"
     And I follow "Team List"
 
     Scenario: I send a join request to a team that is not full
@@ -55,20 +50,22 @@ Feature: Manage requests for joining teams
 
     Scenario: My request was accepted
       Given I press the "Join" button on the same row as "An"
-      And I login as "An"
-      And I press "Requests"
+      And I follow "Logout"
+      And I log in as a user with email "bobjones0@berkeley.edu"
+      And I follow "Requests"
       And I press the "Accept" button on the same row as "Derek"
       Then I should see "Request Approved"
       And I should not see "Derek"
-      Given I login as "Derek"
+      Given I log in as a user with email "derek@berkeley.edu"
       Then I should see "An"
 
     Scenario: My request was denied
       Given I press the "Join" button on the same row as "An"
-      Given I login as "An"
-      Given I press "Requests"
-      Given I press the "Reject" button on the same row as "Derek"
-      Then I should see "Request Approved"
-      Then I should not see "Derek"
-      Given I login as "Derek"
+      And I follow "Logout"
+      And I log in as a user with email "bobjones@berkeley.edu"
+      And I follow "Requests"
+      And I press the "Reject" button on the same row as "Derek"
+      Then I should see "Request Rejected"
+      And I should not see "Derek"
+      Given I log in as a user with email "derek@berkeley.edu"
       Then I should not see "An"

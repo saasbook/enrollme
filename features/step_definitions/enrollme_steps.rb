@@ -187,3 +187,7 @@ And /team "([^']*?)" is (not )?declared/ do |pass, no|
     @team.declared = "No"
   end
 end
+
+Given /^I press the "([^"]*)" button on the same row as "([^"]*)"$/ do |req, name|
+    page.find('tr', :text => name).click_link(req)
+end
