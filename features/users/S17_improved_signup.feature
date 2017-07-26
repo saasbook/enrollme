@@ -9,7 +9,7 @@ Background: I am creating an account
     And I fill in "Email" with "oskibear@berkeley.edu"
     And I fill in "Sid" with "12345678"
     And I select "DECLARED CS/EECS Major" from "major"
-    And I choose "Yes"
+    And I choose "user_waitlisted_true"
 
 Scenario: Add bio
 	Given I fill in "Bio" with "My name is Oski, I like Ruby"

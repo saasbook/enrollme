@@ -9,19 +9,25 @@ Feature: Manage requests for joining teams
       |“no”     | “bears1"  | False     | 1             | 5           | 0             |
       |“no”     | “bears2"  | False     | 2             | 6           | 0             |
 
-    And the following users exist:
-      |Name | team_id |
-      |Derek| nil|
-      |An| 0|
-      |Hezheng| 1|
-      |George | 1|
-      |Karl   | 1|
-      |Ken    | 1|
-      |Hadi   | 1|
-      |Brandon| 1|
+    And the following users exist
+      |   name    |       email                       | team      | major             |       sid         |  waitlisted |
+      | An        |    bobjones0@berkeley.edu         | passcode0 | Slavic Studies    | 824               | true |
+      | Hezheng   |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | true |
+      | George    |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               | true |
+      | Karl      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               | true |
+      | Ken       |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               | true |
+      | Hadi      |    xxx@berkeley.edu               | passcode1 | Slav1c Studies    | 830               | true |
+      | Brandon   |    xx2@berkeley.edu               | passcode1 | Slav1c Studies    | 831               | true |
+  
     
-    And I login as "Hadi"
-    And I am on "Requests"
+    And I am on the new_user page
+    And I fill in "Name" with "Derek Chen"
+    And I fill in "Email" with "derekchen@berkeley.edu"
+    And I fill in "Sid" with "12345678"
+    And I select "DECLARED CS/EECS Major" from "major"
+    And I choose "user_waitlisted_true"
+    And I press "Sign Up"
+    And I follow "Team List"
   
   Scenario: I want to see the requests to join my group that still need to be processed
     Given "An" requests to join my team

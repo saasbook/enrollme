@@ -18,13 +18,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     if @user.save
-      #EmailStudents.welcome_email(@user).deliver_later
-
       session[:user_id] = @user.id
       session[:user_email] = @user.email
       redirect_to without_team_path, :notice => "You signed up successfully!"
       # send a confirmation email
-      # EmailStudents.welcome_email(@user).deliver_now
+      EmailStudents.welcome_email(@user).deliver_now
       # byebug
 
     else
@@ -62,7 +60,7 @@ class UsersController < ApplicationController
   def update
     @user.update_attributes!(user_params)
     @team = @user != nil ? @user.team : nil
-    return redirect_to team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
+    return redirect_to user_path #team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
   end
 
   private

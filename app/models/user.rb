@@ -9,13 +9,20 @@ class User < ActiveRecord::Base
     format: VALID_EMAIL_REGEX, exclusion: { in: lambda { |u| u.all_admin_emails } }
   validates :major, presence: true
   validates :sid, presence: true, uniqueness: true, length: { maximum: 10 }
-  validates :waitlisted, presence: true
+  validates :waitlisted, inclusion: { in: [ true, false ] }
   before_save :downcase_email
 
   def downcase_email
     self.email.downcase!
   end
+
+  # the below code sets waitlisted to true by default
+  after_initialize :init
+  def init
+    self.waitlisted = true if self.waitlisted.nil?
+  end
   
+
   def leave_team
     @team = self.team
     @team.users.delete(self)

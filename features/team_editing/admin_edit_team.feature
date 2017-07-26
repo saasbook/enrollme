@@ -7,9 +7,9 @@ Feature: An admin edits a team
   Background:
     Given the following users exist
      | name  |       email                    |team_passcode | major           | sid  | waitlisted |
- 	 | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | Yes |
-  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | Yes |
-  	 | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  | Yes |
+ 	 | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | true |
+  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | true |
+  	 | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  | true |
     And the following admins exist
       | name | email                  |
   	  | Bob  | supreme_ruler@aol.com  |

@@ -10,7 +10,7 @@ Feature: Manage requests for joining teams
       |“no”     | “bears2" | 1             | "no"      | "yes"    | 0                 |
       |“no”     | “bears2" | 2             | "no"      | "yes"    | 0                 |
 
-    And the following users exist:
+    And the following users exist
       |Name | team_id |
       |Derek| nil|
       |Tony| nil|

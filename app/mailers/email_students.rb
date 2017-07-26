@@ -1,5 +1,5 @@
 class EmailStudents < ApplicationMailer
-    default from: 'enrollmeberkeley@gmail.com'
+    default from: 'enrollmeberkeley@gmail.com'#, to: 'enrollmes17@gmail.com'
     
     def welcome_email(user)
         @user = user
