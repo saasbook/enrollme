@@ -66,5 +66,6 @@ Rails.application.configure do
     authentication: 'plain',
     #enable_starttls_auto: true
   }
-  
+  #let Paperclip know to look there for imageMagick
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 end
