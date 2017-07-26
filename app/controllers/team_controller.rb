@@ -100,9 +100,11 @@ class TeamController < ApplicationController
   def set_user
     if session[:is_admin]
       @user = Admin.find(session[:user_id])
-    else
+    elsif session[:user_id]
       @user = User.find(session[:user_id])
       redirect_to without_team_path, :notice => "Permission denied" if @user.team.nil?
+    else
+      redirect_to '/', :notice => "Please log in"
     end
   end
 

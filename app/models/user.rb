@@ -17,10 +17,7 @@ class User < ActiveRecord::Base
   end
 
   # the below code sets waitlisted to true by default
-  after_initialize :init
-  def init
-    self.waitlisted = true if self.waitlisted.nil?
-  end
+
   
 
   def leave_team
