@@ -13,7 +13,7 @@
 
 <div class="field form-group">
   <%= f.label :waitlisted, "Waitlisted?"%> <br>
-  <%= f.radio_button(:waitlisted, true) %>
+  <%= f.radio_button(:waitlisted, true, :checked => false) %>
   <%= f.label(:waitlisted_yes, "Yes") %>
   <%= f.radio_button(:waitlisted, false) %>
   <%= f.label(:waitlisted_no, "No") %>
