@@ -24,10 +24,10 @@ Scenario: Add Facebook/linkedin
 	Then I should see "https://www.facebook.com/oski.bear.5"
 
 Scenario: Specify time commitment
-	Given I fill in "Time commitment" with "5"
+	Given I check the following fields: "Monday", "Evening"
 	When I press "Sign Up"
 	And I follow "My Info"
-	Then I should see "5"
+	Then I should see "Monday, Evening"
 
 Scenario: Indicate skillset
   
@@ -37,20 +37,20 @@ Scenario: Indicate skillset
 	Then I should see "Ruby"
 	And I should see "CSS"
 
-Scenario: Ability to add photo
+# Scenario: Ability to add photo
   
-  	Given I press "Upload Photo"
-  	When I upload "oski.jpg"
-	And I press "Sign Up"
-	And I follow "My Info"
-	Then I should see the image "oski.jpg"
+#   	Given I press "Upload Photo"
+#   	When I upload "oski.jpg"
+# 	And I press "Sign Up"
+# 	And I follow "My Info"
+# 	Then I should see the image "oski.jpg"
 
-Scenario: Add Ability to add resume
-  	Given I press "Add Resume"
-  	And I upload "my_resume.txt"
-	When I press "Sign Up"
-	And I follow "My Info"
-	Then I should see the file "my_resume.txt"
+# Scenario: Add Ability to add resume
+#   	Given I press "Add Resume"
+#   	And I upload "my_resume.txt"
+# 	When I press "Sign Up"
+# 	And I follow "My Info"
+# 	Then I should see the file "my_resume.txt"
 
 
 
