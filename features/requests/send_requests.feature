@@ -34,7 +34,10 @@ Feature: Manage requests for joining teams
 
     Scenario: I send a join request to a team that is not full
       Given I press the "Join" button on the same row as "An"
+      Then I should see "Enter your message here"
+      When I press "Send email"
       Then I should see "Request Sent"
+      And "bobjones0@berkeley.edu" should receive 1 email
       Given I follow "Requests"
       Then I should see "An"
 
@@ -69,3 +72,4 @@ Feature: Manage requests for joining teams
       And I should not see "Derek"
       Given I log in as a user with email "derek@berkeley.edu"
       Then I should not see "An"
+    

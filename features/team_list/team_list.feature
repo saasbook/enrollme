@@ -71,3 +71,4 @@ Feature: Table for finding and joining teams
   #   Then I should see "Bob"
   #   And I should see "Sahai"
   #   And I should not see "Jorge"
+  
