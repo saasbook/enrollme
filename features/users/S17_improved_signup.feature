@@ -24,10 +24,10 @@ Scenario: Add Facebook/linkedin
 	Then I should see "https://www.facebook.com/oski.bear.5"
 
 Scenario: Specify time commitment
-	Given I fill in "Time commitment" with "5"
+	Given I check the following fields: "Monday", "Evening"
 	When I press "Sign Up"
 	And I follow "My Info"
-	Then I should see "5"
+	Then I should see "Monday, Evening"
 
 Scenario: Indicate skillset
   
