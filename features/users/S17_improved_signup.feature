@@ -37,20 +37,20 @@ Scenario: Indicate skillset
 	Then I should see "Ruby"
 	And I should see "CSS"
 
-# Scenario: Ability to add photo
+Scenario: Ability to add photo
   
-#   	Given I press "Upload Photo"
-#   	When I upload "oski.jpg"
-# 	And I press "Sign Up"
-# 	And I follow "My Info"
-# 	Then I should see the image "oski.jpg"
+  	Given I press "Upload Photo"
+  	When I upload "oski.jpg"
+	And I press "Sign Up"
+	And I follow "My Info"
+	Then I should see the image "oski.jpg"
 
-# Scenario: Add Ability to add resume
-#   	Given I press "Add Resume"
-#   	And I upload "my_resume.txt"
-# 	When I press "Sign Up"
-# 	And I follow "My Info"
-# 	Then I should see the file "my_resume.txt"
+Scenario: Add Ability to add resume
+  	Given I press "Add Resume"
+  	And I upload "my_resume.txt"
+	When I press "Sign Up"
+	And I follow "My Info"
+	Then I should see the file "my_resume.txt"
 
 
 
