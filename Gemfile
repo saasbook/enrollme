@@ -36,6 +36,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 # gem 'capistrano'
 
+gem "paperclip", "~> 5.0.0"
+
 gem 'simplecov', :require => false, :group => :test
 
 group :test do

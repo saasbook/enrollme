@@ -13,9 +13,9 @@
 
 <div class="field form-group">
   <%= f.label :waitlisted, "Waitlisted?"%> <br>
-  <%= f.radio_button(:waitlisted, true, :checked => false) %>
+  <%= f.radio_button(:waitlisted, "true") %>
   <%= f.label(:waitlisted_yes, "Yes") %>
-  <%= f.radio_button(:waitlisted, false) %>
+  <%= f.radio_button(:waitlisted, "false") %>
   <%= f.label(:waitlisted_no, "No") %>
 </div>
 
@@ -42,5 +42,10 @@
 <div class="field form-group">
   <%= f.label :linkedin, class: "col-lg-2 control-label"  %> <br>
   <%= f.text_field :linkedin, class: "form-control"  %>
+</div>
+
+<div class="field form-group">
+  <%= f.label :"Profile Picture", class: "col-lg-2 control-label"  %> <br>
+  <%= f.file_field :avatar, class: "form-control"  %>
 </div>
 <br>
