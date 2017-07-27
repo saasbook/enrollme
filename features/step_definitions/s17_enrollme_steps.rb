@@ -30,6 +30,10 @@ Then /I? should see the file (.*)/ do |file|
   expect(page.body.index(file))
 end
 
+Given /I? check the following fields: (.*)/ do |fields|
+  pending
+  click(fields)
+end
 
 
 ################ Team Listing Step Defs ####################
