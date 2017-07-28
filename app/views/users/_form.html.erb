@@ -1,3 +1,5 @@
+
+
 <%= render 'shared/basic_info', {:f => f, :user => @user} %>
 
 <div class="field form-group">
@@ -45,7 +47,7 @@
 </div>
 
 <div class="field form-group">
-  <%= f.label :"Profile Picture", class: "col-lg-2 control-label"  %> <br>
+  <%= f.label :"Profile Picture", class: "col-lg-2 control-label", :id=>"pic"  %> <br>
   <%= f.file_field :avatar, class: "form-control"  %>
 </div>
 <br>

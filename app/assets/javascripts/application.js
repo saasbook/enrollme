@@ -14,4 +14,4 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require_tree .
-//= require users
+//= require _form
