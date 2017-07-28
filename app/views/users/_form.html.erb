@@ -48,6 +48,7 @@
 
 <div class="field form-group">
   <%= f.label :"Profile Picture", class: "col-lg-2 control-label", :id=>"pic"  %> <br>
-  <%= f.file_field :avatar, class: "form-control"  %>
+      <img id="img_prev" src="#" alt="your image" />
+  <%= f.file_field :avatar, class: "form-control", :onchange=>'readURL(this)'  %>
 </div>
 <br>
