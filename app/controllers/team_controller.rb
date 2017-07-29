@@ -50,6 +50,7 @@ class TeamController < ApplicationController
   end
   
   def list
+    search = params[:search] || session[:search] || ''
     sort = params[:sort] || session[:sort] || 'default'
     case sort
     when 'default'
@@ -74,15 +75,21 @@ class TeamController < ApplicationController
       @selected_majors = Hash[@majors.map {|major| [major, major]}]
     end
     
-    if params[:sort] != session[:sort] or params[:declared] != session[:declared]
+    if params[:sort] != session[:sort] or params[:declared] != session[:declared] or params[:search] != session[:search]
       session[:sort] = sort
       session[:declared] = @selected_majors
-      redirect_to :sort => sort, :declared => @selected_majors and return
+      session[:search] = search
+      redirect_to :sort => sort, :declared => @selected_majors, :search => search and return
     end
     
     session[:ordering] = ordering
     # @teams = Team.where(declared: @selected_majors.keys).order(ordering)
-    @teams = Team.order(ordering)
+    
+    if search != ''
+      @teams = Team.joins(:users).where("users.name LIKE ?", "%#{search}%").order(ordering)
+    else
+      @teams = Team.order(ordering)
+    end
   end
 
   def profile

@@ -2,7 +2,9 @@ class Team < ActiveRecord::Base
     has_many :users
     has_many :requests
     has_one :submission
-    attr_accessor :num_pending_requests, :declared, :request
+    
+    validates :waitlisted, inclusion: { in: [ true, false ] }
+    attr_accessor :num_pending_requests, :declared, :request, :waitlisted
 
 
     def self.generate_hash(length=36)
@@ -145,7 +147,18 @@ class Team < ActiveRecord::Base
             @declared = 'No'
         end
     end
-
+    
+    def update_waitlist
+       @waitlisted = true
+       self.users.each do |u|
+          if  u.waitlisted == false
+              @waitlisted = false
+              return
+          end
+       end
+    end
+        
+    
     # def self.check_declared
     #     if self.declared == true
     #         return 'Yes'

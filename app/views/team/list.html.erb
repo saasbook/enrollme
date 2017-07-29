@@ -1,4 +1,12 @@
 <h1>Teams</h1>
+
+
+<%= form_tag(team_list_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search for Team Member" %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+
 <%= form_tag team_list_path, :method => :get, :id => 'declared_form' do %>
   <%= hidden_field_tag ":users_count_sort", true if @users_count_header %>
   <%= hidden_field_tag ":pending_requests_sort", true if @pending_requests_header %>
@@ -24,24 +32,28 @@
     </tr>
   </thead>
   <tbody>
-    <% @teams.each do |team| %>
-      <tr>
-        <td>
-          <%= link_to "#{team.getMembers}",team_profile_path(team.id) %>
-        </td>
-        <td>
-          <%= team.getNumMembers %>
-        </td>
-        <td>
-          <%= team.pending_requests %>
-        </td>
-        <td>
-          <%= team.declared %>
-        </td>
-        <td>
-          <%= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id), method: :post %>
-        </td>
-      </tr>
+    <% if @teams.blank? %>
+      <h4>There are no teams with the member <%= params[:search] %>.</h4>
+    <% else %>
+      <% @teams.each do |team| %>
+        <tr>
+          <td>
+            <%= link_to "#{team.getMembers}",team_profile_path(team.id) %>
+          </td>
+          <td>
+            <%= team.getNumMembers %>
+          </td>
+          <td>
+            <%= team.pending_requests %>
+          </td>
+          <td>
+            <%= team.declared %>
+          </td>
+          <td>
+            <%= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id), method: :post %>
+          </td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

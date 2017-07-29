@@ -20,8 +20,6 @@ class User < ActiveRecord::Base
 
   # the below code sets waitlisted to true by default
 
-  
-
   def leave_team
     @team = self.team
     @team.users.delete(self)
