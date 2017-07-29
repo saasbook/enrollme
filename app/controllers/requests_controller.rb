@@ -18,7 +18,7 @@ class RequestsController < ApplicationController
     end
     
     def index
-        @incoming_requests = Request.where(team_id: params[:team_id])
+        @incoming_requests = Request.where(team_id: User.find(params[:user_id]).team)
         @outgoing_requests = Request.where(user_id: params[:user_id])
     end
     

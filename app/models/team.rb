@@ -133,17 +133,7 @@ class Team < ActiveRecord::Base
     end
 
     def declared
-        result = true
-        self.users.each do |user|
-            if user.major != 'DECLARED CS/EECS Major'
-                result = false
-            end
-        end
-        if result == true
-            @declared = 'Yes'
-        else
-            @declared = 'No'
-        end
+        return self.users.all?{|user| user.major == 'DECLARED CS/EECS Major'}
     end
 
     # def self.check_declared
