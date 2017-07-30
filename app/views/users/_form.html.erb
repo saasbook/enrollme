@@ -76,4 +76,9 @@
   (jpeg,png)
   <%= f.file_field :avatar, class: "form-control", :onchange=>'readURL(this)'  %>
 </div>
+
+<div class="field form-group">
+  <%= f.label :"Resume", class: "col-lg-2 control-label", :id=>"resume"  %> <br>
+  <%= f.file_field :document, class: "form-control"%>
+</div>
 <br>
