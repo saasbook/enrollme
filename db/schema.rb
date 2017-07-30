@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730014138) do
+ActiveRecord::Schema.define(version: 20170730020709) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -92,6 +92,13 @@ ActiveRecord::Schema.define(version: 20170730014138) do
     t.integer  "thursday"
     t.integer  "friday"
     t.integer  "saturday"
+    t.integer  "ruby"
+    t.integer  "rails"
+    t.integer  "html"
+    t.integer  "css"
+    t.integer  "javascript"
+    t.integer  "ui_design"
+    t.integer  "leadership_skills"
   end
 
   add_index "users", ["team_id"], name: "index_users_on_team_id"

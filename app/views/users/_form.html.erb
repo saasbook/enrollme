@@ -29,19 +29,35 @@
   <%= f.text_field :time_commitment, class: "form-control"  %>
 </div>
 
-<div class="field form-group">
-  <%= f.label :"Available days:", class: "col-lg-2 control-label"  %> <br>
-  <% dayssss = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"] %>
+<div class= "field form-group">
+  <%= f.label :"Aavailable days:", class: "col-lg-2 control-label"  %> <br>
   <% days = [:sunday,:monday,:tuesday,:wednesday,:thursday,:friday,:saturday] %>
+  <div class = "row">
   <% days.each do |day| %>
+  <div class = "col-lg-1" >
   <%= f.label day %>
   <%= f.check_box day%>
+  </div>
   <% end %>
+  </div>
 </div>
 
 <div class="field form-group">
   <%= f.label :"experience", class: "col-lg-2 control-label"  %> <br>
   <%= f.text_field :experience, class: "form-control"  %>
+</div>
+
+<div class="field form-group">
+  <%= f.label :"Skills:", class: "col-lg-2 control-label"  %> <br>
+  <% skills = [:ruby,:rails,:html,:css,:javascript,:ui_design,:leadership_skills] %>
+  <div class = "row">
+  <% skills.each do |skill| %>
+  <div class = "col-lg-1" >
+  <%= f.label skill %>
+  <%= f.check_box skill %>
+  </div>
+  <% end %>
+  </div>
 </div>
 
 <div class="field form-group">
