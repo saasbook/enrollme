@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :requests
   end
+
   get '/without_team', to: 'users#without'
   post '/create_team', to: 'users#start_team'
   post '/join_team', to: 'users#join_team'
@@ -46,7 +47,9 @@ Rails.application.routes.draw do
   resources :discussion
 
   resources :submissions
-
+  
+  resources :requests
+  post 'requests/send_email_to_user', to: 'requests#send_email_to_user', as: "send_email_to_user"
   root 'session#new'
 
   # TODO: something for route not found

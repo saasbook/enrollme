@@ -1,24 +1,24 @@
 <body>
   <title>Requests</title>
     <div class="container">
-        <table>
+        <table cellpadding="10">
             <tr><td><h2>Incoming Requests</h2></td></tr>
             <% @incoming_requests.each do |incoming_request| %>
             <tr>
-                <td><%= incoming_request.user.name %></td>
+                <td style="padding-left: 50px;padding-bottom:3px; font size="35;""><%= incoming_request.user.name %></td>
+                <td><%= link_to "Email User", send_email_to_user_path(user_id: incoming_request.user_id), method: :send_email_to_user %></td>                
             </tr>
             <% end %>
         </table>
-        <table>
+        <table cellpadding="10px">
             <tr><td><h2>Outgoing Requests</h2></td></tr>
             <% @outgoing_requests.each do |outgoing_request| %>
             <tr>
-                <td><%= outgoing_request.team.getMembers %></td>
+                <td><%= outgoing_request.user.name %></td>
                 <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], team_id: outgoing_request.team_id, id: outgoing_request.id), method: :delete %></td>
+                <td><%= link_to "Email User", send_email_to_user_path(user_id: outgoing_request.user_id), method: :send_email_to_user %></td>
             </tr>
             <% end %>
         </table>
     </div>
 </body>
-
-

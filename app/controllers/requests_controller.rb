@@ -17,6 +17,15 @@ class RequestsController < ApplicationController
         redirect_to team_list_path
     end
     
+    def send_email_to_user
+        user = User.find_by(id: params[:user_id])
+        if user
+            RequestsMailer.send_email_to_user(user).deliver
+        else 
+            flash[:notice] = "Oops! That user wasn't found."
+        end
+    end
+
     def index
         @incoming_requests = Request.where(team_id: params[:team_id])
         @outgoing_requests = Request.where(user_id: params[:user_id])
