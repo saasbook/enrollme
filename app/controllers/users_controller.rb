@@ -62,6 +62,10 @@ class UsersController < ApplicationController
     @team = @user != nil ? @user.team : nil
     return redirect_to user_path #team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
   end
+  
+  def list
+    @users = User.where(team_id: nil) 
+  end
 
   private
   def check_is_user

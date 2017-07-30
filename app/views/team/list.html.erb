@@ -37,28 +37,3 @@
   <% end %>
   </tbody>
 </table>
-
-<!-- Single users -->
-<table id="individuals">
-  <thead>
-  <tr>
-    <th>Individuals</th>
-    <th class="<%= @pending_requests_header %>">
-      <%= link_to 'Number of Pending Requests', team_list_path(:sort => 'pending_requests', :declared => @majors), :id => 'pending_requests_header' %>
-    </th>
-    <th>Declared?</th>
-    <th>Request</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @users.each do |team| %>
-      <tr>
-        <td><%= link_to "#{team.getMembers}",team_profile_path(team.id) %></td>
-        <td><%= team.getNumMembers %></td>
-        <td><%= team.pending_requests %></td>
-        <td><%= team.declared %></td>
-        <td><%= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id), method: :post %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
