@@ -25,16 +25,17 @@
 </div>
 
 <div class="field form-group">
-  <%= f.label :"time_commitment", class: "col-lg-2 control-label"  %> <br>
+  <%= f.label :time_commitment, class: "col-lg-2 control-label"  %> <br>
   <%= f.text_field :time_commitment, class: "form-control"  %>
 </div>
 
 <div class="field form-group">
   <%= f.label :"Available days:", class: "col-lg-2 control-label"  %> <br>
-  <% days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"] %>
+  <% dayssss = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"] %>
+  <% days = [:sunday,:monday,:tuesday,:wednesday,:thursday,:friday,:saturday] %>
   <% days.each do |day| %>
-  <%= f.label(:day,day) %>
-  <%= check_box("puppy", "gooddog", {}, "yes", "no") %>
+  <%= f.label day %>
+  <%= f.check_box day%>
   <% end %>
 </div>
 

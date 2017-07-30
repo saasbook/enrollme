@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170726215923) do
+ActiveRecord::Schema.define(version: 20170730013034) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -85,6 +85,14 @@ ActiveRecord::Schema.define(version: 20170726215923) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "sunday"
+    t.string   "integer"
+    t.integer  "monday"
+    t.integer  "tuesday"
+    t.integer  "wednesday"
+    t.integer  "thursday"
+    t.integer  "friday"
+    t.integer  "saturday"
   end
 
   add_index "users", ["team_id"], name: "index_users_on_team_id"
