@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'requests/new'
+
   resources :users do
     resources :requests
   end

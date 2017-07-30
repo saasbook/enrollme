@@ -4,7 +4,12 @@ class RequestsController < ApplicationController
         params.require(:user_id)
     end
 
+    def new
+        EmailStudents.notify_target_email()
+    end
+
     def create
+=begin
         #If there is already a request with the same user id and team id, don't make a new one\
         if !Request.exists?({:team_id => params[:team_id], :user_id => params[:user_id]}) || Team.find_by({:id => params[:team_id]}).getNumMembers >= 6
             Request.create!(:team_id => params[:team_id], :user_id => params[:user_id])
@@ -13,7 +18,13 @@ class RequestsController < ApplicationController
         if Team.find_by({:id => params[:team_id]}).getNumMembers >= 6
             flash[:notice] = "Team is Full"
         end
-        #Also check if team is full
+=end
+        request = Request.create!(params)
+        #Send email out
+        user = User.find(params[:user_id])
+        targets = Request.find(params[:user_id]).target_users_list()
+        body = params[:body]
+        EmailStudents.notify_email(user, targets, body)
         redirect_to team_list_path
     end
     
