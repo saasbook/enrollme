@@ -31,8 +31,9 @@ Then /I? should see the file (.*)/ do |file|
 end
 
 Given /I? check the following fields: (.*)/ do |fields|
-  pending
-  click(fields)
+  fields.split(',').each do |field|
+    check "#{field}"
+  end
 end
 
 
