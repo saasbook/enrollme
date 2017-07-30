@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730013034) do
+ActiveRecord::Schema.define(version: 20170730014138) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 20170730013034) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "sunday"
-    t.string   "integer"
     t.integer  "monday"
     t.integer  "tuesday"
     t.integer  "wednesday"
