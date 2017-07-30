@@ -17,6 +17,7 @@
         <h4>Skills: <%= @skills%></h4>
         <h4>Facebook:  <%= @user.facebook.nil? ? "None" : @user.facebook %></h4>
         <h4>Linkedin:  <%= @user.linkedin.nil? ? "None" : @user.linkedin %></h4>
+        <h4><%= link_to "My Resume", @user.document.url %> </h4>
         <br>
         <%= link_to "Back", '#', onclick: "history.back()", class: 'btn btn-primary' %>
         <%= link_to "Edit", edit_user_path(params[:id]), {class: 'btn', :method => 'get'} %>
