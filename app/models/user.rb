@@ -18,6 +18,15 @@ class User < ActiveRecord::Base
     self.email.downcase!
   end
 
+  def getAvailableDays
+    days = {"Sunday" => sunday ,"Monday" => monday,"Tuesday"=>tuesday,"Wednesday"=>wednesday,"Thursday"=>thursday,"Friday"=>friday,"Saturday"=>saturday}
+    availableDays = ""
+    puts days
+    days.each do |day, value|
+      availableDays = availableDays + day + " " unless value != 1
+    end
+   return availableDays
+  end
   # the below code sets waitlisted to true by default
 
   
@@ -41,5 +50,5 @@ class User < ActiveRecord::Base
   def all_admin_emails
     return Admin.pluck(:email)
   end
-
+  
 end
