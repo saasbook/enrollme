@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730203634) do
+ActiveRecord::Schema.define(version: 20170730225044) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -68,12 +68,12 @@ ActiveRecord::Schema.define(version: 20170730203634) do
   add_index "teams", ["discussion_id"], name: "index_teams_on_discussion_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",                null: false
-    t.string   "email",               null: false
-    t.string   "major",               null: false
-    t.string   "sid",                 null: false
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.string   "name",                  null: false
+    t.string   "email",                 null: false
+    t.string   "major",                 null: false
+    t.string   "sid",                   null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "team_id"
     t.string   "bio"
     t.integer  "time_commitment"
@@ -99,6 +99,10 @@ ActiveRecord::Schema.define(version: 20170730203634) do
     t.integer  "ui_design"
     t.integer  "leadership_skills"
     t.integer  "sunday"
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
   end
 
   add_index "users", ["team_id"], name: "index_users_on_team_id"
