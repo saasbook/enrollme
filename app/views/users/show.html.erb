@@ -14,7 +14,7 @@
         <h4>Time Commitment:  <%= @user.time_commitment.nil? ? "None" : @user.time_commitment %></h4>
         <h4>Available Days: <%= @availableDays %></h4>
         <h4>Experience:  <%= @user.experience.nil? ? "None" : @user.experience %></h4>
-        <h4>Skills: </h4>
+        <h4>Skills: <%= @skills%></h4>
         <h4>Facebook:  <%= @user.facebook.nil? ? "None" : @user.facebook %></h4>
         <h4>Linkedin:  <%= @user.linkedin.nil? ? "None" : @user.linkedin %></h4>
         <br>

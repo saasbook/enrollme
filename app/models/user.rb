@@ -21,15 +21,22 @@ class User < ActiveRecord::Base
   def getAvailableDays
     days = {"Sunday" => sunday ,"Monday" => monday,"Tuesday"=>tuesday,"Wednesday"=>wednesday,"Thursday"=>thursday,"Friday"=>friday,"Saturday"=>saturday}
     availableDays = ""
-    puts days
     days.each do |day, value|
-      availableDays = availableDays + day + " " unless value != 1
+      availableDays = availableDays + day + "; " unless value != 1
     end
    return availableDays
   end
-  # the below code sets waitlisted to true by default
-
   
+  def getSkills
+    skils = {"Ruby"=>ruby, "Rails"=>rails, "HTML"=>html, "CSS"=>css, "Javascript"=>javascript, "UI Design"=>ui_design, "Leadership skills"=>leadership_skills}
+    mySkills = ""
+    skils.each do |skill, value|
+      mySkills = mySkills + skill + "; " unless value != 1
+    end
+   return mySkills
+  end
+  
+  # the below code sets waitlisted to true by default
 
   def leave_team
     @team = self.team

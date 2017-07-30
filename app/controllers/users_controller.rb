@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_id(params[:id])
     @availableDays = @user.getAvailableDays
+    @skills = @user.getSkills
   end
   
   def new
