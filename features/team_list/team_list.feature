@@ -15,7 +15,7 @@ Feature: Table for finding and joining teams
       | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               | true |
       | Saha3     |    xx3@berkeley.edu         | passcode2 | Slav1c Studies    | 832               | true |
       | Saha4     |    xx4@berkeley.edu         | passcode2 | Slav1c Studies    | 833               | true |
-      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               | true |
+      | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               | false |
     
     And team "passcode1" has 0 pending requests
     And team "passcode2" has 2 pending requests
@@ -36,6 +36,11 @@ Feature: Table for finding and joining teams
     And I choose "user_waitlisted_true"
     And I press "Sign Up"
     And I follow "Team List"
+    And I should see "Group Members"
+    And I should see "Number of Members"
+    And I should see "Number of Pending Requests"
+    And I should see "All Waitlisted?"
+    And I should see "Request"
   
   # Index should have teams sorted in descending order based on number_of_members
   Scenario: User opens up table of teams page for first time, and teams should be sorted in descending order by default
@@ -64,11 +69,10 @@ Feature: Table for finding and joining teams
     Then I should see "Bob" before "Jorge"
     And I should see "Jorge" before "Sahai"
     
-  # Replace these tests with wait_listed test once merged.  
-  # # Filter listing by showing only teams where all team members are declared CS/EECS
-  # Scenario: A user wants to filter teams based on whether all team members are declared CS/EECS majors
-  #   Given I check "Yes"
-  #   Then I should see "Bob"
-  #   And I should see "Sahai"
-  #   And I should not see "Jorge"
+  # Filter listing by showing only teams where all team members are waitlisted
+  Scenario: A user wants to filter teams based on whether all team members are waitlisted
+    Given I check "Yes"
+    Then I should see "Bob"
+    And I should see "Sahai"
+    And I should not see "Jorge"
   

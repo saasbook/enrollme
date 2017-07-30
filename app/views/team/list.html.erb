@@ -1,22 +1,23 @@
 <h1>Teams</h1>
 
 
-<%= form_tag(team_list_path, :method => "get", id: "search-form") do %>
+<%= form_tag(team_list_path, :method => "get", id: "search_form") do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search for Team Member" %>
     <%= submit_tag "Search", :name => nil %>
 <% end %>
 
 
-<%= form_tag team_list_path, :method => :get, :id => 'declared_form' do %>
+<%= form_tag team_list_path, :method => :get, :id => 'waitlisted_form' do %>
   <%= hidden_field_tag ":users_count_sort", true if @users_count_header %>
   <%= hidden_field_tag ":pending_requests_sort", true if @pending_requests_header %>
-  Limit to Teams with all Declared CS or EECS Majors?
-  <% @majors.each do |declared| %>
-    <%= declared %>
-    <%= check_box_tag "declared[#{declared}]", 1, @majors.include?(declared), :id => "declared_#{declared}" %>
-  <% end %>
-  <%= submit_tag 'Refresh', :id => 'declared_submit' %>
+  Limit to Teams with All Members Waitlisted?
+  <%= 'Yes' %>
+  <%= check_box_tag 'waitlisted[]', true, checked: true %>
+  <%= 'No' %>
+  <%= check_box_tag 'waitlisted[]', false, checked: true %>
+  <%= submit_tag 'Refresh', :id => 'waitlisted_submit' %>
 <% end %>
+
 <table id="teams">
   <thead>
     <tr>
@@ -27,7 +28,7 @@
       <th class="<%= @pending_requests_header %>">
         <%= link_to 'Number of Pending Requests', team_list_path(:sort => 'pending_requests', :declared => @majors), :id => 'pending_requests_header' %>
       </th>
-      <th>All Declared?</th>
+      <th>All Waitlisted?</th>
       <th>Request</th>
     </tr>
   </thead>
@@ -47,7 +48,7 @@
             <%= team.pending_requests %>
           </td>
           <td>
-            <%= team.declared %>
+            <%= team.waitlisted ? "Yes" : "No" %>
           </td>
           <td>
             <%= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id), method: :post %>

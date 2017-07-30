@@ -3,8 +3,9 @@ class Team < ActiveRecord::Base
     has_many :requests
     has_one :submission
     
+    #validates_inclusion_of :waitlisted, :in => [true, false]
     validates :waitlisted, inclusion: { in: [ true, false ] }
-    attr_accessor :num_pending_requests, :declared, :request, :waitlisted
+    attr_accessor :num_pending_requests, :declared, :request
 
 
     def self.generate_hash(length=36)
@@ -133,41 +134,16 @@ class Team < ActiveRecord::Base
     def self.all_declared
         %w(Yes No)
     end
-
-    def declared
-        result = true
-        self.users.each do |user|
-            if user.major != 'DECLARED CS/EECS Major'
-                result = false
-            end
-        end
-        if result == true
-            @declared = 'Yes'
-        else
-            @declared = 'No'
-        end
-    end
     
     def update_waitlist
        @waitlisted = true
        self.users.each do |u|
           if  u.waitlisted == false
               @waitlisted = false
-              return
           end
        end
+       self.waitlisted = @waitlisted
+       self.save!
     end
-        
     
-    # def self.check_declared
-    #     if self.declared == true
-    #         return 'Yes'
-    #     else
-    #         return 'No'
-    #     end
-    # end
-
-    # TODO def self.join # implement to return join/leave/invite properly depending on session user's relation to team
-    #    return 'Join'
-    # end
 end

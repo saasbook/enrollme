@@ -89,8 +89,9 @@ Given /^the following users exist$/ do |table|
     next if name == "name" # skipping table header
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
-      @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
+      @team = Team.new(:approved => false, :submitted => false, :passcode => team_passcode, :waitlisted => true) if @team.nil?
       User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
+      @team.update_waitlist
     else
       User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
     end

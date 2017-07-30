@@ -54,12 +54,12 @@ class TeamController < ApplicationController
     sort = params[:sort] || session[:sort] || 'default'
     case sort
     when 'default'
-      ordering, @num_members_header = {:users_count => :desc}, 'hilite'
+      ordering, @users_count_header = {:users_count => :desc}, 'hilite'
     when 'users_count'
       if session[:ordering]["users_count"] == "desc"
-        ordering,@num_members_header = {:users_count => :asc}, 'hilite'
+        ordering,@users_count_header = {:users_count => :asc}, 'hilite'
       else
-        ordering,@num_members_header = {:users_count => :desc}, 'hilite'
+        ordering,@users_count_header = {:users_count => :desc}, 'hilite'
       end
     when 'pending_requests'
       if session[:ordering]["pending_requests"] == "desc"
@@ -68,27 +68,25 @@ class TeamController < ApplicationController
         ordering,@pending_requests_header = {:pending_requests => :desc}, 'hilite'
       end
     end
-    @majors = Team.all_declared
-    @selected_majors = params[:declared] || session[:declared] || {}
     
-    if @selected_majors == {}
-      @selected_majors = Hash[@majors.map {|major| [major, major]}]
-    end
+    @waitlist_filter = params[:waitlisted] || session[:waitlisted] || [true, false]
     
-    if params[:sort] != session[:sort] or params[:declared] != session[:declared] or params[:search] != session[:search]
+    
+    
+    if params[:sort] != session[:sort] or params[:waitlisted] != session[:waitlisted] or params[:search] != session[:search]
       session[:sort] = sort
-      session[:declared] = @selected_majors
+      session[:waitlisted] = @waitlist_filter
       session[:search] = search
-      redirect_to :sort => sort, :declared => @selected_majors, :search => search and return
+      redirect_to :sort => sort, :waitlisted => @waitlist_filter, :search => search and return
     end
     
     session[:ordering] = ordering
     # @teams = Team.where(declared: @selected_majors.keys).order(ordering)
     
     if search != ''
-      @teams = Team.joins(:users).where("users.name LIKE ?", "%#{search}%").order(ordering)
+      @teams = Team.joins(:users).where("users.name LIKE ?", "%#{search}%").where(waitlisted: @waitlist_filter).order(ordering)
     else
-      @teams = Team.order(ordering)
+      @teams = Team.where(waitlisted: @waitlist_filter).order(ordering)
     end
   end
 
