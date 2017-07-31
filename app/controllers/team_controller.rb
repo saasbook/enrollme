@@ -52,41 +52,55 @@ class TeamController < ApplicationController
   def list
     search = params[:search] || session[:search] || ''
     sort = params[:sort] || session[:sort] || 'default'
-    case sort
-    when 'default'
-      ordering, @users_count_header = {:users_count => :desc}, 'hilite'
-    when 'users_count'
-      if session[:ordering]["users_count"] == "desc"
-        ordering,@users_count_header = {:users_count => :asc}, 'hilite'
-      else
-        ordering,@users_count_header = {:users_count => :desc}, 'hilite'
-      end
-    when 'pending_requests'
-      if session[:ordering]["pending_requests"] == "desc"
-        ordering,@pending_requests_header = {:pending_requests => :asc}, 'hilite'
-      else
-        ordering,@pending_requests_header = {:pending_requests => :desc}, 'hilite'
-      end
-    end
-    
     @waitlist_filter = params[:waitlisted] || session[:waitlisted] || [true, false]
+    to_sort = params[:to_sort] || 'true'
     
+    if to_sort == 'true'
+      case sort
+      when 'default'
+        ordering, @users_count_header = {:users_count => :desc}, 'hilite'
+        session[:ordering] = ordering
+      when 'users_count'
+        if session[:ordering]["users_count"] == "desc"
+          ordering,@users_count_header = {:users_count => :asc}, 'hilite'
+        else
+          ordering,@users_count_header = {:users_count => :desc}, 'hilite'
+        end
+        session[:ordering] = ordering
+      when 'pending_requests'
+        if session[:ordering]["pending_requests"] == "desc"
+          ordering,@pending_requests_header = {:pending_requests => :asc}, 'hilite'
+        else
+          ordering,@pending_requests_header = {:pending_requests => :desc}, 'hilite'
+        end
+        session[:ordering] = ordering
+      end
+    else
+      ordering = session[:ordering]
+    end
     
     
     if params[:sort] != session[:sort] or params[:waitlisted] != session[:waitlisted] or params[:search] != session[:search]
       session[:sort] = sort
       session[:waitlisted] = @waitlist_filter
       session[:search] = search
-      redirect_to :sort => sort, :waitlisted => @waitlist_filter, :search => search and return
+      redirect_to :sort => sort, :waitlisted => @waitlist_filter, :search => search, :to_sort => false and return
     end
     
-    session[:ordering] = ordering
-    # @teams = Team.where(declared: @selected_majors.keys).order(ordering)
+    filter = []
+    @waitlist_filter. each do |w|
+      if (w == 'false') or (w == false)
+        filter << false
+      elsif (w == 'true') or (w == true)
+        filter << true
+      end
+    end
     
+    #.where(waitlisted: @waitlist_filter)
     if search != ''
-      @teams = Team.joins(:users).where("users.name LIKE ?", "%#{search}%").where(waitlisted: @waitlist_filter).order(ordering)
+      @teams = Team.joins(:users).where("users.name LIKE ?", "%#{search}%").order(ordering)
     else
-      @teams = Team.where(waitlisted: @waitlist_filter).order(ordering)
+      @teams = Team.where(waitlisted: filter).order(ordering)
     end
   end
 

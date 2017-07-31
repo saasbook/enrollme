@@ -71,8 +71,17 @@ Feature: Table for finding and joining teams
     
   # Filter listing by showing only teams where all team members are waitlisted
   Scenario: A user wants to filter teams based on whether all team members are waitlisted
-    Given I check "Yes"
+    Given I check "waitlisted_yes"
+    And I press "Refresh"
     Then I should see "Bob"
     And I should see "Sahai"
     And I should not see "Jorge"
+  
+  # Filter listing by showing only teams where all team members are not waitlisted
+  Scenario: A user wants to only see teams where all members are not waitlisted
+    Given I check "waitlisted_no"
+    And I press "Refresh"
+    Then I should not see "Bob"
+    And I should not see "Sahai"
+    And I should see "Jorge"
   
