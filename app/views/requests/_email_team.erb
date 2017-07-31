@@ -1,0 +1,42 @@
+<form>
+  <div class="form-group">
+
+	  <h4><%= "Email members of Team " + @team_id %></h4>
+
+    <label for="exampleInputEmail1">Email Subject</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter subject">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleTextarea">Email Content</label>
+    <textarea class="form-control" id="email_content" rows="3"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-sm btn-primary">Send</button>
+
+	<button type="button" class="btn btn-link" id="closeLink">Cancel</button>
+
+</form>
+
+<style type="text/css">
+	#closeLink{
+		float: right
+	}
+
+	#dialog{
+    position: absolute;
+		margin: auto;
+    background: white;
+		top: 23%;
+    left: 19%;
+    width: 62%;
+    border: 2px solid darkblue;
+    padding: 17px;
+    padding-top: 7px;
+	}
+
+	#email_content{
+		height: 200px;
+	}
+
+</style>

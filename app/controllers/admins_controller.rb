@@ -25,9 +25,11 @@ class AdminsController < ApplicationController
   end
 
   def index
-    status = params[:status]
-    @status = status
-    @teams_li = Team.filter_by(status)
+    status = params[:status] || session[:status] ||= "All"
+    @status = session[:status] = params[:status] = status
+
+    @teams_li = Team.filter_by(status)                                             
+
     render 'index'
   end
   
@@ -67,8 +69,10 @@ class AdminsController < ApplicationController
   end
   
   def team_list_email
-    AdminMailer.team_list_email(@admin).deliver_now
+    AdminMailer.team_list_email(@admin, params[:status] || "All").deliver_later
     
+    flash[:notice] = "Email successfully sent to " + @admin.email
+
     redirect_to admins_path
   end
   
@@ -140,7 +144,40 @@ class AdminsController < ApplicationController
     end
     redirect_to '/', :notice => notice
   end
+
   
+  def email_team
+    # render partial to send email to the members of a team
+    @team_id = params[:team_id]
+    @members = users = Team.find(@team_id).users.collect(&:email).join(",")
+
+    # ajax call to render partial
+    render :partial => 'email_team', :object => @team_id, :object => @members and return if request.xhr?                                                         
+    
+    # calls admins#index
+    redirect_to admins_path
+  end
+
+
+  def send_email_team
+    # get the form parameters 
+    @team_id = params[:team_id]
+    @members = users = Team.find(@team_id).users.collect(&:email).join(",")
+    
+    email = params.require(:email).permit(:subject, :content)
+
+    if (email["subject"].length == 0 || email["content"].length == 0)
+      flash[:notice] = "Error: Please fill both of the email's subject and content fields"
+      redirect_to admins_path and return
+    end
+
+    AdminMailer.send_email_to_team(@team_id, @members, email).deliver_now
+    flash[:notice] = "Email successfully sent to team " + @team_id + " (" + @members + ")"
+    redirect_to admins_path
+  end
+
+
+
   private
 
   def validate_admin
@@ -160,5 +197,6 @@ class AdminsController < ApplicationController
   def admin_tutorial
     render 'admin_tutorial'
   end
+
 
 end
