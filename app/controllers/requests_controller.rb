@@ -23,12 +23,17 @@ class RequestsController < ApplicationController
             redirect_to team_list_path, flash: {notice: "Your request has been sent successfully."}
         end
     end
-    
+
     def index
-        @incoming_requests = Request.where(team_id: User.find(params[:user_id]).team)
-        @outgoing_requests = Request.where(user_id: params[:user_id])
+      #requests to my teams
+        @incoming_requests = []
+        #@incoming_requests = Request.where(target_type: "user").where(target_id: params[:user_id])
+        @outgoing_requests = []
+        #@incoming_to_team = Request.where(type: "team").where(target_id == users.find(params[:user_id]).team)
+        #@incoming_requests = Request.where(team_id: User.find(params[:user_id]).team)
+        #@outgoing_requests = Request.where(user_id: params[:user_id])
     end
-    
+
     def accept
         user = User.find_by(user_id: params[:user_id])
         user.team_id = params[:team_id]
@@ -36,18 +41,18 @@ class RequestsController < ApplicationController
         flash[:notice] = "Request Approved"
         destroy
     end
-    
+
     def deny
         flash[:notice] = "Request Denied"
         destroy
     end
-    
+
     def destroy
         Request.delete(Request.find_by(team_id: params[:team_id], user_id: params[:user_id]))
         redirect_to user_requests_path
     end
-    
-    private 
+
+    private
     def request_params
         params.require(:target_type).require(:target_id).permit(:body, :user_id)
     end
