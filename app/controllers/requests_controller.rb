@@ -31,14 +31,21 @@ class RequestsController < ApplicationController
 
     def index
       #requests to my teams
-        @incoming_requests = []
-        #@incoming_requests = Request.where(target_type: "user").where(target_id: params[:user_id])
-        @outgoing_requests = []
-        #@incoming_to_team = Request.where(type: "team").where(target_id == users.find(params[:user_id]).team)
-        #@incoming_requests = Request.where(team_id: User.find(params[:user_id]).team)
-        #@outgoing_requests = Request.where(user_id: params[:user_id])
+        @user = User.find(session[:user_id])
+        @incoming_requests_from_users = Array(Request.where(target_type: "user").where(target_id: @user.id))
+        @incoming_requests_from_users = @incoming_requests_from_users.map {|request| User.find(request.target_id)}
+        
+        @incoming_requests_from_teams = Array(Request.where(target_type: "team").where(target_id: @user.team.id))
+        @incoming_requests_from_teams = @incoming_requests_from_teams.map {|request| Team.find(request.target_id)}
+        
+        @outgoing_requests_to_users = Array(Request.where(target_type: "user").where(user_id: @user.id))
+        @outgoing_requests_to_users = @outgoing_requests_to_users.map {|request| User.find(request.target_id)}
+        
+        @outgoing_requests_to_teams = Array(Request.where(target_type: "team").where(user_id: @user.team.id))
+        @outgoing_requests_to_teams = @outgoing_requests_to_teams.map {|request| Team.find(request.target_id)}
     end
-
+    
+=begin
     def accept
         Request.join(sender, target_type, receiver)
         if check e
@@ -50,14 +57,22 @@ class RequestsController < ApplicationController
         flash[:notice] = "Request Denied"
         destroy
     end
+=end
 
     def destroy
-        Request.delete(Request.find_by(team_id: params[:team_id], user_id: params[:user_id]))
+        if params[:decision] == "accept"
+            Request.join(session[:user_id], params[:target_type], params[:target_id])
+            Request.find(params[:id]).destroy
+        elsif params[:decision] == "deny"
+            Request.find(params[:id]).destroy
+        elsif params[:decision] == "cancel"
+            Request.find(params[:id]).destroy
+        end
         redirect_to user_requests_path
     end
 
     private
     def request_params
-        params.require(:target_type).require(:target_id).permit(:body, :user_id)
+        #params.require(:target_type).require(:target_id).permit(:body, :user_id)
     end
 end
