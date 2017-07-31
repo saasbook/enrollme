@@ -55,6 +55,7 @@ Rails.application.routes.draw do
   
   resources :requests
   post 'requests/send_email_to_user', to: 'requests#send_email_to_user', as: "send_email_to_user"
+  get '/requests/email_team', to: 'requests#email_team'
   root 'session#new'
 
   # TODO: something for route not found

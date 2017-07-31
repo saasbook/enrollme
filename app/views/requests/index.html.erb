@@ -16,7 +16,7 @@
             <tr>
                 <td><%= outgoing_request.user.name %></td>
                 <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], team_id: outgoing_request.team_id, id: outgoing_request.id), method: :delete %></td>
-                <td><%= link_to "Email User", send_email_to_user_path(user_id: outgoing_request.user_id), method: :send_email_to_user %></td>
+                <td><%= link_to "Email Team", requests_email_team_path(:team_id => outgoing_request.team_id), :class => "btn btn-primary btn-sm email_team"%></td>
             </tr>
             <% end %>
         </table>

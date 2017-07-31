@@ -12,7 +12,7 @@ EmailTeam = {
                 url: $(this).attr('href'),
                 timeout: 5000,
                 success: EmailTeam.showDialog,
-                error: function() { alert('Error!'); }
+                error: function(jqXHR, textStatus, errorThrown) { alert(jqXHR.textStatus); }
                });
         return(false);
     },
