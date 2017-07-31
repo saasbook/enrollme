@@ -3,7 +3,14 @@ class Team < ActiveRecord::Base
     has_many :requests
     has_one :submission
     attr_accessor :num_pending_requests, :declared, :request
-
+    
+    validate :size_cannot_be_too_big
+    
+    def size_cannot_be_too_big
+        if self.getNumMembers >= 6
+            errors.add(:size, "The team is already full")
+        end
+    end
 
     def self.generate_hash(length=36)
         return SecureRandom.urlsafe_base64(length, false)
@@ -134,6 +141,10 @@ class Team < ActiveRecord::Base
 
     def declared
         return self.users.all?{|user| user.major == 'DECLARED CS/EECS Major'}
+    end
+    
+    def isFull?
+        return self.getNumMembers >= 6
     end
 
     # def self.check_declared

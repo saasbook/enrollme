@@ -2,7 +2,7 @@ class Request < ActiveRecord::Base
   belongs_to :user
   #belongs_to :team
   
-  validates :target_type, format: {with: /^(user|team)$/}
+  validates :target_type, format: {with: /(user|team)/}
   validates :target_id, numericality: true
   validate :target_cannot_be_self, :target_cannot_be_own_team, :new_size_cannot_be_too_big, :target_exists
   
@@ -13,7 +13,7 @@ class Request < ActiveRecord::Base
   end
   
   def target_cannot_be_own_team
-    if self.target_type == "team" && self.target_id == self.team_id
+    if self.target_type == "team" && self.target_id == self.user.team_id
       errors.add(:target, "Target cannot be own team")
     end
   end

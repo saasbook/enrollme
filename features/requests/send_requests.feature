@@ -36,21 +36,21 @@ Feature: Manage requests for joining teams
       Given I press the "Join Team" button on the same row as "An"
       Then I should see "Enter your message here"
       When I press "Submit Message"
-      Then I should see "Request Sent"
+      Then I should see "Your request has been sent successfully."
       And "bobjones0@berkeley.edu" should receive 1 email
       When I follow "Requests"
       #Then I should see "An"
 
   Scenario: I send a join request to a team that is full
     Given I press the "Join" button on the same row as "Hezheng"
-    Then I should see "Team is Full"
+    Then I should see "join is full"
 
-#  Scenario: I want to cancel an active join request
-#    Given I press the "Join" button on the same row as "An"
-#    And I follow "Requests"
-#    And I press the "Cancel" button on the same row as "An"
-#    Then I should not see "An"
-#
+  Scenario: I want to cancel an active join request
+    Given I press the "Join" button on the same row as "An"
+    And I follow "Requests"
+    And I press the "Cancel" button on the same row as "An"
+    Then I should not see "An"
+
 #  Scenario: My request was accepted
 #    Given I press the "Join" button on the same row as "An"
 #    And I follow "Logout"

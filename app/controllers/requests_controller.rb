@@ -1,8 +1,13 @@
 class RequestsController < ApplicationController
 
     def new
-        #@user = User.find(session[:user_id])
-        #@request ||= @user.requests.new
+        #Redirect immediately if team is full
+        if params[:target_type] == "team"
+           team = Team.find(params[:target_id])
+           if team.isFull?
+               redirect_to team_list_path, flash: {alert: "The team you have requested to join is full. Please select another team."}
+            end
+        end
     end
     
     def create
@@ -13,14 +18,14 @@ class RequestsController < ApplicationController
         #Check for errors, send it to the flash
         if @request.errors.any?
             ######NEEDS TO BE CHANGED TO PREVIOUS PAGE###############
-            redirect_to team_list_path, flash: {notice: "Your request is no longer valid. Please select another #{params[:target_type]}."}
+            redirect_to team_list_path, flash: {alert: "Your request is no longer valid. Please select another #{params[:target_type]}."}
         else
         #Send email out
             target_users = @request.target_users_list
             body = params[:body]
             EmailStudents.send_notify_emails(@user, target_users, body)
             ######NEEDS TO BE CHANGED TO PREVIOUS PAGE###############
-            redirect_to team_list_path, flash: {notice: "Your request has been sent successfully."}
+            redirect_to team_list_path, flash: {alert: "Your request has been sent successfully."}
         end
     end
 

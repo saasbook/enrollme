@@ -1,4 +1,5 @@
 <h1>Teams</h1>
+
 <%= form_tag team_list_path, :method => :get, :id => 'declared_form' do %>
     <%= hidden_field_tag ":users_count_sort", true if @users_count_header %>
     <%= hidden_field_tag ":pending_requests_sort", true if @pending_requests_header %>
@@ -32,7 +33,7 @@
         <td><%= team.getNumMembers %></td>
         <td><%= team.pending_requests %></td>
         <td><%= team.declared %></td>
-        <td><%= link_to "Join Team", requests_new_path(target_id: team.id, target_type: "team") %></td>
+        <td><%= link_to "Join Team", new_user_request_path(user_id: session[:user_id], target_id: team.id, target_type: "team") %></td>
       </tr>
   <% end %>
   </tbody>
