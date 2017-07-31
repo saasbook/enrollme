@@ -47,30 +47,33 @@ Feature: Manage requests for joining teams
 
   Scenario: I want to cancel an active join request
     Given I press the "Join" button on the same row as "An"
+    When I press "Submit Message"
     And I follow "Requests"
     And I press the "Cancel" button on the same row as "An"
     Then I should not see "An"
 
-#  Scenario: My request was accepted
-#    Given I press the "Join" button on the same row as "An"
-#    And I follow "Logout"
-#    And I log in as a user with email "bobjones0@berkeley.edu"
-#    And I follow "Requests"
-#    And I press the "Accept" button on the same row as "Derek"
-#    Then I should see "Request Approved"
-#    And I should not see "Derek"
-#    Given I log in as a user with email "derek@berkeley.edu"
-#    Then I should see "An"
-#
-#  Scenario: My request was denied
-#    Given I press the "Join" button on the same row as "An"
-#    And I follow "Logout"
-#    And I log in as a user with email "bobjones@berkeley.edu"
-#    And I follow "Requests"
-#    And I press the "Reject" button on the same row as "Derek"
-#    Then I should see "Request Rejected"
-#    And I should not see "Derek"
-#    Given I log in as a user with email "derek@berkeley.edu"
-#    Then I should not see "An"
-#
-#
+  Scenario: My request was accepted
+    Given I press the "Join" button on the same row as "An"
+    When I press "Submit Message"
+    And I follow "Logout"
+    And I log in as a user with email "bobjones0@berkeley.edu"
+    And I follow "Requests"
+    And I press the "Accept" button on the same row as "Derek"
+    Then I should see "Request Approved"
+    And I should not see "Derek"
+    And I follow "Logout"
+    Given I log in as a user with email "derek@berkeley.edu"
+    Then I should see "An"
+
+  Scenario: My request was denied
+    Given I press the "Join" button on the same row as "An"
+    When I press "Submit Message"
+    And I follow "Logout"
+    And I log in as a user with email "bobjones0@berkeley.edu"
+    And I follow "Requests"
+    And I press the "Deny Request" button on the same row as "Derek"
+    Then I should see "Request Denied"
+    And I should not see "Derek"
+    And I follow "Logout"
+    Given I log in as a user with email "derek@berkeley.edu"
+    Then I should not see "An"

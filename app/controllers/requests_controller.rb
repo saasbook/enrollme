@@ -40,7 +40,6 @@ class RequestsController < ApplicationController
         #requests from me or my team
         reqs_from_me = Request.where(user_id: @user.id)
         @requests_from_me = reqs_from_me.map {|request| {text: request.showTargets, id: request.id}}
-        
     end
     
 =begin
@@ -58,12 +57,18 @@ class RequestsController < ApplicationController
 =end
 
     def destroy
+        if !Request.exists?(params[:id])
+          flash[:notice] = "This request was already processed"
+          return redirect_to user_requests_path
+        end
         request = Request.find(params[:id])
         if params[:decision] == "accept"
             request.join
             request.destroy
+            flash[:notice] = "Request Approved"
         elsif params[:decision] == "deny"
             request.destroy
+            flash[:notice] = "Request Denied"
         elsif params[:decision] == "cancel"
             request.destroy
         end

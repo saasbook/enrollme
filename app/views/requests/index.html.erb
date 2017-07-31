@@ -2,28 +2,31 @@
   <title>Requests</title>
     <div class="container">
         <table>
-            
-            @requests_to_me
-            @requests_to_my_team
-            @requests_from_me
-            
-            
             <tr><td><h2>Incoming Requests</h2></td></tr>
             <% @requests_to_me.each do |incoming_request| %>
             <tr>
                 <td><%= incoming_request[:text] %></td>
-                <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: delete %></td>
-                <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: delete %></td>
+                <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: :delete %></td>
+                <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete %></td>
             </tr>
             <% end %>
+
+            <% @requests_to_my_team.each do |incoming_request| %>
+                <tr>
+                  <td><%= incoming_request[:text] %></td>
+                  <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: :delete %></td>
+                  <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete %></td>
+                </tr>
+            <% end %>
         </table>
+
         
         <table>
             <tr><td><h2>Outgoing Requests</h2></td></tr>
             <% @requests_from_me.each do |outgoing_request| %>
             <tr>
                 <td><%= outgoing_request[:text] %></td>
-                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], id: outgoing_request[:id]), method: :delete %></td>
+                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], id: outgoing_request[:id], decision: "cancel"), method: :delete %></td>
             </tr>
             <% end %>
         </table>

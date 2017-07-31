@@ -45,15 +45,15 @@ class Request < ActiveRecord::Base
 
   def join
     user = User.find(self.user_id)
-    target = target_type == "user"? User.find(self.target_id) : Team.find(self.target_id)
-    if user.on_team?
+    target = (target_type == "user") ? User.find(self.target_id) : Team.find(self.target_id)
+    if !user.on_team?
       if target_type == "user"
         new_team = Team.create()
         new_team.users << user
         new_team.users << target
         new_team.save
       else
-        target.team << user
+        target.users << user
         target.save
       end
     else
@@ -62,9 +62,9 @@ class Request < ActiveRecord::Base
         user.save
       else
         user.team.users.each do |user|
-          target.team << user
+          target.users << user
+          target.save
         end
-        target.save
       end
     end
   end
