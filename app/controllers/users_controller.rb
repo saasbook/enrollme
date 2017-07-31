@@ -35,9 +35,10 @@ class UsersController < ApplicationController
   def start_team
     @user.leave_team if !(@user.team.nil?)
     
-    @team = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+    @team = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
 
     @team.users << @user
+    @team.update_waitlist
     @user.team = @team
     redirect_to team_path(:id=>@team.id)
   end
@@ -51,6 +52,7 @@ class UsersController < ApplicationController
     @user.leave_team if !(@user.team.nil?)
 
     @team.users << @user
+    @team.update_waitlist
     @user.team = @team
     @team.withdraw_submission
     
@@ -61,6 +63,9 @@ class UsersController < ApplicationController
 
   def update
     @user.update_attributes!(user_params)
+    if @user.team
+      @user.team.update_waitlist
+    end
     @team = @user != nil ? @user.team : nil
     return redirect_to user_path #team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
   end

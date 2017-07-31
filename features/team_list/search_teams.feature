@@ -21,12 +21,13 @@ Feature: Search Function for Team List
     And team "passcode3" is not declared
     
     And I am on the home page
+    And I log in as a user with email "bobjones0@berkeley.edu"
     And I follow "Team List"
 
   # Search feature to find team with certain member's name
   Scenario: A user searches for a team with a certain member
     Given I fill in "search" with "Jorge"
-    When I press submit
+    When I press "Search"
     Then I should see "Jorge"
     And I should not see "Bob"
     And I should not see "Sahai"

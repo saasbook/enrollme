@@ -41,9 +41,9 @@ Option.create!(
 #   {:name => "Aladdin", :email => "aladdin@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 193456, :time_commitment=>55},
 #   ]
   
-#   team1 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
-#   team2 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
-#   team3 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+#   team1 = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+#   team2 = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+#   team3 = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
 
 # requests = [
 # ]
@@ -54,14 +54,17 @@ Option.create!(
 #   current_user = User.create!(u)
 #   if counter < 2
 #     team1.users << current_user
+#     team1.update_waitlist
 #     current_user.team = team1
 #     counter += 1
 #   elsif counter < 5
 #     team2.users << current_user
+#     team2.update_waitlist
 #     current_user.team = team2
 #     counter += 1
 #   elsif counter < 9
 #     team3.users << current_user
+#     team3.update_waitlist
 #     current_user.team = team3
 #     counter += 1
 #   end
