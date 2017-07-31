@@ -33,7 +33,7 @@ Feature: Manage requests for joining teams
     And I follow "Team List"
 
     Scenario: I send a join request to a team that is not full
-      Given I press the "Join" button on the same row as "An"
+      Given I press the "Join Team" button on the same row as "An"
       Then I should see "Enter your message here"
       When I press "Send email"
       Then I should see "Request Sent"

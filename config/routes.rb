@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   resources :users do
     resources :requests
   end
+
+  resources :users
   get '/without_team', to: 'users#without'
   post '/create_team', to: 'users#start_team'
   post '/join_team', to: 'users#join_team'
   get '/help', to: 'users#user_help'
-  get 'users/list', to: 'users#list'
+  get 'users/index/', to: 'users#index'
+
 
   resources :team
   post 'team/:id/submit', to: 'team#submit', as: "submit_team"

@@ -32,7 +32,7 @@
         <td><%= team.getNumMembers %></td>
         <td><%= team.pending_requests %></td>
         <td><%= team.declared %></td>
-        <td><%= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id), method: :post %></td>
+        <td><%= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id, target_type: "team"), method: :post %></td>
       </tr>
   <% end %>
   </tbody>

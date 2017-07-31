@@ -4,7 +4,6 @@ class CreateRequests < ActiveRecord::Migration
       t.integer :user_id # sender
       t.string :target_type
       t.integer :target_id
-      t.timestamps null: false
     end
   end
 end

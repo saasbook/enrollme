@@ -63,8 +63,8 @@ class UsersController < ApplicationController
     return redirect_to user_path #team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
   end
   
-  def list
-    @users = User.where(team_id: nil) 
+  def index
+    @users = User.where(team_id: nil)
   end
 
   private
