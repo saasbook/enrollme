@@ -5,10 +5,11 @@
         <div class = "text-center">
             <h1>CS 169 EnrollMe</h1>
             <br>
-            <%= link_to "Log In", "/auth/google_oauth2", {id: "log_in", class: "btn btn-default"}  %>
+            <!-- oauth url: '/auth/google_oauth2' -->
+            <%= link_to "Log In", '/auth/google_oauth2', {class: "btn btn-default", id: "log_in"}  %>
             <br>
             <br>
-            <%= link_to "Sign Up", new_user_path, {method: :get, class: "btn btn-default"} %>
+            <%= link_to "Sign Up", new_user_path, {method: :get, class: "btn btn-default", id: "sign_up"} %>
             <br>
             <br>
             <br>

@@ -2,12 +2,15 @@ class Team < ActiveRecord::Base
     has_many :users
     has_many :requests
     has_one :submission
+
+    #validates_inclusion_of :waitlisted, :in => [true, false]
+    validates :waitlisted, inclusion: { in: [ true, false ] }
     attr_accessor :num_pending_requests, :declared, :request
-    
+
     validate :size_cannot_be_too_big
-    
+
     def size_cannot_be_too_big
-        if self.getNumMembers >= 6
+        if self.getNumMembers > 6
             errors.add(:size, "The team is already full")
         end
     end
@@ -145,6 +148,17 @@ class Team < ActiveRecord::Base
 
     def isFull?
         return self.getNumMembers >= 6
+    end
+
+    def update_waitlist
+      @waitlisted = true
+      self.users.each do |u|
+        if  u.waitlisted == false
+          @waitlisted = false
+        end
+      end
+      self.waitlisted = @waitlisted
+      self.save!
     end
 
 end

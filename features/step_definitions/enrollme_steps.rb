@@ -89,8 +89,9 @@ Given /^the following users exist$/ do |table|
     next if name == "name" # skipping table header
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
-      @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
+      @team = Team.new(:approved => false, :submitted => false, :passcode => team_passcode, :waitlisted => true) if @team.nil?
       User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
+      @team.update_waitlist
     else
       User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
     end
@@ -158,9 +159,9 @@ Then(/^the team with ccn "([^"]*)", day "([^"]*)", time "([^"]*)", and capacity 
   Discussion.where(:number => ccn, :day => day, :time => time, :capacity => capacity).length.should eq 1
 end
 
-# Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
-#   unread_emails_for(address).size.should == n.to_i
-# end
+Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
+  unread_emails_for(address).size.should == n.to_i
+end
 
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])

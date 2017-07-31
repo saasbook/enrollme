@@ -25,13 +25,39 @@
 </div>
 
 <div class="field form-group">
-  <%= f.label :"time_commitment", class: "col-lg-2 control-label"  %> <br>
+  <%= f.label :time_commitment, class: "col-lg-2 control-label"  %> <br>
   <%= f.text_field :time_commitment, class: "form-control"  %>
+</div>
+
+<div class= "field form-group">
+  <%= f.label :"Available days:", class: "col-lg-2 control-label"  %> <br>
+  <% days = [:sunday,:monday,:tuesday,:wednesday,:thursday,:friday,:saturday] %>
+  <div class = "row">
+  <% days.each do |day| %>
+  <div class = "col-lg-1" >
+  <%= f.label day %>
+  <%= f.check_box day%>
+  </div>
+  <% end %>
+  </div>
 </div>
 
 <div class="field form-group">
   <%= f.label :"experience", class: "col-lg-2 control-label"  %> <br>
   <%= f.text_field :experience, class: "form-control"  %>
+</div>
+
+<div class="field form-group">
+  <%= f.label :"Skills:", class: "col-lg-2 control-label"  %> <br>
+  <% skills = [:ruby_on_rails, :other_backend, :frontend, :ui_design, :team_management] %>
+  <div class = "row">
+  <% skills.each do |skill| %>
+  <div class = "col-lg-1" >
+  <%= f.label skill %>
+  <%= f.check_box skill %>
+  </div>
+  <% end %>
+  </div>
 </div>
 
 <div class="field form-group">
@@ -45,7 +71,14 @@
 </div>
 
 <div class="field form-group">
-  <%= f.label :"Profile Picture", class: "col-lg-2 control-label"  %> <br>
-  <%= f.file_field :avatar, class: "form-control"  %>
+  <%= f.label :"Profile Picture", class: "col-lg-2 control-label", :id=>"pic"  %> <br>
+  <%= image_tag "default_profile_pic",:align=> "left", class: "img-responsive", :id=>"img_prev" %>
+  (jpeg,png)
+  <%= f.file_field :avatar, class: "form-control", :onchange=>'readURL(this)'  %>
+</div>
+
+<div class="field form-group">
+  <%= f.label :"Resume", class: "col-lg-2 control-label", :id=>"resume"  %> <br>
+  <%= f.file_field :document, class: "form-control"%>
 </div>
 <br>

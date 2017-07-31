@@ -1,0 +1,48 @@
+
+<%= form_tag(admin_send_email_team_path(:team_id => @team_id)) do %>
+	
+  <div style="position: relative; padding-bottom: 5px">
+  	<h4><%= "Email members of Team " + @team_id %></h4>
+	  <small><%= "To: " + @members %></small>
+  </div>
+
+  <div class="form-group">
+    <%= label :email, "Subject" %>
+    <%= text_field :email, 'subject', class: "form-control", placeholder: "Enter subject" %>
+  </div>
+
+  <div class="form-group">
+    <%= label :email, "Content" %>
+    <%= text_area :email, 'content', id: "email_content", class: "form-control" %>
+  </div>
+
+  <%= submit_tag "Send", :class => "btn btn-primary btn-sm"%>
+
+  <button type="button" class="btn btn-link" id="closeLink">Cancel</button>
+
+
+<% end %>
+
+
+<style type="text/css">
+	#closeLink{
+		float: right
+	}
+
+	#dialog{
+    position: absolute;
+		margin: auto;
+    background: white;
+		top: 23%;
+    left: 19%;
+    width: 62%;
+    border: 2px solid darkblue;
+    padding: 17px;
+    padding-top: 7px;
+	}
+
+	#email_content{
+		height: 200px;
+	}
+
+</style>

@@ -1,8 +1,8 @@
-Feature: get a csv with the information of all approved teams
+Feature: get the information of all approved teams
 
   As an administrator
   So that I can see all approved students and teams
-  I want to download all that information from my home page
+  I want to get all that information from my home page
   
   Background:
     Given the following users exist
@@ -22,7 +22,12 @@ Feature: get a csv with the information of all approved teams
     And I log in as an admin with email "supreme_ruler@aol.com"
   	And the team with passcode "penguindrool" is approved with discussion number "54321"
 
-  Scenario: An admin successfully downloads approved team information
+  Scenario: An admin successfully downloads approved team information as a cvs file
     Given I follow "Download this data"
   	Then I should have downloaded a team information file
-    
+
+
+  Scenario: An admin succesfully emails to him/herself the teams listed on the page
+    Given I follow "Email me this data"
+    Then I should get an email containing the teams at "supreme_ruler@aol.com"
+    Then I should see "Email successfully sent to supreme_ruler@aol.com"

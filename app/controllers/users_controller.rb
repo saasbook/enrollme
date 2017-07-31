@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by_id(params[:id])
+    @availableDays = @user.getAvailableDays
+    @skills = @user.getSkills
   end
   
   def new
@@ -33,9 +35,10 @@ class UsersController < ApplicationController
   def start_team
     @user.leave_team if !(@user.team.nil?)
     
-    @team = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+    @team = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
 
     @team.users << @user
+    @team.update_waitlist
     @user.team = @team
     redirect_to team_path(:id=>@team.id)
   end
@@ -49,6 +52,7 @@ class UsersController < ApplicationController
     @user.leave_team if !(@user.team.nil?)
 
     @team.users << @user
+    @team.update_waitlist
     @user.team = @team
     @team.withdraw_submission
     
@@ -59,6 +63,9 @@ class UsersController < ApplicationController
 
   def update
     @user.update_attributes!(user_params)
+    if @user.team
+      @user.team.update_waitlist
+    end
     @team = @user != nil ? @user.team : nil
     return redirect_to user_path #team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
   end
@@ -80,6 +87,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :sid, :major, :waitlisted, :bio, :time_commitment, :experience, :facebook, :linkedin, :avatar)
+    params.require(:user).permit(:name, :email, :sid, :major, :waitlisted, :bio, :time_commitment, :experience, :facebook, :linkedin, :avatar, :sunday,:monday,:tuesday,:wednesday,:thursday,:friday,:saturday,:ruby_on_rails, :other_backend, :frontend, :ui_design, :team_management,:document)
   end
 end

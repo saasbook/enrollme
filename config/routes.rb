@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   resources :users do
     resources :requests
   end
-  
   get '/without_team', to: 'users#without'
   post '/create_team', to: 'users#start_team'
   post '/join_team', to: 'users#join_team'
   get '/help', to: 'users#user_help'
   #get 'users/list', to: 'users#list'
+
+  get '/login_admin', to: 'session#login_admin'
 
   resources :team
   post 'team/:id/submit', to: 'team#submit', as: "submit_team"
@@ -35,6 +36,10 @@ Rails.application.routes.draw do
   get '/admin/tutorial', to: 'admins#admin_tutorial'
   get '/admin/download', to: 'admins#download'
 
+  get '/admin/email_team', to: 'admins#email_team'
+  post '/admin/send_email_team', to: 'admins#send_email_team'
+
+
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
 
   get '/download_team_info', to: "file#download_approved_teams"
@@ -49,6 +54,9 @@ Rails.application.routes.draw do
 
   resources :submissions
 
+  resources :requests
+  post 'requests/send_email_to_user', to: 'requests#send_email_to_user', as: "send_email_to_user"
+  get '/requests/email_team', to: 'requests#email_team'
   root 'session#new'
 
   # TODO: something for route not found
