@@ -142,20 +142,9 @@ class Team < ActiveRecord::Base
     def declared
         return self.users.all?{|user| user.major == 'DECLARED CS/EECS Major'}
     end
-    
+
     def isFull?
         return self.getNumMembers >= 6
     end
 
-    # def self.check_declared
-    #     if self.declared == true
-    #         return 'Yes'
-    #     else
-    #         return 'No'
-    #     end
-    # end
-
-    # TODO def self.join # implement to return join/leave/invite properly depending on session user's relation to team
-    #    return 'Join'
-    # end
 end

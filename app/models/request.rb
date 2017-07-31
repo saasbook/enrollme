@@ -42,4 +42,31 @@ class Request < ActiveRecord::Base
       return Array.wrap(Team.find(self.target_id).users)
     end
   end
+
+  def join(user_id, target_type, target_id)
+    user = User.find(user_id)
+    target = target_type == "user"? User.find(target_id) : Team.find(target_id)
+    if user.on_team?
+      if target_type == "user"
+        new_team = Team.create()
+        new_team.users << user
+        new_team.users << target
+        new_team.save
+      else
+        target.team << user
+        target.save
+      end
+    else
+      if target_type == "user"
+        user.team.users << target
+        user.save
+      else
+        user.team.users.each do |user|
+          target.team << user
+        end
+        target.save
+      end
+    end
+  end
+
 end
