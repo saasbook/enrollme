@@ -51,7 +51,7 @@
             <%= team.waitlisted ? "Yes" : "No" %>
           </td>
           <td>
-            <%= link_to "Join Team", user_requests_path(user_id: session[:user_id], team_id: team.id), method: :post %>
+            <%= link_to "Join Team", new_user_request_path(user_id: session[:user_id], target_id: team.id, target_type: "team") %>
           </td>
         </tr>
       <% end %>

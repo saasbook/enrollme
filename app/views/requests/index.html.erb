@@ -1,24 +1,40 @@
 <body>
   <title>Requests</title>
     <div class="container">
-        <table cellpadding="10">
+        <table>
             <tr><td><h2>Incoming Requests</h2></td></tr>
-            <% @incoming_requests.each do |incoming_request| %>
+            <% @requests_to_me.each do |incoming_request| %>
             <tr>
                 <td style="padding-left: 50px;padding-bottom:3px; font size="35;""><%= incoming_request.user.name %></td>
-                <td><%= link_to "Email User", send_email_to_user_path(user_id: incoming_request.user_id), method: :send_email_to_user %></td>                
+
+                <td><%= incoming_request[:text] %></td>
+                <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: :delete %></td>
+                <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete %></td>
             </tr>
+            <% end %>
+
+            <% @requests_to_my_team.each do |incoming_request| %>
+                <tr>
+                  <td><%= incoming_request[:text] %></td>
+                  <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: :delete %></td>
+                  <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete %></td>
+                </tr>
             <% end %>
         </table>
         <table cellpadding="10px">
+
+
+        <table>
             <tr><td><h2>Outgoing Requests</h2></td></tr>
-            <% @outgoing_requests.each do |outgoing_request| %>
+            <% @requests_from_me.each do |outgoing_request| %>
             <tr>
-                <td><%= outgoing_request.user.name %></td>
-                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], team_id: outgoing_request.team_id, id: outgoing_request.id), method: :delete %></td>
-                <td><%= link_to "Email Team", requests_email_team_path(:team_id => outgoing_request.team_id), :class => "btn btn-primary btn-sm email_team"%></td>
+
+                <td><%= outgoing_request[:text] %></td>
+                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], id: outgoing_request[:id], decision: "cancel"), method: :delete %></td>
             </tr>
             <% end %>
         </table>
     </div>
 </body>
+
+

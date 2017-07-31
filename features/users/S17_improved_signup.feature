@@ -30,7 +30,7 @@ Scenario: Specify time commitment
 	Then I should see "Monday"
 
 Scenario: Indicate skillset
-  
+
 	Given I check the following fields: Ruby on rails,Frontend
 	When I press "Sign Up"
 	And I follow "My Info"

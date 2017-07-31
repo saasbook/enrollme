@@ -37,10 +37,9 @@ ActiveRecord::Schema.define(version: 20170730225044) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string  "target_type"
+    t.integer "target_id"
   end
 
   create_table "submissions", force: :cascade do |t|

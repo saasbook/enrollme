@@ -2,11 +2,18 @@ class Team < ActiveRecord::Base
     has_many :users
     has_many :requests
     has_one :submission
-    
+
     #validates_inclusion_of :waitlisted, :in => [true, false]
     validates :waitlisted, inclusion: { in: [ true, false ] }
     attr_accessor :num_pending_requests, :declared, :request
 
+    validate :size_cannot_be_too_big
+
+    def size_cannot_be_too_big
+        if self.getNumMembers > 6
+            errors.add(:size, "The team is already full")
+        end
+    end
 
     def self.generate_hash(length=36)
         return SecureRandom.urlsafe_base64(length, false)
@@ -134,16 +141,24 @@ class Team < ActiveRecord::Base
     def self.all_declared
         %w(Yes No)
     end
-    
-    def update_waitlist
-       @waitlisted = true
-       self.users.each do |u|
-          if  u.waitlisted == false
-              @waitlisted = false
-          end
-       end
-       self.waitlisted = @waitlisted
-       self.save!
+
+    def declared
+        return self.users.all?{|user| user.major == 'DECLARED CS/EECS Major'}
     end
-    
+
+    def isFull?
+        return self.getNumMembers >= 6
+    end
+
+    def update_waitlist
+      @waitlisted = true
+      self.users.each do |u|
+        if  u.waitlisted == false
+          @waitlisted = false
+        end
+      end
+      self.waitlisted = @waitlisted
+      self.save!
+    end
+
 end

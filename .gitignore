@@ -23,6 +23,7 @@
 .byebug_history
 .idea/
 .db/schema.rb
+.DS_Store
 # Ignore application configuration
 /config/application.yml
 TAGS
