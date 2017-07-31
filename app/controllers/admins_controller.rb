@@ -68,8 +68,10 @@ class AdminsController < ApplicationController
   end
   
   def team_list_email
-    AdminMailer.team_list_email(@admin).deliver_now
+    AdminMailer.team_list_email(@admin, params[:status]).deliver_now
     
+    flash[:notice] = "Email sucessfully sent to " + @admin.email
+
     redirect_to admins_path
   end
   

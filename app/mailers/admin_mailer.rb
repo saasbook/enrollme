@@ -9,10 +9,11 @@ class AdminMailer < ApplicationMailer
       end
    end
    
-   def team_list_email(admin)
+   def team_list_email(admin, status)
       @admin = admin
+      @status = status
       @url  = 'http://www.gmail.com'
-      mail(to: @admin.email, subject: 'Here is list of' + params[:status] + 'teams in EnrollMe') do |format|
+      mail(to: @admin.email, subject: 'List of ' + @status.downcase + ' teams currently on EnrollMe') do |format|
         format.html
       end
    end

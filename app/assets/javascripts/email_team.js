@@ -36,20 +36,3 @@ EmailTeam = {
     },
 }
 $(EmailTeam.setup);
-
-// $( ".email_team" ).dialog({
-//     autoOpen: false,
-//     show: {
-//       effect: "blind",
-//       duration: 1000
-//     },
-//     hide: {
-//       effect: "explode",
-//       duration: 1000
-//     }
-//   });
-
-//   $( ".email_team" ).on( "click", function() {
-//     $( "#dialog" ).dialog( "open" );
-//     alert("oy")
-//   });

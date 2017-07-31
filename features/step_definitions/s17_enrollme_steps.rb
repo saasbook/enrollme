@@ -124,6 +124,13 @@ And /a confirmation email should be sent to the following team members: "(.+)"/ 
     email.to.should include member.strip
   end
 
+Then /^I should get an email containing the teams at "(.+)"/ do |admin_email|
+   email = ActionMailer::Base.deliveries.select { |e| e.subject.should include "teams currently on EnrollMe!" }[0]
+   email.to.should include admin_email
+   email.from.should include "enrollmeberkeley@gmail.com"
+end
+
+
 end
 
 
