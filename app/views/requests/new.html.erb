@@ -3,7 +3,7 @@
   <%= label_tag(:body, "Enter your message here: (limit 100 characters)") %>
   <%= text_area_tag(:body, nil, size: "25x4", maxlength: 100) %>
   <%= submit_tag("Submit Message") %>
-  
+  <%= button_tag("Cancel"), team_list_path %>
   <!-- Check for validations here using JS -->
 <% end %>
 
