@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
     self.email.downcase!
   end
 
+<<<<<<< HEAD
+=======
   def getAvailableDays
     days = {"Sunday" => sunday ,"Monday" => monday,"Tuesday"=>tuesday,"Wednesday"=>wednesday,"Thursday"=>thursday,"Friday"=>friday,"Saturday"=>saturday}
     getStrignFromCheckBoxes(days)
@@ -37,6 +39,7 @@ class User < ActiveRecord::Base
     hash.each {|key, value| str = str + key + "; " unless value !=1 }
     str
   end
+>>>>>>> 682f5a506992852f6ea94bc09b7b914121811f92
   # the below code sets waitlisted to true by default
 
   def leave_team
