@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post '/join_team', to: 'users#join_team'
   get '/help', to: 'users#user_help'
 
-  get '/login_admin', to: 'session#login_admin'
+  # get '/login_admin', to: 'session#login_admin'
 
   resources :team
   post 'team/:id/submit', to: 'team#submit', as: "submit_team"
@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get '/admin/download', to: 'admins#download'
 
   get '/admin/email_team', to: 'admins#email_team'
+  post '/admin/send_email_team', to: 'admins#send_email_team'
 
 
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'

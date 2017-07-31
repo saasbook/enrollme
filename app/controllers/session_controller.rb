@@ -41,8 +41,8 @@ class SessionController < ApplicationController
     redirect_to login_path, notice: "Logged out!"
   end
 
+  # for testing: bypasses oauth to login as an admin
   def login_admin
-    # for testing: bypasses oauth to login as an admin
     session[:user_id] = Admin.find_by(:email => "kch05@berkeley.edu").id
     session[:is_admin] = true
     return redirect_to admins_path

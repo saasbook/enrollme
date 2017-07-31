@@ -17,11 +17,15 @@ Feature: Email all students on a team with one button.
     
     And I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
-    And I am on the _admin page
 
     Scenario: I should send an e-mail to all team members with one click
       Then I should see "E-Mail Team"
       Given I press the "Email Team" button on the same row as "Sahai"
+      
+      And I fill in "email_subject" with "Welcome"
+      And I fill in "email_content" with "I am Bob the supreme ruler"
+      And I press "Send"
+      
       Then "eecs666@hotmail.com" should receive 1 email
       And "eecs667@hotmail.com" should receive 1 email
       And "eecs668@hotmail.com" should receive 1 email

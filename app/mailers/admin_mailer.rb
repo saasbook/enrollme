@@ -17,6 +17,14 @@ class AdminMailer < ApplicationMailer
         format.html
       end
    end
+
+
+   def send_email_to_team(team_id, recipients, email)
+      mail(to: recipients, subject: email["subject"]) do |format|
+         format.text { render plain: email["content"] }
+      end
+   end
+
    
    def send_approved_email(team)
       @team = team

@@ -123,6 +123,7 @@ And /a confirmation email should be sent to the following team members: "(.+)"/ 
   team_members.split(',').each do |member|
     email.to.should include member.strip
   end
+end
 
 Then /^I should get an email containing the teams at "(.+)"/ do |admin_email|
    email = ActionMailer::Base.deliveries.select { |e| e.subject.should include "teams currently on EnrollMe!" }[0]
@@ -131,8 +132,6 @@ Then /^I should get an email containing the teams at "(.+)"/ do |admin_email|
 end
 
 
+Given(/^I follow the first occurrence of "([^"]*)"$/)  do |link|
+    click_link(link, :match => :first)
 end
-
-
-
-
