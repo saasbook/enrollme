@@ -1,12 +1,4 @@
 class RequestsController < ApplicationController
-    def request_params
-        params.require(:team_id)
-        params.require(:user_id)
-    end
-
-    def new
-        EmailStudents.notify_target_email()
-    end
 
     def create
 =begin
@@ -19,12 +11,12 @@ class RequestsController < ApplicationController
             flash[:notice] = "Team is Full"
         end
 =end
-        request = Request.create!(params)
+        request = Request.create!(user_id: params[:user_id], target_id: params[:target_id], target_type: params[:target_type])
         #Send email out
         user = User.find(params[:user_id])
-        targets = Request.find(params[:user_id]).target_users_list()
+        targets = Request.find_by_user_id(params[:user_id]).target_users_list
         body = params[:body]
-        EmailStudents.notify_email(user, targets, body)
+        EmailStudents.send_notify_emails(user, targets, body)
         redirect_to team_list_path
     end
     
@@ -49,5 +41,10 @@ class RequestsController < ApplicationController
     def destroy
         Request.delete(Request.find_by(team_id: params[:team_id], user_id: params[:user_id]))
         redirect_to user_requests_path
+    end
+    
+    private 
+    def request_params
+        params.require(:user_id).require(:target_type).require(:target_id).permit(:body)
     end
 end
