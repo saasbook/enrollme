@@ -44,4 +44,7 @@ class User < ActiveRecord::Base
     return Admin.pluck(:email)
   end
 
+  def on_team?
+    return team_id == nil
+  end
 end

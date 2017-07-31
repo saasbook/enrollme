@@ -35,9 +35,8 @@ class RequestsController < ApplicationController
     end
 
     def accept
-        user = User.find_by(user_id: params[:user_id])
-        user.team_id = params[:team_id]
-        user.save!
+        Request.join(sender, target_type, receiver)
+        if check e
         flash[:notice] = "Request Approved"
         destroy
     end
