@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.where(team_id: nil)
+    @users = User.where(team_id: nil) 
   end
 
   private

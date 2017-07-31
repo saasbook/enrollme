@@ -34,7 +34,7 @@ module NavigationHelpers
     when /^the team profile page for team_id "(.+)"$/
       teams_profile_path($1)
     when /Requests/
-      user_requests
+      user_requests_path
       
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
