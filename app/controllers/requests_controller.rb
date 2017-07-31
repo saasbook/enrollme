@@ -1,23 +1,27 @@
 class RequestsController < ApplicationController
 
+    def new
+        #@user = User.find(session[:user_id])
+        #@request ||= @user.requests.new
+    end
+    
     def create
-=begin
-        #If there is already a request with the same user id and team id, don't make a new one\
-        if !Request.exists?({:team_id => params[:team_id], :user_id => params[:user_id]}) || Team.find_by({:id => params[:team_id]}).getNumMembers >= 6
-            Request.create!(:team_id => params[:team_id], :user_id => params[:user_id])
-            flash[:notice] = "Request Sent"
-        end
-        if Team.find_by({:id => params[:team_id]}).getNumMembers >= 6
-            flash[:notice] = "Team is Full"
-        end
-=end
-        request = Request.create!(user_id: params[:user_id], target_id: params[:target_id], target_type: params[:target_type])
+        #Create the request under the current user
+        @user = User.find(session[:user_id])
+        @request ||= @user.requests.create(target_id: params[:target_id], target_type: params[:target_type])
+        
+        #Check for errors, send it to the flash
+        if @request.errors.any?
+            ######NEEDS TO BE CHANGED TO PREVIOUS PAGE###############
+            redirect_to team_list_path, flash: {notice: "Your request is no longer valid. Please select another #{params[:target_type]}."}
+        else
         #Send email out
-        user = User.find(params[:user_id])
-        targets = Request.find_by_user_id(params[:user_id]).target_users_list
-        body = params[:body]
-        EmailStudents.send_notify_emails(user, targets, body)
-        redirect_to team_list_path
+            target_users = @request.target_users_list
+            body = params[:body]
+            EmailStudents.send_notify_emails(@user, target_users, body)
+            ######NEEDS TO BE CHANGED TO PREVIOUS PAGE###############
+            redirect_to team_list_path, flash: {notice: "Your request has been sent successfully."}
+        end
     end
     
     def index
@@ -45,6 +49,6 @@ class RequestsController < ApplicationController
     
     private 
     def request_params
-        params.require(:user_id).require(:target_type).require(:target_id).permit(:body)
+        params.require(:target_type).require(:target_id).permit(:body, :user_id)
     end
 end

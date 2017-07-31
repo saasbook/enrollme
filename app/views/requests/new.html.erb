@@ -1,7 +1,9 @@
 <h1>New Request</h1>
-<%= form_tag(user_requests_path(user_id: params[:user_id], target_id: params[:target_id], target_type: params[:target_type]), method: "post") do %>
-  <%= label_tag(:body, "Enter your message here:") %>
-  <%= text_area_tag(:body, size: "24x6") %>
+<%= form_tag(user_requests_path(target_id: params[:target_id], target_type: params[:target_type]), method: "post") do %>
+  <%= label_tag(:body, "Enter your message here: (limit 100 characters)") %>
+  <%= text_area_tag(:body, nil, size: "25x4", maxlength: 100) %>
   <%= submit_tag("Submit Message") %>
+  
+  <!-- Check for validations here using JS -->
 <% end %>
 
