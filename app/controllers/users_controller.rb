@@ -83,6 +83,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :sid, :major, :waitlisted, :bio, :time_commitment, :experience, :facebook, :linkedin, :avatar, :sunday,:monday,:tuesday,:wednesday,:thursday,:friday,:saturday,:ruby,:rails,:html,:css,:javascript,:ui_design,:leadership_skills,:document)
+    params.require(:user).permit(:name, :email, :sid, :major, :waitlisted, :bio, :time_commitment, :experience, :facebook, :linkedin, :avatar, :sunday,:monday,:tuesday,:wednesday,:thursday,:friday,:saturday,:ruby_on_rails, :other_backend, :frontend, :ui_design, :team_management,:document)
   end
 end

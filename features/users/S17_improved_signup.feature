@@ -31,11 +31,11 @@ Scenario: Specify time commitment
 
 Scenario: Indicate skillset
   
-	Given I check the following fields: Ruby,Css
+	Given I check the following fields: Ruby on rails,Frontend
 	When I press "Sign Up"
 	And I follow "My Info"
-	Then I should see "Ruby"
-	And I should see "CSS"
+	Then I should see "Ruby on Rails"
+	And I should see "Frontend"
 
 
 

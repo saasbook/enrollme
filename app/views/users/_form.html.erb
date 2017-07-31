@@ -30,7 +30,7 @@
 </div>
 
 <div class= "field form-group">
-  <%= f.label :"Aavailable days:", class: "col-lg-2 control-label"  %> <br>
+  <%= f.label :"Available days:", class: "col-lg-2 control-label"  %> <br>
   <% days = [:sunday,:monday,:tuesday,:wednesday,:thursday,:friday,:saturday] %>
   <div class = "row">
   <% days.each do |day| %>
@@ -49,7 +49,7 @@
 
 <div class="field form-group">
   <%= f.label :"Skills:", class: "col-lg-2 control-label"  %> <br>
-  <% skills = [:ruby,:rails,:html,:css,:javascript,:ui_design,:leadership_skills] %>
+  <% skills = [:ruby_on_rails, :other_backend, :frontend, :ui_design, :team_management] %>
   <div class = "row">
   <% skills.each do |skill| %>
   <div class = "col-lg-1" >

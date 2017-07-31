@@ -24,20 +24,30 @@ class User < ActiveRecord::Base
 
   def getAvailableDays
     days = {"Sunday" => sunday ,"Monday" => monday,"Tuesday"=>tuesday,"Wednesday"=>wednesday,"Thursday"=>thursday,"Friday"=>friday,"Saturday"=>saturday}
-    getStrignFromCheckBoxes(days)
+    getStringFromCheckBoxes(days)
   end
   
   def getSkills
-    skills = {"Ruby"=>ruby, "Rails"=>rails, "HTML"=>html, "CSS"=>css, "Javascript"=>javascript, "UI Design"=>ui_design, "Leadership skills"=>leadership_skills}
-    getStrignFromCheckBoxes(skills)
+    skills = {"Ruby on Rails" => ruby_on_rails, "Other Backend" => other_backend, "Frontend" => frontend, "UI Design" => ui_design, "Team Management" => team_management}
+    getStringFromCheckBoxes(skills)
   end
   
-  def getStrignFromCheckBoxes(hash)
+  def getStringFromCheckBoxes(hash)
     str = ""
-    hash.each {|key, value| str = str + key + "; " unless value !=1 }
+    counter = 0
+    hash.each do |key, value|
+      if value == 1
+        if counter == 0
+          str = key
+        else
+          str = str + ', ' + key
+        end
+      counter += 1
+    end
+    end
+    # hash.each {|key, value| str = str + key + ", " unless value !=1 }
     str
   end
-  # the below code sets waitlisted to true by default
 
   def leave_team
     @team = self.team
