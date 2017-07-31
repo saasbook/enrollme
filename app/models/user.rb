@@ -47,4 +47,13 @@ class User < ActiveRecord::Base
   def on_team?
     return team_id == nil
   end
+  
+  def getAllTeamMembers
+    if !on_team? 
+      return self.name
+    else
+      return self.team.getMembers
+    end
+  end
+  
 end

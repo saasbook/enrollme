@@ -46,7 +46,6 @@ Feature: Manage requests for joining teams
     Then I should see "join is full"
 
   Scenario: I want to cancel an active join request
-    Then show me the page
     Given I press the "Join" button on the same row as "An"
     And I follow "Requests"
     And I press the "Cancel" button on the same row as "An"

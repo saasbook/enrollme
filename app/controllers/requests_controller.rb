@@ -30,19 +30,17 @@ class RequestsController < ApplicationController
     end
 
     def index
-      #requests to my teams
         @user = User.find(session[:user_id])
-        @incoming_requests_from_users = Array(Request.where(target_type: "user").where(target_id: @user.id))
-        @incoming_requests_from_users = @incoming_requests_from_users.map {|request| User.find(request.target_id)}
+        #requests to me or my team
+        reqs_to_me = Request.where(target_type: "user").where(target_id: @user.id)
+        @requests_to_me = reqs_to_me.map {|request| {text: request.showSources, id: request.id}}
+        reqs_to_my_team = Request.where(target_type: "team").where(target_id: @user.team_id)
+        @requests_to_my_team = reqs_to_my_team.map {|request| {text: request.showSources, id: request.id}}
+    
+        #requests from me or my team
+        reqs_from_me = Request.where(user_id: @user.id)
+        @requests_from_me = reqs_from_me.map {|request| {text: request.showTargets, id: request.id}}
         
-        @incoming_requests_from_teams = Array(Request.where(target_type: "team").where(target_id: @user.team.id))
-        @incoming_requests_from_teams = @incoming_requests_from_teams.map {|request| Team.find(request.target_id)}
-        
-        @outgoing_requests_to_users = Array(Request.where(target_type: "user").where(user_id: @user.id))
-        @outgoing_requests_to_users = @outgoing_requests_to_users.map {|request| User.find(request.target_id)}
-        
-        @outgoing_requests_to_teams = Array(Request.where(target_type: "team").where(user_id: @user.team.id))
-        @outgoing_requests_to_teams = @outgoing_requests_to_teams.map {|request| Team.find(request.target_id)}
     end
     
 =begin
@@ -60,13 +58,14 @@ class RequestsController < ApplicationController
 =end
 
     def destroy
+        request = Request.find(params[:id])
         if params[:decision] == "accept"
-            Request.join(session[:user_id], params[:target_type], params[:target_id])
-            Request.find(params[:id]).destroy
+            request.join
+            request.destroy
         elsif params[:decision] == "deny"
-            Request.find(params[:id]).destroy
+            request.destroy
         elsif params[:decision] == "cancel"
-            Request.find(params[:id]).destroy
+            request.destroy
         end
         redirect_to user_requests_path
     end

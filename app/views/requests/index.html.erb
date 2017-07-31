@@ -2,41 +2,28 @@
   <title>Requests</title>
     <div class="container">
         <table>
-            <tr><td><h2>Incoming Requests</h2></td></tr>
-            <!-- Requests from users -->
-            <% @incoming_requests_from_users.each do |incoming_request| %>
-            <tr>
-                <td><%= incoming_request.name %></td>
-                <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request.id, decision: "accept", target_type: "user"), method: delete %></td>
-                <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request.id, decision: "deny", target_type: "user"), method: delete %></td>
-            </tr>
-            <% end %>
             
-            <!-- Requests from teams -->
-            <% @incoming_requests_from_teams.each do |incoming_request| %>
+            @requests_to_me
+            @requests_to_my_team
+            @requests_from_me
+            
+            
+            <tr><td><h2>Incoming Requests</h2></td></tr>
+            <% @requests_to_me.each do |incoming_request| %>
             <tr>
-                <td><%= incoming_request.getMembers %></td>
-                <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request.id, decision: "accept", target_type: "team"), method: delete %></td>
-                <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request.id, decision: "deny", target_type: "team"), method: delete %></td>
+                <td><%= incoming_request[:text] %></td>
+                <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: delete %></td>
+                <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: delete %></td>
             </tr>
             <% end %>
         </table>
         
         <table>
             <tr><td><h2>Outgoing Requests</h2></td></tr>
-            <!-- Requests to users -->
-            <% @outgoing_requests_to_users.each do |outgoing_request| %>
+            <% @requests_from_me.each do |outgoing_request| %>
             <tr>
-                <td><%= outgoing_request.name %></td>
-                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], team_id: outgoing_request.team_id, id: outgoing_request.id), method: :delete %></td>
-            </tr>
-            <% end %>
-            
-            <!-- Requests to teams -->
-            <% @outgoing_requests_to_teams.each do |outgoing_request| %>
-            <tr>
-                <td><%= outgoing_request.getMembers %></td>
-                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], team_id: outgoing_request.team_id, id: outgoing_request.id), method: :delete %></td>
+                <td><%= outgoing_request[:text] %></td>
+                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], id: outgoing_request[:id]), method: :delete %></td>
             </tr>
             <% end %>
         </table>

@@ -43,9 +43,9 @@ class Request < ActiveRecord::Base
     end
   end
 
-  def join(user_id, target_type, target_id)
-    user = User.find(user_id)
-    target = target_type == "user"? User.find(target_id) : Team.find(target_id)
+  def join
+    user = User.find(self.user_id)
+    target = target_type == "user"? User.find(self.target_id) : Team.find(self.target_id)
     if user.on_team?
       if target_type == "user"
         new_team = Team.create()
@@ -67,6 +67,18 @@ class Request < ActiveRecord::Base
         target.save
       end
     end
+  end
+  
+  def showTargets
+    if self.target_type == "team"
+      return Team.find(self.target_id).getMembers
+    elsif self.target_type == "user"
+      return User.find(self.target_id).getAllTeamMembers
+    end
+  end
+  
+  def showSources
+    return User.find(self.user_id).getAllTeamMembers
   end
 
 end
