@@ -19,9 +19,12 @@ Feature: Email all students on a team with one button.
     And I log in as an admin with email "supreme_ruler@aol.com"
 
     Scenario: I should send an e-mail to all team members with one click
-      Then I should see "E-Mail Team"
-      Given I press the "Email Team" button on the same row as "Sahai"
-      
+      # Given I press the "Email Team" button on the same row as "Sahai"
+      Given I follow "Email Team"
+      And I wait for the ajax request to finish
+      # Then byebug
+      ### !!!!!  Clicking on "Email Team" using capybara does not cause the js form to appear, idk why  !!!!! ###
+
       And I fill in "email_subject" with "Welcome"
       And I fill in "email_content" with "I am Bob the supreme ruler"
       And I press "Send"

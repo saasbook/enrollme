@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post '/join_team', to: 'users#join_team'
   get '/help', to: 'users#user_help'
 
-  # get '/login_admin', to: 'session#login_admin'
+  get '/login_admin', to: 'session#login_admin'
 
   resources :team
   post 'team/:id/submit', to: 'team#submit', as: "submit_team"

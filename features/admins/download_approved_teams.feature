@@ -30,5 +30,4 @@ Feature: get the information of all approved teams
   Scenario: An admin succesfully emails to him/herself the teams listed on the page
     Given I follow "Email me this data"
     Then I should get an email containing the teams at "supreme_ruler@aol.com"
-    Then I should see "Email successfully sent to"
-    
+    Then I should see "Email successfully sent to supreme_ruler@aol.com"

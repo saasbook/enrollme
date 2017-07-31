@@ -71,7 +71,7 @@ class AdminsController < ApplicationController
   def team_list_email
     AdminMailer.team_list_email(@admin, params[:status] || "All").deliver_later
     
-    flash[:notice] = "Email sucessfully sent to " + @admin.email
+    flash[:notice] = "Email successfully sent to " + @admin.email
 
     redirect_to admins_path
   end

@@ -126,7 +126,7 @@ And /a confirmation email should be sent to the following team members: "(.+)"/ 
 end
 
 Then /^I should get an email containing the teams at "(.+)"/ do |admin_email|
-   email = ActionMailer::Base.deliveries.select { |e| e.subject.should include "teams currently on EnrollMe!" }[0]
+   email = ActionMailer::Base.deliveries.select { |e| e.subject.should include "teams currently on EnrollMe" }[0]
    email.to.should include admin_email
    email.from.should include "enrollmeberkeley@gmail.com"
 end
@@ -135,3 +135,8 @@ end
 Given(/^I follow the first occurrence of "([^"]*)"$/)  do |link|
     click_link(link, :match => :first)
 end
+
+When /^I wait for the ajax request to finish$/ do
+    sleep 1
+end
+
