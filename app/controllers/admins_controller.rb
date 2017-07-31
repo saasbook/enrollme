@@ -27,7 +27,8 @@ class AdminsController < ApplicationController
   def index
     status = params[:status]
     @status = status
-    @teams_li = Team.filter_by(status)
+    @teams_li = Team.filter_by(status)                                             
+
     render 'index'
   end
   
@@ -140,13 +141,23 @@ class AdminsController < ApplicationController
     end
     redirect_to '/', :notice => notice
   end
+
   
+  def email_team
+    # render partial to send email to the members of a team
+    @team_id = params[:team_id]
+    render :partial => 'email_team', :object => @team_id and return if request.xhr?                                                         
+    render 'index'
+  end
+
+
+
   private
 
   def validate_admin
-    if !(session[:is_admin])
-      redirect_to '/', :notice => "Permission denied"
-    end
+    # if !(session[:is_admin])
+    #   redirect_to '/', :notice => "Permission denied"
+    # end
   end
 
   def set_admin
@@ -160,5 +171,6 @@ class AdminsController < ApplicationController
   def admin_tutorial
     render 'admin_tutorial'
   end
+
 
 end
