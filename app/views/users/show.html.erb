@@ -4,7 +4,7 @@
         <h1>Student Information</h1>
         <br>
         <h4>Name: <%= @user.name %> </h4>
-        <%= image_tag @user.avatar.url(:thumb) %>
+        <%= image_tag @user.avatar.url(:medium) %>
         <h4>Email: <%= @user.email %> </h4>
         <h4>SID: <%= @user.sid %> </h4>
         <h4>Major: <%= @user.major %> </h4>
