@@ -113,7 +113,8 @@ class TeamController < ApplicationController
     @users_fb_arr = @team.getMembersFacebookArray
     @users_lk_arr =@team.getMembersLinkedinArray
     @users_email_arr = @team.getMembersEmailsArray
-    
+    @users_pic_arr = @team.getMembersPicsArray
+
     # @discussions = Discussion.valid_discs_for(@team)
     # if @team.submitted and !(@team.approved)
     #   @s = Submission.find(@team.submission_id)
