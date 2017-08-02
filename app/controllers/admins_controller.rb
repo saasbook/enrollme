@@ -181,9 +181,9 @@ class AdminsController < ApplicationController
   private
 
   def validate_admin
-    if !(session[:is_admin])
-      redirect_to '/', :notice => "Permission denied"
-    end
+    # if !(session[:is_admin])
+    #   redirect_to '/', :notice => "Permission denied"
+    # end
   end
 
   def set_admin
