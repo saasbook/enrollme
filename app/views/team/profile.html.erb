@@ -16,8 +16,10 @@
       <h5>Bio: <%= @users_bio_arr.pop() %></h5>
       <h5>Time commitment: <%= @users_time_arr.pop() %>hrs/wk</h5>
       <h5>Experience: <%= @users_exp_arr.pop() %></h5>
-      <h5>Facebook: <%= @users_fb_arr.pop() %></h5>
-      <h5>Linkedin: <%= @users_lk_arr.pop() %></h5>
+      <% currentFb =  @users_fb_arr.pop() %>
+      <h5>Facebook:<%=link_to "#{currentFb}",currentFb %></h5>
+      <% currentLk =  @users_lk_arr.pop() %>
+      <h5>Linkedin:<%=link_to "#{currentLk}",currentLk %></h5>
       <% currentEmail =  @users_email_arr.pop() %>
       <h5>Email: <a href="mailto:<%= currentEmail %>"><%= currentEmail %></a></h5>
     </div>
