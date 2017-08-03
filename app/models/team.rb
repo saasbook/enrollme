@@ -129,6 +129,11 @@ class Team < ActiveRecord::Base
          return emails
     end
 
+    def getMembersPicsArray
+        pics = []
+        self.users.each{|user| pics.push(user.avatar.url(:medium))}
+        return pics
+    end
 
     def getNumMembers # returns the number of members in this group
         self.users.count
