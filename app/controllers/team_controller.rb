@@ -106,6 +106,15 @@ class TeamController < ApplicationController
 
   def profile
     @team = Team.find_by_id(params[:id])
+    @users_name_arr = @team.getMembersNamesArray
+    @users_time_arr = @team.getMembersTimeCommitmentArray
+    @users_bio_arr = @team.getMembersBioArray
+    @users_exp_arr = @team.getMembersExperiencesArray
+    @users_fb_arr = @team.getMembersFacebookArray
+    @users_lk_arr =@team.getMembersLinkedinArray
+    @users_email_arr = @team.getMembersEmailsArray
+    @users_pic_arr = @team.getMembersPicsArray
+
     # @discussions = Discussion.valid_discs_for(@team)
     # if @team.submitted and !(@team.approved)
     #   @s = Submission.find(@team.submission_id)
