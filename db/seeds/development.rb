@@ -21,9 +21,9 @@ end
 
 Option.delete_all
 Option.create!(
-    :minimum_team_size => 3,
-    :maximum_team_size => 3
-)
+  :minimum_team_size => 3,
+  :maximum_team_size => 3
+  )
 
 # Below is all of my Test Seeds - George
 
@@ -31,40 +31,42 @@ User.delete_all
 Team.delete_all
 
 users = [
-    {:name => "Derek Hsiao", :email => "der@berkeley.edu", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 111, :team_id => nil},
-    {:name => "Enrollme Tester", :email => "cd@berkeley.edu", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 222, :team_id => 1},
-    {:name => "Hadi Zhang", :email => "enrollmetester@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 333, :team_id => 2},
-    {:name => "Ken Chiu", :email => "hsiaoderek@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 444, :team_id => 3},
-    {:name => "Oski Bear", :email => "hadizhang@gmail.com", :major => 'Other Major', :waitlisted => true, :sid => 555, :team_id => 3}
+  {:name => "George Su", :email => "gs@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 123456, :time_commitment=>20},
+  {:name => "Hadi Zhang", :email => "hz@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 1234567, :time_commitment=> 30},
+  {:name => "Derek Hsiao", :email => "dh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 123453, :time_commitment=> 40},
+  {:name => "Ken Chiu", :email => "kc@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 123454, :time_commitment=> 50},
+  {:name => "Brandon Jabr", :email => "bj@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 153456, :time_commitment=>10},
+  {:name => "Karl Hayek", :email => "kh@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 123756, :time_commitment=>15},
+  {:name => "Carina Boo", :email => "cb@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 1238556, :time_commitment=>20},
+  {:name => "Oski Bear", :email => "ob@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 123446, :time_commitment=>100},
+  {:name => "Aladdin", :email => "aladdin@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 193456, :time_commitment=>55},
   ]
+  
+  team1 = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+  team2 = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+  team3 = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
 
-users.each do |user|
-  User.create!(user)
+requests = [
+]
+
+counter = 0
+
+users.each do |u|
+  current_user = User.create!(u)
+  if counter < 2
+    team1.users << current_user
+    team1.update_waitlist
+    current_user.team = team1
+    counter += 1
+  elsif counter < 5
+    team2.users << current_user
+    team2.update_waitlist
+    current_user.team = team2
+    counter += 1
+  elsif counter < 9
+    team3.users << current_user
+    team3.update_waitlist
+    current_user.team = team3
+    counter += 1
+  end
 end
-
-team1 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false) #id = 1
-team2 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false) #id = 2
-team3 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false) #id = 3
-
-# requests = [
-#
-# ]
-
-# counter = 2
-#
-# users.each do |u|
-#   current_user = User.create!(u)
-#   if counter < 2
-#     team1.users << current_user
-#     current_user.team = team1
-#     counter += 1
-#   elsif counter < 5
-#     team2.users << current_user
-#     current_user.team = team2
-#     counter += 1
-#   elsif counter < 9
-#     team3.users << current_user
-#     current_user.team = team3
-#     counter += 1
-#   end
-# end
