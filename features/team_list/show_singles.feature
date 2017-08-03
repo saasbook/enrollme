@@ -27,6 +27,6 @@ Feature: Show students who do not have a team
     And I follow "Team List"
     
     Scenario: A student looks for students who do not have a team
-    When I click "Single Students"
-    Then I should see "Bobby
+    When I press "Single Students"
+    Then I should see "Bobby"
     And I should not see "Bob"
