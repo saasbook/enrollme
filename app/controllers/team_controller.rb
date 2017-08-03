@@ -114,6 +114,9 @@ class TeamController < ApplicationController
     @users_lk_arr =@team.getMembersLinkedinArray
     @users_email_arr = @team.getMembersEmailsArray
     @users_pic_arr = @team.getMembersPicsArray
+    @users_waitlist_arr = @team.getMembersWaitlistArray
+    @users_days_arr = @team.getMembersDayArray
+    @users_skills_arr = @team.getMembersSkillsArray
 
     # @discussions = Discussion.valid_discs_for(@team)
     # if @team.submitted and !(@team.approved)
