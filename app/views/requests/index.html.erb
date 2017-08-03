@@ -1,16 +1,16 @@
 <body>
   <title>Requests</title>
     <div class="container">
-        <table>
-            <tr><td><h2>Incoming Requests</h2></td></tr>
-            <% unless @requests_to_me.empty? %>
+        <h2>Incoming Requests</h2>
+
+        <table class="table table-striped table-hover">
             <% @requests_to_me.each do |incoming_request| %>
             <tr>
                 <td style="padding-left: 50px;padding-bottom:3px; font size="35;><%= incoming_request.user.name %></td>
 
                 <td><%= incoming_request[:text] %></td>
-                <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: :delete %></td>
-                <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete %></td>
+                <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
+                <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
             </tr>
             <% end %>
             <% end %>
@@ -19,20 +19,25 @@
           <% @requests_to_my_team.each do |incoming_request| %>
                 <tr>
                   <td><%= incoming_request[:text] %></td>
-                  <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: :delete %></td>
-                  <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete %></td>
+                  <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
+                  <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
                 </tr>
             <% end %>
           <% end %>
         </table>
-        <table>
-            <tr><td><h2>Outgoing Requests</h2></td></tr>
-          <% unless @requests_from_me.empty? %>
+
+        <table cellpadding="10px">
+
+
+        <h2>Outgoing Requests</h2>
+
+        <table class="table table-striped table-hover">
+
             <% @requests_from_me.each do |outgoing_request| %>
             <tr>
 
                 <td><%= outgoing_request[:text] %></td>
-                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], id: outgoing_request[:id], decision: "cancel"), method: :delete %></td>
+                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], id: outgoing_request[:id], decision: "cancel"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
             </tr>
             <% end %>
           <% end %>
@@ -41,3 +46,16 @@
 </body>
 
 
+<style type="text/css">
+    .table {
+        width: 76%;
+    }
+
+    .request_manip {
+        float: right;
+    }
+
+    h2{
+        padding-bottom: 22px;
+    }
+</style>

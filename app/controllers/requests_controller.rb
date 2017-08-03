@@ -8,11 +8,25 @@ class RequestsController < ApplicationController
                redirect_to team_list_path, flash: {alert: "The team you have requested to join is full. Please select another team."}
             end
         end
+      
+        # render partial to send email to the members of a team
+        @target_id = params[:target_id]
+        @target_type = params[:target_type] ||= "user"
+
+        # ajax call to render partial
+        render :partial => 'request', :object => @target_id, :object => @target_type and return if request.xhr?                                                         
+      
+        # calls team#index
+        redirect_to team_list_path
     end
+
 
     def create
         #Create the request under the current user
         @user = User.find(session[:user_id])
+        # get the request message
+        # request = params.require(:request).permit(:content)
+
         @request ||= @user.requests.create(target_id: params[:target_id], target_type: params[:target_type])
 
         #Check for errors, send it to the flash
@@ -22,8 +36,8 @@ class RequestsController < ApplicationController
         else
         #Send email out
             target_users = @request.target_users_list
-            body = params[:body]
-            EmailStudents.send_notify_emails(@user, target_users, body)
+            body = params[:request][:content]
+            RequestsMailer.send_notify_emails(@user, target_users, body)
             ######NEEDS TO BE CHANGED TO PREVIOUS PAGE###############
             redirect_to team_list_path, flash: {alert: "Your request has been sent successfully."}
         end

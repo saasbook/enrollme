@@ -43,7 +43,7 @@ class SessionController < ApplicationController
 
   # for testing: bypasses oauth to login as an admin
   def login_admin
-    session[:user_id] = Admin.find_by(:email => "kch05@berkeley.edu").id
+    session[:user_id] = Admin.find_by(:email => "karlos9009@gmail.com").id
     session[:is_admin] = true
     return redirect_to admins_path
   end

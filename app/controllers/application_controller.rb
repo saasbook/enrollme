@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate
-    # Skipped authentication so we can test our code; Uncomment when deploying
+    # Skipped authentication so we can test our code; Uncomment in development
     redirect_to login_path, :notice => "Please log in" if session[:user_id].nil?
   end
   
