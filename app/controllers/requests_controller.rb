@@ -36,8 +36,8 @@ class RequestsController < ApplicationController
         else
         #Send email out
             target_users = @request.target_users_list
-            body = params[:body]
-            EmailStudents.send_notify_emails(@user, target_users, body)
+            body = params[:request][:content]
+            RequestsMailer.send_notify_emails(@user, target_users, body)
             ######NEEDS TO BE CHANGED TO PREVIOUS PAGE###############
             redirect_to team_list_path, flash: {alert: "Your request has been sent successfully."}
         end

@@ -6,7 +6,7 @@
 
   <div class="form-group">
     <%= label :request, "Request Message" %>
-    <%= text_area :request, 'content', id: "request_content", class: "form-control" %>
+    <%= text_area :request, 'content', id: "request_content", class: "form-control", placeholder: "Hi there. I'd like to join your team!" %>
   </div>
 
   <%= submit_tag "Send", :class => "btn btn-primary btn-sm"%>
@@ -34,8 +34,8 @@
     padding-top: 13px;
   }
 
-  #email_content{
-    height: 150px;
-  }
+
+  #request_content{
+    height: 140px;
 
 </style>
