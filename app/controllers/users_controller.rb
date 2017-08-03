@@ -25,7 +25,6 @@ class UsersController < ApplicationController
       redirect_to without_team_path, :notice => "You signed up successfully!"
       # send a confirmation email
       EmailStudents.welcome_email(@user).deliver_now
-      # byebug
 
     else
       render 'new', :notice => "Form is invalid"
@@ -71,8 +70,29 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.where(team_id: nil) 
+
+    sort = params[:users_sort] || session[:users_sort] || 'default'
+    search = params[:search] || session[:search] || ''
+
+    if sort.include?('in_team?') || sort.include?('team_id')
+      users_sort = 'team_id asc'
+    else
+      users_sort = 'name asc'
+    end
+
+
+    if search != ''
+      @users = User.where("name LIKE ?", "%#{search}%")
+    else
+      @users = User.all
+    end
+
+    session[:users_sort] = users_sort
+    session[:search] = search
+    @users = @users.order(users_sort)
+  
   end
+
 
   private
   def check_is_user

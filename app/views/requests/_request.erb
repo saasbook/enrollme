@@ -1,0 +1,41 @@
+<%= form_tag(user_requests_path(:user_id => session[:user_id], :target_id => @target_id, :target_type => @target_type), method: :post) do %>
+
+  <div style="position: relative; padding-bottom: 5px">
+    <h4><%= "Send Request to Team " + @target_id %></h4>
+  </div>
+
+  <div class="form-group">
+    <%= label :request, "Request Message" %>
+    <%= text_area :request, 'content', id: "request_content", class: "form-control", placeholder: "Hi there. I'd like to join your team!" %>
+  </div>
+
+  <%= submit_tag "Send", :class => "btn btn-primary btn-sm"%>
+
+  <button type="button" class="btn btn-link" id="closeLink">Cancel</button>
+
+
+<% end %>
+
+
+<style type="text/css">
+  #closeLink{
+    float: right
+  }
+
+  #dialog{
+    position: absolute;
+    margin: auto;
+    background: white;
+    top: 23%;
+    left: 23%;
+    width: 54%;
+    border: 2px solid darkblue;
+    padding: 19px;
+    padding-top: 13px;
+  }
+
+
+  #request_content{
+    height: 140px;
+
+</style>

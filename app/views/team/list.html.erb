@@ -1,60 +1,67 @@
-<h1>Teams</h1>
+<body>
+  <title>Team list</title>
+  <div class="container">
 
+    <div class="row">
+      <h1>Teams</h1>
 
-<%= form_tag(team_list_path, :method => "get", id: "search_form") do %>
-  <%= hidden_field_tag :to_sort, false %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search for Team Member" %>
-    <%= submit_tag "Search", :name => nil %>
-<% end %>
-
-
-<%= form_tag team_list_path, :method => :get, :id => 'waitlisted_form' do %>
-  <%= hidden_field_tag :to_sort, false %>
-  Limit to Teams with All Members Waitlisted?
-  <%= 'Yes' %>
-  <%= check_box_tag 'waitlisted[]', true, @waitlist_filter.include?('true'), :id => "waitlisted_yes" %>
-  <%= 'No' %>
-  <%= check_box_tag 'waitlisted[]', false, @waitlist_filter.include?('false'), :id => "waitlisted_no" %>
-  <%= submit_tag 'Refresh', :id => 'waitlisted_submit' %>
-<% end %>
-
-<table id="teams">
-  <thead>
-    <tr>
-      <th>Group Members</th>
-      <th class="<%= @users_count_header %>">
-        <%= link_to 'Number of Members', team_list_path(:sort => 'users_count', :to_sort => true, :waitlisted => @waitlist_filter), :id => 'users_count_header' %>
-      </th>
-      <th class="<%= @pending_requests_header %>">
-        <%= link_to 'Number of Pending Requests', team_list_path(:sort => 'pending_requests', :to_sort => true, :waitlisted => @waitlist_filter), :id => 'pending_requests_header' %>
-      </th>
-      <th>All Waitlisted?</th>
-      <th>Request</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @teams.blank? %>
-      <h4>There are no teams with the member <%= params[:search] %>. </h4>
-    <% else %>
-      <% @teams.each do |team| %>
-        <tr>
-          <td>
-            <%= link_to "#{team.getMembers}",team_profile_path(team.id) %>
-          </td>
-          <td>
-            <%= team.getNumMembers %>
-          </td>
-          <td>
-            <%= team.pending_requests %>
-          </td>
-          <td>
-            <%= team.waitlisted ? "Yes" : "No" %>
-          </td>
-          <td>
-            <%= link_to "Join Team", new_user_request_path(user_id: session[:user_id], target_id: team.id, target_type: "team") %>
-          </td>
-        </tr>
+      <br>
+      <%= form_tag(team_list_path, :method => "get", id: "search_form", class: "form-group col-xs-6") do %>
+        <%= hidden_field_tag :to_sort, false %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search for a Team Member", class: "form-control input-sm", type: "search" %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+      <br><br><br>
+
+      <%= form_tag team_list_path, :method => :get, :id => 'waitlisted_form' do %>
+        <%= hidden_field_tag :to_sort, false %>
+        All Waitlisted?
+        <%= 'Yes' %>
+        <%= check_box_tag 'waitlisted[]', true, @waitlist_filter.include?('true'), :id => "waitlisted_yes" %>
+        <%= 'No' %>
+        <%= check_box_tag 'waitlisted[]', false, @waitlist_filter.include?('false'), :id => "waitlisted_no" %>
+        <%= submit_tag 'Refresh', :id => 'waitlisted_submit', class: "btn btn-secondary btn-sm" %>
+      <% end %>
+
+      <table id="teams" class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Group Members</th>
+            <th class="<%= @users_count_header %>">
+              <%= link_to 'Number of Members', team_list_path(:sort => 'users_count', :to_sort => true, :waitlisted => @waitlist_filter), :id => 'users_count_header' %>
+            </th>
+            <th class="<%= @pending_requests_header %>">
+              <%= link_to 'Number of Pending Requests', team_list_path(:sort => 'pending_requests', :to_sort => true, :waitlisted => @waitlist_filter), :id => 'pending_requests_header' %>
+            </th>
+            <th>All Waitlisted?</th>
+            <th>Request</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @teams.blank? %>
+            <h4>There are no teams with the member <%= params[:search] %>. </h4>
+          <% else %>
+            <% @teams.each do |team| %>
+              <tr>
+                <td>
+                  <%= link_to "#{team.getMembers}",team_profile_path(team.id) %>
+                </td>
+                <td>
+                  <%= team.getNumMembers %>
+                </td>
+                <td>
+                  <%= team.pending_requests %>
+                </td>
+                <td>
+                  <%= team.waitlisted ? "Yes" : "No" %>
+                </td>
+                <td>
+                  <%= link_to "Join Team", new_user_request_path(user_id: session[:user_id], target_id: team.id, target_type: "team"), class: "btn btn-primary btn-sm request" %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

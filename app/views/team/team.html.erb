@@ -30,7 +30,7 @@
               <td>
                 <%= form_tag edit_team_path(:id => @team.id), method: :get do %>
                     <%= hidden_field_tag :unwanted_user, u.id %>
-                    <%= submit_tag "Remove", :id=>"remove_#{u.name}", :class=>"btn btn-default", data: { confirm: "Are you sure you want to remove #{u.name} from your team?" }  %>
+                    <%= submit_tag "Remove", :id=>"remove_#{u.name}", :class=>"btn btn-default btn-sm", data: { confirm: "Are you sure you want to remove #{u.name} from your team?" }  %>
                 <% end %>
               </td>
             </tr>
