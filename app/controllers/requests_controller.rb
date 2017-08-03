@@ -64,13 +64,13 @@ class RequestsController < ApplicationController
         @user = User.find(session[:user_id])
         #requests to me or my team
         reqs_to_me = Request.where(target_type: "user").where(target_id: @user.id)
-        @requests_to_me = reqs_to_me.map {|request| {text: request.showSources, id: request.id}}
+        @requests_to_me = (reqs_to_me) ? reqs_to_me.map {|request| {text: request.showSources, id: request.id}} : []
         reqs_to_my_team = Request.where(target_type: "team").where(target_id: @user.team_id)
-        @requests_to_my_team = reqs_to_my_team.map {|request| {text: request.showSources, id: request.id}}
+        @requests_to_my_team = (reqs_to_my_team) ? reqs_to_my_team.map {|request| {text: request.showSources, id: request.id}} : []
 
         #requests from me or my team
         reqs_from_me = Request.where(user_id: @user.id)
-        @requests_from_me = reqs_from_me.map {|request| {text: request.showTargets, id: request.id}}
+        @requests_from_me = (reqs_from_me) ? reqs_from_me.map {|request| {text: request.showTargets, id: request.id}} : []
     end
     
 =begin

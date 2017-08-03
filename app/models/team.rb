@@ -4,7 +4,7 @@ class Team < ActiveRecord::Base
     has_one :submission
 
     #validates_inclusion_of :waitlisted, :in => [true, false]
-    validates :waitlisted, inclusion: { in: [ true, false ] }
+    #validates :waitlisted, inclusion: { in: [ true, false ] }
     attr_accessor :num_pending_requests, :declared, :request
 
     validate :size_cannot_be_too_big
