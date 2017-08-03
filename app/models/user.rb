@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   end
 
   def on_team?
-    return team_id == nil
+    return team_id != nil
   end
 
   def getAllTeamMembers
