@@ -14,7 +14,7 @@
 
       <%= form_tag team_list_path, :method => :get, :id => 'waitlisted_form' do %>
         <%= hidden_field_tag :to_sort, false %>
-        Limit to Teams with All Members Waitlisted?
+        All Waitlisted?
         <%= 'Yes' %>
         <%= check_box_tag 'waitlisted[]', true, @waitlist_filter.include?('true'), :id => "waitlisted_yes" %>
         <%= 'No' %>
