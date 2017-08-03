@@ -32,7 +32,7 @@ Team.delete_all
 users = [
     {:name => "Derek Hsiao", :email => "der@berkeley.edu", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 111, :team_id => nil},
     {:name => "Enrollme Tester", :email => "cd@berkeley.edu", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 222, :team_id => 1},
-    {:name => "Hadi Zhang", :email => "hz@berkeley.edu", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 333, :team_id => 2},
+    {:name => "Hadi Zhang", :email => "enrollmetester@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 333, :team_id => 2},
     {:name => "Ken Chiu", :email => "hsiaoderek@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 444, :team_id => 3},
     {:name => "Oski Bear", :email => "hadizhang@gmail.com", :major => 'Other Major', :waitlisted => true, :sid => 555, :team_id => 3}
   ]
