@@ -13,9 +13,13 @@
     <div class = "col-md-4">
       <h3><%= @users_name_arr.pop() %></h3>
       <%= image_tag @users_pic_arr.pop(), :class => "img-responsive" %>
+      <h5>Major: </h5>
+      <h5>Waitlisted? </h5>
       <h5>Bio: <%= @users_bio_arr.pop() %></h5>
       <h5>Time commitment: <%= @users_time_arr.pop() %>hrs/wk</h5>
+      <h5>Available days: </h5>
       <h5>Experience: <%= @users_exp_arr.pop() %></h5>
+      <h5>Skills: </h5>
       <% currentFb =  @users_fb_arr.pop() %>
       <h5>Facebook:<%=link_to "#{currentFb}",currentFb %></h5>
       <% currentLk =  @users_lk_arr.pop() %>
