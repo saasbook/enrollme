@@ -85,3 +85,10 @@ Feature: Table for finding and joining teams
     And I should not see "Sahai"
     And I should see "Jorge"
   
+  # Should see my own team at the top of the table
+  Scenario: A user wants to see his/her own team at the top of the table
+    Given I follow "Logout"
+    And I log in as a user with email "legueoflegends667@hotmail.com"
+    And I follow "Team List"
+    Then I should see "Jorge" before "Bob"
+    And I should see "Jorge" before "Sahai"
