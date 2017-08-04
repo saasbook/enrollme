@@ -91,6 +91,7 @@ class UsersController < ApplicationController
 
     session[:users_sort] = users_sort
     session[:search] = search
+
     @users = @users.order(users_sort)
   
   end
