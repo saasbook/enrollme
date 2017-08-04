@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <nav id = "navBar" class="navbar navbar-inverse">
-  <div class="container-fluid">
+  <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
@@ -38,12 +38,14 @@
               <li><%= link_to "Logout", logout_path, {method: 'get'} %></li>
         </ul>
     </div>
+
+
   </div>
 </nav>
 
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: "alert" %>
-<% end %>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: "alert" %>
+  <% end %>
 
 <head>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
