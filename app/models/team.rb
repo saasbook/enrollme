@@ -134,6 +134,30 @@ class Team < ActiveRecord::Base
         self.users.each{|user| pics.push(user.avatar.url(:medium))}
         return pics
     end
+    
+    def getMembersMajorArray
+        majors = []
+        self.users.each{|user| majors.push(user.major)}
+        return majors
+    end
+    
+    def getMembersWaitlistArray
+        waitlist = []
+        self.users.each{|user| waitlist.push(user.waitlisted)}
+        return waitlist
+    end
+    
+    def getMembersDayArray
+        days = []
+        self.users.each{|user| days.push(user.getAvailableDays)}
+        return days
+    end
+    
+    def getMembersSkillsArray
+        skills = []
+        self.users.each{|user| skills.push(user.getSkills)}
+        return skills
+    end
 
     def getNumMembers # returns the number of members in this group
         self.users.count

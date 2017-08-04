@@ -6,11 +6,17 @@
       <h1>Teams</h1>
 
       <br>
-      <%= form_tag(team_list_path, :method => "get", id: "search_form", class: "form-group col-xs-6") do %>
-        <%= hidden_field_tag :to_sort, false %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search for a Team Member", class: "form-control input-sm", type: "search" %>
+      <%= form_tag(team_list_path, :method => "get", id: "search_form", class: "input-group col-xs-5") do %>
+
+        <%= text_field_tag :search, params[:search], placeholder: "Search for a Team Member", class: "form-control input-sm", type: "search" %>
+
+        <span class="input-group-btn">
+          <%= submit_tag "Search", :id => 'search_button', class: "btn btn-primary btn-sm" %>
+        </span>
       <% end %>
-      <br><br><br>
+
+
+      <br><br>
 
       <%= form_tag team_list_path, :method => :get, :id => 'waitlisted_form' do %>
         <%= hidden_field_tag :to_sort, false %>
