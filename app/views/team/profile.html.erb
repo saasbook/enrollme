@@ -13,11 +13,17 @@
     <div class = "col-md-4">
       <h3><%= @users_name_arr.pop() %></h3>
       <%= image_tag @users_pic_arr.pop(), :class => "img-responsive" %>
+      <h5>Major: <%= @users_major_arr.pop() %></h5>
+      <h5>Waitlisted? <%= @users_waitlist_arr.pop() %></h5>
       <h5>Bio: <%= @users_bio_arr.pop() %></h5>
       <h5>Time commitment: <%= @users_time_arr.pop() %>hrs/wk</h5>
+      <h5>Available days: <% @users_days_arr %></h5>
       <h5>Experience: <%= @users_exp_arr.pop() %></h5>
-      <h5>Facebook: <%= @users_fb_arr.pop() %></h5>
-      <h5>Linkedin: <%= @users_lk_arr.pop() %></h5>
+      <h5>Skills: <% @users_skills_arr %></h5>
+      <% currentFb =  @users_fb_arr.pop() %>
+      <h5>Facebook:<%=link_to "#{currentFb}",currentFb %></h5>
+      <% currentLk =  @users_lk_arr.pop() %>
+      <h5>Linkedin:<%=link_to "#{currentLk}",currentLk %></h5>
       <% currentEmail =  @users_email_arr.pop() %>
       <h5>Email: <a href="mailto:<%= currentEmail %>"><%= currentEmail %></a></h5>
     </div>
