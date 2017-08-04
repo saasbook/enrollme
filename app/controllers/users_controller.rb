@@ -22,7 +22,9 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       session[:user_email] = @user.email
-      redirect_to without_team_path, :notice => "You signed up successfully!"
+      # redirect_to without_team_path, :notice => "You signed up successfully!"
+      #Automatically have a team when they sign up.
+      start_team
       # send a confirmation email
       EmailStudents.welcome_email(@user).deliver_now
 

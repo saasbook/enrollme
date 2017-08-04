@@ -1,6 +1,3 @@
-# require 'capybara/poltergeist'
-# Capybara.javascript_driver = :poltergeist
-
 Feature: Email all students on a team with one button.
 
  As an admin

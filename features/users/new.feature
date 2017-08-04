@@ -13,7 +13,7 @@ Feature: Student creates a new account
     And I select "DECLARED CS/EECS Major" from "major"
     And I choose "user_waitlisted_true"
     And I press "Sign Up"
-    Then I should see "Create or Join a Team"
+    Then I should see "My Team"
     Then I should receive a confirmation email at "david@berkeley.edu"
     
   Scenario: User fails to create an account
