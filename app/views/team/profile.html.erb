@@ -10,7 +10,7 @@
   <div class = row>
     <% for j in 0..2 %>
     <% if enumeration > 0 %>
-    <div class = "col-md-4">
+    <div class = "col-md-4 col-sm-6 col-xs-12">
       <h3><%= @users_name_arr.pop() %></h3>
       <%= image_tag @users_pic_arr.pop(), :class => "img-responsive" %>
       <h5>Major: <%= @users_major_arr.pop() %></h5>

@@ -3,7 +3,7 @@ Request = {
         // add invisible 'div' to end of page:
         $('<div id="dialog"></div>').
             hide().
-            appendTo($('.container'));
+            appendTo($('body'));
         $(document).on('click', '.request', Request.getDialog)
     },
 
