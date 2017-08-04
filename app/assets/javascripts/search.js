@@ -9,17 +9,15 @@ $(document).ready(function() {
         reg = RegExp(val, 'i'),
         text;
         
-        
-        $('#teams tr td:nth-child(1)').each(function(){
-            $current_row = $(this).parent()
-             console.log($(this.textContent))
-             $team_members = $(this)
-             console.log('column: ' + $team_members.context)
-             console.log('row: ' + $current_row.context)
-             $(this).show().filter(function() {
-            text = $team_members.textContent;
-            return !reg.test(text);
-        }).hide();
-    })
+        $('#teams tr').each(function(){
+            $current_row = $(this)
+            $(this).find('td:nth-child(1)').each(function() {
+                $current_cell = $(this)
+                $current_row.show().filter(function() {
+                    text = $current_cell.context.textContent.replace(/\s+/g, ' ');
+                    return !reg.test(text);
+                }).hide();
+            });
+        });
     });
 });
