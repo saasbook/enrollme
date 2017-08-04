@@ -13,7 +13,6 @@
                 <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
             </tr>
             <% end %>
-            <% end %>
 
           <% unless @requests_to_my_team.empty? %>
           <% @requests_to_my_team.each do |incoming_request| %>
@@ -40,22 +39,9 @@
                 <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], id: outgoing_request[:id], decision: "cancel"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
             </tr>
             <% end %>
-          <% end %>
+
+
         </table>
     </div>
 </body>
 
-
-<style type="text/css">
-    .table {
-        width: 76%;
-    }
-
-    .request_manip {
-        float: right;
-    }
-
-    h2{
-        padding-bottom: 22px;
-    }
-</style>

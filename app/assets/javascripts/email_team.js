@@ -3,7 +3,7 @@ EmailTeam = {
         // add invisible 'div' to end of page:
         $('<div id="dialog"></div>').
             hide().
-            appendTo($('.container'));
+            appendTo($('body'));
         $(document).on('click', '.email_team', EmailTeam.getDialog)
     },
 

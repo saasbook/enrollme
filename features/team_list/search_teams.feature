@@ -31,3 +31,9 @@ Feature: Search Function for Team List
     Then I should see "Jorge"
     And I should not see "Bob"
     And I should not see "Sahai"
+    
+  # Javascript search should dynamically change table without pressing enter
+  Given I fill in "search" with "Bo"
+  Then I should see "Bob"
+  And I should see "Bob1"
+  And I should not see "Sahai"
