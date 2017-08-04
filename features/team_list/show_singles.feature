@@ -4,7 +4,7 @@ Feature: Show students who do not have a team
   So that I can invite a single student to team or form a team with a single student
   
   Background:
-    Give the following users exist
+    Given the following users exist
       |   name    |       email                       | team      | major             |       sid         |  waitlisted |
       | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | true |
       | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | true |
