@@ -1,7 +1,7 @@
 <body>
   <title>Sign Up</title>
     <div class="container">
-        <h1>Sign Up</h1>
+        <h2>Sign Up</h2>
         <%= form_for @user, url: {action: "create"}, class: "form-horizontal" do |f| %>
             <fieldset>
                 <%= render 'users/form', :f => f %>
