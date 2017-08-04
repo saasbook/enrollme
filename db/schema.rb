@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 20170730225044) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.integer "team_source"
-    t.integer "team_target"
+    t.integer "source_id"
+    t.integer "target_id"
   end
 
   create_table "submissions", force: :cascade do |t|
