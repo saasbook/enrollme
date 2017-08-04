@@ -4,7 +4,7 @@ Feature: Show students who do not have a team
   So that I can invite a single student to team or form a team with a single student
   
   Background:
-    Give the following users exist
+    Given the following users exist
       |   name    |       email                       | team      | major             |       sid         |  waitlisted |
       | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | true |
       | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | true |
@@ -13,6 +13,14 @@ Feature: Show students who do not have a team
       | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               | true |
       | Bobby      | legueoflegends66@hotmail.com       | 0     | Football Player | 998                    | true        |
 
+    
+    And team "passcode1" has 0 pending requests
+    And team "passcode2" has 2 pending requests
+    And team "passcode3" has 1 pending request
+    
+    And team "passcode1" is declared
+    And team "passcode2" is declared
+    And team "passcode3" is not declared
 
     And I am on the home page
     And I log in as a user with email "bobjones0@berkeley.edu"
