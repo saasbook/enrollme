@@ -36,6 +36,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano'
 
 gem "paperclip", "~> 5.0.0"
+# gem 'selenium-webdriver'
+gem 'poltergeist'
+
 
 gem 'simplecov', :require => false, :group => :test
 

@@ -38,14 +38,15 @@
               <li><%= link_to "Logout", logout_path, {method: 'get'} %></li>
         </ul>
     </div>
+    
+    </div>
 
 
-  </div>
 </nav>
 
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, class: "alert" %>
-  <% end %>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert container" %>
+<% end %>
 
 <head>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>

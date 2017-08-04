@@ -136,7 +136,4 @@ Given(/^I follow the first occurrence of "([^"]*)"$/)  do |link|
     click_link(link, :match => :first)
 end
 
-When /^I wait for the ajax request to finish$/ do
-    sleep 1
-end
 

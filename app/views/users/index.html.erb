@@ -46,7 +46,12 @@
 
 			    	<td> <%= user.team_id.nil? ? "No" : "Yes" %> </td>
 
-						<td> <%= user.team_id.nil? ? "" : user.team_id %> </td>
+			    	<td> 
+			    	<% if !user.team_id.nil? %>
+							<%= link_to user.team_id, team_profile_path(user.team_id) %> 
+						<% end %>
+
+						</td>
 
 			    	<td>
 			    	  <%= link_to "Send Request", new_user_request_path(user_id: session[:user_id], target_id: user.id, target_type: "user"), class: "btn btn-primary btn-sm request" %>
