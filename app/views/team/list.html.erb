@@ -1,10 +1,11 @@
 <body>
   <title>Team list</title>
   <div class="container">
-
+  <div class="row">
+  <%= render "team/suggestion" %>
+  </div>
     <div class="row">
       <h1>Teams</h1>
-
       <br>
       <%= form_tag(team_list_path, :method => "get", id: "search_form", class: "input-group col-xs-5") do %>
 
