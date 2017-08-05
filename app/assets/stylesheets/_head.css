@@ -15,7 +15,7 @@
 .active{
 font-weight: bold;
 color: red;
-  border-bottom: 4px solid blue;
-    background-color: #eb1f10;
+ /* border-bottom: 4px solid blue;
+    background-color: #eb1f10;*/
 
 }
