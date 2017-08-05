@@ -1,18 +1,21 @@
-/*ul.navigation*/
-/*{*/
-/*    background:#fff;*/
+/*.no-margin {*/
+/*  margin: 0;*/
 /*}*/
-/*ul.navigation li a*/
-/*{*/
-/*    text-decoration:none;*/
+
+/*.no-padding {*/
+/*  padding: 0;*/
 /*}*/
-/*ul.navigation li a.on*/
-/*{*/
-/*    background:yellow;*/
-/*    padding:2px 6px;*/
+
+/*.navbar-nav .navbar-nav>.active> a, */
+/*.navbar-nav .navbar-nav>.active> a:focus, */
+/*.navbar-nav .navbar-nav>.active> a:hover {*/
+/*  background: red;*/
 /*}*/
+
 /*.active{*/
 /*  font-size: 30px;*/
 /*  color: red;*/
 /*  border-bottom: 5px solid red;*/
+/*    background-color: #eb1f10;*/
+
 /*}*/
