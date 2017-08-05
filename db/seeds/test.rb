@@ -17,8 +17,8 @@ end
 
 Option.delete_all
 Option.create!(
-    :minimum_team_size => 3,
-    :maximum_team_size => 3
+    :minimum_team_size => 5,
+    :maximum_team_size => 6
 )
 
   
