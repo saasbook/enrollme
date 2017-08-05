@@ -12,9 +12,10 @@ class RequestsController < ApplicationController
         # render partial to send email to the members of a team
         @target_id = params[:target_id]
         @target_type = params[:target_type] ||= "user"
+        @members = Team.find(@target_id).users.collect(&:email).join(",")
 
         # ajax call to render partial
-        render :partial => 'request', :object => @target_id, :object => @target_type and return if request.xhr?                                                         
+        render :partial => 'request', :object => @target_id, :object => @target_type, :object => @members and return if request.xhr?                                                         
       
         # calls team#index
         redirect_to team_list_path
@@ -43,22 +44,6 @@ class RequestsController < ApplicationController
         end
     end
 
-
-    def send_email_to_user
-        user = User.find_by(id: params[:user_id])
-        if user
-            RequestsMailer.send_email_to_user(user).deliver
-        else
-            flash[:notice] = "Oops! That user wasn't found."
-        end
-    end
-
-    def email_team
-    # render partial to send email to the members of a team
-        @team_id = params[:team_id]
-        render :partial => 'email_team', :object => @team_id and return if request.xhr?
-        render 'index'
-    end
 
     def index
         @user = User.find(session[:user_id])

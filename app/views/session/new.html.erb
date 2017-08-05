@@ -6,10 +6,10 @@
             <h1>CS 169 EnrollMe</h1>
             <br>
             <!-- oauth url: '/auth/google_oauth2'; use '/login_admin' for bypassing login -->
-            <%= link_to "Log In", '/auth/google_oauth2', {class: "btn btn-default", id: "log_in"}  %>
+            <%= button_to "Log In", '/auth/google_oauth2', class: "btn btn-primary", id: "log_in", method: :get  %>
             <br>
             <br>
-            <%= link_to "Sign Up", new_user_path, {method: :get, class: "btn btn-default", id: "sign_up"} %>
+            <%= button_to "Sign Up", new_user_path, class: "btn btn-primary", id: "sign_up", method: :get  %>
             <br>
             <br>
             <br>

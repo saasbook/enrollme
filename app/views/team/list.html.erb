@@ -2,7 +2,7 @@
   <title>Team list</title>
   <div class="container">
   <div class="row">
-  <%= render "team/suggestion" %>
+
   </div>
     <div class="row">
       <h1>Teams</h1>
@@ -62,8 +62,13 @@
                   <%= team.waitlisted ? "Yes" : "No" %>
                 </td>
                 <td>
-                  <%= link_to "Join Team", new_user_request_path(user_id: session[:user_id], target_id: team.id, target_type: "team"), class: "btn btn-primary btn-sm request" %>
+                  <% if team.can_join? %>
+                    <%= link_to "Join Team", new_user_request_path(user_id: session[:user_id], target_id: team.id, target_type: "team"), class: "btn btn-primary btn-sm request" %>
+                  <% else %>
+                    <a href="#" class="btn btn-info btn-sm disabled" role="button" aria-disabled="true">Team Full</a>
+                  <% end %>
                 </td>
+                
               </tr>
             <% end %>
           <% end %>

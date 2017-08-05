@@ -18,6 +18,17 @@
 #navBar{
     height: 55px;
 }
-
+.checkbox_container {
+    vertical-align: -1px;
+    margin: 5px;
+}
+.checkbox_container input {
+    display: inline;
+}
+.checkbox_container .collection_check_boxes{
+    display: inline;
+    vertical-align: -5px;
+    padding-right: 10px;
+}
 
 

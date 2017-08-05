@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170730225044) do
+ActiveRecord::Schema.define(version: 20170804012953) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -41,6 +41,30 @@ ActiveRecord::Schema.define(version: 20170730225044) do
     t.string  "target_type"
     t.integer "target_id"
   end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "monday"
+    t.integer "tuesday"
+    t.integer "wednesday"
+    t.integer "thursday"
+    t.integer "friday"
+    t.integer "saturday"
+    t.integer "sunday"
+    t.integer "user_id"
+  end
+
+  add_index "schedules", ["user_id"], name: "index_schedules_on_user_id"
+
+  create_table "skill_sets", force: :cascade do |t|
+    t.integer "ruby_on_rails"
+    t.integer "other_backend"
+    t.integer "frontend"
+    t.integer "ui_design"
+    t.integer "team_management"
+    t.integer "user_id"
+  end
+
+  add_index "skill_sets", ["user_id"], name: "index_skill_sets_on_user_id"
 
   create_table "submissions", force: :cascade do |t|
     t.integer  "disc1id"
@@ -85,18 +109,6 @@ ActiveRecord::Schema.define(version: 20170730225044) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.integer  "monday"
-    t.integer  "tuesday"
-    t.integer  "wednesday"
-    t.integer  "thursday"
-    t.integer  "friday"
-    t.integer  "saturday"
-    t.integer  "ruby_on_rails"
-    t.integer  "other_backend"
-    t.integer  "frontend"
-    t.integer  "ui_design"
-    t.integer  "team_management"
-    t.integer  "sunday"
     t.string   "document_file_name"
     t.string   "document_content_type"
     t.integer  "document_file_size"
