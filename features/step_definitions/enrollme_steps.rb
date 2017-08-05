@@ -89,7 +89,7 @@ Given /^the following users exist$/ do |table|
     next if name == "name" # skipping table header
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
-      @team = Team.new(:approved => false, :submitted => false, :passcode => team_passcode, :waitlisted => true) if @team.nil?
+      @team = Team.create(:approved => false, :submitted => false, :passcode => team_passcode, :waitlisted => true) if @team.nil?
       User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
       @team.update_waitlist
     else
@@ -190,7 +190,7 @@ And /team "([^']*?)" is (not )?declared/ do |pass, no|
 end
 
 Given /^I press the "([^"]*)" button on the same row as "([^"]*)"$/ do |req, name|
-    page.find('tr', :text => name).click_link(req)
+    page.find('tr', text: name).click_link(req)
 end
 
 

@@ -1,20 +1,19 @@
 class RequestsController < ApplicationController
-
+    
+    before_filter :set_user_and_team
+    
     def new
-        #Redirect immediately if team is full
-        if params[:target_type] == "team"
-           team = Team.find(params[:target_id])
-           if team.isFull?
-               redirect_to team_list_path, flash: {alert: "The team you have requested to join is full. Please select another team."}
-            end
+        #Make a new request, redirect immediately if size errors
+        @target_id = params[:target_id]
+        @source_id = @team.id
+        if Team.find_by(id: @target_id).getNumMembers + Team.find_by(id: @source_id).getNumMembers > Option.maximum_team_size
+            redirect_to team_list_path, flash: {alert: "The team you have requested to join is full. Please select another team."}
+            return
         end
       
         # render partial to send email to the members of a team
-        @target_id = params[:target_id]
-        @target_type = params[:target_type] ||= "user"
-
         # ajax call to render partial
-        render :partial => 'request', :object => @target_id, :object => @target_type and return if request.xhr?                                                         
+        render :partial => 'request', :object => @target_id and return if request.xhr?                                                         
       
         # calls team#index
         redirect_to team_list_path
@@ -23,16 +22,12 @@ class RequestsController < ApplicationController
 
     def create
         #Create the request under the current user
-        @user = User.find(session[:user_id])
-        # get the request message
-        # request = params.require(:request).permit(:content)
-
-        @request ||= @user.requests.create(target_id: params[:target_id], target_type: params[:target_type])
+        @request = @team.requests.find_or_create_by(source_id: params[:source_id], target_id: params[:target_id])
 
         #Check for errors, send it to the flash
         if @request.errors.any?
             ######NEEDS TO BE CHANGED TO PREVIOUS PAGE###############
-            redirect_to team_list_path, flash: {alert: "Your request is no longer valid. Please select another #{params[:target_type]}."}
+            redirect_to team_list_path, flash: {alert: "Your request is no longer valid. Please select another team."}
         else
         #Send email out
             target_users = @request.target_users_list
@@ -43,56 +38,30 @@ class RequestsController < ApplicationController
         end
     end
 
-
-    def send_email_to_user
-        user = User.find_by(id: params[:user_id])
-        if user
-            RequestsMailer.send_email_to_user(user).deliver
-        else
-            flash[:notice] = "Oops! That user wasn't found."
-        end
-    end
-
     def email_team
     # render partial to send email to the members of a team
-        @team_id = params[:team_id]
+        @team_id = params[:target_id]
         render :partial => 'email_team', :object => @team_id and return if request.xhr?
         render 'index'
     end
 
     def index
-        @user = User.find(session[:user_id])
-        #requests to me or my team
-        reqs_to_me = Request.where(target_type: "user").where(target_id: @user.id)
+        #requests to me
+        reqs_to_me = Request.where(target_id: @team.id)
         @requests_to_me = (reqs_to_me) ? reqs_to_me.map {|request| {text: request.showSources, id: request.id}} : []
-        reqs_to_my_team = Request.where(target_type: "team").where(target_id: @user.team_id)
-        @requests_to_my_team = (reqs_to_my_team) ? reqs_to_my_team.map {|request| {text: request.showSources, id: request.id}} : []
-
+        
         #requests from me or my team
-        reqs_from_me = Request.where(user_id: @user.id)
+        reqs_from_me = Request.where(source_id: @team.id)
         @requests_from_me = (reqs_from_me) ? reqs_from_me.map {|request| {text: request.showTargets, id: request.id}} : []
     end
-    
-=begin
-    def accept
-        Request.join(sender, target_type, receiver)
-        if check e
-        flash[:notice] = "Request Approved"
-        destroy
-    end
 
-    def deny
-        flash[:notice] = "Request Denied"
-        destroy
-    end
-=end
 
     def destroy
         if !Request.exists?(params[:id])
           flash[:notice] = "This request was already processed"
           return redirect_to user_requests_path
         end
-        request = Request.find(params[:id])
+        request = Request.find_by(id: params[:id])
         if params[:decision] == "accept"
             request.join
             request.destroy
@@ -107,6 +76,11 @@ class RequestsController < ApplicationController
     end
 
     private
+    def set_user_and_team
+        @user = User.find_by_id session[:user_id]
+        @team = @user.team
+    end
+    
     def request_params
         #params.require(:target_type).require(:target_id).permit(:body, :user_id)
     end

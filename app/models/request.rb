@@ -1,78 +1,49 @@
 class Request < ActiveRecord::Base
   #belongs_to :user
-  belongs_to :team
+  belongs_to :team, foreign_key: "source_id"
   
-  validates :team_source, numericality: true
-  validates :team_target, numericality: true
+  validates :source_id, numericality: true
+  validates :target_id, numericality: true
   validate :target_cannot_be_own_team, :new_size_cannot_be_too_big, :target_exists
   
   def target_cannot_be_own_team
-    if self.team_target == self.user.team_id
+    if self.target_id == self.source_id
       errors.add(:target, "Target cannot be own team")
     end
   end
   
   def new_size_cannot_be_too_big
-    if self.target_type == "team"
-      target_team = Team.find(self.target_id)
-      if target_team.getNumMembers >=6
-        errors.add(:size, "Target cannot accomodate another member")
-      end
+    target = Team.find_by(id: self.target_id)
+    source = Team.find_by(id: self.source_id)
+    if target.getNumMembers + source.getNumMembers > Option.maximum_team_size
+      errors.add(:size, "Target cannot accomodate all members")
     end
   end
   
   def target_exists
-    if self.target_type == "user" && !User.exists?(self.target_id)
-      errors.add(:target, "Target user does not exist")
-    elsif self.target_type == "team" && !Team.exists?(self.target_id)
-      errors.add(:target, "Target team does not exist")
+    if !Team.find_by(id: self.target_id)
+      errors.add(:target, "Target does not exist")
     end
   end
 
   def target_users_list
-    if self.target_type == "user"
-      return Array.wrap(User.find(self.target_id))
-    else
       return Array.wrap(Team.find(self.target_id).users)
-    end
   end
 
   def join
-    user = User.find(self.user_id)
-    target = (target_type == "user") ? User.find(self.target_id) : Team.find(self.target_id)
-    if !user.on_team?
-      if target_type == "user"
-        new_team = Team.create()
-        new_team.users << user
-        new_team.users << target
-        new_team.save
-      else
-        target.users << user
-        target.save
-      end
-    else
-      if target_type == "user"
-        user.team.users << target
-        user.save
-      else
-        user.team.users.each do |user|
-          target.users << user
-          target.save
-        end
-      end
+    target = Team.find_by(id: self.target_id)
+    target.users.each do |user|
+      user.team_id = self.source_id
+      user.save
     end
   end
   
   def showTargets
-    if self.target_type == "team"
-      return Team.find(self.target_id).getMembers
-    elsif self.target_type == "user"
-      return User.find(self.target_id).getAllTeamMembers
-    end
+    Team.find_by(id: self.target_id).getMembers
   end
   
   def showSources
-    return User.find(self.user_id).getAllTeamMembers
+    Team.find_by(id: self.source_id).getMembers
   end
 
 end

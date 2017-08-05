@@ -4,16 +4,9 @@ Feature: Manage requests for joining teams
   I want to be able to send requests to teams, and know their decisions
 
   Background: There is a team to join
-    Given the following teams exist:
-      |approved | passcode | submission_id | submitted | declared | pending_requests  |
-      |“no”     | “bears1" | 0             | "no"      | "yes"    | 0                 |
-      |“no”     | “bears2" | 1             | "no"      | "yes"    | 0                 |
-      |“no”     | “bears2" | 2             | "no"      | "yes"    | 0                 |
-
-    And the following users exist
-    
+    Given these users exist
       |   name    |       email                       | team      | major             | sid               | waitlisted  |
-      | Tony      |     tony@berkeley.edu             | nil       | Slavic Studies    | 823               | true        |
+      | Tony      |     tony@berkeley.edu             | passcode7 | Slavic Studies    | 823               | true        |
       | An        |    bobjones0@berkeley.edu         | passcode0 | Slavic Studies    | 824               | true        |
       | Hezheng   |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | true        |
       | George    |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               | true        |
@@ -23,38 +16,44 @@ Feature: Manage requests for joining teams
       | Brandon   |    xx2@berkeley.edu               | passcode1 | Slav1c Studies    | 831               | true        |
       | Sahai     |     sahai@berkeley.edu            | passcode2 | Slavic Studies    | 832               | true        |
       | Hilfinger |     hilf@berkeley.edu             | passcode2 | Slavic Studies    | 833               | true        |
-      | Papadimitriou |     papa@berkeley.edu         | passcode2 | Slavic Studies    | 834               | true        |
+      | PapaD     |     papa@berkeley.edu             | passcode2 | Slavic Studies    | 834               | true        |
       | Fox       |     fox@berkeley.edu              | passcode2 | Slavic Studies    | 835               | true        |
       | Patterson |     pat@berkeley.edu              | passcode2 | Slavic Studies    | 836               | true        |
-      | Derek     |   derek@berkeley.edu              | nil       | Slavic Studies    | 12345678          | true        |
+      | Derek     |   derek@berkeley.edu              | passcode9 | Slavic Studies    | 12345678          | true        |
 
     And I am on the home page
     And I log in as a user with email "derek@berkeley.edu"
     And I follow "Team List"
-
-    Scenario: I send a join request to a team that is not full
-      Given I press the "Join Team" button on the same row as "An"
-      Then I should see "Enter your message here"
-      When I press "Submit Message"
-      Then I should see "Your request has been sent successfully."
-      And "bobjones0@berkeley.edu" should receive 1 email
-      When I follow "Requests"
-      Then I should see "An"
-
-  Scenario: I send a join request to a team that is full
-    Given I press the "Join" button on the same row as "Hezheng"
-    Then I should see "join is full"
-
+  
+  @javascript
+  Scenario: I send a join request to a team that is not full
+    Given I press the "Join Team" button on the same row as "An"
+    Then I should see "Request message"
+    When I press "Send"
+    Then I should see "Your request has been sent successfully."
+    And "bobjones0@berkeley.edu" should receive 1 email
+    When I follow "Requests"
+    Then I should see "An"
+  
+  @javascript
   Scenario: I want to cancel an active join request
-    Given I press the "Join" button on the same row as "An"
-    When I press "Submit Message"
+    Given I press the "Join Team" button on the same row as "An"
+    Then I should see "Request message"
+    When I press "Send"
     And I follow "Requests"
     And I press the "Cancel" button on the same row as "An"
     Then I should not see "An"
+    
+  @javascript
+  Scenario: I send a join request to a team that is full
+    Given I press the "Join Team" button on the same row as "Hezheng"
+    Then I should see "join is full"
 
+  @javascript
   Scenario: My request was accepted
-    Given I press the "Join" button on the same row as "An"
-    When I press "Submit Message"
+    Given I press the "Join Team" button on the same row as "An"
+    Then I should see "Request message"
+    When I press "Send"
     And I follow "Logout"
     And I log in as a user with email "bobjones0@berkeley.edu"
     And I follow "Requests"
@@ -64,10 +63,12 @@ Feature: Manage requests for joining teams
     And I follow "Logout"
     Given I log in as a user with email "derek@berkeley.edu"
     Then I should see "An"
-
+    
+  @javascript
   Scenario: My request was denied
-    Given I press the "Join" button on the same row as "An"
-    When I press "Submit Message"
+    Given I press the "Join Team" button on the same row as "An"
+    Then I should see "Request message"
+    When I press "Send"
     And I follow "Logout"
     And I log in as a user with email "bobjones0@berkeley.edu"
     And I follow "Requests"

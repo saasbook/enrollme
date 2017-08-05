@@ -1,5 +1,20 @@
 # Declarative step to populate DB with teams
 
+Given /^these users exist$/ do |table|
+  table.rows.each do |name, email, team_passcode, major, sid, waitlisted|
+    next if name == "name" # skipping table header
+    @team = Team.where(:passcode => team_passcode).first
+    if team_passcode != "0"
+      @team = Team.create(:approved => false, :submitted => false, :passcode => team_passcode, :waitlisted => true) if @team.nil?
+      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
+      @team.update_waitlist
+    else
+      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
+    end
+  end
+end
+
+
 Given /^the following teams exist:$/ do |teams_table|
     teams_table.hashes.each do |hash|
     Team.create hash
