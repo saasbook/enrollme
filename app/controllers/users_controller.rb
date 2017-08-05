@@ -18,6 +18,8 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    @user.schedule = Schedule.new(schedule_params)
+    @user.skill_set = SkillSet.new(skill_set_params)
     
     if @user.save
       session[:user_id] = @user.id
@@ -107,6 +109,14 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :sid, :major, :waitlisted, :bio, :time_commitment, :experience, :facebook, :linkedin, :avatar, :sunday,:monday,:tuesday,:wednesday,:thursday,:friday,:saturday,:ruby_on_rails, :other_backend, :frontend, :ui_design, :team_management,:document)
+    params.require(:user).permit(:name, :email, :sid, :major, :waitlisted, :bio, :time_commitment, :experience, :facebook, :linkedin, :schedule, :skill_set, :avatar,:document)
+  end
+
+  def schedule_params
+    params.require(:user).require(:schedule).permit(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday)
+  end
+
+  def skill_set_params
+    params.require(:user).require(:skill_set).permit(:ruby_on_rails, :other_backend, :frontend, :ui_design, :team_management)
   end
 end

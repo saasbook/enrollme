@@ -31,33 +31,33 @@
 
 <div class= "field form-group">
   <%= f.label :"Available days:", class: "col-lg-2 control-label"  %> <br>
-  <% days = [:sunday,:monday,:tuesday,:wednesday,:thursday,:friday,:saturday] %>
-  <div class = "row">
-  <% days.each do |day| %>
-  <div class = "col-lg-1" >
-  <%= f.label day %>
-  <%= f.check_box day%>
-  </div>
+  <%= f.fields_for :schedule, @user.schedule do |schedule_field| %>
+      <% days = [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday] %>
+      <div class="checkbox_container">
+        <% days.each do |day| %>
+          <%= schedule_field.label day %>
+          <%= schedule_field.check_box day %>
+        <% end %>
+      </div>
   <% end %>
-  </div>
+</div>
+
+<div class= "field form-group">
+  <%= f.label :"Skills:", class: "col-lg-2 control-label"  %> <br>
+  <%= f.fields_for :skill_set, @user.skill_set do |skill_field| %>
+      <% skills = [:ruby_on_rails, :other_backend, :frontend, :ui_design, :team_management] %>
+      <div class="checkbox_container">
+        <% skills.each do |skill| %>
+          <%= skill_field.label skill %>
+          <%= skill_field.check_box skill %>
+        <% end %>
+      </div>
+  <% end %>
 </div>
 
 <div class="field form-group">
   <%= f.label :"experience", class: "col-lg-2 control-label"  %> <br>
   <%= f.text_field :experience, class: "form-control"  %>
-</div>
-
-<div class="field form-group">
-  <%= f.label :"Skills:", class: "col-lg-2 control-label"  %> <br>
-  <% skills = [:ruby_on_rails, :other_backend, :frontend, :ui_design, :team_management] %>
-  <div class = "row">
-  <% skills.each do |skill| %>
-  <div class = "col-lg-1" >
-  <%= f.label skill %>
-  <%= f.check_box skill %>
-  </div>
-  <% end %>
-  </div>
 </div>
 
 <div class="field form-group">
