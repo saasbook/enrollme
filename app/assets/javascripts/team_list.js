@@ -80,7 +80,7 @@ $(document).ready(function() {
         }
         
         if (num_members_val == '') {
-            num_members_val = ''
+            num_members_val = 'nothing'
         }
         
         var num_members_reg = RegExp(num_members_val)
