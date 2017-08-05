@@ -2,13 +2,14 @@
 <body>
 <title>My Team</title>
 
-
-
 <div class="container">
 
   <h1>My Team</h1>
+  <br>
 
-  <h5><%= "Team Password: " + @team.passcode.to_s %></h5>
+  <h6 style="display: none"><%= "Team Password: " + @team.passcode.to_s %></h6>
+  <%= button_to "Team #{@team.id} Profile", team_profile_path, type: "button", class: "btn btn-info btn-sm", method: "get" %>
+
 
   <div class="row">
     <div class="col-md-8">
@@ -19,6 +20,7 @@
             <th></th>
             <th>Student</th>
             <th>EECS/CS Major?</th>
+            <th>On Waitlist?</th>
           </tr>
         </thead>
 
@@ -28,6 +30,7 @@
               <td></td>
               <td><%= link_to u.name, user_path(u.id) %></td>
               <td><%= u.major == "DECLARED CS/EECS Major" ? "Yes" : "No" %></td>
+              <td><%= u.waitlisted? ? "Yes" : "No" %></td>
               <td>
                 <%= form_tag edit_team_path(:id => @team.id), method: :get do %>
                     <%= hidden_field_tag :unwanted_user, u.id %>

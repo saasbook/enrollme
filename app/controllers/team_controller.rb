@@ -106,6 +106,7 @@ class TeamController < ApplicationController
 
   def profile
     @team = Team.find_by_id(params[:id])
+    @users_id = @team.users.map{|user| user.id}
     @users_name_arr = @team.getMembersNamesArray
     @users_time_arr = @team.getMembersTimeCommitmentArray
     @users_bio_arr = @team.getMembersBioArray

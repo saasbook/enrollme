@@ -1,6 +1,7 @@
 <title>Team Profile</title>
 <div class="container">
 <h1>Team Profile</h1>
+<h5>Team ID: <%= @team.id %></h5>
 
 <%
   enumeration = @team.users.count
@@ -11,10 +12,11 @@
     <% for j in 0..2 %>
     <% if enumeration > 0 %>
     <div class = "col-md-4 col-sm-6 col-xs-12">
-      <h3><%= @users_name_arr.pop() %></h3>
+      <h3><%= link_to @users_name_arr.pop(), user_path(@users_id.pop()) %></h3>
+
       <%= image_tag @users_pic_arr.pop(), :class => "img-responsive" %>
       <h5>Major: <%= @users_major_arr.pop() %></h5>
-      <h5>Waitlisted? <%= @users_waitlist_arr.pop() %></h5>
+      <h5>On Waitlist? <%= @users_waitlist_arr.pop()? "Yes" : "No" %></h5>
       <h5>Bio: <%= @users_bio_arr.pop() %></h5>
       <h5>Time commitment: <%= @users_time_arr.pop() %>hrs/wk</h5>
       <h5>Available days: <% @users_days_arr %></h5>
