@@ -31,11 +31,16 @@ class Request < ActiveRecord::Base
   end
 
   def join
+    #Push all the users from the target onto the source
     target = Team.find_by(id: self.target_id)
+    source = Team.find_by(id: self.source_id)
     target.users.each do |user|
-      user.team_id = self.source_id
-      user.save
+      source.users << user
+      source.update_waitlist    
+      user.team = source
     end
+    #Delete the old team which the targets belonged to
+    target.destroy
   end
   
   def showTargets

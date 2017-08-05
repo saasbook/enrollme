@@ -47,7 +47,7 @@ Feature: Manage requests for joining teams
   @javascript
   Scenario: I send a join request to a team that is full
     Given I press the "Join Team" button on the same row as "Hezheng"
-    Then I should see "join is full"
+    Then I should see "cannot accomodate"
 
   @javascript
   Scenario: My request was accepted

@@ -7,7 +7,7 @@ class RequestsController < ApplicationController
         @target_id = params[:target_id]
         @source_id = @team.id
         if Team.find_by(id: @target_id).getNumMembers + Team.find_by(id: @source_id).getNumMembers > Option.maximum_team_size
-            redirect_to team_list_path, flash: {alert: "The team you have requested to join is full. Please select another team."}
+            redirect_to team_list_path, flash: {alert: "The team you have requested to cannot accomodate everyone on your team. Please select another team."}
             return
         end
       

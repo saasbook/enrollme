@@ -113,3 +113,6 @@ Feature: Manage requests for joining teams
      And I should not see "Derek"
      When I follow "Home"
      Then I should see "Derek"
+     
+@javascript
+    Scenario: I want to accept a request, but my team is now too full
