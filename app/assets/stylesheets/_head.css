@@ -12,10 +12,10 @@
 /*  background: red;*/
 /*}*/
 
-/*.active{*/
-/*  font-size: 30px;*/
-/*  color: red;*/
-/*  border-bottom: 5px solid red;*/
-/*    background-color: #eb1f10;*/
+.active{
+font-weight: bold;
+color: red;
+  border-bottom: 4px solid blue;
+    background-color: #eb1f10;
 
-/*}*/
+}
