@@ -20,4 +20,20 @@ $(document).ready(function() {
             });
         });
     });
+
+    if ($('#waitlisted_yes').is(':checked')) {
+        var val = 'Yes'
+        reg = RegExp(val)
+        $('#teams tr').each(function() {
+            $current_row = $(this)
+            $(this).find('td:nth-child(4)').each(function() {
+                $current_cell = $(this)
+                $current_row.show().filter(function() {
+                    text = $current_cell.context.textContent.replace(/\s+/g, ' ');
+                    return !reg.test(text);
+                }).hide();
+            });
+        });
+    };
+    
 });
