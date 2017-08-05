@@ -50,9 +50,9 @@ class TeamController < ApplicationController
   end
   
   def list
-    search = params[:search] || session[:search] || ''
     sort = params[:sort] || session[:sort] || 'default'
-    @waitlist_filter = params[:waitlisted] || session[:waitlisted] || [true, false]
+    @waitlist_filter = params[:waitlisted] || session[:waitlisted] || ['true', 'false']
+    @num_members_filter = params[:num_members] || session[:num_members] || ['1', '2', '3', '4', '5', '6']
     to_sort = params[:to_sort] || 'true'
     
     if to_sort == 'true'
@@ -80,28 +80,40 @@ class TeamController < ApplicationController
     end
     
     
-    if params[:sort] != session[:sort] or params[:waitlisted] != session[:waitlisted] or params[:search] != session[:search]
+    if params[:sort] != session[:sort] or params[:waitlisted] != session[:waitlisted] or params[:num_members] != session[:num_members]
       session[:sort] = sort
       session[:waitlisted] = @waitlist_filter
-      session[:search] = search
-      redirect_to :sort => sort, :waitlisted => @waitlist_filter, :search => search, :to_sort => false and return
+      session[:num_members] = @num_members_filter
+      redirect_to :sort => sort, :waitlisted => @waitlist_filter, :num_members => @num_members_filter, :to_sort => false and return
     end
     
-    filter = []
-    @waitlist_filter. each do |w|
-      if (w == 'false') or (w == false)
-        filter << false
-      elsif (w == 'true') or (w == true)
-        filter << true
+    wait_filter = []
+    @waitlist_filter.each do |w|
+      if (w == 'false')
+        wait_filter << false
+      elsif (w == 'true')
+        wait_filter << true
       end
     end
     
-    #.where(waitlisted: @waitlist_filter)
-    if search != ''
-      @teams = Team.joins(:users).where("users.name LIKE ?", "%#{search}%").order(ordering)
-    else
-      @teams = Team.where(waitlisted: filter).order(ordering)
+    count_filter = []
+    @num_members_filter.each do |n|
+      if (n == '1')
+        count_filter << 1
+      elsif (n == '2')
+        count_filter << 2
+      elsif (n == '3')
+        count_filter << 3
+      elsif (n == '4')
+        count_filter << 4
+      elsif (n == '5')
+        count_filter << 5
+      elsif (n == '6')
+        count_filter << 6
+      end
     end
+
+    @teams = Team.where(waitlisted: wait_filter).where(users_count: count_filter).order(ordering)
   end
 
   def profile
