@@ -10,7 +10,9 @@ admins = [
     { :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => false},
     { :name => "George Su", :email => "georgesu1074@berkeley.edu", :superadmin => false},
     { :name => "Derek Hsiao", :email => "hsiaoderek@berkeley.edu", :superadmin => false},
-    { :name => "Karl Hayek", :email => "karlos9009@gmail.com", :superadmin => false}
+    { :name => "Karl Hayek", :email => "karlos9009@gmail.com", :superadmin => false},
+        { :name => "Ken Chiu", :email => "kenchiu@berkeley.edu", :superadmin => false}
+
 ]
 
 Admin.delete_all
