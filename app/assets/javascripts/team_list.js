@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    var search_text = '';
-    var search_reg = RegExp('');
+    var search_text = '^(?=.*\\b' + $.trim($('#search').val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$';
+    var search_reg = RegExp(search_text, 'i');
     var current_sort = 'desc';
     
     function showRows(search, search_cell, num_members, num_members_cell, waitlist, waitlist_cell) {
@@ -109,6 +109,8 @@ $(document).ready(function() {
         showRows(search_reg, 1, num_members_reg, 2, waitlist_reg, 4)
     }
     
+    filterTable();
+    
     $('#search').keyup(function() {
         search_text = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$';
         search_reg = RegExp(search_text, 'i');
@@ -148,41 +150,6 @@ $(document).ready(function() {
     $('#num_members_6').click(function() {
         filterTable()
     });
-    
-    // function sortTable(f,n){
-    // 	var rows = $('#teams tbody tr').get();
-    
-    // 	rows.sort(function(a, b) {
-    
-    // 		var A = getVal(a);
-    // 		var B = getVal(b);
-    // 		console.log('A: ' + A)
-    // 		console.log('B: ' + B)
-    
-    // 		if(A < B) {
-    // 			return -1*f;
-    // 		}
-    // 		if(A > B) {
-    // 			return 1*f;
-    // 		}
-    // 		return 0;
-    // 	});
-
-    // 	function getVal(elm){
-    // 		var v = $(elm).children('td').eq(n).text().toUpperCase();
-    // 		if($.isNumeric(v)){
-    // 			v = parseInt(v,10);
-    // 		}
-    // 		return v;
-    // 	}
-    
-    // 	$.each(rows, function(index, row) {
-    // 		$('#mytable').children('tbody').append(row);
-    // 	});
-    // }
-    
-    // var f_users_count = 1;
-    // var f_requests = 1;
     
     function sortTable(order, child) {
         var asc = (order == 'asc');

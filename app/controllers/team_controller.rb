@@ -56,33 +56,7 @@ class TeamController < ApplicationController
     
     ordering = {:users_count => :desc}
     
-    wait_filter = []
-    @waitlist_filter.each do |w|
-      if (w == 'false')
-        wait_filter << false
-      elsif (w == 'true')
-        wait_filter << true
-      end
-    end
-    
-    count_filter = []
-    @num_members_filter.each do |n|
-      if (n == '1')
-        count_filter << 1
-      elsif (n == '2')
-        count_filter << 2
-      elsif (n == '3')
-        count_filter << 3
-      elsif (n == '4')
-        count_filter << 4
-      elsif (n == '5')
-        count_filter << 5
-      elsif (n == '6')
-        count_filter << 6
-      end
-    end
-
-    @teams = Team.where(waitlisted: wait_filter).where(users_count: count_filter).order(ordering)
+    @teams = Team.order(ordering)
   end
 
   def profile
