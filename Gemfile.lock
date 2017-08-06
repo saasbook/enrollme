@@ -409,6 +409,7 @@ DEPENDENCIES
   omniauth-google-oauth2 (~> 0.2.1)
   paperclip (~> 5.0.0)
   pg
+  phantomjs
   poltergeist
   rails (= 4.2.6)
   rspec-rails (= 3.4.2)

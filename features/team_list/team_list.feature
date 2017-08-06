@@ -1,3 +1,4 @@
+@javascript
 Feature: Table for finding and joining teams
   As a user
   In order to find an open team that suits my preferences
