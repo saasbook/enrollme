@@ -109,7 +109,6 @@ $(document).ready(function() {
     }
     
     $('#search').keyup(function() {
-        
         search_text = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$';
         search_reg = RegExp(search_text, 'i');
         filterTable();
@@ -149,4 +148,51 @@ $(document).ready(function() {
         filterTable()
     });
     
+    function sortTable(f,n){
+    	var rows = $('#teams tbody tr').get();
+    
+    	rows.sort(function(a, b) {
+    
+    		var A = getVal(a);
+    		var B = getVal(b);
+    
+    		if(A < B) {
+    			return -1*f;
+    		}
+    		if(A > B) {
+    			return 1*f;
+    		}
+    		return 0;
+    	});
+
+    	function getVal(elm){
+    		var v = $(elm).children('td').eq(n).text().toUpperCase();
+    		if($.isNumeric(v)){
+    			v = parseInt(v,10);
+    		}
+    		return v;
+    	}
+    
+    	$.each(rows, function(index, row) {
+    		$('#mytable').children('tbody').append(row);
+    	});
+    }
+    
+    var f_users_count = 1;
+    var f_requests = 1;
+    
+    $('#users_count_header').click(function(){
+        f_users_count *= -1;
+        console.log($('#teams'))
+        var n = ($('#teams').rows.length) - 1;
+        console.log(n)
+        sortTable(f_users_count, n);
+    });
+    
+    $("#pending_requests_header").click(function(){
+        f_requests *= -1;
+        var n = $(this).prevAll().length;
+        var n = $(this).prevAll().length;
+        sortTable(f_requests, n);
+    });
 });

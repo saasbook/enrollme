@@ -46,9 +46,10 @@
         <thead>
           <tr>
             <th>Group Members</th>
-            <th class="<%= @users_count_header %>">
-              <%= link_to 'Number of Members', team_list_path(:sort => 'users_count', :to_sort => true, :waitlisted => @waitlist_filter, :num_members => @num_members_filter), :id => 'users_count_header' %>
-            </th>
+            <th id="users_count_header">Number of Members</th>
+            <!--<th class="<%= @users_count_header %>">-->
+              <!--<%= link_to 'Number of Members', team_list_path(:sort => 'users_count', :to_sort => true, :waitlisted => @waitlist_filter, :num_members => @num_members_filter), :id => 'users_count_header' %>-->
+            <!--</th>-->
             <th class="<%= @pending_requests_header %>">
               <%= link_to 'Number of Pending Requests', team_list_path(:sort => 'pending_requests', :to_sort => true, :waitlisted => @waitlist_filter, :num_members => @num_members_filter), :id => 'pending_requests_header' %>
             </th>
