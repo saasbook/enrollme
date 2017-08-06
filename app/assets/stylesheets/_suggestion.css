@@ -1,16 +1,18 @@
   .carousel-inner > .item > img,
   .carousel-inner > .item > a > img {
+    position: relative;
+        width: 20%;
       margin: 0 0 0 5%;
   }
   
-  .carousel-caption {
+  #matchDescribtion {
     position: absolute;
     left: auto;
-    right: auto;
     width: 75%;
     height: 100%;
     background-color: #428bca;
     opacity: 0.8;
     bottom:0;
     right:0;
+    color: white;
 }
