@@ -31,16 +31,31 @@ class Request < ActiveRecord::Base
   end
 
   def join
-    #Push all the users from the target onto the source
+    #Push all the users from the source onto the target
     target = Team.find_by(id: self.target_id)
     source = Team.find_by(id: self.source_id)
-    target.users.each do |user|
-      source.users << user
-      source.update_waitlist    
-      user.team = source
+    source.users.each do |user|
+      target.users << user
+      target.update_waitlist    
+      user.team = target
     end
+    #Make sure old requests from the source team are now using the new id
+    old_requests = Request.where(source_id : source.id)
+    old_requests.each do |req|
+      target.requests << req
+      req.team = target
+    end
+      
     #Delete the old team which the targets belonged to
-    target.destroy
+    source.destroy
+  end
+  
+  def forward_request
+    old_requests = Request.where(source_id: source.id)
+    old_requests.each do |req|
+      target.requests << req
+      req.team = target
+    end
   end
   
   def showTargets

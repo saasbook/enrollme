@@ -114,5 +114,28 @@ Feature: Manage requests for joining teams
      When I follow "Home"
      Then I should see "Derek"
      
-@javascript
+    Scenario: I want to accept more than one request
+      And I follow "Logout"
+      Given there is a request from "Derek" to the team with "Tony"
+      And there is a request from "An" to the team with "Tony"
+     Given I log in as a user with email "tony@berkeley.edu"
+     And I follow "Requests"
+     Then save the page
+    When I press the "Accept Request" button on the same row as "An"
+    And I press the "Accept Request" button on the same row as "Derek"
+    When I follow "Home"
+    Then I should see "Derek"
+    And I should see "An"
+     
     Scenario: I want to accept a request, but my team is now too full
+      And I follow "Logout"
+      Given I log in as a user with email "sahai@berkeley.edu"
+      Given there is a request from "Derek" to the team with "Sahai"
+      And there is a request from "An" to the team with "Sahai"
+       And I follow "Requests"
+       Then save the page
+        When I press the "Accept Request" button on the same row as "An"
+        And I press the "Accept Request" button on the same row as "Derek"
+        Then I should see "too full"
+
+      

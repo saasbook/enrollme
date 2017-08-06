@@ -8,15 +8,13 @@ class RequestsController < ApplicationController
         @source_id = @team.id
         if Team.find_by(id: @target_id).getNumMembers + Team.find_by(id: @source_id).getNumMembers > Option.maximum_team_size
             redirect_to team_list_path, flash: {alert: "The team you have requested to cannot accomodate everyone on your team. Please select another team."}
-            return
+        else
+            # render partial to send email to the members of a team
+            # ajax call to render partial
+            render :partial => 'request', :object => @target_id and return if request.xhr?                                                         
+            # calls team#index
+            redirect_to team_list_path
         end
-      
-        # render partial to send email to the members of a team
-        # ajax call to render partial
-        render :partial => 'request', :object => @target_id and return if request.xhr?                                                         
-      
-        # calls team#index
-        redirect_to team_list_path
     end
 
 
