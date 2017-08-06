@@ -1,6 +1,7 @@
 $(document).ready(function() {
-    var search_text = '';
-    var search_reg = RegExp('');
+    var search_text = '^(?=.*\\b' + $.trim($('#search').val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$';
+    var search_reg = RegExp(search_text, 'i');
+    var current_sort = 'desc';
     
     function showRows(search, search_cell, num_members, num_members_cell, waitlist, waitlist_cell) {
         $('#teams tbody tr').each(function(){
@@ -108,8 +109,9 @@ $(document).ready(function() {
         showRows(search_reg, 1, num_members_reg, 2, waitlist_reg, 4)
     }
     
+    filterTable();
+    
     $('#search').keyup(function() {
-        
         search_text = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$';
         search_reg = RegExp(search_text, 'i');
         filterTable();
@@ -149,4 +151,41 @@ $(document).ready(function() {
         filterTable()
     });
     
+    function sortTable(order, child) {
+        var asc = (order == 'asc');
+        var tbody = $('#teams tbody');
+        var trows = $('#teams tbody tr');
+    
+        trows.sort(function(a, b) {
+            if (asc) {
+                var cell_a_val = parseInt($(a).find('td:nth-child(' + child + ')').text());
+                var cell_b_val = parseInt($(b).find('td:nth-child(' + child + ')').text());
+                return cell_a_val - cell_b_val;
+            } else {
+                var cell_a_val = parseInt($(a).find('td:nth-child(' + child + ')').text());
+                var cell_b_val = parseInt($(b).find('td:nth-child(' + child + ')').text());
+                return cell_b_val - cell_a_val;
+            }
+        }).appendTo(tbody);
+    }
+    
+    $('#users_count_header').click(function(){
+        if (current_sort == 'desc') {
+            sortTable('asc', 2);
+            current_sort = 'asc'
+        } else {
+            sortTable('desc', 2)
+            current_sort = 'desc'
+        }
+    });
+    
+    $("#pending_requests_header").click(function(){
+        if (current_sort == 'desc') {
+            sortTable('asc', 3);
+            current_sort = 'asc'
+        } else {
+            sortTable('desc', 3)
+            current_sort = 'desc'
+        }
+    });
 });

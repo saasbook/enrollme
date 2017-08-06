@@ -50,70 +50,13 @@ class TeamController < ApplicationController
   end
   
   def list
-    sort = params[:sort] || session[:sort] || 'default'
-    @waitlist_filter = params[:waitlisted] || session[:waitlisted] || ['true', 'false']
-    @num_members_filter = params[:num_members] || session[:num_members] || ['1', '2', '3', '4', '5', '6']
-    to_sort = params[:to_sort] || 'true'
+    sort = 'default'
+    @waitlist_filter =['true', 'false']
+    @num_members_filter = ['1', '2', '3', '4', '5', '6']
     
-    if to_sort == 'true'
-      case sort
-      when 'default'
-        ordering, @users_count_header = {:users_count => :desc}, 'hilite'
-        session[:ordering] = ordering
-      when 'users_count'
-        if session[:ordering]["users_count"] == "desc"
-          ordering,@users_count_header = {:users_count => :asc}, 'hilite'
-        else
-          ordering,@users_count_header = {:users_count => :desc}, 'hilite'
-        end
-        session[:ordering] = ordering
-      when 'pending_requests'
-        if session[:ordering]["pending_requests"] == "desc"
-          ordering,@pending_requests_header = {:pending_requests => :asc}, 'hilite'
-        else
-          ordering,@pending_requests_header = {:pending_requests => :desc}, 'hilite'
-        end
-        session[:ordering] = ordering
-      end
-    else
-      ordering = session[:ordering]
-    end
+    ordering = {:users_count => :desc}
     
-    
-    if params[:sort] != session[:sort] or params[:waitlisted] != session[:waitlisted] or params[:num_members] != session[:num_members]
-      session[:sort] = sort
-      session[:waitlisted] = @waitlist_filter
-      session[:num_members] = @num_members_filter
-      redirect_to :sort => sort, :waitlisted => @waitlist_filter, :num_members => @num_members_filter, :to_sort => false and return
-    end
-    
-    wait_filter = []
-    @waitlist_filter.each do |w|
-      if (w == 'false')
-        wait_filter << false
-      elsif (w == 'true')
-        wait_filter << true
-      end
-    end
-    
-    count_filter = []
-    @num_members_filter.each do |n|
-      if (n == '1')
-        count_filter << 1
-      elsif (n == '2')
-        count_filter << 2
-      elsif (n == '3')
-        count_filter << 3
-      elsif (n == '4')
-        count_filter << 4
-      elsif (n == '5')
-        count_filter << 5
-      elsif (n == '6')
-        count_filter << 6
-      end
-    end
-
-    @teams = Team.where(waitlisted: wait_filter).where(users_count: count_filter).order(ordering)
+    @teams = Team.order(ordering)
   end
 
   def profile
