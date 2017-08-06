@@ -114,5 +114,4 @@ class User < ActiveRecord::Base
     skill_correlation = self.featureVector(:skill_set).inner_product other_user.featureVector(:skill_set)
     return time_correlation - skill_correlation
   end
-
 end
