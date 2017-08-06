@@ -131,7 +131,6 @@ class TeamController < ApplicationController
     @users_waitlist_arr = @team.getMembersWaitlistArray
     @users_days_arr = @team.getMembersDayArray
     @users_skills_arr = @team.getMembersSkillsArray
-
     # @discussions = Discussion.valid_discs_for(@team)
     # if @team.submitted and !(@team.approved)
     #   @s = Submission.find(@team.submission_id)
