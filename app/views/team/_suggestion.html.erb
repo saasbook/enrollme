@@ -1,4 +1,5 @@
 
+  
   <h2>Recommended for you!</h2>
   <div id="myCarousel" class="carousel slide " data-ride="carousel">
     <!--We dont need these-->
@@ -14,12 +15,14 @@
 
       <div class="item active">
         <!--<img src="https://www.w3schools.com/bootstrap/ny.jpg" alt="Los Angeles" style="width:30%;">-->
-          <%= image_tag "default_profile_pic",:align=> "centre", class: "img-responsive"  %>
+          <%= image_tag "default_profile_pic",:align=> "centre", class: "img-responsive img-rounded"  %>
         <div class = "container">
         <!--<div class="carousel-caption">-->
         <div id="matchDescribtion">
-                    <h2>Matching Rate: 5/5</h2>
-                    <h2>Bobby Lau</h2>
+                    <h3>Matching Rate: 5/5</h3>
+              
+<input id="input-21c" value="0" type="number" class="rating" min=0 max=10 step=0.5 data-size="sm" data-stars="10">
+                    <h3><u>Bobby Lau</u></h3>
                     <h3>This awesome student has a good match with your Available Days!</h3>
                     <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">EnrollMe</a>
                     </p>

@@ -38,6 +38,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "paperclip", "~> 5.0.0"
 # gem 'selenium-webdriver'
 gem 'poltergeist'
+gem 'ratyrate'
 
 
 gem 'simplecov', :require => false, :group => :test
