@@ -1,0 +1,3 @@
+class DisplayAllController < ApplicationController
+
+end
