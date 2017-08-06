@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var search_text = '';
     var search_reg = RegExp('');
+    var current_sort;
     
     function showRows(search, search_cell, num_members, num_members_cell, waitlist, waitlist_cell) {
         $('#teams tbody tr').each(function(){
@@ -148,51 +149,76 @@ $(document).ready(function() {
         filterTable()
     });
     
-    function sortTable(f,n){
-    	var rows = $('#teams tbody tr').get();
+    // function sortTable(f,n){
+    // 	var rows = $('#teams tbody tr').get();
     
-    	rows.sort(function(a, b) {
+    // 	rows.sort(function(a, b) {
     
-    		var A = getVal(a);
-    		var B = getVal(b);
+    // 		var A = getVal(a);
+    // 		var B = getVal(b);
+    // 		console.log('A: ' + A)
+    // 		console.log('B: ' + B)
     
-    		if(A < B) {
-    			return -1*f;
-    		}
-    		if(A > B) {
-    			return 1*f;
-    		}
-    		return 0;
-    	});
+    // 		if(A < B) {
+    // 			return -1*f;
+    // 		}
+    // 		if(A > B) {
+    // 			return 1*f;
+    // 		}
+    // 		return 0;
+    // 	});
 
-    	function getVal(elm){
-    		var v = $(elm).children('td').eq(n).text().toUpperCase();
-    		if($.isNumeric(v)){
-    			v = parseInt(v,10);
-    		}
-    		return v;
-    	}
+    // 	function getVal(elm){
+    // 		var v = $(elm).children('td').eq(n).text().toUpperCase();
+    // 		if($.isNumeric(v)){
+    // 			v = parseInt(v,10);
+    // 		}
+    // 		return v;
+    // 	}
     
-    	$.each(rows, function(index, row) {
-    		$('#mytable').children('tbody').append(row);
-    	});
+    // 	$.each(rows, function(index, row) {
+    // 		$('#mytable').children('tbody').append(row);
+    // 	});
+    // }
+    
+    // var f_users_count = 1;
+    // var f_requests = 1;
+    
+    function sortTable(order, child) {
+        var asc = (order == 'asc');
+        var tbody = $('#teams tbody');
+        var trows = $('#teams tbody tr');
+    
+        trows.sort(function(a, b) {
+            if (asc) {
+                var cell_a_val = parseInt($(a).find('td:nth-child(' + child + ')').text());
+                var cell_b_val = parseInt($(b).find('td:nth-child(' + child + ')').text());
+                return cell_a_val - cell_b_val;
+            } else {
+                var cell_a_val = parseInt($(a).find('td:nth-child(' + child + ')').text());
+                var cell_b_val = parseInt($(b).find('td:nth-child(' + child + ')').text());
+                return cell_b_val - cell_a_val;
+            }
+        }).appendTo(tbody);
     }
     
-    var f_users_count = 1;
-    var f_requests = 1;
-    
     $('#users_count_header').click(function(){
-        f_users_count *= -1;
-        console.log($('#teams'))
-        var n = ($('#teams').rows.length) - 1;
-        console.log(n)
-        sortTable(f_users_count, n);
+        if (current_sort == 'desc') {
+            sortTable('asc', 2);
+            current_sort = 'asc'
+        } else {
+            sortTable('desc', 2)
+            current_sort = 'desc'
+        }
     });
     
     $("#pending_requests_header").click(function(){
-        f_requests *= -1;
-        var n = $(this).prevAll().length;
-        var n = $(this).prevAll().length;
-        sortTable(f_requests, n);
+        if (current_sort == 'desc') {
+            sortTable('asc', 3);
+            current_sort = 'asc'
+        } else {
+            sortTable('desc', 3)
+            current_sort = 'desc'
+        }
     });
 });
