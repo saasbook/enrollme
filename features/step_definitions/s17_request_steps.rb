@@ -4,8 +4,10 @@
 Given /^the request from "([^"]*)" was "([^"]*)"$/ do |user, status|
   user = User.find_by(name: user)
   req = Request.find_by(source_id: user.team_id)
+  source = Team.find_by(id: req.source_id)
+  target = Team.find_by(id: req.target_id)
   if status == "accepted"
-    req.join
+    req.join(source, target)
   end
   req.destroy
 end

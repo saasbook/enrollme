@@ -34,7 +34,27 @@ Feature: Manage requests for joining teams
     And "bobjones0@berkeley.edu" should receive 1 email
     When I follow "Requests"
     Then I should see "An"
-  
+    
+  @javascript
+  Scenario: I send a join request to a team that is not full more than once
+    Given I press the "Join Team" button on the same row as "An"
+    When I press "Send"
+    And I follow "Team List"
+    And I press the "Join Team" button on the same row as "An"
+    And I press "Send"
+    And I follow "Requests"
+    Then I should see "An"
+    
+  @javascript
+  Scenario: I send a join request to a team that is full
+    Given I press the "Join Team" button on the same row as "Hezheng"
+    Then I should see "cannot accomodate"
+    
+  @javascript
+  Scenario: I should not be able to send a request to my own team
+    Given I press the "Join Team" button on the same row as "Derek"
+    Then I should see "own team"
+    
   @javascript
   Scenario: I want to cancel an active join request
     Given I press the "Join Team" button on the same row as "An"
@@ -44,11 +64,6 @@ Feature: Manage requests for joining teams
     And I press the "Cancel" button on the same row as "An"
     Then I should not see "An"
     
-  @javascript
-  Scenario: I send a join request to a team that is full
-    Given I press the "Join Team" button on the same row as "Hezheng"
-    Then I should see "cannot accomodate"
-
   @javascript
   Scenario: My request was accepted
     Given I press the "Join Team" button on the same row as "An"

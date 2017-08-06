@@ -4,6 +4,7 @@ class Request < ActiveRecord::Base
   
   validates :source_id, numericality: true
   validates :target_id, numericality: true
+  validates :team, presence: true
   validate :target_cannot_be_own_team, :new_size_cannot_be_too_big, :target_exists
   
   def target_cannot_be_own_team
@@ -30,32 +31,22 @@ class Request < ActiveRecord::Base
       return Array.wrap(Team.find(self.target_id).users)
   end
 
-  def join
+  def join(source, target)
     #Push all the users from the source onto the target
-    target = Team.find_by(id: self.target_id)
-    source = Team.find_by(id: self.source_id)
     source.users.each do |user|
       target.users << user
       target.update_waitlist    
       user.team = target
     end
     #Make sure old requests from the source team are now using the new id
-    old_requests = Request.where(source_id : source.id)
-    old_requests.each do |req|
-      target.requests << req
-      req.team = target
-    end
-      
-    #Delete the old team which the targets belonged to
-    source.destroy
-  end
-  
-  def forward_request
     old_requests = Request.where(source_id: source.id)
     old_requests.each do |req|
       target.requests << req
       req.team = target
     end
+    
+    #Delete the old team which the targets belonged to
+    source.destroy
   end
   
   def showTargets

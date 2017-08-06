@@ -18,7 +18,6 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
-    
     if @user.save
       session[:user_id] = @user.id
       session[:user_email] = @user.email
@@ -27,12 +26,11 @@ class UsersController < ApplicationController
       start_team
       # send a confirmation email
       EmailStudents.welcome_email(@user).deliver_now
-
     else
       render 'new', :notice => "Form is invalid"
     end
   end
-
+  
   def start_team
     @user.leave_team if !(@user.team.nil?)
     
@@ -72,7 +70,6 @@ class UsersController < ApplicationController
   end
   
   def index
-
     sort = params[:users_sort] || session[:users_sort] || 'default'
     search = params[:search] || session[:search] || ''
 
@@ -81,7 +78,6 @@ class UsersController < ApplicationController
     else
       users_sort = 'name asc'
     end
-
 
     if search != ''
       @users = User.where("name LIKE ?", "%#{search}%")
@@ -94,7 +90,6 @@ class UsersController < ApplicationController
     @users = @users.order(users_sort)
   
   end
-
 
   private
   def check_is_user

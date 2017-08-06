@@ -62,4 +62,7 @@ Feature: go to the correct page
     Given I log in as a user with email "eecs666@hotmail.com"
     Then I go to the home page
     And I press "Leave team"
-    Then I should be on the without_team page
+    When I go to the home page
+    Then I should not see "Jorge"
+    And I should not see "Copy"
+    And "Sahai" has a team id

@@ -55,10 +55,14 @@ class User < ActiveRecord::Base
     @team.users.delete(self)
     @team.update_waitlist
     @team.withdraw_submission
-    
+    #Forward requests, then destroy the team if empty
     if User.where(:team_id => @team.id).length <= 0
       @team.destroy!
     end
+    #Assign the user to a new team
+    new_team = Team.create(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+    new_team.users << self
+    self.team = new_team
   end
   
   def self.user_from_oauth(auth)

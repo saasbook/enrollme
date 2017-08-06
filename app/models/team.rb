@@ -187,7 +187,7 @@ class Team < ActiveRecord::Base
         end
       end
       self.waitlisted = @waitlisted
-      self.save!
+      self.save
     end
 
 end

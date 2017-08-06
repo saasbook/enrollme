@@ -193,4 +193,8 @@ Given /^I press the "([^"]*)" button on the same row as "([^"]*)"$/ do |req, nam
     page.find('tr', text: name).click_link(req)
 end
 
+And /^"(.*)" has a team id$/ do |name|
+  expect(User.find_by(name: name).team_id.nil?).to be false
+end
+
 
