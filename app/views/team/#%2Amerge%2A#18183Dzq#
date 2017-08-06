@@ -1,5 +1,3 @@
-
-
 <body>
   <title>Team list</title>
   <div class="container">
@@ -7,17 +5,9 @@
     <div class="row">
       <h1>Teams</h1>
       <br>
-  <%= form_tag(team_list_path, :method => "get", id: "search_form", class: "input-group col-xs-5") do %>
 
-        <%= text_field_tag :search, params[:search], placeholder: "Search for a Team Member", class: "form-control input-sm", type: "search" %>
-
-        <span class="input-group-btn">
-          <%= submit_tag "Search", :id => 'search_button', class: "btn btn-primary btn-sm" %>
-        </span>
-      <% end %>
-
-
-      <br><br>
+      <%= text_field_tag :search, params[:search], placeholder: "Search for a Team Member", class: "form-control input-sm", type: "search", style: "width: 38%" %>
+      <br>
 
       <%= form_tag team_list_path, :method => :get, :id => 'waitlisted_form' do %>
         <%= hidden_field_tag :to_sort, false %>
@@ -26,23 +16,35 @@
         <%= check_box_tag 'waitlisted[]', true, @waitlist_filter.include?('true'), :id => "waitlisted_yes" %>
         <%= 'No' %>
         <%= check_box_tag 'waitlisted[]', false, @waitlist_filter.include?('false'), :id => "waitlisted_no" %>
-        <%= submit_tag 'Refresh', :id => 'waitlisted_submit', class: "btn btn-secondary btn-sm" %>
+
+      <% end %>
+      
+      <%= form_tag team_list_path, :method => :get, :id => 'num_members_filter' do %>
+        <%= hidden_field_tag :to_sort, false %>
+        Number of Members:
+        <%= '1' %>
+        <%= check_box_tag 'num_members[]', 1, @num_members_filter.include?('1'), :id => "num_members_1" %>
+        <%= '2' %>
+        <%= check_box_tag 'num_members[]', 2, @num_members_filter.include?('2'), :id => "num_members_2" %>
+        <%= '3' %>
+        <%= check_box_tag 'num_members[]', 3, @num_members_filter.include?('3'), :id => "num_members_3" %>
+        <%= '4' %>
+        <%= check_box_tag 'num_members[]', 4, @num_members_filter.include?('4'), :id => "num_members_4" %>
+        <%= '5' %>
+        <%= check_box_tag 'num_members[]', 5, @num_members_filter.include?('5'), :id => "num_members_5" %>
+        <%= '6' %>
+        <%= check_box_tag 'num_members[]', 6, @num_members_filter.include?('6'), :id => "num_members_6" %>
+        <!-- submit_tag 'Refresh', :id => 'num_members_submit', class: "btn btn-secondary btn-sm" %> -->
       <% end %>
 
       <table id="teams" class="table table-striped table-hover">
         <thead>
           <tr>
             <th>Group Members</th>
-<<<<<<< HEAD
             <th id="users_count_header">Number of Members</th>
             <!--<th class="<%= @users_count_header %>">-->
               <!--<%= link_to 'Number of Members', team_list_path(:sort => 'users_count', :to_sort => true, :waitlisted => @waitlist_filter, :num_members => @num_members_filter), :id => 'users_count_header' %>-->
             <!--</th>-->
-=======
-            <th class="<%= @users_count_header %>">
-              <%= link_to 'Number of Members', team_list_path(:sort => 'users_count', :to_sort => true, :waitlisted => @waitlist_filter), :id => 'users_count_header' %>
-            </th>
->>>>>>> 9e97600429479800fb5dbb88af6092f61e95cedd
             <th class="<%= @pending_requests_header %>">
               <%= link_to 'Number of Pending Requests', team_list_path(:sort => 'pending_requests', :to_sort => true, :waitlisted => @waitlist_filter), :id => 'pending_requests_header' %>
             </th>
@@ -60,7 +62,7 @@
                   <%= link_to "#{team.getMembers}",team_profile_path(team.id) %>
                 </td>
                 <td>
-                  <%= team.getNumMembers %>
+                  <%= team.users_count %>
                 </td>
                 <td>
                   <%= team.pending_requests %>
