@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var search_text = '';
     var search_reg = RegExp('');
-    var current_sort;
+    var current_sort = 'desc';
     
     function showRows(search, search_cell, num_members, num_members_cell, waitlist, waitlist_cell) {
         $('#teams tbody tr').each(function(){
