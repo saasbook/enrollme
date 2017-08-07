@@ -2,6 +2,5 @@ $(document).ready(function(){
     $('.carousel').carousel({
       interval: false
     })
-// initialize with defaults
-// $("#input-1").rating();
+    $('#input-3').rating({displayOnly: true, step: 0.5});
   });

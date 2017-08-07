@@ -15,21 +15,20 @@
       <div class="item active">
         <!--<img src="https://www.w3schools.com/bootstrap/ny.jpg" alt="Los Angeles" style="width:30%;">-->
           <%= image_tag "default_profile_pic",:align=> "centre", class: "img-responsive img-rounded"  %>
-        <div class = "container">
         <!--<div class="carousel-caption">-->
-        <div id="matchDescribtion">
-                    <h3>Matching Rate: 5/5</h3>
-              
-<input id="input-id" name="input-name" type="number" class="rating" min=1 max=10 step=2 data-size="lg" data-rtl="true">
+        
+        <div class = "container" id="matchDescribtion">
+          <div class = "row">
+            <h4>Matching Rate:</h4>
+            <!--<input id="input-id" name="input-name" type="number" class="rating" min=1 max=5  data-size="sm" data-rtl="true">-->
+                  <input id="input-3" name="input-3" value="4" class="rating-loading">
 
-            <h3><u>Bobby Lau</u></h3>
-                    <h3>This awesome student has a good match with your Available Days!</h3>
-                    <p><a class="btn btn-lg btn-primary" href="http://getbootstrap.com">EnrollMe</a>
-                    </p>
           </div>
+            <h4><u>Bobby Lau</u></h4>
+                <h5>This awesome student has a good match with your Available Days!</h5>
+                <p><a class="btn btn-sm btn-primary" href="http://getbootstrap.com">EnrollMe</a></p>
         </div>
       </div>
-
       <div class="item">
         <img src="chicago.jpg" alt="Chicago" style="width:100%;">
         <div class="carousel-caption">
