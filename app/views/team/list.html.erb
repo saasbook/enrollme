@@ -7,10 +7,7 @@
     <div class="row">
       <h1>Teams</h1>
       <br>
-<<<<<<< HEAD
-<%= text_field_tag :search, params[:search], placeholder: "Search for a Team Member", class: "form-control input-sm", type: "search", style: "width: 38%" %>
-        <br>
-=======
+
       <%= form_tag(team_list_path, :method => "get", id: "search_form", class: "input-group col-xs-5") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search for a Team Member", class: "form-control input-sm", type: "search" %>
       <% end %>
@@ -18,7 +15,6 @@
 
       <br><br>
 
->>>>>>> 6a869bfa86103d281eac80cc404cac6d9004706a
       <%= form_tag team_list_path, :method => :get, :id => 'waitlisted_form' do %>
         <%= hidden_field_tag :to_sort, false %>
         All Waitlisted?
