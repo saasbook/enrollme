@@ -25,7 +25,7 @@ $(document).ready(function() {
             
             
             $current_row.show().filter(function() {
-                console.log($(current_search_cell).find('a').text())
+                //console.log($(current_search_cell).find('a').text())
                 var current_search_text = $(current_search_cell).find('a').text().replace(/\s+/g, ' ');
                 var current_num_members_text = current_num_members_cell.text().replace(/\s+/g, ' ');
                 var current_waitlist_text = current_waitlist_cell.text().replace(/\s+/g, ' ');

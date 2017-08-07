@@ -5,7 +5,7 @@ Feature: Table for finding and joining teams
   I want to see all the currently open teams and be able to view, sort, and join/leave them
   
   Background:
-    Given the following users exist
+    Given these users exist
       |   name    |       email                       | team      | major             |       sid         |  waitlisted |
       | Bob       |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               | true |
       | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               | true |
@@ -50,22 +50,22 @@ Feature: Table for finding and joining teams
   
   # Sort listing by number of group members in ascending order, when it was in descending order before
   Scenario: A user wants to sort teams by the number of group members, while it is in descending order
-    Given I follow "Number of Members"
+    Given I click on "users_count_header"
     # Should change to ascending order and sort
     Then I should see "Jorge" before "Sahai"
     And I should see "Sahai" before "Bob"
     
   # Sort listing by number of pending requests in descending order, when it was unordered before
   Scenario: A user wants to sort teams by the number of pending requests, while it is unordered
-    Given I follow "Number of Pending Requests"
+    Given I click on "pending_requests_header"
     # Should change to descending order and sort
     Then I should see "Sahai" before "Jorge"
     And I should see "Jorge" before "Bob"
     
   # Sort listing by number of pending requests in ascending order, when it was in descending order before
   Scenario: A user wants to sort teams by the number of pending requests, while it is in descending order
-    Given I follow "Number of Pending Requests"
-    And I follow "Number of Pending Requests"
+    Given I click on "pending_requests_header"
+    Given I click on "pending_requests_header"
     # Should change to ascending order and sort
     Then I should see "Bob" before "Jorge"
     And I should see "Jorge" before "Sahai"
@@ -73,7 +73,7 @@ Feature: Table for finding and joining teams
   # Filter listing by showing only teams where all team members are waitlisted
   Scenario: A user wants to filter teams based on whether all team members are waitlisted
     Given I check "waitlisted_yes"
-    And I press "Refresh"
+    And I uncheck "waitlisted_no"
     Then I should see "Bob"
     And I should see "Sahai"
     And I should not see "Jorge"
@@ -81,7 +81,7 @@ Feature: Table for finding and joining teams
   # Filter listing by showing only teams where all team members are not waitlisted
   Scenario: A user wants to only see teams where all members are not waitlisted
     Given I check "waitlisted_no"
-    And I press "Refresh"
+    And I uncheck "waitlisted_yes"
     Then I should not see "Bob"
     And I should not see "Sahai"
     And I should see "Jorge"

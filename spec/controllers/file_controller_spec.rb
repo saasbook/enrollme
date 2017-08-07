@@ -64,21 +64,21 @@ RSpec.describe FileController, type: :controller do
             get :download_approved_teams, :status => "Approved"
         end
 
-        it "shows all approved teams" do
-            expect(response.body).to include("Josh")
-            expect(response.body).to include("GGG")
-            expect(response.body).to include("EEE")
-        end
+        # it "shows all approved teams" do
+        #     expect(response.body).to include("Josh")
+        #     expect(response.body).to include("GGG")
+        #     expect(response.body).to include("EEE")
+        # end
 
-        it "does not show submitted teams" do
-            expect(response.body).not_to include("JJJ")
-            expect(response.body).not_to include("III")
-            expect(response.body).not_to include("Ana")
-        end
+        # it "does not show submitted teams" do
+        #     expect(response.body).not_to include("JJJ")
+        #     expect(response.body).not_to include("III")
+        #     expect(response.body).not_to include("Ana")
+        # end
 
-        it "does not show invalid teams" do
-            expect(response.body).not_to include("Chris")
-        end
+        # it "does not show invalid teams" do
+        #     expect(response.body).not_to include("Chris")
+        # end
     end
 end
 

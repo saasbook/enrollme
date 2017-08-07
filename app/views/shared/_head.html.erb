@@ -20,7 +20,6 @@
         <ul class="nav navbar-nav navbar-right">
             <% if session[:user_id].nil? %>
                 <li class="<%= 'active' if current_page?(new_user_path) %>"><%= link_to "Sign Up", new_user_path, {method: 'get'} %></li>
-                <li class="<%= 'active' if current_page?(team_list_path) %>"><%= link_to "Log In", "loca", id: "log_in_header" %></li>
 
             <% else %>
               <li class="<%= ((controller_name == "team" && controller.action_name == "show") || (controller_name == "session" && controller.action_name == "new") )? 'active' : nil %>"><a href='/'>Home</a></li>

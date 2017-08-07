@@ -22,7 +22,7 @@ Feature: Super admin deletes all data
    	  | 54321   | Tues, 3pm    |  25      |
    	  | 54322   | Wed, 3pm     |  25      |
    	  | 54323   | Thurs, 3pm   |  25      |
-   	And the team with passcode "passcode1" is submitted
+   	And the team with passcode "passcode1" is submitted with discussion numbers "54321", "54322", and "54323"
    	And I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
 

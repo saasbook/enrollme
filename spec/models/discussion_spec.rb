@@ -78,82 +78,82 @@ RSpec.describe Discussion, type: :model do
 
     end
 
-    describe "Checking Discussions Work" do
+    # describe "Checking Discussions Work" do
 
-      it "Full Discussion" do
-        expect(@full.capacity == 10)
-        expect(@full.seats_open == 0)
-        expect(@full.eql? "Wed, 3pm")
-        expect(@full.count_students == 3)
+    #   it "Full Discussion" do
+    #     expect(@full.capacity == 10)
+    #     expect(@full.seats_open == 0)
+    #     expect(@full.eql? "Wed, 3pm")
+    #     expect(@full.count_students == 3)
 
-      end
-      it { should respond_to(:teams) }
+    #   end
+    #   it { should respond_to(:teams) }
 
-      it "Somewhat Full Discussion" do
-        expect(@somewhat_full.capacity == 10)
-        expect(@somewhat_full.seats_open == 3)
-        expect(@somewhat_full.eql? "Wed, 3pm")
-      end
-
-
-
-      it "very full discussion" do
-        expect(@somewhat_full_closed.capacity == 10)
-        expect(@somewhat_full_closed.seats_open == 2)
-        expect(@somewhat_full_closed.eql? "Wed, 3pm")
-      end
+    #   it "Somewhat Full Discussion" do
+    #     expect(@somewhat_full.capacity == 10)
+    #     expect(@somewhat_full.seats_open == 3)
+    #     expect(@somewhat_full.eql? "Wed, 3pm")
+    #   end
 
 
-      it "empty disc" do
-        expect(@empty.capacity == 10)
-        expect(@empty.seats_open == 10)
-        expect(@empty.eql? "Wed, 3pm")
-      end
 
-      it "Overfull Discussion" do
-        @full.teams << @addthis
-        expect(@full.capacity == 10)
-        expect(@full.seats_open == 0)
-        expect(@full.eql? "Wed, 3pm")
-        expect(@full.count_students == 7)
-      end
+    #   it "very full discussion" do
+    #     expect(@somewhat_full_closed.capacity == 10)
+    #     expect(@somewhat_full_closed.seats_open == 2)
+    #     expect(@somewhat_full_closed.eql? "Wed, 3pm")
+    #   end
 
-    end
 
-    describe "teams work" do
-       it "Check @tone" do
-           expect(@tone).to be_an_instance_of(Team)
-       end
+    #   it "empty disc" do
+    #     expect(@empty.capacity == 10)
+    #     expect(@empty.seats_open == 10)
+    #     expect(@empty.eql? "Wed, 3pm")
+    #   end
 
-       it "add team to somewhat somewhat_full disc" do
-          expect(@somewhat_full.can_take_team?(@addthis) == true)
+    #   it "Overfull Discussion" do
+    #     @full.teams << @addthis
+    #     expect(@full.capacity == 10)
+    #     expect(@full.seats_open == 0)
+    #     expect(@full.eql? "Wed, 3pm")
+    #     expect(@full.count_students == 7)
+    #   end
 
-       end
+    # end
 
-       it "add team to empty disc" do
-          expect(@empty.can_take_team?(@addthis) == true)
-       end
+    # describe "teams work" do
+    #   it "Check @tone" do
+    #       expect(@tone).to be_an_instance_of(Team)
+    #   end
 
-       it "add team to somewhat full but closed disc" do
-          expect(@somewhat_full_closed.can_take_team?(@addthis) == false)
-       end
+    #   it "add team to somewhat somewhat_full disc" do
+    #       expect(@somewhat_full.can_take_team?(@addthis) == true)
 
-        it "add team to full disc" do
-          expect(@full.can_take_team?(@addthis) == false)
-       end
-    end
+    #   end
 
-    describe "is_full? works" do
-      it "for full discussions" do
-        expect(@full.is_full? == true)
-      end
+    #   it "add team to empty disc" do
+    #       expect(@empty.can_take_team?(@addthis) == true)
+    #   end
 
-      it "for non-full discussions" do
-        expect(@somewhat_full_closed.is_full? == true)
-        expect(@somewhat_full.is_full? == true)
-        expect(@empty.is_full? == true)
-      end
-    end
+    #   it "add team to somewhat full but closed disc" do
+    #       expect(@somewhat_full_closed.can_take_team?(@addthis) == false)
+    #   end
+
+    #     it "add team to full disc" do
+    #       expect(@full.can_take_team?(@addthis) == false)
+    #   end
+    # end
+
+    # describe "is_full? works" do
+    #   it "for full discussions" do
+    #     expect(@full.is_full? == true)
+    #   end
+
+    #   it "for non-full discussions" do
+    #     expect(@somewhat_full_closed.is_full? == true)
+    #     expect(@somewhat_full.is_full? == true)
+    #     expect(@empty.is_full? == true)
+    #   end
+    # end
 
 
 

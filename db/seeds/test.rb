@@ -21,6 +21,7 @@ Option.create!(
     :maximum_team_size => 6
 )
 
+
 User.delete_all
 Team.delete_all
   

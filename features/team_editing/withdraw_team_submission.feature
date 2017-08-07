@@ -5,6 +5,7 @@ Feature: unsubmit a team
   I want to ensure that I can change my team status before approval
   
   Background:
+    Given I clean the database
     Given the following users exist
      | name  |       email                    |team_passcode | major           | sid  | waitlisted|
      | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | true |

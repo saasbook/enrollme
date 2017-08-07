@@ -51,6 +51,11 @@ Given /I? check the following fields: (.*)/ do |fields|
   end
 end
 
+Then /I? clean the database/ do 
+  DatabaseCleaner.clean_with(:truncation, reset_ids: true, except: %w[options])
+end
+
+
 
 ################ Team Listing Step Defs ####################
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
@@ -108,10 +113,9 @@ And /it displays ("You have left your team")/ do |message|
   pending
 end
 
-
-
-
-
+Given /I? click on "(.*)"/ do |html_id|
+  find("##{html_id}").click
+end
 
 ################ Email step definitions ################
 

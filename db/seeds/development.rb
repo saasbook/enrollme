@@ -11,7 +11,8 @@ admins = [
     { :name => "George Su", :email => "georgesu1074@gmail.com", :superadmin => false},
     { :name => "Derek Hsiao", :email => "hsiaoderek@berkeley.edu", :superadmin => false},
     { :name => "Karl Hayek", :email => "karlos9009@gmail.com", :superadmin => false},
-        { :name => "Ken Chiu", :email => "kenchiu@berkeley.edu", :superadmin => false}
+        { :name => "Ken Chiu", :email => "kenchiu@berkeley.edu", :superadmin => false},
+        { :name => "Hadi Zhang", :email => "hadizhang@gmail.com", :superadmin => true}
 
 ]
 
@@ -45,7 +46,7 @@ users = [
   {:name => "Kalord", :email => "karlhayek97@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => false, :sid => 9344456, :time_commitment=>55}
   ]
 
-  team1 = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+  team1 = Team.new(:passcode => Team.generate_hash, :approved => true, :submitted => false)
   team2 = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
   team3 = Team.new(:passcode => Team.generate_hash, :approved => false, :submitted => false)
 

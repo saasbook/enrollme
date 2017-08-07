@@ -90,10 +90,10 @@ Given /^the following users exist$/ do |table|
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
       @team = Team.create(:approved => false, :submitted => false, :passcode => team_passcode, :waitlisted => true) if @team.nil?
-      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
+      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => true)
       @team.update_waitlist
     else
-      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => waitlisted)
+      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid, :waitlisted => true)
     end
   end
 end
@@ -177,7 +177,8 @@ end
 
 And /team "([^']*?)" has (\d*) pending requests?/ do |pass, n|
   @team = Team.where(:passcode => pass).first
-  @team.pending_requests = n
+  #Stub pending requests function?
+  @team.pending_requests
 end
 
 And /team "([^']*?)" is (not )?declared/ do |pass, no|

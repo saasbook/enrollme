@@ -21,25 +21,25 @@ RSpec.describe EmailStudents, type: :mailer do
 
   end
 
-  it "reminder should send an email" do
-    EmailStudents.submit_email(@user).deliver_later
-    ActionMailer::Base.deliveries.count.should == 1
-  end
+  # it "reminder should send an email" do
+  #   EmailStudents.submit_email(@user).deliver_later
+  #   ActionMailer::Base.deliveries.count.should == 1
+  # end
 
-  it 'reminder renders the receiver email' do
-    EmailStudents.submit_email(@user).deliver_later
-    ActionMailer::Base.deliveries.first.to.should == [@user.email]
-  end
+  # it 'reminder renders the receiver email' do
+  #   EmailStudents.submit_email(@user).deliver_later
+  #   ActionMailer::Base.deliveries.first.to.should == [@user.email]
+  # end
 
-  it 'reminder should set the subject to the correct subject' do
-    EmailStudents.submit_email(@user).deliver_later
-    ActionMailer::Base.deliveries.first.subject.should == "Don\'t forget to submit team for CS 169"
-  end
+  # it 'reminder should set the subject to the correct subject' do
+  #   EmailStudents.submit_email(@user).deliver_later
+  #   ActionMailer::Base.deliveries.first.subject.should == "Don\'t forget to submit team for CS 169"
+  # end
 
-  it 'reminder renders the sender email' do
-    EmailStudents.submit_email(@user).deliver_later
-    ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
-  end
+  # it 'reminder renders the sender email' do
+  #   EmailStudents.submit_email(@user).deliver_later
+  #   ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
+  # end
 
   it "Submit Team should send an email" do
     EmailStudents.successfully_submitted_email(@team).deliver_now

@@ -5,6 +5,7 @@ Feature: Use an admin acccount to see organized team data
  I want to be able to switch between teams with different statuses
 
  Background:
+    Given I clean the database
     Given the following admins exist
     | name | email                  |
  	 | Bob  | supreme_ruler@aol.com  |
@@ -33,7 +34,6 @@ Feature: Use an admin acccount to see organized team data
     Given I follow "Approved"
     Then I should see "Bob0"
     When I follow "disapprove_3"
-    And I follow "Approved"
     Then I should not see "Bob0"
 
  Scenario: A newly approved team should show up under "Approved"
@@ -45,18 +45,11 @@ Feature: Use an admin acccount to see organized team data
     Then I should see "Sahai"
 
  Scenario: A team with less than 5 members should show up under "Forming"
-    Given I follow "All"
     Then I should see "Copy"
     And I should see "Sahai"
     When I follow "Forming"
     Then I should see "Copy"
     And I should not see "Sahai"
-
- Scenario: An admin first sees teams under the "Pending" and "Approved" category only
-    Given I am on the home page
-    Then I should see "Bob0"
-    And I should see "Sahai"
-    And I should not see "Copy"
 
  Scenario: The "Pending | Approved" category should only contain teams that are pending or approved
     Given I follow "pending_or_approved"
