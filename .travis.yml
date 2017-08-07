@@ -15,8 +15,3 @@ addons:
     repo_token: de9ec3a74a9e4bceb2cde928cd4855738462c44670950486ac528330c4027c65
 env:
   - secure: "mWFmOVgpKnjYFLIadFq34JSqBOKAwvkUSO9Hpubm90fl03znKvpo8YAzd3/b7aWD6sj1KwDARf6TeGywqsJMFQlmGK1PJY6UPj5cfzKv5EBxfKA6+rquFTZx6B6UQ9Rs2ZDsDjAmr/2N75JbAt2TmDcGfATg/f0Ac6P++qIo2aFRmL/0J/AGSwxitP2ykF1gX3u0GCaV6DZRwkgnLDtNPhSoTpfdwBNF+0y8TBGQ7MFJLDWkn7YV8K+gPRwY8R2H47vljrfDi20TQeeNrZujHDCFjH516VMjaOvStHkmIGVuFLv6J5oMGWSQrLJW2AHLMHdsMiT0ngkxo8Cnm2jQMB6GhOV2X/KNkWY4iZStT/zwvfXj2nLU/Abf8xR6BD+KsMKujTDx2+q8zPkEfulKLkTdlP9B2XfKhRki5DzujODUsoIF+Jq5NrK24pZwcsJO2+CsfgU+qviVdJM+c4fjIeOyjrGBNgkkwpSxOeoZGwibyHfJGPNzkNNoJfjb26mDPjoGYl3XuSpjT/1e/HmV3wMb+YGfwVLeY1r0MtSlRaE3fXyxA7MLx9w6l3leKgzeuDe3WD9Te6aLfIRYlrtn1k6h4Ye/P1b2lGmJXX6lNMttP/dXrGlJ7I1jxhdtzmqfyQh+Q1RFasrH8V1dJ0a+ZKMpRspDvQ2C6e+BxQN+H6o="
-before_install:
-- wget http://phantomjs.googlecode.com/files/phantomjs-1.7.0-linux-i686.tar.bz2
-- tar -xf phantomjs-1.7.0-linux-i686.tar.bz2
-- sudo rm -rf /usr/local/phantomjs
-- sudo mv phantomjs-1.7.0-linux-i686 /usr/local/phantomjs
