@@ -62,18 +62,18 @@ class TeamController < ApplicationController
   def profile
     @team = Team.find_by_id(params[:id])
     @users_id = @team.users.map{|user| user.id}
-    @users_name_arr = @team.getMembersNamesArray
-    @users_time_arr = @team.getMembersTimeCommitmentArray
-    @users_bio_arr = @team.getMembersBioArray
-    @users_exp_arr = @team.getMembersExperiencesArray
-    @users_fb_arr = @team.getMembersFacebookArray
-    @users_lk_arr =@team.getMembersLinkedinArray
-    @users_email_arr = @team.getMembersEmailsArray
-    @users_pic_arr = @team.getMembersPicsArray
-    @users_major_arr = @team.getMembersMajorArray
-    @users_waitlist_arr = @team.getMembersWaitlistArray
-    @users_days_arr = @team.getMembersDayArray
-    @users_skills_arr = @team.getMembersSkillsArray
+    @users_name_arr = @team.members_names
+    @users_time_arr = @team.members_time_commitments
+    @users_bio_arr = @team.members_bios
+    @users_exp_arr = @team.members_experiences
+    @users_fb_arr = @team.members_facebooks
+    @users_lk_arr =@team.members_linkedins
+    @users_email_arr = @team.members_emails
+    @users_pic_arr = @team.members_pictures
+    @users_major_arr = @team.members_majors
+    @users_waitlist_arr = @team.members_waitlisteds
+    @users_days_arr = @team.members_schedules
+    @users_skills_arr = @team.members_skill_sets
     # @discussions = Discussion.valid_discs_for(@team)
     # if @team.submitted and !(@team.approved)
     #   @s = Submission.find(@team.submission_id)
