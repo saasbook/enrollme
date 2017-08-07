@@ -11,6 +11,8 @@
  * file per style scope.
  *
  *= require bootstrap.min
+ *= require star-rating
+ 
  *= require_self
  *= require_tree .
  */
