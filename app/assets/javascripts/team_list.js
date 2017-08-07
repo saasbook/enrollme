@@ -177,6 +177,12 @@ $(document).ready(function() {
             sortTable('desc', 2)
             current_sort = 'desc'
         }
+        if ($('#users_count_arrow').text() == '\u25BC') {
+            $('#users_count_arrow').text('\u25B2')
+        }
+        else {
+            $('#users_count_arrow').text('\u25BC')
+        }
     });
     
     $("#pending_requests_header").click(function(){
@@ -187,5 +193,36 @@ $(document).ready(function() {
             sortTable('desc', 3)
             current_sort = 'desc'
         }
+        if ($('#pending_requests_arrow').text() == '\u25BC') {
+            $('#pending_requests_arrow').text('\u25B2')
+        }
+        else {
+            $('#pending_requests_arrow').text('\u25BC')
+        }
     });
+    
+    $(".checks").each(function() {
+        var elt = $(this);
+        var label = $("label[for='"+$(this).attr('id')+"']");
+        //Set the background colors on the page load
+        if (elt.prop("checked") == false) {
+            label.css("background-color", "#2c3e50");
+            label.css("border-color", "#2c3e50");
+        } else if (elt.prop("checked") == true) {
+            label.css("background-color", "#149c82");
+            label.css("border-color", "#149c82");
+        }
+        //Bind an onclick handler to set background colors when clicking label
+        label.click(function() {
+            if (elt.prop("checked") == true) {
+                label.css("background-color", "#2c3e50");
+                label.css("border-color", "#2c3e50");
+            } else if (elt.prop("checked") == false) {
+                label.css("background-color", "#149c82");
+                label.css("border-color", "#149c82");
+            }
+        });
+      
+    }); 
+    
 });
