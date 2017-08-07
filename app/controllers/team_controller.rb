@@ -57,13 +57,7 @@ class TeamController < ApplicationController
     ordering = {:users_count => :desc}
     
     @teams = Team.order(ordering)
-    
-    # The code below is for suggestion
-      @recommended_team = Team.find_by_id(3)
-      @users_pic_arr = @recommended_team.members_pictures_thumb
   end
-  
-
 
   def profile
     @team = Team.find_by_id(params[:id])

@@ -40,6 +40,7 @@ gem "paperclip", "~> 5.0.0"
 gem 'poltergeist'
 gem 'phantomjs', :require => 'phantomjs/poltergeist'
 
+
 gem 'simplecov', :require => false, :group => :test
 
 group :test do

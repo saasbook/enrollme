@@ -3,11 +3,10 @@
 <body>
   <title>Team list</title>
   <div class="container">
-                <%= render "team/suggestion" %>
+            <%= render "team/suggestion" %>
     <div class="row">
       <h1>Teams</h1>
       <br>
-
       <%= form_tag(team_list_path, :method => "get", id: "search_form", class: "input-group col-xs-5") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search for a Team Member", class: "form-control input-sm", type: "search" %>
       <% end %>
