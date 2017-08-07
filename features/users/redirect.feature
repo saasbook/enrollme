@@ -1,15 +1,15 @@
+@javascript
 Feature: go to the correct page
-
   As a student
   So that I know what my team and login status is
   I want to be directed to the correct page
   
   Background:
     Given the following users exist
-     | name   |       email                    | team_passcode | major           | sid  |
-  	 | Jorge  | legueoflegends667@hotmail.com  | 0             | Football Player | 999  |
-   	 | Sahai  | eecs666@hotmail.com            | penguindrool  | EECS            | 000  |
-   	 | Copy   | anotheremail@yahoo.com         | ok            | CS              | 001  |
+     | name   |       email                    | team_passcode | major           | sid  | waitlisted |
+  	 | Jorge  | legueoflegends667@hotmail.com  | 0             | Football Player | 999  | true |
+   	 | Sahai  | eecs666@hotmail.com            | penguindrool  | EECS            | 000  | true |
+   	 | Copy   | anotheremail@yahoo.com         | ok            | CS              | 001  | true |
     And the following admins exist
       | name | email                  |
   	  | Bob  | supreme_ruler@aol.com  |
@@ -62,4 +62,7 @@ Feature: go to the correct page
     Given I log in as a user with email "eecs666@hotmail.com"
     Then I go to the home page
     And I press "Leave team"
-    Then I should be on the without_team page
+    When I go to the home page
+    Then I should not see "Jorge"
+    And I should not see "Copy"
+    And "Sahai" has a team id

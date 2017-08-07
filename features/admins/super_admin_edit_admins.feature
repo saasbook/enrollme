@@ -1,10 +1,11 @@
+@javascript
 Feature: Super admin deletes an admin
-  
   As a super admin
   So that I can control other admins
   I want to be able to delete them
   
   Background:
+    Given I clean the database
     Given the following admins exist
       | name  | email                  | superadmin |
   	  | Bob   | supreme_ruler@aol.com  | true       |

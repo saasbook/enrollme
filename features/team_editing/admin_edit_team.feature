@@ -5,11 +5,12 @@ Feature: An admin edits a team
   I want to be able to remove a user from any team
   
   Background:
-    Given the following users exist
-     | name  |       email                    |team_passcode | major           | sid  |
- 	 | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  |
-  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  |
-  	 | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  |
+    Given I clean the database
+    Given these users exist
+     | name  |       email                    |team_passcode | major           | sid  | waitlisted |
+ 	 | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | true |
+  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | true |
+  	 | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  | true |
     And the following admins exist
       | name | email                  |
   	  | Bob  | supreme_ruler@aol.com  |
@@ -18,7 +19,8 @@ Feature: An admin edits a team
    	 | 54321   | Tues, 3pm    |  25       |
     And I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
-    And I am on the team "1" page
+#    And I am on the team "1" page
+    And I follow "1"
 
   Scenario: An admin successfully removes a user from an unsubmitted team
     Given the team with passcode "penguindrool" is not submitted

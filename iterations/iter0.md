@@ -1,23 +1,27 @@
-# Iteration 0
+**Client Meeting**
 
-Screencasts
+https://www.youtube.com/watch?v=vQcCVKenzMc
 
-Recording by Jason Gao: http://youtu.be/QCiV6Ikg8rk?hd=1
+**Derek**
 
-Recording by David Koh: https://www.youtube.com/watch?v=Mj9r7tne6EQ 
+https://www.youtube.com/watch?v=TSmvcqUzelU
 
-Recording by Sid Masih: https://youtu.be/jZddINFBXNs
+**Brandon**
 
-Recording by Dasol Yoon: https://youtu.be/2EHCysXnVDU
+https://www.youtube.com/watch?v=nLQtzU-a1ik
 
-Recording by Varun Mathuria: https://youtu.be/vdgUOUkY1Yg
+**Ken**
 
-Recording by Adnan Hemani: https://youtu.be/dynRMsgpBYc
+https://www.youtube.com/watch?v=afocD4koixg
 
+**Hadi**
 
-Video
+https://www.youtube.com/watch?v=wcRVw1UTs1k
 
-2 min interview with Michael-David Sasson: https://www.youtube.com/watch?v=HsaLw2gwUa4
+**George**
 
-Full Interview with Michael-David Sasson: https://www.youtube.com/watch?v=9Lp0Jov4h1Q
+https://www.youtube.com/watch?v=SsLhIepEY0c
 
+**Karl**
+
+https://youtu.be/VyQERO33CUs

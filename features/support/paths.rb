@@ -29,6 +29,13 @@ module NavigationHelpers
       admin_disapprove_team_path(:team_id=>$1)
     when /^the new discussion page$/i
       new_discussion_path
+    when /^the team list page$/i
+      team_list_path
+    when /^the team profile page for team_id "(.+)"$/
+      teams_profile_path($1)
+    when /Requests/
+      user_requests_path
+      
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

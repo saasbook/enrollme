@@ -1,9 +1,12 @@
 
 class TeamController < ApplicationController
   
-  before_filter :set_user, :set_team
-  before_filter :set_permissions
+
+  
+  before_filter :set_user, :set_team, :except => ['list', 'profile']
+  before_filter :set_permissions, :except => ['list', 'profile']
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
+  
   
   def show
     @discussions = Discussion.valid_discs_for(@team)
@@ -17,7 +20,8 @@ class TeamController < ApplicationController
   end
   
   def submit
-    #EmailStudents.successfully_submitted_email(@team).deliver_now
+    EmailStudents.successfully_submitted_email(@team).deliver_now
+    AdminMailer.send_look_at_submission
     
     redirect_to new_submission_path
   end
@@ -45,16 +49,55 @@ class TeamController < ApplicationController
     return redirect_to team_path(@team.id), notice: "Removed #{@user_to_remove.name} from team." + notice
   end
   
+  def list
+    sort = 'default'
+    @waitlist_filter =['true', 'false']
+    @num_members_filter = ['1', '2', '3', '4', '5', '6']
+    
+    ordering = {:users_count => :desc}
+    
+    @teams = Team.order(ordering)
+    
+    # The code below is for suggestion
+      @recommended_team = Team.find_by_id(3)
+      @users_pic_arr = @recommended_team.members_pictures_thumb
+  end
   
 
+
+  def profile
+    @team = Team.find_by_id(params[:id])
+    @users_id = @team.users.map{|user| user.id}
+    @users_name_arr = @team.members_names
+    @users_time_arr = @team.members_time_commitments
+    @users_bio_arr = @team.members_bios
+    @users_exp_arr = @team.members_experiences
+    @users_fb_arr = @team.members_facebooks
+    @users_lk_arr =@team.members_linkedins
+    @users_email_arr = @team.members_emails
+    @users_pic_arr = @team.members_pictures
+    @users_major_arr = @team.members_majors
+    @users_waitlist_arr = @team.members_waitlisteds
+    @users_days_arr = @team.members_schedules
+    @users_skills_arr = @team.members_skill_sets
+    # @discussions = Discussion.valid_discs_for(@team)
+    # if @team.submitted and !(@team.approved)
+    #   @s = Submission.find(@team.submission_id)
+    #   @d1 = Discussion.find(@s.disc1id)
+    #   @d2 = Discussion.find_by_id(@s.disc2id)
+    #   @d3 = Discussion.find_by_id(@s.disc3id)
+    # end
+  end
   private
   
   def set_user
     if session[:is_admin]
       @user = Admin.find(session[:user_id])
-    else
+    elsif session[:user_id]
       @user = User.find(session[:user_id])
       redirect_to without_team_path, :notice => "Permission denied" if @user.team.nil?
+    else
+      redirect_to '/', :notice => "Please log in"
     end
   end
 
@@ -73,5 +116,5 @@ class TeamController < ApplicationController
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
   end
 
-  
+
 end

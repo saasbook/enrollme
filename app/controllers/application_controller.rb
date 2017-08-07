@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def authenticate
+    # Skipped authentication so we can test our code; Uncomment in development
     redirect_to login_path, :notice => "Please log in" if session[:user_id].nil?
   end
   
@@ -16,6 +17,4 @@ class ApplicationController < ActionController::Base
     is_admin = session[:is_admin]
     redirect_to logout_path if !!(id) and ((!(is_admin) and User.find_by_id(id).nil?) or (is_admin and Admin.find_by_id(id).nil?))
   end
-
-  
 end

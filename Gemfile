@@ -5,7 +5,7 @@ gem 'rails', '4.2.6'
 
 gem 'sass-rails', '~> 5.0.3'
 gem 'coffee-rails', '~> 4.1.0'
-
+gem 'table_print'
 gem 'jquery-rails'
 gem 'haml'
 
@@ -14,7 +14,6 @@ gem "figaro"
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -35,6 +34,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 # gem 'capistrano'
+
+gem "paperclip", "~> 5.0.0"
+# gem 'selenium-webdriver'
+gem 'poltergeist'
+gem 'phantomjs', :require => 'phantomjs/poltergeist'
+
+gem 'simplecov', :require => false, :group => :test
 
 group :test do
   gem 'simplecov', :require => false

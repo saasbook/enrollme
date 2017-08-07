@@ -1,8 +1,9 @@
+@javascript
 Feature: Create an admin account
   As an admin
   In order to spread my workload
   I want to add another person as an admin
-  
+
   Background:
     Given the following admins exist
      | name  | email                  |
@@ -27,8 +28,8 @@ Feature: Create an admin account
     
   Scenario: An admin fails adding a user as an admin
     Given the following users exist
-     | name    |       email          |team_passcode | major | sid  |
- 	   | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  |
+     | name    |       email          |team_passcode | major | sid  | waitlisted |
+ 	   | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  | true |
     Given I fill in "Name" with "Sahai"
     And I fill in "Email" with "eecs666@hotmail.com"
     And I press "Create"

@@ -11,5 +11,74 @@
     <p class="text-danger"> <strong> Warning: </strong> Please do not select "DECLARED CS/EECS Major", if you are planning to or in the near future become a declared CS/EECS major.  Select the "Intended-CS Major" option instead, please. </p>
 </div>
 
+<div class="field form-group">
+  <%= f.label :waitlisted, "Waitlisted?"%> <br>
+  <%= f.radio_button(:waitlisted, "true") %>
+  <%= f.label(:waitlisted_yes, "Yes") %>
+  <%= f.radio_button(:waitlisted, "false") %>
+  <%= f.label(:waitlisted_no, "No") %>
+</div>
 
+<div class="field form-group">
+  <%= f.label :bio, class: "col-lg-2 control-label"  %> <br>
+  <%= f.text_field :bio, class: "form-control"  %>
+</div>
+
+<div class="field form-group">
+  <%= f.label :time_commitment, class: "col-lg-2 control-label"  %> <br>
+  <%= f.text_field :time_commitment, class: "form-control"  %>
+</div>
+
+<div class= "field form-group">
+  <%= f.label :"Available days:", class: "col-lg-2 control-label"  %> <br>
+  <%= f.fields_for :schedule, @user.schedule do |schedule_field| %>
+      <% days = [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday] %>
+      <div class="checkbox_container">
+        <% days.each do |day| %>
+          <%= schedule_field.label day %>
+          <%= schedule_field.check_box day %>
+        <% end %>
+      </div>
+  <% end %>
+</div>
+
+<div class= "field form-group">
+  <%= f.label :"Skills:", class: "col-lg-2 control-label"  %> <br>
+  <%= f.fields_for :skill_set, @user.skill_set do |skill_field| %>
+      <% skills = [:ruby_on_rails, :other_backend, :frontend, :ui_design, :team_management] %>
+      <div class="checkbox_container">
+        <% skills.each do |skill| %>
+          <%= skill_field.label skill %>
+          <%= skill_field.check_box skill %>
+        <% end %>
+      </div>
+  <% end %>
+</div>
+
+<div class="field form-group">
+  <%= f.label :"experience", class: "col-lg-2 control-label"  %> <br>
+  <%= f.text_field :experience, class: "form-control"  %>
+</div>
+
+<div class="field form-group">
+  <%= f.label :"facebook", class: "col-lg-2 control-label"  %> <br>
+  <%= f.text_field :facebook, class: "form-control"  %>
+</div>
+
+<div class="field form-group">
+  <%= f.label :linkedin, class: "col-lg-2 control-label"  %> <br>
+  <%= f.text_field :linkedin, class: "form-control"  %>
+</div>
+
+<div class="field form-group">
+  <%= f.label :"Profile Picture", class: "col-lg-2 control-label", :id=>"pic"  %> <br>
+  <%= image_tag "default_profile_pic",:align=> "left", class: "img-responsive", :id=>"img_prev" %>
+  (jpeg,png)
+  <%= f.file_field :avatar, class: "form-control", :onchange=>'readURL(this)'  %>
+</div>
+
+<div class="field form-group">
+  <%= f.label :"Resume", class: "col-lg-2 control-label", :id=>"resume"  %> <br>
+  <%= f.file_field :document, class: "form-control"%>
+</div>
 <br>

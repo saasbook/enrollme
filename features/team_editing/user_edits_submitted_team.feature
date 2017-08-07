@@ -1,3 +1,4 @@
+@javascript
 Feature: editing a team changes its submission status
 
   As a student and a member of a submitted team
@@ -7,13 +8,13 @@ Feature: editing a team changes its submission status
   Background:
     Given the allowed team size is 5-6
     And   the following users exist
-     | name  |       email                    |team_passcode | major           | sid  |
-     | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  |
-     | Saha2 | eecs667@hotmail.com            | penguindrool | EECS            | 001  |
-     | Saha3 | eecs668@hotmail.com            | penguindrool | EECS            | 002  |
-     | Saha4 | eecs669@hotmail.com            | penguindrool | EECS            | 003  |
-  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  |
-  	 | Kandi | justanotheremail@aol.com       | 0            | EECS            | 567  |
+     | name  |       email                    |team_passcode | major           | sid  | waitlisted|
+     | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | true |
+     | Saha2 | eecs667@hotmail.com            | penguindrool | EECS            | 001  | true |
+     | Saha3 | eecs668@hotmail.com            | penguindrool | EECS            | 002  | true |
+     | Saha4 | eecs669@hotmail.com            | penguindrool | EECS            | 003  | true |
+  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | true |
+  	 | Kandi | justanotheremail@aol.com       | 0            | EECS            | 567  | true |
   	And I am on the login page
     And I log in as a user with email "eecs666@hotmail.com"
   	And the team with passcode "penguindrool" is submitted
