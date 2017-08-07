@@ -1,3 +1,4 @@
+@javascript
 Feature: Ability to add information to profile
 	As a student
 	I want to add personal information to my profile
@@ -30,11 +31,11 @@ Scenario: Specify time commitment
 	Then I should see "Monday"
 
 Scenario: Indicate skillset
-
+	Then show me the page
 	Given I check the following fields: Ruby on rails,Frontend
 	When I press "Sign Up"
 	And I follow "My Info"
-	Then I should see "Ruby on Rails"
+	Then I should see "Ruby On Rails"
 	And I should see "Frontend"
 
 

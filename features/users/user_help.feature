@@ -1,4 +1,5 @@
-Feature: Student gets help 
+@javascript
+Feature: Student gets help
   As a student
   I want to get help on how to use this website as a student
   I want to click a button that brings me to an info page
@@ -16,7 +17,7 @@ Feature: Student gets help
     And I am on the login page
     And I log in as a user with email "legueoflegends667@hotmail.com"
 
-  Scenario: User successfully finds help 
+  Scenario: User successfully finds help
     When I follow "Help"
     Then I should see "Student Help"
 

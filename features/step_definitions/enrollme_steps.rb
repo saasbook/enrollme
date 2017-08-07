@@ -18,12 +18,12 @@ end
 
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
   mock_auth_hash(email)
-  click_link "log_in"
+  click_button "log_in"
 end
 
 Given /^I log in as a user with email "([^"]*)"$/ do | email |
   mock_auth_hash(email)
-  click_link "log_in"
+  click_button "log_in"
 end
 
 And /^I log out$/ do

@@ -1,3 +1,4 @@
+@javascript
 Feature: display team members' profile
   As a student
   In order to know team members well
@@ -14,7 +15,6 @@ Background:
  	   | Saha2     | eecs668@hotmail.com        | penguindrool | EECS            | 002  | true |Saha2's bio|
  	   | Saha3     | eecs669@hotmail.com        | teampass | EECS            | 003  | true |Saha3's bio|
  	   | Saha4     | eecs660@hotmail.com        | teampass | EECS            | 004  | true |Saha4's bio|
-
 
     And I am on the login page
     And I log in as a user with email "eecs666@hotmail.com"

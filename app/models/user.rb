@@ -27,11 +27,11 @@ class User < ActiveRecord::Base
   end
 
   def getAvailableDays
-    return self.schedule.toString
+    return (self.schedule.nil?)? "" : self.schedule.toString
   end
 
   def getSkills
-    return self.skill_set.toString
+    return (self.skill_set.nil?)? "" : self.skill_set.toString
   end
 
   # def getAvailableDays

@@ -25,6 +25,7 @@ Feature: Manage requests for joining teams
     And I am on the home page
     And I log in as a user with email "derek@berkeley.edu"
     And I follow "Team List"
+
   
   @javascript
   Scenario: I send a join request to a team that is not full

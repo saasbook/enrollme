@@ -1,3 +1,4 @@
+@javascript
 Feature: Admin deletes his or her account
   As an admin
   In order to remove myself from the system
@@ -8,7 +9,7 @@ Feature: Admin deletes his or her account
       | name | email                  | superadmin |
   	  | Bob  | supreme_ruler@aol.com  | false      |
   	  | Tom  | tomcat@gmail.com       | true       |
-    
+
   Scenario: Admin successfully deletes his or her account
     Given I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
