@@ -37,8 +37,7 @@ ActiveRecord::Schema.define(version: 20170804012953) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "target_type"
+    t.integer "source_id"
     t.integer "target_id"
   end
 

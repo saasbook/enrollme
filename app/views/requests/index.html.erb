@@ -6,23 +6,12 @@
         <table class="table table-striped table-hover">
             <% @requests_to_me.each do |incoming_request| %>
             <tr>
-                <td style="padding-left: 50px;padding-bottom:3px; font size="35;><%= incoming_request.user.name %></td>
-
                 <td><%= incoming_request[:text] %></td>
-                <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
-                <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
+                <td><%= link_to "Accept Request", user_request_path(id: incoming_request[:id], decision: "accept"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
+                <td><%= link_to "Deny Request", user_request_path(id: incoming_request[:id], decision: "deny"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
             </tr>
             <% end %>
 
-          <% unless @requests_to_my_team.empty? %>
-          <% @requests_to_my_team.each do |incoming_request| %>
-                <tr>
-                  <td><%= incoming_request[:text] %></td>
-                  <td><%= link_to "Accept Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "accept"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
-                  <td><%= link_to "Deny Request", user_request_path(user_id: session[:user_id], id: incoming_request[:id], decision: "deny"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
-                </tr>
-            <% end %>
-          <% end %>
         </table>
 
         <table cellpadding="10px">
@@ -34,9 +23,8 @@
 
             <% @requests_from_me.each do |outgoing_request| %>
             <tr>
-
                 <td><%= outgoing_request[:text] %></td>
-                <td><%= link_to "Cancel Request", user_request_path(user_id: session[:user_id], id: outgoing_request[:id], decision: "cancel"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
+                <td><%= link_to "Cancel Request", user_request_path(id: outgoing_request[:id], decision: "cancel"), method: :delete, class: "btn btn-primary btn-sm request_manip" %></td>
             </tr>
             <% end %>
 

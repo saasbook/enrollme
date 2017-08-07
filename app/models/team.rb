@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
     has_many :users
-    has_many :requests
+    has_many :requests, foreign_key: "source_id"
     has_one :submission
 
     #validates_inclusion_of :waitlisted, :in => [true, false]
@@ -145,6 +145,6 @@ class Team < ActiveRecord::Base
         end
       end
       self.waitlisted = @waitlisted
-      self.save!
+      self.save
     end
 end

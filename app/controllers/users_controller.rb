@@ -21,7 +21,6 @@ class UsersController < ApplicationController
     #either creates the passed in schedule or a singleton
     @user.schedule = Schedule.new(schedule_params)
     @user.skill_set = SkillSet.new(skill_set_params)
-    
     if @user.save
       session[:user_id] = @user.id
       session[:user_email] = @user.email
@@ -30,12 +29,11 @@ class UsersController < ApplicationController
       start_team
       # send a confirmation email
       EmailStudents.welcome_email(@user).deliver_now
-
     else
       render 'new', :notice => "Form is invalid"
     end
   end
-
+  
   def start_team
     @user.leave_team if !(@user.team.nil?)
     
@@ -82,7 +80,6 @@ class UsersController < ApplicationController
     else
       users_sort = 'name asc'
     end
-
 
     if search != ''
       @users = User.where("name LIKE ?", "%#{search}%")
