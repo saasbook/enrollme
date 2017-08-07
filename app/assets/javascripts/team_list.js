@@ -177,6 +177,12 @@ $(document).ready(function() {
             sortTable('desc', 2)
             current_sort = 'desc'
         }
+        if ($('#users_count_arrow').text() == '\u25BC') {
+            $('#users_count_arrow').text('\u25B2')
+        }
+        else {
+            $('#users_count_arrow').text('\u25BC')
+        }
     });
     
     $("#pending_requests_header").click(function(){
@@ -187,5 +193,25 @@ $(document).ready(function() {
             sortTable('desc', 3)
             current_sort = 'desc'
         }
+        if ($('#pending_requests_arrow').text() == '\u25BC') {
+            $('#pending_requests_arrow').text('\u25B2')
+        }
+        else {
+            $('#pending_requests_arrow').text('\u25BC')
+        }
+    });
+    
+    $(".checks").each(function() {
+        var elt = $(this).parent();
+        var elt_child =$(this);
+        elt_child.click(function() {
+            if (elt.css("background-color") == "rgb(44, 62, 80)") {
+                elt.css("background-color", "#149c82");
+                elt.css("border-color", "#149c82");
+            } else {
+                elt.css("background-color", "#2c3e50");
+                elt.css("border-color", "#2c3e50");
+            }
+        });
     });
 });
