@@ -38,8 +38,8 @@ Feature: Table for finding and joining teams
     And I press "Sign Up"
     And I follow "Team List"
     And I should see "Group Members"
-    And I should see "Number of Members"
-    And I should see "Number of Pending Requests"
+    And I should see "Members"
+    And I should see "Pending Requests"
     And I should see "All Waitlisted?"
     And I should see "Request"
   
