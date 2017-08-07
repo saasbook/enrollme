@@ -15,3 +15,5 @@
 //= require bootstrap.min
 //= require_tree .
 //= require _form
+//= require _suggestion
+//= require star-rating.min
