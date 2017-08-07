@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
     has_many :users
-    has_many :requests
+    has_many :requests, foreign_key: "source_id"
     has_one :submission
 
     #validates_inclusion_of :waitlisted, :in => [true, false]
@@ -8,6 +8,9 @@ class Team < ActiveRecord::Base
     attr_accessor :num_pending_requests, :declared, :request
 
     validate :size_cannot_be_too_big
+
+    @@direct_members = [:name, :time_commitment, :bio, :facebook, :linkedin, :experience, :email, :major, :waitlisted]
+    @@foreign_members = [:schedule, :skill_set]
 
     def size_cannot_be_too_big
         if self.getNumMembers > 6
@@ -82,78 +85,33 @@ class Team < ActiveRecord::Base
     end
 
     # Summer '17 Code
+    def method_missing(method_call)
+        method_call.match(/members_(.*)s/)
+        resource = $1.to_sym
+        if @@direct_members.include? resource
+            return self.users.map{|user| user.send(resource)}
+        else
+          raise "no such method"
+        end
+    end
 
     def getMembers # returns the names of all members in the group, to be displayed in proper format in the team listings table
         self.users.map {|user| user.name}.join(', ')
     end
 
-    def getMembersNamesArray
-         names = []
-         self.users.each{|user| names.push(user.name)}
-         return names
-    end
-
-    def getMembersTimeCommitmentArray
-        times = []
-        self.users.each{|user| times.push(user.time_commitment)}
-        return times
-    end
-
-    def getMembersBioArray
-         bios = []
-         self.users.each{|user| bios.push(user.bio)}
-         return bios
-    end
-
-    def getMembersFacebookArray
-         fbs = []
-         self.users.each{|user| fbs.push(user.facebook)}
-         return fbs
-    end
-
-    def getMembersLinkedinArray
-         lks = []
-         self.users.each{|user| lks.push(user.linkedin)}
-         return lks
-    end
-
-    def getMembersExperiencesArray
-         exps = []
-         self.users.each{|user| exps.push(user.experience)}
-         return exps
-    end
-
-    def getMembersEmailsArray
-         emails = []
-         self.users.each{|user| emails.push(user.email)}
-         return emails
-    end
-
-    def getMembersPicsArray
+    def members_pictures
         pics = []
         self.users.each{|user| pics.push(user.avatar.url(:medium))}
         return pics
     end
     
-    def getMembersMajorArray
-        majors = []
-        self.users.each{|user| majors.push(user.major)}
-        return majors
-    end
-    
-    def getMembersWaitlistArray
-        waitlist = []
-        self.users.each{|user| waitlist.push(user.waitlisted)}
-        return waitlist
-    end
-    
-    def getMembersDayArray
+    def members_schedules
         days = []
         self.users.each{|user| days.push(user.getAvailableDays)}
         return days
     end
     
-    def getMembersSkillsArray
+    def members_skill_sets
         skills = []
         self.users.each{|user| skills.push(user.getSkills)}
         return skills
@@ -187,7 +145,6 @@ class Team < ActiveRecord::Base
         end
       end
       self.waitlisted = @waitlisted
-      self.save!
+      self.save
     end
-
 end

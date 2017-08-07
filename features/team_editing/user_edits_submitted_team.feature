@@ -1,3 +1,4 @@
+@javascript
 Feature: editing a team changes its submission status
 
   As a student and a member of a submitted team

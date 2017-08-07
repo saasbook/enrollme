@@ -1,3 +1,4 @@
+@javascript
 Feature: Super admin deletes all data
   
   As a super admin
@@ -26,7 +27,7 @@ Feature: Super admin deletes all data
     And I log in as an admin with email "supreme_ruler@aol.com"
 
   Scenario: Super admin successfully deletes everything from database
-    Then print page body
+    #Then print page body
     When I follow "Reset Semester"
     Then I should see "Warning: Resetting the semester will result in all users, teams, and discussions being deleted."
     And I should see "Password"

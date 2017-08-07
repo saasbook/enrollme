@@ -17,6 +17,4 @@ class ApplicationController < ActionController::Base
     is_admin = session[:is_admin]
     redirect_to logout_path if !!(id) and ((!(is_admin) and User.find_by_id(id).nil?) or (is_admin and Admin.find_by_id(id).nil?))
   end
-
-  
 end

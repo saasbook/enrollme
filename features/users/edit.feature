@@ -1,3 +1,4 @@
+@javascript
 Feature: edit user information
 
   As a student

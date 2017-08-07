@@ -18,9 +18,9 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    #either creates the passed in schedule or a singleton
     @user.schedule = Schedule.new(schedule_params)
     @user.skill_set = SkillSet.new(skill_set_params)
-    
     if @user.save
       session[:user_id] = @user.id
       session[:user_email] = @user.email
@@ -29,12 +29,11 @@ class UsersController < ApplicationController
       start_team
       # send a confirmation email
       EmailStudents.welcome_email(@user).deliver_now
-
     else
       render 'new', :notice => "Form is invalid"
     end
   end
-
+  
   def start_team
     @user.leave_team if !(@user.team.nil?)
     
@@ -74,30 +73,23 @@ class UsersController < ApplicationController
   end
   
   def index
-
     sort = params[:users_sort] || session[:users_sort] || 'default'
     search = params[:search] || session[:search] || ''
-
     if sort.include?('in_team?') || sort.include?('team_id')
       users_sort = 'team_id asc'
     else
       users_sort = 'name asc'
     end
 
-
     if search != ''
       @users = User.where("name LIKE ?", "%#{search}%")
     else
       @users = User.all
     end
-
     session[:users_sort] = users_sort
     session[:search] = search
-
     @users = @users.order(users_sort)
-  
   end
-
 
   private
   def check_is_user
@@ -122,4 +114,8 @@ class UsersController < ApplicationController
   def skill_set_params
     params.require(:user).require(:skill_set).permit(:ruby_on_rails, :other_backend, :frontend, :ui_design, :team_management)
   end
+  def top_matches
+
+  end
 end
+

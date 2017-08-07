@@ -1,8 +1,9 @@
+
 Feature: admin adds discussion times
   As an admin
   In order for students to sign up for a discussion
   I want to add discussion times
-  
+
   Background:
     Given the following admins exist
       | name | email                  | password |

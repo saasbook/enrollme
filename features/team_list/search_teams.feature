@@ -1,3 +1,4 @@
+@javascript
 Feature: Search Function for Team List
   As a user
   In order to find a team my friend is in
@@ -11,15 +12,12 @@ Feature: Search Function for Team List
       | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               | true |
       | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               | true |
       | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               | true |
-    
     And team "passcode1" has 0 pending requests
     And team "passcode2" has 2 pending requests
     And team "passcode3" has 1 pending request
-    
     And team "passcode1" is declared
     And team "passcode2" is declared
     And team "passcode3" is not declared
-    
     And I am on the home page
     And I log in as a user with email "bobjones0@berkeley.edu"
     And I follow "Team List"
