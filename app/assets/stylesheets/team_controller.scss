@@ -1,3 +1,31 @@
 // Place all the styles related to the TeamController controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#users_count_header, #pending_requests_header {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#users_count_header:hover, #pending_requests_header:hover {
+    color: #18bc9c;
+}
+
+label {
+    color: white;
+}
+
+#waitlisted_form, #num_members_filter {
+    margin-right: 20px;
+    display: inline;
+}
+
+.checks {
+    display: none;
+    vertical-align: middle;
+    margin: auto;
+}
+
+h5 {
+    display: inline;
+    padding: 8px;
+}
