@@ -1,8 +1,9 @@
+@javascript
 Feature: Create an admin account
   As an admin
   In order to spread my workload
   I want to add another person as an admin
-  
+
   Background:
     Given the following admins exist
      | name  | email                  |

@@ -1,5 +1,5 @@
+@javascript
 Feature: go to the correct page
-
   As a student
   So that I know what my team and login status is
   I want to be directed to the correct page

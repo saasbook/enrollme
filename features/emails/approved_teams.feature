@@ -1,3 +1,4 @@
+@javascript
 Feature: Email an admin information about approved teams
   As an admin
   In order to check on CS 169 enrollment

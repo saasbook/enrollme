@@ -7,7 +7,7 @@
   <h1>My Team</h1>
   <br>
 
-  <h6 style="display: none"><%= "Team Password: " + @team.passcode.to_s %></h6>
+  <h6 style="display: block"><%= "Team Password: " + @team.passcode.to_s %></h6>
   <%= button_to "Team #{@team.id} Profile", team_profile_path, type: "button", class: "btn btn-info btn-sm", method: "get" %>
 
 

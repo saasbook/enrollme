@@ -1,3 +1,4 @@
+@javascript
 Feature: Student indicates whether they are on the waitlist for the class
   As a student
   In order to enroll in the class expeditiously
@@ -26,5 +27,5 @@ Feature: Student indicates whether they are on the waitlist for the class
     Given I choose "user_waitlisted_true"
     And I press "Sign Up"
     And I follow "My Info"
-    Then I should see "Waitlisted? Yes"
+    Then I should see "On Waitlist? Yes"
 

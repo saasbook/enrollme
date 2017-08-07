@@ -31,7 +31,7 @@ Feature: Manage requests for joining teams
     And I log in as a user with email "derek@berkeley.edu"
     And I follow "Team List"
     And I press the "Join Team" button on the same row as "Sahai"
-    When I press "Submit Message"
+    When I press "Send"
     And I follow "Logout"
 
   Scenario: I want to see the requests to join my group that still need to be processed

@@ -29,6 +29,7 @@ Feature: admin can view more information about teams
   	Then I should see "Selected Discussion Sections"
   	
   Scenario: An admin accesses a user's information
+    Then show me the page
     Given I follow "Sahai"
     Then I should see "SID: 000"
     And I should see "Major: EECS"

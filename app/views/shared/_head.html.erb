@@ -31,7 +31,7 @@
                   <li class="<%= 'active' if current_page?(user_requests_path(session[:user_id])) %>"><%= link_to "Requests", user_requests_path(session[:user_id]), {method: 'get'} %></li>
                   <li class="<%= 'active' if current_page?(help_path) %>"><%= link_to "Help", help_path %></li>
               <% else %>
-                  <li><%= link_to "My Info", admin_path(session[:user_id]), {method: 'get'} %></li>
+                  <li><%= link_to "My Info", admin_path(session[:user_id]), {method: 'get', id: "My_Info"}%></li>
                   <li><%= link_to "Register New Admin", new_admin_path, {method: 'get'} %></li>
                   <% if Admin.find(session[:user_id]).superadmin == true %>
                     <li><%= link_to "Manage Admins", superadmin_path, {method: :get} %></li>
