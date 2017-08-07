@@ -68,6 +68,6 @@ Rails.application.configure do
   }
   #let Paperclip know to look there for imageMagick
   Paperclip.options[:command_path] = "/usr/local/bin/"
-  
+  Paperclip.options[:command_path] = "/opt/ImageMagick/bin"
 
 end

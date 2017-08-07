@@ -39,8 +39,8 @@ class RequestsController < ApplicationController
             ######NEEDS TO BE CHANGED TO PREVIOUS PAGE###############
             redirect_to team_list_path, flash: {alert: "Your request has been sent successfully."}
         end
-    end 
-    
+    end
+  
     def index
         #requests to me
         reqs_to_me = Request.where(target_id: @team.id)

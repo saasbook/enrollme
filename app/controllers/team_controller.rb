@@ -50,62 +50,18 @@ class TeamController < ApplicationController
   end
   
   def list
-    search = params[:search] || session[:search] || ''
-    sort = params[:sort] || session[:sort] || 'default'
-    @waitlist_filter = params[:waitlisted] || session[:waitlisted] || [true, false]
-    to_sort = params[:to_sort] || 'true'
+    sort = 'default'
+    @waitlist_filter =['true', 'false']
+    @num_members_filter = ['1', '2', '3', '4', '5', '6']
     
-    if to_sort == 'true'
-      case sort
-      when 'default'
-        ordering, @users_count_header = {:users_count => :desc}, 'hilite'
-        session[:ordering] = ordering
-      when 'users_count'
-        if session[:ordering]["users_count"] == "desc"
-          ordering,@users_count_header = {:users_count => :asc}, 'hilite'
-        else
-          ordering,@users_count_header = {:users_count => :desc}, 'hilite'
-        end
-        session[:ordering] = ordering
-      when 'pending_requests'
-        if session[:ordering]["pending_requests"] == "desc"
-          ordering,@pending_requests_header = {:pending_requests => :asc}, 'hilite'
-        else
-          ordering,@pending_requests_header = {:pending_requests => :desc}, 'hilite'
-        end
-        session[:ordering] = ordering
-      end
-    else
-      ordering = session[:ordering]
-    end
+    ordering = {:users_count => :desc}
     
-    
-    if params[:sort] != session[:sort] or params[:waitlisted] != session[:waitlisted] or params[:search] != session[:search]
-      session[:sort] = sort
-      session[:waitlisted] = @waitlist_filter
-      session[:search] = search
-      redirect_to :sort => sort, :waitlisted => @waitlist_filter, :search => search, :to_sort => false and return
-    end
-    
-    filter = []
-    @waitlist_filter. each do |w|
-      if (w == 'false') or (w == false)
-        filter << false
-      elsif (w == 'true') or (w == true)
-        filter << true
-      end
-    end
-    
-    #.where(waitlisted: @waitlist_filter)
-    if search != ''
-      @teams = Team.joins(:users).where("users.name LIKE ?", "%#{search}%").order(ordering)
-    else
-      @teams = Team.where(waitlisted: filter).order(ordering)
-    end
+    @teams = Team.order(ordering)
   end
 
   def profile
     @team = Team.find_by_id(params[:id])
+    @users_id = @team.users.map{|user| user.id}
     @users_name_arr = @team.getMembersNamesArray
     @users_time_arr = @team.getMembersTimeCommitmentArray
     @users_bio_arr = @team.getMembersBioArray
@@ -118,7 +74,6 @@ class TeamController < ApplicationController
     @users_waitlist_arr = @team.getMembersWaitlistArray
     @users_days_arr = @team.getMembersDayArray
     @users_skills_arr = @team.getMembersSkillsArray
-
     # @discussions = Discussion.valid_discs_for(@team)
     # if @team.submitted and !(@team.approved)
     #   @s = Submission.find(@team.submission_id)

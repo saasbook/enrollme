@@ -1,0 +1,19 @@
+/*.no-margin {*/
+/*  margin: 0;*/
+/*}*/
+
+/*.no-padding {*/
+/*  padding: 0;*/
+/*}*/
+
+/*.navbar-nav .navbar-nav>.active> a, */
+/*.navbar-nav .navbar-nav>.active> a:focus, */
+/*.navbar-nav .navbar-nav>.active> a:hover {*/
+/*  background: red;*/
+/*}*/
+
+.active{
+font-weight: bold;
+color: red;
+  border-bottom: 4px solid blue;
+}

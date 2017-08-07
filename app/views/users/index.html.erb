@@ -38,7 +38,8 @@
 
 			<tbody>
 			  <% @users.each do |user| %>
-
+			  	<!-- don't display the user -->
+			  	<% next if user.id == session[:user_id] %>
 			    <tr>
 			    	<td>
 				    	<%= link_to user.name, user_path(user.id) %>
