@@ -1,14 +1,14 @@
-  .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-    position: relative;
-        width: 20%;
-      margin: 0 0 0 5%;
-  }
+  /*.carousel-inner > .item > img,*/
+  /*.carousel-inner > .item > a > img {*/
+  /*  position: relative;*/
+  /*    width: 20%;*/
+  /*    margin: 0 0 0 5%;*/
+  /*}*/
   
   #matchDescribtion {
     position: absolute;
     left: auto;
-    width: 75%;
+    /*width: 75%;*/
     height: 100%;
     background-color: #428bca;
     opacity: 0.8;
