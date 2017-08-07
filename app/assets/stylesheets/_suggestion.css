@@ -5,15 +5,35 @@
   /*    margin: 0 0 0 5%;*/
   /*}*/
   
-  #matchDescribtion {
-    position: absolute;
-    left: auto;
+/*  #matchDescribtion {*/
+/*    position: absolute;*/
+/*    left: auto;*/
     /*width: 75%;*/
-    height: 100%;
-    background-color: #428bca;
-    opacity: 0.8;
-    bottom:0;
-    right:0;
-    color: white;
+/*    height: 100%;*/
+/*    background-color: #428bca;*/
+/*    opacity: 0.8;*/
+/*    bottom:0;*/
+/*    right:0;*/
+/*    color: white;*/
+/*}*/
+
+
+.carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
+    color: black;
 }
 
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}

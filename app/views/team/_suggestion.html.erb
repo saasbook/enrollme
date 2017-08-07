@@ -4,29 +4,29 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-      <div class = "container">
         <div class="item active">
-        <div class = "row">
-          <div class = "col-sm-2" >
+        <div class = "container">
+        <div class = "row row-centered">
+          <div class = "col-sm-2 col-centered" >
           <%= image_tag @users_pic_arr.pop(),:align=> "centre", class: "img-responsive img-rounded"  %>
           </div>
-          <div class = "col-sm-2" >
+          <div class = "col-sm-2 col-centered" >
           <%= image_tag @users_pic_arr.pop(),:align=> "centre", class: "img-responsive img-rounded"  %>
           </div>
-          <div class = "col-sm-2" >
+          <div class = "col-sm-2 col-centered" >
           <%= image_tag @users_pic_arr.pop(),:align=> "centre", class: "img-responsive img-rounded"  %>
           </div>
         </div>
-        <div id="matchDescribtion">
+        </div>
+        <div class="carousel-caption">
+        <!--<div id="matchDescribtion">-->
             <h4>Matching Rate:</h4>
             <!--<input id="input-id" name="input-name" type="number" class="rating" min=1 max=5  data-size="sm" data-rtl="true">-->
                   <input id="input-3" name="input-3" value="4" class="rating-loading">
 
-            <h4><u>Bobby Lau</u></h4>
+            <h4><u>Team ID: 3</u></h4>
                 <h5>This awesome student has a good match with your Available Days!</h5>
                 <p><a class="btn btn-sm btn-primary" href="http://getbootstrap.com">EnrollMe</a></p>
-                      </div>
-
         </div>
       </div>
       <div class="item">
