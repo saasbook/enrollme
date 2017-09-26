@@ -1,5 +1,5 @@
 class AdminMailer < ApplicationMailer
-    default from: 'enrollmeberkeley@gmail.com'
+    default from: 'enrollmeberkeley@gmail.com'#, to: 'enrollmes17@gmail.com'
    
    def invite_new_admin(admin)
       @admin = admin
@@ -9,13 +9,22 @@ class AdminMailer < ApplicationMailer
       end
    end
    
-   def team_list_email(admin)
+   def team_list_email(admin, status)
       @admin = admin
+      @status = status
       @url  = 'http://www.gmail.com'
-      mail(to: @admin.email, subject: 'Here is list of' + params[:status] + 'teams in EnrollMe') do |format|
+      mail(to: @admin.email, subject: 'List of ' + @status.downcase + ' teams currently on EnrollMe') do |format|
         format.html
       end
    end
+
+
+   def send_email_to_team(team_id, recipients, email)
+      mail(to: recipients, subject: email["subject"]) do |format|
+         format.text { render plain: email["content"] }
+      end
+   end
+
    
    def send_approved_email(team)
       @team = team
@@ -42,7 +51,7 @@ class AdminMailer < ApplicationMailer
    end
    
    def look_at_submission(email)
-      mail(to: email, subject: "Teams are awaiting your approval!")
+      mail(to: email, subject: "A team is awaiting your approval!")
    end
    
    def all_data(admin)
@@ -55,7 +64,7 @@ class AdminMailer < ApplicationMailer
    def self.send_look_at_submission
       if !(Team.where("approved = ? AND submitted = ?", false, true).nil?)
          Admin.all.each do |admin|
-            look_at_submission(admin.email).deliver
+            look_at_submission(admin.email).deliver_now
          end
       end
    end

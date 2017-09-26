@@ -1,0 +1,68 @@
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+admins = [
+      { :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :superadmin => true},
+      { :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => false},
+      { :name => "George Su", :email => "georgesu1074@berkeley.edu", :superadmin => false}
+  ]
+
+Admin.delete_all
+admins.each do |a|
+  Admin.create!(a)
+end
+
+
+Option.delete_all
+Option.create!(
+  :minimum_team_size => 3,
+  :maximum_team_size => 3
+  )
+
+# Below is all of my Test Seeds - George
+
+User.delete_all
+Team.delete_all
+
+users = [
+  {:name => "George Su", :email => "hadizhang@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 123456, :team_id => nil},
+  {:name => "Hadi Zhang", :email => "hadizhang@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 1234567, :team_id => 1},
+  {:name => "Derek Hsiao", :email => "hadizhang@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 123453, :team_id => 2},
+  {:name => "Ken Chiu", :email => "hadizhang@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 123454, :team_id => 3},
+  {:name => "Brandon Jabr", :email => "hadizhang@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 153456, :team_id => 3},
+  {:name => "Karl Hayek", :email => "hadizhang@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 123756, :team_id => 3},
+  {:name => "Carina Boo", :email => "hadizhang@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 1238556, :team_id => 3},
+  {:name => "Oski Bear", :email => "hadizhang@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 123446, :team_id => 3},
+  {:name => "Aladdin", :email => "hadizhang@gmail.com", :major => 'DECLARED CS/EECS Major', :waitlisted => true, :sid => 193456, :team_id => 3},
+  ]
+  
+  team1 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+  team2 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+  team3 = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
+
+requests = [
+]
+
+counter = 0
+
+users.each do |u|
+  current_user = User.create!(u)
+  if counter < 2
+    team1.users << current_user
+    current_user.team = team1
+    counter += 1
+  elsif counter < 5
+    team2.users << current_user
+    current_user.team = team2
+    counter += 1
+  elsif counter < 9
+    team3.users << current_user
+    current_user.team = team3
+    counter += 1
+  end
+
+end

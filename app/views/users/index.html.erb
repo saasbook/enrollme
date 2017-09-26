@@ -1,0 +1,54 @@
+<div class="container">
+
+	<h1>Users</h1>
+
+
+	<%= form_tag(users_path, :method => "get", id: "search_form", class: "form-group col-xs-6") do %>
+	    <%= text_field_tag :search, params[:search], placeholder: "Search for a User", class: "form-control input-sm", type: "search" %>
+	<% end %>
+
+
+	<table id="individuals" class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>
+					<%= link_to 'User', users_path(:users_sort => 'users_name'), :id => 'users_name_header' %>
+				</th>
+				<th>
+					<%= link_to 'In a Team?', users_path(:users_sort => 'in_team?'), :id => 'is_team_header' %>
+				</th>
+				<th>
+					<%= link_to 'Team ID', users_path(:users_sort => 'team_id'), :id => 'team_id_header' %>
+				</th>
+
+				<th>Request</th>
+			</tr>
+
+		</thead>
+
+		<tbody>
+		  <% @users.each do |user| %>
+
+		    <tr>
+		    	<td>
+			    	<%= link_to user.name, user_path(user.id) %>
+		    	</td> 
+
+		    	<td> <%= user.team_id.nil? ? "No" : "Yes" %> </td>
+
+					<td> <%= user.team_id.nil? ? "" : user.team_id %> </td>
+
+		    	<td>
+		    	  <%= link_to "Send Request", new_user_request_path(user_id: session[:user_id], target_id: user.id, target_type: "user"), class: "btn btn-primary btn-sm request" %>
+		    	</td>
+
+		    	
+		  	</tr>
+		  <% end %>
+	        
+	  </tbody>
+
+	</table>
+	
+	
+</div>

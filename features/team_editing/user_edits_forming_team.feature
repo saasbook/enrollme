@@ -6,10 +6,10 @@ Feature: A User edits their team
   
   Background:
     Given the following users exist
-     | name  |       email                    |team_passcode | major           | sid  |
- 	   | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  |
-  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  |
-  	 | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  |
+     | name  |       email                    |team_passcode | major           | sid  | waitlisted |
+ 	   | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | true |
+  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | true |
+  	 | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  | true |
   	And I am on the login page
     And I log in as a user with email "eecs666@hotmail.com"
     And I am on the home page

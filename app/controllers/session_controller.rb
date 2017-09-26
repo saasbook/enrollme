@@ -11,7 +11,7 @@ class SessionController < ApplicationController
     elsif session[:is_admin]
       return redirect_to admins_path
     else
-      return redirect_to without_team_path if user.team.nil?
+      return redirect_to without_team_path if user.nil? or user.team.nil?
       return redirect_to team_path(user.team)
     end
   end
@@ -39,6 +39,13 @@ class SessionController < ApplicationController
   def destroy
     session.clear
     redirect_to login_path, notice: "Logged out!"
+  end
+
+  # for testing: bypasses oauth to login as an admin
+  def login_admin
+    session[:user_id] = Admin.find_by(:email => "karlos9009@gmail.com").id
+    session[:is_admin] = true
+    return redirect_to admins_path
   end
   
 end

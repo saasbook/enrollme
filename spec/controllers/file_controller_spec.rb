@@ -21,13 +21,13 @@ RSpec.describe FileController, type: :controller do
               { :name =>  "Ana"                   ,:major => "CS"  ,:sid => "4444" ,:email => "4444@berkeley.edu"},
               { :name =>  "Chris"                   ,:major => "CS"  ,:sid => "44444" ,:email => "44444@berkeley.edu"}
             ]
-            
+
             people.each do |ue|
                 User.create!(ue)
             end
-            
+
             Admin.create!({:name => "admin", :email => "admin@admin.com"})
-        
+
             @tone = Team.new
             @tone.submitted = true
             @tone.approve_with_discussion(@disc.id)
@@ -39,8 +39,8 @@ RSpec.describe FileController, type: :controller do
             @tone.users << User.where(name: "GGG")
             @tone.users << User.where(name: "FFF")
             @tone.users << User.where(name: "EEE")
-            
-            
+
+
             @ttwo = Team.new
             @ttwo.approved = false
             @ttwo.submitted = true
@@ -51,31 +51,31 @@ RSpec.describe FileController, type: :controller do
             @ttwo.users << User.where(name: "III")
             @ttwo.users << User.where(name: "Kay")
             @ttwo.users << User.where(name: "Ana")
-            
+
             @three = Team.new
             @three.submitted = false
             @three.approved = false
             @three.passcode = "passcode3"
             @three.users << User.where(name: "Chris")
-            
+
             session[:user_id] = 1
-            session[:is_admin] = true            
-            
+            session[:is_admin] = true
+
             get :download_approved_teams, :status => "Approved"
         end
-    
+
         it "shows all approved teams" do
             expect(response.body).to include("Josh")
             expect(response.body).to include("GGG")
             expect(response.body).to include("EEE")
         end
-        
+
         it "does not show submitted teams" do
             expect(response.body).not_to include("JJJ")
             expect(response.body).not_to include("III")
             expect(response.body).not_to include("Ana")
         end
-        
+
         it "does not show invalid teams" do
             expect(response.body).not_to include("Chris")
         end

@@ -6,8 +6,8 @@ Feature: edit user information
   
   Background:
     Given the following users exist
-     | name    |       email          |team_passcode | major | sid  |
- 	   | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  |
+     | name    |       email          |team_passcode | major | sid  | waitlisted |
+ 	   | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  | true |
    	And I am on the login page
     And I log in as a user with email "eecs666@hotmail.com"
     And I am on the team "1" page
@@ -27,3 +27,36 @@ Feature: edit user information
     And I follow "Edit"
     And I follow "Cancel"
     Then I should see "Sahai"
+
+  Scenario: Change bio
+    When I follow "My Info"
+    And I follow "Edit"
+    And I fill in "Bio" with "My name is Oski, I like Ruby"
+    And I press "Update Information"
+    And I follow "My Info"
+    Then I should see "My name is Oski, I like Ruby"
+
+  Scenario: Change time commitment
+    When I follow "My Info"
+    And I follow "Edit"
+    And I fill in "Time commitment" with "1337"
+    And I press "Update Information"
+    And I follow "My Info"
+    Then I should see "1337"
+
+  Scenario: Change experience
+    When I follow "My Info"
+    And I follow "Edit"
+    And I fill in "Experience" with "My name is Oski, I like Ruby"
+    And I press "Update Information"
+    And I follow "My Info"
+    Then I should see "My name is Oski, I like Ruby"
+
+  Scenario: Change bio
+    When I follow "My Info"
+    And I follow "Edit"
+    And I fill in "Facebook" with "My name is Oski, I like Ruby"
+    And I press "Update Information"
+    And I follow "My Info"
+    Then I should see "My name is Oski, I like Ruby"
+

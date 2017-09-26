@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+
+<body>
+<p>Hi <%= @target.name %></p>
+<p>
+  You have received a request from <%= @user.name %>. <br />
+  This is their message: <br />
+  <%= @body %> <br/>
+
+  Please login to accept or deny this request.
+</p>
+<p> Thanks and have a great day!</p>
+</body>
+
+</html>

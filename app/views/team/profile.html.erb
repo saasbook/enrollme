@@ -1,0 +1,31 @@
+<title>Team Profile</title>
+<div class="container">
+<h1>Team Profile</h1>
+
+<%
+  enumeration = @team.users.count
+  enumeration <= 3? row = 1 : row = 2
+  for i in 1..row 
+%>
+  <div class = row>
+    <% for j in 0..2 %>
+    <% if enumeration > 0 %>
+    <div class = "col-md-4">
+      <h3><%= @users_name_arr.pop() %></h3>
+      <%= image_tag @users_pic_arr.pop(), :class => "img-responsive" %>
+      <h5>Bio: <%= @users_bio_arr.pop() %></h5>
+      <h5>Time commitment: <%= @users_time_arr.pop() %>hrs/wk</h5>
+      <h5>Experience: <%= @users_exp_arr.pop() %></h5>
+      <h5>Facebook: <%= @users_fb_arr.pop() %></h5>
+      <h5>Linkedin: <%= @users_lk_arr.pop() %></h5>
+      <% currentEmail =  @users_email_arr.pop() %>
+      <h5>Email: <a href="mailto:<%= currentEmail %>"><%= currentEmail %></a></h5>
+    </div>
+    <% enumeration-= 1 
+      end %>
+    <% end %>
+  </div>
+  <% end %>
+  
+  
+</div>
