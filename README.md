@@ -6,7 +6,7 @@
 [![Build Status](https://travis-ci.org/msun908/enrollme.svg?branch=master)](https://travis-ci.org/msun908/enrollme)
 
 
-Copyright (c) 2016 Jason Gao, Adnan Hemani, David Koh, Sid Masih, Varun Mathuria, Dasol Yoon
+Copyright (c) 2017 Yonas Kbrom, Vikram Baid, Mark Sun, Timothy Stepro, Monty, Minjoo Sur
 
 *Pivotal Tracker* https://www.pivotaltracker.com/n/projects/1886001
 
