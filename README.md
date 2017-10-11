@@ -1,7 +1,8 @@
+
 # EnrollMe
 
-[![Maintainability](https://api.codeclimate.com/v1/badges/701cba52b50a223d24e8/maintainability)](https://codeclimate.com/github/yonas024/enrollme/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/701cba52b50a223d24e8/test_coverage)](https://codeclimate.com/github/yonas024/enrollme/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/83a3897f352fa9401cfb/maintainability)](https://codeclimate.com/github/msun908/enrollme/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/83a3897f352fa9401cfb/test_coverage)](https://codeclimate.com/github/msun908/enrollme/test_coverage)
 [![Build Status](https://travis-ci.org/adnanhemani/enrollme.svg?branch=master)](https://travis-ci.org/adnanhemani/enrollme)
 
 
