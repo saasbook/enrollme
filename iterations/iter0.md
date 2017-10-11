@@ -9,5 +9,5 @@ Video
 
 2 min interview with Cindy Connors: https://www.youtube.com/watch?v=wBph_Uhxmz0&feature=youtu.be
 
-Full Interview with Cindy Connors: Coming Soon
+Full Interview with Cindy Connors: https://youtu.be/tbhmfJa7jZ4
 
