@@ -1,8 +1,8 @@
 # EnrollMe
 
-[![Code Climate](https://codeclimate.com/github/adnanhemani/enrollme/badges/gpa.svg?)](https://codeclimate.com/github/adnanhemani/enrollme)
-[![Test Coverage](https://codeclimate.com/github/adnanhemani/enrollme/badges/coverage.svg?)](https://codeclimate.com/github/adnanhemani/enrollme/coverage)
-[![Build Status](https://travis-ci.org/adnanhemani/enrollme.svg?branch=master)](https://travis-ci.org/adnanhemani/enrollme)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4fc06db952fc2c588641/maintainability)](https://codeclimate.com/github/colinschoen/enrollme/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/4fc06db952fc2c588641/test_coverage)](https://codeclimate.com/github/colinschoen/enrollme/test_coverage)
+[![Build Status](https://travis-ci.org/colinschoen/enrollme.svg?branch=master)](https://travis-ci.org/colinschoen/enrollme)
 
 
 Copyright (c) 2016 Jason Gao, Adnan Hemani, David Koh, Sid Masih, Varun Mathuria, Dasol Yoon
