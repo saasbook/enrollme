@@ -1,6 +1,6 @@
 # EnrollMe
 
-[![Code Climate](https://codeclimate.com/github/adnanhemani/enrollme/badges/gpa.svg?)](https://codeclimate.com/github/adnanhemani/enrollme)
+[![Code Climate](https://codeclimate.com/github/yonas024/enrollme/badges/gpa.svg?)](https://codeclimate.com/github/yonas024/enrollme)
 [![Test Coverage](https://codeclimate.com/github/adnanhemani/enrollme/badges/coverage.svg?)](https://codeclimate.com/github/adnanhemani/enrollme/coverage)
 [![Build Status](https://travis-ci.org/adnanhemani/enrollme.svg?branch=master)](https://travis-ci.org/adnanhemani/enrollme)
 
