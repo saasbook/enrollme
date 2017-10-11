@@ -3,7 +3,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/83a3897f352fa9401cfb/maintainability)](https://codeclimate.com/github/msun908/enrollme/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/83a3897f352fa9401cfb/test_coverage)](https://codeclimate.com/github/msun908/enrollme/test_coverage)
-[![Build Status](https://travis-ci.org/adnanhemani/enrollme.svg?branch=master)](https://travis-ci.org/adnanhemani/enrollme)
+[![Build Status](https://travis-ci.org/msun908/enrollme.svg?branch=master)](https://travis-ci.org/msun908/enrollme)
 
 
 Copyright (c) 2016 Jason Gao, Adnan Hemani, David Koh, Sid Masih, Varun Mathuria, Dasol Yoon
