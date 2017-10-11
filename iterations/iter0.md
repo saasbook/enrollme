@@ -2,7 +2,8 @@
 
 Screencasts
 
-Recording by Team (Yonas, Vikram, Mark, Timothy, Monty, Minjoo, Monty) : https://www.youtube.com/watch?v=g_FMyYth4QQ&feature=youtu.be
+Recording by Team (Yonas Kbrom, Vikram Baid, Mark Sun, Timothy Stepro, Monty, Minjoo Sur) : https://www.youtube.com/watch?v=g_FMyYth4QQ&feature=youtu.be
+
 
 
 Video
