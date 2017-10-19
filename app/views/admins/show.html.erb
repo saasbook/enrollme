@@ -1,0 +1,13 @@
+<body>
+  <title>Admin Information</title>
+    <div class="container">
+        <h1>Admin Information</h1>
+        <br>
+        <% u = Admin.find_by_id(params[:id])%>
+        <h4>Name: <%= u.name %> </h4>
+        <h4>Email: <%= u.email %> </h4>
+        <br>
+        <%= link_to "Back", '#', onclick: "history.back()", class: 'btn btn-primary' %>
+        <%= link_to "Edit", edit_admin_path(params[:id]), {class: 'btn', :method => 'get'} %>
+    </div>
+</body>

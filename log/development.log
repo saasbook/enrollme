@@ -1,0 +1,433 @@
+  [1m[36m (14.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (7.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20161020022747)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "email" varchar NOT NULL, "password" varchar NOT NULL, "major" varchar NOT NULL, "sid" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161020022747"]]
+  [1m[35m (11.4ms)[0m  commit transaction
+Migrating to AddTeamTable (20161020074955)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "teams" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "approved" boolean, "passcode" varchar, "submission_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161020074955"]]
+  [1m[35m (7.0ms)[0m  commit transaction
+Migrating to AddAssociations (20161021063449)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "users" ADD "team_id" integer
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_users_on_team_id" ON "users" ("team_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161021063449"]]
+  [1m[36m (8.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAdmins (20161025234954)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "admins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161025234954"]]
+  [1m[36m (10.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddSubmitColumnToTeams (20161102194757)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "teams" ADD "submitted" boolean[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "teams" SET "submitted" = 'f'
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161102194757"]]
+  [1m[35m (9.6ms)[0m  commit transaction
+Migrating to CreateDiscussions (20161102225326)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "discussions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "number" integer, "time" varchar, "capacity" integer) 
+  [1m[36m (0.2ms)[0m  [1mALTER TABLE "teams" ADD "discussion_id" integer[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_teams_on_discussion_id" ON "teams" ("discussion_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161102225326"]]
+  [1m[35m (9.1ms)[0m  commit transaction
+Migrating to CreateSubmissions (20161109063020)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  CREATE TABLE "submissions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "disc1id" integer, "disc2id" integer, "disc3id" integer, "team_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161109063020"]]
+  [1m[35m (9.3ms)[0m  commit transaction
+Migrating to AddSubmissionToDiscussions (20161116015013)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  ALTER TABLE "discussions" ADD "submission_id" integer
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_discussions_on_submission_id" ON "discussions" ("submission_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161116015013"]]
+  [1m[36m (8.6ms)[0m  [1mcommit transaction[0m
+Migrating to RemovePasswordFromUser (20161117054042)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (7.4ms)[0m  [1mCREATE TEMPORARY TABLE "ausers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "email" varchar NOT NULL, "password" varchar NOT NULL, "major" varchar NOT NULL, "sid" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "team_id" integer) [0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_team_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_team_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "tindex_ausers_on_team_id" ON "ausers" ("team_id")[0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "users"
+  [1m[36m (0.3ms)[0m  [1mDROP TABLE "users"[0m
+  [1m[35m (0.2ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "email" varchar NOT NULL, "major" varchar NOT NULL, "sid" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "team_id" integer) 
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='tindex_ausers_on_team_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='tindex_ausers_on_team_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_users_on_team_id" ON "users" ("team_id")
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "ausers"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "ausers"
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161117054042"]]
+  [1m[35m (9.9ms)[0m  commit transaction
+Migrating to AddDayToDiscussion (20161117070139)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "discussions" ADD "day" varchar
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161117070139"]]
+  [1m[35m (8.8ms)[0m  commit transaction
+Migrating to RemovePasswordFromAdmins (20161118165842)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  CREATE TEMPORARY TABLE "aadmins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mSELECT * FROM "admins"[0m
+  [1m[35m (0.2ms)[0m  DROP TABLE "admins"
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "admins" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  SELECT * FROM "aadmins"
+  [1m[36m (0.1ms)[0m  [1mDROP TABLE "aadmins"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161118165842"]]
+  [1m[36m (7.6ms)[0m  [1mcommit transaction[0m
+Migrating to AddSuperadminToAdmins (20161124062115)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "admins" ADD "superadmin" boolean[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20161124062115"]]
+  [1m[36m (8.4ms)[0m  [1mcommit transaction[0m
+Migrating to AddSingletonOption (20170417002226)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "options" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "minimum_team_size" integer, "maximum_team_size" integer) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20170417002226"]]
+  [1m[36m (8.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_discussions_on_submission_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_discussions_on_submission_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_teams_on_discussion_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_teams_on_discussion_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_team_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_team_id' AND type='index'
+[0m
+
+
+Started GET "/" for 192.31.105.192 at 2017-10-11 22:15:32 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered session/new.html.erb within layouts/application (3.1ms)
+  Rendered shared/_head.html.erb (1577.3ms)
+Completed 200 OK in 1633ms (Views: 1600.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/bootstrap.min.self-60212328552432641324943796620af25d23dc04a3172ec1889fcaa45a630ab2.css?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/application.self-d885a0a66bd595c10edb24f8879f94e334d88be0730c4d7c7a7b57c731c09037.css?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/login.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/team.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/scaffolds.self-05ccc745e0d800ab4968235ca57f4f991ec858e66d40ce78b9a47d84fb819f56.css?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/team_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/user.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/bootstrap.min.self-504d59678f10d79a661b6cecdce5b8c1d5bfd98e860614584c0a40399552d61f.js?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/login.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/team_controller.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/team.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/user.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 192.31.105.192 at 2017-10-11 22:15:35 +0000
+
+
+Started GET "/auth/google_oauth2" for 192.31.105.192 at 2017-10-11 22:32:36 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/users/new" for 192.31.105.192 at 2017-10-11 22:32:56 +0000
+Processing by UsersController#new as HTML
+  Parameters: {"authenticity_token"=>"jMzSGJ88rAiKAm8F5QKYJEXk667u27cl1U27JOlhEx4W4vvZtpJ3hk3/BDnvOgrwVRvLuN9DGdysKJQhoETGBQ=="}
+  Rendered shared/_basic_info.html.erb (46.2ms)
+  Rendered users/_form.html.erb (55.5ms)
+  Rendered users/new.html.erb within layouts/application (146.2ms)
+  Rendered shared/_head.html.erb (57.8ms)
+Completed 200 OK in 230ms (Views: 220.9ms | ActiveRecord: 0.7ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_discussions_on_submission_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_discussions_on_submission_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_teams_on_discussion_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_teams_on_discussion_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_team_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_team_id' AND type='index'
+[0m
+
+
+Started GET "/" for 192.31.105.195 at 2017-10-19 00:31:04 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered session/new.html.erb within layouts/application (5.9ms)
+  Rendered shared/_head.html.erb (660.1ms)
+Completed 200 OK in 754ms (Views: 705.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/bootstrap.min.self-60212328552432641324943796620af25d23dc04a3172ec1889fcaa45a630ab2.css?body=1" for 192.31.105.195 at 2017-10-19 00:31:05 +0000
+
+
+Started GET "/assets/application.self-d885a0a66bd595c10edb24f8879f94e334d88be0730c4d7c7a7b57c731c09037.css?body=1" for 192.31.105.195 at 2017-10-19 00:31:05 +0000
+
+
+Started GET "/assets/team_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.195 at 2017-10-19 00:31:05 +0000
+
+
+Started GET "/assets/login.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.195 at 2017-10-19 00:31:05 +0000
+
+
+Started GET "/assets/team.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.195 at 2017-10-19 00:31:05 +0000
+
+
+Started GET "/assets/scaffolds.self-05ccc745e0d800ab4968235ca57f4f991ec858e66d40ce78b9a47d84fb819f56.css?body=1" for 192.31.105.195 at 2017-10-19 00:31:05 +0000
+
+
+Started GET "/assets/user.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.195 at 2017-10-19 00:31:05 +0000
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.195 at 2017-10-19 00:31:05 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for 192.31.105.195 at 2017-10-19 00:31:05 +0000
+
+
+Started GET "/assets/bootstrap.min.self-504d59678f10d79a661b6cecdce5b8c1d5bfd98e860614584c0a40399552d61f.js?body=1" for 192.31.105.195 at 2017-10-19 00:31:05 +0000
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 192.31.105.195 at 2017-10-19 00:31:06 +0000
+
+
+Started GET "/assets/login.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.195 at 2017-10-19 00:31:06 +0000
+
+
+Started GET "/assets/team.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.195 at 2017-10-19 00:31:06 +0000
+
+
+Started GET "/assets/team_controller.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.195 at 2017-10-19 00:31:06 +0000
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.195 at 2017-10-19 00:31:06 +0000
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 192.31.105.195 at 2017-10-19 00:31:06 +0000
+
+
+Started GET "/assets/user.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.195 at 2017-10-19 00:31:06 +0000
+
+
+Started GET "/" for 192.31.105.229 at 2017-10-19 00:31:07 +0000
+Processing by SessionController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.3ms)
+  Rendered shared/_head.html.erb (32.4ms)
+Completed 200 OK in 39ms (Views: 37.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/bootstrap.min.self-60212328552432641324943796620af25d23dc04a3172ec1889fcaa45a630ab2.css?body=1" for 192.31.105.229 at 2017-10-19 00:31:07 +0000
+
+
+Started GET "/assets/login.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/application.self-d885a0a66bd595c10edb24f8879f94e334d88be0730c4d7c7a7b57c731c09037.css?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/team_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/team.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/scaffolds.self-05ccc745e0d800ab4968235ca57f4f991ec858e66d40ce78b9a47d84fb819f56.css?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/user.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/bootstrap.min.self-504d59678f10d79a661b6cecdce5b8c1d5bfd98e860614584c0a40399552d61f.js?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/login.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/team.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/team_controller.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/user.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 192.31.105.229 at 2017-10-19 00:31:08 +0000
+
+
+Started GET "/auth/google_oauth2" for 192.31.105.195 at 2017-10-19 00:31:10 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/users/new" for 192.31.105.195 at 2017-10-19 00:31:14 +0000
+Processing by UsersController#new as HTML
+  Parameters: {"authenticity_token"=>"AN2frG8giioQQzYbPlkWPGOxF+guDgYbuBspoCXc90Wa87ZtRo5RpNe+XSc0YYToc043/h+WqOLBfgalbPkiXg=="}
+  Rendered shared/_basic_info.html.erb (17.3ms)
+  Rendered users/_form.html.erb (22.3ms)
+  Rendered users/new.html.erb within layouts/application (26.8ms)
+  Rendered shared/_head.html.erb (30.2ms)
+Completed 200 OK in 70ms (Views: 63.5ms | ActiveRecord: 0.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mSQL (7.5ms)[0m  DELETE FROM "admins"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mAdmin Exists (0.2ms)[0m  SELECT  1 AS one FROM "admins" WHERE "admins"."email" = 'enrollmeberkeley@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT "users"."email" FROM "users"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "admins" ("name", "email", "superadmin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "EnrollMe"], ["email", "enrollmeberkeley@gmail.com"], ["superadmin", "t"], ["created_at", "2017-10-19 00:55:30.660770"], ["updated_at", "2017-10-19 00:55:30.660770"]]
+  [1m[36m (7.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mAdmin Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "admins" WHERE "admins"."email" = 'sasson@berkeley.edu' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT "users"."email" FROM "users"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "admins" ("name", "email", "superadmin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Michael-David Sasson"], ["email", "sasson@berkeley.edu"], ["superadmin", "f"], ["created_at", "2017-10-19 00:55:30.671938"], ["updated_at", "2017-10-19 00:55:30.671938"]]
+  [1m[35m (9.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mAdmin Exists (0.1ms)[0m  SELECT  1 AS one FROM "admins" WHERE "admins"."email" = 'mr.monty@berkeley.edu' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT "users"."email" FROM "users"[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "admins" ("name", "email", "superadmin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "monty"], ["email", "mr.monty@berkeley.edu"], ["superadmin", "t"], ["created_at", "2017-10-19 00:55:30.684222"], ["updated_at", "2017-10-19 00:55:30.684222"]]
+  [1m[36m (8.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mSQL (8.9ms)[0m  DELETE FROM "options"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "options"
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "options" ("minimum_team_size", "maximum_team_size") VALUES (?, ?)[0m  [["minimum_team_size", 3], ["maximum_team_size", 3]]
+  [1m[35m (6.3ms)[0m  commit transaction
+
+
+Started GET "/" for 192.31.105.229 at 2017-10-19 00:55:54 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered session/new.html.erb within layouts/application (5.1ms)
+  Rendered shared/_head.html.erb (295.2ms)
+Completed 200 OK in 369ms (Views: 326.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/auth/google_oauth2" for 192.31.105.229 at 2017-10-19 00:55:58 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/auth/google_oauth2" for 192.31.105.229 at 2017-10-19 00:56:06 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/users/new" for 192.31.105.229 at 2017-10-19 00:56:15 +0000
+Processing by UsersController#new as HTML
+  Parameters: {"authenticity_token"=>"2Rn2VGt4Fk+D5ngWbc54dsBRVN8EzVgwRv6jAn89xk+U7suEaE9Svmfa7gTrTy1erD2Zaq4iA0V4uYmruDbhMg=="}
+  Rendered shared/_basic_info.html.erb (18.7ms)
+  Rendered users/_form.html.erb (23.1ms)
+  Rendered users/new.html.erb within layouts/application (26.0ms)
+  Rendered shared/_head.html.erb (19.5ms)
+Completed 200 OK in 61ms (Views: 50.6ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/admin" for 192.31.105.229 at 2017-10-19 00:56:38 +0000
+
+
+Started GET "/" for 192.31.105.229 at 2017-10-19 00:56:38 +0000
+Processing by SessionController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.3ms)
+  Rendered shared/_head.html.erb (17.9ms)
+Completed 200 OK in 23ms (Views: 21.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin" for 192.31.105.229 at 2017-10-19 00:56:43 +0000
+
+
+Started GET "/" for 192.31.105.229 at 2017-10-19 00:56:43 +0000
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.2ms)
+  Rendered shared/_head.html.erb (24.2ms)
+Completed 200 OK in 29ms (Views: 27.6ms | ActiveRecord: 0.2ms)

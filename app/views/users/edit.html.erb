@@ -1,0 +1,15 @@
+<body>
+  <title>Edit Info</title>
+    <div class="container">
+        <h1>Edit Info</h1>
+        <%= form_for @user, :url => user_path(@user.id), :method => :put, class: "form-horizontal" do |f| %>
+            <fieldset>
+                <%= render 'users/form', :f => f %>
+                <div class="actions form-group">
+                    <a href="/" class="btn btn-default">Cancel</a>
+                    <%= f.submit "Update Information", class: "btn btn-primary" %>
+                </div>
+            </fieldset>
+        <% end %>
+    </div>
+</body>

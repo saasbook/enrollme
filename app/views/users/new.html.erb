@@ -1,0 +1,15 @@
+<body>
+  <title>Sign Up</title>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <%= form_for @user, url: {action: "create"}, class: "form-horizontal" do |f| %>
+            <fieldset>
+                <%= render 'users/form', :f => f %>
+                <div class="actions form-group">
+                    <a href="/" class="btn btn-default">Cancel</a>
+                    <%= f.submit "Sign Up", class: "btn btn-primary" %>
+                </div>
+            </fieldset>
+        <% end %>
+    </div>
+</body>

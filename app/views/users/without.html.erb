@@ -1,0 +1,30 @@
+<html>
+<body>
+  <title>Create or Join a Team</title>
+    <div class="container">
+        <div class = "text-center">
+            <h1>Create or Join a Team</h1>
+            <br>
+
+            <%= form_tag join_team_path, class: "form-group" do %>
+                <div class="input-group">
+                    <span class="input-group-addon">Team Passcode</span>
+                    <%= text_field_tag :team_hash, params[:team_hash], class: "form-control", placeholder: "My team" %>
+                    <span class="input-group-btn">
+                      <% if @user.team.nil? %>
+                          <input type='submit' class='btn btn-primary' value='Join' />
+                      <% else %>
+                          <input type='submit' class='btn btn-primary' value='Join' data-confirm="You are already on a team. Do you want to leave your current team and join a different one?" />
+                      <% end %>
+                    </span>
+                </div>
+            <% end %>
+            <% if @user.team.nil? %>
+               <%= button_to "Create a Team", create_team_path, class: "btn btn-default btn-large btn-block" %>
+            <% else %>
+              <%= button_to "Create a Team", create_team_path, class: "btn btn-default btn-large btn-block", data: {confirm: "You are already on a team. Do you want to leave your current team and join a different one?"} %>
+            <% end %>
+        </div>
+    </div>
+</body>
+</html>

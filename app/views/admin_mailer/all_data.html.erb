@@ -1,0 +1,106 @@
+<html>
+<head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
+<body>
+    <h1>Teams</h1>
+    <table class="table table-striped table-hover" style="border: 1px solid black; padding: 15px; border-spacing: 5px; border-collapse: collapse; width: 100%; ">
+        <tr style="border: 1px solid black;">
+          <td>Team ID</td>
+          <td>Passcode</td>
+          <td>Members</td>
+          <td>Approved?</td>
+          <td>Submitted?</td>
+          <td>Submission ID</td>
+          <td>Created On</td>
+          <td>Updated On</td>
+        </tr>
+        <% Team.all.each do |t| %>
+          <tr>
+            <td><%= t.id %></td>
+            <td><%= t.passcode %></td>
+            <td><% t.users.each do |u| %>
+              <%= u.name %>
+              <br>
+            <% end %></td>
+            <td><%= t.approved ? 'Approved' : 'Not Approved' %></td>
+            <td><%= t.submitted ? 'Approved' : 'Not Approved' %></td>
+            <td><%= t.submission_id %></td>
+            <td><%= t.created_at %></td>
+            <td><%= t.updated_at %></td>
+          </tr>
+        <% end %>
+    </table>
+    <h1>Users</h1>
+    <table class="table table-striped table-hover" style="border: 1px solid black; padding: 15px; border-spacing: 5px; border-collapse: collapse; width: 100%; ">
+        <tr style="border: 1px solid black;">
+          <td>User ID</td>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Major</td>
+          <td>SID</td>
+          <td>Team ID</td>
+          <td>Created On</td>
+          <td>Updated On</td>
+        </tr>
+        <% User.all.each do |u| %>
+          <tr>
+            <td><%= u.id %></td>
+            <td><%= u.name %></td>
+            <td><%= u.email %></td>
+            <td><%= u.major %></td>
+            <td><%= u.sid %></td>
+            <td><%= u.team_id %></td>
+            <td><%= u.created_at %></td>
+            <td><%= u.updated_at %></td>
+          </tr>
+        <% end %>
+    </table>
+    <h1>Discussions</h1>
+    <table class="table table-striped table-hover" style="border: 1px solid black; padding: 15px; border-spacing: 5px; border-collapse: collapse; width: 100%; ">
+        <tr style="border: 1px solid black;">
+          <td>Number</td>
+          <td>Time</td>
+          <td>Day</td>
+          <td>Teams</td>
+          <td>Capacity</td>
+          <td>Submission ID</td>
+        </tr>
+        <% Discussion.all.each do |d| %>
+          <tr>
+            <td><%= d.number %></td>
+            <td><%= d.time %></td>
+            <td><%= d.day %></td>
+            <td><% d.teams.each do |t| %>
+              <%= t.id %>
+              <br>
+            <% end %></td>
+            <td><%= d.capacity %></td>
+            <td><%= d.submission_id %></td>
+          </tr>
+        <% end %>
+    </table>
+    <h1>Submissions</h1>
+    <table class="table table-striped table-hover" style="border: 1px solid black; padding: 15px; border-spacing: 5px; border-collapse: collapse; width: 100%; ">
+        <tr style="border: 1px solid black;">
+          <td>Team ID</td>
+          <td>Discussion 1</td>
+          <td>Discussion 2</td>
+          <td>Discussion 3</td>
+          <td>Created On</td>
+          <td>Updated On</td>
+        </tr>
+        <% Submission.all.each do |s| %>
+          <tr>
+            <td><%= s.team_id %></td>
+            <td><%= s.disc1id %></td>
+            <td><%= s.disc2id %></td>
+            <td><%= s.disc3id %></td>
+            <td><%= s.created_at %></td>
+            <td><%= s.updated_at %></td>
+          </tr>
+        <% end %>
+    </table>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+<head>
+  <%= yield %>
+  <title>Choose Discussions</title>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose Discussions</h1>
+        <% @team = User.find(session[:user_id]).team %>
+        <%= form_for @submission, url: {action: "create"}, class: "form-horizontal" do |f| %>
+            <fieldset>
+                <div class="field form-group">
+                    <%= f.label "1st Choice", class: "col-lg-2 control-label" %> <br>
+                    <%= f.collection_select(:disc1id, Discussion.valid_discs_for(@team), :id, :info, {}) %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label "2nd Choice", class: "col-lg-2 control-label" %> <br>
+                    <%= f.collection_select(:disc2id, Discussion.valid_discs_for(@team), :id, :info, {}) %>
+                </div>
+                
+                <div class="field form-group">
+                    <%= f.label "3rd Choice", class: "col-lg-2 control-label" %> <br>
+                    <%= f.collection_select(:disc3id, Discussion.valid_discs_for(@team), :id, :info, {}) %>
+                </div>
+                
+                <br>
+                
+                <div class="actions form-group">
+                    <a href="/" class="btn btn-default">Cancel</a>
+                    <%= f.submit "Submit", class: "btn btn-primary" %>
+                </div>
+            </fieldset>
+          <% end %>
+    </div>
+</body>

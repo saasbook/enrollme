@@ -1,0 +1,35 @@
+require 'csv'
+class FileController < ApplicationController
+  def index
+  end
+
+  def download_approved_teams
+    time_zone = "Pacific Time (US & Canada)"
+    time_format = "%Y%m%d%H%M"
+    time = Time.now.in_time_zone(time_zone).strftime(time_format)
+
+    filename = time + '_' + params[:status] + '_team_info.csv'
+    
+    rows = []
+    rows << ["Team ID", "Discussion Number", "Student ID", "Student Name"]
+
+    Team.filter_by(params[:status]).each do |t|
+      discussion = Discussion.find_by_id(t.discussion_id)
+      
+      if discussion.nil?
+        disc_id = 00000
+      else
+        disc_id = discussion.number
+      end
+      
+      t.users.each do |u|
+        rows << [t.id, disc_id, u.sid, u.name]
+      end
+    end
+
+    csv_str = rows.inject([]) { |csv, row|  csv << CSV.generate_line(row) }.join("")
+    send_data(csv_str, type: 'text/csv', filename: filename)
+  end
+  
+  
+end

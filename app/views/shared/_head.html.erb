@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">EnrollMe</a>
+    </div>
+    
+
+    <div class="navbar-collapse collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href='/'>Home</a></li>
+            <% if session[:user_id].nil? %>
+                <li><%= link_to "Sign Up", new_user_path, {method: 'get'} %></li>
+                <li><%= link_to "Log In", "/auth/google_oauth2", id: "log_in_header" %></li>
+            <% else %>
+              <% if session[:is_admin].nil? %>
+                <li><%= link_to "Help", help_path %></li>
+                <li><%= link_to "My Info", user_path(session[:user_id]), {method: 'get'} %></li>
+              <% else %>
+                  <li><%= link_to "Help", '/admin/tutorial' %></li>
+                  <li><%= link_to "My Info", admin_path(session[:user_id]), {method: 'get'} %></li>
+                  <li><%= link_to "Register New Admin", new_admin_path, {method: 'get'} %></li>
+                  <% if Admin.find(session[:user_id]).superadmin == true %>
+                    <li><%= link_to "Manage Admins", superadmin_path, {method: :get} %></li>
+                    <li><%= link_to "Reset Semester", reset_semester_path, {method: :get} %></li>
+                  <% end %>
+              <% end %>
+              <li><%= link_to "Logout", logout_path, {method: 'get'} %></li>
+            <% end %>
+        </ul>
+    </div>
+  </div>
+</nav>
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, class: "alert" %>
+<% end %>
+
+<head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<%= yield %>

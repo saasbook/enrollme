@@ -1,0 +1,18 @@
+<% if user.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %>, Form is invalid:</h2>
+        <ul>
+        <% user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<div class="field form-group">
+    <%= f.label :name, class: "col-lg-2 control-label" %> <br>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :email, class: "col-lg-2 control-label" %> <br>
+    <%= f.text_field :email, {class: "form-control", :readonly => ((@user.nil? or @user.id.nil?) and (@admin.nil? or @admin.id.nil?)) ? false : true} %>
+    <p class="text-danger"> <strong> Warning: </strong> Please do not use any email aliases - you will not be able to sign in. You must be able to sign into CalNet and/or Gmail using the email provided here.</p>
+</div>
