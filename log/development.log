@@ -431,3 +431,401 @@ Processing by SessionController#new as HTML
   Rendered session/new.html.erb within layouts/application (0.2ms)
   Rendered shared/_head.html.erb (24.2ms)
 Completed 200 OK in 29ms (Views: 27.6ms | ActiveRecord: 0.2ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mSQL (11.2ms)[0m  DELETE FROM "admins"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mAdmin Exists (0.3ms)[0m  SELECT  1 AS one FROM "admins" WHERE "admins"."email" = 'enrollmeberkeley@gmail.com' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT "users"."email" FROM "users"[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "admins" ("name", "email", "superadmin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "EnrollMe"], ["email", "enrollmeberkeley@gmail.com"], ["superadmin", "t"], ["created_at", "2017-10-19 19:44:54.710348"], ["updated_at", "2017-10-19 19:44:54.710348"]]
+  [1m[36m (9.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mAdmin Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "admins" WHERE "admins"."email" = 'sasson@berkeley.edu' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT "users"."email" FROM "users"
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "admins" ("name", "email", "superadmin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Michael-David Sasson"], ["email", "sasson@berkeley.edu"], ["superadmin", "f"], ["created_at", "2017-10-19 19:44:54.723851"], ["updated_at", "2017-10-19 19:44:54.723851"]]
+  [1m[35m (9.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mAdmin Exists (0.2ms)[0m  SELECT  1 AS one FROM "admins" WHERE "admins"."email" = 'kbromyonas@berkeley.edu' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT "users"."email" FROM "users"[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "admins" ("name", "email", "superadmin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Yonas Kbrom"], ["email", "kbromyonas@berkeley.edu"], ["superadmin", "f"], ["created_at", "2017-10-19 19:44:54.736512"], ["updated_at", "2017-10-19 19:44:54.736512"]]
+  [1m[36m (7.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mSQL (9.4ms)[0m  DELETE FROM "options"
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "options"
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "options" ("minimum_team_size", "maximum_team_size") VALUES (?, ?)[0m  [["minimum_team_size", 3], ["maximum_team_size", 3]]
+  [1m[35m (7.8ms)[0m  commit transaction
+
+
+Started GET "/" for 64.62.133.42 at 2017-10-19 19:45:28 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered session/new.html.erb within layouts/application (4.5ms)
+  Rendered shared/_head.html.erb (556.4ms)
+Completed 200 OK in 621ms (Views: 588.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/bootstrap.min.self-60212328552432641324943796620af25d23dc04a3172ec1889fcaa45a630ab2.css?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/scaffolds.self-05ccc745e0d800ab4968235ca57f4f991ec858e66d40ce78b9a47d84fb819f56.css?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/team.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/application.self-d885a0a66bd595c10edb24f8879f94e334d88be0730c4d7c7a7b57c731c09037.css?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/team_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/login.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/user.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/bootstrap.min.self-504d59678f10d79a661b6cecdce5b8c1d5bfd98e860614584c0a40399552d61f.js?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/login.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/team.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/team_controller.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 64.62.133.42 at 2017-10-19 19:45:29 +0000
+
+
+Started GET "/assets/user.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 64.62.133.42 at 2017-10-19 19:45:30 +0000
+
+
+Started GET "/assets/users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 64.62.133.42 at 2017-10-19 19:45:30 +0000
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 64.62.133.42 at 2017-10-19 19:45:30 +0000
+
+
+Started GET "/auth/google_oauth2" for 64.62.133.42 at 2017-10-19 19:45:31 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/auth/google_oauth2" for 64.62.133.42 at 2017-10-19 19:47:00 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/" for 64.62.133.42 at 2017-10-19 19:47:21 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered session/new.html.erb within layouts/application (2.7ms)
+  Rendered shared/_head.html.erb (328.3ms)
+Completed 200 OK in 380ms (Views: 347.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/auth/google_oauth2" for 64.62.133.42 at 2017-10-19 19:47:27 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/auth/google_oauth2/callback" for 64.62.133.42 at 2017-10-19 19:48:38 +0000
+(google_oauth2) Callback phase initiated.
+(google_oauth2) Authentication failure! csrf_detected: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+(google_oauth2) Authentication failure! invalid_credentials: OmniAuth::Strategies::OAuth2::CallbackError, csrf_detected | CSRF detected
+
+OmniAuth::Strategies::OAuth2::CallbackError (csrf_detected | CSRF detected):
+  omniauth (1.6.1) lib/omniauth/failure_endpoint.rb:25:in `raise_out!'
+  omniauth (1.6.1) lib/omniauth/failure_endpoint.rb:20:in `call'
+  omniauth (1.6.1) lib/omniauth/failure_endpoint.rb:12:in `call'
+  omniauth (1.6.1) lib/omniauth/strategy.rb:478:in `fail!'
+  omniauth-oauth2 (1.3.1) lib/omniauth/strategies/oauth2.rb:75:in `callback_phase'
+  omniauth (1.6.1) lib/omniauth/strategy.rb:230:in `callback_call'
+  omniauth (1.6.1) lib/omniauth/strategy.rb:187:in `call!'
+  omniauth (1.6.1) lib/omniauth/strategy.rb:167:in `call'
+  omniauth (1.6.1) lib/omniauth/builder.rb:63:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/local/rvm/rubies/ruby-2.3.4/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /usr/local/rvm/rubies/ruby-2.3.4/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /usr/local/rvm/rubies/ruby-2.3.4/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (29.5ms)
+
+
+Started GET "/auth/google_oauth2/" for 64.62.133.42 at 2017-10-19 19:48:48 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/auth/google_oauth2" for 64.62.133.42 at 2017-10-19 19:57:59 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/auth/google_oauth2/callback?state=a4ee3981ce4240462292a5d9eec83e67328c9d32e632957e&code=4/6VxaC2XqT0rj9ZfJiPyzKY6xkHc1nmTaW63CQLcvUEo" for 64.62.133.42 at 2017-10-19 19:58:22 +0000
+(google_oauth2) Callback phase initiated.
+(google_oauth2) Authentication failure! invalid_credentials: OAuth2::Error, invalid_request: Could not determine client ID from request.
+{
+  "error" : "invalid_request",
+  "error_description" : "Could not determine client ID from request."
+}
+
+OAuth2::Error (invalid_request: Could not determine client ID from request.
+{
+  "error" : "invalid_request",
+  "error_description" : "Could not determine client ID from request."
+}):
+  oauth2 (1.3.1) lib/oauth2/client.rb:119:in `request'
+  oauth2 (1.3.1) lib/oauth2/client.rb:146:in `get_token'
+  oauth2 (1.3.1) lib/oauth2/strategy/auth_code.rb:30:in `get_token'
+  omniauth-oauth2 (1.3.1) lib/omniauth/strategies/oauth2.rb:93:in `build_access_token'
+  omniauth-google-oauth2 (0.2.10) lib/omniauth/strategies/google_oauth2.rb:103:in `custom_build_access_token'
+  omniauth-oauth2 (1.3.1) lib/omniauth/strategies/oauth2.rb:77:in `callback_phase'
+  omniauth (1.6.1) lib/omniauth/strategy.rb:230:in `callback_call'
+  omniauth (1.6.1) lib/omniauth/strategy.rb:187:in `call!'
+  omniauth (1.6.1) lib/omniauth/strategy.rb:167:in `call'
+  omniauth (1.6.1) lib/omniauth/builder.rb:63:in `call'
+  rack (1.6.8) lib/rack/etag.rb:24:in `call'
+  rack (1.6.8) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.8) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.8) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.8) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.8) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.8) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.8) lib/rack/lock.rb:17:in `call'
+  rack (1.6.8) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.8) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/local/rvm/rubies/ruby-2.3.4/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /usr/local/rvm/rubies/ruby-2.3.4/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /usr/local/rvm/rubies/ruby-2.3.4/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.7ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (38.2ms)
+
+
+Started GET "/" for 64.62.133.42 at 2017-10-19 20:04:48 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered session/new.html.erb within layouts/application (40.7ms)
+Completed 500 Internal Server Error in 76ms (ActiveRecord: 0.3ms)
+
+ActionView::Template::Error (undefined local variable or method `vbo1utcvlanmov42ocu49m91tgdjb18s' for #<#<Class:0x00000003bfec00>:0x00000003bc4f50>):
+     5:         <div class = "text-center">
+     6:             <h1>CS 169 EnrollMe</h1>
+     7:             <br>
+     8:             <%= link_to "Log In", "/auth/google_oauth2", {id: "log_in", class: "btn btn-default", client_id: 31784258058-vbo1utcvlanmov42ocu49m91tgdjb18s.apps.googleusercontent.com}  %>
+     9:             <br>
+    10:             <br>
+    11:             <%= link_to "Sign Up", new_user_path, {method: :get, class: "btn btn-default"} %>
+  app/views/session/new.html.erb:8:in `_app_views_session_new_html_erb___2221425043016558676_30867000'
+  app/controllers/session_controller.rb:10:in `new'
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.6ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.3.4/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (29.4ms)
+
+
+Started GET "/" for 64.62.133.42 at 2017-10-19 20:05:20 +0000
+Processing by SessionController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (2.1ms)
+  Rendered shared/_head.html.erb (341.6ms)
+Completed 200 OK in 353ms (Views: 351.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/auth/google_oauth2" for 64.62.133.42 at 2017-10-19 20:05:22 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/" for 64.62.133.42 at 2017-10-19 20:18:43 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered session/new.html.erb within layouts/application (2.5ms)
+  Rendered shared/_head.html.erb (258.9ms)
+Completed 200 OK in 309ms (Views: 279.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/auth/google_oauth2" for 64.62.133.42 at 2017-10-19 20:18:45 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/" for 64.62.133.42 at 2017-10-19 20:22:03 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1
+  Rendered session/new.html.erb within layouts/application (3.9ms)
+  Rendered shared/_head.html.erb (321.7ms)
+Completed 200 OK in 376ms (Views: 346.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/auth/google_oauth2" for 64.62.133.42 at 2017-10-19 20:22:07 +0000
+(google_oauth2) Request phase initiated.
+
+
+Started GET "/auth/google_oauth2/callback?state=451fb55f3ed177912f5c207541925b5ef0b17154327e70ca&code=4/7c19B6SZv0JDiXYVi4AX59pMLBsfGxh5bT092EAnbK4" for 64.62.133.42 at 2017-10-19 20:22:13 +0000
+(google_oauth2) Callback phase initiated.
+Processing by SessionController#create as HTML
+  Parameters: {"state"=>"451fb55f3ed177912f5c207541925b5ef0b17154327e70ca", "code"=>"4/7c19B6SZv0JDiXYVi4AX59pMLBsfGxh5bT092EAnbK4", "provider"=>"google_oauth2"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT 1[0m  [["email", "kbromyonas@berkeley.edu"]]
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."email" = ? LIMIT 1  [["email", "kbromyonas@berkeley.edu"]]
+Redirected to https://enrollme-yonas024.c9users.io/admins
+Completed 302 Found in 16ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/admins" for 64.62.133.42 at 2017-10-19 20:22:13 +0000
+Processing by AdminsController#index as HTML
+  [1m[36mAdmin Load (0.3ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mTeam Load (0.2ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?[0m  [["approved", "t"]]
+  [1m[35mTeam Load (0.2ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?  [["approved", "f"], ["submitted", "t"]]
+  Rendered admins/index.html.erb within layouts/application (2.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered shared/_head.html.erb (21.9ms)
+Completed 200 OK in 54ms (Views: 31.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/admins?status=All" for 64.62.133.42 at 2017-10-19 20:23:01 +0000
+Processing by AdminsController#index as HTML
+  Parameters: {"authenticity_token"=>"yRjVa8AMsuLX+se+tRIjklWBhZCyoTHuRvTVEqULhNxTNvyq6aJpbBAHrIK/KrFGRX6lhoM5nxc/kfoX7C5Rxw==", "status"=>"All"}
+  [1m[35mAdmin Load (0.1ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mTeam Load (0.2ms)[0m  SELECT "teams".* FROM "teams"
+  Rendered admins/index.html.erb within layouts/application (1.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered shared/_head.html.erb (19.3ms)
+Completed 200 OK in 25ms (Views: 23.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admins?status=Pending" for 64.62.133.42 at 2017-10-19 20:23:05 +0000
+Processing by AdminsController#index as HTML
+  Parameters: {"authenticity_token"=>"KdM50Cb13CbeJ6aqfQs7FzBuSKzup4fLt2RHOuCWBQez/RARD1sHqBnazZZ3M6nDIJFout8/KTLOAWg/qbPQHA==", "status"=>"Pending"}
+  [1m[35mAdmin Load (0.1ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?  [["approved", "f"], ["submitted", "t"]]
+  Rendered admins/index.html.erb within layouts/application (1.6ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered shared/_head.html.erb (21.5ms)
+Completed 200 OK in 28ms (Views: 25.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admins?status=Approved" for 64.62.133.42 at 2017-10-19 20:23:07 +0000
+Processing by AdminsController#index as HTML
+  Parameters: {"authenticity_token"=>"IjY/bhwMdN9h6Ejyv9BMd9zdmsOXd1hfVy9gwBjeMAG4GBavNaKvUaYVI8616N6jzCK61abv9qYuSk/FUfvlGg==", "status"=>"Approved"}
+  [1m[35mAdmin Load (0.1ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?  [["approved", "t"]]
+  Rendered admins/index.html.erb within layouts/application (1.9ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered shared/_head.html.erb (27.6ms)
+Completed 200 OK in 34ms (Views: 32.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admins/new" for 64.62.133.42 at 2017-10-19 20:23:12 +0000
+Processing by AdminsController#new as HTML
+  Parameters: {"authenticity_token"=>"n8gUdmgPrv2DcmtIR8KzvWE08uPrMRLaUtJzo/F0DWIF5j23QaF1c0SPAHRN+iFpccvS9dqpvCMrt1ymuFHYeQ=="}
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 6]]
+  Rendered shared/_basic_info.html.erb (18.9ms)
+  Rendered admins/new.html.erb within layouts/application (22.6ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered shared/_head.html.erb (22.4ms)
+Completed 200 OK in 50ms (Views: 48.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 64.62.133.42 at 2017-10-19 20:23:15 +0000
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 6]]
+Redirected to https://enrollme-yonas024.c9users.io/admins
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/admins" for 64.62.133.42 at 2017-10-19 20:23:15 +0000
+Processing by AdminsController#index as HTML
+  [1m[36mAdmin Load (0.1ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 6]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?[0m  [["approved", "t"]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?  [["approved", "f"], ["submitted", "t"]]
+  Rendered admins/index.html.erb within layouts/application (1.5ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered shared/_head.html.erb (58.3ms)
+Completed 200 OK in 65ms (Views: 62.8ms | ActiveRecord: 0.3ms)

@@ -8,7 +8,7 @@
 admins = [
       { :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :superadmin => true},
       { :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => false},
-      { :name => "monty", :email => "mr.monty@berkeley.edu", :superadmin => true}
+      { :name => "Yonas Kbrom", :email => "kbromyonas@berkeley.edu", :superadmin => false},
   ]
   
 Admin.delete_all
