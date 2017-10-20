@@ -165,3 +165,21 @@ end
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
+
+Given /^that all students are ?(not) on the waitlist/ do |neot|
+  pending
+end
+
+Then /^emails team members should ?(not) be sent/ do |neot|
+  pending
+end
+
+Given /^that there is a team where all members are ?(not) on the waitlist/ do |neot|
+  pending
+end
+
+Then /^I should ?(not) see a flag on the team's row/ do |neot|
+  pending
+end
+
+
