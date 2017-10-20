@@ -1216,3 +1216,16 @@ Processing by AdminsController#index as HTML
   [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 9]]
   Rendered shared/_head.html.erb (18.6ms)
 Completed 200 OK in 27ms (Views: 23.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/admins" for 192.31.105.195 at 2017-10-20 21:37:02 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AdminsController#index as HTML
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 9]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 9]]
+  [1m[35mTeam Load (0.2ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?  [["approved", "t"]]
+  [1m[36mTeam Load (0.2ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?[0m  [["approved", "f"], ["submitted", "t"]]
+  Rendered admins/index.html.erb within layouts/application (4.4ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 9]]
+  Rendered shared/_head.html.erb (272.8ms)
+Completed 200 OK in 341ms (Views: 293.0ms | ActiveRecord: 1.2ms)
