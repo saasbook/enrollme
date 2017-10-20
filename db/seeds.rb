@@ -7,7 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 admins = [
       { :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :superadmin => true},
-      { :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => false}
+      { :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => false},
+      { :name => "Yonas Kbrom", :email => "kbromyonas@berkeley.edu", :superadmin => false},
+      { :name => "Monty Inaya", :email => "mr.monty@berkeley.edu", :superadmin => false},
+      { :name => "Vikram Baid", :email => "vbaid@berkeley.edu", :superadmin => false},
+      { :name => "Mark Sun", :email => "msun908@berkeley.edu", :superadmin => false},
+      { :name => "Timothy Stepro", :email => "stepro.015389@berkeley.edu", :superadmin => false},
+      { :name => "Minjoo Sur", :email => "minjoo@berkeley.edu", :superadmin => false},
   ]
   
 Admin.delete_all
