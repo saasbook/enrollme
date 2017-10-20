@@ -8,7 +8,6 @@ Feature: Student creates a new account
 
   Scenario: User successfully creates an account and logs in
     When I fill in "Name" with "David"
-    And I fill in "Email" with "david@berkeley.edu"
     And I fill in "Sid" with "12345678"
     And I select "DECLARED CS/EECS Major" from "major"
     And I press "Sign Up"
@@ -23,7 +22,6 @@ Feature: Student creates a new account
      | name  | email                  |
   	 | Bob   | supreme_ruler@aol.com  |
   	And I fill in "Name" with "Bob"
-  	And I fill in "Email" with "supreme_ruler@aol.com"
     And I fill in "Sid" with "98745632"
     And I select "Other Major" from "major"
     And I press "Sign Up"
