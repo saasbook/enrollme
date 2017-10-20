@@ -78,7 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = (ENV['EMAIL_DELIVERY_METHOD'] | :smtp).to_sym
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
     port: 587,
@@ -89,7 +89,6 @@ Rails.application.configure do
     #enable_starttls_auto: true
   }
 
-  config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
   		api_key: ENV['MAIL_GUN_API_KEY'],
   		domain: ENV['MAIL_GUN_DOMAIN']
