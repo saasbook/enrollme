@@ -37,7 +37,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano'
 
 # MailGun
-gem 'mailgun-ruby', '~>1.1.6'
+gem 'mailgun_rails'
 
 group :test do
   gem 'simplecov', :require => false
