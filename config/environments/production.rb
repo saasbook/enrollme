@@ -88,4 +88,10 @@ Rails.application.configure do
     authentication: 'plain',
     #enable_starttls_auto: true
   }
+
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+  		api_key: ENV['MAIL_GUN_API_KEY'],
+  		domain: ENV['MAIL_GUN_DOMAIN']
+  }
 end
