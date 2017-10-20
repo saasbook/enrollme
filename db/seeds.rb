@@ -8,7 +8,7 @@
 admins = [
       { :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :superadmin => true},
       { :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => false},
-      { :name => "Yonas Kbrom", :email => "kbromyonas@berkeley.edu", :superadmin => false},
+      { :name => "Yonas Kbrom", :email => "kbromyonas@berkeley.edu", :superadmin => true},
       { :name => "Monty Inaya", :email => "mr.monty@berkeley.edu", :superadmin => false},
       { :name => "Vikram Baid", :email => "vbaid@berkeley.edu", :superadmin => false},
       { :name => "Mark Sun", :email => "msun908@berkeley.edu", :superadmin => false},
