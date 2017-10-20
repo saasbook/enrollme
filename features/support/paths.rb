@@ -17,8 +17,6 @@ module NavigationHelpers
       '/'
     when /^the (.*)_user page$/i
       "/users/" + $1
-    when /^the admin page/i
-      "/admins"
     when /^the (.*)_admin page$/i
       "/admins/" + $1
     when /^the team "([^"]*)" page$/i
