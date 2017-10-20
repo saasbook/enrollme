@@ -26,7 +26,7 @@ EnrollMe expects the following environment variables to be configured:
 - GOOGLE_SECRET
 - MAIL_GUN_API_KEY
 - MAIL_GUN_DOMAIN
-- MAIL_DELIVERY_METHOD (expected values :smtp, :mailgun)
+- EMAIL_DELIVERY_METHOD (expected values :smtp, :mailgun)
 
 #### Populate Discussion Sections
 
