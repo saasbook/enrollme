@@ -21,6 +21,10 @@ The app will not work locally (at least, logging in specifically) unless you add
 
 EnrollMe uses a very standard deployment process. You only need to push to Heroku using git. Don't forget to update your your GitHub repo though!
 
+EnrollMe expects the following environment variables to be configured:
+    MAIL_GUN_API_KEY
+    MAIL_GUN_DOMAIN
+
 #### Populate Discussion Sections
 
 Once you're into the admin portal, you should click the "Discussions" button on the Admin homepage. Once you're there, you can click on "Add Discussions" to be on your way to creating new discussion sections in the system. You can use the "Edit Discussions" button to edit existing discussion sections.
