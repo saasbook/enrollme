@@ -1,0 +1,27 @@
+engines: 
+  csslint: 
+    enabled: true
+  duplication: 
+    config: 
+      languages: 
+        - ruby
+        - javascript
+    enabled: true
+  eslint: 
+    enabled: true
+  golint: 
+    enabled: true
+  rubocop: 
+    enabled: true
+exclude_paths: 
+  - spec/**/*
+  - "**/vendor/**/*"
+  - features/**/*
+  - coverage/**/*
+  - config/environments/*
+  - bin/*
+  - lib/**/*
+  - db/**/*
+ratings: 
+  paths: 
+    - app/**
