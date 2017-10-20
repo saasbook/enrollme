@@ -3,7 +3,7 @@ Feature: join or create a team
   As a student
   So that I can become part of a team
   I want to be able to join or create a team
-
+  
   Background:
     Given the allowed team size is 5-6
     And   the following users exist
@@ -17,18 +17,17 @@ Feature: join or create a team
 
     And I am on the login page
     And I log in as a user with email "legueoflegends667@hotmail.com"
-
+    
   Scenario: A user tries joining a nonexistent team
     Given I fill in "team_hash" with "barbequed_crickets"
     And I press "Join"
     Then I should see "Unable to join team"
-
+    
   Scenario: An existing user creates a new team and gets the password
     Given I press "Create"
     Then I should see "Team Password:"
-
+    
   Scenario: An existing user joins an existing team
     Given I fill in "team_hash" with "penguindrool"
     And I press "Join"
     Then I should see "Team Password: penguindrool"
-    And I should see "My Team: 1"
