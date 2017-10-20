@@ -24,6 +24,7 @@ EnrollMe uses a very standard deployment process. You only need to push to Herok
 EnrollMe expects the following environment variables to be configured:
     MAIL_GUN_API_KEY
     MAIL_GUN_DOMAIN
+    MAIL_DELIVERY_METHOD (expected values :smtp, :mailgun)
 
 #### Populate Discussion Sections
 
