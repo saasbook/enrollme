@@ -13,7 +13,8 @@ class AdminsController < ApplicationController
     @admin.superadmin = false
     if session[:is_admin] == true and @admin.save
       AdminMailer.invite_new_admin(@admin).deliver_now
-      redirect_to admins_path, :notice => "You created admin #{admin_params["name"]} successfully!"
+      redirect_to admins_path,
+        :notice => "You created admin #{admin_params['name']} successfully!"
     else
       render 'new', :notice => "Form is invalid"
     end
@@ -84,10 +85,7 @@ class AdminsController < ApplicationController
     @reset_password = params[:reset_password]
     if @reset_password == ENV["ADMIN_DELETE_DATA_PASSWORD"]
       AdminMailer.all_data(@admin).deliver_now unless Rails.env.test?
-      User.delete_all
-      Team.delete_all
-      Submission.delete_all
-      Discussion.delete_all
+      delete_all_database_columns
       redirect_to "/", :notice => "All data reset. Good luck with the new semester!"
     else
       redirect_to reset_semester_path, :notice => "Incorrect password"
@@ -160,5 +158,13 @@ class AdminsController < ApplicationController
   def admin_tutorial
     render 'admin_tutorial'
   end
+
+  def delete_all_database_columns
+    User.delete_all
+    Team.delete_all
+    Submission.delete_all
+    Discussion.delete_all
+  end
+
 
 end
