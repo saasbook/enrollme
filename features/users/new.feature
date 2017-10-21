@@ -4,7 +4,8 @@ Feature: Student creates a new account
   I want to create an account on EnrollMe
   
   Background:
-    Given I am on the new_user page
+    Given I am on the home page
+    And I follow "sign_up"
 
   Scenario: User successfully creates an account and logs in
     When I fill in "Name" with "David"
