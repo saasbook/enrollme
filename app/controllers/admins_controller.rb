@@ -68,7 +68,7 @@ class AdminsController < ApplicationController
   end
   
   def team_list_email
-    AdminMailer.team_list_email(@admin).deliver_now
+    #AdminMailer.team_list_email(@admin).deliver_now
     
     redirect_to admins_path
   end
