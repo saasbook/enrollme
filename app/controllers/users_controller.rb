@@ -3,22 +3,23 @@ class UsersController < ApplicationController
   skip_before_filter :authenticate, :only => ['new', 'create']
   before_filter :check_is_user, :except => ['new', 'create', 'show']
   before_filter :set_user, :except => ['new', 'create']
-  
+
   def show
     @user = User.find_by_id(params[:id])
   end
-  
+
   def new
     @user = User.new
     session[:user_id] = @user.id
+    @user_email = session[:user_email] = params[:user_email]
     render 'new'
   end
-  
+
   def create
     @user = User.new(user_params)
-    
+
     if @user.save
-      #EmailStudents.welcome_email(@user).deliver_later
+      EmailStudents.welcome_email(@user).deliver_later
 
       session[:user_id] = @user.id
       session[:user_email] = @user.email
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
 
   def start_team
     @user.leave_team if !(@user.team.nil?)
-    
+
     @team = Team.create!(:passcode => Team.generate_hash, :approved => false, :submitted => false)
 
     @user.team = @team
@@ -43,15 +44,15 @@ class UsersController < ApplicationController
     @team = Team.find_by_passcode(@passcode)
     @team ||= Team.new()
     return redirect_to without_team_path, :notice => "Unable to join team" if @passcode.empty? or !(@team.can_join?)
-    
+
     @user.leave_team if !(@user.team.nil?)
-    
+
     @user.team = @team
     @team.users << @user
     @team.withdraw_submission
-    
+
     @team.send_submission_reminder_email if @team.eligible?
-     
+
     redirect_to team_path(:id=>@team.id)
   end
 
@@ -68,7 +69,7 @@ class UsersController < ApplicationController
       return redirect_to session.delete(:return_to), :notice => 'Permission denied'
     end
   end
-  
+
   def set_user
     @user = User.find_by_id session[:user_id]
   end
