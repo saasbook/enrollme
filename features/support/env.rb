@@ -79,7 +79,6 @@ World(FactoryGirl::Syntax::Methods)
 OmniAuth.config.test_mode = true
 
 module OmniauthMacros
-  def mock_auth_hash(email)
     # The mock_auth configuration allows you to set per-provider (or default)
     # authentication hashes to return during integration testing.
     OmniAuth.config.mock_auth[:google] = {
@@ -94,10 +93,9 @@ module OmniauthMacros
     # 'secret' => 'mock_secret'
     # }
       :info => {
-        :email => email
+        :email => 'eecs666@hotmail.com'
       }
     }
-  end
 end
 
 World(OmniauthMacros)
