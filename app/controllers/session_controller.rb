@@ -1,5 +1,4 @@
 class SessionController < ApplicationController
-  
   skip_before_filter :authenticate, :except => ['destroy']
   skip_before_filter :check_existence
 
@@ -15,15 +14,17 @@ class SessionController < ApplicationController
       return redirect_to team_path(user.team)
     end
   end
-  
+
   def create
     oauth_hash = Rails.env.test? ? OmniAuth.config.mock_auth[:google] : env["omniauth.auth"]
     user = User.user_from_oauth(oauth_hash)
     admin = Admin.admin_from_oauth(oauth_hash)
     session[:user_email] = oauth_hash[:info][:email]
+    @user_email = session[:user_email]
     if user.nil?
       if admin.nil?
-        return redirect_to new_user_path, notice: "Account not created yet, please sign up!"
+        return redirect_to new_user_path(user_email: @user_email),
+                           notice: "Account not created yet, please sign up!"
       else
         session[:user_id] = admin.id
         session[:is_admin] = true
@@ -32,13 +33,12 @@ class SessionController < ApplicationController
     else
       session[:user_id] = user.id
       return redirect_to without_team_path, notice: "Logged in!" if user.team.nil?
-      return redirect_to team_path(user.team), notice: "Logged in!"  
+      return redirect_to team_path(user.team), notice: "Logged in!"
     end
   end
-  
+
   def destroy
     session.clear
     redirect_to login_path, notice: "Logged out!"
   end
-  
 end
