@@ -12,7 +12,7 @@ class AdminMailer < ApplicationMailer
    def team_list_email(admin)
       @admin = admin
       @url  = 'http://www.gmail.com'
-      mail(to: @admin.email, subject: 'Here is list of' + params[:status] + 'teams in EnrollMe') do |format|
+      mail(to: @admin.email, subject: "Here is list of #{params[:status]} teams in EnrollMe") do |format|
         format.html
       end
    end
@@ -23,7 +23,7 @@ class AdminMailer < ApplicationMailer
       @team.users.each do |approved_user|
          @user = approved_user
          @url = ENV["SERVER_EMAIL"]
-         mail(to: @user.email, subject: 'Your team has been approved') do |format|
+         mail(to: @user.email, subject: "Your team has been approved") do |format|
             format.html
          end
       end
@@ -35,7 +35,7 @@ class AdminMailer < ApplicationMailer
       @team.users.each do |disapproved_user|
          @user = disapproved_user
          @url = ENV["SERVER_EMAIL"]
-         mail(to: @user.email, subject: 'Your team has been disapproved') do |format|
+         mail(to: @user.email, subject: "Your team has been disapproved") do |format|
             format.html
          end
       end

@@ -1,0 +1,1008 @@
+Using the default profile...
+Feature: admin adds discussion times
+  As an admin
+  In order for students to sign up for a discussion
+  I want to add discussion times
+
+  Background:                                                   # features/admins/add_discussions.feature:6
+    Given the following admins exist                            # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 | password |
+      | Bob  | supreme_ruler@aol.com | ilikcats |
+    And I am on the login page                                  # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com" # features/step_definitions/enrollme_steps.rb:19
+    And I am on the new discussion page                         # features/step_definitions/web_steps.rb:44
+
+  Scenario: Admin successfully adds a new discussion # features/admins/add_discussions.feature:14
+    Given I fill in "ccn" with "12345"               # features/step_definitions/web_steps.rb:60
+    And I select "Monday" from "day"                 # features/step_definitions/web_steps.rb:85
+    And I select "3:00 PM" from "time"               # features/step_definitions/web_steps.rb:85
+    And I fill in "capacity" with "20"               # features/step_definitions/web_steps.rb:60
+    And I press "Add Discussion"                     # features/step_definitions/web_steps.rb:52
+    Then I should see "Discussion Sections"          # features/step_definitions/web_steps.rb:105
+    And I should see "12345 Monday 3:00 PM 20"       # features/step_definitions/web_steps.rb:105
+
+  Scenario: Admin prevented from adding a discussion with an already-existing CCN                              # features/admins/add_discussions.feature:23
+    Given the following discussions exist                                                                      # features/step_definitions/enrollme_steps.rb:100
+      | number | time      | capacity |
+      | 54321  | Tues, 3pm | 25       |
+    And I fill in "ccn" with "54321"                                                                           # features/step_definitions/web_steps.rb:60
+    And I select "Monday" from "day"                                                                           # features/step_definitions/web_steps.rb:85
+    And I select "3:00 PM" from "time"                                                                         # features/step_definitions/web_steps.rb:85
+    And I fill in "capacity" with "20"                                                                         # features/step_definitions/web_steps.rb:60
+    And I press "Add Discussion"                                                                               # features/step_definitions/web_steps.rb:52
+    Then I should see "CCN is either already used or is not 5 digits. Please check your inputs and try again." # features/step_definitions/web_steps.rb:105
+
+  Scenario: Admin fails to create a new discussion                                                             # features/admins/add_discussions.feature:34
+    Given I fill in "ccn" with "Elmo's World"                                                                  # features/step_definitions/web_steps.rb:60
+    And I select "Monday" from "day"                                                                           # features/step_definitions/web_steps.rb:85
+    And I select "3:00 PM" from "time"                                                                         # features/step_definitions/web_steps.rb:85
+    And I fill in "capacity" with "Nananana"                                                                   # features/step_definitions/web_steps.rb:60
+    And I press "Add Discussion"                                                                               # features/step_definitions/web_steps.rb:52
+    Then I should see "CCN is either already used or is not 5 digits. Please check your inputs and try again." # features/step_definitions/web_steps.rb:105
+    And I should see "Add New Discussion"                                                                      # features/step_definitions/web_steps.rb:105
+
+Feature: Admin gets help
+  As an admin
+  I want to get help on how to use this website as an admin
+  I want to click a button that brings me to an info page
+
+  Background:                                                   # features/admins/admin_help.feature:6
+    Given the following admins exist                            # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 | password |
+      | Bob  | supreme_ruler@aol.com | ilikcats |
+    And I am on the login page                                  # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com" # features/step_definitions/enrollme_steps.rb:19
+
+  Scenario: User successfully finds help # features/admins/admin_help.feature:13
+    When I follow "Help"                 # features/step_definitions/web_steps.rb:56
+    Then I should see "Basic Tutorial"   # features/step_definitions/web_steps.rb:105
+
+Feature: Admin deletes his or her account
+  As an admin
+  In order to remove myself from the system
+  I want to delete account
+
+  Background:                        # features/admins/delete_self.feature:6
+    Given the following admins exist # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 | superadmin |
+      | Bob  | supreme_ruler@aol.com | false      |
+      | Tom  | tomcat@gmail.com      | true       |
+
+  Scenario: Admin successfully deletes his or her account        # features/admins/delete_self.feature:12
+    Given I am on the login page                                 # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com"  # features/step_definitions/enrollme_steps.rb:19
+    When I follow "My Info"                                      # features/step_definitions/web_steps.rb:56
+    And I follow "Edit"                                          # features/step_definitions/web_steps.rb:56
+    And I press "Delete Me"                                      # features/step_definitions/web_steps.rb:52
+    Then I should see "Logged out!"                              # features/step_definitions/web_steps.rb:105
+    When I log in as an admin with email "supreme_ruler@aol.com" # features/step_definitions/enrollme_steps.rb:19
+    Then I should see "Account not created"                      # features/step_definitions/web_steps.rb:105
+
+  Scenario: Superadmin cannot delete his or her account                                      # features/admins/delete_self.feature:23
+    Given I am on the login page                                                             # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "tomcat@gmail.com"                                   # features/step_definitions/enrollme_steps.rb:19
+    When I follow "My Info"                                                                  # features/step_definitions/web_steps.rb:56
+    And I follow "Edit"                                                                      # features/step_definitions/web_steps.rb:56
+    And I press "Delete Me"                                                                  # features/step_definitions/web_steps.rb:52
+    Then I should see "Please give someone else superadmin powers before deleting yourself." # features/step_definitions/web_steps.rb:105
+    And I should see "Welcome Back, Tom!"                                                    # features/step_definitions/web_steps.rb:105
+
+Feature: get a csv with the information of all approved teams
+  As an administrator
+  So that I can see all approved students and teams
+  I want to download all that information from my home page
+
+  Background:                                                                            # features/admins/download_approved_teams.feature:7
+    Given the following users exist                                                      # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Saha2 | eecs667@hotmail.com           | penguindrool  | EECS            | 001 |
+      | Saha3 | eecs668@hotmail.com           | penguindrool  | EECS            | 002 |
+      | Saha4 | eecs669@hotmail.com           | penguindrool  | EECS            | 003 |
+      | Jorge | legueoflegends667@hotmail.com | penguindrool  | Football Player | 999 |
+    And the following admins exist                                                       # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 |
+      | Bob  | supreme_ruler@aol.com |
+    And the following discussions exist                                                  # features/step_definitions/enrollme_steps.rb:100
+      | number | time      | capacity |
+      | 54321  | Tues, 3pm | 25       |
+    And I am on the login page                                                           # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com"                          # features/step_definitions/enrollme_steps.rb:19
+    And the team with passcode "penguindrool" is approved with discussion number "54321" # features/step_definitions/enrollme_steps.rb:46
+
+  Scenario: An admin successfully downloads approved team information # features/admins/download_approved_teams.feature:25
+    Given I follow "Download this data"                               # features/step_definitions/web_steps.rb:56
+    Then I should have downloaded a team information file             # features/step_definitions/enrollme_steps.rb:149
+
+Feature: Create an admin account
+  As an admin
+  In order to spread my workload
+  I want to add another person as an admin
+
+  Background:                                                   # features/admins/edit.feature:6
+    Given the following admins exist                            # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 |
+      | Bob  | supreme_ruler@aol.com |
+    And I am on the login page                                  # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com" # features/step_definitions/enrollme_steps.rb:19
+    And I follow "My Info"                                      # features/step_definitions/web_steps.rb:56
+    And I follow "Edit"                                         # features/step_definitions/web_steps.rb:56
+
+  Scenario: An admin cancels editing their information # features/admins/edit.feature:15
+    When I follow "Cancel"                             # features/step_definitions/web_steps.rb:56
+    Then I should see "Welcome Back, Bob!"             # features/step_definitions/web_steps.rb:105
+
+  Scenario: Successfully edit my account information # features/admins/edit.feature:19
+    When I fill in "Name" with "BetterBob"           # features/step_definitions/web_steps.rb:60
+    And I press "Update Information"                 # features/step_definitions/web_steps.rb:52
+    Then I should see "Welcome Back, BetterBob!"     # features/step_definitions/web_steps.rb:105
+
+Feature: admin edits discussion times
+  As an admin
+  In order to account for course changes
+  I want to edit discussion times and capacities
+
+  Background:                                                   # features/admins/edit_discussions.feature:6
+    Given the following admins exist                            # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 | password |
+      | Bob  | supreme_ruler@aol.com | ilikcats |
+    And the following discussions exist                         # features/step_definitions/enrollme_steps.rb:100
+      | number | time    | day     | capacity |
+      | 54321  | 3:00 PM | Tuesday | 25       |
+    And I am on the login page                                  # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com" # features/step_definitions/enrollme_steps.rb:19
+
+  Scenario: Admin successfully edits a discussion                                                    # features/admins/edit_discussions.feature:16
+    Given I am on the discussion_index page                                                          # features/step_definitions/web_steps.rb:44
+    Then I should see "54321 Tuesday 3:00 PM 25"                                                     # features/step_definitions/web_steps.rb:105
+    When I press "Edit Discussions"                                                                  # features/step_definitions/web_steps.rb:52
+    And I select "CCN: 54321 | Time: Tuesday 3:00 PM | Enrolled: 0 / 25" from "edit_disc[edit_disc]" # features/step_definitions/web_steps.rb:85
+    And I press "Submit"                                                                             # features/step_definitions/web_steps.rb:52
+    And I select "Monday" from "day"                                                                 # features/step_definitions/web_steps.rb:85
+    And I select "2:00 PM" from "time"                                                               # features/step_definitions/web_steps.rb:85
+    And I fill in "capacity" with "10"                                                               # features/step_definitions/web_steps.rb:60
+    And I press "Edit Discussion"                                                                    # features/step_definitions/web_steps.rb:52
+    Then I should see "Discussion Sections"                                                          # features/step_definitions/web_steps.rb:105
+    And I should see "54321 Monday 2:00 PM 10"                                                       # features/step_definitions/web_steps.rb:105
+
+Feature: Create an admin account
+  As an admin
+  In order to spread my workload
+  I want to add another person as an admin
+
+  Background:                                                   # features/admins/new.feature:6
+    Given the following admins exist                            # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 |
+      | Bob  | supreme_ruler@aol.com |
+    And I am on the login page                                  # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com" # features/step_definitions/enrollme_steps.rb:19
+    And I follow "Register New Admin"                           # features/step_definitions/web_steps.rb:56
+
+  Scenario: An admin successfully adds another admin           # features/admins/new.feature:14
+    Given I fill in "Name" with "Bob Clone"                    # features/step_definitions/web_steps.rb:60
+    And I fill in "Email" with "ruler_clone@aol.com"           # features/step_definitions/web_steps.rb:60
+    And I press "Create"                                       # features/step_definitions/web_steps.rb:52
+    Then I log out                                             # features/step_definitions/enrollme_steps.rb:29
+    When I log in as an admin with email "ruler_clone@aol.com" # features/step_definitions/enrollme_steps.rb:19
+    Then I should see "Welcome Back, Bob Clone!"               # features/step_definitions/web_steps.rb:105
+
+  Scenario: An admin fails adding another admin        # features/admins/new.feature:22
+    Given I fill in "Name" with "Bob Clone"            # features/step_definitions/web_steps.rb:60
+    And I fill in "Email" with "supreme_ruler@aol.com" # features/step_definitions/web_steps.rb:60
+    And I press "Create"                               # features/step_definitions/web_steps.rb:52
+    Then I should see "Form is invalid"                # features/step_definitions/web_steps.rb:105
+
+  Scenario: An admin fails adding a user as an admin # features/admins/new.feature:28
+    Given the following users exist                  # features/step_definitions/enrollme_steps.rb:87
+      | name  | email               | team_passcode | major | sid |
+      | Sahai | eecs666@hotmail.com | penguindrool  | EECS  | 000 |
+    Given I fill in "Name" with "Sahai"              # features/step_definitions/web_steps.rb:60
+    And I fill in "Email" with "eecs666@hotmail.com" # features/step_definitions/web_steps.rb:60
+    And I press "Create"                             # features/step_definitions/web_steps.rb:52
+    Then I should see "Form is invalid"              # features/step_definitions/web_steps.rb:105
+
+Feature: Super admin deletes all data
+  As a super admin
+  So that I can prepare for a new semester of enrollment
+  I want to be able to delete the entire database
+
+  Background:                                                   # features/admins/super_admin_delete_database.feature:7
+    Given the following admins exist                            # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 | superadmin |
+      | Bob  | supreme_ruler@aol.com | true       |
+    Given the following users exist                             # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team      | major           | sid |
+      | Jorge | legueoflegends667@hotmail.com | somepassc | Football Player | 999 |
+      | Bob0  | bobjones0@berkeley.edu        | passcode1 | Slavic Studies  | 824 |
+      | Bob1  | bobjones1@berkeley.edu        | passcode1 | Slavic Studies  | 825 |
+      | Bob2  | bobjones2@berkeley.edu        | passcode1 | Slavic Studies  | 826 |
+      | Bob3  | bobjones3@berkeley.edu        | passcode1 | Slavic Studies  | 827 |
+      | Sahai | eecs666@hotmail.com           | passcode1 | EECS            | 000 |
+    And the following discussions exist                         # features/step_definitions/enrollme_steps.rb:100
+      | number | time       | capacity |
+      | 54321  | Tues, 3pm  | 25       |
+      | 54322  | Wed, 3pm   | 25       |
+      | 54323  | Thurs, 3pm | 25       |
+    And the team with passcode "passcode1" is submitted         # features/step_definitions/enrollme_steps.rb:55
+    And I am on the login page                                  # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com" # features/step_definitions/enrollme_steps.rb:19
+
+  Scenario: Super admin successfully deletes everything from database                                                   # features/admins/super_admin_delete_database.feature:28
+    Then print page body                                                                                                # features/step_definitions/enrollme_steps.rb:121
+      <!DOCTYPE html>
+
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">EnrollMe</a>
+          </div>
+          
+
+          <div class="navbar-collapse collapse" id="navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href='/'>Home</a></li>
+                        <li><a href="/admin/tutorial">Help</a></li>
+                        <li><a data-method="get" href="/admins/3">My Info</a></li>
+                        <li><a data-method="get" href="/admins/new">Register New Admin</a></li>
+                          <li><a data-method="get" href="/admin/superadmin">Manage Admins</a></li>
+                          <li><a data-method="get" href="/admin/reset_semester">Reset Semester</a></li>
+                    <li><a data-method="get" href="/logout">Logout</a></li>
+              </ul>
+          </div>
+        </div>
+      </nav>
+
+
+      <head>
+        <link rel="stylesheet" media="all" href="/assets/application-b7d1a1021026220b5cb72c4daddf879c246a80405d65029a096b20f9d8a0a6d7.css" data-turbolinks-track="true" />
+        <script src="/assets/application-0d8939ec271fa9b37913679c97d076e8a6f7307663398b786caa7dfdd2cb7c05.js" data-turbolinks-track="true"></script>
+        
+      </head>
+
+      <body>
+        <title>Admin Home</title>
+          <div class="container">
+            <h2>Welcome Back, Bob!</h2>
+
+            <div class="row">
+              <div class="col-md-8">
+                <div class='page-header'>
+
+                  <div class='btn-toolbar pull-right'>
+                    <div class='btn-group'>
+                     <form class="button_to" method="get" action="/discussion"><input class="btn" type="submit" value="Discussions" /></form>
+                    </div>
+                  </div>
+
+                  </div>
+                  <h3 class='text-primary'> Enrollment Info </h3>
+                  
+
+                  <h2>
+                    <div class='btn-group'>
+                      <h4> Showing <a id="status" data-toggle="dropdown" class="btn btn-sm btn-default dropdown-toggle" aria-expanded="false" href="#">Pending | Approved</a> Teams
+                      <ul class="dropdown-menu">
+                        <li><a data-method="get" href="/admins?status=All">All</a></li>
+                        <li><a data-method="get" href="/admins?status=Pending">Pending</a></li>
+                        <li><a data-method="get" href="/admins?status=Approved">Approved</a></li>
+                        <li><a id="pending_or_approved" data-method="get" href="/admins?status=Pending+%7C+Approved">Pending | Approved</a></li>
+                        <li><a data-method="get" href="/admins?status=Forming">Forming</a></li>
+                      </ul>
+                      </h4>
+                    </div>
+                    <div class='btn-toolbar pull-right'>
+                      <a class="btn btn-primary btn-sm" data-method="get" href="/download_team_info?status=Pending+%7C+Approved">Download this data</a>
+                      <a class="btn btn-success btn-sm" rel="nofollow" data-method="post" href="/admin/email?status=Pending+%7C+Approved">Email me this data</a>
+                    </div>
+                  </h2>
+                </div>
+
+                <table class="table table-striped table-hover">
+                  <tr>
+                    <td>Team ID</td> <td>Members</td> <td>Status</td> <td>Discussions</td> <td></td>
+                  </tr>
+                  
+                    <tr>
+                      <td><a href="/team/2">2</a></td>
+                      <td>
+                          <a href="/users/2">Bob0</a> <br>
+                          <a href="/users/3">Bob1</a> <br>
+                          <a href="/users/4">Bob2</a> <br>
+                          <a href="/users/5">Bob3</a> <br>
+                          <a href="/users/6">Sahai</a> <br>
+                      </td>
+                        <td>Pending</td>
+                        <td>
+                          <a id="approve_1" class="btn btn-xs btn-success" href="/admin/approve_team?disc=1&amp;team_id=2">Approve</a>
+                          <label for="disc_1_CCN: 54321 | Time: 25 Tues, 3pm | Enrolled: 0 / 0">Ccn: 54321 | time: 25 tues, 3pm | enrolled: 0 / 0</label>
+                          <br>
+                          <a id="approve_2" class="btn btn-xs btn-warning" href="/admin/approve_team?disc=1&amp;team_id=2">Approve</a>
+                          <label for="disc_1_CCN: 54321 | Time: 25 Tues, 3pm | Enrolled: 0 / 0">Ccn: 54321 | time: 25 tues, 3pm | enrolled: 0 / 0</label>
+                          <br>
+                          <a id="approve_3" class="btn btn-xs btn-danger" href="/admin/approve_team?disc=1&amp;team_id=2">Approve</a>
+                          <label for="disc_1_CCN: 54321 | Time: 25 Tues, 3pm | Enrolled: 0 / 0">Ccn: 54321 | time: 25 tues, 3pm | enrolled: 0 / 0</label>
+                        </td>
+                    </tr>
+                </table>
+                
+                
+                
+
+              </div>
+            </div>
+          </div>
+      </body>
+    When I follow "Reset Semester"                                                                                      # features/step_definitions/web_steps.rb:56
+    Then I should see "Warning: Resetting the semester will result in all users, teams, and discussions being deleted." # features/step_definitions/web_steps.rb:105
+    And I should see "Password"                                                                                         # features/step_definitions/web_steps.rb:105
+    When I fill in "reset_password" with the correct password                                                           # features/step_definitions/enrollme_steps.rb:15
+    And I press "Reset"                                                                                                 # features/step_definitions/web_steps.rb:52
+    Then I should see "All data reset"                                                                                  # features/step_definitions/web_steps.rb:105
+      expected to find text "All data reset" in "Toggle navigation EnrollMe Home Help My Info Register New Admin Manage Admins Reset Semester Logout Incorrect password Reset Semester Reset Semester Warning: Resetting the semester will result in all users, teams, and discussions being deleted. This is to be used at the end of the semester, to prepare for a new semester of enrollment. This action can only be performed by the super admin, and is passcode protected. An email will be sent to you with all the data that has been deleted. Password" (RSpec::Expectations::ExpectationNotMetError)
+      ./features/step_definitions/web_steps.rb:107:in `/^(?:|I )should see "([^"]*)"$/'
+      features/admins/super_admin_delete_database.feature:35:in `Then I should see "All data reset"'
+    And I should not see "Jorge"                                                                                        # features/step_definitions/web_steps.rb:123
+    When I press "Discussions"                                                                                          # features/step_definitions/web_steps.rb:52
+    Then I should not see "54321"                                                                                       # features/step_definitions/web_steps.rb:123
+
+Feature: Super admin deletes an admin
+  As a super admin
+  So that I can control other admins
+  I want to be able to delete them
+
+  Background:                        # features/admins/super_admin_edit_admins.feature:7
+    Given the following admins exist # features/step_definitions/enrollme_steps.rb:142
+      | name  | email                 | superadmin |
+      | Bob   | supreme_ruler@aol.com | true       |
+      | Carol | abc@abc.com           | false      |
+    And I am on the login page       # features/step_definitions/web_steps.rb:44
+
+  Scenario: Super admin successfully deletes another admin       # features/admins/super_admin_edit_admins.feature:14
+    When I log in as an admin with email "supreme_ruler@aol.com" # features/step_definitions/enrollme_steps.rb:19
+    And I follow "Manage Admins"                                 # features/step_definitions/web_steps.rb:56
+    And I check "delete_Carol"                                   # features/step_definitions/web_steps.rb:89
+    And I press "Delete"                                         # features/step_definitions/web_steps.rb:52
+    Then I should not see "Carol"                                # features/step_definitions/web_steps.rb:123
+
+  Scenario: Regular admin cannot access the super admin page # features/admins/super_admin_edit_admins.feature:21
+    When I log in as an admin with email "abc@abc.com"       # features/step_definitions/enrollme_steps.rb:19
+    Then I should not see "Manage Admins"                    # features/step_definitions/web_steps.rb:123
+
+  Scenario: Super Admin successfully transfers super admin ability to another # features/admins/super_admin_edit_admins.feature:25
+    When I log in as an admin with email "supreme_ruler@aol.com"              # features/step_definitions/enrollme_steps.rb:19
+    And I follow "Manage Admins"                                              # features/step_definitions/web_steps.rb:56
+    And I choose "transfer_admin_2"                                           # features/step_definitions/web_steps.rb:97
+    And I press "Transfer"                                                    # features/step_definitions/web_steps.rb:52
+    Then I should see "Successfully transferred superadmin powers."           # features/step_definitions/web_steps.rb:105
+    And I should not see "Manage Admins"                                      # features/step_definitions/web_steps.rb:123
+
+Feature: Use an admin acccount to see organized team data
+  As an admin
+  So that I can easily see different teams
+  I want to be able to switch between teams with different statuses
+
+  Background:                                                                         # features/admins/team_organization.feature:7
+    Given the following admins exist                                                  # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 |
+      | Bob  | supreme_ruler@aol.com |
+    And the following users exist                                                     # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Saha2 | eecs667@hotmail.com           | penguindrool  | EECS            | 001 |
+      | Saha3 | eecs668@hotmail.com           | penguindrool  | EECS            | 002 |
+      | Saha4 | eecs669@hotmail.com           | penguindrool  | EECS            | 003 |
+      | Jorge | legueoflegends667@hotmail.com | penguindrool  | Football Player | 999 |
+      | Copy  | anotheremail@yahoo.com        | ok            | CS              | 009 |
+      | Bob0  | bobjones0@berkeley.edu        | passcode1     | Slavic Studies  | 824 |
+      | Bob1  | bobjones1@berkeley.edu        | passcode1     | Slavic Studies  | 825 |
+      | Bob2  | bobjones2@berkeley.edu        | passcode1     | Slavic Studies  | 826 |
+      | Bob3  | bobjones3@berkeley.edu        | passcode1     | Slavic Studies  | 827 |
+      | Bob4  | bobjones4@berkeley.edu        | passcode1     | Slavic Studies  | 828 |
+    And the following discussions exist                                               # features/step_definitions/enrollme_steps.rb:100
+      | number | time      | capacity |
+      | 54321  | Tues, 3pm | 25       |
+    And I am on the login page                                                        # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com"                       # features/step_definitions/enrollme_steps.rb:19
+    And the team with passcode "penguindrool" is submitted                            # features/step_definitions/enrollme_steps.rb:55
+    And the team with passcode "passcode1" is approved with discussion number "54321" # features/step_definitions/enrollme_steps.rb:46
+
+  Scenario: A newly disapproved team should not be under the "Approved" category # features/admins/team_organization.feature:32
+    Given I follow "Approved"                                                    # features/step_definitions/web_steps.rb:56
+    Then I should see "Bob0"                                                     # features/step_definitions/web_steps.rb:105
+    When I follow "disapprove_3"                                                 # features/step_definitions/web_steps.rb:56
+    And I follow "Approved"                                                      # features/step_definitions/web_steps.rb:56
+    Then I should not see "Bob0"                                                 # features/step_definitions/web_steps.rb:123
+
+  Scenario: A newly approved team should show up under "Approved" # features/admins/team_organization.feature:39
+    Given I follow "Approved"                                     # features/step_definitions/web_steps.rb:56
+    Then I should not see "Sahai"                                 # features/step_definitions/web_steps.rb:123
+    When I follow "Pending"                                       # features/step_definitions/web_steps.rb:56
+    And I follow "approve_1"                                      # features/step_definitions/web_steps.rb:56
+    And I follow "Approved"                                       # features/step_definitions/web_steps.rb:56
+    Then I should see "Sahai"                                     # features/step_definitions/web_steps.rb:105
+
+  Scenario: A team with less than 5 members should show up under "Forming" # features/admins/team_organization.feature:47
+    Given I follow "All"                                                   # features/step_definitions/web_steps.rb:56
+    Then I should see "Copy"                                               # features/step_definitions/web_steps.rb:105
+    And I should see "Sahai"                                               # features/step_definitions/web_steps.rb:105
+    When I follow "Forming"                                                # features/step_definitions/web_steps.rb:56
+    Then I should see "Copy"                                               # features/step_definitions/web_steps.rb:105
+    And I should not see "Sahai"                                           # features/step_definitions/web_steps.rb:123
+
+  Scenario: An admin first sees teams under the "Pending" and "Approved" category only # features/admins/team_organization.feature:55
+    Given I am on the home page                                                        # features/step_definitions/web_steps.rb:44
+    Then I should see "Bob0"                                                           # features/step_definitions/web_steps.rb:105
+    And I should see "Sahai"                                                           # features/step_definitions/web_steps.rb:105
+    And I should not see "Copy"                                                        # features/step_definitions/web_steps.rb:123
+
+  Scenario: The "Pending | Approved" category should only contain teams that are pending or approved # features/admins/team_organization.feature:61
+    Given I follow "pending_or_approved"                                                             # features/step_definitions/web_steps.rb:56
+    Then I should see "Bob0"                                                                         # features/step_definitions/web_steps.rb:105
+    And I should see "Sahai"                                                                         # features/step_definitions/web_steps.rb:105
+    And I should not see "Copy"                                                                      # features/step_definitions/web_steps.rb:123
+
+Feature: admin can view more information about teams
+  As an administrator
+  So that I can decide whether or not to approve a team
+  I want to click on team IDs and User names to check out their information
+
+  Background:                                                   # features/admins/view_team_info.feature:7
+    Given the following users exist                             # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Saha2 | eecs667@hotmail.com           | penguindrool  | EECS            | 001 |
+      | Saha3 | eecs668@hotmail.com           | penguindrool  | EECS            | 002 |
+      | Saha4 | eecs669@hotmail.com           | penguindrool  | EECS            | 003 |
+      | Jorge | legueoflegends667@hotmail.com | penguindrool  | Football Player | 999 |
+    And the following admins exist                              # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 |
+      | Bob  | supreme_ruler@aol.com |
+    And the following discussions exist                         # features/step_definitions/enrollme_steps.rb:100
+      | number | time      | capacity |
+      | 54321  | Tues, 3pm | 25       |
+    And I am on the login page                                  # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com" # features/step_definitions/enrollme_steps.rb:19
+    And the team with passcode "penguindrool" is submitted      # features/step_definitions/enrollme_steps.rb:55
+    And I follow "Pending"                                      # features/step_definitions/web_steps.rb:56
+
+  Scenario: An admin accesses a submitted team's page # features/admins/view_team_info.feature:26
+    Given I follow "1"                                # features/step_definitions/web_steps.rb:56
+    Then I should see "Team has been submitted!"      # features/step_definitions/web_steps.rb:105
+    Then I should see "Selected Discussion Sections"  # features/step_definitions/web_steps.rb:105
+
+  Scenario: An admin accesses a user's information # features/admins/view_team_info.feature:31
+    Given I follow "Sahai"                         # features/step_definitions/web_steps.rb:56
+    Then I should see "SID: 000"                   # features/step_definitions/web_steps.rb:105
+    And I should see "Major: EECS"                 # features/step_definitions/web_steps.rb:105
+
+Feature: Email an admin information about approved teams
+  As an admin
+  In order to check on CS 169 enrollment
+  I want to receive an email with all the teams that have been approved
+
+  Background:                                                        # features/emails/approved_teams.feature:6
+    Given the allowed team size is 5-6                               # features/step_definitions/enrollme_steps.rb:5
+    And I am on the login page                                       # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "enrollmeberkeley@gmail.com" # features/step_definitions/enrollme_steps.rb:19
+
+  Scenario: Successfully create an account with my name and email # features/emails/approved_teams.feature:11
+    When I follow "Email me this data"                            # features/step_definitions/web_steps.rb:56
+      undefined local variable or method `params' for #<AdminMailer:0x007f95c32ba9c0> (NameError)
+      ./app/mailers/admin_mailer.rb:15:in `team_list_email'
+      ./app/controllers/admins_controller.rb:71:in `team_list_email'
+      ./features/step_definitions/web_steps.rb:57:in `/^(?:|I )follow "([^"]*)"$/'
+      features/emails/approved_teams.feature:12:in `When I follow "Email me this data"'
+    And I should see "Welcome Back, EnrollMe!"                    # features/step_definitions/web_steps.rb:105
+
+  Scenario: Successfully emails an admin when they've been invited with a link to the site # features/emails/approved_teams.feature:15
+    When I follow "Register New Admin"                                                     # features/step_definitions/web_steps.rb:56
+    Then I should see "Create a New Admin"                                                 # features/step_definitions/web_steps.rb:105
+
+Feature: student submits their team for approval
+  As an student user
+  In order to submit my team for enrollment consideration when available
+  I want to be able to choose discussions and submit my team for approval
+
+  Background: users have been added to database # features/submissions/submit_team.feature:7
+    Given the allowed team size is 5-6          # features/step_definitions/enrollme_steps.rb:5
+    Given the following users exist             # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team      | major           | sid |
+      | Jorge | legueoflegends667@hotmail.com | somepassc | Football Player | 999 |
+      | Bob0  | bobjones0@berkeley.edu        | passcode1 | Slavic Studies  | 824 |
+      | Bob1  | bobjones1@berkeley.edu        | passcode1 | Slavic Studies  | 825 |
+      | Bob2  | bobjones2@berkeley.edu        | passcode1 | Slavic Studies  | 826 |
+      | Bob3  | bobjones3@berkeley.edu        | passcode1 | Slavic Studies  | 827 |
+      | Sahai | eecs666@hotmail.com           | passcode1 | EECS            | 000 |
+    And I am on the login page                  # features/step_definitions/web_steps.rb:44
+
+  Scenario: Submit button should not be present when team has only four members # features/submissions/submit_team.feature:19
+    Given I log in as a user with email "leagueoflegends667@hotmail.com"        # features/step_definitions/enrollme_steps.rb:24
+    And I am on the team "1" page                                               # features/step_definitions/web_steps.rb:44
+    Then I should not see the "Submit" button                                   # features/step_definitions/enrollme_steps.rb:137
+
+  Scenario: Submit button should be present when team has five or more members, and warning should be displayed # features/submissions/submit_team.feature:24
+    Given I log in as a user with email "eecs666@hotmail.com"                                                   # features/step_definitions/enrollme_steps.rb:24
+    And the following discussions exist                                                                         # features/step_definitions/enrollme_steps.rb:100
+      | number | time    | day       | capacity |
+      | 54321  | 3:00 PM | Tuesday   | 25       |
+      | 54322  | 3:00 PM | Wednesday | 25       |
+      | 54323  | 3:00 PM | Thursday  | 25       |
+    And I am on the team "2" page                                                                               # features/step_definitions/web_steps.rb:44
+    Then I should see the "Submit" button                                                                       # features/step_definitions/enrollme_steps.rb:133
+    And I should see "Warning: You need to submit your team"                                                    # features/step_definitions/web_steps.rb:105
+
+  Scenario: Successfully choose discussions and submit team for approval                              # features/submissions/submit_team.feature:35
+    Given I log in as a user with email "eecs666@hotmail.com"                                         # features/step_definitions/enrollme_steps.rb:24
+    And the following discussions exist                                                               # features/step_definitions/enrollme_steps.rb:100
+      | number | time    | day       | capacity |
+      | 54321  | 3:00 PM | Tuesday   | 25       |
+      | 54322  | 3:00 PM | Wednesday | 25       |
+      | 54323  | 3:00 PM | Thursday  | 25       |
+    And I am on the team "2" page                                                                     # features/step_definitions/web_steps.rb:44
+    When I press "Submit"                                                                             # features/step_definitions/web_steps.rb:52
+    And I select "CCN: 54321 | Time: Tuesday 3:00 PM | Enrolled: 0 / 25" from "submission[disc1id]"   # features/step_definitions/web_steps.rb:85
+    And I select "CCN: 54322 | Time: Wednesday 3:00 PM | Enrolled: 0 / 25" from "submission[disc2id]" # features/step_definitions/web_steps.rb:85
+    And I select "CCN: 54323 | Time: Thursday 3:00 PM | Enrolled: 0 / 25" from "submission[disc3id]"  # features/step_definitions/web_steps.rb:85
+    And I press "Submit"                                                                              # features/step_definitions/web_steps.rb:52
+    Then I should see "Thanks for submitting your team for enrollment."                               # features/step_definitions/web_steps.rb:105
+    And I should see "My Team"                                                                        # features/step_definitions/web_steps.rb:105
+
+  Scenario: There are no discussions that can take a user's team # features/submissions/submit_team.feature:51
+    Given I log in as a user with email "eecs666@hotmail.com"    # features/step_definitions/enrollme_steps.rb:24
+    Then I should see "There are no available discussions."      # features/step_definitions/web_steps.rb:105
+
+  Scenario: There is exactly one discussion that can take a user's team                             # features/submissions/submit_team.feature:55
+    Given I log in as a user with email "eecs666@hotmail.com"                                       # features/step_definitions/enrollme_steps.rb:24
+    And the following discussions exist                                                             # features/step_definitions/enrollme_steps.rb:100
+      | number | time    | day     | capacity |
+      | 54321  | 3:00 PM | Tuesday | 25       |
+    And I am on the team "2" page                                                                   # features/step_definitions/web_steps.rb:44
+    When I press "Submit"                                                                           # features/step_definitions/web_steps.rb:52
+    And I select "CCN: 54321 | Time: Tuesday 3:00 PM | Enrolled: 0 / 25" from "submission[disc1id]" # features/step_definitions/web_steps.rb:85
+    When I press "Submit"                                                                           # features/step_definitions/web_steps.rb:52
+    Then I should see "Team has been submitted!"                                                    # features/step_definitions/web_steps.rb:105
+    And I should see "Selected Discussion Sections CCN: 54321 Time: Tuesday, 3:00 PM"               # features/step_definitions/web_steps.rb:105
+
+  Scenario: User cannot choose two of the same discussion                                           # features/submissions/submit_team.feature:67
+    Given I log in as a user with email "eecs666@hotmail.com"                                       # features/step_definitions/enrollme_steps.rb:24
+    And the following discussions exist                                                             # features/step_definitions/enrollme_steps.rb:100
+      | number | time    | day       | capacity |
+      | 54321  | 3:00 PM | Tuesday   | 25       |
+      | 54322  | 3:00 PM | Wednesday | 25       |
+      | 54323  | 3:00 PM | Thursday  | 25       |
+    And I am on the team "2" page                                                                   # features/step_definitions/web_steps.rb:44
+    When I press "Submit"                                                                           # features/step_definitions/web_steps.rb:52
+    And I select "CCN: 54321 | Time: Tuesday 3:00 PM | Enrolled: 0 / 25" from "submission[disc1id]" # features/step_definitions/web_steps.rb:85
+    And I select "CCN: 54321 | Time: Tuesday 3:00 PM | Enrolled: 0 / 25" from "submission[disc2id]" # features/step_definitions/web_steps.rb:85
+    And I select "CCN: 54321 | Time: Tuesday 3:00 PM | Enrolled: 0 / 25" from "submission[disc3id]" # features/step_definitions/web_steps.rb:85
+    And I press "Submit"                                                                            # features/step_definitions/web_steps.rb:52
+    Then I should see "Please choose 3 different discussions"                                       # features/step_definitions/web_steps.rb:105
+
+Feature: Approve/Disapprove teams
+  As an admin
+  In order to make sure legitimate teams are approved
+  I want to approve or disapprove teams
+
+  Background:                                                                                                 # features/team_editing/admin_approve_disapprove_teams.feature:6
+    Given the following admins exist                                                                          # features/step_definitions/enrollme_steps.rb:142
+      | name   | email                 |
+      | Robert | supreme_ruler@aol.com |
+    And the following users exist                                                                             # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team      | major           | sid |
+      | Bob   | bobjones0@berkeley.edu        | passcode1 | Slavic Studies  | 824 |
+      | Bob1  | bobjones1@berkeley.edu        | passcode1 | Slavic Studies  | 825 |
+      | Bob2  | bobjones2@berkeley.edu        | passcode1 | Slavic Studies  | 826 |
+      | Bob3  | bobjones3@berkeley.edu        | passcode1 | Slavic Studies  | 827 |
+      | Bob4  | bobjones4@berkeley.edu        | passcode1 | Slavic Studies  | 828 |
+      | Sahai | xxx@berkeley.edu              | passcode2 | Slav1c Studies  | 830 |
+      | Saha2 | xx2@berkeley.edu              | passcode2 | Slav1c Studies  | 831 |
+      | Saha3 | xx3@berkeley.edu              | passcode2 | Slav1c Studies  | 832 |
+      | Saha4 | xx4@berkeley.edu              | passcode2 | Slav1c Studies  | 833 |
+      | Saha5 | xx5@berkeley.edu              | passcode2 | Slav1c Studies  | 834 |
+      | Jorge | legueoflegends667@hotmail.com | passcode3 | Football Player | 999 |
+    And the following discussions exist                                                                       # features/step_definitions/enrollme_steps.rb:100
+      | number | time       | capacity |
+      | 54321  | Tues, 3pm  | 25       |
+      | 54322  | Wed, 3pm   | 25       |
+      | 54323  | Thurs, 3pm | 25       |
+    And I am on the login page                                                                                # features/step_definitions/web_steps.rb:44
+    And the team with passcode "passcode1" is approved with discussion number "54321"                         # features/step_definitions/enrollme_steps.rb:46
+    And the team with passcode "passcode2" is submitted with discussion numbers "54321", "54322", and "54323" # features/step_definitions/enrollme_steps.rb:50
+
+  Scenario: Admin only sees unsubmitted teams under the Forming page # features/team_editing/admin_approve_disapprove_teams.feature:32
+    Given I log in as an admin with email "supreme_ruler@aol.com"    # features/step_definitions/enrollme_steps.rb:19
+    When I follow "Forming"                                          # features/step_definitions/web_steps.rb:56
+    Then I should see "Jorge"                                        # features/step_definitions/web_steps.rb:105
+    And I should not see "Bob"                                       # features/step_definitions/web_steps.rb:123
+    And I should not see "Sahai"                                     # features/step_definitions/web_steps.rb:123
+
+  Scenario: Admin only sees submitted (and not approved) teams under the Pending page # features/team_editing/admin_approve_disapprove_teams.feature:39
+    Given I log in as an admin with email "supreme_ruler@aol.com"                     # features/step_definitions/enrollme_steps.rb:19
+    When I follow "Pending"                                                           # features/step_definitions/web_steps.rb:56
+    Then I should not see "Jorge"                                                     # features/step_definitions/web_steps.rb:123
+    And I should not see "Bob"                                                        # features/step_definitions/web_steps.rb:123
+    And I should see "Sahai"                                                          # features/step_definitions/web_steps.rb:105
+
+  Scenario: Admin only sees submitted teams under the Approved page # features/team_editing/admin_approve_disapprove_teams.feature:46
+    Given I log in as an admin with email "supreme_ruler@aol.com"   # features/step_definitions/enrollme_steps.rb:19
+    When I follow "Approved"                                        # features/step_definitions/web_steps.rb:56
+    Then I should not see "Jorge"                                   # features/step_definitions/web_steps.rb:123
+    And I should see "Bob"                                          # features/step_definitions/web_steps.rb:105
+    And I should not see "Sahai"                                    # features/step_definitions/web_steps.rb:123
+
+  Scenario: A non-admin fails to change a team's status from approved to disapproved and back # features/team_editing/admin_approve_disapprove_teams.feature:53
+    Given I log in as a user with email "legueoflegends667@hotmail.com"                       # features/step_definitions/enrollme_steps.rb:24
+    When I go to the approve team "1" page                                                    # features/step_definitions/web_steps.rb:48
+    Then I should see "Permission denied"                                                     # features/step_definitions/web_steps.rb:105
+    And I go to the disapprove team "1" page                                                  # features/step_definitions/web_steps.rb:48
+    Then I should see "Permission denied"                                                     # features/step_definitions/web_steps.rb:105
+
+Feature: An admin edits a team
+  As an admin
+  So that I can keep student enrollment records consistent
+  I want to be able to remove a user from any team
+
+  Background:                                                   # features/team_editing/admin_edit_team.feature:7
+    Given the following users exist                             # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Jorge | legueoflegends667@hotmail.com | penguindrool  | Football Player | 999 |
+      | Kandi | justanotheremail@aol.com      | anotherteam   | EECS            | 567 |
+    And the following admins exist                              # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 |
+      | Bob  | supreme_ruler@aol.com |
+    And the following discussions exist                         # features/step_definitions/enrollme_steps.rb:100
+      | number | time      | capacity |
+      | 54321  | Tues, 3pm | 25       |
+    And I am on the login page                                  # features/step_definitions/web_steps.rb:44
+    And I log in as an admin with email "supreme_ruler@aol.com" # features/step_definitions/enrollme_steps.rb:19
+    And I am on the team "1" page                               # features/step_definitions/web_steps.rb:44
+
+  Scenario: An admin successfully removes a user from an unsubmitted team # features/team_editing/admin_edit_team.feature:23
+    Given the team with passcode "penguindrool" is not submitted          # features/step_definitions/enrollme_steps.rb:55
+    And the team with passcode "penguindrool" is not approved             # features/step_definitions/enrollme_steps.rb:64
+    When I press "remove_Jorge"                                           # features/step_definitions/web_steps.rb:52
+    Then I should see "Removed Jorge from team."                          # features/step_definitions/web_steps.rb:105
+
+  Scenario: An admin successfully removes a user from an submitted team # features/team_editing/admin_edit_team.feature:29
+    Given the team with passcode "penguindrool" is submitted            # features/step_definitions/enrollme_steps.rb:55
+    And the team with passcode "penguindrool" is not approved           # features/step_definitions/enrollme_steps.rb:64
+    When I press "remove_Jorge"                                         # features/step_definitions/web_steps.rb:52
+    Then I should see "Removed Jorge from team."                        # features/step_definitions/web_steps.rb:105
+    And the team with passcode "penguindrool" should not be submitted   # features/step_definitions/enrollme_steps.rb:77
+
+  Scenario: An admin successfully removes a user from an approved team                     # features/team_editing/admin_edit_team.feature:36
+    Given the team with passcode "penguindrool" is approved with discussion number "54321" # features/step_definitions/enrollme_steps.rb:46
+    When I press "remove_Jorge"                                                            # features/step_definitions/web_steps.rb:52
+    Then I should see "Removed Jorge from team."                                           # features/step_definitions/web_steps.rb:105
+    And the team with passcode "penguindrool" should not be approved                       # features/step_definitions/enrollme_steps.rb:77
+    And the team with passcode "penguindrool" should not be submitted                      # features/step_definitions/enrollme_steps.rb:77
+
+Feature: Users cannot edit an approved team
+  As a student and a member of an approved team
+  So that I know the final members of my team for CS 169
+  I want to ensure that members of my team can not leave and others cannot join
+
+  Background:                                                                            # features/team_editing/user_edits_approved_team.feature:7
+    Given the following users exist                                                      # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Saha2 | eecs667@hotmail.com           | penguindrool  | EECS            | 001 |
+      | Saha3 | eecs668@hotmail.com           | penguindrool  | EECS            | 002 |
+      | Saha4 | eecs669@hotmail.com           | penguindrool  | EECS            | 003 |
+      | Jorge | legueoflegends667@hotmail.com | penguindrool  | Football Player | 999 |
+      | Kandi | justanotheremail@aol.com      | 0             | EECS            | 567 |
+    And the following discussions exist                                                  # features/step_definitions/enrollme_steps.rb:100
+      | number | time      | capacity |
+      | 54321  | Tues, 3pm | 25       |
+    And the team with passcode "penguindrool" is approved with discussion number "54321" # features/step_definitions/enrollme_steps.rb:46
+    And I am on the login page                                                           # features/step_definitions/web_steps.rb:44
+
+  Scenario: A user cannot remove another user from an approved team # features/team_editing/user_edits_approved_team.feature:22
+    Given I log in as a user with email "eecs666@hotmail.com"       # features/step_definitions/enrollme_steps.rb:24
+    And I remove "Jorge"                                            # features/step_definitions/enrollme_steps.rb:33
+    Then I should see "Permission denied"                           # features/step_definitions/web_steps.rb:105
+
+  Scenario: A user cannot remove themselves from an approved team # features/team_editing/user_edits_approved_team.feature:27
+    Given I log in as a user with email "eecs666@hotmail.com"     # features/step_definitions/enrollme_steps.rb:24
+    And I leave my team                                           # features/step_definitions/enrollme_steps.rb:37
+    Then I should see "Permission denied"                         # features/step_definitions/web_steps.rb:105
+    And I should see "My Team"                                    # features/step_definitions/web_steps.rb:105
+
+  Scenario: A user cannot join an approved team                   # features/team_editing/user_edits_approved_team.feature:33
+    When I log in as a user with email "justanotheremail@aol.com" # features/step_definitions/enrollme_steps.rb:24
+    And I join a team with passcode "penguindrool"                # features/step_definitions/enrollme_steps.rb:41
+    Then I should see "Unable to join team"                       # features/step_definitions/web_steps.rb:105
+    And I should be on the without_team page                      # features/step_definitions/web_steps.rb:235
+
+Feature: A User edits their team
+  As a student
+  So that I can work with people I like
+  I want to be able to remove a user from my team
+
+  Background:                                               # features/team_editing/user_edits_forming_team.feature:7
+    Given the following users exist                         # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Jorge | legueoflegends667@hotmail.com | penguindrool  | Football Player | 999 |
+      | Kandi | justanotheremail@aol.com      | anotherteam   | EECS            | 567 |
+    And I am on the login page                              # features/step_definitions/web_steps.rb:44
+    And I log in as a user with email "eecs666@hotmail.com" # features/step_definitions/enrollme_steps.rb:24
+    And I am on the home page                               # features/step_definitions/web_steps.rb:44
+
+  Scenario: A user removes another user from their team # features/team_editing/user_edits_forming_team.feature:17
+    When I remove "Jorge"                               # features/step_definitions/enrollme_steps.rb:33
+    Then I should see "Removed Jorge from team."        # features/step_definitions/web_steps.rb:105
+
+  Scenario: A user removes themself from the team using the Edit button # features/team_editing/user_edits_forming_team.feature:21
+    When I remove "Sahai"                                               # features/step_definitions/enrollme_steps.rb:33
+    Then I should be on the without_team page                           # features/step_definitions/web_steps.rb:235
+
+  Scenario: A user removes everyone from the team              # features/team_editing/user_edits_forming_team.feature:25
+    When I press "remove_Jorge"                                # features/step_definitions/web_steps.rb:52
+    And I press "remove_Sahai"                                 # features/step_definitions/web_steps.rb:52
+    Then I should be on the without_team page                  # features/step_definitions/web_steps.rb:235
+    And the team with passcode "penguindrool" should not exist # features/step_definitions/enrollme_steps.rb:153
+
+  Scenario: A user fails removal of a user not on their own team # features/team_editing/user_edits_forming_team.feature:31
+    When I go to the removal page for "Kandi"                    # features/step_definitions/web_steps.rb:48
+    Then I should see "Permission denied"                        # features/step_definitions/web_steps.rb:105
+
+Feature: editing a team changes its submission status
+  As a student and a member of a submitted team
+  So that I have the freedom to edit the members on my team
+  I want to modify my team submission before it gets approved
+
+  Background:                                               # features/team_editing/user_edits_submitted_team.feature:7
+    Given the allowed team size is 5-6                      # features/step_definitions/enrollme_steps.rb:5
+    And the following users exist                           # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Saha2 | eecs667@hotmail.com           | penguindrool  | EECS            | 001 |
+      | Saha3 | eecs668@hotmail.com           | penguindrool  | EECS            | 002 |
+      | Saha4 | eecs669@hotmail.com           | penguindrool  | EECS            | 003 |
+      | Jorge | legueoflegends667@hotmail.com | penguindrool  | Football Player | 999 |
+      | Kandi | justanotheremail@aol.com      | 0             | EECS            | 567 |
+    And I am on the login page                              # features/step_definitions/web_steps.rb:44
+    And I log in as a user with email "eecs666@hotmail.com" # features/step_definitions/enrollme_steps.rb:24
+    And the team with passcode "penguindrool" is submitted  # features/step_definitions/enrollme_steps.rb:55
+
+  Scenario: A user removing another user from a submitted team resets that team's submission status # features/team_editing/user_edits_submitted_team.feature:21
+    When I remove "Jorge"                                                                           # features/step_definitions/enrollme_steps.rb:33
+    Then the team with passcode "penguindrool" should not be submitted                              # features/step_definitions/enrollme_steps.rb:77
+
+  Scenario: A user leaving a submitted team resets that team's submission status # features/team_editing/user_edits_submitted_team.feature:25
+    When I leave my team                                                         # features/step_definitions/enrollme_steps.rb:37
+    And I log out                                                                # features/step_definitions/enrollme_steps.rb:29
+    And I log in as a user with email "eecs667@hotmail.com"                      # features/step_definitions/enrollme_steps.rb:24
+    Then the team with passcode "penguindrool" should not be submitted           # features/step_definitions/enrollme_steps.rb:77
+
+  Scenario: A user joining a submitted team resets that team's submission status # features/team_editing/user_edits_submitted_team.feature:31
+    Given I log out                                                              # features/step_definitions/enrollme_steps.rb:29
+    When I log in as a user with email "justanotheremail@aol.com"                # features/step_definitions/enrollme_steps.rb:24
+    And I join a team with passcode "penguindrool"                               # features/step_definitions/enrollme_steps.rb:41
+    Then the team with passcode "penguindrool" should not be submitted           # features/step_definitions/enrollme_steps.rb:77
+
+Feature: unsubmit a team
+  As a student and a member of a submitted team
+  So that I can make changes to my team
+  I want to ensure that I can change my team status before approval
+
+  Background:                                               # features/team_editing/withdraw_team_submission.feature:7
+    Given the following users exist                         # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Saha2 | eecs667@hotmail.com           | penguindrool  | EECS            | 001 |
+      | Saha3 | eecs668@hotmail.com           | penguindrool  | EECS            | 002 |
+      | Saha4 | eecs669@hotmail.com           | penguindrool  | EECS            | 003 |
+      | Jorge | legueoflegends667@hotmail.com | penguindrool  | Football Player | 999 |
+    And the following discussions exist                     # features/step_definitions/enrollme_steps.rb:100
+      | number | time      | capacity |
+      | 54321  | Tues, 3pm | 25       |
+    And I am on the login page                              # features/step_definitions/web_steps.rb:44
+    And I log in as a user with email "eecs666@hotmail.com" # features/step_definitions/enrollme_steps.rb:24
+
+  Scenario: A user in a submitted team successfully withdraws that team's submission # features/team_editing/withdraw_team_submission.feature:21
+    Given my team is submitted                                                       # features/step_definitions/enrollme_steps.rb:68
+    And I am on the home page                                                        # features/step_definitions/web_steps.rb:44
+    When I press "Withdraw Team Submission"                                          # features/step_definitions/web_steps.rb:52
+    Then the team with passcode "penguindrool" should not be submitted               # features/step_definitions/enrollme_steps.rb:77
+
+  Scenario: An approved team should not be able to change its status                       # features/team_editing/withdraw_team_submission.feature:27
+    Given the team with passcode "penguindrool" is approved with discussion number "54321" # features/step_definitions/enrollme_steps.rb:46
+    Then I should not see the "Withdraw Team Submission" button                            # features/step_definitions/enrollme_steps.rb:137
+
+Feature: edit user information
+  As a student
+  So that I can fix any mistakes I made in inputting information
+  I want to be able to edit my user information
+
+  Background:                                               # features/users/edit.feature:7
+    Given the following users exist                         # features/step_definitions/enrollme_steps.rb:87
+      | name  | email               | team_passcode | major | sid |
+      | Sahai | eecs666@hotmail.com | penguindrool  | EECS  | 000 |
+    And I am on the login page                              # features/step_definitions/web_steps.rb:44
+    And I log in as a user with email "eecs666@hotmail.com" # features/step_definitions/enrollme_steps.rb:24
+    And I am on the team "1" page                           # features/step_definitions/web_steps.rb:44
+
+  Scenario: An existing user edits their information # features/users/edit.feature:15
+    Given I should not see "NewName"                 # features/step_definitions/web_steps.rb:123
+    And I should see "Sahai"                         # features/step_definitions/web_steps.rb:105
+    When I follow "My Info"                          # features/step_definitions/web_steps.rb:56
+    And I follow "Edit"                              # features/step_definitions/web_steps.rb:56
+    And I fill in "Name" with "NewName"              # features/step_definitions/web_steps.rb:60
+    And I press "Update Information"                 # features/step_definitions/web_steps.rb:52
+    Then I should see "NewName"                      # features/step_definitions/web_steps.rb:105
+
+  Scenario: A user cancels editing their information # features/users/edit.feature:24
+    Given I should see "Sahai"                       # features/step_definitions/web_steps.rb:105
+    When I follow "My Info"                          # features/step_definitions/web_steps.rb:56
+    And I follow "Edit"                              # features/step_definitions/web_steps.rb:56
+    And I follow "Cancel"                            # features/step_definitions/web_steps.rb:56
+    Then I should see "Sahai"                        # features/step_definitions/web_steps.rb:105
+
+Feature: Student creates a new account
+  As a student
+  In order to enroll for CS169 and submit a team
+  I want to create an account on EnrollMe
+
+  Background:                   # features/users/new.feature:6
+    Given I am on the home page # features/step_definitions/web_steps.rb:44
+    And I follow "sign_up"      # features/step_definitions/web_steps.rb:56
+
+  Scenario: User successfully creates an account and logs in # features/users/new.feature:10
+    When I fill in "Name" with "David"                       # features/step_definitions/web_steps.rb:60
+    And I fill in "Sid" with "12345678"                      # features/step_definitions/web_steps.rb:60
+    And I select "DECLARED CS/EECS Major" from "major"       # features/step_definitions/web_steps.rb:85
+    And I press "Sign Up"                                    # features/step_definitions/web_steps.rb:52
+    Then I should see "Create or Join a Team"                # features/step_definitions/web_steps.rb:105
+
+  Scenario: User fails to create an account # features/users/new.feature:17
+    And I press "Sign Up"                   # features/step_definitions/web_steps.rb:52
+    Then I should see "Form is invalid"     # features/step_definitions/web_steps.rb:105
+
+  Scenario: An admin cannot sign up as a user # features/users/new.feature:21
+    Given the following admins exist          # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 |
+      | Bob  | supreme_ruler@aol.com |
+    And I fill in "Name" with "Bob"           # features/step_definitions/web_steps.rb:60
+    And I fill in "Sid" with "98745632"       # features/step_definitions/web_steps.rb:60
+    And I select "Other Major" from "major"   # features/step_definitions/web_steps.rb:85
+    And I press "Sign Up"                     # features/step_definitions/web_steps.rb:52
+    Then I should see "Form is invalid"       # features/step_definitions/web_steps.rb:105
+      expected to find text "Form is invalid" in "Toggle navigation EnrollMe Home Help My Info Logout You signed up successfully! Create or Join a Team Create or Join a Team Team Passcode" (RSpec::Expectations::ExpectationNotMetError)
+      ./features/step_definitions/web_steps.rb:107:in `/^(?:|I )should see "([^"]*)"$/'
+      features/users/new.feature:29:in `Then I should see "Form is invalid"'
+
+Feature: go to the correct page
+  As a student
+  So that I know what my team and login status is
+  I want to be directed to the correct page
+
+  Background:                       # features/users/redirect.feature:7
+    Given the following users exist # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Jorge | legueoflegends667@hotmail.com | 0             | Football Player | 999 |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Copy  | anotheremail@yahoo.com        | ok            | CS              | 001 |
+    And the following admins exist  # features/step_definitions/enrollme_steps.rb:142
+      | name | email                 |
+      | Bob  | supreme_ruler@aol.com |
+    And I am on the login page      # features/step_definitions/web_steps.rb:44
+
+  Scenario: Correctly redirects to the login page when no one is signed in # features/users/redirect.feature:19
+    Given I am on the home page                                            # features/step_definitions/web_steps.rb:44
+    Then I should see "CS 169 EnrollMe"                                    # features/step_definitions/web_steps.rb:105
+
+  Scenario: Redirects a user already in a team to their team page # features/users/redirect.feature:23
+    Given I log in as a user with email "eecs666@hotmail.com"     # features/step_definitions/enrollme_steps.rb:24
+    Then I should see "Team Password: penguindrool"               # features/step_definitions/web_steps.rb:105
+
+  Scenario: Redirects an already-logged in user to their team page when they try to access the login page # features/users/redirect.feature:27
+    Given I log in as a user with email "eecs666@hotmail.com"                                             # features/step_definitions/enrollme_steps.rb:24
+    And I am on the login page                                                                            # features/step_definitions/web_steps.rb:44
+    Then I should see "Team Password: penguindrool"                                                       # features/step_definitions/web_steps.rb:105
+
+  Scenario: A user puts in the wrong username                    # features/users/redirect.feature:32
+    Given I log in as a user with email "wrongemail@yahoo.com"   # features/step_definitions/enrollme_steps.rb:24
+    Then I should see "Account not created yet, please sign up!" # features/step_definitions/web_steps.rb:105
+
+  Scenario: Successfully log out                              # features/users/redirect.feature:36
+    Given I log in as a user with email "eecs666@hotmail.com" # features/step_definitions/enrollme_steps.rb:24
+    Then I follow "Logout"                                    # features/step_definitions/web_steps.rb:56
+    Then I should be on the login page                        # features/step_definitions/web_steps.rb:235
+
+  Scenario: Prevents access to team page when no one is signed in # features/users/redirect.feature:41
+    Given I am on the team "1" page                               # features/step_definitions/web_steps.rb:44
+    Then I should see "CS 169 EnrollMe"                           # features/step_definitions/web_steps.rb:105
+
+  Scenario: Prevents access to a team page when a user is not on a team # features/users/redirect.feature:45
+    Given I log in as a user with email "legueoflegends667@hotmail.com" # features/step_definitions/enrollme_steps.rb:24
+    Then I go to the team "1" page                                      # features/step_definitions/web_steps.rb:48
+    Then I should see "Permission denied"                               # features/step_definitions/web_steps.rb:105
+
+  Scenario: Prevents access to another team's page            # features/users/redirect.feature:50
+    Given I log in as a user with email "eecs666@hotmail.com" # features/step_definitions/enrollme_steps.rb:24
+    Then I go to the team "2" page                            # features/step_definitions/web_steps.rb:48
+    Then I should not be on the team "2" page                 # features/step_definitions/enrollme_steps.rb:107
+    And I should see "Permission denied"                      # features/step_definitions/web_steps.rb:105
+
+  Scenario: Prevents access to a non-logged in person # features/users/redirect.feature:56
+    Given I go to the team "0" page                   # features/step_definitions/web_steps.rb:48
+    Then I should not be on the team "0" page         # features/step_definitions/enrollme_steps.rb:107
+    And I should see "Please log in"                  # features/step_definitions/web_steps.rb:105
+
+  Scenario: Successfully leave a team                         # features/users/redirect.feature:61
+    Given I log in as a user with email "eecs666@hotmail.com" # features/step_definitions/enrollme_steps.rb:24
+    Then I go to the home page                                # features/step_definitions/web_steps.rb:48
+    And I press "Leave team"                                  # features/step_definitions/web_steps.rb:52
+    Then I should be on the without_team page                 # features/step_definitions/web_steps.rb:235
+
+Feature: Student gets help
+  As a student
+  I want to get help on how to use this website as a student
+  I want to click a button that brings me to an info page
+
+  Background:                                                         # features/users/user_help.feature:6
+    Given the following users exist                                   # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Jorge | legueoflegends667@hotmail.com | 0             | Football Player | 999 |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Saha1 | eecs667@hotmail.com           | penguindrool  | EECS            | 001 |
+      | Saha2 | eecs668@hotmail.com           | penguindrool  | EECS            | 002 |
+      | Saha3 | eecs669@hotmail.com           | penguindrool  | EECS            | 003 |
+      | Saha4 | eecs660@hotmail.com           | penguindrool  | EECS            | 004 |
+    And I am on the login page                                        # features/step_definitions/web_steps.rb:44
+    And I log in as a user with email "legueoflegends667@hotmail.com" # features/step_definitions/enrollme_steps.rb:24
+
+  Scenario: User successfully finds help # features/users/user_help.feature:19
+    When I follow "Help"                 # features/step_definitions/web_steps.rb:56
+    Then I should see "Student Help"     # features/step_definitions/web_steps.rb:105
+
+Feature: join or create a team
+  As a student
+  So that I can become part of a team
+  I want to be able to join or create a team
+
+  Background:                                                         # features/users/without_team_page.feature:7
+    Given the allowed team size is 5-6                                # features/step_definitions/enrollme_steps.rb:5
+    And the following users exist                                     # features/step_definitions/enrollme_steps.rb:87
+      | name  | email                         | team_passcode | major           | sid |
+      | Jorge | legueoflegends667@hotmail.com | 0             | Football Player | 999 |
+      | Sahai | eecs666@hotmail.com           | penguindrool  | EECS            | 000 |
+      | Saha1 | eecs667@hotmail.com           | penguindrool  | EECS            | 001 |
+      | Saha2 | eecs668@hotmail.com           | penguindrool  | EECS            | 002 |
+      | Saha3 | eecs669@hotmail.com           | penguindrool  | EECS            | 003 |
+      | Saha4 | eecs660@hotmail.com           | penguindrool  | EECS            | 004 |
+    And I am on the login page                                        # features/step_definitions/web_steps.rb:44
+    And I log in as a user with email "legueoflegends667@hotmail.com" # features/step_definitions/enrollme_steps.rb:24
+
+  Scenario: A user tries joining a nonexistent team       # features/users/without_team_page.feature:21
+    Given I fill in "team_hash" with "barbequed_crickets" # features/step_definitions/web_steps.rb:60
+    And I press "Join"                                    # features/step_definitions/web_steps.rb:52
+    Then I should see "Unable to join team"               # features/step_definitions/web_steps.rb:105
+
+  Scenario: An existing user creates a new team and gets the password # features/users/without_team_page.feature:26
+    Given I press "Create"                                            # features/step_definitions/web_steps.rb:52
+    Then I should see "Team Password:"                                # features/step_definitions/web_steps.rb:105
+
+  Scenario: An existing user joins an existing team # features/users/without_team_page.feature:30
+    Given I fill in "team_hash" with "penguindrool" # features/step_definitions/web_steps.rb:60
+    And I press "Join"                              # features/step_definitions/web_steps.rb:52
+    Then I should see "Team Password: penguindrool" # features/step_definitions/web_steps.rb:105
+
+Failing Scenarios:
+cucumber features/admins/super_admin_delete_database.feature:28 # Scenario: Super admin successfully deletes everything from database
+cucumber features/emails/approved_teams.feature:11 # Scenario: Successfully create an account with my name and email
+cucumber features/users/new.feature:21 # Scenario: An admin cannot sign up as a user
+
+70 scenarios (3 failed, 67 passed)
+586 steps (3 failed, 4 skipped, 579 passed)
+0m7.031s
+Coverage report generated for Cucumber Features to /Users/Raymond/Dropbox/cal/classes/cs169/enrollme/coverage. 426 / 478 LOC (89.12%) covered.
