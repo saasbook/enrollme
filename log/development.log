@@ -7535,3 +7535,441 @@ Processing by GroupController#index as HTML
   [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
   Rendered shared/_head.html.erb (23.8ms)
 Completed 200 OK in 127ms (Views: 122.6ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 64.62.133.42 at 2017-10-21 19:07:34 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+Redirected to https://enrollme-yonas024.c9users.io/admins
+Completed 302 Found in 43ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/admins" for 64.62.133.42 at 2017-10-21 19:07:34 +0000
+Processing by AdminsController#index as HTML
+  [1m[36mAdmin Load (0.2ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTeam Load (0.3ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?[0m  [["approved", "t"]]
+  [1m[35mTeam Load (0.2ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?  [["approved", "f"], ["submitted", "t"]]
+  [1m[36mDiscussion Load (0.3ms)[0m  [1mSELECT "discussions".* FROM "discussions"[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mDiscussion Load (0.2ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTeam Load (0.2ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  [1m[35mDiscussion Load (0.1ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  Rendered admins/index.html.erb within layouts/application (44.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered shared/_head.html.erb (334.4ms)
+Completed 200 OK in 446ms (Views: 401.2ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/" for 64.62.133.42 at 2017-10-21 19:07:41 +0000
+Processing by SessionController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+Redirected to https://enrollme-yonas024.c9users.io/admins
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/admins" for 64.62.133.42 at 2017-10-21 19:07:41 +0000
+Processing by AdminsController#index as HTML
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?  [["approved", "t"]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?[0m  [["approved", "f"], ["submitted", "t"]]
+  [1m[35mDiscussion Load (0.2ms)[0m  SELECT "discussions".* FROM "discussions"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mDiscussion Load (0.1ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTeam Load (0.2ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 2]]
+  [1m[36mDiscussion Load (0.1ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  Rendered admins/index.html.erb within layouts/application (25.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered shared/_head.html.erb (19.9ms)
+Completed 200 OK in 52ms (Views: 47.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/admin/tutorial" for 64.62.133.42 at 2017-10-21 19:07:42 +0000
+Processing by AdminsController#admin_tutorial as HTML
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered admins/admin_tutorial.html.erb within layouts/application (0.6ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered shared/_head.html.erb (21.6ms)
+Completed 200 OK in 27ms (Views: 25.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admins/3" for 64.62.133.42 at 2017-10-21 19:07:43 +0000
+Processing by AdminsController#show as HTML
+  Parameters: {"authenticity_token"=>"4LFMDeEWOd38xCWSWoeeB9hXJ23JTwQhEp/Z/qwUDPz0wwP16s/Vowk8T2BzQnE5O616edzRJXBgwoBYkHyxdQ==", "id"=>"3"}
+  [1m[36mAdmin Load (0.2ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mAdmin Load (0.1ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered admins/show.html.erb within layouts/application (1.6ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered shared/_head.html.erb (55.7ms)
+Completed 200 OK in 62ms (Views: 60.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admins/new" for 64.62.133.42 at 2017-10-21 19:07:44 +0000
+Processing by AdminsController#new as HTML
+  Parameters: {"authenticity_token"=>"M6kzl3gmc6akOzijCVTKPnB86qjxhP9eyAWP69UsZHsn23xvc/+f2FHDUlEgkSUAk4a3vOQa3g+6WNZN6UTZ8g=="}
+  [1m[36mAdmin Load (0.1ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered shared/_basic_info.html.erb (24.0ms)
+  Rendered admins/new.html.erb within layouts/application (29.7ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered shared/_head.html.erb (29.4ms)
+Completed 200 OK in 64ms (Views: 62.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin/superadmin" for 64.62.133.42 at 2017-10-21 19:07:46 +0000
+Processing by AdminsController#superadmin as HTML
+  Parameters: {"authenticity_token"=>"FXweudFXKDpqsnm8TwRr0aVLfQ7eAlXtP8il1sAnfQIBDlFB2o7ERJ9KE05mwYTvRrEgGsucdLxNlfxw/E/Aiw=="}
+  [1m[36mAdmin Load (0.2ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mAdmin Load (0.3ms)[0m  [1mSELECT "admins".* FROM "admins"[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "admins".* FROM "admins"
+  Rendered admins/super.html.erb within layouts/application (5.0ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered shared/_head.html.erb (29.2ms)
+Completed 200 OK in 39ms (Views: 37.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/admin/reset_semester" for 64.62.133.42 at 2017-10-21 19:07:50 +0000
+Processing by AdminsController#reset_semester as HTML
+  Parameters: {"authenticity_token"=>"QBW3QKEFujqAtf3xVTdrHHt9h5/MiLuLWCUxM6H2RSpUZ/i4qtxWRHVNlwN88oQimIfai9kWmtoqeGiVnZ74ow=="}
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered admins/reset.html.erb within layouts/application (2.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered shared/_head.html.erb (65.3ms)
+Completed 200 OK in 76ms (Views: 72.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admin/superadmin" for 64.62.133.42 at 2017-10-21 19:07:52 +0000
+Processing by AdminsController#superadmin as HTML
+  Parameters: {"authenticity_token"=>"oNT6x6gpdSZcy0gME4d+JMxSmsCXPyG6njLjwMxO5kS0prU/o/CZWKkzIv46QpEaL6jH1IKhAOvsb7pm8CZbzQ=="}
+  [1m[36mAdmin Load (0.2ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mAdmin Load (0.2ms)[0m  [1mSELECT "admins".* FROM "admins"[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "admins".* FROM "admins"
+  Rendered admins/super.html.erb within layouts/application (7.8ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered shared/_head.html.erb (64.3ms)
+Completed 200 OK in 79ms (Views: 75.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/admins/new" for 64.62.133.42 at 2017-10-21 19:07:54 +0000
+Processing by AdminsController#new as HTML
+  Parameters: {"authenticity_token"=>"Au3UPQcDkhrHLxYgoHc9iln4PpAk86uBDp1ur1Gbe/4Wn5vFDNp+ZDLXfNKJstK0ugJjhDFtitB8wDcJbfPGdw=="}
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered shared/_basic_info.html.erb (1.5ms)
+  Rendered admins/new.html.erb within layouts/application (3.3ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered shared/_head.html.erb (35.3ms)
+Completed 200 OK in 45ms (Views: 43.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/admins/3" for 64.62.133.42 at 2017-10-21 19:07:55 +0000
+Processing by AdminsController#show as HTML
+  Parameters: {"authenticity_token"=>"PEhXnStfUsTzYV4CqSA09pbhRoZfZ2+Yln8oj5swx94oOhhlIIa+ugaZNPCA5dvIdRsbkkr5TsnkInEpp1h6Vw==", "id"=>"3"}
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mAdmin Load (0.1ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered admins/show.html.erb within layouts/application (1.1ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered shared/_head.html.erb (31.4ms)
+Completed 200 OK in 38ms (Views: 35.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/admin/tutorial" for 64.62.133.42 at 2017-10-21 19:07:57 +0000
+Processing by AdminsController#admin_tutorial as HTML
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered admins/admin_tutorial.html.erb within layouts/application (0.1ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered shared/_head.html.erb (22.3ms)
+Completed 200 OK in 27ms (Views: 25.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 64.62.133.42 at 2017-10-21 19:07:58 +0000
+Processing by SessionController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 3]]
+Redirected to https://enrollme-yonas024.c9users.io/admins
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/admins" for 64.62.133.42 at 2017-10-21 19:07:58 +0000
+Processing by AdminsController#index as HTML
+  [1m[35mAdmin Load (0.1ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?  [["approved", "t"]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?[0m  [["approved", "f"], ["submitted", "t"]]
+  [1m[35mDiscussion Load (0.2ms)[0m  SELECT "discussions".* FROM "discussions"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mDiscussion Load (0.1ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 2]]
+  [1m[36mDiscussion Load (0.1ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  Rendered admins/index.html.erb within layouts/application (16.6ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered shared/_head.html.erb (22.1ms)
+Completed 200 OK in 46ms (Views: 41.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/admin/undo_approve_team?team_id=1" for 64.62.133.42 at 2017-10-21 19:08:02 +0000
+Processing by AdminsController#undo_approve as HTML
+  Parameters: {"team_id"=>"1"}
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTeam Load (0.2ms)[0m  SELECT  "teams".* FROM "teams" WHERE "teams"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mTeam Exists (0.2ms)[0m  SELECT  1 AS one FROM "teams" WHERE ("teams"."passcode" = 'abc' AND "teams"."id" != 1) LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "teams" SET "approved" = ?, "updated_at" = ? WHERE "teams"."id" = ?[0m  [["approved", "f"], ["updated_at", "2017-10-21 19:08:02.237276"], ["id", 1]]
+  [1m[35m (10.0ms)[0m  commit transaction
+  [1m[36mTeam Load (0.2ms)[0m  [1mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTeam Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "teams" WHERE ("teams"."passcode" = 'abc' AND "teams"."id" != 1) LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+Redirected to https://enrollme-yonas024.c9users.io/admins
+Completed 302 Found in 36ms (ActiveRecord: 11.5ms)
+
+
+Started GET "/admins" for 64.62.133.42 at 2017-10-21 19:08:02 +0000
+Processing by AdminsController#index as HTML
+  [1m[36mAdmin Load (0.2ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?[0m  [["approved", "t"]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?  [["approved", "f"], ["submitted", "t"]]
+  [1m[36mDiscussion Load (0.2ms)[0m  [1mSELECT "discussions".* FROM "discussions"[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 2]]
+  [1m[36mDiscussion Load (0.1ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  [1m[36mDiscussion Load (0.1ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mCACHE (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mSubmission Load (0.3ms)[0m  SELECT  "submissions".* FROM "submissions" WHERE "submissions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  [1m[36mDiscussion Load (0.2ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  Rendered admins/index.html.erb within layouts/application (33.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered shared/_head.html.erb (29.2ms)
+Completed 200 OK in 70ms (Views: 63.8ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/admin/undo_approve_team?team_id=2" for 64.62.133.42 at 2017-10-21 19:08:04 +0000
+Processing by AdminsController#undo_approve as HTML
+  Parameters: {"team_id"=>"2"}
+  [1m[36mAdmin Load (0.2ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTeam Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "teams" WHERE ("teams"."passcode" = 'def' AND "teams"."id" != 2) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "teams" SET "approved" = ?, "updated_at" = ? WHERE "teams"."id" = ?  [["approved", "f"], ["updated_at", "2017-10-21 19:08:04.155551"], ["id", 2]]
+  [1m[36m (11.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mTeam Load (0.2ms)[0m  SELECT  "teams".* FROM "teams" WHERE "teams"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mTeam Exists (0.2ms)[0m  SELECT  1 AS one FROM "teams" WHERE ("teams"."passcode" = 'def' AND "teams"."id" != 2) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+Redirected to https://enrollme-yonas024.c9users.io/admins
+Completed 302 Found in 21ms (ActiveRecord: 12.9ms)
+
+
+Started GET "/admins" for 64.62.133.42 at 2017-10-21 19:08:04 +0000
+Processing by AdminsController#index as HTML
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?  [["approved", "t"]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?[0m  [["approved", "f"], ["submitted", "t"]]
+  [1m[35mDiscussion Load (0.2ms)[0m  SELECT "discussions".* FROM "discussions"
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  [1m[35mDiscussion Load (0.1ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mSubmission Load (0.1ms)[0m  [1mSELECT  "submissions".* FROM "submissions" WHERE "submissions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  [1m[35mDiscussion Load (0.1ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 2]]
+  [1m[35mDiscussion Load (0.1ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 3]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  [1m[35mSubmission Load (0.1ms)[0m  SELECT  "submissions".* FROM "submissions" WHERE "submissions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  Rendered admins/index.html.erb within layouts/application (18.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered shared/_head.html.erb (20.2ms)
+Completed 200 OK in 46ms (Views: 40.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/admin/undo_approve_team?team_id=3" for 64.62.133.42 at 2017-10-21 19:08:05 +0000
+Processing by AdminsController#undo_approve as HTML
+  Parameters: {"team_id"=>"3"}
+  [1m[36mAdmin Load (0.2ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTeam Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "teams" WHERE ("teams"."passcode" = 'ghi' AND "teams"."id" != 3) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "teams" SET "approved" = ?, "updated_at" = ? WHERE "teams"."id" = ?  [["approved", "f"], ["updated_at", "2017-10-21 19:08:05.447632"], ["id", 3]]
+  [1m[36m (11.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mTeam Load (0.1ms)[0m  SELECT  "teams".* FROM "teams" WHERE "teams"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mTeam Exists (0.1ms)[0m  SELECT  1 AS one FROM "teams" WHERE ("teams"."passcode" = 'ghi' AND "teams"."id" != 3) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+Redirected to https://enrollme-yonas024.c9users.io/admins
+Completed 302 Found in 20ms (ActiveRecord: 13.0ms)
+
+
+Started GET "/admins" for 64.62.133.42 at 2017-10-21 19:08:05 +0000
+Processing by AdminsController#index as HTML
+  [1m[35mAdmin Load (0.2ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?  [["approved", "t"]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?[0m  [["approved", "f"], ["submitted", "t"]]
+  [1m[35mDiscussion Load (0.2ms)[0m  SELECT "discussions".* FROM "discussions"
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mSubmission Load (0.1ms)[0m  SELECT  "submissions".* FROM "submissions" WHERE "submissions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mDiscussion Load (0.1ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  [1m[36mDiscussion Load (0.1ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 2]]
+  [1m[36mDiscussion Load (0.1ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 3]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 2]]
+  [1m[36mSubmission Load (0.1ms)[0m  [1mSELECT  "submissions".* FROM "submissions" WHERE "submissions"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  [1m[35mSubmission Load (0.2ms)[0m  SELECT  "submissions".* FROM "submissions" WHERE "submissions"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  Rendered admins/index.html.erb within layouts/application (21.0ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  Rendered shared/_head.html.erb (23.4ms)
+Completed 200 OK in 51ms (Views: 46.2ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/admin/approve_team?disc=3&team_id=1" for 64.62.133.42 at 2017-10-21 19:08:49 +0000
+Processing by AdminsController#approve as HTML
+  Parameters: {"disc"=>"3", "team_id"=>"1"}
+  [1m[36mAdmin Load (0.2ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTeam Load (0.1ms)[0m  [1mSELECT  "teams".* FROM "teams" WHERE "teams"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mTeam Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "teams" WHERE ("teams"."passcode" = 'abc' AND "teams"."id" != 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "teams" SET "approved" = ?, "updated_at" = ? WHERE "teams"."id" = ?  [["approved", "t"], ["updated_at", "2017-10-21 19:08:49.199767"], ["id", 1]]
+  [1m[36m (8.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mTeam Load (0.1ms)[0m  SELECT  "teams".* FROM "teams" WHERE "teams"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mTeam Exists (0.1ms)[0m  SELECT  1 AS one FROM "teams" WHERE ("teams"."passcode" = 'abc' AND "teams"."id" != 1) LIMIT 1
+  [1m[36mSQL (1.2ms)[0m  [1mUPDATE "teams" SET "discussion_id" = ?, "updated_at" = ? WHERE "teams"."id" = ?[0m  [["discussion_id", 3], ["updated_at", "2017-10-21 19:08:49.212034"], ["id", 1]]
+  [1m[35m (9.7ms)[0m  commit transaction
+Redirected to https://enrollme-yonas024.c9users.io/admins
+Completed 302 Found in 29ms (ActiveRecord: 20.8ms)
+
+
+Started GET "/admins" for 64.62.133.42 at 2017-10-21 19:08:49 +0000
+Processing by AdminsController#index as HTML
+  [1m[36mAdmin Load (0.2ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mTeam Load (0.2ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."approved" = ?[0m  [["approved", "t"]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."approved" = ? AND "teams"."submitted" = ?  [["approved", "f"], ["submitted", "t"]]
+  [1m[36mDiscussion Load (0.2ms)[0m  [1mSELECT "discussions".* FROM "discussions"[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mDiscussion Load (0.1ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  [1m[35mSubmission Load (0.1ms)[0m  SELECT  "submissions".* FROM "submissions" WHERE "submissions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mDiscussion Load (0.1ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 2]]
+  [1m[36mDiscussion Load (0.1ms)[0m  [1mSELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTeam Load (0.1ms)[0m  SELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?  [["discussion_id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  [1m[36mSubmission Load (0.1ms)[0m  [1mSELECT  "submissions".* FROM "submissions" WHERE "submissions"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 3]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."team_id" = ?[0m  [["team_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "teams".* FROM "teams" WHERE "teams"."discussion_id" = ?[0m  [["discussion_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT "users".* FROM "users" WHERE "users"."team_id" = ?  [["team_id", 3]]
+  Rendered admins/index.html.erb within layouts/application (20.4ms)
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "admins".* FROM "admins" WHERE "admins"."id" = ? LIMIT 1[0m  [["id", 3]]
+  Rendered shared/_head.html.erb (21.5ms)
+Completed 200 OK in 50ms (Views: 43.8ms | ActiveRecord: 2.2ms)
