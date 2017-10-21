@@ -11,7 +11,8 @@ class AdminsController < ApplicationController
   def create
     @admin = Admin.new(admin_params)
     @admin.superadmin = false
-    if session[:is_admin] == true and @admin.save
+    if (session[:is_admin] == true and
+        @admin.save)
       AdminMailer.invite_new_admin(@admin).deliver_now
       redirect_to admins_path, :notice => "You created admin " + admin_params["name"] + " successfully!"
     else
@@ -82,8 +83,9 @@ class AdminsController < ApplicationController
   
   def reset_database
     @reset_password = params[:reset_password]
-    if @reset_password == ENV["ADMIN_DELETE_DATA_PASSWORD"]
-      AdminMailer.all_data(@admin).deliver_now if not Rails.env.test?
+    if (@reset_password == 
+          ENV["ADMIN_DELETE_DATA_PASSWORD"])
+      AdminMailer.all_data(@admin).deliver_now unless Rails.env.test?
       User.delete_all
       Team.delete_all
       Submission.delete_all
