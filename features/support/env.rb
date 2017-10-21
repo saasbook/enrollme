@@ -93,7 +93,7 @@ module OmniauthMacros
     # 'secret' => 'mock_secret'
     # }
       :info => {
-        :email => 'supreme_ruler@aol.com'
+        :email => 'eecs666@hotmail.com'
       }
     }
 end

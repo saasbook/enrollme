@@ -21,7 +21,7 @@ Feature: Student creates a new account
   Scenario: An admin cannot sign up as a user
     Given the following admins exist
      | name  | email                  |
-  	 | Bob   | supreme_ruler@aol.com  |
+  	 | Bob   | eecs666@hotmail.com  |
   	And I fill in "Name" with "Bob"
     And I fill in "Sid" with "98745632"
     And I select "Other Major" from "major"
