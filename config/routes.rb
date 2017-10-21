@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 
   resources :submissions
   
+  resources :group
+  
   root 'session#new'
 
   # TODO: something for route not found
