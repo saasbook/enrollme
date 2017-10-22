@@ -1,0 +1,21 @@
+<body>
+    <title>Email Team</title>
+    <div class="container">
+        <div class="row">
+                    <h2>Send customized e-mail to team by filling in the text area below, and clicking "Send Email"</h2>
+
+        </div>
+        <div class="row">
+            <%=form_for @email, url: {action: "create_email"} do |f| %>
+                <fieldset>
+                    <%= f.text_area :email_content, class: "send_email_textarea" %>
+                    <div class="actions form-group">
+                        <a href="/" class="btn btn-default">Cancel</a>
+                        <%= f.submit "Send Email", class: "btn btn-primary" %>
+                    </div>
+                </fieldset>
+            <% end %>
+
+        </div>
+    </div>
+</body>
