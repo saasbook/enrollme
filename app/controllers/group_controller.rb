@@ -6,12 +6,10 @@ class GroupController < ApplicationController
     end
     
     
-    # def show
-    #     status = params[:status]
-    #     @status = status
-    #     @teams_li = Team.filter_by(status)
-    #     render 'index'
-    # end
+    def show
+        @groups_li = Group.all
+        render 'index'
+    end
     
     def select_group
      status = params[:status]
@@ -29,7 +27,7 @@ class GroupController < ApplicationController
     #             if two_teams.length == 2
     #                 Group.create!(two_teams[0], two_teams[1])
     #             end
-    #             if !Group.has_team?(team)
+    #             if !Group.has_team?(team, discussion.number)
     #                 two_teams.push(team)
     #             end
     #         end
