@@ -36,8 +36,8 @@ users = [
   ]
   
 teams = [
-      { :approved => false, :passcode => "abc", :submission_id => 1, :submitted => true},
-      { :approved => false, :passcode => "def", :submission_id => 2, :submitted => true},
+      { :approved => true, :passcode => "abc", :submission_id => 1, :submitted => true, :discussion_id => 1},
+      { :approved => true, :passcode => "def", :submission_id => 2, :submitted => true, :discussion_id => 1},
       { :approved => false, :passcode => "ghi", :submission_id => 3, :submitted => true},
       { :approved => false, :passcode => "wack", :submitted => false},
   ]
@@ -56,25 +56,25 @@ submissions = [
   
   ]
   
-User.delete_all
-users.each do |t|
-  User.create!(t)
-end  
+# User.delete_all
+# users.each do |t|
+#   User.create!(t)
+# end  
 
-Team.delete_all
-teams.each do |t|
-  Team.create!(t)
-end
+# Team.delete_all
+# teams.each do |t|
+#   Team.create!(t)
+# end
 
-Discussion.delete_all
-discussions.each do |a|
-  Discussion.create!(a)
-end
+# Discussion.delete_all
+# discussions.each do |a|
+#   Discussion.create!(a)
+# end
 
-Submission.delete_all
-submissions.each do |a|
-  Submission.create!(a)
-end
+# Submission.delete_all
+# submissions.each do |a|
+#   Submission.create!(a)
+# end
   
 Admin.delete_all
 admins.each do |a|
@@ -86,7 +86,7 @@ Option.create!(
   :minimum_team_size => 3,
   :maximum_team_size => 3
   )
-
+puts Group.all.inspect
 puts User.all.inspect
 puts "------"
 puts Discussion.all.inspect

@@ -45,7 +45,12 @@ Rails.application.routes.draw do
   resources :submissions
   
   resources :group
-  get '/admin/select_group', to:'group#select_group', as: 'select_group'
+  
+  get '/admin/select_group', to:'group#select_group'
+  
+  post '/admin/select_group', to:'group#select_group', as: 'select_group'
+  
+  post '/admin/merge', to:'group#merge', as: 'merge_group'
   
   
   root 'session#new'

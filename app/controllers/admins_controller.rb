@@ -28,11 +28,14 @@ class AdminsController < ApplicationController
     status = params[:status]
     @status = status
     @teams_li = Team.filter_by(status)
-    puts "!!!!!!"
-    puts Submission.all.inspect
-    puts "======="
+    
+    puts "---"
+    puts Group.all.inspect
+    puts "---"
     render 'index'
   end
+  
+  
   
   def approve
     @team = Team.find_by_id(params[:team_id])

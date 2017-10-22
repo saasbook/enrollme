@@ -6,9 +6,9 @@ class TeamController < ApplicationController
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
   
   def show
-    puts "111111"
-    puts Submission.all.inspect
-    puts "111111"
+    # puts "111111"
+    # puts Submission.all.inspect
+    # puts "111111"
     @discussions = Discussion.valid_discs_for(@team)
     if @team.submitted and !(@team.approved)
       @s = Submission.find(@team.submission_id)
@@ -26,12 +26,12 @@ class TeamController < ApplicationController
   end
   
   def unsubmit
-    puts "-------"
-    puts @team.inspect
-    puts "!!!!!!"
-    puts Team.all.inspect
-    puts Submission.all.inspect
-    puts "======="
+    # puts "-------"
+    # puts @team.inspect
+    # puts "!!!!!!"
+    # puts Team.all.inspect
+    # puts Submission.all.inspect
+    # puts "======="
     @submission = @team.submission
     @submission.destroy!
     @team.withdraw_submission
