@@ -17,10 +17,11 @@ admins = [
     
   ]
   
-users = [ # Added by Yonas
+users = [ 
       { :name => "Yonas Kbrom", :email => "kbromyonas@gmail.com", :major => "CS", :sid => 111111, :team_id => 1},
       { :name => "Monty Inaya", :email => "mr.monty@gmail.com", :major => "CS", :sid => 222222, :team_id => 1},
       { :name => "Vikram Baid", :email => "vbaid@gmail.com", :major => "CS", :sid => 333333, :team_id => 1},
+      
       { :name => "Mark Sun", :email => "msun908@gmail.com", :major => "CS", :sid => 444444, :team_id => 2},
       { :name => "Timothy Stepro", :email => "stepro.015389@gmail.com", :major => "CS", :sid => 555555, :team_id => 2},
       { :name => "Minjoo Sur", :email => "minjoo@gmail.com", :major => "CS", :sid => 6666666, :team_id => 2},
@@ -28,21 +29,24 @@ users = [ # Added by Yonas
       { :name => "Lonzo Ball", :email => "ball@gmail.com", :major => "CS", :sid => 777777, :team_id => 3},
       { :name => "Kobe Bryant", :email => "bryant@gmail.com", :major => "CS", :sid => 888888, :team_id => 3},
       { :name => "Pau Gasol", :email => "gasol@gmail.com", :major => "CS", :sid => 999999, :team_id => 3},
+      
+      { :name => "Yonas Kbrom", :email => "kbromyonas1@gmail.com", :major => "CS", :sid => 111112},
+      { :name => "Paul Pierce", :email => "pierce@gmail.com", :major => "CS", :sid => 133113, :team_id => 4},
+      { :name => "Kevin Garnett", :email => "garnett@gmail.com", :major => "CS", :sid => 144114, :team_id => 4},
   ]
   
-teams = [ # Added by Yonas
-      { :approved => false, :passcode => "abc", :submission_id => 1, :submitted => true, :discussion_id => 1},
-      { :approved => false, :passcode => "def", :submission_id => 2, :submitted => true, :discussion_id => 1},
-      { :approved => false, :passcode => "ghi", :submission_id => 3,:submitted => true, :discussion_id => 2},
-      # { :approved => false, :passcode => "jkl", :submission_id => 4, :submitted => true, :discussion_id => 2},
-      # { :approved => false, :passcode => "mno", :submission_id => 5, :submitted => true, :discussion_id => 3},
-      # { :approved => false, :passcode => "pqr", :submission_id => 6, :submitted => true, :discussion_id => 3},
+teams = [
+      { :approved => false, :passcode => "abc", :submission_id => 1, :submitted => true},
+      { :approved => false, :passcode => "def", :submission_id => 2, :submitted => true},
+      { :approved => false, :passcode => "ghi", :submission_id => 3, :submitted => true},
+      { :approved => false, :passcode => "wack", :submitted => false},
   ]
   
 discussions = [
-      { :number => 12121, :time => "8-9am", :capacity => 24, :submission_id => 1, :day => "M"},
-      { :number => 21212, :time => "8-9am", :capacity => 24, :submission_id => 2, :day => "W"},
-      { :number => 34343, :time => "8-9am", :capacity => 24, :submission_id => 3, :day => "F"},
+      { :number => 12121, :time => "8-9am", :capacity => 24, :day => "M"},
+      { :number => 21212, :time => "8-9am", :capacity => 24, :day => "W"},
+      { :number => 34343, :time => "8-9am", :capacity => 24, :day => "F"},
+    
   ]
   
 submissions = [
@@ -82,5 +86,13 @@ Option.create!(
   :minimum_team_size => 3,
   :maximum_team_size => 3
   )
+
+puts User.all.inspect
+puts "------"
+puts Discussion.all.inspect
+puts "------"
+puts Team.all.inspect
+puts "------"
+puts Submission.all.inspect
 
   
