@@ -1,9 +1,7 @@
 class GroupController < ApplicationController
     
     def index
-        status = params[:status]
-        @status = status
-        @teams_li = Team.filter_by(status)
+        @groups_li = Group.all
         render 'index'
     end
     
