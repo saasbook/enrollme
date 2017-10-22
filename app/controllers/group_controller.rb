@@ -5,12 +5,6 @@ class GroupController < ApplicationController
         render 'index'
     end
     
-    
-    def show
-        @groups_li = Group.all
-        render 'index'
-    end
-    
     def select_group
      status = params[:status]
      @status = status

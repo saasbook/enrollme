@@ -17,16 +17,16 @@
             <%= form_tag({:method => "get"}) do %>
             <% @groups_li.each do |g| %>
               <tr>
-                <td><%= check_box(g, "selected")%></td>
-                <td><%= g.id%></td>
-                <td><%= g.team1_id%></td>
-                <td><%= g.team2_id%></td>
-                <td> <%= g.discussion_id %></td>
+                <td><%= check_box(g, "selected") %></td>
+                <td><%= g.id %></td>
+                <td><%= g.team1_id %></td>
+                <td><%= g.team2_id %></td>
+                <td><%= g.discussion_id %></td>
               </tr>
             <% end %>
           </table>
           
-          <%= submit_tag "Un-merge" %>
+          <!--<%= submit_tag "Un-merge" %>-->
           <% end %>
           
         </div>
