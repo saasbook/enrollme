@@ -42,10 +42,6 @@ teams = [
       { :approved => false, :passcode => "wack", :submitted => false},
   ]
   
-groups = [
-      { :team1_id => 1, :team2_id => 2, :discussion_id => 12121 }
-]
-  
 discussions = [
       { :number => 12121, :time => "8-9am", :capacity => 24, :day => "M"},
       { :number => 21212, :time => "8-9am", :capacity => 24, :day => "W"},
@@ -60,30 +56,25 @@ submissions = [
   
   ]
   
-# User.delete_all
-# users.each do |t|
-#   User.create!(t)
-# end  
+User.delete_all
+users.each do |t|
+  User.create!(t)
+end  
 
-# Team.delete_all
-# teams.each do |t|
-#   Team.create!(t)
-# end
+Team.delete_all
+teams.each do |t|
+  Team.create!(t)
+end
 
-# Group.delete_all
-# groups.each do |g|
-#   Group.create!(g)
-# end
+Discussion.delete_all
+discussions.each do |a|
+  Discussion.create!(a)
+end
 
-# Discussion.delete_all
-# discussions.each do |a|
-#   Discussion.create!(a)
-# end
-
-# Submission.delete_all
-# submissions.each do |a|
-#   Submission.create!(a)
-# end
+Submission.delete_all
+submissions.each do |a|
+  Submission.create!(a)
+end
   
 Admin.delete_all
 admins.each do |a|
