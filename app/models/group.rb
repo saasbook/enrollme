@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
     has_one :team # Yonas added this
-    has_one :other_team,  class_name: "Team", foreign_key: "team2_id" # Yonas added this
+    has_one :other_team, class_name: "Team", foreign_key: "team2_id" # Yonas added this
     
     
     def self.has_team?(team_id, disc_id)
