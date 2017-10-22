@@ -11,4 +11,8 @@ class Group < ActiveRecord::Base
         end
         return false
     end
+    
+    def self.unmerge(group_id)
+        Group.where(:id => group_id).take!.destroy
+    end
 end

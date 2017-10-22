@@ -56,6 +56,8 @@ Rails.application.routes.draw do
   
   post '/admin/merge', to:'group#merge', as: 'merge_group'
   
+  post '/admin/unmerge', to:'group#unmerge', as: 'unmerge_group'
+  
   
   root 'session#new'
 

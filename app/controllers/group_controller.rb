@@ -36,24 +36,52 @@ class GroupController < ApplicationController
     end
     
     def merge
-        puts "hello"
-        puts "________________"
         teams = []
-        dis = ""
+        discussions = Set.new
         for i in params
             if i[1] == {"selected"=>"1"}
-                team_int = i[0].to_i
-                team = Team.where({:id => team_int})
+                team = Team.where({:id => i[0].to_i})
                 team.each do |t|
                     teams.push(t.id)
-                    puts t
-                    dis = t.discussion_id
+                    discussions.add(t.discussion_id)
+                    @dis = t.discussion_id
                 end
             end
         end
-        Group.create({:team1_id => teams[0], :team2_id => teams[1], :discussion_id => dis})
-        puts Group.all.inspect
+        if discussions.size == 1 and teams.length == 2 
+            Group.create({:team1_id => teams[0], :team2_id => teams[1], :discussion_id => @dis})
+            flash[:success] = "Group Created!"
+        elsif discussions.size != 1
+            flash[:error] = "Select teams with same discussions!"
+        elsif teams.length != 2 
+            flash[:error] = "Must select two teams!"
+        end
+        
+        # puts Group.all.inspect
         redirect_to admin_select_group_path
+    end
+    
+    def unmerge
+        count = 0
+        for i in params
+            if i[1] == {"group"=>"1"}
+                groups = Group.where({:id => i[0].to_i})
+                groups.each do |g|
+                    @group_id = g.id
+                    count+=1
+                end
+            end
+            # puts i
+            # puts "---"
+        end
+        if count == 1
+            Group.unmerge(@group_id)
+            flash[:success] = "Group Destroyed!"
+        else
+            flash[:success] = "Select one group!"
+        end
+        
+        redirect_to group_index_path
     end
     
     
