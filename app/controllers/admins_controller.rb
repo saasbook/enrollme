@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
   
-  skip_before_filter :only => ['new', 'create']
-  before_filter :set_admin, :except => ['new', 'create']
+  skip_before_filter :authenticate, :only => ['new', 'create']
+  before_filter :validate_admin, :set_admin, :except => ['new', 'create']
   
   def new
     @admin = Admin.new
@@ -25,8 +25,6 @@ class AdminsController < ApplicationController
   end
 
   def index
-    session[:user_id] = 1
-    session[:is_admin] = true
     status = params[:status]
     @status = status
     @teams_li = Team.filter_by(status)
@@ -56,7 +54,6 @@ class AdminsController < ApplicationController
   end
   
   def email_success
-    puts "RENDERING"
     render 'email_success'
   end
   
