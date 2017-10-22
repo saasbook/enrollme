@@ -170,8 +170,6 @@ class AdminsController < ApplicationController
   private
 
   def validate_admin
-    @admin = Admin.find_by_id(1)
-    return
     if !(session[:is_admin])
       redirect_to '/', :notice => "Permission denied"
     end
