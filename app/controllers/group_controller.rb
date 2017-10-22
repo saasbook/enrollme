@@ -1,19 +1,20 @@
 class GroupController < ApplicationController
     
     def index
-        status = params[:status]
-        @status = status
-        @teams_li = Team.filter_by(status)
+        # status = params[:status]
+        # @status = status
+        # @teams_li = Team.filter_by(status)
         
-        teams = []
-        @teams_li.each do |t|
-            if Group.has_team?(t.id, t.discussion_id)
-                teams.push(t)
-            end
-        end
-        teams.each do |t|
-            @teams_li.delete(t)
-        end
+        # teams = []
+        # @teams_li.each do |t|
+        #     if Group.has_team?(t.id, t.discussion_id)
+        #         teams.push(t)
+        #     end
+        # end
+        # teams.each do |t|
+        #     @teams_li.delete(t)
+        # end
+        @groups_li = Group.all
         render 'index'
     end
     

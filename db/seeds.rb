@@ -36,11 +36,15 @@ users = [
   ]
   
 teams = [
-      { :approved => true, :passcode => "abc", :submission_id => 1, :submitted => true, :discussion_id => 1},
-      { :approved => true, :passcode => "def", :submission_id => 2, :submitted => true, :discussion_id => 1},
+      { :approved => false, :passcode => "abc", :submission_id => 1, :submitted => true},
+      { :approved => false, :passcode => "def", :submission_id => 2, :submitted => true},
       { :approved => false, :passcode => "ghi", :submission_id => 3, :submitted => true},
       { :approved => false, :passcode => "wack", :submitted => false},
   ]
+  
+groups = [
+      { :team1_id => 1, :team2_id => 2, :discussion_id => 12121 }
+]
   
 discussions = [
       { :number => 12121, :time => "8-9am", :capacity => 24, :day => "M"},
@@ -66,6 +70,11 @@ submissions = [
 #   Team.create!(t)
 # end
 
+# Group.delete_all
+# groups.each do |g|
+#   Group.create!(g)
+# end
+
 # Discussion.delete_all
 # discussions.each do |a|
 #   Discussion.create!(a)
@@ -86,11 +95,12 @@ Option.create!(
   :minimum_team_size => 3,
   :maximum_team_size => 3
   )
-puts Group.all.inspect
-puts User.all.inspect
-puts "------"
-puts Discussion.all.inspect
-puts "------"
-puts Team.all.inspect
-puts "------"
-puts Submission.all.inspect
+# puts Group.all.inspect
+# puts "———"
+# puts User.all.inspect
+# puts "———"
+# puts Discussion.all.inspect
+# puts "———"
+# puts Team.all.inspect
+# puts "———"
+# puts Submission.all.inspect

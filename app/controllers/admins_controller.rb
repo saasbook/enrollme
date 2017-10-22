@@ -29,9 +29,9 @@ class AdminsController < ApplicationController
     @status = status
     @teams_li = Team.filter_by(status)
     
-    puts "---"
-    puts Group.all.inspect
-    puts "---"
+    # puts "---"
+    # puts Group.all.inspect
+    # puts "---"
     render 'index'
   end
   
