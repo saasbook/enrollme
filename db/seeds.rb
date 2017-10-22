@@ -20,8 +20,8 @@ admins = [
 users = [ # Added by Yonas
       { :name => "Yonas Kbrom", :email => "kbromyonas@gmail.com", :major => "CS", :sid => 111111, :team_id => 1},
       { :name => "Monty Inaya", :email => "mr.monty@gmail.com", :major => "CS", :sid => 222222, :team_id => 1},
-      { :name => "Vikram Baid", :email => "vbaid@gmail.com", :major => "CS", :sid => 333333, :team_id => 1},
-      { :name => "Mark Sun", :email => "msun908@gmail.com", :major => "CS", :sid => 444444, :team_id => 2},
+      { :name => "Vikram Baid", :email => "rlbaid15@gmail.com", :major => "CS", :sid => 333333, :team_id => 1},
+      { :name => "Mark Sun", :email => "marksun123@gmail.com", :major => "CS", :sid => 444444, :team_id => 2},
       { :name => "Timothy Stepro", :email => "stepro.015389@gmail.com", :major => "CS", :sid => 555555, :team_id => 2},
       { :name => "Minjoo Sur", :email => "minjoo@gmail.com", :major => "CS", :sid => 6666666, :team_id => 2},
       

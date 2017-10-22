@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     # return User.where("email LIKE ?", query).first
   end
   
+  def self.get_all_user_emails(team_id)
+    return User.where(:team_id => team_id).pluck(:email)
+  end
+  
   def all_admin_emails
     return Admin.pluck(:email)
   end

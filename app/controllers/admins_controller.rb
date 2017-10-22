@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
   
-  skip_before_filter :authenticate, :only => ['new', 'create']
-  before_filter :validate_admin, :set_admin, :except => ['new', 'create']
+  skip_before_filter :only => ['new', 'create']
+  before_filter :set_admin, :except => ['new', 'create']
   
   def new
     @admin = Admin.new
@@ -25,6 +25,8 @@ class AdminsController < ApplicationController
   end
 
   def index
+    session[:user_id] = 1
+    session[:is_admin] = true
     status = params[:status]
     @status = status
     @teams_li = Team.filter_by(status)
@@ -34,6 +36,28 @@ class AdminsController < ApplicationController
     puts Discussion.all.inspect
     puts "======="
     render 'index'
+  end
+  
+  def email
+    @email = ""
+    team_id = params[:team_id]
+    session[:team_id] = team_id
+    render 'email'
+  end
+  
+  def create_email
+    email_content = params[:email_content]
+    team_id = session[:team_id]
+    @email_array = User.get_all_user_emails team_id
+    @email_array.each do |email_id|
+      EmailStudents.email_group(email_id, email_content).deliver_now
+    end
+    render 'email_success'
+  end
+  
+  def email_success
+    puts "RENDERING"
+    render 'email_success'
   end
   
   def approve
@@ -149,6 +173,8 @@ class AdminsController < ApplicationController
   private
 
   def validate_admin
+    @admin = Admin.find_by_id(1)
+    return
     if !(session[:is_admin])
       redirect_to '/', :notice => "Permission denied"
     end
@@ -157,6 +183,7 @@ class AdminsController < ApplicationController
   def set_admin
     @admin = Admin.find_by_id session[:user_id]
   end
+  
   
   def admin_params
     params.require(:admin).permit(:name, :email)
