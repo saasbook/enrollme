@@ -8,7 +8,10 @@
         <div class="row">
             <%=form_for @email, url: {action: "create_email"} do |f| %>
                 <fieldset>
-                    <%= f.text_area :email_content, class: "send_email_textarea" %>
+                    <div class="field form-group">
+                        <p><strong>Email Content:</strong></p>
+                        <%= f.text_area :email_content, class: "send_email_textarea", :id => "email_content" %>
+                    </div>
                     <div class="actions form-group">
                         <a href="/" class="btn btn-default">Cancel</a>
                         <%= f.submit "Send Email", class: "btn btn-primary" %>

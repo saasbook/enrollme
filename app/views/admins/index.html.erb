@@ -74,7 +74,7 @@
                     <%= label "disc_#{s.disc3id}", Discussion.find_by_id(s.disc3id).info %>
                   </td>
                   <td>
-                    <%= link_to "Send Email", admins_send_email_path(:team_id => t), {:id=>"test", :class=>'btn btn-xs btn-success'} %>
+                    <%= link_to "Send Email", admins_send_email_path(:team_id => t), {:id=>"sendemail_#{t.id}", :class=>'btn btn-xs btn-success'} %>
                   </td>
                 <% else %>
                   <td>Forming</td>
