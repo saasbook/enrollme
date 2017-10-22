@@ -37,7 +37,7 @@ class AdminsController < ApplicationController
   end
   
   def email
-    @email = ""
+    @email = ''
     team_id = params[:team_id]
     session[:team_id] = team_id
     render 'email'
@@ -50,10 +50,6 @@ class AdminsController < ApplicationController
     @email_array.each do |email_id|
       EmailStudents.email_group(email_id, email_content).deliver_now
     end
-    render 'email_success'
-  end
-  
-  def email_success
     render 'email_success'
   end
   

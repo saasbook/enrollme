@@ -30,9 +30,9 @@ Rails.application.routes.draw do
   get '/admin/tutorial', to: 'admins#admin_tutorial'
   get '/admin/download', to: 'admins#download'
   
-  get '/admin/email', to: "admins#email", as: 'admins_send_email'
-  post '/admin/create_email', to: "admins#create_email", as: 'admins_create_email'
-  get '/admin/email_success', to: "admins#email_success", as: 'admins_success_email'
+  get '/admin/email', to: 'admins#email', as: 'admins_send_email'
+  post '/admin/create_email',to: 'admins#create_email',as: 'admins_create_email'
+  get '/admin/email_success',to: 'admins#email_success',as:'admins_success_email'
   
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
