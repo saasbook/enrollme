@@ -14,8 +14,6 @@ class GroupController < ApplicationController
         teams.each do |t|
             @teams_li.delete(t)
         end
-        
-    
         render 'index'
     end
     
@@ -58,21 +56,24 @@ class GroupController < ApplicationController
     end
     
     
-    # def random
-    #     for Discussion.all.each do |discussion|
-    #         teams = Teams.where(discussion_id: discussion.number)
-    #         two_teams = []
-    #         for teams.each do |team|
-    #             if two_teams.length == 2
-    #                 Group.create!(two_teams[0], two_teams[1])
-    #             end
-    #             if !Group.has_team?(team, discussion.number)
-    #                 two_teams.push(team)
-    #             end
-    #         end
-    #     end
-    # end
-    
+    def random
+        Discussion.all.each do |discussion|
+            teams = Team.where(:discussion_id => discussion.id)
+            
+            #This list holds two unpaired teams
+            two_teams = []
+            teams.each do |team|
+                if Group.has_team?(team.id, discussion.id) == false
+                    two_teams.push(team.id)
+                end
+                if two_teams.length == 2
+                    Group.create!({:team1_id => two_teams[0], :team2_id => two_teams[1], :discussion_id => discussion.id})
+                    two_teams = []
+                end
+            end
+        end
+        redirect_to admins_path
+    end
 end
 
 
