@@ -1,0 +1,14 @@
+<body>
+    <title>Email Sent!</title>
+    <div class="container">
+        Successfully sent e-mails to: <br/>
+        <ul>
+            <% @email_array.each do |email1| %>
+                <li><%=email1%></li>
+            <% end %>
+        </ul>
+    <div class="actions form-group">
+                        <a href="/" class="btn btn-default">Go to the home page</a>
+    </div>
+    </div>
+</body> 
