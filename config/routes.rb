@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   
   get '/admin/email', to: 'admins#email', as: 'admins_send_email'
   post '/admin/create_email', to:'admins#create_email', as:'admin_create_email'
-  get '/admin/email_success', to:'admins#email_success', as:'admin_success_email'
+  get '/admin/email_success', to:'admins#email_success', as:'success_email'
   
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
