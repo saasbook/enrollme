@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   resources :submissions
   
   resources :group
+  get '/admin/select_group', to:'group#select_group', as: 'select_group'
+  
   
   root 'session#new'
 

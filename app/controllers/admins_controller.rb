@@ -28,10 +28,8 @@ class AdminsController < ApplicationController
     status = params[:status]
     @status = status
     @teams_li = Team.filter_by(status)
-    puts "-------"
-    puts @teams_li.inspect
     puts "!!!!!!"
-    puts Discussion.all.inspect
+    puts Submission.all.inspect
     puts "======="
     render 'index'
   end

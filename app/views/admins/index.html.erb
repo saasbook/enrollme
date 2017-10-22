@@ -12,7 +12,10 @@
                <%= button_to "Discussions", discussion_index_path, {method: :get, class: "btn"} %>
               </div>
               <div class='btn-group'>
-               <%= button_to "Create Groups", group_index_path, {method: :get, class: "btn"} %>
+               <%= button_to "Create Groups", select_group_path, {method: :get, class: "btn"} %>
+              </div>
+              <div class='btn-group'>
+                <%= button_to "View Groups", group_index_path, {method: :get, class: "btn"} %>
               </div>
             </div>
 
@@ -81,7 +84,7 @@
             <% end %>
           </table>
           
-        
+          
         </div>
       </div>
     </div>
