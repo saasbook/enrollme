@@ -1,0 +1,2 @@
+service_name: travis-ci
+repo_secret_token: "234ad"
