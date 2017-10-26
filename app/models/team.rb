@@ -1,6 +1,9 @@
 class Team < ActiveRecord::Base
     has_many :users
     has_one :submission
+    
+    belongs_to :group # Yonas added this
+    
     validates :passcode, uniqueness: true
 
     def self.generate_hash(length=36)

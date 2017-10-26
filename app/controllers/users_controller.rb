@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_filter :set_user, :except => ['new', 'create']
   
   def show
+    puts Team.all.inspect
     @user = User.find_by_id(params[:id])
   end
   
