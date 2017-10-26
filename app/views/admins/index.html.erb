@@ -76,13 +76,13 @@
                     <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc3id}"), {:id=>"approve_3", :class=>'btn btn-xs btn-danger'} %>
                     <%= label "disc_#{s.disc3id}", Discussion.find_by_id(s.disc3id).info %>
                   </td>
-                  <td>
-                    <%= link_to "Send Email", admins_send_email_path(:team_id => t), {:id=>"sendemail_#{t.id}", :class=>'btn btn-xs btn-success'} %>
-                  </td>
                 <% else %>
                   <td>Forming</td>
                   <td></td>
                 <% end %>
+                 <td>
+                    <%= link_to "Send Email", admins_send_email_path(:team_id => t), {:id=>"sendemail_#{t.id}", :class=>'btn btn-xs btn-success'} %>
+                  </td>
               </tr>
             <% end %>
           </table>
