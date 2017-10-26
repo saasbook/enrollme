@@ -35,7 +35,22 @@ class AdminsController < ApplicationController
     render 'index'
   end
   
+  def email
+    @email = ''
+    team_id = params[:team_id]
+    session[:team_id] = team_id
+    render 'email'
+  end
   
+  def create_email
+    email_content = params[:email_content]
+    team_id = session[:team_id]
+    @email_array = User.get_all_user_emails team_id
+    @email_array.each do |email_id|
+      EmailStudents.email_group(email_id, email_content).deliver_now
+    end
+    render 'email_success'
+  end
   
   def approve
     @team = Team.find_by_id(params[:team_id])
