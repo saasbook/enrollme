@@ -1,3 +1,6 @@
+require 'coveralls'
+Coveralls.wear!
+
 if ENV['CI']
   require 'codeclimate-test-reporter'
   SimpleCov.start 'rails' do
