@@ -11,6 +11,7 @@ Feature: Student creates a new account
     When I fill in "Name" with "David"
     And I fill in "Sid" with "12345678"
     And I select "DECLARED CS/EECS Major" from "major"
+    And I fill in "Skills" with "Frontend"
     And I press "Sign Up"
     Then I should see "Create or Join a Team"
     
