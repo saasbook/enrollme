@@ -104,6 +104,12 @@ Given /^the following discussions exist$/ do |table|
   end
 end
 
+Given /^the following skills exist$/ do |table|
+  table.rows.each do |name|
+    # TODO: add Skills objects to db
+  end
+end
+
 Then /^(?:|I )should not be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
