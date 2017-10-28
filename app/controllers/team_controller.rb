@@ -17,7 +17,7 @@ class TeamController < ApplicationController
   end
   
   def submit
-    #EmailStudents.successfully_submitted_email(@team).deliver_now
+    EmailStudents.successfully_submitted_email(@team).deliver_now
     
     redirect_to new_submission_path
   end
