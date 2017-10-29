@@ -86,12 +86,12 @@ Option.create!(
   :minimum_team_size => 3,
   :maximum_team_size => 3
   )
-# puts Group.all.inspect
-# puts "———"
-# puts User.all.inspect
-# puts "———"
-# puts Discussion.all.inspect
-# puts "———"
-# puts Team.all.inspect
-# puts "———"
-# puts Submission.all.inspect
+puts Group.all.inspect
+puts "———"
+puts User.all.inspect
+puts "———"
+puts Discussion.all.inspect
+puts "———"
+puts Team.all.inspect
+puts "———"
+puts Submission.all.inspect
