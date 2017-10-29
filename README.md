@@ -2,7 +2,7 @@
 # EnrollMe
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/83a3897f352fa9401cfb/maintainability)](https://codeclimate.com/github/msun908/enrollme/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/83a3897f352fa9401cfb/test_coverage)](https://codeclimate.com/github/msun908/enrollme/test_coverage)
+[![Coverage Status](https://coveralls.io/repos/github/msun908/enrollme/badge.svg)](https://coveralls.io/github/msun908/enrollme)
 [![Build Status](https://travis-ci.org/msun908/enrollme.svg?branch=master)](https://travis-ci.org/msun908/enrollme)
 
 

@@ -30,6 +30,10 @@ Rails.application.routes.draw do
   get '/admin/tutorial', to: 'admins#admin_tutorial'
   get '/admin/download', to: 'admins#download'
 
+  get '/admin/email', to: 'admins#email', as: 'admins_send_email'
+  post '/admin/create_email', to: 'admins#create_email', as: 'create_email'
+  get '/admin/email_success', to: 'admins#email_success', as: 'success_email'
+  
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
   get '/download_team_info', to: "file#download_approved_teams"
@@ -45,8 +49,16 @@ Rails.application.routes.draw do
   resources :submissions
   
   resources :group
-  get '/admin/select_group', to:'group#select_group', as: 'select_group'
   
+  get '/admin/select_group', to:'group#select_group'
+  
+  post '/admin/select_group', to:'group#select_group', as: 'select_group'
+  
+  post '/admin/merge', to:'group#merge', as: 'merge_group'
+  
+  post '/admin/unmerge', to:'group#unmerge', as: 'unmerge_group'
+  
+  post '/admin/random', to:'group#random', as: 'random_group'
   
   root 'session#new'
 

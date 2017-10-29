@@ -33,23 +33,14 @@ users = [
       { :name => "Yonas Kbrom", :email => "kbromyonas1@gmail.com", :major => "CS", :sid => 111112},
       { :name => "Paul Pierce", :email => "pierce@gmail.com", :major => "CS", :sid => 133113, :team_id => 4},
       { :name => "Kevin Garnett", :email => "garnett@gmail.com", :major => "CS", :sid => 144114, :team_id => 4},
-      
-      { :name => "some user", :email => "example@gmail.com", :major => "CS", :sid => 111113, :team_id => 5},
-      { :name => "another use", :email => "onemore@gmail.com", :major => "CS", :sid => 133114, :team_id => 5},
-      { :name => "and another one", :email => "andmore@gmail.com", :major => "CS", :sid => 144115, :team_id => 5},
   ]
   
 teams = [
       { :approved => false, :passcode => "abc", :submission_id => 1, :submitted => true},
       { :approved => false, :passcode => "def", :submission_id => 2, :submitted => true},
       { :approved => false, :passcode => "ghi", :submission_id => 3, :submitted => true},
-      { :approved => false, :passcode => "mon", :submission_id => 4, :submitted => true},
       { :approved => false, :passcode => "wack", :submitted => false},
   ]
-  
-groups = [
-      { :team1_id => 1, :team2_id => 2, :discussion_id => 12121 }
-]
   
 discussions = [
       { :number => 12121, :time => "8-9am", :capacity => 24, :day => "M"},
@@ -62,7 +53,6 @@ submissions = [
       { :disc1id => 1, :disc2id => 2, :disc3id => 3, :team_id => 1},
       { :disc1id => 2, :disc2id => 3, :disc3id => 1, :team_id => 2},
       { :disc1id => 3, :disc2id => 2, :disc3id => 1, :team_id => 3},
-      { :disc1id => 3, :disc2id => 2, :disc3id => 1, :team_id => 5},
   
   ]
   
@@ -74,11 +64,6 @@ end
 Team.delete_all
 teams.each do |t|
   Team.create!(t)
-end
-
-Group.delete_all
-groups.each do |g|
-  Group.create!(g)
 end
 
 Discussion.delete_all
@@ -102,13 +87,11 @@ Option.create!(
   :maximum_team_size => 3
   )
 puts Group.all.inspect
-puts "------"
+puts "———"
 puts User.all.inspect
-puts "------"
+puts "———"
 puts Discussion.all.inspect
-puts "------"
+puts "———"
 puts Team.all.inspect
-puts "------"
+puts "———"
 puts Submission.all.inspect
-
-  

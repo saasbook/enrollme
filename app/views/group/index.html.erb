@@ -14,10 +14,10 @@
               <td>Discussion</td>
             </tr>
             
-            <%= form_tag({:method => "get"}) do %>
+            <%= form_tag({:action => "unmerge", :method => "post"}) do %>
             <% @groups_li.each do |g| %>
               <tr>
-                <td><%= check_box(g, "selected") %></td>
+                <td><%= check_box(g.id, "group") %></td>
                 <td><%= g.id %></td>
                 <td><%= g.team1_id %></td>
                 <td><%= g.team2_id %></td>
@@ -26,7 +26,7 @@
             <% end %>
           </table>
           
-          <!--<%= submit_tag "Un-merge" %>-->
+          <%= submit_tag("Destroy Group", :class => 'btn btn-xs btn-danger') %>
           <% end %>
           
         </div>

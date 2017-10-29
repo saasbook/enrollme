@@ -1,3 +1,8 @@
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  
+</head>
+
 <body>
   <title>Admin Home</title>
     <div class="container">
@@ -14,49 +19,46 @@
               <td>Discussions</td>
             </tr>
             
-            <%= form_tag({:method => "get"}) do %>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <script>
+              var limit = 1;
+              $('input.group_checkbox').on('change', function(evt) {
+                 if($(this).siblings(':checked').length >= limit) {
+                     this.checked = false;
+                 }
+              });
+            </script>
+            
+            <!--:action => "merge",-->
+            <%= form_tag({:action => "merge", :method => "get"}) do %>
             <% @teams_li.each do |t| %>
-              <tr>
-                <td><%= check_box(t, "selected")%></td>
-                <td><%= link_to t.id, team_path(t.id) %></td>
-                <td>
-                  
-                  <% t.users.each do |u| %>
-                    <%= link_to u.name, user_path(u.id) %> <br>
-                  <% end %>
-                </td>
-                <% if t.approved? %>
+              <% if t.approved? %>
+                <tr>
+                  <td><%= check_box(t.id, "selected", class:"group_checkbox", id:"team_#{t.id}")%></td>
+                  <td><%= link_to t.id, team_path(t.id) %></td>
+                  <td>
+                    <% t.users.each do |u| %>
+                      <%= link_to u.name, user_path(u.id) %> <br>
+                    <% end %>
+                  </td>
+                
                   <td>Approved</td>
                   <% d = Discussion.find_by_id(t.discussion_id) %>
                   <td>
-                    <%= link_to "Disapprove", admin_disapprove_team_path(:team_id => t.id), {:id=>"disapprove_#{t.id}", :class=>'btn btn-xs btn-danger'} %>
-                    <%= link_to "Undo Approve", admin_undo_approve_team_path(:team_id => t.id), {:id=>"undo_approve_#{t.id}", :class=>'btn btn-xs btn-warning'} %>
                     <%= d.info %>
-                    </td>
-                <% elsif t.submitted? %>
-                  <td>Pending</td>
-                  <% s = Submission.find_by_id(t.submission_id) %>
-                  <td>
-                    <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc1id}"), {:id=>"approve_1", :class=>'btn btn-xs btn-success'} %>
-                    <%= label "disc_#{s.disc1id}", Discussion.find_by_id(s.disc1id).info %>
-                    <br>
-                    <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc2id}"), {:id=>"approve_2", :class=>'btn btn-xs btn-warning'} %>
-                    <%= label "disc_#{s.disc2id}", Discussion.find_by_id(s.disc2id).info %>
-                    <br>
-                    <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc3id}"), {:id=>"approve_3", :class=>'btn btn-xs btn-danger'} %>
-                    <%= label "disc_#{s.disc3id}", Discussion.find_by_id(s.disc3id).info %>
                   </td>
-                <% else %>
-                  <td>Forming</td>
-                  <td></td>
-                <% end %>
-              </tr>
-            <% end %>
-          </table>
+                  <% end %>
+                </tr>
+              <% end %>
+            </table>
           
-          <%= submit_tag "Un-merge" %>
+          <%= submit_tag("Create Group", :class => 'btn btn-xs btn-success')%>
           <% end %>
           
+          
+          <!--:action => "random",-->
+          <%= form_tag({:action => "random", :method => "post"}) %>
+          <%= submit_tag("Group randomly", :class => 'btn btn-xs btn-success')%>
         </div>
       </div>
       
