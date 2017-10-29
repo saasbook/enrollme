@@ -43,7 +43,7 @@
                   </td>
                 
                   <td>Approved</td>
-                  <% d = Discussion.find_by_id(t.discussion_id) %>
+                  <% d = Discussion.find_by_id(t.submission_id) %>
                   <td>
                     <%= d.info %>
                   </td>
