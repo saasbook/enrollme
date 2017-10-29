@@ -26,6 +26,7 @@ Feature: admin can create a Group by selecting two teams
     Given I press "Create Groups"
     When I check "team_1"
     And I check "team_2"
+    And byebug
     And I press "Create Group"
     Then I should not see "team_1"
     And I should not see "team_2"
