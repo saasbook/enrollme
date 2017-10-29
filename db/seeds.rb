@@ -56,25 +56,25 @@ submissions = [
   
   ]
   
-User.delete_all
-users.each do |t|
-  User.create!(t)
-end  
+# User.delete_all
+# users.each do |t|
+#   User.create!(t)
+# end  
 
-Team.delete_all
-teams.each do |t|
-  Team.create!(t)
-end
+# Team.delete_all
+# teams.each do |t|
+#   Team.create!(t)
+# end
 
-Discussion.delete_all
-discussions.each do |a|
-  Discussion.create!(a)
-end
+# Discussion.delete_all
+# discussions.each do |a|
+#   Discussion.create!(a)
+# end
 
-Submission.delete_all
-submissions.each do |a|
-  Submission.create!(a)
-end
+# Submission.delete_all
+# submissions.each do |a|
+#   Submission.create!(a)
+# end
   
 Admin.delete_all
 admins.each do |a|
