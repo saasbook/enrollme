@@ -157,8 +157,16 @@ class AdminsController < ApplicationController
     redirect_to skills_path, :notice => notice
   end  
   
-  def delete_skill(id)
-    
+  def delete_skill
+    skill = Skill.find_by_id(params[:id])
+    if not skill
+      notice = "Could not find skill to be deleted."
+    else
+      notice = "Sucessfully deleted #{skill.name}."
+      skill.active = false
+      skill.save
+    end
+    redirect_to skills_path, :notice => notice
   end
    
   private
