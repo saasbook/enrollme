@@ -142,7 +142,20 @@ class AdminsController < ApplicationController
     @skills = Skill.where(:active => true)
     render 'skills'
   end
-  
+
+  def add_skill
+    skill_name = params[:skill].titleize
+    existing_skill = Skill.where(:name => skill_name).first
+    if existing_skill
+      existing_skill.active = true
+      existing_skill.save
+    else
+    skill = Skill.new(:name => skill_name, :active => true)
+    skill.save
+    end
+    notice = skill_name + " skill successfully created."
+    redirect_to skills_path, :notice => notice
+  end  
   
   def delete_skill(id)
     
