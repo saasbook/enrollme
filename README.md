@@ -1,13 +1,13 @@
 # EnrollMe
 
-[![Code Climate](https://codeclimate.com/github/adnanhemani/enrollme/badges/gpa.svg?)](https://codeclimate.com/github/adnanhemani/enrollme)
-[![Test Coverage](https://codeclimate.com/github/adnanhemani/enrollme/badges/coverage.svg?)](https://codeclimate.com/github/adnanhemani/enrollme/coverage)
-[![Build Status](https://travis-ci.org/adnanhemani/enrollme.svg?branch=master)](https://travis-ci.org/adnanhemani/enrollme)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4fc06db952fc2c588641/maintainability)](https://codeclimate.com/github/colinschoen/enrollme/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/4fc06db952fc2c588641/test_coverage)](https://codeclimate.com/github/colinschoen/enrollme/test_coverage)
+[![Build Status](https://travis-ci.org/colinschoen/enrollme.svg?branch=master)](https://travis-ci.org/colinschoen/enrollme)
 
 
 Copyright (c) 2016 Jason Gao, Adnan Hemani, David Koh, Sid Masih, Varun Mathuria, Dasol Yoon
 
-*Pivotal Tracker* https://www.pivotaltracker.com/n/projects/1886001
+*Pivotal Tracker* https://www.pivotaltracker.com/n/projects/2118593
 
 Michael-David Sasson, Berkeley’s CS enrollment coordinator, would like a tool that students can use to submit requests for their teams to be enrolled into CS 169. Students will be able to specify their team members and submit information like SID and major which will be used to process enrollment. There currently does not exist a website.
 
