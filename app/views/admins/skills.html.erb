@@ -15,5 +15,21 @@
           </div>
         </div>
       </div>
+    <div class="row">
+      <div class="col-md-8">
+        <table class="table table-striped table-hover">
+          <tr>
+            <th>Skill Name</th>
+            <th>Actions</th>
+          </tr>
+          <% @skills.each do |skill| %>
+            <tr>
+              <td>@skill.name</td>
+              <td><button class="btn btn-info">Edit</button><button class="btn btn-danger">Delete</button></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
     </div>
 </body>
