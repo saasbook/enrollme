@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get '/admin/tutorial', to: 'admins#admin_tutorial'
   get '/admin/download', to: 'admins#download'
   get '/admin/skills', to: 'admins#skills', as: "skills"
-  post '/admin/edit_skills', to: 'admins#edit_skills', as: "edit_skills"
+  post '/admin/add_skills', to: 'admins#add_skills', as: "add_skills"
 
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
