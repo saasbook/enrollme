@@ -5,13 +5,13 @@
       <div class="row">
         <div class="col-md-8">
           <div class='page-header'>
-            <form class="form-inline">
+            <%= form_for :skill, url: "add_skill_path", method: :post, html: {class: "form-inline"} do |f| %>
               <div class="form-group">
                 <label class="sr-only" for="skill-input">Skill</label>
                 <input type="skill" class="form-control" id="skill-input" placeholder="Skill">
               </div>
               <button type="submit" class="btn btn-primary">Add Skill</button>
-            </form>
+            <% end %>
           </div>
         </div>
       </div>
