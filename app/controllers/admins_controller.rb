@@ -137,6 +137,10 @@ class AdminsController < ApplicationController
     end
     redirect_to '/', :notice => notice
   end
+
+  def skills
+    render 'admin_skills'
+  end
   
   private
 
