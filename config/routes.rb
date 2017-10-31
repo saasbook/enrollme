@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   patch '/admin/delete', to: 'admins#delete', as: 'admin_delete'
   get '/admin/tutorial', to: 'admins#admin_tutorial'
   get '/admin/download', to: 'admins#download'
+  get '/admin/skills', to: 'admins#skills', as: "skills"
 
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
