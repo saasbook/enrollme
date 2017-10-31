@@ -139,7 +139,7 @@ class AdminsController < ApplicationController
   end
 
   def skills
-    render 'admin_skills'
+    render 'skills'
   end
   
   private
