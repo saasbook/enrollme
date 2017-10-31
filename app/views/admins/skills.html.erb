@@ -25,7 +25,10 @@
           <% @skills.each do |skill| %>
             <tr>
               <td>@skill.name</td>
-              <td><button class="btn btn-info">Edit</button><button class="btn btn-danger">Delete</button></td>
+              <td>
+                <button class="btn btn-info">Edit</button>
+                <% button_to "Delete", {action: "delete_skill_path", id: skill.id}, {class: "btn btn-danger"} %>
+              </td>
             </tr>
           <% end %>
         </table>
