@@ -143,6 +143,11 @@ class AdminsController < ApplicationController
     render 'skills'
   end
   
+  
+  def delete_skill(id)
+    
+  end
+   
   private
 
   def validate_admin
