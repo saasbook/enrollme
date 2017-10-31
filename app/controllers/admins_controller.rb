@@ -139,6 +139,7 @@ class AdminsController < ApplicationController
   end
 
   def skills
+    @skills = Skill.where(:active => true)
     render 'skills'
   end
   
