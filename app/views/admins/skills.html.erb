@@ -5,10 +5,10 @@
       <div class="row">
         <div class="col-md-8">
           <div class='page-header'>
-            <%= form_for :skill, url: "add_skill_path", method: :post, html: {class: "form-inline"} do |f| %>
+            <%= form_for :skill, url: add_skill_path, method: :post, html: {class: "form-inline"} do |f| %>
               <div class="form-group">
                 <label class="sr-only" for="skill-input">Skill</label>
-                <input type="skill" class="form-control" id="skill-input" placeholder="Skill">
+                <input type="skill" name="skill" class="form-control" id="skill-input" placeholder="Skill">
               </div>
               <button type="submit" class="btn btn-primary">Add Skill</button>
             <% end %>
@@ -24,10 +24,10 @@
           </tr>
           <% @skills.each do |skill| %>
             <tr>
-              <td>@skill.name</td>
+              <td><%= skill.name %></td>
               <td>
                 <button class="btn btn-info">Edit</button>
-                <% button_to "Delete", {action: "delete_skill_path", id: skill.id}, {class: "btn btn-danger"} %>
+                <% button_to "Delete", {url: delete_skill_path(skill.id)}, {class: "btn btn-danger"} %>
               </td>
             </tr>
           <% end %>
