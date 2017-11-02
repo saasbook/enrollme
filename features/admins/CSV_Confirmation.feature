@@ -6,10 +6,10 @@ Feature: Import CSV Page exists and non-waitlested teams are approved
   
   Background:
     Given the following users exist
-     | name  |       email                    |team_passcode | major           | sid  |
- 	 | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  |
-  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  |
-  	 | Kandi | justanotheremail@aol.com       | penguindrool | EECS            | 567  |
+     | name  |       email                    | team_passcode | major           | sid  |
+ 	   | Sahai | eecs666@hotmail.com            | penguindrool  | EECS            | 000  |
+  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool  | Football Player | 999  |
+  	 | Kandi | justanotheremail@aol.com       | penguindrool  | EECS            | 567  |
     And the following admins exist
       | name | email                  |
   	  | Bob  | supreme_ruler@aol.com  |
@@ -28,9 +28,9 @@ Feature: Import CSV Page exists and non-waitlested teams are approved
     Given I am on the import_csv_teams page
     Then I should see "Import CSV"
     And I upload the following content
-        | Name  | Student ID          |User ID       | Role            | Email Address                  | Sections   | Major   | Terms in Attendance   | Units   | Grading Basis   | Waitlist Position  |
- 	      | Vik   | 24242424            | vik          | Student         | eecs666@hotmail.com            | 99         | EECS    | 4                     | 100     | Letter Grade    | 0
-  	    | Jorge | 24242425            | jorge        | Student         | legueoflegends667@hotmail.com  | 99         | EECS    | 4                     | 90      | Letter Grade    | 0
-  	    | Mark  | 24242426            | msun         | Student         | justanotheremail@aol.com       | 99         | EECS    | 4                     | 95      | Letter Grade    | 0
+        | Name  | Student ID          | User ID      | Role            | Email Address                  | Sections   | Major   | Terms in Attendance   | Units   | Grading Basis   | Waitlist Position |
+ 	      | Vik   | 24242424            | vik          | Student         | eecs666@hotmail.com            | 99         | EECS    | 4                     | 100     | Letter Grade    | 0                 |
+  	    | Jorge | 24242425            | jorge        | Student         | legueoflegends667@hotmail.com  | 99         | EECS    | 4                     | 90      | Letter Grade    | 0                 |
+  	    | Mark  | 24242426            | msun         | Student         | justanotheremail@aol.com       | 99         | EECS    | 4                     | 95      | Letter Grade    | 0                 |
     And I press "IMPORT CSV"
     Then I should see "Successfully approved team id: 1"
