@@ -41,14 +41,23 @@ class User < ActiveRecord::Base
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       student = row.to_hash
+      # Check for nil entries, skip adding to User db if any found
       if not student["Name"].nil? and not student["Student ID"].nil? and
         not student["Majors"].nil? and not student["Email Address"].nil?
-        User.create!({
+        # Create User if one does not exist already
+        if not User.exists?({
           :name => student["Name"], 
           :sid => student["Student ID"], 
           :major => student["Majors"], 
           :email => student["Email Address"],
           })
+          User.create!({
+            :name => student["Name"], 
+            :sid => student["Student ID"], 
+            :major => student["Majors"], 
+            :email => student["Email Address"],
+            })
+        end
       end
     end
   end

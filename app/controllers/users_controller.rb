@@ -35,8 +35,12 @@ class UsersController < ApplicationController
   end
   
   def import
-    User.import(params[:file])
-    redirect_to users_path, notice: "Users Added Successfully"
+    if params[:file]
+      User.import(params[:file])
+      redirect_to users_path, notice: "Users Added Successfully"
+    else
+      redirect_to users_path, notice: "No File Selected"
+    end
   end
 
   def destroy
@@ -89,7 +93,11 @@ class UsersController < ApplicationController
   end
   
   def set_user
-    @user = User.find_by_id params[:id]
+    if params[:id]
+      @user = User.find_by_id params[:id]
+    else
+      @user = User.find_by_id session[:user_id]
+    end
   end
 
   def user_params
