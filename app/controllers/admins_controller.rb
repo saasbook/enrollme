@@ -159,7 +159,7 @@ class AdminsController < ApplicationController
   
   def delete_skill
     skill = Skill.find_by_id(params[:id])
-    if not skill
+    if !skill
       notice = "Could not find skill to be deleted."
     else
       notice = "Sucessfully deleted #{skill.name}."
