@@ -168,6 +168,19 @@ class AdminsController < ApplicationController
     end
     redirect_to skills_path, :notice => notice
   end
+
+  def edit_skill
+    @skill = Skill.find_by_id(params[:id])
+    if request.patch?
+      @skill.name = params[:name]
+      @skill.save
+      notice = "#{@skill.name} skill name updated successfully."
+      redirect_to skills_path, :notice => notice
+    else
+      render 'edit_skill'
+    end
+  end
+
    
   private
 

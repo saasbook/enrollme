@@ -30,9 +30,10 @@ Rails.application.routes.draw do
   get '/admin/tutorial', to: 'admins#admin_tutorial'
   get '/admin/download', to: 'admins#download'
   get '/admin/skills', to: 'admins#skills', as: "skills"
+  get '/admin/skill/:id/edit', to: 'admins#edit_skill', as: 'edit_skill'
+  patch '/admin/skill/:id/edit', to: 'admins#edit_skill'
   post '/admin/add_skill', to: 'admins#add_skill', as: "add_skill"
-  patch '/admin/edit_skill', to: 'admins#edit_skill', as: "edit_skill"
-  patch '/admin/:id/delete_skill', to: 'admins#delete_skill', as: "delete_skill"
+  patch '/admin/skill/:id/delete', to: 'admins#delete_skill', as: "delete_skill"
 
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
