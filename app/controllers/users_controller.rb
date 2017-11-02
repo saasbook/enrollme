@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_filter :authenticate, :only => ['new', 'create']
-  before_filter :check_is_user, :except => ['new', 'create', 'show']
+  before_filter :check_is_user, :except => ['new', 'create', 'show', 'index',
+  'import', 'destroy']
   before_filter :set_user, :except => ['new', 'create']
+  
+  def index
+    @users = User.all
+  end
   
   def show
     puts Team.all.inspect
@@ -26,6 +31,19 @@ class UsersController < ApplicationController
       redirect_to without_team_path, :notice => "You signed up successfully!"
     else
       render 'new', :notice => "Form is invalid"
+    end
+  end
+  
+  def import
+    User.import(params[:file])
+    redirect_to users_path, notice: "Users Added Successfully"
+  end
+
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
@@ -71,7 +89,7 @@ class UsersController < ApplicationController
   end
   
   def set_user
-    @user = User.find_by_id session[:user_id]
+    @user = User.find_by_id params[:id]
   end
 
   def user_params
