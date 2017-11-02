@@ -29,7 +29,7 @@ Feature: Import CSV Page exists and non-waitlested teams are approved
     Then I should see "Import CSV"
     And I upload the following content
         | Name  | Student ID          |User ID       | Role            | Email Address                  | Sections   | Major   | Terms in Attendance   | Units   | Grading Basis   | Waitlist Position  |
- 	    | Vik   | 24242424            | vik          | Student         | eecs666@hotmail.com            | 99         | EECS    | 4                     | 100     | Letter Grade    | 0
+ 	      | Vik   | 24242424            | vik          | Student         | eecs666@hotmail.com            | 99         | EECS    | 4                     | 100     | Letter Grade    | 0
   	    | Jorge | 24242425            | jorge        | Student         | legueoflegends667@hotmail.com  | 99         | EECS    | 4                     | 90      | Letter Grade    | 0
   	    | Mark  | 24242426            | msun         | Student         | justanotheremail@aol.com       | 99         | EECS    | 4                     | 95      | Letter Grade    | 0
     And I press "IMPORT CSV"
