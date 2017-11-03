@@ -11,7 +11,7 @@
       </button>
       <a class="navbar-brand" href="/">EnrollMe</a>
     </div>
-    
+
 
     <div class="navbar-collapse collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
@@ -21,6 +21,7 @@
                 <li><%= link_to "Log In", "/auth/google_oauth2", id: "log_in_header" %></li>
             <% else %>
               <% if session[:is_admin].nil? %>
+                <li><%= link_to "Teams", '/teams' %></li>
                 <li><%= link_to "Help", help_path %></li>
                 <li><%= link_to "My Info", user_path(session[:user_id]), {method: 'get'} %></li>
               <% else %>

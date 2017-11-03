@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   post '/create_team', to: 'users#start_team'
   post '/join_team', to: 'users#join_team'
   get '/help', to: 'users#user_help'
-  
+
+  get '/teams', to: 'teams#show'
+
   resources :team
 
   post 'team/:id/submit', to: 'team#submit', as: 'submit_team'
@@ -14,10 +16,10 @@ Rails.application.routes.draw do
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
   get 'logout', to: 'session#destroy'
-  
+
   get 'auth/:provider/callback', to: 'session#create'
   get 'auth/failure', to: redirect('/')
-  
+
   resources :admins
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
@@ -36,19 +38,19 @@ Rails.application.routes.draw do
   patch '/admin/skill/:id/delete', to: 'admins#delete_skill', as: 'delete_skill'
 
   post '/admin/email', to: 'admins#team_list_email', as: 'admins_email'
-  
+
   get '/download_team_info', to: 'file#download_approved_teams'
-  
+
   get '/discussion/edit', to: 'discussion#edit_index', as: 'edit_discussion_index'
-  
+
   post '/discussion/edit', to: 'discussion#edit_index_post'
-  
+
   post '/discussion/edit_index', to:'discussion#edit_disc', as: 'edit_discussion_post'
-  
+
   resources :discussion
 
   resources :submissions
-  
+
   root 'session#new'
 
   # TODO: something for route not found
