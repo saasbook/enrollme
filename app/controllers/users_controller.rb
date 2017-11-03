@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_filter :authenticate, :only => ['new', 'create']
   before_filter :check_is_user, :except => ['new', 'create', 'show', 'index',
-  'import', 'destroy']
+  'import', 'destroy', 'edit']
   before_filter :set_user, :except => ['new', 'create']
   
   def index
