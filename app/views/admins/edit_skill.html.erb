@@ -1,0 +1,19 @@
+<body>
+  <title>Manage Skils</title>
+    <div class="container">
+      <h2><%= "Edit Skill" %></h2>
+      <div class="row">
+        <div class="col-md-8">
+          <div class='page-header'>
+            <%= form_for :skill, url: edit_skill_path(@skill.id), method: :patch, html: {class: "form"} do |f| %>
+              <div class="form-group">
+                <label class="sr-only" for="skill-input">Skill</label>
+                <input type="skill" name="name" class="form-control" value="<%= @skill.name %>" id="skill-input" placeholder="Skill">
+              </div>
+              <button type="submit" class="btn btn-primary">Edit Skill Name</button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>

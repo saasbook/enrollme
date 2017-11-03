@@ -137,7 +137,51 @@ class AdminsController < ApplicationController
     end
     redirect_to '/', :notice => notice
   end
+
+  def skills
+    @skills = Skill.where(:active => true)
+    render 'skills'
+  end
+
+  def add_skill
+    skill_name = params[:skill].titleize
+    existing_skill = Skill.where(:name => skill_name).first
+    if existing_skill
+      existing_skill.active = true
+      existing_skill.save
+    else
+    skill = Skill.new(:name => skill_name, :active => true)
+    skill.save
+    end
+    notice = skill_name + " skill successfully created."
+    redirect_to skills_path, :notice => notice
+  end  
   
+  def delete_skill
+    skill = Skill.find_by_id(params[:id])
+    if !skill
+      notice = "Could not find skill to be deleted."
+    else
+      notice = "Sucessfully deleted #{skill.name}."
+      skill.active = false
+      skill.save
+    end
+    redirect_to skills_path, :notice => notice
+  end
+
+  def edit_skill
+    @skill = Skill.find_by_id(params[:id])
+    if request.patch?
+      @skill.name = params[:name]
+      @skill.save
+      notice = "#{@skill.name} skill name updated successfully."
+      redirect_to skills_path, :notice => notice
+    else
+      render 'edit_skill'
+    end
+  end
+
+   
   private
 
   def validate_admin
