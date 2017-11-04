@@ -40,7 +40,6 @@
             <tr>
               <td>Team ID</td> <td>Members</td> <td>Status</td> <td>Discussions</td> <td></td>
             </tr>
-            
             <% @teams_li.each do |t| %>
               <tr>
                 <td><%= link_to t.id, team_path(t.id) %></td>
@@ -56,7 +55,7 @@
                     <%= link_to "Disapprove", admin_disapprove_team_path(:team_id => t.id), {:id=>"disapprove_#{t.id}", :class=>'btn btn-xs btn-danger'} %>
                     <%= link_to "Undo Approve", admin_undo_approve_team_path(:team_id => t.id), {:id=>"undo_approve_#{t.id}", :class=>'btn btn-xs btn-warning'} %>
                     <%= d.info %>
-                    </td>
+                  </td>
                 <% elsif t.submitted? %>
                   <td>Pending</td>
                   <% s = Submission.find_by_id(t.submission_id) %>
