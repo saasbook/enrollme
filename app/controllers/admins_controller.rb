@@ -147,13 +147,18 @@ class AdminsController < ApplicationController
     skill_name = params[:skill].titleize
     existing_skill = Skill.where(:name => skill_name).first
     if existing_skill
-      existing_skill.active = true
-      existing_skill.save
+      if existing_skill.active
+        notice = "Skill #{skill_name} already exists."
+        return redirect_to skills_path, :notice => notice
+      else
+        existing_skill.active = true
+        existing_skill.save
+      end
     else
-    skill = Skill.new(:name => skill_name, :active => true)
-    skill.save
+      skill = Skill.new(:name => skill_name, :active => true)
+      skill.save!
     end
-    notice = skill_name + " skill successfully created."
+    notice = "Skill #{skill_name} successfully created."
     redirect_to skills_path, :notice => notice
   end  
   
@@ -172,9 +177,21 @@ class AdminsController < ApplicationController
   def edit_skill
     @skill = Skill.find_by_id(params[:id])
     if request.patch?
-      @skill.name = params[:name]
-      @skill.save
-      notice = "#{@skill.name} skill name updated successfully."
+      edit_name = params[:name]
+      if Skill.where(:name => edit_name).blank?
+        @skill.name = params[:name]
+        @skill.save
+        notice = "#{@skill.name} skill name updated successfully."
+      else
+        existing_skill = Skill.where(:name => edit_name)[0]
+        if not existing_skill.active
+          existing_skill.save
+          @skill = existing_skill
+          notice = "#{@skill.name} skill name updated successfully."
+        else
+          notice = "#{existing_skill.name} already exists."
+        end
+      end
       redirect_to skills_path, :notice => notice
     else
       render 'edit_skill'
