@@ -7,18 +7,17 @@ class Team < ActiveRecord::Base
         return SecureRandom.urlsafe_base64(length, false)
     end
 
-    def get_skills
-      result = ""
+    def team_skills
+      result = ''
       self.users.each do |user|
         user.talents.each do |talent|
           skill_name = Skill.find(talent.skill_id).name
-          result += skill_name + ", "
+          result += skill_name + ', '
         end
       end
-      unless result == ""
+      if result != ''
         return result[0..(result.length - 3)]
       end
-      ""
     end
 
     def self.approved_teams
@@ -56,7 +55,6 @@ class Team < ActiveRecord::Base
     def eligible?
         users.count.between?(Option.minimum_team_size, Option.maximum_team_size)
     end
-
 
     def self.filter_by(status)
         if status.nil? or status == "Pending | Approved"
