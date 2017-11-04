@@ -47,4 +47,3 @@ class User < ActiveRecord::Base
     return Admin.pluck(:email)
   end
 end
-

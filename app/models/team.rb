@@ -15,9 +15,7 @@ class Team < ActiveRecord::Base
           result += skill_name + ', '
         end
       end
-      if result != ''
-        return result[0..(result.length - 3)]
-      end
+      return result[0..(result.length - 3)] if result != ''
     end
 
     def self.approved_teams

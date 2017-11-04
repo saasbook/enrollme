@@ -1,5 +1,4 @@
 class AdminsController < ApplicationController
-
   skip_before_filter :authenticate, :only => ['new', 'create']
   before_filter :validate_admin, :set_admin, :except => ['new', 'create']
 
@@ -195,6 +194,7 @@ class AdminsController < ApplicationController
   end
 
   private
+
   def validate_admin
     if !(session[:is_admin])
       redirect_to '/', :notice => "Permission denied"
@@ -233,4 +233,3 @@ class AdminsController < ApplicationController
     return "#{skill.name} skill name updated successfully."
   end
 end
-
