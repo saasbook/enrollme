@@ -76,10 +76,10 @@ submissions = [
 #   Submission.create!(a)
 # end
   
-Admin.delete_all
-admins.each do |a|
-  Admin.create!(a)
-end
+# Admin.delete_all
+# admins.each do |a|
+#   Admin.create!(a)
+# end
 
 Option.delete_all
 Option.create!(
