@@ -71,4 +71,23 @@ class Team < ActiveRecord::Base
         ! approved     &&
         users.size < Option.maximum_team_size
     end
+    
+    def self.approved_teams_from_csv(users_hash)
+        approved_teams = []
+        Team.all.each do |t|
+          each_team_user_found = true
+          t.users.each do |u|
+            # If User is not in users_hash, then User is not in CSV
+            if not users_hash[u].nil?
+              next
+            else
+              each_team_user_found = false
+            end
+          end
+          if each_team_user_found
+            approved_teams << t
+          end
+        end
+        return approved_teams
+    end
 end

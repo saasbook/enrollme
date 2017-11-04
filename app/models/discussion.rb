@@ -37,6 +37,19 @@ class Discussion < ActiveRecord::Base
         return discs
     end
     
+    def self.disc_with_least
+        least_count = 100 #temp max
+        least_disc = false
+        Discussion.all.each do |disc|
+            disc_num_students = disc.count_students
+            if least_count > disc_num_students
+                least_count = disc_num_students
+                least_disc = disc
+            end
+        end
+        return least_disc    
+    end
+    
     def info
         return "CCN: #{self.number} | Time: #{self.day} #{self.time} | Enrolled: #{self.count_students} / #{self.capacity}"
     end

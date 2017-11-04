@@ -38,30 +38,50 @@ class User < ActiveRecord::Base
     return Admin.pluck(:email)
   end
   
-  def self.import(file)
+  def self.users_from_csv(file)
+    users = {}
     CSV.foreach(file.path, headers: true) do |row|
       student = row.to_hash
       # Check for nil entries, skip adding to User db if any found
       if not student["Name"].nil? and not student["Student ID"].nil? and
         not student["Majors"].nil? and not student["Email Address"].nil?
-        # Create User if one does not exist already
-        if not User.exists?({
+        if User.exists?({
           :name => student["Name"], 
           :sid => student["Student ID"], 
           :major => student["Majors"], 
           :email => student["Email Address"],
           })
-          User.create!({
-            :name => student["Name"], 
-            :sid => student["Student ID"], 
-            :major => student["Majors"], 
-            :email => student["Email Address"],
-            })
+          # user doesn't exist in User db, add to not_in_users
+          users[student] = true
+        end
+      end
+    end
+    return users
+  end
+  
+  def self.import(file)
+    users = User.users_from_csv(file)
+    approved_teams = Team.approved_teams_from_csv(users)
+    # Assign a discussion to each team
+    approved_teams.each do |t|
+      if not t.approved and t.eligible?
+        discs = Discussion.valid_discs_for(t)
+        least_disc = Discussion.disc_with_least
+        index = false
+        if least_disc.can_take_team?(t)
+          index = least_disc.id
+        else
+          discs.each do |d|
+            if d.can_take_team?(t)
+              index = d.id
+            end
+          end
+        end
+        if index
+          t.approve_with_discussion(index)
         end
       end
     end
   end
-  
-  
 
 end
