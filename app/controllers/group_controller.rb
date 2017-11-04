@@ -24,14 +24,14 @@ class GroupController < ApplicationController
         @teams_li = Team.filter_by(status)
         teams = []
         @teams_li.each do |t|
-            if Group.has_team?(t.id, t.discussion_id)
+            if Group.has_team?(t.id, t.discussion_id) or t.discussion_id == nil
                 teams.push(t)
             end
         end
+        
         teams.each do |t|
             @teams_li.delete(t)
         end
-    
         render 'create'
     end
     
