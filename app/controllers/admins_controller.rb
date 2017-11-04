@@ -178,14 +178,9 @@ class AdminsController < ApplicationController
     if request.patch?
       edit_name = params[:name]
       if Skill.where(:name => edit_name).blank?
-        notice = edit_skill_to_non_populated_name(@skill, edit_name)
+        notice = edit_skill_non_populated_name(@skill, edit_name)
       else
-        existing_skill = Skill.where(:name => edit_name)[0]
-        if !existing_skill.active
-          notice = edit_skill_to_populated_name(@skill, existing_skill)
-        else
-          notice = "#{existing_skill.name} skill already exists."
-        end
+        notice = edit_skill_populated_name(edit_name)
       end
       redirect_to skills_path, :notice => notice
     else
@@ -220,16 +215,27 @@ class AdminsController < ApplicationController
     Discussion.delete_all
   end
 
-  def edit_skill_to_non_populated_name(skill, edit_skill_name)
+  def edit_skill_populated_name(edit_name)
+    existing_skill = Skill.where(:name => edit_name)[0]
+    if !existing_skill.active
+      notice = edit_skill_populated_name_active(@skill, existing_skill)
+    else
+      notice = "#{existing_skill.name} skill already exists."
+    end
+  end
+
+  def edit_skill_non_populated_name(skill, edit_skill_name)
     skill.name = edit_skill_name
     skill.save
     return "#{skill.name} skill name updated successfully."
   end
 
-  def edit_skill_to_populated_name(skill, existing_skill)
+  def edit_skill_populated_name_active(skill, existing_skill)
     existing_skill.active = true
     existing_skill.save
     skill = existing_skill
     return "#{skill.name} skill name updated successfully."
   end
+
+  
 end
