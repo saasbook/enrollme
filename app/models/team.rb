@@ -78,15 +78,9 @@ class Team < ActiveRecord::Base
           each_team_user_found = true
           t.users.each do |u|
             # If User is not in users_hash, then User is not in CSV
-            if not users_hash[u].nil?
-              next
-            else
-              each_team_user_found = false
-            end
+            if users_hash[u].nil? then each_team_user_found = false end
           end
-          if each_team_user_found
-            approved_teams << t
-          end
+          if each_team_user_found then approved_teams << t end
         end
         return approved_teams
     end

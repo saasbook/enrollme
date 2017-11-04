@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_filter :authenticate, :only => ['new', 'create']
   before_filter :check_is_user, :except => ['new', 'create', 'show', 'index',
-  'import', 'destroy', 'edit']
+                                            'import', 'destroy', 'edit']
   before_filter :set_user, :except => ['new', 'create']
   
   def index
@@ -46,7 +46,8 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, 
+                    notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
