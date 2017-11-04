@@ -97,16 +97,17 @@ Given /^the following users exist$/ do |table|
   end
 end
 
+Given /^the following skills exist$/ do |table|
+
+  table.rows.each do |name|
+    Skill.create!(:name => name[0])
+  end
+end
+
 Given /^the following discussions exist$/ do |table|
   table.rows.each do |number, time, day, capacity, seats_open|
     next if number == :number # skipping table header
     Discussion.create!(:number => number.to_i, :time => time, :day => day, :capacity => capacity.to_i)
-  end
-end
-
-Given /^the following skills exist$/ do |table|
-  table.rows.each do |name|
-    # TODO: add Skills objects to db
   end
 end
 

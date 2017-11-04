@@ -12,12 +12,10 @@ class UsersController < ApplicationController
     @user = User.new
     session[:user_id] = @user.id
     @user_email = session[:user_email] = params[:user_email]
-    render 'new'
   end
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       EmailStudents.welcome_email(@user).deliver_later
 
