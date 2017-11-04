@@ -9,7 +9,7 @@ Feature: admin manages skills that students can add to profile
   	  | Bob  | eecs666@hotmail.com  | ilikcats |
     And I am on the login page
     And I log in as an admin with email "eecs666@hotmail.com"
-    And I am on the manage skills page
+    And I am on the skills page
 
   Scenario: Admin successfully adds a new skill
     Given I fill in "name" with "Frontend"
