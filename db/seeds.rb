@@ -75,10 +75,19 @@ submissions = [
 #   Submission.create!(a)
 # end
   
-# Admin.delete_all
-# admins.each do |a|
-#   Admin.create!(a)
-# end
+  
+  
+# DO NOT COMMMENT OUT 
+
+Admin.delete_all
+admins.each do |a|
+  Admin.create!(a)
+end
+
+# DO NOT COMMMENT OUT
+
+
+
 
 Option.delete_all
 Option.create!(

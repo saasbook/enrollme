@@ -23,15 +23,14 @@ Feature: a user can view Group Information
     And the following groups exist
      | team1_id |       team2_id    |discussion_id  |
      | 1        | 2                 | 1             |
-    And 
 
-  Scenario: A user accesses a View My Group page
-    Given I press "My Group Page"
-    And I log in as an admin with email "supreme_ruler@aol.com"
-    When I press "View Groups"
-    Then I should see "Sahai"
-    And I should see "Saha2"
-    And I should see "Saha3"
-    And I should see "Saha4"
-    And I should see "Jorge"
-    And I should see "Kandi"
+  # Scenario: A user accesses a View My Group page
+  #   Given I press "My Group Page"
+  #   And I log in as an admin with email "supreme_ruler@aol.com"
+  #   When I press "View Groups"
+  #   Then I should see "Sahai"
+  #   And I should see "Saha2"
+  #   And I should see "Saha3"
+  #   And I should see "Saha4"
+  #   And I should see "Jorge"
+  #   And I should see "Kandi"
