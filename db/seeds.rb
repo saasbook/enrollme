@@ -25,21 +25,21 @@ Option.create!(
   :maximum_team_size => 3
   )
 
-users = [
-  {:name => "Bob Smith", :email => "bob@smith.com", :sid => "12345678", :major => "CS"}
-]
-createObjs(User, users)
+# users = [
+#   {:name => "Bob Smith", :email => "bob@smith.com", :sid => "12345678", :major => "CS"}
+# ]
+# createObjs(User, users)
 
-teams = [
-  {:approved => true, :passcode => "somePasscode"}
-]
+# teams = [
+#   {:approved => true, :passcode => "somePasscode"}
+# ]
 
-createObjs(Team, teams)
+# createObjs(Team, teams)
 
-Team.all.each do |t|
-  user = User.where(:email => "bob@smith.com")[0]
-  t.users.append(user)
-  t.save!
-  user.team = t
-  user.save!
-end
+# Team.all.each do |t|
+#   user = User.where(:email => "bob@smith.com")[0]
+#   t.users.append(user)
+#   t.save!
+#   user.team = t
+#   user.save!
+# end
