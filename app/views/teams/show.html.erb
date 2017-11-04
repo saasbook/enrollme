@@ -8,6 +8,7 @@
         <table class="table table-striped table-hover">
           <tr>
             <td>#</td>
+            <td>Name</td>
             <td>Size</td>
             <td>Skills</td>
             <td>Contact</td>
@@ -18,10 +19,13 @@
                 <%= team.id %>
               </td>
               <td>
+                <%= team.passcode %>
+              </td>
+              <td>
                 <%= team.users.length %>
               </td>
               <td>
-                <%= team.users.inject("") {|str, user| str += user.skills.to_s} %>
+                <%= team.get_skills %>
               </td>
               <td>bob@smith.com</td>
             </tr>
