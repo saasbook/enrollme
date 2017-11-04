@@ -176,14 +176,8 @@ class AdminsController < ApplicationController
   def edit_skill
     @skill = Skill.find_by_id(params[:id])
     if request.patch?
-      edit_name = params[:name]
-      if Skill.where(:name => edit_name).blank?
-        notice = edit_skill_non_populated_name(@skill, edit_name)
-        redirect_to skills_path, :notice => notice
-      else
-        notice = edit_skill_populated_name(edit_name)
-        redirect_to skills_path, :notice => notice
-      end
+      notice = edit_skill_populated_name_check(params[:name])
+      redirect_to skills_path, :notice => notice
     else
       render 'edit_skill'
     end
@@ -214,6 +208,14 @@ class AdminsController < ApplicationController
     Team.delete_all
     Submission.delete_all
     Discussion.delete_all
+  end
+
+  def edit_skill_populated_name_check(edit_name)
+    if Skill.where(:name => edit_name).blank?
+      return edit_skill_non_populated_name(@skill, edit_name)
+    else
+      return edit_skill_populated_name(edit_name)
+    end
   end
 
   def edit_skill_populated_name(edit_name)
