@@ -189,7 +189,7 @@ class AdminsController < ApplicationController
           @skill = existing_skill
           notice = "#{@skill.name} skill name updated successfully."
         else
-          notice = "#{existing_skill.name} already exists."
+          notice = "#{existing_skill.name} skill already exists."
         end
       end
       redirect_to skills_path, :notice => notice

@@ -25,4 +25,50 @@ Feature: admin manages skills that students can add to profile
     Then I should see "Skill Frontend already exists."
   
   Scenario: Admin edits skill name
-     Given I fill in "Skill" with "Frontend"
+    Given I fill in "Skill" with "Frontend"
+    And I press "Add Skill"
+    And I follow "edit-Frontend"
+    And I fill in "Skill" with "Backend"
+    And I press "Edit Skill Name"
+    Then I should see "Backend skill name updated successfully."
+    And I should see "Backend"
+    And I should not see "Frontend"
+    
+  Scenario: Admin deletes skill name
+    Given I fill in "Skill" with "Frontend"
+    And I press "Add Skill"
+    And I follow "delete-Frontend"
+    Then I should see "Sucessfully deleted Frontend."
+    
+  Scenario: Admin edits skill to existing skill
+    Given I fill in "Skill" with "Frontend"
+    And I press "Add Skill"
+    And I fill in "Skill" with "Backend"
+    And I press "Add Skill"
+    And I follow "edit-Frontend"
+    And I fill in "Skill" with "Backend"
+    And I press "Edit Skill Name"
+    Then I should see "Backend skill already exists." 
+    And I should see "Backend"
+    And I should see "Frontend"
+    
+  Scenario: Admin adds skill that was previously deleted
+    Given I fill in "Skill" with "Frontend"
+    And I press "Add Skill"
+    And I follow "delete-Frontend"
+    And I fill in "Skill" with "Frontend"
+    And I press "Add Skill"
+    Then I should see "Skill Frontend successfully created."
+    Then I should see "Frontend"
+  
+  Scenario: Admin edits skill name to be previously deleted skill
+    Given I fill in "Skill" with "Frontend"
+    And I press "Add Skill"
+    And I fill in "Skill" with "Backend"
+    And I press "Add Skill"
+    And I follow "delete-Frontend"
+    And I follow "edit-Backend"
+    And I fill in "Skill" with "Frontend"
+    And I press "Edit Skill Name"
+    Then I should see "Frontend skill name updated successfully."
+    
