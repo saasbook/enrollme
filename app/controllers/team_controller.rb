@@ -1,5 +1,4 @@
 # Controller for dealing with teams and team's students' skills.
-
 class TeamController < ApplicationController
   before_filter :set_user, :set_team
   before_filter :set_permissions

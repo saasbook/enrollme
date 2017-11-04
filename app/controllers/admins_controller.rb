@@ -218,9 +218,9 @@ class AdminsController < ApplicationController
   def edit_skill_populated_name(edit_name)
     existing_skill = Skill.where(:name => edit_name)[0]
     if !existing_skill.active
-      notice = edit_skill_populated_name_active(@skill, existing_skill)
+      return edit_skill_populated_name_active(@skill, existing_skill)
     else
-      notice = "#{existing_skill.name} skill already exists."
+      return "#{existing_skill.name} skill already exists."
     end
   end
 
@@ -236,6 +236,4 @@ class AdminsController < ApplicationController
     skill = existing_skill
     return "#{skill.name} skill name updated successfully."
   end
-
-  
 end
