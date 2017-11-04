@@ -26,8 +26,10 @@
             <tr>
               <td><%= skill.name %></td>
               <td>
-                <%= link_to "Edit", edit_skill_path(skill.id), {class: 'btn btn-info'} %>
-                <%= link_to "Delete", delete_skill_path(skill.id), {class: 'btn btn-danger', :method => 'patch'} %>
+                <%= link_to "Edit", edit_skill_path(skill.id),
+                  {class: 'btn btn-info', id: "edit-#{skill.name}"} %>
+                <%= link_to "Delete", delete_skill_path(skill.id),
+                  {class: 'btn btn-danger', id: "delete-#{skill.name}", :method => 'patch'} %>
               </td>
             </tr>
           <% end %>

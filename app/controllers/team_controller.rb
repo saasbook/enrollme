@@ -1,10 +1,8 @@
-
+# Controller for dealing with teams and team's students' skills.
 class TeamController < ApplicationController
-  
   before_filter :set_user, :set_team
   before_filter :set_permissions
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
-  
   def show
     @discussions = Discussion.valid_discs_for(@team)
     if @team.submitted and !(@team.approved)
@@ -15,20 +13,20 @@ class TeamController < ApplicationController
     end
     render "team"
   end
-  
+
   def submit
     EmailStudents.successfully_submitted_email(@team).deliver_now
-    
+
     redirect_to new_submission_path
   end
-  
+
   def unsubmit
     @submission = @team.submission
     @submission.destroy!
     @team.withdraw_submission
     redirect_to team_path(@team.id)
   end
-  
+
   def edit
     @user_to_remove = User.find_by_id(params[:unwanted_user])
     @user_to_remove.leave_team
@@ -44,11 +42,9 @@ class TeamController < ApplicationController
     return redirect_to without_team_path if @user_to_remove == @user
     return redirect_to team_path(@team.id), notice: "Removed #{@user_to_remove.name} from team." + notice
   end
-  
-  
 
   private
-  
+
   def set_user
     if session[:is_admin]
       @user = Admin.find(session[:user_id])
@@ -68,10 +64,8 @@ class TeamController < ApplicationController
       redirect_to '/', :notice => "Permission denied"
     end
   end
-  
+
   def check_approved
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
   end
-
-  
 end
