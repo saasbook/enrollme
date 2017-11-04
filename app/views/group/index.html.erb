@@ -21,7 +21,7 @@
                 <td><%= g.id %></td>
                 <td><%= g.team1_id %></td>
                 <td><%= g.team2_id %></td>
-                <td><%= g.discussion_id %></td>
+                <td><%= Discussion.find_by_id(g.discussion_id).number %></td>
               </tr>
             <% end %>
           </table>
