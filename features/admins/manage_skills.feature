@@ -12,8 +12,8 @@ Feature: admin manages skills that students can add to profile
     And I am on the skills page
 
   Scenario: Admin successfully adds a new skill
-    Given I fill in "name" with "Frontend"
-    And I press "Add"
+    Given I fill in "Skill" with "Frontend"
+    And I press "Add Skill"
     Then I should see "Frontend"
 
   Scenario: Admin prevented from adding a skill that already exists
@@ -26,6 +26,6 @@ Feature: admin manages skills that students can add to profile
      | React   |
      | Angular   |
      | jQuery   |
-    And I fill in "name" with "frontend"
-    And I press "Add"
+    And I fill in "Skill" with "Frontend"
+    And I press "Add Skill"
     Then I should see "Skill already exists."
