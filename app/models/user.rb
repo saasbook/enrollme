@@ -11,12 +11,12 @@ class User < ActiveRecord::Base
   validates :sid, presence: true, uniqueness: true, length: { maximum: 10 }
   before_save :downcase_email
 
-  def has_skill?(skill)
-    if self.talents.length == 0
+  def skill?(skill)
+    if talents.length.zero?
       return false
     end
     bool = false
-    self.talents.each do |talent|
+    talents.each do |talent|
       bool = true if talent.skill_id == skill.id
     end
     bool
@@ -46,5 +46,5 @@ class User < ActiveRecord::Base
   def all_admin_emails
     return Admin.pluck(:email)
   end
-
 end
+

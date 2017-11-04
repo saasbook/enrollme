@@ -1,13 +1,13 @@
 class AdminsController < ApplicationController
-  
+
   skip_before_filter :authenticate, :only => ['new', 'create']
   before_filter :validate_admin, :set_admin, :except => ['new', 'create']
-  
+
   def new
     @admin = Admin.new
     render 'new'
   end
-  
+
   def create
     @admin = Admin.new(admin_params)
     @admin.superadmin = false
@@ -31,27 +31,27 @@ class AdminsController < ApplicationController
     @teams_li = Team.filter_by(status)
     render 'index'
   end
-  
+
   def approve
     @team = Team.find_by_id(params[:team_id])
     @team.approved = true
     @team.save!
-    
+
     AdminMailer.send_approved_email(@team).deliver_now
-    
+
     if !(params[:disc].nil?)
       Team.find_by_id(params[:team_id]).approve_with_discussion(params[:disc])
     end
     redirect_to admins_path
   end
-  
+
   def disapprove
     @team = Team.find_by_id(params[:team_id])
     @team.approved = false
     @team.save!
-    
+
     #AdminMailer.send_disapproved_email(@team).deliver_now
-    
+
     Team.find_by_id(params[:team_id]).disapprove
     redirect_to admins_path
   end
@@ -90,7 +90,7 @@ class AdminsController < ApplicationController
       redirect_to reset_semester_path, :notice => "Incorrect password"
     end
   end
-      
+
   def transfer
     if @admin.superadmin == true and params[:transfer_admin] != nil
       other_admin = Admin.find(params[:transfer_admin])
@@ -106,7 +106,7 @@ class AdminsController < ApplicationController
     end
     redirect_to superadmin_path, :notice => notice
   end
-  
+
   def delete
     if @admin.superadmin == true
       c = 0
@@ -116,7 +116,7 @@ class AdminsController < ApplicationController
           c += 1
         end
       end
-      
+
       if c == 1
         notice = "#{c} admin successfully deleted."
       else
@@ -127,7 +127,7 @@ class AdminsController < ApplicationController
     end
     redirect_to superadmin_path, :notice => notice
   end
-  
+
   def destroy
     if @admin.superadmin == false
       @admin.destroy!
@@ -160,8 +160,8 @@ class AdminsController < ApplicationController
     end
     notice = "Skill #{skill_name} successfully created."
     redirect_to skills_path, :notice => notice
-  end  
-  
+  end
+
   def delete_skill
     skill = Skill.find_by_id(params[:id])
     if !skill
@@ -179,15 +179,11 @@ class AdminsController < ApplicationController
     if request.patch?
       edit_name = params[:name]
       if Skill.where(:name => edit_name).blank?
-        @skill.name = params[:name]
-        @skill.save
-        notice = "#{@skill.name} skill name updated successfully."
+        notice = edit_skill_to_non_populated_name(@skill, edit_name)
       else
         existing_skill = Skill.where(:name => edit_name)[0]
-        if not existing_skill.active
-          existing_skill.save
-          @skill = existing_skill
-          notice = "#{@skill.name} skill name updated successfully."
+        if !existing_skill.active
+          notice = edit_skill_to_populated_name(@skill, existing_skill)
         else
           notice = "#{existing_skill.name} skill already exists."
         end
@@ -198,9 +194,7 @@ class AdminsController < ApplicationController
     end
   end
 
-   
   private
-
   def validate_admin
     if !(session[:is_admin])
       redirect_to '/', :notice => "Permission denied"
@@ -210,11 +204,11 @@ class AdminsController < ApplicationController
   def set_admin
     @admin = Admin.find_by_id session[:user_id]
   end
-  
+
   def admin_params
     params.require(:admin).permit(:name, :email)
-  end  
-  
+  end
+
   def admin_tutorial
     render 'admin_tutorial'
   end
@@ -226,4 +220,17 @@ class AdminsController < ApplicationController
     Discussion.delete_all
   end
 
+  def edit_skill_to_non_populated_name(skill, edit_skill_name)
+    skill.name = edit_skill_name
+    skill.save
+    return "#{skill.name} skill name updated successfully."
+  end
+
+  def edit_skill_to_populated_name(skill, existing_skill)
+    existing_skill.active = true
+    existing_skill.save
+    skill = existing_skill
+    return "#{skill.name} skill name updated successfully."
+  end
 end
+
