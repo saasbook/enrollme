@@ -179,10 +179,11 @@ class AdminsController < ApplicationController
       edit_name = params[:name]
       if Skill.where(:name => edit_name).blank?
         notice = edit_skill_non_populated_name(@skill, edit_name)
+        redirect_to skills_path, :notice => notice
       else
         notice = edit_skill_populated_name(edit_name)
+        redirect_to skills_path, :notice => notice
       end
-      redirect_to skills_path, :notice => notice
     else
       render 'edit_skill'
     end
