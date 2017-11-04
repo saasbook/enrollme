@@ -11,6 +11,17 @@ class User < ActiveRecord::Base
   validates :sid, presence: true, uniqueness: true, length: { maximum: 10 }
   before_save :downcase_email
 
+  def has_skill?(skill)
+    if self.talents.length == 0
+      return false
+    end
+    bool = false
+    self.talents.each do |talent|
+      bool = true if talent.skill_id == skill.id
+    end
+    bool
+  end
+
   def downcase_email
     self.email.downcase!
   end
