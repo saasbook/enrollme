@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
       student = row.to_hash
       # Check for nil entries, skip adding to User db if any found
       if !student['Name'].nil? && !student['Student ID'].nil? &&
-        !student['Majors'].nil? && !student['Email Address'].nil?
+         !student['Majors'].nil? && !student['Email Address'].nil?
         if User.exists?({
           :name => student['Name'], 
           :sid => student['Student ID'], 
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
     approved_teams = Team.approved_teams_from_csv(csv_users)
     # Assign a discussion to each team
     approved_teams.each do |t|
-      if not t.approved and t.eligible?
+      if !t.approved && t.eligible?
         least_disc = Discussion.disc_with_least
         index = false
         if least_disc.can_take_team?(t)
