@@ -16,27 +16,24 @@ class AdminMailer < ApplicationMailer
         format.html
       end
    end
-   
-   def send_approved_email(team)
-      @team = team
-      @team.users.each do |approved_user|
-         @user = approved_user
-         @url = ENV["SERVER_EMAIL"]
-         mail(to: @user.email, subject: 'Your team has been approved') do |format|
-            format.html
-         end
-      end
-   end
-   
-   def send_disapproved_email(team)
+
+   def email_team_members(team, message)
       @team = team
       @team.users.each do |disapproved_user|
          @user = disapproved_user
          @url = ENV["SERVER_EMAIL"]
-         mail(to: @user.email, subject: 'Your team has been disapproved') do |format|
+         mail(to: @user.email, subject: message) do |format|
             format.html
          end
       end
+   end
+
+   def send_approved_email(team)
+      email_team_members(team, 'Your team has been approved')
+   end
+   
+   def send_disapproved_email(team)
+      email_team_members(team, 'Your team has been disapproved')
    end
    
    def look_at_submission(email)
