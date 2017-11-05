@@ -43,16 +43,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { 
-        redirect_to users_url, notice: 'User was successfully destroyed.' 
-      }
-      format.json { head :no_content }
-    end
-  end
-
   def start_team
     @user.leave_team if !(@user.team.nil?)
     
@@ -95,10 +85,9 @@ class UsersController < ApplicationController
   end
   
   def set_user
+    @user = User.find_by_id session[:user_id]
     if params[:id]
       @user = User.find_by_id params[:id]
-    else
-      @user = User.find_by_id session[:user_id]
     end
   end
 
