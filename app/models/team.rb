@@ -84,4 +84,23 @@ class Team < ActiveRecord::Base
         end
         return approved_teams
     end
+    
+    def self.add_teams_to_discussions(approved_teams)
+      approved_teams.each do |t|
+        if !t.approved && t.eligible?
+          least_disc = Discussion.disc_with_least
+          index = false
+          if least_disc.can_take_team?(t)
+            index = least_disc.id
+          else
+            discs = Discussion.valid_discs_for(t)
+            discs.each do |d|
+              if d.can_take_team?(t) then index = d.id end
+            end
+          end
+          if index then t.approve_with_discussion(index) end
+        end
+      end
+    end
+
 end

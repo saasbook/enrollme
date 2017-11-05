@@ -62,22 +62,7 @@ class User < ActiveRecord::Base
   def self.import(file)
     csv_users = User.users_from_csv(file)
     approved_teams = Team.approved_teams_from_csv(csv_users)
-    # Assign a discussion to each team
-    approved_teams.each do |t|
-      if !t.approved && t.eligible?
-        least_disc = Discussion.disc_with_least
-        index = false
-        if least_disc.can_take_team?(t)
-          index = least_disc.id
-        else
-          discs = Discussion.valid_discs_for(t)
-          discs.each do |d|
-            if d.can_take_team?(t) then index = d.id end
-          end
-        end
-        if index then t.approve_with_discussion(index) end
-      end
-    end
+    Team.add_teams_to_discussions(approved_teams)
   end
 
 end
