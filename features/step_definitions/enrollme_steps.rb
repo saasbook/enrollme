@@ -105,9 +105,10 @@ Given /^the following discussions exist$/ do |table|
 end
 
 Given /^the following teams exist$/ do |table|
-  table.rows.each do |submission_id, approved, passcode, submitted, discussion_id|
+  table.rows.each do |submission_id, approved, passcode, submitted, discussion_number|
     next if submission_id == :submission_id # skipping table header
-    Team.create!(:submission_id => submission_id.to_i, :approved => approved=="true", :passcode => passcode, :submitted => submitted=="true", :discussion_id => discussion_id.to_i)
+    discussion_id = Discussion.find_by_number(discussion_number).id
+    Team.create!(:submission_id => submission_id.to_i, :approved => approved=="true", :passcode => passcode, :submitted => submitted=="true", :discussion_id => discussion_id)
   end
 end
 
@@ -178,4 +179,12 @@ end
 
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
+end
+
+Then /^(?:|I )should see team "([^"]*)"$/ do |id|
+  page.body.include?("team_" + id.to_s)
+end
+
+Then /^(?:|I )should not see team "([^"]*)"$/ do |id|
+  not page.body.include?("team_" + id.to_s)
 end
