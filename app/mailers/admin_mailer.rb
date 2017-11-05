@@ -18,10 +18,11 @@ class AdminMailer < ApplicationMailer
    end
    
    def send_approved_email(team)
-      team.users.each do |approved_user|
-         @approved_user = approved_user
+      @team = team
+      @team.users.each do |approved_user|
+         @user = approved_user
          @url = ENV["SERVER_EMAIL"]
-         mail(to: @approved_user.email, subject: 'Your team has been approved') do |format|
+         mail(to: @user.email, subject: 'Your team has been approved') do |format|
             format.html
          end
       end
@@ -30,9 +31,9 @@ class AdminMailer < ApplicationMailer
    def send_disapproved_email(team)
       @team = team
       @team.users.each do |disapproved_user|
-         @disapproved_user = disapproved_user
+         @user = disapproved_user
          @url = ENV["SERVER_EMAIL"]
-         mail(to: @disapproved_user.email, subject: 'Your team has been disapproved') do |format|
+         mail(to: @user.email, subject: 'Your team has been disapproved') do |format|
             format.html
          end
       end
