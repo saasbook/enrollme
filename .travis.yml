@@ -10,9 +10,7 @@ after_script:
 - bundle exec rake send_to_codeclimate
 env:
 - ADMIN_DELETE_DATA_PASSWORD: "hello"
-- COVERALLS_PARALLEL: true
 after_success:
 - CI=true TRAVIS=true coveralls --verbose
-notifications:
-  webhooks: https://coveralls.io/webhook?repo_token=gDdq8itC8gszvIYXVbAMv6w9zkFbTNTzR
+
 
