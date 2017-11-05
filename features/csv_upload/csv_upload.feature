@@ -22,6 +22,7 @@ Feature: Import CSV Page exists and non-waitlested teams are approved
     And I log in as an admin with email "supreme_ruler@aol.com"
 
   Scenario: Import CSV Button Exists and Shows Confirmation Message On Upload
+    When I follow "Import Student Data"
     Then I should see "Import Students From CSV"
     When I attach a csv file
     Then I press "Upload Students"
