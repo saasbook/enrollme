@@ -42,3 +42,15 @@ Feature: admin can create a Group by selecting two teams
     And I press "Create Group"
     Then I should see team "1"
     And I should see team "3"
+
+  Scenario: An admin unmerges a group
+    Given I press "Create Groups"
+    When I check "team_1"
+    And I check "team_2"
+    And I press "Create Group"
+    And I follow "Back"
+    And I press "View Groups"
+    # And byebug
+    And I check "group_1"
+    And I press "Destroy Group"
+    Then I should not see group "1"
