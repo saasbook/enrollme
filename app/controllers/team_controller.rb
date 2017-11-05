@@ -8,12 +8,16 @@ class TeamController < ApplicationController
   def show
     @discussions = Discussion.valid_discs_for(@team)
     if @team.submitted and !(@team.approved)
-      @s = Submission.find(@team.submission_id)
-      @d1 = Discussion.find(@s.disc1id)
-      @d2 = Discussion.find_by_id(@s.disc2id)
-      @d3 = Discussion.find_by_id(@s.disc3id)
+      show_setup
     end
     render "team"
+  end
+  
+  def show_setup
+    @s = Submission.find(@team.submission_id)
+    @d1 = Discussion.find(@s.disc1id)
+    @d2 = Discussion.find_by_id(@s.disc2id)
+    @d3 = Discussion.find_by_id(@s.disc3id)
   end
   
   def showgroup
@@ -22,10 +26,7 @@ class TeamController < ApplicationController
     
     @discussions = Discussion.valid_discs_for(@team)
     if @team.submitted and !(@team.approved)
-      @s = Submission.find(@team.submission_id)
-      @d1 = Discussion.find(@s.disc1id)
-      @d2 = Discussion.find_by_id(@s.disc2id)
-      @d3 = Discussion.find_by_id(@s.disc3id)
+      show_setup
     end
     if @groupt1 != nil
       @group = @groupt1
