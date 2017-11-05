@@ -188,3 +188,8 @@ end
 Then /^(?:|I )should not see team "([^"]*)"$/ do |id|
   not page.body.include?("team_" + id.to_s)
 end
+
+When /^I attach a csv file$/ do
+  File.expand_path("../../csv_upload/test.csv", __FILE__)
+  attach_file(:file, File.expand_path("../../csv_upload/test.csv", __FILE__))
+end 
