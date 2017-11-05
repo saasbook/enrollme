@@ -3,6 +3,10 @@ class AdminsController < ApplicationController
   skip_before_filter :authenticate, :only => ['new', 'create']
   before_filter :validate_admin, :set_admin, :except => ['new', 'create']
   
+  def show_import
+    render 'import'
+  end
+  
   def new
     @admin = Admin.new
     render 'new'
@@ -67,7 +71,16 @@ class AdminsController < ApplicationController
   
   def disapprove
     @team = Team.find_by_id(params[:team_id])
+    @groupt1 = Group.find_by_team1_id(params[:team_id])
+    @groupt2 = Group.find_by_team2_id(params[:team_id])
+    if @groupt1 != nil
+      @groupt1.delete
+    end
+    if @groupt2 != nil
+      @groupt2.delete
+    end
     @team.approved = false
+    @team.discussion_id = nil
     @team.save!
     
     #AdminMailer.send_disapproved_email(@team).deliver_now
@@ -78,7 +91,16 @@ class AdminsController < ApplicationController
 
   def undo_approve
     @team = Team.find_by_id(params[:team_id])
+    @groupt1 = Group.find_by_team1_id(params[:team_id])
+    @groupt2 = Group.find_by_team2_id(params[:team_id])
+    if @groupt1 != nil
+      @groupt1.delete
+    end
+    if @groupt2 != nil
+      @groupt2.delete
+    end
     @team.approved = false
+    @team.discussion_id = nil
     @team.save!
     
     #AdminMailer.send_disapproved_email(@team).deliver_now

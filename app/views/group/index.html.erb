@@ -5,6 +5,7 @@
         </br></br></br></br></br>
         <div class="row">
         <div class="col-md-8">
+          <%= form_tag({:action => "unmerge", :method => "post"}) do %>
           <table class="table table-striped table-hover">
             <tr>
               <td></td>
@@ -14,10 +15,10 @@
               <td>Discussion</td>
             </tr>
             
-            <%= form_tag({:action => "unmerge", :method => "post"}) do %>
+            
             <% @groups_li.each do |g| %>
               <tr>
-                <td><%= check_box(g.id, "group") %></td>
+                <td><%= check_box(g.id, "group", id:"group_#{g.id}") %></td>
                 <td><%= g.id %></td>
                 <td><%= g.team1_id %></td>
                 <td><%= g.team2_id %></td>
@@ -28,6 +29,10 @@
           
           <%= submit_tag("Destroy Group", :class => 'btn btn-xs btn-danger') %>
           <% end %>
+          <br><br><br><br>
+          <div>
+            <%= link_to "Back", admins_path, {:class=>"btn btn-default"} %>
+          </div>
           
         </div>
       </div>

@@ -10,6 +10,7 @@ Feature: admin can create a Group by selecting two teams
       | Bob   | supreme_ruler@aol.com  |
     And I am on the login page
     And I log in as an admin with email "supreme_ruler@aol.com"
+
     And the following discussions exist
     #number, time, day, capacity, seats_open
       | number  | time    |  day     | capacity   | seats_open |
@@ -28,10 +29,10 @@ Feature: admin can create a Group by selecting two teams
     When I check "team_1"
     And I check "team_2"
     And I press "Create Group"
-    And I should see team "2"
+    And I should see team "3"
     And I should see team "4"
     Then I should not see team "1"
-    And I should not see team "3"
+    And I should not see team "2"
 
 
   Scenario: An admin merges two valid teams in different discussions
@@ -41,3 +42,15 @@ Feature: admin can create a Group by selecting two teams
     And I press "Create Group"
     Then I should see team "1"
     And I should see team "3"
+
+  Scenario: An admin unmerges a group
+    Given I press "Create Groups"
+    When I check "team_1"
+    And I check "team_2"
+    And I press "Create Group"
+    And I follow "Back"
+    And I press "View Groups"
+    # And byebug
+    And I check "group_1"
+    And I press "Destroy Group"
+    Then I should not see group "1"

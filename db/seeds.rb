@@ -14,7 +14,6 @@ admins = [
       { :name => "Mark Sun", :email => "msun908@berkeley.edu", :superadmin => true},
       { :name => "Timothy Stepro", :email => "stepro.015389@berkeley.edu", :superadmin => true},
       { :name => "Minjoo Sur", :email => "minjoo@berkeley.edu", :superadmin => true},
-    
   ]
   
 users = [ 
@@ -51,47 +50,56 @@ discussions = [
   
 submissions = [
       { :disc1id => 1, :disc2id => 2, :disc3id => 3, :team_id => 1},
-      { :disc1id => 2, :disc2id => 3, :disc3id => 1, :team_id => 2},
-      { :disc1id => 3, :disc2id => 2, :disc3id => 1, :team_id => 3},
+      { :disc1id => 1, :disc2id => 2, :disc3id => 3, :team_id => 2},
+      { :disc1id => 1, :disc2id => 2, :disc3id => 3, :team_id => 3},
   
   ]
   
-# User.delete_all
-# users.each do |t|
-#   User.create!(t)
-# end  
-
-# Team.delete_all
-# teams.each do |t|
-#   Team.create!(t)
-# end
-
 # Discussion.delete_all
 # discussions.each do |a|
 #   Discussion.create!(a)
 # end
+ 
+# Team.delete_all
+# teams.each do |t|
+#   Team.create!(t)
+# end
+ 
+# User.delete_all
+# users.each do |t|
+#   User.create!(t)
+# end  
 
 # Submission.delete_all
 # submissions.each do |a|
 #   Submission.create!(a)
 # end
   
+  
+  
+# DO NOT COMMMENT OUT 
+
 Admin.delete_all
 admins.each do |a|
   Admin.create!(a)
 end
+
+
+# DO NOT COMMMENT OUT
+
 
 Option.delete_all
 Option.create!(
   :minimum_team_size => 3,
   :maximum_team_size => 3
   )
-# puts Group.all.inspect
-# puts "———"
-# puts User.all.inspect
-# puts "———"
-# puts Discussion.all.inspect
-# puts "———"
-# puts Team.all.inspect
-# puts "———"
-# puts Submission.all.inspect
+
+puts Group.all.inspect
+puts "———"
+puts User.all.inspect
+puts "———"
+puts Discussion.all.inspect
+puts "———"
+puts Team.all.inspect
+puts "———"
+puts Submission.all.inspect

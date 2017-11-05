@@ -60,6 +60,17 @@ RSpec.describe EmailStudents, type: :mailer do
     EmailStudents.successfully_submitted_email(@team).deliver_now
     ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
   end
+  
+    it 'send an email to a group' do
+    EmailStudents.email_group("enrollmeberkeley@gmail.com", "hello").deliver_now
+    ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
+  end
+  
+    it 'send a welcome email to a user' do
+    EmailStudents.welcome_email(@user).deliver_now
+    ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
+  end
+  
     
   after(:each) do
     ActionMailer::Base.deliveries.clear

@@ -10,4 +10,6 @@ after_script:
 - bundle exec rake send_to_codeclimate
 env:
 - ADMIN_DELETE_DATA_PASSWORD: "hello"
+after_success:
+- CI=true TRAVIS=true coveralls --verbose
 
