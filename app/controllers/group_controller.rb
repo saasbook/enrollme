@@ -48,6 +48,7 @@ class GroupController < ApplicationController
                 end
             end
         end
+        
         if discussions.size == 1 and teams.length == 2 
             Group.create({:team1_id => teams[0], :team2_id => teams[1], :discussion_id => @dis})
             flash[:success] = "Group Created!"
@@ -86,22 +87,33 @@ class GroupController < ApplicationController
     
     
     def random
+        grouped = 0
         Discussion.all.each do |discussion|
             teams = Team.where(:discussion_id => discussion.id)
             
             #This list holds two unpaired teams
-            two_teams = []
+            ungrouped_teams = []
             teams.each do |team|
-                if Group.has_team?(team.id, discussion.id) == false
-                    two_teams.push(team.id)
+                if !Group.has_team?(team.id, discussion.id)
+                    ungrouped_teams.push(team.id)
                 end
-                if two_teams.length == 2
-                    Group.create!({:team1_id => two_teams[0], :team2_id => two_teams[1], :discussion_id => discussion.id})
-                    two_teams = []
+                
+                if ungrouped_teams.length == 2
+                    Group.create!({:team1_id => ungrouped_teams[0], :team2_id => ungrouped_teams[1], :discussion_id => discussion.id})
+                    ungrouped_teams = []
+                    grouped += 1
                 end
             end
         end
-        redirect_to admins_path
+        
+        if grouped > 0
+            flash[:success] = "Randomly grouped #{grouped} group#{'s' if grouped > 1}" 
+            redirect_to group_index_path
+        else
+            flash[:error] = "Cannot randomly create groups"
+            redirect_to admin_select_group_path
+        end
+
     end
 end
 

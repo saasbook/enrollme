@@ -94,6 +94,7 @@ Option.create!(
   :minimum_team_size => 3,
   :maximum_team_size => 3
   )
+
 puts Group.all.inspect
 puts "———"
 puts User.all.inspect

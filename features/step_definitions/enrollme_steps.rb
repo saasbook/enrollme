@@ -189,7 +189,7 @@ Then /^(?:|I )should see team "([^"]*)"$/ do |id|
 end
 
 Then /^(?:|I )should not see team "([^"]*)"$/ do |id|
-  # puts page.body
+  puts page.body
   bool = false
   bool.should be page.body.include?("team_" + id.to_s)
   # not page.body.include?("team_" + id.to_s)
