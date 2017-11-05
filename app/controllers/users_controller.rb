@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :authenticate, :only => ['new', 'create']
-  before_filter :check_is_user, :except => ['new', 'create', 'show', 'index',
-                                            'import', 'destroy', 'edit']
-  before_filter :set_user, :except => ['new', 'create']
+  skip_before_filter :authenticate, :only => %w(new create)
+  before_filter :check_is_user, :except => %w(new create show 
+                                              index import destroy edit)
+  before_filter :set_user, :except => %w(new create)
   
   def index
     @users = User.all
@@ -37,9 +37,9 @@ class UsersController < ApplicationController
   def import
     if params[:file]
       User.import(params[:file])
-      redirect_to users_path, notice: 'Users Added Successfully'
+      redirect_to admins_path, notice: 'Users Added Successfully'
     else
-      redirect_to users_path, notice: 'No File Selected'
+      redirect_to admins_path, notice: 'No File Selected'
     end
   end
 
