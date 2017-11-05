@@ -87,7 +87,7 @@ class Team < ActiveRecord::Base
     def self.add_teams_to_discussions(approved_teams)
       approved_teams.each do |t|
         valid_discs, count, index = Discussion.valid_discs_for(t), 100, false
-        if t.approved || !t.eligible? || valid_discs.count == 0 then next end
+        if t.approved || !t.eligible? || valid_discs.count.zero? then next end
         valid_discs.each do |d|
           if d.count_students < count
             count, index = d.count_students, d.id
@@ -96,5 +96,4 @@ class Team < ActiveRecord::Base
         if index then t.approve_with_discussion(index) end
       end
     end
-
 end

@@ -47,10 +47,9 @@ class User < ActiveRecord::Base
     users = {}
     CSV.foreach(file.path, headers: true) do |row|
       student = row.to_hash
-      if !User.valid_user_hash(student) then next end
-      if User.exists?(:name => student['Name'], :sid => student['Student ID'], 
-                      :major => student['Majors'],
-                      :email => student['Email Address'])
+      unless User.valid_user_hash(student) then next end
+      if User.exists?(name: student['Name'], sid: student['Student ID'], 
+                      major: student['Majors'], email: => student['Email Address'])
         users[student['Student ID'].to_i] = true
       end
     end
