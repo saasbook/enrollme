@@ -38,22 +38,20 @@ class User < ActiveRecord::Base
     return Admin.pluck(:email)
   end
   
+  def self.valid_user_hash(user_hash)
+    !user_hash['Name'].nil? && !user_hash['Student ID'].nil? &&
+      !user_hash['Majors'].nil? && !user_hash['Email Address'].nil?
+  end
+  
   def self.users_from_csv(file)
     users = {}
     CSV.foreach(file.path, headers: true) do |row|
       student = row.to_hash
-      # Check for nil entries, skip adding to User db if any found
-      if !student['Name'].nil? && !student['Student ID'].nil? &&
-         !student['Majors'].nil? && !student['Email Address'].nil?
-        if User.exists?({
-          :name => student['Name'], 
-          :sid => student['Student ID'], 
-          :major => student['Majors'], 
-          :email => student['Email Address']
-          })
-          # user doesn't exist in User db, add to not_in_users
-          users[student] = true
-        end
+      if !User.valid_user_hash(student) then next end
+      if User.exists?(:name => student['Name'], :sid => student['Student ID'], 
+                      :major => student['Majors'],
+                      :email => student['Email Address'])
+        users[student['Student ID'].to_i] = true
       end
     end
     return users

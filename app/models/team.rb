@@ -73,33 +73,27 @@ class Team < ActiveRecord::Base
     end
     
     def self.approved_teams_from_csv(users_hash)
-        approved_teams = []
-        Team.all.each do |t|
-          each_team_user_found = true
-          t.users.each do |u|
-            # If User is not in users_hash, then User is not in CSV
-            if users_hash[u].nil? then each_team_user_found = false end
-          end
-          if each_team_user_found then approved_teams << t end
+      approved_teams = []
+      Team.all.each do |t|
+        each_team_user_found = true
+        t.users.each do |u|
+          if users_hash[u.sid.to_i].nil? then each_team_user_found = false end
         end
-        return approved_teams
+        if each_team_user_found then approved_teams << t end
+      end
+      return approved_teams
     end
     
     def self.add_teams_to_discussions(approved_teams)
       approved_teams.each do |t|
-        if !t.approved && t.eligible?
-          least_disc = Discussion.disc_with_least
-          index = false
-          if least_disc.can_take_team?(t)
-            index = least_disc.id
-          else
-            discs = Discussion.valid_discs_for(t)
-            discs.each do |d|
-              if d.can_take_team?(t) then index = d.id end
-            end
+        valid_discs, count, index = Discussion.valid_discs_for(t), 100, false
+        if t.approved || !t.eligible? || valid_discs.count == 0 then next end
+        valid_discs.each do |d|
+          if d.count_students < count
+            count, index = d.count_students, d.id
           end
-          if index then t.approve_with_discussion(index) end
         end
+        if index then t.approve_with_discussion(index) end
       end
     end
 
