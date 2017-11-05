@@ -27,13 +27,6 @@ Feature: admin can Randomly form groups based on their discussion
       |  5               | true      | "dididi1" | true      | 79994         |
       |  6               | true      | "tiredm2" | true      | 79994         |
     
-# Scenario: An admin can group teams in the same discussion
-#     Given I press "Create Groups"
-#     When I press "Group randomly"
-#     Then I should see team "1"
-#     And I should see team "2"
-#     And I should not see team "3"
-#     And I should not see team "4"
     
 Scenario: Teams in different discussions cannot be grouped randomly
     Given I press "Create Groups"

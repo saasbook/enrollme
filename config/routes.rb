@@ -64,6 +64,8 @@ Rails.application.routes.draw do
   
   post '/admin/random', to:'group#random', as: 'random_group'
   
+  get '/admin/im', to: 'admins#show_import', as: 'import_page'
+  
   root 'session#new'
 
   # TODO: something for route not found

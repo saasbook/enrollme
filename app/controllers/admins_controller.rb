@@ -3,6 +3,10 @@ class AdminsController < ApplicationController
   skip_before_filter :authenticate, :only => ['new', 'create']
   before_filter :validate_admin, :set_admin, :except => ['new', 'create']
   
+  def show_import
+    render 'import'
+  end
+  
   def new
     @admin = Admin.new
     render 'new'

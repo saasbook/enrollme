@@ -10,6 +10,7 @@
         </br></br></br></br></br>
         <div class="row">
         <div class="col-md-8">
+          <%= form_tag({:action => "merge"}) do %>
           <table class="table table-striped table-hover">
             <tr>
               <td></td>
@@ -19,18 +20,6 @@
               <td>Discussions</td>
             </tr>
             
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-            <script>
-              var limit = 1;
-              $('input.group_checkbox').on('change', function(evt) {
-                 if($(this).siblings(':checked').length >= limit) {
-                     this.checked = false;
-                 }
-              });
-            </script>
-            
-            <!--:action => "merge",-->
-            <%= form_tag({:action => "merge"}) do %>
             <% @teams_li.each do |t| %>
               <% if t.approved? %>
                 <tr>
@@ -52,11 +41,22 @@
               <% end %>
             </table>
           
+          <div class="col-md-4">
           <%= submit_tag("Create Group", :class => 'btn btn-xs btn-success')%>
           <% end %>
+          </div>
           
+          <div class="col-md-4">
           <%= form_tag({:action => "random", :method => "post"}) %>
           <%= submit_tag("Group randomly", :class => 'btn btn-xs btn-success')%>
+          </div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <div>
+            <%= link_to "Back", admins_path, {:class=>"btn btn-default"} %>
+          </div>
         </div>
       </div>
       

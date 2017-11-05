@@ -24,15 +24,15 @@ Feature: admin can create a Group by selecting two teams
       |  4               | true      | "tiredmj" | true      | 89998              |
 
 
-  # Scenario: An admin merges two valid teams in the same discussion
-  #   Given I press "Create Groups"
-  #   When I check "team_1"
-  #   And I check "team_2"
-  #   And I press "Create Group"
-  #   And I should see team "3"
-  #   And I should see team "4"
-  #   Then I should not see team "1"
-  #   And I should not see team "2"
+  Scenario: An admin merges two valid teams in the same discussion
+    Given I press "Create Groups"
+    When I check "team_1"
+    And I check "team_2"
+    And I press "Create Group"
+    And I should see team "3"
+    And I should see team "4"
+    Then I should not see team "1"
+    And I should not see team "2"
 
 
   Scenario: An admin merges two valid teams in different discussions
