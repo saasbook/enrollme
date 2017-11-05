@@ -37,9 +37,9 @@ class UsersController < ApplicationController
   def import
     if params[:file]
       User.import(params[:file])
-      redirect_to users_path, notice: "Users Added Successfully"
+      redirect_to users_path, notice: 'Users Added Successfully'
     else
-      redirect_to users_path, notice: "No File Selected"
+      redirect_to users_path, notice: 'No File Selected'
     end
   end
 
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     @passcode = params[:team_hash]
     @team = Team.find_by_passcode(@passcode)
     @team ||= Team.new()
-    return redirect_to without_team_path, :notice => "Unable to join team" if @passcode.empty? or !(@team.can_join?)
+    return redirect_to without_team_path, :notice => 'Unable to join team' if @passcode.empty? or !(@team.can_join?)
     
     @user.leave_team if !(@user.team.nil?)
     

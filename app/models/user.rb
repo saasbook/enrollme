@@ -43,13 +43,13 @@ class User < ActiveRecord::Base
     CSV.foreach(file.path, headers: true) do |row|
       student = row.to_hash
       # Check for nil entries, skip adding to User db if any found
-      if not student["Name"].nil? and not student["Student ID"].nil? and
-        not student["Majors"].nil? and not student["Email Address"].nil?
+      if not student['Name'].nil? and not student['Student ID'].nil? and
+        not student['Majors'].nil? and not student['Email Address'].nil?
         if User.exists?({
-          :name => student["Name"], 
-          :sid => student["Student ID"], 
-          :major => student["Majors"], 
-          :email => student["Email Address"],
+          :name => student['Name'], 
+          :sid => student['Student ID'], 
+          :major => student['Majors'], 
+          :email => student['Email Address'],
           })
           # user doesn't exist in User db, add to not_in_users
           users[student] = true

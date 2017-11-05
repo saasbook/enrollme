@@ -38,7 +38,7 @@ class Discussion < ActiveRecord::Base
     end
     
     def self.disc_with_least
-        least_count = 100 #temp max
+        least_count = 100 # temp max
         least_disc = false
         Discussion.all.each do |disc|
             disc_num_students = disc.count_students
