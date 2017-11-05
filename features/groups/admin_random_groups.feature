@@ -39,7 +39,7 @@ Scenario: Teams in different discussions cannot be grouped randomly
     Given I press "Create Groups"
     When I press "Group randomly"
     Then I should see "Randomly grouped 2 groups"
-    Then I go home
+    Then I follow "Home"
     Then I press "Create Groups"
     Then I should see team "1"
     And I should see team "2"

@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-
-  skip_before_filter :authenticate, :only => ['new', 'create']
-  before_filter :check_is_user, :except => ['new', 'create', 'show']
-  before_filter :set_user, :except => ['new', 'create']
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :authenticate, :only => %w(new create)
+  before_filter :check_is_user, :except => %w(new create show 
+                                              index import destroy edit)
+  before_filter :set_user, :except => %w(new create)
+  
+  def index
+    @users = User.all
+  end
   
   def show
     puts Team.all.inspect
@@ -28,6 +33,15 @@ class UsersController < ApplicationController
       render 'new', :notice => "Form is invalid"
     end
   end
+  
+  def import
+    if params[:file]
+      User.import(params[:file])
+      redirect_to admins_path, notice: 'Users Added Successfully'
+    else
+      redirect_to admins_path, notice: 'No File Selected'
+    end
+  end
 
   def start_team
     @user.leave_team if !(@user.team.nil?)
@@ -43,7 +57,7 @@ class UsersController < ApplicationController
     @passcode = params[:team_hash]
     @team = Team.find_by_passcode(@passcode)
     @team ||= Team.new()
-    return redirect_to without_team_path, :notice => "Unable to join team" if @passcode.empty? or !(@team.can_join?)
+    return redirect_to without_team_path, :notice => 'Unable to join team' if @passcode.empty? or !(@team.can_join?)
     
     @user.leave_team if !(@user.team.nil?)
     
@@ -72,6 +86,9 @@ class UsersController < ApplicationController
   
   def set_user
     @user = User.find_by_id session[:user_id]
+    if params[:id]
+      @user = User.find_by_id params[:id]
+    end
   end
 
   def user_params

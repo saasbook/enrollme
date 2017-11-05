@@ -84,9 +84,8 @@ admins.each do |a|
   Admin.create!(a)
 end
 
+
 # DO NOT COMMMENT OUT
-
-
 
 
 Option.delete_all

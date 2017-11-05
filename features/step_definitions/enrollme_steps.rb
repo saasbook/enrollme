@@ -194,3 +194,7 @@ Then /^(?:|I )should not see team "([^"]*)"$/ do |id|
   bool.should be page.body.include?("team_" + id.to_s)
   # not page.body.include?("team_" + id.to_s)
 end
+
+Then /^(?:|I )go home$/ do 
+  click_link("Home") 
+end
