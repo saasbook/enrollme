@@ -182,9 +182,15 @@ When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field
 end
 
 Then /^(?:|I )should see team "([^"]*)"$/ do |id|
-  page.body.include?("team_" + id.to_s)
+
+  bool = true
+  bool.should be page.body.include?("team_" + id.to_s)
+  # page.body.include?("team_" + id.to_s)
 end
 
 Then /^(?:|I )should not see team "([^"]*)"$/ do |id|
-  not page.body.include?("team_" + id.to_s)
+  # puts page.body
+  bool = false
+  bool.should be page.body.include?("team_" + id.to_s)
+  # not page.body.include?("team_" + id.to_s)
 end

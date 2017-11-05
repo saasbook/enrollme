@@ -6,9 +6,6 @@ class TeamController < ApplicationController
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
   
   def show
-    # puts "111111"
-    # puts Submission.all.inspect
-    # puts "111111"
     @discussions = Discussion.valid_discs_for(@team)
     if @team.submitted and !(@team.approved)
       @s = Submission.find(@team.submission_id)
@@ -17,6 +14,29 @@ class TeamController < ApplicationController
       @d3 = Discussion.find_by_id(@s.disc3id)
     end
     render "team"
+  end
+  
+  def showgroup
+    @groupt1 = Group.find_by_team1_id(@team.id)
+    @groupt2 = Group.find_by_team2_id(@team.id)
+    
+    @discussions = Discussion.valid_discs_for(@team)
+    if @team.submitted and !(@team.approved)
+      @s = Submission.find(@team.submission_id)
+      @d1 = Discussion.find(@s.disc1id)
+      @d2 = Discussion.find_by_id(@s.disc2id)
+      @d3 = Discussion.find_by_id(@s.disc3id)
+    end
+    if @groupt1 != nil
+      @group = @groupt1
+      render "mygroup"
+    elsif @groupt2 != nil
+      @group = @groupt2
+      render "mygroup"
+    else
+      flash[:success] = "Your not in a group yet!"
+      render "team"
+    end
   end
   
   def submit

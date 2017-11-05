@@ -30,7 +30,7 @@
             </script>
             
             <!--:action => "merge",-->
-            <%= form_tag({:action => "merge", :method => "get"}) do %>
+            <%= form_tag({:action => "merge"}) do %>
             <% @teams_li.each do |t| %>
               <% if t.approved? %>
                 <tr>
