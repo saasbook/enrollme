@@ -1,13 +1,16 @@
 class AdminsController < ApplicationController
   skip_before_filter :authenticate, :only => ['new', 'create']
   before_filter :validate_admin, :set_admin, :except => ['new', 'create']
+  
   def show_import
     render 'import'
   end
+  
   def new
     @admin = Admin.new
     render 'new'
   end
+  
   def create
     @admin = Admin.new(admin_params)
     @admin.superadmin = false
@@ -17,22 +20,26 @@ class AdminsController < ApplicationController
       render 'new', :notice => "Form is invalid"
     end
   end
+  
   def update
     @admin.update_attributes!(admin_params)
     return redirect_to admins_path
   end
+  
   def index
     status = params[:status]
     @status = status
     @teams_li = Team.filter_by(status)
     render 'index'
   end
+  
   def email
     @email = ''
     team_id = params[:team_id]
     session[:team_id] = team_id
     render 'email'
   end
+  
   def create_email
     email_content = params[:email_content]
     team_id = session[:team_id]
@@ -42,6 +49,7 @@ class AdminsController < ApplicationController
     end
     render 'email_success'
   end
+  
   def approve
     @team = Team.find_by_id(params[:team_id])
     @team.approved = true
@@ -51,6 +59,7 @@ class AdminsController < ApplicationController
     end
     redirect_to admins_path
   end
+  
   def disapprove
     @team = Team.find_by_id(params[:team_id])
     @groupt1 = Group.find_by_team1_id(params[:team_id])
@@ -67,6 +76,7 @@ class AdminsController < ApplicationController
     Team.find_by_id(params[:team_id]).disapprove
     redirect_to admins_path
   end
+  
   def undo_approve
     @team = Team.find_by_id(params[:team_id])
     @groupt1 = Group.find_by_team1_id(params[:team_id])
@@ -83,15 +93,19 @@ class AdminsController < ApplicationController
     Team.find_by_id(params[:team_id]).withdraw_approval
     redirect_to admins_path
   end
+  
   def team_list_email
     redirect_to admins_path
   end
+  
   def superadmin
     render "super"
   end
+  
   def reset_semester
     render "reset"
   end
+  
   def reset_database
     @reset_password = params[:reset_password]
     if @reset_password == ENV["ADMIN_DELETE_DATA_PASSWORD"]
@@ -104,6 +118,7 @@ class AdminsController < ApplicationController
       redirect_to reset_semester_path, :notice => "Incorrect password"
     end
   end
+  
   def transfer
     if @admin.superadmin == true and params[:transfer_admin] != nil
       other_admin = Admin.find(params[:transfer_admin])
@@ -119,6 +134,7 @@ class AdminsController < ApplicationController
     end
     redirect_to superadmin_path, :notice => notice
   end
+  
   def delete
     if @admin.superadmin == true
       c = 0
@@ -144,7 +160,7 @@ class AdminsController < ApplicationController
     end
     redirect_to '/', :notice => notice
   end
-  
+
   private
 
   def validate_admin
