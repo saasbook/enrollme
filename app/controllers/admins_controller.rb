@@ -79,13 +79,13 @@ class AdminsController < ApplicationController
   
   def undo_approve
     @team = Team.find_by_id(params[:team_id])
-    @groupt1 = Group.find_by_team1_id(params[:team_id])
-    @groupt2 = Group.find_by_team2_id(params[:team_id])
-    if @groupt1 != nil
-      @groupt1.delete
+    # @groupt1 = 
+    # @groupt2 = 
+    if Group.find_by_team1_id(params[:team_id]) != nil
+      Group.find_by_team2_id(params[:team_id]).delete
     end
-    if @groupt2 != nil
-      @groupt2.delete
+    if Group.find_by_team2_id(params[:team_id]) != nil
+      Group.find_by_team2_id(params[:team_id]).delete
     end
     @team.approved = false
     @team.discussion_id = nil
