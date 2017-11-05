@@ -1741,12 +1741,7 @@
         1,
         null,
         null,
-        null,
         1,
-        1,
-        null,
-        0,
-        null,
         null,
         0,
         null,
@@ -2361,6 +2356,10 @@
         0
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1509864222
+=======
+    "timestamp": 1509866422
+>>>>>>> yonas
   }
 }
