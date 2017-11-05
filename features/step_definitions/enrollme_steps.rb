@@ -205,3 +205,8 @@ end
 Then /^(?:|I )go home$/ do 
   click_link("Home") 
 end
+
+When /^I attach a csv file$/ do
+  File.expand_path("../../csv_upload/test.csv", __FILE__)
+  attach_file(:file, File.expand_path("../../csv_upload/test.csv", __FILE__))
+end 
