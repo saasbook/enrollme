@@ -41,6 +41,12 @@
               </div>
             </h2>
           </div>
+          
+          <h3>Import Students From CSV</h3>
+          <%= form_tag import_users_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= submit_tag "Upload Students", class: 'btn btn-default' %>
+          <% end %>
 
           <table class="table table-striped table-hover">
             <tr>
