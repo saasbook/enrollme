@@ -108,6 +108,7 @@ Given /^the following teams exist$/ do |table|
   table.rows.each do |submission_id, approved, passcode, submitted, discussion_number|
     next if submission_id == :submission_id # skipping table header
     discussion_id = Discussion.find_by_number(discussion_number).id
+    ateams = Team.approved_teams
     Team.create!(:submission_id => submission_id.to_i, :approved => approved=="true", :passcode => passcode, :submitted => submitted=="true", :discussion_id => discussion_id)
   end
 end

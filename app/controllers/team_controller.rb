@@ -24,10 +24,10 @@ class TeamController < ApplicationController
     @groupt1 = Group.find_by_team1_id(@team.id)
     @groupt2 = Group.find_by_team2_id(@team.id)
     
-    @discussions = Discussion.valid_discs_for(@team)
-    if @team.submitted and !(@team.approved)
-      show_setup
-    end
+    # @discussions = Discussion.valid_discs_for(@team)
+    # if @team.submitted and !(@team.approved)
+    #   show_setup
+    # end
     if @groupt1 != nil
       @group = @groupt1
       render "mygroup"
@@ -35,8 +35,8 @@ class TeamController < ApplicationController
       @group = @groupt2
       render "mygroup"
     else
-      flash[:success] = "Your not in a group yet!"
-      render "team"
+      flash[:success] = "You are not in a group yet!"
+      redirect_to team_path
     end
   end
   

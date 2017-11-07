@@ -82,7 +82,7 @@ class AdminsController < ApplicationController
     # @groupt1 = 
     # @groupt2 = 
     if Group.find_by_team1_id(params[:team_id]) != nil
-      Group.find_by_team2_id(params[:team_id]).delete
+      Group.find_by_team1_id(params[:team_id]).delete
     end
     if Group.find_by_team2_id(params[:team_id]) != nil
       Group.find_by_team2_id(params[:team_id]).delete
@@ -129,8 +129,8 @@ class AdminsController < ApplicationController
       notice = "Successfully transferred superadmin powers."
     elsif @admin.superadmin == true and params[:transfer_admin] == nil
       notice = "No admin selected for transfer."
-    else
-      notice = "You don't have permission to do that."
+    # else
+    #   notice = "You don't have permission to do that."
     end
     redirect_to superadmin_path, :notice => notice
   end
