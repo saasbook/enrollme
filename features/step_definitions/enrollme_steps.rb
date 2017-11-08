@@ -71,6 +71,8 @@ And /^my team is submitted$/ do
 end
 
 And /^the team with passcode "([^"]*)" should be (.*)$/ do | passcode, status |
+  puts Team.find_by_passcode(passcode).users.inspect
+  puts Team.find_by_passcode(passcode).send(status)
   expect(Team.find_by_passcode(passcode).send(status)).to be_truthy
 end
 

@@ -29,7 +29,7 @@ users = [
       { :name => "Kobe Bryant", :email => "bryant@gmail.com", :major => "CS", :sid => 888888, :team_id => 3},
       { :name => "Pau Gasol", :email => "gasol@gmail.com", :major => "CS", :sid => 999999, :team_id => 3},
       
-      { :name => "Yonas Kbrom", :email => "kbromyonas1@gmail.com", :major => "CS", :sid => 111112},
+      { :name => "Rajon Rondo", :email => "rondo@gmail.com", :major => "CS", :sid => 111112, :team_id => 4},
       { :name => "Paul Pierce", :email => "pierce@gmail.com", :major => "CS", :sid => 133113, :team_id => 4},
       { :name => "Kevin Garnett", :email => "garnett@gmail.com", :major => "CS", :sid => 144114, :team_id => 4},
   ]
@@ -55,25 +55,25 @@ submissions = [
   
   ]
   
-Discussion.delete_all
-discussions.each do |a|
-  Discussion.create!(a)
-end
+# Discussion.delete_all
+# discussions.each do |a|
+#   Discussion.create!(a)
+# end
  
-Team.delete_all
-teams.each do |t|
-  Team.create!(t)
-end
+# Team.delete_all
+# teams.each do |t|
+#   Team.create!(t)
+# end
  
-User.delete_all
-users.each do |t|
-  User.create!(t)
-end  
+# User.delete_all
+# users.each do |t|
+#   User.create!(t)
+# end  
 
-Submission.delete_all
-submissions.each do |a|
-  Submission.create!(a)
-end
+# Submission.delete_all
+# submissions.each do |a|
+#   Submission.create!(a)
+# end
   
   
   

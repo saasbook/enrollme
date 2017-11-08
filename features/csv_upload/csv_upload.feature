@@ -6,10 +6,10 @@ Feature: Import CSV Page exists and non-waitlested teams are approved
   
   Background:
     Given the following users exist
-     | name  |       email                    | team_passcode | major           | sid  |
- 	   | Sahai | eecs666@hotmail.com            | penguindrool  | EECS            | 101  |
-  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool  | Football Player | 999  |
-  	 | Kandi | justanotheremail@aol.com       | penguindrool  | EECS            | 567  |
+     | name        |       email                    | team_passcode | major         | sid     |
+ 	   | Yonas Kbrom | kbromyonas@gmail.com           | penguindrool  | CS            | 111111  |
+  	 | Monty Inaya | mr.monty@gmail.com             | penguindrool  | CS            | 222222  |
+  	 | Vikram Baid | vbaid@gmail.com                | penguindrool  | CS            | 333333  |
     And the following admins exist
       | name | email                  |
   	  | Bob  | supreme_ruler@aol.com  |

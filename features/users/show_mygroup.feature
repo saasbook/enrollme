@@ -25,7 +25,7 @@ Feature: Student can see group
     Given I fill in "team_hash" with "penguindrool"
     And I press "Join"
     And I press "My Group"
-    Then I should see "Your not in a group yet!"
+    Then I should see "You are not in a group yet!"
     
   Scenario: Student1 successfully views their group
     And I log in as a user with email "kobe1@hotmail.com"
