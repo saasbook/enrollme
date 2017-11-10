@@ -8,7 +8,7 @@
         <table class="table table-striped table-hover">
           <tr>
             <td>#</td>
-            <td>Name</td>
+            <td>Names</td>
             <td>Size</td>
             <td>Skills</td>
             <td>Contact</td>
@@ -19,7 +19,7 @@
                 <%= team.id %>
               </td>
               <td>
-                <%= team.passcode %>
+                <%= team.users.inject("") {|str, user| str += user.name} %>
               </td>
               <td>
                 <%= team.users.length %>

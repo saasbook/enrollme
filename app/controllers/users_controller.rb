@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   def update
     @user.update_attributes!(user_params)
     @team = @user != nil ? @user.team : nil
-    return redirect_to team_path({:id => @team === nil ? 1 : @team.id, :uid => @user.id})
+    return redirect_to user_path(:id => @user.id)
   end
 
   private
@@ -73,6 +73,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :sid, :major)
+    permitted = [:name, :email, :sid, :major, :talent_attributes]
+    params.require(:user).permit(permitted)
   end
 end

@@ -15,6 +15,5 @@ Feature: view teams
     Given I am on the home page
     Given I log in as a user with email "justanotheremail@aol.com"
     And I am on the teams page
-    Then I should see "penguindrool"
     And I should see "2"
     And I should see "JavaScript, Back-end"

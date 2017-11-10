@@ -1,15 +1,15 @@
 Feature: Super admin deletes all data
-  
+
   As a super admin
   So that I can prepare for a new semester of enrollment
   I want to be able to delete the entire database
-  
+
   Background:
     Given the following admins exist
       | name | email                  | superadmin |
   	  | Bob  | supreme_ruler@aol.com  | true       |
     Given the following users exist
-  	  |   name    |       email                       | team      | major             |       sid         |  
+  	  |   name    |       email                       | team      | major             |       sid         |
 	    | Jorge     |    legueoflegends667@hotmail.com  | somepassc | Football Player   | 999               |
 	    | Bob0      |    bobjones0@berkeley.edu         | passcode1 | Slavic Studies    | 824               |
 	    | Bob1      |    bobjones1@berkeley.edu         | passcode1 | Slavic Studies    | 825               |
@@ -26,7 +26,6 @@ Feature: Super admin deletes all data
     And I log in as an admin with email "enrollmeberkeley@gmail.com"
 
   Scenario: Super admin successfully deletes everything from database
-    Then print page body
     When I follow "Reset Semester"
     Then I should see "Warning: Resetting the semester will result in all users, teams, and discussions being deleted."
     And I should see "Password"
