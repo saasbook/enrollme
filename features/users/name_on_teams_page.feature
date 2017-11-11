@@ -25,5 +25,5 @@ Feature: Optional Display Username on Teams Page
     And I uncheck "Name Visible to Other Teams" 
     And I press "Update Information"
     And I am on the teams page
-    Then I should see "Sahai"
+    Then I should not see "Sahai"
 
