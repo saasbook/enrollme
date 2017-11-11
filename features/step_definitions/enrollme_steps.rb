@@ -175,6 +175,13 @@ Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
   unread_emails_for(address).size.should == n.to_i
 end
 
+And /^I contact "([^"]*)" with the message "([^"]*)"$/ do |team, message|
+  step %Q{I press "Contact #{team}"}
+  step %Q{I fill in "Message" with "#{message}"}
+  step %Q{I press "Send"}
+end
+
+
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
