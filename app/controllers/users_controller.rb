@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       User.import(params[:file])
       redirect_to admins_path, notice: 'Users Added Successfully'
     else
-      redirect_to admins_path, notice: 'No File Selected'
+      redirect_to import_page_path, notice: 'No File Selected'
     end
   end
 

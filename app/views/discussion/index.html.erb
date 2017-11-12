@@ -10,12 +10,14 @@
         <div class='btn-toolbar pull-right'>
           <div class='btn-group'>
            <%= button_to "Add Discussions", new_discussion_path, {method: :get, class: "btn"} %>
+          </div>
+          <div class='btn-group'>
            <%= button_to "Edit Discussions", edit_discussion_index_path, {method: :get, class: "btn"} %>
           </div>
         </div>
      <% end %>
       
-      <br>
+      <br><br><br><br>
       
       <table class="table table-striped table-hover">
         <tr>
@@ -23,6 +25,7 @@
           <td>CCN</td>
           <td>Discussion Times</td>
           <td>Seats Open</td>
+          <td>Capacity</td>
         </tr>
           
         <% @discussions.each do |d| %>
@@ -30,6 +33,7 @@
             <!--<td>%= check_box_tag "select[#{d.id}]", d.id %></td>-->
             <td><%= d.number %></td>
             <td><%= "#{d.day} #{d.time}" %></td>
+            <td><%= d.seats_open %></td>
             <td><%= d.capacity %></td>
           </tr>
         <% end %>
