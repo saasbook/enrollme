@@ -18,7 +18,7 @@
 tmp/*
 
 #Ignore the coverage generation.
-/coverage/*
+coverage/*
 
 
 .byebug_history
