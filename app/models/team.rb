@@ -73,11 +73,8 @@ class Team < ActiveRecord::Base
         self.save!
     end
 
-    def visible_users 
-        users.each do |user|
-            puts user.show_name
-        end
-        users.select { |user| user.show_name }
+    def visible_users
+        users.select(&:show_name)
     end
 
     def can_join?
