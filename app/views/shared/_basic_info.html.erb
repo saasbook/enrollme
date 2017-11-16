@@ -16,7 +16,7 @@
     <%= f.text_field :email, {:value => @user_email ? @user_email : (!@user.nil? ? @user.email : (!@admin.nil?  ? @admin.email : '')), class: "form-control", :readonly => (((@user.nil? or @user.id.nil?) and (@admin.nil? or @admin.id.nil?)) and !@user_email) ? false : true} %>
     <%= f.label :skill_ids, class: "col-lg-2 control-label" %> <br>
     <% unless @user.nil? %>
-      <%= f.fields_for :talents, @user.init_talents do |builder| %>
+            <%= f.fields_for :talents, @user.init_talents do |builder| %>
         <% skill = builder.object.skill %>
         <%= builder.label :enable, skill.name %>
         <%= builder.check_box :enable %>
