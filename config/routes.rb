@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/help', to: 'users#user_help'
 
   get '/teams', to: 'teams#show'
+  get '/team/:id/email', to: 'team#email', as: 'email_team'
+  post '/team/:id/email', to: 'team#email', as: 'do_email_team'
 
   resources :team
 

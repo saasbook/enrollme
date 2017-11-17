@@ -68,4 +68,9 @@ class TeamController < ApplicationController
   def check_approved
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
   end
+
+  def email
+    @team = Team.find_by_id(params[:id])
+    render "email"
+  end
 end
