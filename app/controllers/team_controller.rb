@@ -16,7 +16,7 @@ class TeamController < ApplicationController
     subject = params[:subject]
     body = params[:body]
     TeamMailer.email_team(to, subject, body, reply_to).deliver_now
-    notice = "Email sent successfully."
+    notice = 'Email sent successfully.'
     redirect_to teams_path, notice: notice
   end
 
@@ -85,5 +85,4 @@ class TeamController < ApplicationController
   def check_approved
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
   end
-
 end
