@@ -69,8 +69,19 @@ class TeamController < ApplicationController
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
   end
 
+  def do_email
+    @team = Team.find_by_id(params[:id])
+    reply_to = @user.email
+    bcc = @team.users.map {|user| user.email }.compact
+    subject = params[:subject]
+    body = params[:body]
+    TeamMailer.email_team(subject, body, reply_to, bcc).deliver_now
+    redirect_to teams_path
+  end
+
   def email
     @team = Team.find_by_id(params[:id])
     render "email"
   end
+
 end
