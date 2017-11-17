@@ -3,6 +3,23 @@ class TeamController < ApplicationController
   before_filter :set_user, :set_team
   before_filter :set_permissions
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
+
+  def email
+    @team = Team.find_by_id(params[:id])
+    render "email"
+  end
+
+
+  def do_email
+    @team = Team.find_by_id(params[:id])
+    reply_to = @user.email
+    to = @team.users.map {|user| user.email }.compact
+    subject = params[:subject]
+    body = params[:body]
+    TeamMailer.email_team(to, subject, body, reply_to).deliver_now
+    redirect_to teams_path
+  end
+
   def show
     @discussions = Discussion.valid_discs_for(@team)
     if @team.submitted and !(@team.approved)
@@ -67,21 +84,6 @@ class TeamController < ApplicationController
 
   def check_approved
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
-  end
-
-  def do_email
-    @team = Team.find_by_id(params[:id])
-    reply_to = @user.email
-    bcc = @team.users.map {|user| user.email }.compact
-    subject = params[:subject]
-    body = params[:body]
-    TeamMailer.email_team(subject, body, reply_to, bcc).deliver_now
-    redirect_to teams_path
-  end
-
-  def email
-    @team = Team.find_by_id(params[:id])
-    render "email"
   end
 
 end
