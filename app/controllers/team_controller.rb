@@ -16,7 +16,8 @@ class TeamController < ApplicationController
     subject = params[:subject]
     body = params[:body]
     TeamMailer.email_team(to, subject, body, reply_to).deliver_now
-    redirect_to teams_path
+    notice = "Email sent successfully."
+    redirect_to teams_path, notice: notice
   end
 
   def show
