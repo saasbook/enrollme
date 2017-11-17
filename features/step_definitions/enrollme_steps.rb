@@ -85,15 +85,26 @@ end
 
 # Note: use "0" as team to indicate that this student isn't on a team yet
 Given /^the following users exist$/ do |table|
-  table.rows.each do |name, email, team_passcode, major, sid|
+  table.rows.each do |name, email, team_passcode, major, sid, skill|
     next if name == "name" # skipping table header
+
+    skill = Skill.create!(:name => skill)
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
       @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
-      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid)
+      user = User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid)
     else
-      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid)
+      user = User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid)
     end
+    talent = Talent.create!(:skill_id => skill.id, :user_id => user.id)
+    user.talents.append(talent)
+  end
+end
+
+Given /^the following skills exist$/ do |table|
+
+  table.rows.each do |name|
+    Skill.create!(:name => name[0])
   end
 end
 
@@ -119,6 +130,8 @@ Then /^byebug$/ do
 end
 
 Then /^print page body$/ do
+  puts "ADMIN MODELS"
+  puts Admin.all[0].inspect
   puts page.body
 end
 
@@ -161,6 +174,13 @@ end
 Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
   unread_emails_for(address).size.should == n.to_i
 end
+
+And /^I contact "([^"]*)" with the message "([^"]*)"$/ do |team, message|
+  step %Q{I press "Contact #{team}"}
+  step %Q{I fill in "Message" with "#{message}"}
+  step %Q{I press "Send"}
+end
+
 
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])

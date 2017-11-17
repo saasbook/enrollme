@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417002226) do
+ActiveRecord::Schema.define(version: 20171109231157) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -36,11 +36,25 @@ ActiveRecord::Schema.define(version: 20170417002226) do
     t.integer "maximum_team_size"
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "submissions", force: :cascade do |t|
     t.integer  "disc1id"
     t.integer  "disc2id"
     t.integer  "disc3id"
     t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "talents", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "skill_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,8 +79,10 @@ ActiveRecord::Schema.define(version: 20170417002226) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "team_id"
+    t.integer  "talents_id"
   end
 
+  add_index "users", ["talents_id"], name: "index_users_on_talents_id"
   add_index "users", ["team_id"], name: "index_users_on_team_id"
 
 end
