@@ -6,14 +6,13 @@ class TeamController < ApplicationController
 
   def email
     @team = Team.find_by_id(params[:id])
-    render "email"
+    render 'email'
   end
-
 
   def do_email
     @team = Team.find_by_id(params[:id])
     reply_to = @user.email
-    to = @team.users.map {|user| user.email }.compact
+    to = @team.users.map(&:email).compact
     subject = params[:subject]
     body = params[:body]
     TeamMailer.email_team(to, subject, body, reply_to).deliver_now
