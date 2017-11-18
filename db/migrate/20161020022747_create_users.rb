@@ -6,7 +6,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password, null: false
       t.string :major, null:false
       t.string :sid, null:false
-      t.boolean :show_name, default: false
       t.timestamps null: false
     end
   end
