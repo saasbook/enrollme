@@ -18,11 +18,13 @@ end
 
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
   mock_auth_hash(email)
+  @email = email
   click_link "log_in"
 end
 
 Given /^I log in as a user with email "([^"]*)"$/ do | email |
   mock_auth_hash(email)
+  @email = email
   click_link "log_in"
 end
 
@@ -175,12 +177,21 @@ Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
   unread_emails_for(address).size.should == n.to_i
 end
 
+Given /^I contact "([^"]*)"$/ do |team|
+  step %Q{I follow "Contact #{team}"}
+end
+
+And /^I contacted "([^"]*)" the max number of times$/ do |team|
+  @user = User.where(:email => @email)[0]
+  @user.init_emails_sent
+  @user.emails_sent[team.id] = User.NUM_EMAILS_ALLOWED
+end
+
 And /^I contact "([^"]*)" with the message "([^"]*)"$/ do |team, message|
   step %Q{I follow "Contact #{team}"}
   step %Q{I fill in "Message" with "#{message}"}
   step %Q{I press "Send"}
 end
-
 
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
