@@ -71,10 +71,14 @@ class TeamController < ApplicationController
       @user = Admin.find(session[:user_id])
     else
       @user = User.find(session[:user_id])
-      unless %w(email do_email).include? action_name
-        msg = "Permission denied"
-        redirect_to without_team_path, :notice => msg if @user.team.nil?
-      end
+      validate_permissions
+    end
+  end
+
+  def validate_permissions
+    unless %w(email do_email).include? action_name
+      msg = "Permission denied"
+      redirect_to without_team_path, :notice => msg if @user.team.nil?
     end
   end
 
