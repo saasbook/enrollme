@@ -53,26 +53,26 @@ class User < ActiveRecord::Base
   end
 
   def downcase_email
-    self.email.downcase!
+    email.downcase!
   end
 
   def can_email_team(team_id)
-      self.init_emails_sent
-      if self.emails_sent[team_id] < NUM_EMAILS_ALLOWED
-          self.emails_sent[team_id] = self.emails_sent[team_id] + 1
-          return true
-      end
-      false
+    init_emails_sent
+    if self.emails_sent[team_id] < NUM_EMAILS_ALLOWED
+      self.emails_sent[team_id] = emails_sent[team_id] + 1
+      return true
+    end
+    false
   end
 
   def email_team(team_id)
-      self.init_emails_sent
-      self.emails_sent[team_id] = self.emails_sent[team_id] + 1
+    init_emails_sent
+    self.emails_sent[team_id] = self.emails_sent[team_id] + 1
   end
 
   def init_emails_sent
-      self.emails_sent ||= {}
-      self.emails_sent.default = 0
+    self.emails_sent ||= {}
+    self.emails_sent.default = 0
   end
 
   def leave_team
