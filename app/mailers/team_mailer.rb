@@ -1,3 +1,4 @@
+# TeamMailer 
 class TeamMailer < ApplicationMailer
   default from: 'enrollmeberkeley@gmail.com'
 

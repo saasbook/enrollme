@@ -1,7 +1,7 @@
 # Controller for dealing with teams and team's students' skills.
 class TeamController < ApplicationController
   before_filter :set_user, :set_team
-  before_filter :check_approved, only: %w(submit unsubmit  edit)
+  before_filter :check_approved, only: %w(submit unsubmit edit)
   before_filter :check_can_send, only: %w(email)
   before_filter :set_permissions, except: %w(email do_email)
   before_action :fetch_team, only: %w(email do_email)
@@ -71,7 +71,7 @@ class TeamController < ApplicationController
       @user = Admin.find(session[:user_id])
     else
       @user = User.find(session[:user_id])
-      if !(%w(email do_email).include? action_name)
+      unless %w(email do_email).include? action_name
         msg = "Permission denied"
         redirect_to without_team_path, :notice => msg if @user.team.nil?
       end
