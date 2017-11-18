@@ -73,6 +73,10 @@ class Team < ActiveRecord::Base
         self.save!
     end
 
+    def visible_users
+        users.select(&:show_name)
+    end
+
     def can_join?
       ! passcode.nil?  &&
         ! approved     &&
