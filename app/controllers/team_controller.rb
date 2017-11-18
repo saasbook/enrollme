@@ -1,21 +1,17 @@
 # Controller for dealing with teams and team's students' skills.
 class TeamController < ApplicationController
   before_filter :set_user, :set_team
-  before_filter :check_approved, only: ['submit', 'unsubmit', 'edit']
-  before_filter :check_can_send, only:  ['email']
-  before_filter :set_permissions, except:  ['email', 'do_email']
+  before_filter :check_approved, only: %w(submit unsubmit  edit)
+  before_filter :check_can_send, only: %w(email)
+  before_filter :set_permissions, except: %w(email do_email)
+  before_action :fetch_team, only: %w(email do_email)
 
   def email
-    @team = Team.find_by_id(params[:id])
     render 'email'
   end
 
   def do_email
-    @team = Team.find_by_id(params[:id])
-    to = @team.users.map(&:email).compact
-    subject = params[:subject]
-    body = params[:body]
-    TeamMailer.email_team(to, subject, body, @user.email).deliver_now
+    TeamMailer.email_team(@to, @subject, @body, @user.email).deliver_now
     @user.email_team(@team.id)
     @user.save!
     redirect_to teams_path, notice: 'Email sent successfully.'
@@ -63,13 +59,21 @@ class TeamController < ApplicationController
 
   private
 
+  def fetch_team
+    @team = Team.find_by_id(params[:id])
+    @to = @team.users.map(&:email).compact
+    @subject = params[:subject]
+    @body = params[:body]
+  end
+
   def set_user
     if session[:is_admin]
       @user = Admin.find(session[:user_id])
     else
       @user = User.find(session[:user_id])
-      if !(%w(email do_email).include?(action_name)) && @user.team.nil?
-        redirect_to without_team_path, :notice => "Permission denied"
+      if !(%w(email do_email).include? action_name)
+        msg = "Permission denied"
+        redirect_to without_team_path, :notice => msg if @user.team.nil?
       end
     end
   end
