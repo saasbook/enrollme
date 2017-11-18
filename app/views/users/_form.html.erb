@@ -8,9 +8,9 @@
     <%= f.label :major, class: "col-lg-2 control-label" %>
     <%= f.select :major, ['DECLARED CS/EECS Major', 'Intended-CS Major', 'Other Major'],  {}, {class: "form-control", :id => "major"}%>
     <p class="text-danger"> <strong> Warning: </strong> Please do not select "DECLARED CS/EECS Major", if you are planning to or in the near future become a declared CS/EECS major.  Select the "Intended-CS Major" option instead, please. </p>
-    <%= f.label :show_name, 'Name Visible to Other Teams', class: "col-lg-2 control-label"%>
+    <%= f.label :show_name, 'Name Visible to Other Teams', class: "col-lg-2 control-label"%> <br />
     <%= f.check_box :show_name %> <br />
-    <%= f.label :skill_ids, class: "col-lg-2 control-label" %> <br>
+    <%= f.label :skills, class: "col-lg-2 control-label" %> <br>
       <%= f.fields_for :talents, @user.init_talents do |builder| %>
         <% skill = builder.object.skill %>
         <%= builder.label :enable, skill.name %>
