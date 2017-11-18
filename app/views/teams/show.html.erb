@@ -12,6 +12,7 @@
             <td>Size</td>
             <td>Skills</td>
             <td>Contact</td>
+            <td>Email</td>
           </tr>
           <% @teams.each do |team| %>
             <tr>
@@ -28,6 +29,7 @@
                 <%= team.team_skills %>
               </td>
               <td>bob@smith.com</td>
+              <td><%= link_to "Contact Team #{team.id}", email_team_path(team.id) %></td>
             </tr>
             <% end %>
         </table>

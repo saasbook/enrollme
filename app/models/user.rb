@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :talents
   has_many :skills, through: :talents
 
+  serialize :emails_sent
+
   accepts_nested_attributes_for :talents
 
   validates :name, presence: true, length: { maximum: 50 }
@@ -12,6 +14,8 @@ class User < ActiveRecord::Base
   validates :major, presence: true
   validates :sid, presence: true, uniqueness: true, length: { maximum: 10 }
   before_save :downcase_email
+
+  NUM_EMAILS_ALLOWED = 2
 
   def init_talents
     [].tap do |o|
@@ -49,7 +53,26 @@ class User < ActiveRecord::Base
   end
 
   def downcase_email
-    self.email.downcase!
+    email.downcase!
+  end
+
+  def can_email_team(team_id)
+    init_emails_sent
+    if emails_sent[team_id] < NUM_EMAILS_ALLOWED
+      emails_sent[team_id] = emails_sent[team_id] + 1
+      return true
+    end
+    false
+  end
+
+  def email_team(team_id)
+    init_emails_sent
+    emails_sent[team_id] = emails_sent[team_id] + 1
+  end
+
+  def init_emails_sent
+    self.emails_sent ||= {}
+    self.emails_sent.default = 0
   end
 
   def leave_team

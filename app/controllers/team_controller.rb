@@ -1,8 +1,22 @@
 # Controller for dealing with teams and team's students' skills.
 class TeamController < ApplicationController
   before_filter :set_user, :set_team
-  before_filter :set_permissions
-  before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
+  before_filter :check_approved, only: %w(submit unsubmit edit)
+  before_filter :check_can_send, only: %w(email)
+  before_filter :set_permissions, except: %w(email do_email)
+  before_action :fetch_team, only: %w(email do_email)
+
+  def email
+    render 'email'
+  end
+
+  def do_email
+    TeamMailer.email_team(@to, @subject, @body, @user.email).deliver_now
+    @user.email_team(@team.id)
+    @user.save!
+    redirect_to teams_path, notice: 'Email sent successfully.'
+  end
+
   def show
     @discussions = Discussion.valid_discs_for(@team)
     if @team.submitted and !(@team.approved)
@@ -45,13 +59,26 @@ class TeamController < ApplicationController
 
   private
 
+  def fetch_team
+    @team = Team.find_by_id(params[:id])
+    @to = @team.users.map(&:email).compact
+    @subject = params[:subject]
+    @body = params[:body]
+  end
+
   def set_user
     if session[:is_admin]
       @user = Admin.find(session[:user_id])
     else
       @user = User.find(session[:user_id])
-      redirect_to without_team_path, :notice => "Permission denied" if @user.team.nil?
+      validate_permissions
     end
+  end
+
+  def validate_permissions
+    return if %w(email do_email).include? action_name
+    msg = "Permission denied"
+    redirect_to without_team_path, :notice => msg if @user.team.nil?
   end
 
   def set_team
@@ -67,5 +94,10 @@ class TeamController < ApplicationController
 
   def check_approved
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
+  end
+
+  def check_can_send
+    msg = 'Reached email limit. Please contact a system administrator.'
+    redirect_to '/', :notice => msg unless @user.can_email_team(@team.id)
   end
 end

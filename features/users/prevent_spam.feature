@@ -13,16 +13,12 @@ Feature: Prevent Spam
     Given I am on the home page
     Given I log in as a user with email "legueoflegends667@hotmail.com"
     And I am on the teams page
-    And I contact "Team 1" with the message "I would like to join your team"
 
   Scenario: User can still email
     Given I contact "Team 1" with the message "I would like to join your team"
-    Then I should see "Message Sent"
+    Then I should see "Email sent successfully."
 
   Scenario: User has reached spam limit
-    Given I contact "Team 1" with the message "I would like to join your team"
-    And I contact "Team 1" with the message "I would like to join your team"
-    Then I should see "Message Limit Reached: Try again in 24 hours"
-
-
-
+    Given I contacted "Team 1" the max number of times
+    Given I contact "Team 1"
+    Then I should see "Reached email limit. Please contact a system administrator."
