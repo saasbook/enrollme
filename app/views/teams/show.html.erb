@@ -29,7 +29,7 @@
                 <%= team.team_skills %>
               </td>
               <td>bob@smith.com</td>
-              <td><a href="<%= email_team_path(team.id) %>"><button class="btn btn-default">Email Team</button></a></td>
+              <td><%= link_to "Contact Team #{team.id}", email_team_path(team.id) %></td>
             </tr>
             <% end %>
         </table>

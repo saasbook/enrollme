@@ -176,7 +176,7 @@ Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
 end
 
 And /^I contact "([^"]*)" with the message "([^"]*)"$/ do |team, message|
-  step %Q{I press "Contact #{team}"}
+  step %Q{I follow "Contact #{team}"}
   step %Q{I fill in "Message" with "#{message}"}
   step %Q{I press "Send"}
 end
