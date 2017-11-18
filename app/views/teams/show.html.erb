@@ -20,7 +20,7 @@
                 <%= team.id %>
               </td>
               <td>
-                <%= team.users.inject("") {|str, user| str += user.name} %>
+                <%= team.visible_users.inject("") {|str, user| str += user.name} %>
               </td>
               <td>
                 <%= team.users.length %>

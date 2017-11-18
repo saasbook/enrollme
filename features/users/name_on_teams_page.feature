@@ -5,10 +5,10 @@ Feature: Optional Display Username on Teams Page
 
   Background:
     Given the following users exist
-     | name  |       email                    |team_passcode | major           | sid  | skill      |
-     | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | JavaScript |
-     | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | Back-end   |
-     | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  | CSS        |
+     | name  |       email                    |team_passcode | major           | sid  | skill      | show_name |
+     | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | JavaScript | false |
+     | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | Back-end   | false |
+     | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  | CSS        | false |
     And I am on the login page
     And I log in as a user with email "eecs666@hotmail.com"
     And I follow "My Info"
