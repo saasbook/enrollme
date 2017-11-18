@@ -183,7 +183,7 @@ end
 
 And /^I contacted "([^"]*)" the max number of times$/ do |team|
   @user = User.where(:email => @email)[0]
-  @user.emails_sent ||= {}
+  @user.init_emails_sent
   @user.emails_sent[team.id] = User.NUM_EMAILS_ALLOWED
 end
 
