@@ -16,7 +16,7 @@ Feature: Prevent Spam
 
   Scenario: User can still email
     Given I contact "Team 1" with the message "I would like to join your team"
-    Then I should see "Message Sent"
+    Then I should see "Email sent successfully."
 
   Scenario: User has reached spam limit
     Given I contact "Team 1"

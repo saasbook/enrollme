@@ -3,6 +3,7 @@ class TeamController < ApplicationController
   before_filter :set_user, :set_team
   before_filter :set_permissions, :except => ['email', 'do_email']
   before_filter :check_approved, :only => ['submit', 'unsubmit', 'edit']
+  before_filter :check_can_send, :only => ['email']
 
   def email
     @team = Team.find_by_id(params[:id])
@@ -17,6 +18,8 @@ class TeamController < ApplicationController
     body = params[:body]
     TeamMailer.email_team(to, subject, body, reply_to).deliver_now
     notice = 'Email sent successfully.'
+    @user.email_team(@team.id)
+    @user.save!
     redirect_to teams_path, notice: notice
   end
 
@@ -84,5 +87,10 @@ class TeamController < ApplicationController
 
   def check_approved
     redirect_to '/', :notice => "Permission denied" if @team.approved and !(@user.is_a? Admin)
+  end
+
+  def check_can_send
+    msg = "Reached email limit. Please contact a system administrator."
+    redirect_to '/', :notice => msg unless @user.can_email_team(@team.id)
   end
 end
