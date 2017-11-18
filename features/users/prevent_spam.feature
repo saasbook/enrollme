@@ -19,6 +19,6 @@ Feature: Prevent Spam
     Then I should see "Email sent successfully."
 
   Scenario: User has reached spam limit
+    Given I contacted "Team 1" the max number of times
     Given I contact "Team 1"
-    And I contacted "Team 1" the max number of times
     Then I should see "Reached email limit. Please contact a system administrator."

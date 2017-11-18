@@ -181,11 +181,10 @@ Given /^I contact "([^"]*)"$/ do |team|
   step %Q{I follow "Contact #{team}"}
 end
 
-And /^I contacted "([^"]*)" the max number of times$/ do |team|
-  @user = User.where(:email => @email)[0]
-  puts @user.to_json
-  @user.init_emails_sent
-  @user.emails_sent[team.id] = User.NUM_EMAILS_ALLOWED
+And /^I contacted "Team ([^"]*)" the max number of times$/ do |id|
+  User::NUM_EMAILS_ALLOWED.times do
+    step %Q{I contact "Team #{id}" with the message "hello"}
+  end
 end
 
 And /^I contact "([^"]*)" with the message "([^"]*)"$/ do |team, message|
