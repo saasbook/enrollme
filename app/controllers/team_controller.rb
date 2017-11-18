@@ -76,10 +76,9 @@ class TeamController < ApplicationController
   end
 
   def validate_permissions
-    unless %w(email do_email).include? action_name
-      msg = "Permission denied"
-      redirect_to without_team_path, :notice => msg if @user.team.nil?
-    end
+    return if %w(email do_email).include? action_name
+    msg = "Permission denied"
+    redirect_to without_team_path, :notice => msg if @user.team.nil?
   end
 
   def set_team
