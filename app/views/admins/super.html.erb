@@ -8,7 +8,7 @@
                 <fieldset>
                     <table class="table table-striped table-hover">
                         <tr>
-                          <td>Admin Name</td> <td>Delete Admin</td>
+                          <td>Admin Name</td> <td>Delete Admin</td> <td>Admin Type</td>
                         </tr>
                             <% Admin.all.each do |a| %>
                                 <% if a.id != @admin.id %>
@@ -17,6 +17,7 @@
                                         <td>
                                             <%= check_box_tag "delete_#{a.name}", true %>
                                         </td>
+                                        <td><%= a.enrollmeadmin ? "Enrollment" : (a.superadmin ? "Super Admin" : "TA")%></td>
                                     </tr>
                                 <% end %>
                             <% end %>
@@ -34,7 +35,7 @@
                 <fieldset>
                     <table class="table table-striped table-hover">
                         <tr>
-                          <td>Admin Name</td> <td>Transfer SuperAdmin Status</td>
+                          <td>Admin Name</td> <td>Transfer SuperAdmin Status</td> <td>Admin Type</td>
                         </tr>
                             <% Admin.all.each do |a| %>
                                 <% if a.id != @admin.id %>
@@ -43,6 +44,7 @@
                                         <td>
                                             <%= radio_button_tag "transfer_admin", a.id %>
                                         </td>
+                                        <td><%= a.enrollmeadmin ? "Enrollment" : (a.superadmin ? "Super Admin" : "TA")%></td>
                                     </tr>
                                 <% end %>
                             <% end %>
