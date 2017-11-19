@@ -57,11 +57,15 @@ submissions = [
   
   ]
   
+
+ 
+# Comment these bottom four loops while on development
+  
 Discussion.delete_all
 discussions.each do |a|
   Discussion.create!(a)
 end
- 
+
 Team.delete_all
 teams.each do |t|
   Team.create!(t)

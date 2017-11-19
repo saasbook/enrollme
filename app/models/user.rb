@@ -58,8 +58,10 @@ class User < ActiveRecord::Base
   
   def self.import(file)
     csv_users = User.users_from_csv(file)
-    approved_teams = Team.approved_teams_from_csv(csv_users)
+    approved_teams, unapproved_teams = Team.approved_teams_from_csv(csv_users)
     Team.add_teams_to_discussions(approved_teams)
+    return unapproved_teams
+    
   end
 
 end

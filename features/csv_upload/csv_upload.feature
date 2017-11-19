@@ -6,10 +6,13 @@ Feature: Import CSV Page exists and non-waitlested teams are approved
   
   Background:
     Given the following users exist
-     | name        |       email                    | team_passcode | major         | sid     |
- 	   | Yonas Kbrom | kbromyonas@gmail.com           | penguindrool  | CS            | 111111  |
-  	 | Monty Inaya | mr.monty@gmail.com             | penguindrool  | CS            | 222222  |
-  	 | Vikram Baid | vbaid@gmail.com                | penguindrool  | CS            | 333333  |
+     | name         |       email                    | team_passcode | major         | sid     |
+ 	   | Yonas Kbrom  | kbromyonas@gmail.com           | penguindrool  | CS            | 111111  |
+  	 | Monty Inaya  | mr.monty@gmail.com             | penguindrool  | CS            | 222222  |
+  	 | Vikram Baid  | vbaid@gmail.com                | penguindrool  | CS            | 333333  |
+ 	   | Bob Saggot   | bobsaggot@gmail.com            | penguindrool2 | CS            | 111112  |
+  	 | Monty2 Inaya | mr.monty2@gmail.com            | penguindrool2 | CS            | 222223  |
+  	 | Vikram2 Baid | vbaid2@gmail.com               | penguindrool2 | CS            | 333334  |
     And the following admins exist
       | name | email                  |
   	  | Bob  | supreme_ruler@aol.com  |
@@ -26,5 +29,8 @@ Feature: Import CSV Page exists and non-waitlested teams are approved
     Then I should see "Import Students From CSV"
     When I attach a csv file
     Then I press "Upload Students"
-    Then I should see "Users Added Successfully"
+    Then I should be on the unapproved_teams page
     And the team with passcode "penguindrool" should be approved
+    And I should see "Bob Saggot"
+    And I should see "Monty2 Inaya"
+    And I should see "Vikram2 Baid"
