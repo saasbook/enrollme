@@ -22,6 +22,7 @@ class AdminMailer < ApplicationMailer
          format.html
          puts "hello2"
       end
+      puts "hello3"
    end
 
    def email_team_members(team, message)
