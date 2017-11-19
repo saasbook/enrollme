@@ -127,6 +127,8 @@ class AdminsController < ApplicationController
   end
   
   def team_list_email
+    @status = params[:status]
+    AdminMailer.team_list_email(@admin, @status).deliver_now
     redirect_to admins_path
   end
   

@@ -1,5 +1,5 @@
 class AdminMailer < ApplicationMailer
-    default from: 'enrollmeberkeley@gmail.com'
+   default from: 'enrollmeberkeley@gmail.com'
    
    def invite_new_admin(admin)
       @admin = admin
@@ -9,10 +9,14 @@ class AdminMailer < ApplicationMailer
       end
    end
    
-   def team_list_email(admin)
+   def team_list_email(admin, status)
       @admin = admin
       @url  = 'http://www.gmail.com'
-      mail(to: @admin.email, subject: 'Here is list of' + params[:status] + 'teams in EnrollMe') do |format|
+      puts "!!!!!"
+      puts status
+      puts "!!!!!"
+      mail(to: @admin.email, subject: 'Here is list of ' + status + ' teams in EnrollMe') do |format|
+         @status = status
         format.html
       end
    end
