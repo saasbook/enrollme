@@ -42,8 +42,6 @@ class AdminsController < ApplicationController
        @unapproved_teams << q
      end
    end
-   puts "Printing out Un Approved Teams"
-   puts @unapproved_teams
    render 'unapproved'
   end
   
