@@ -128,7 +128,13 @@ class AdminsController < ApplicationController
   
   def team_list_email
     @status = params[:status]
+    puts "---"
+    puts params
+    puts "---"
     AdminMailer.team_list_email(@admin, @status).deliver_now
+    puts "***"
+    puts "pass"
+    puts "***"
     redirect_to admins_path
   end
   
