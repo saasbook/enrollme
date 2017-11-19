@@ -14,11 +14,11 @@ Feature: Approve/Disapprove teams
       | Bob2      |    bobjones2@berkeley.edu         | passcode1 | Slavic Studies    | 826               |
       | Bob3      |    bobjones3@berkeley.edu         | passcode1 | Slavic Studies    | 827               |
       | Bob4      |    bobjones4@berkeley.edu         | passcode1 | Slavic Studies    | 828               |
-      | Sahai     |    xxx@berkeley.edu         | passcode2 | Slav1c Studies    | 830               |
-      | Saha2     |    xx2@berkeley.edu         | passcode2 | Slav1c Studies    | 831               |
-      | Saha3     |    xx3@berkeley.edu         | passcode2 | Slav1c Studies    | 832               |
-      | Saha4     |    xx4@berkeley.edu         | passcode2 | Slav1c Studies    | 833               |
-      | Saha5     |    xx5@berkeley.edu         | passcode2 | Slav1c Studies    | 834               |
+      | Sahai     |    xxx@berkeley.edu               | passcode2 | Slav1c Studies    | 830               |
+      | Saha2     |    xx2@berkeley.edu               | passcode2 | Slav1c Studies    | 831               |
+      | Saha3     |    xx3@berkeley.edu               | passcode2 | Slav1c Studies    | 832               |
+      | Saha4     |    xx4@berkeley.edu               | passcode2 | Slav1c Studies    | 833               |
+      | Saha5     |    xx5@berkeley.edu               | passcode2 | Slav1c Studies    | 834               |
       | Jorge     |    legueoflegends667@hotmail.com  | passcode3 | Football Player   | 999               |
     And the following discussions exist
    	 | number  | time         |  capacity |
@@ -56,3 +56,9 @@ Feature: Approve/Disapprove teams
     Then I should see "Permission denied"
     And I go to the disapprove team "1" page
     Then I should see "Permission denied"
+    
+  Scenario: Admin can undo an approval of a team
+    Given I log in as an admin with email "supreme_ruler@aol.com"
+    When I follow "Undo Approve"
+    Then I should not see "Disapprove"
+

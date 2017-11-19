@@ -104,6 +104,22 @@ Given /^the following discussions exist$/ do |table|
   end
 end
 
+Given /^the following teams exist$/ do |table|
+  table.rows.each do |submission_id, approved, passcode, submitted, discussion_number|
+    next if submission_id == :submission_id # skipping table header
+    discussion_id = Discussion.find_by_number(discussion_number).id
+    ateams = Team.approved_teams
+    Team.create!(:submission_id => submission_id.to_i, :approved => approved=="true", :passcode => passcode, :submitted => submitted=="true", :discussion_id => discussion_id)
+  end
+end
+
+Given /^the following groups exist$/ do |table|
+  table.rows.each do |team1_id, team2_id, discussion|
+    next if team1_id == :team1_id # skipping table header
+    Group.create!(:team1_id => team1_id.to_i, :team2_id => team2_id.to_i, :discussion_id => discussion.to_i)
+  end
+end
+
 Then /^(?:|I )should not be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
@@ -140,9 +156,9 @@ end
 
 
 Given /^the following admins exist$/ do |table|
-  table.rows.each do |name, email, superadmin|
+  table.rows.each do |name, email, superadmin, ta, enroll|
     next if name == "name" # skipping table header
-    Admin.create!(:name => name, :email => email, :superadmin => superadmin == "true" ? true : false)
+    Admin.create!(:name => name, :email => email, :superadmin => superadmin == "true" ? true : false, :TAadmin => ta, :enrollmeadmin => enroll )
   end
 end
 
@@ -165,3 +181,33 @@ end
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
+
+Then /^(?:|I )should see team "([^"]*)"$/ do |id|
+
+  bool = true
+  bool.should be page.body.include?("team_" + id.to_s)
+  # page.body.include?("team_" + id.to_s)
+end
+
+Then /^(?:|I )should not see team "([^"]*)"$/ do |id|
+  # puts page.body
+  bool = false
+  bool.should be page.body.include?("team_" + id.to_s)
+  # not page.body.include?("team_" + id.to_s)
+end
+
+Then /^(?:|I )should not see group "([^"]*)"$/ do |id|
+  # puts page.body
+  bool = false
+  bool.should be page.body.include?("group_" + id.to_s)
+  # not page.body.include?("group_" + id.to_s)
+end
+
+Then /^(?:|I )go home$/ do 
+  click_link("Home") 
+end
+
+When /^I attach a csv file$/ do
+  File.expand_path("../../csv_upload/test.csv", __FILE__)
+  attach_file(:file, File.expand_path("../../csv_upload/test.csv", __FILE__))
+end 

@@ -2,11 +2,10 @@
 <body>
   <title>My Team</title>
   
-  
-  
     <div class="container">
       
       <h1>My Team</h1>
+      <h4>Team #<%= @team.id%></h4>
      
       <h3><%= "Team Password: " + @team.passcode.to_s %></h3>
      
@@ -41,6 +40,8 @@
         <div class="col-md-4">
           
           <%= button_to "Discussions", discussion_index_path, {method: :get, class: "btn"} %>
+          <br>
+          <%= button_to "My Group", mygroup_path, {method: :get, class: "btn"} %>
           <% if @team.approved %>
             <br>
             <br>
@@ -83,8 +84,8 @@
               <% # TODO: css styling for this button so that it fits using white-space: normal;  %>
             <% end %>
           </div>
-          <div class="col-xs-2">  
-            Team has been submitted!
+          <div class="col-xs-3">  
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Team has been submitted!
           </div>
         <% elsif Discussion.valid_discs_for(@team).count == 0 %>
           There are no available discussions.

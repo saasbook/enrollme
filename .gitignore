@@ -14,10 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
-/tmp
+/tmp/*
+tmp/*
 
 #Ignore the coverage generation.
-/coverage/*
+coverage/*
 
 
 .byebug_history

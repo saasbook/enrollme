@@ -53,6 +53,10 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
+When /^(?:|I )first follow "([^"]*)"$/ do |link|
+  click_link(link, match: :first)
+end
+
 When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
@@ -103,11 +107,18 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
+  # bool = true
+  # bool.should be page.body.include?(text)
   if page.respond_to? :should
     page.should have_content(text)
   else
     assert page.has_content?(text)
   end
+end
+
+Then /^(?:|I )shouldd see "([^"]*)"$/ do |text|
+  bool = true
+  bool.should be page.body.include?(text)
 end
 
 Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|

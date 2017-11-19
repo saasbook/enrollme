@@ -1,8 +1,7 @@
+
 if ENV['CI']
-  require 'codeclimate-test-reporter'
-  SimpleCov.start 'rails' do
-    add_filter '/coverage/'
-  end
+  require 'coveralls'
+  Coveralls.wear!('rails')
 else
   require 'simplecov'
   SimpleCov.start 'rails' do

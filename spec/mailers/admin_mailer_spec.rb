@@ -84,6 +84,12 @@ RSpec.describe AdminMailer, type: :mailer do
     ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
   end
   
+  # it 'team_list_email' do
+  #   AdminMailer.params[:search] = 'Test Search'
+  #   AdminMailer.team_list_email(@admin).deliver_now
+  #   ActionMailer::Base.deliveries.first.to.should == [@admin.email]
+  # end
+  
   after(:each) do
     ActionMailer::Base.deliveries.clear
   end
