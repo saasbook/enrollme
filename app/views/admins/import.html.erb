@@ -1,8 +1,18 @@
+<body>
 <title>Import Students From CSV</title>
-<h3>Import Students From CSV</h3>
+<div class="container">
+    <div class="row">
+        <h3>Import Students From CSV</h3>
+        <hr/>
+    </div>
+    <div class="row">
+        <%= form_tag import_users_path, multipart: true do %>
+        <%= file_field_tag :file %>
+            <br>
+        <%= submit_tag "Upload Students", class: 'btn btn-default' %>
+        <% end %>
+    </div>
+</div>
     <br>
-    <%= form_tag import_users_path, multipart: true do %>
-    <%= file_field_tag :file %>
-    <br>
-    <%= submit_tag "Upload Students", class: 'btn btn-default' %>
-    <% end %>
+
+</body>
