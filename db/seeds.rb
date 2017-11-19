@@ -15,6 +15,8 @@ admins = [
       { :name => "Timothy Stepro", :email => "stepro.015389@berkeley.edu", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
       { :name => "Minjoo Sur", :email => "minjoo@berkeley.edu", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
       { :name => "Timothy Stepro", :email => "timothystepro@gmail.com", :superadmin => false, :enrollmeadmin => true, :TAadmin => false},
+      { :name => "Yonas Kbrom", :email => "kbromyonas1@gmail.com", :superadmin => false, :enrollmeadmin => true, :TAadmin => false},
+      { :name => "Steven Wu", :email => "stevenwuyinze@berkeley.edu", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
 
   ]
   
@@ -89,7 +91,6 @@ Admin.delete_all
 admins.each do |a|
   Admin.create!(a)
 end
-
 
 # DO NOT COMMMENT OUT
 
