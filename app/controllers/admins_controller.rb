@@ -33,6 +33,18 @@ class AdminsController < ApplicationController
     render 'index'
   end
   
+  def unapproved
+   unapproved_teams = session[:unapproved_teams]
+   @unapproved_teams = []
+   unapproved_teams.each do |t|
+     if !t["id"].nil? then
+       q = Team.find_by_id(t["id"])
+       @unapproved_teams << q
+     end
+   end
+   render 'unapproved'
+  end
+  
   def email
     @email = ''
     team_id = params[:team_id]

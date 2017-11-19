@@ -55,6 +55,9 @@ submissions = [
   
   ]
   
+ 
+# Comment these bottom four loops while on development
+  
 # Discussion.delete_all
 # discussions.each do |a|
 #   Discussion.create!(a)
