@@ -62,6 +62,7 @@ class Team < ActiveRecord::Base
     
     def add_submission(id)
         self.update(submitted: true)
+        self.submission = Submission.find_by_id id
         self.submission_id = id
         self.save!
     end
@@ -86,9 +87,14 @@ class Team < ActiveRecord::Base
     
     def self.add_teams_to_discussions(approved_teams)
       approved_teams.each do |t|
-        valid_discs, count, index = Discussion.valid_discs_for(t), 100, false
-        if t.approved || !t.eligible? || valid_discs.count.zero? then next end
-        valid_discs.each do |d|
+        count, index = 100, false
+        team_subm, team_prefs = t.submission, []
+        if t.approved || !t.eligible? || team_subm.nil? then next end
+        team_prefs << team_subm.disc1id
+        team_prefs << team_subm.disc2id
+        team_prefs << team_subm.disc3id
+        team_prefs.each do |d_id|
+          d = Discussion.find_by_id d_id
           if d.count_students < count
             count, index = d.count_students, d.id
           end
