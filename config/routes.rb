@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :users do
     collection { post :import }
   end
+  
+  get '/unapproved_teams', to: 'admins#unapproved', as: "unapproved_teams"
 
   get '/without_team', to: 'users#without'
   post '/create_team', to: 'users#start_team'

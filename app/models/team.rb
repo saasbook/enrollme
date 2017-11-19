@@ -75,14 +75,21 @@ class Team < ActiveRecord::Base
     
     def self.approved_teams_from_csv(users_hash)
       approved_teams = []
+      unapproved_teams = []
       Team.all.each do |t|
         each_team_user_found = true
         t.users.each do |u|
-          if users_hash[u.sid.to_i].nil? then each_team_user_found = false end
+          if users_hash[u.sid.to_i].nil?
+              each_team_user_found = false 
+          end
         end
-        if each_team_user_found then approved_teams << t end
+        if each_team_user_found
+            approved_teams << t 
+        else
+            unapproved_teams << t
+        end
       end
-      return approved_teams
+      return approved_teams, unapproved_teams
     end
     
     def self.add_teams_to_discussions(approved_teams)
