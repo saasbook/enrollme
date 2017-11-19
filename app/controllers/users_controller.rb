@@ -32,8 +32,9 @@ class UsersController < ApplicationController
   
   def import
     if params[:file]
-      User.import(params[:file])
-      redirect_to admins_path, notice: 'Users Added Successfully'
+      unapproved_teams = User.import(params[:file])
+      session[:unapproved_teams] = unapproved_teams
+      redirect_to unapproved_teams_path, notice: 'Users Added Successfully'
     else
       redirect_to import_page_path, notice: 'No File Selected'
     end

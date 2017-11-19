@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   
   resources :admins
+  get '/admin/unapproved_teams', to: 'admins#unapproved', as: 'unapproved_teams'
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
   get '/admin/undo_approve_team', to: 'admins#undo_approve'

@@ -1,20 +1,28 @@
 class AdminsController < ApplicationController
   skip_before_filter :authenticate, :only => ['new', 'create']
-  before_filter :validate_admin, :set_admin, :except => ['new', 'create']
+  before_filter :validate_admin, :set_admin
   
   def show_import
     render 'import'
   end
   
   def new
-    @admin = Admin.new
+    @new_admin = Admin.new
     render 'new'
   end
   
   def create
-    @admin = Admin.new(admin_params)
-    @admin.superadmin = false
-    if session[:is_admin] == true and @admin.save
+
+    if params["type_admin"] == "ta"
+      @new_admin = Admin.new(:name => params[:admin]["name"], :email => params[:admin]["email"], :TAadmin => true )
+    elsif params["type_admin"] == "enroll"
+      @new_admin = Admin.new(:name => params[:admin]["name"], :email => params[:admin]["email"], :enrollmeadmin => true )
+    else
+      redirect_to new_admin_path, :notice => "Choose an admin type"
+      return
+    end
+    @new_admin.superadmin = false
+    if session[:is_admin] == true and @new_admin.save 
       redirect_to admins_path, :notice => "You created admin " + admin_params["name"] + " successfully!"
     else
       render 'new', :notice => "Form is invalid"
@@ -31,6 +39,18 @@ class AdminsController < ApplicationController
     @status = status
     @teams_li = Team.filter_by(status)
     render 'index'
+  end
+  
+  def unapproved
+   unapproved_teams = session[:unapproved_teams]
+   @unapproved_teams = []
+   unapproved_teams.each do |t|
+     if !t["id"].nil? then
+       q = Team.find_by_id(t["id"])
+       @unapproved_teams << q
+     end
+   end
+   render 'unapproved'
   end
   
   def email
@@ -51,6 +71,10 @@ class AdminsController < ApplicationController
   end
   
   def approve
+    if @admin.TAadmin
+      redirect_to admins_path, :notice => "You do not have permission to approve teams"
+      return
+    end
     @team = Team.find_by_id(params[:team_id])
     @team.approved = true
     @team.save!
@@ -61,6 +85,10 @@ class AdminsController < ApplicationController
   end
   
   def disapprove
+    if @admin.TAadmin
+      redirect_to admins_path, :notice => "You do not have permission to disapprove teams"
+      return
+    end
     @team = Team.find_by_id(params[:team_id])
     @groupt1 = Group.find_by_team1_id(params[:team_id])
     @groupt2 = Group.find_by_team2_id(params[:team_id])
@@ -78,6 +106,10 @@ class AdminsController < ApplicationController
   end
   
   def undo_approve
+    if @admin.TAadmin
+      redirect_to admins_path, :notice => "You do not have permission to undo approve of teams"
+      return
+    end
     @team = Team.find_by_id(params[:team_id])
     # @groupt1 = 
     # @groupt2 = 
@@ -119,11 +151,19 @@ class AdminsController < ApplicationController
     end
   end
   
+  # TODO what type of admin should I be if I transfer control?
   def transfer
     if @admin.superadmin == true and params[:transfer_admin] != nil
       other_admin = Admin.find(params[:transfer_admin])
+      
       @admin.superadmin = false
+      @admin.TAadmin = false
+      @admin.enrollmeadmin = true
+      
       other_admin.superadmin = true
+      other_admin.TAadmin = false
+      other_admin.enrollmeadmin = false
+      
       @admin.save!
       other_admin.save!
       notice = "Successfully transferred superadmin powers."
@@ -174,7 +214,7 @@ class AdminsController < ApplicationController
   end
   
   def admin_params
-    params.require(:admin).permit(:name, :email)
+    params.require(:admin).permit(:name, :email, :type_admin)
   end  
   
   def admin_tutorial
