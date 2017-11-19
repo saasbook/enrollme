@@ -16,13 +16,9 @@ class AdminMailer < ApplicationMailer
       puts status
       puts "!!!!!"
       mail(to: @admin.email, subject: 'Here is list of ' + status + ' teams in EnrollMe') do |format|
-         puts "hello"
          @status = status
-         puts "hello1"
          format.html
-         puts "hello2"
       end
-      puts "hello3"
    end
 
    def email_team_members(team, message)
