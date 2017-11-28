@@ -111,10 +111,10 @@ class AdminsController < ApplicationController
     if !(params[:disc].nil?)
       Team.find_by_id(params[:team_id]).approve_with_discussion(params[:disc])
     end
-    message = "Your team has been approved!"
-    User.get_all_user_emails(@team.id).each do |email_id|
-      EmailStudents.email_group(email_id, message).deliver_now
-    end
+    # message = "Your team has been approved!"
+    # User.get_all_user_emails(@team.id).each do |email_id|
+    #   EmailStudents.email_group(email_id, message).deliver_now
+    # end
     redirect_to admins_path
   end
   
@@ -136,10 +136,10 @@ class AdminsController < ApplicationController
     @team.discussion_id = nil
     @team.save!
     Team.find_by_id(params[:team_id]).disapprove
-    message = "Your team has been disapproved. If you any have questions please email Cindy Connors at csconnors@berkeley.edu."
-    User.get_all_user_emails(@team.id).each do |email_id|
-      EmailStudents.email_group(email_id, message).deliver_now
-    end
+    # message = "Your team has been disapproved. If you any have questions please email Cindy Connors at csconnors@berkeley.edu."
+    # User.get_all_user_emails(@team.id).each do |email_id|
+    #   EmailStudents.email_group(email_id, message).deliver_now
+    # end
     redirect_to admins_path
   end
   
@@ -161,10 +161,10 @@ class AdminsController < ApplicationController
     @team.discussion_id = nil
     @team.save!
     Team.find_by_id(params[:team_id]).withdraw_approval
-    message = "Your team has been unapproved. If you any have questions please email Cindy Connors at csconnors@berkeley.edu."
-    User.get_all_user_emails(@team.id).each do |email_id|
-      EmailStudents.email_group(email_id, message).deliver_now
-    end
+    # message = "Your team has been unapproved. If you any have questions please email Cindy Connors at csconnors@berkeley.edu."
+    # User.get_all_user_emails(@team.id).each do |email_id|
+    #   EmailStudents.email_group(email_id, message).deliver_now
+    # end
     redirect_to admins_path
   end
   
