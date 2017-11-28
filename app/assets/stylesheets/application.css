@@ -14,7 +14,11 @@
  *= require_self
  *= require_tree .
  */
+.send_subject_textarea {
+    width: 100%;
+} 
+
 .send_email_textarea {
-    height: 400px;
+    height: 300px;
     width: 100%;
 } 
