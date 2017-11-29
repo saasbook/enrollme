@@ -22,11 +22,12 @@ Feature: An admin sends an e-mail
 
   Scenario: Send E-mail button is available and redirects you to the send page
     Given I first follow "Send Email"
-    Then I should see "Send customized e-mail to team"
+    Then I should see "You have a new message for CS169 from EnrollMe"
   
   Scenario: Fill In TextBox Area, and click Submit
     Given I am on the create_email "1" page
-    Then I should see "Send customized e-mail"
+    Then I should see "You have a new message for CS169 from EnrollMe"
     And I fill in "email_content" with "TESTING123"
+    And I fill in "subject_content" with "TESTING123"
     And I press "Send Email"
     Then I should see "Successfully sent e-mails"
