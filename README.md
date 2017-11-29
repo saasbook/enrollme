@@ -47,4 +47,5 @@ Resetting the system for a new semester: Click on the "Reset Semester" button on
 - Reload your terminal so that the environment variables are loaded
 - Run "bundle install"
 - Run "rake db:drop && rake db:create && rake db:migrate && rake db:seed"
+- Contact kbromyonas@berkeley.edu to add your uri to the login credentials
 - At this point your should be able to run "rails s -p $PORT -b $IP"
