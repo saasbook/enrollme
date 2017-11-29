@@ -10,6 +10,6 @@
         <h4>Team Password: <%= @user.team.nil? ? "Not yet on a team" : @user.team.passcode %> </h4>
         <br>
         <%= link_to "Back", '#', onclick: "history.back()", class: 'btn btn-primary' %>
-        <%= link_to "Edit", edit_user_path(params[:id]), {class: 'btn', :method => 'get'} %>
+        <%= link_to "Edit", edit_user_path(params[:id]), {class: 'btn btn-default', :method => 'get'} %>
     </div>
 </body>

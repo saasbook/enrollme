@@ -11,14 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171022043547) do
+ActiveRecord::Schema.define(version: 20171119032010) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.boolean  "superadmin"
+    t.boolean  "enrollmeadmin"
+    t.boolean  "TAadmin"
   end
 
   create_table "discussions", force: :cascade do |t|

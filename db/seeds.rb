@@ -6,14 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 admins = [
-      { :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :superadmin => true},
-      { :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => false},
-      { :name => "Yonas Kbrom", :email => "kbromyonas@berkeley.edu", :superadmin => true},
-      { :name => "Monty Inaya", :email => "mr.monty@berkeley.edu", :superadmin => true},
-      { :name => "Vikram Baid", :email => "vbaid@berkeley.edu", :superadmin => true},
-      { :name => "Mark Sun", :email => "msun908@berkeley.edu", :superadmin => true},
-      { :name => "Timothy Stepro", :email => "stepro.015389@berkeley.edu", :superadmin => true},
-      { :name => "Minjoo Sur", :email => "minjoo@berkeley.edu", :superadmin => true},
+      { :name => "EnrollMe", :email => "enrollmeberkeley@gmail.com", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
+      { :name => "Michael-David Sasson", :email => "sasson@berkeley.edu", :superadmin => false, :enrollmeadmin => false, :TAadmin => false},
+      { :name => "Yonas Kbrom", :email => "kbromyonas@berkeley.edu", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
+      { :name => "Monty Inaya", :email => "mr.monty@berkeley.edu", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
+      { :name => "Vikram Baid", :email => "vbaid@berkeley.edu", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
+      { :name => "Mark Sun", :email => "msun908@berkeley.edu", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
+      { :name => "Timothy Stepro", :email => "stepro.015389@berkeley.edu", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
+      { :name => "Minjoo Sur", :email => "minjoo@berkeley.edu", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
+      { :name => "Timothy Stepro", :email => "timothystepro@gmail.com", :superadmin => false, :enrollmeadmin => true, :TAadmin => false},
+      { :name => "Yonas Kbrom", :email => "kbromyonas1@gmail.com", :superadmin => false, :enrollmeadmin => true, :TAadmin => false},
+      { :name => "Steven Wu", :email => "stevenwuyinze@berkeley.edu", :superadmin => true, :enrollmeadmin => false, :TAadmin => false},
+
   ]
   
 users = [ 
@@ -55,6 +59,7 @@ submissions = [
   
   ]
   
+
  
 # Comment these bottom four loops while on development
   
@@ -62,7 +67,7 @@ submissions = [
 # discussions.each do |a|
 #   Discussion.create!(a)
 # end
- 
+
 # Team.delete_all
 # teams.each do |t|
 #   Team.create!(t)
@@ -86,7 +91,6 @@ Admin.delete_all
 admins.each do |a|
   Admin.create!(a)
 end
-
 
 # DO NOT COMMMENT OUT
 

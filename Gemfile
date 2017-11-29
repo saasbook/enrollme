@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 # ruby '2.3.4'
 
+gem 'rails_12factor'
+
 gem 'coveralls', require: false
 
 gem 'rails', '4.2.6'

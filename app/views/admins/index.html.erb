@@ -9,13 +9,13 @@
 
             <div class='btn-toolbar pull-right'>
               <div class='btn-group'>
-               <%= button_to "Discussions", discussion_index_path, {method: :get, class: "btn"} %>
+               <%= button_to "Discussions", discussion_index_path, {method: :get, class: 'btn btn-default'} %>
               </div>
               <div class='btn-group'>
-               <%= button_to "Create Groups", select_group_path, {method: :post, class: "btn"} %>
+               <%= button_to "Create Groups", select_group_path, {method: :post, class: "btn btn-default"} %>
               </div>
               <div class='btn-group'>
-                <%= button_to "View Groups", group_index_path, {method: :get, class: "btn"} %>
+                <%= button_to "View Groups", group_index_path, {method: :get, class: "btn btn-default"} %>
               </div>
             </div>
 
@@ -36,9 +36,11 @@
                 </h4>
               </div>
               <div class='btn-toolbar pull-right'>
+                <% if !@admin.TAadmin %> 
                 <%= link_to "Download this data", download_team_info_path(:status => params[:status] ||= "Pending | Approved"), {method: 'get', class: "btn btn-primary btn-sm"} %>
                 <%= link_to "Email me this data", admins_email_path(:status => params[:status]  ||= "Pending | Approved"), {method: 'post', class: 'btn btn-success btn-sm'} %>
                 <%= link_to "Import Student Data", import_page_path, {class: 'btn btn-primary btn-sm'} %>
+                <% end %>
               </div>
             </h2>
           </div>

@@ -33,3 +33,18 @@ Add new admins: Click on the "Register New Admin" button on the ribbon at the to
 Manage admins: Click on the "Manage Admins" button on the ribbon at the top of any page in the admin portal. If you are the SuperAdmin, on this new page you'll also see options to transfer your SuperAdmin status to another admin.
 
 Resetting the system for a new semester: Click on the "Reset Semester" button on the ribbon at the top of any page in the admin portal. You'll be asked to put in the master reset password to continue with the process - if you don't remember the password, contact your system administrator for help. The admin requesting this will get an email with all the data that is being wiped from the system. WARNING: there is NO going back once you reset the semester - the data is permanently wiped out of the database after this. Proceed only when you are 100% sure that this is what you want to do.
+
+
+## How to install and run project
+
+- Clone the repository
+- Make sure you are using ruby version 2.3.4
+- Within your "~/.bashrc" file, include the following lines
+    - export GOOGLE_KEY=(contact kbromyonas@berkeley.edu for this value)
+    - export GOOGLE_SECRET=(contact kbromyonas@berkeley.edu for this value)
+    - export API_KEY=(contact kbromyonas@berkeley.edu for this value)
+    - export ADMIN_DELETE_DATA_PASSWORD=hello
+- Reload your terminal so that the environment variables are loaded
+- Run "bundle install"
+- Run "rake db:drop && rake db:create && rake db:migrate && rake db:seed"
+- At this point your should be able to run "rails s -p $PORT -b $IP"

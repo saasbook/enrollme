@@ -2,13 +2,19 @@
     <title>Email Team</title>
     <div class="container">
         <div class="row">
-                    <h2>Send customized e-mail to team by filling in the text area below, and clicking "Send Email"</h2>
-
+            <h2>Send Email to Team</h2>
         </div>
+        <div class="row">
+            <h4>If subject left blank, subject of email will be: "You have a new message for CS169 from EnrollMe" </h4>
+        </div>
+        
+        <br><br>
         <div class="row">
             <%=form_for @email, url: {action: "create_email"} do |f| %>
                 <fieldset>
                     <div class="field form-group">
+                        <p><strong>Subject Content:</strong></p>
+                        <%= f.text_area :subject_content, class: "send_subject_textarea", :id => "subject_content" %>
                         <p><strong>Email Content:</strong></p>
                         <%= f.text_area :email_content, class: "send_email_textarea", :id => "email_content" %>
                     </div>
