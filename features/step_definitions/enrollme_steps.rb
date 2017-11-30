@@ -196,3 +196,17 @@ end
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
+
+Given /^"([^"]*)" contacts the team/ do |user_name|
+  user = User.where(name: user_name)[0]
+  user.email_team(@team.id)
+  user.save!
+end
+
+Then /^I should see "([^"]*)" listed as a prospective member/ do |user_name|
+  pending
+end
+
+Then /^I should see "([^"]*)" listed as a team member/ do |user_name|
+  pending
+end
