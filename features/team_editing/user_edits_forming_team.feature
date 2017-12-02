@@ -36,5 +36,7 @@ Feature: A User edits their team
   and the added user should be on the team page
     Given "Kandi" contacts the team
     Then I should see "Kandi" listed as a prospective member
-    When I press "Add Kandi"
+    And I should not see "Kandi" listed as a team member
+    When I press "add_Kandi"
     Then I should see "Kandi" listed as a team member
+    And I should not see "Kandi" listed as a prospective member

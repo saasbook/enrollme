@@ -204,9 +204,17 @@ Given /^"([^"]*)" contacts the team/ do |user_name|
 end
 
 Then /^I should see "([^"]*)" listed as a prospective member/ do |user_name|
-  pending
+  page.find("#interestedUsers", text: user_name).should be_true
+end
+
+Then /^I should not see "([^"]*)" listed as a prospective member/ do |user_name|
+  page.find("#interestedUsers", text: user_name).should be_false
 end
 
 Then /^I should see "([^"]*)" listed as a team member/ do |user_name|
-  pending
+  page.find("#teamMembers", text: user_name).should be_true
+end
+
+Then /^I should not see "([^"]*)" listed as a team member/ do |user_name|
+  page.find("#teamMembers", text: user_name).should be_false
 end

@@ -7,6 +7,12 @@ class Team < ActiveRecord::Base
         return SecureRandom.urlsafe_base64(length, false)
     end
 
+    def get_interested_users
+      User.all.select do |user|
+        !user.emails_sent.nil? && user.emails_sent.has_key? id
+      end
+    end
+
     def team_skills
       result = ''
       self.users.each do |user|

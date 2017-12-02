@@ -10,6 +10,15 @@ class TeamController < ApplicationController
     render 'email'
   end
 
+  def add_interested_user
+    user_to_add = User.find! params[:userId]
+    @team.users.append(user_to_add)
+    @team.save!
+    user_to_add.save!
+    notice_msg = "Added #{user_to_add.name} to team."
+    redirect_to team_path(@team.id), notice: notice_msg
+  end
+
   def do_email
     TeamMailer.email_team(@to, @subject, @body, @user.email).deliver_now
     @user.email_team(@team.id)

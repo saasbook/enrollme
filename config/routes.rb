@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   post 'team/:id/submit', to: 'team#submit', as: 'submit_team'
   post 'team/:id/unsubmit', to: 'team#unsubmit', as: 'unsubmit_team'
+  patch 'team/:id/users', to: 'team#add_interested_user'
 
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
