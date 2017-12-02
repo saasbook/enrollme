@@ -31,3 +31,11 @@ Feature: An admin sends an e-mail
     And I fill in "subject_content" with "TESTING123"
     And I press "Send Email"
     Then I should see "Successfully sent e-mails"
+  
+  Scenario: Did not fill In TextBox Area, and click Submit
+    Given I am on the create_email "1" page
+    Then I should see "You have a new message for CS169 from EnrollMe"
+    And I fill in "email_content" with ""
+    And I fill in "subject_content" with "TESTING123"
+    And I press "Send Email"
+    Then I should see "You have to include email content."

@@ -101,15 +101,13 @@ class AdminsController < ApplicationController
   end
   
   def approve
-    if @admin.TAadmin
-      redirect_to admins_path, :notice => "You do not have permission to approve teams"
-      return
-    end
-    @team = Team.find_by_id(params[:team_id])
-    @team.approved = true
-    @team.save!
-    if !(params[:disc].nil?)
-      Team.find_by_id(params[:team_id]).approve_with_discussion(params[:disc])
+    if !@admin.TAadmin
+      @team = Team.find_by_id(params[:team_id])
+      @team.approved = true
+      @team.save!
+      if !(params[:disc].nil?)
+        Team.find_by_id(params[:team_id]).approve_with_discussion(params[:disc])
+      end
     end
     # message = "Your team has been approved!"
     # User.get_all_user_emails(@team.id).each do |email_id|
@@ -119,23 +117,21 @@ class AdminsController < ApplicationController
   end
   
   def disapprove
-    if @admin.TAadmin
-      redirect_to admins_path, :notice => "You do not have permission to disapprove teams"
-      return
+    if !@admin.TAadmin
+      @team = Team.find_by_id(params[:team_id])
+      @groupt1 = Group.find_by_team1_id(params[:team_id])
+      @groupt2 = Group.find_by_team2_id(params[:team_id])
+      if @groupt1 != nil
+        @groupt1.delete
+      end
+      if @groupt2 != nil
+        @groupt2.delete
+      end
+      @team.approved = false
+      @team.discussion_id = nil
+      @team.save!
+      Team.find_by_id(params[:team_id]).disapprove
     end
-    @team = Team.find_by_id(params[:team_id])
-    @groupt1 = Group.find_by_team1_id(params[:team_id])
-    @groupt2 = Group.find_by_team2_id(params[:team_id])
-    if @groupt1 != nil
-      @groupt1.delete
-    end
-    if @groupt2 != nil
-      @groupt2.delete
-    end
-    @team.approved = false
-    @team.discussion_id = nil
-    @team.save!
-    Team.find_by_id(params[:team_id]).disapprove
     # message = "Your team has been disapproved. If you any have questions please email Cindy Connors at csconnors@berkeley.edu."
     # User.get_all_user_emails(@team.id).each do |email_id|
     #   EmailStudents.email_group(email_id, message).deliver_now
@@ -144,23 +140,21 @@ class AdminsController < ApplicationController
   end
   
   def undo_approve
-    if @admin.TAadmin
-      redirect_to admins_path, :notice => "You do not have permission to undo approve of teams"
-      return
+    if !@admin.TAadmin
+      @team = Team.find_by_id(params[:team_id])
+      # @groupt1 = 
+      # @groupt2 = 
+      if Group.find_by_team1_id(params[:team_id]) != nil
+        Group.find_by_team1_id(params[:team_id]).delete
+      end
+      if Group.find_by_team2_id(params[:team_id]) != nil
+        Group.find_by_team2_id(params[:team_id]).delete
+      end
+      @team.approved = false
+      @team.discussion_id = nil
+      @team.save!
+      Team.find_by_id(params[:team_id]).withdraw_approval
     end
-    @team = Team.find_by_id(params[:team_id])
-    # @groupt1 = 
-    # @groupt2 = 
-    if Group.find_by_team1_id(params[:team_id]) != nil
-      Group.find_by_team1_id(params[:team_id]).delete
-    end
-    if Group.find_by_team2_id(params[:team_id]) != nil
-      Group.find_by_team2_id(params[:team_id]).delete
-    end
-    @team.approved = false
-    @team.discussion_id = nil
-    @team.save!
-    Team.find_by_id(params[:team_id]).withdraw_approval
     # message = "Your team has been unapproved. If you any have questions please email Cindy Connors at csconnors@berkeley.edu."
     # User.get_all_user_emails(@team.id).each do |email_id|
     #   EmailStudents.email_group(email_id, message).deliver_now
@@ -235,8 +229,6 @@ class AdminsController < ApplicationController
         end
       end
       notice = "#{c} admins successfully deleted."
-    else
-      notice = "You do not have sufficient permissions to do that."
     end
     redirect_to superadmin_path, :notice => notice
   end

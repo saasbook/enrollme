@@ -25,5 +25,4 @@ RSpec.describe AdminsController, type: :controller do
     end
   end
   
-
 end

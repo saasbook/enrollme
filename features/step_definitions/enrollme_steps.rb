@@ -16,6 +16,10 @@ When /^I fill in "([^"]*)" with the correct password$/ do | field |
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
 
+When /^I fill in "([^"]*)" with the incorrect password$/ do | field |
+  fill_in(field, :with => "wrong")
+end
+
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
   mock_auth_hash(email)
   click_link "log_in"
