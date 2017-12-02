@@ -62,21 +62,29 @@
                   <td>Approved</td>
                   <% d = Discussion.find_by_id(t.discussion_id) %>
                   <td>
-                    <%= link_to "Disapprove", admin_disapprove_team_path(:team_id => t.id), {:id=>"disapprove_#{t.id}", :class=>'btn btn-xs btn-danger'} %>
-                    <%= link_to "Undo Approve", admin_undo_approve_team_path(:team_id => t.id), {:id=>"undo_approve_#{t.id}", :class=>'btn btn-xs btn-warning'} %>
+                    <% if !@admin.TAadmin %>
+                      <%= link_to "Disapprove", admin_disapprove_team_path(:team_id => t.id), {:id=>"disapprove_#{t.id}", :class=>'btn btn-xs btn-danger'} %>
+                      <%= link_to "Undo Approve", admin_undo_approve_team_path(:team_id => t.id), {:id=>"undo_approve_#{t.id}", :class=>'btn btn-xs btn-warning'} %>
+                    <% end %>
                     <%= d.info %>
-                    </td>
+                  </td>
                 <% elsif t.submitted? %>
                   <td>Pending</td>
                   <% s = Submission.find_by_id(t.submission_id) %>
                   <td>
-                    <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc1id}"), {:id=>"approve_1", :class=>'btn btn-xs btn-success'} %>
+                    <% if !@admin.TAadmin %>
+                      <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc1id}"), {:id=>"approve_1", :class=>'btn btn-xs btn-success'} %>
+                    <% end %>
                     <%= label "disc_#{s.disc1id}", Discussion.find_by_id(s.disc1id).info %>
                     <br>
-                    <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc2id}"), {:id=>"approve_2", :class=>'btn btn-xs btn-warning'} %>
+                    <% if !@admin.TAadmin %>
+                      <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc2id}"), {:id=>"approve_2", :class=>'btn btn-xs btn-warning'} %>
+                    <% end %>
                     <%= label "disc_#{s.disc2id}", Discussion.find_by_id(s.disc2id).info %>
                     <br>
-                    <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc3id}"), {:id=>"approve_3", :class=>'btn btn-xs btn-danger'} %>
+                    <% if !@admin.TAadmin %>
+                      <%= link_to "Approve", admin_approve_team_path(:team_id => t, :disc=> "#{s.disc3id}"), {:id=>"approve_3", :class=>'btn btn-xs btn-danger'} %>
+                    <% end %>
                     <%= label "disc_#{s.disc3id}", Discussion.find_by_id(s.disc3id).info %>
                   </td>
                 <% else %>

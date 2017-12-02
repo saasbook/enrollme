@@ -12,7 +12,7 @@ Feature: Create an admin account
   	And I am on the login page
 
   Scenario: An admin successfully adds another admin
-    And I log in as an admin with email "supreme_ruler@aol.com"
+    When I log in as an admin with email "supreme_ruler@aol.com"
     And I follow "Register New Admin"
     
     Given I fill in "Name" with "Bob Clone"
@@ -22,6 +22,15 @@ Feature: Create an admin account
     Then I log out
     When I log in as an admin with email "ruler_clone@aol.com"
     Then I should see "Welcome Back, Bob Clone!"
+  
+  Scenario: An super admin did not choose a type for admin type
+    When I log in as an admin with email "supreme_ruler@aol.com"
+    And I follow "Register New Admin"
+    
+    Given I fill in "Name" with "Bob Clone"
+    And I fill in "Email" with "ruler_clone@aol.com"
+    And I press "Create"
+    Then I should see "Choose an admin type"
 
   Scenario: An admin fails adding another admin
     And I log in as an admin with email "supreme_ruler@aol.com"
