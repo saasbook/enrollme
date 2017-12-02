@@ -95,7 +95,7 @@ RSpec.describe AdminMailer, type: :mailer do
   end
   
   it 'Send an email that tells the TA to look at this submission' do
-    AdminMailer.send_look_at_submission.deliver_now
+    AdminMailer.send_look_at_submission
     ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
   end
   
