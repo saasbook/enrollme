@@ -92,10 +92,10 @@ Given /^the following users exist$/ do |table|
     next if name == "name" # skipping table header
 
     skill = Skill.create!(:name => skill)
-    team = Team.where(:passcode => team_passcode).first
+    @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
-      team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if team.nil?
-      user = User.create!(:team => team, :major => major, :name => name, :email => email, :sid => sid)
+      @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
+      user = User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid)
     else
       user = User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid)
     end
@@ -106,7 +106,6 @@ Given /^the following users exist$/ do |table|
 end
 
 Given /^the following skills exist$/ do |table|
-
   table.rows.each do |name|
     Skill.create!(:name => name[0])
   end
