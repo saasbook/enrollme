@@ -10,7 +10,7 @@ class TeamController < ApplicationController
     render 'email'
   end
 
-  def add_interested_user
+  def add_teammate
     user_to_add = User.find params[:userId]
     @team.users.append(user_to_add)
     @team.save!

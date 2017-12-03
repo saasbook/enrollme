@@ -7,11 +7,9 @@ class Team < ActiveRecord::Base
         return SecureRandom.urlsafe_base64(length, false)
     end
 
-    def get_interested_users
+    def interested_users
       User.all.select do |user|
-        !user.emails_sent.nil? && user.emails_sent.has_key?(id)
-      end.reject do |user|
-        users.include? user
+        user.emailed_team?(id) && !users.include?(user)
       end
     end
 

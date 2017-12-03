@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def emailed_team?(id)
+    !emails_sent.nil? && emails_sent.key?(id)
+  end
+
   def skills_str
     if talents.nil? || talents.length.zero?
       return ''
