@@ -133,8 +133,6 @@ Then /^byebug$/ do
 end
 
 Then /^print page body$/ do
-  puts "ADMIN MODELS"
-  puts Admin.all[0].inspect
   puts page.body
 end
 

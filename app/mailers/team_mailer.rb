@@ -6,8 +6,6 @@ class TeamMailer < ApplicationMailer
     @body = body
     @url = ENV['SERVER_EMAIL']
 
-    puts(html)
-
     mail(to: to, reply_to: reply_to, subject: subject, &:html)
   end
 end

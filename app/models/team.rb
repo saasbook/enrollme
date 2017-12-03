@@ -80,7 +80,13 @@ class Team < ActiveRecord::Base
     end
 
     def visible_users
-        users.select(&:show_name)
+        user_names = []
+        users.each do |user|
+            if user.show_name
+                user_names << user.name
+            end
+        end
+        user_names
     end
 
     def can_join?
