@@ -6,11 +6,28 @@ class Team < ActiveRecord::Base
     def self.generate_hash(length=36)
         return SecureRandom.urlsafe_base64(length, false)
     end
-    
+
+    def interested_users
+      User.all.select do |user|
+        user.emailed_team?(id) && !users.include?(user)
+      end
+    end
+
+    def team_skills
+      result = ''
+      self.users.each do |user|
+        user.talents.each do |talent|
+          skill = Skill.find(talent.skill_id)
+          result += skill.name + ', ' unless skill.name.nil?
+        end
+      end
+      return result[0..(result.length - 3)] if result != ''
+    end
+
     def self.approved_teams
         return Team.where(:approved => true)
     end
-    
+
     def withdraw_submission
         self.submitted = false
         self.save!
@@ -26,24 +43,23 @@ class Team < ActiveRecord::Base
         self.approved = false
         self.save!
     end
-    
+
     def approve_with_discussion(id)
         self.approved = true
         self.discussion_id = id
         self.save!
     end
-    
+
     def send_submission_reminder_email
         self.users.each do |user|
             #EmailStudents.submit_email(user).deliver_later
         end
     end
-    
+
     def eligible?
         users.count.between?(Option.minimum_team_size, Option.maximum_team_size)
     end
-    
-    
+
     def self.filter_by(status)
         if status.nil? or status == "Pending | Approved"
             return Team.where(approved: true) + Team.where(approved: false, submitted: true)
@@ -56,13 +72,17 @@ class Team < ActiveRecord::Base
         end
         return Team.all.each
     end
-    
+
     def add_submission(id)
         self.update(submitted: true)
         self.submission_id = id
         self.save!
     end
-    
+
+    def visible_users
+        users.select(&:show_name)
+    end
+
     def can_join?
       ! passcode.nil?  &&
         ! approved     &&

@@ -1,0 +1,39 @@
+<html>
+<body>
+  <title>Team List</title>
+  <div class="container">
+    <h1>Team List</h1>
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped table-hover">
+          <tr>
+            <td>#</td>
+            <td>Names</td>
+            <td>Size</td>
+            <td>Skills</td>
+            <td>Contact</td>
+          </tr>
+          <% @teams.each do |team| %>
+            <tr>
+              <td>
+                <%= team.id %>
+              </td>
+              <td>
+                <%= team.visible_users.join(", ") %>
+          <!--       <%= team.visible_users.inject("") {|str, user| str += user.name} %> -->
+              </td>
+              <td>
+                <%= team.users.length %>
+              </td>
+              <td>
+                <%= team.team_skills %>
+              </td>
+              <td><%= link_to "Contact Team #{team.id}", email_team_path(team.id) %></td>
+            </tr>
+            <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

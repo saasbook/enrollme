@@ -1,27 +1,27 @@
 <html>
 <body>
   <title>My Team</title>
-  
-  
-  
+
+
+
     <div class="container">
-      
+
       <h1>My Team</h1>
-     
+
       <h3><%= "Team Password: " + @team.passcode.to_s %></h3>
-     
+
       <div class="row">
         <div class="col-md-8">
           <h2>Members</h2>
-          <table class="table table-striped table-hover">
+          <table class="table table-striped table-hover" id="teamMembers">
             <tr>
                 <td></td>
                 <td>Student</td>
                 <td>EECS/CS Major?</td>
                 <td></td>
               </tr>
-              
-            
+
+
             <% @team.users.each do |u| %>
               <tr>
                 <td></td>
@@ -31,15 +31,15 @@
                   <%= form_tag edit_team_path(:id => @team.id), method: :get do %>
                     <%= hidden_field_tag :unwanted_user, u.id %>
                     <%= submit_tag "Remove", :id=>"remove_#{u.name}", :class=>"btn btn-default", data: { confirm: "Are you sure you want to remove #{u.name} from your team?" }  %>
-                  <% end %>                  
+                  <% end %>
                 </td>
               </tr>
             <% end %>
           </table>
-          
+
         </div>
         <div class="col-md-4">
-          
+
           <%= button_to "Discussions", discussion_index_path, {method: :get, class: "btn"} %>
           <% if @team.approved %>
             <br>
@@ -61,12 +61,45 @@
           <% end %>
        </div>
       </div>
-      
+
+      <% interested_users = @team.interested_users %>
+      <% if interested_users.length > 0 %>
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Interested Users</h2>
+          <table class="table table-striped table-hover" id="interestedUsers">
+            <tr>
+                <td></td>
+                <td>Student</td>
+                <td>Skills</td>
+                <td>EECS/CS Major?</td>
+                <% if @team.can_join? %>
+                  <td>Add?</td>
+                <% end %>
+            </tr>
+            <% interested_users.each do |u| %>
+              <tr>
+                <td></td>
+                <td><%= u.name %></td>
+                <td><%= u.skills_str %></td>
+                <td><%= u.major == "DECLARED CS/EECS Major" ? "•" : "No" %></td>
+                <td>
+                  <% if @team.can_join? %>
+                    <%= form_tag add_teammate_path(:id => @team.id, :userId => u.id), method: :patch do %>
+                      <%= submit_tag "Add", :id=>"add_#{u.name}", :class=>"btn btn-default", data: { confirm: "Are you sure you want to add #{u.name} from your team?" }  %>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <% end %>
+
       <div class="actions">
-        
-       
-         
-        <div class="col-xs-2"> 
+
+        <div class="col-xs-2">
           <%= form_tag edit_team_path(:id => @team.id), method: :get do %>
             <%= hidden_field_tag :unwanted_user, @user.id %>
             <%= submit_tag "Leave team", :id=> "leave_team", :class=> "btn btn-default", :disabled => (session[:is_admin] ? true : false) %>
@@ -83,7 +116,7 @@
               <% # TODO: css styling for this button so that it fits using white-space: normal;  %>
             <% end %>
           </div>
-          <div class="col-xs-2">  
+          <div class="col-xs-2">
             Team has been submitted!
           </div>
         <% elsif Discussion.valid_discs_for(@team).count == 0 %>
@@ -94,7 +127,7 @@
               <%= submit_tag "Submit team", class: "btn btn-primary", :disabled => (session[:is_admin] ? true : false) %>
             <% end %>
           </div>
-          <div class="col-xs-2">  
+          <div class="col-xs-2">
             Warning: You need to submit your team to be considered for enrollment, make sure to do this when you have assembled your team.
           </div>
         <% else %>
@@ -103,8 +136,8 @@
           </div>
         <% end %>
       </div>
-      
-      
+
+
       <% if @team.approved %>
         <br>
         <br>
@@ -113,7 +146,7 @@
         <% disc = Discussion.find(@team.discussion_id) %>
         <h4><%= "CCN: #{disc.number}    Time: #{disc.day} #{disc.time}" %></h4>
       <% end %>
-      <div class="col-md-11"> 
+      <div class="col-md-11">
         <h3>Need help? Click the "Help" tab (right next to "Home") on the ribbon above for FAQs.</h3>
       </div>
     </div>
