@@ -7,12 +7,18 @@ class Team < ActiveRecord::Base
         return SecureRandom.urlsafe_base64(length, false)
     end
 
+    def interested_users
+      User.all.select do |user|
+        user.emailed_team?(id) && !users.include?(user)
+      end
+    end
+
     def team_skills
       result = ''
       self.users.each do |user|
         user.talents.each do |talent|
-          skill_name = Skill.find(talent.skill_id).name
-          result += skill_name + ', '
+          skill = Skill.find(talent.skill_id)
+          result += skill.name + ', ' unless skill.name.nil?
         end
       end
       return result[0..(result.length - 3)] if result != ''
