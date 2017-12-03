@@ -9,7 +9,9 @@ class Team < ActiveRecord::Base
 
     def get_interested_users
       User.all.select do |user|
-        !user.emails_sent.nil? && user.emails_sent.has_key? id
+        !user.emails_sent.nil? && user.emails_sent.has_key?(id)
+      end.reject do |user|
+        users.include? user
       end
     end
 
@@ -17,8 +19,8 @@ class Team < ActiveRecord::Base
       result = ''
       self.users.each do |user|
         user.talents.each do |talent|
-          skill_name = Skill.find(talent.skill_id).name
-          result += skill_name + ', '
+          skill = Skill.find(talent.skill_id)
+          result += skill.name + ', ' unless skill.name.nil?
         end
       end
       return result[0..(result.length - 3)] if result != ''

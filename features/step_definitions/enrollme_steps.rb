@@ -68,8 +68,9 @@ And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |
 end
 
 And /^my team is submitted$/ do
-  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1, :team => @team)
-  @team.add_submission(1)
+  team = User.where(email: @email).first.team
+  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1, :team => team)
+  team.add_submission(1)
 end
 
 And /^the team with passcode "([^"]*)" should be (.*)$/ do | passcode, status |
@@ -91,15 +92,16 @@ Given /^the following users exist$/ do |table|
     next if name == "name" # skipping table header
 
     skill = Skill.create!(:name => skill)
-    @team = Team.where(:passcode => team_passcode).first
+    team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
-      @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
-      user = User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid)
+      team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if team.nil?
+      user = User.create!(:team => team, :major => major, :name => name, :email => email, :sid => sid)
     else
       user = User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid)
     end
     talent = Talent.create!(:skill_id => skill.id, :user_id => user.id)
     user.talents.append(talent)
+    user.save!
   end
 end
 
@@ -198,23 +200,29 @@ When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field
 end
 
 Given /^"([^"]*)" contacts the team/ do |user_name|
-  user = User.where(name: user_name)[0]
-  user.email_team(@team.id)
-  user.save!
+  user = User.where(:name => user_name)[0]
+  curr_user = User.where(:email => @email).first
+  team_id = curr_user.team.id
+  step %Q{I follow "Logout"}
+  step %Q{I log in as a user with email "#{user.email}"}
+  step %Q{I am on the teams page}
+  step %Q{I contact "Team #{team_id}" with the message "hello"}
+  step %Q{I follow "Logout"}
+  step %Q{I log in as a user with email "#{curr_user.email}"}
 end
 
 Then /^I should see "([^"]*)" listed as a prospective member/ do |user_name|
-  page.find("#interestedUsers", text: user_name).should be_true
+  page.should have_css("#interestedUsers", text: user_name)
 end
 
 Then /^I should not see "([^"]*)" listed as a prospective member/ do |user_name|
-  page.find("#interestedUsers", text: user_name).should be_false
+  page.should have_no_css("#interestedUsers", text: user_name)
 end
 
 Then /^I should see "([^"]*)" listed as a team member/ do |user_name|
-  page.find("#teamMembers", text: user_name).should be_true
+  page.should have_css("#teamMembers", text: user_name)
 end
 
 Then /^I should not see "([^"]*)" listed as a team member/ do |user_name|
-  page.find("#teamMembers", text: user_name).should be_false
+  page.should have_no_css("#teamMembers", text: user_name)
 end

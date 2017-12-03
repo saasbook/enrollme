@@ -11,7 +11,7 @@ class TeamController < ApplicationController
   end
 
   def add_interested_user
-    user_to_add = User.find! params[:userId]
+    user_to_add = User.find params[:userId]
     @team.users.append(user_to_add)
     @team.save!
     user_to_add.save!
