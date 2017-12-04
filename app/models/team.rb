@@ -14,14 +14,14 @@ class Team < ActiveRecord::Base
     end
 
     def team_skills
-      result = ''
+      result = []
       self.users.each do |user|
         user.talents.each do |talent|
           skill = Skill.find(talent.skill_id)
-          result += skill.name + ', ' unless skill.name.nil?
+          result << skill.name unless skill.name.nil?
         end
       end
-      return result[0..(result.length - 3)] if result != ''
+      return result.uniq.join(', ') if result != []
     end
 
     def self.approved_teams
@@ -80,7 +80,11 @@ class Team < ActiveRecord::Base
     end
 
     def visible_users
-        users.select(&:show_name)
+        user_names = []
+        users.each do |user|
+            user_names << user.name if user.show_name
+        end
+        user_names
     end
 
     def can_join?

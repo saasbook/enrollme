@@ -20,7 +20,16 @@ class TeamController < ApplicationController
   end
 
   def do_email
-    TeamMailer.email_team(@to, @subject, @body, @user.email).deliver_now
+    @to.each_with_index do |to_email, counter|
+      email_team_paramters = { to: to_email,
+                               from_name: @user.name,
+                               to_name: @names[counter],
+                               subject: @subject,
+                               body: @body,
+                               reply_to: @user.email,
+                               team: @team }
+      TeamMailer.email_team(email_team_paramters).deliver_now
+    end
     @user.email_team(@team.id)
     @user.save!
     redirect_to teams_path, notice: 'Email sent successfully.'
@@ -71,8 +80,9 @@ class TeamController < ApplicationController
   def fetch_team
     @team = Team.find_by_id(params[:id])
     @to = @team.users.map(&:email).compact
-    @subject = params[:subject]
-    @body = params[:body]
+    @subject = params['Subject']
+    @body = params['Message']
+    @names = @team.users.map(&:name)
   end
 
   def set_user

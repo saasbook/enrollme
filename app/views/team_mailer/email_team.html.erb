@@ -1,10 +1,23 @@
 <html>
-   
+
    <head>
       <meta content = 'text/html; charset = UTF-8' http-equiv = 'Content-Type' />
    </head>
-   
+
    <body>
-       <%= simple_format(@body) %>
+       Hi, <%= @to_name %>,
+      <br>
+      You have received the following message from another student, <%= @from_name %>, on EnrollMe regarding your CS 169 team.
+      <br>
+      <h4>
+      <%= simple_format(@body) %>
+      </h4>
+      <br>
+      If you are interested in having this person on your team, you can add them via this <%= link_to("page", @team) %>.
+      <br>
+      Thanks and happy enrolling!
+      <br>
+      Best,
+      The EnrollMe Team
    </body>
 </html>

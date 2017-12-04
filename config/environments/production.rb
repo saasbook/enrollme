@@ -93,4 +93,7 @@ Rails.application.configure do
   		api_key: ENV['MAIL_GUN_API_KEY'],
   		domain: ENV['MAIL_GUN_DOMAIN']
   }
+
+  # config.action_mailer.default_url_options = { :host => "enrollme.herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => "enrollme-test.herokuapp.com" }
 end
