@@ -18,7 +18,10 @@ class Team < ActiveRecord::Base
       self.users.each do |user|
         user.talents.each do |talent|
           skill = Skill.find(talent.skill_id)
-          result << skill.name unless skill.name.nil?
+          if !skill.name.nil? && skill.active
+        #   result << skill.name unless skill.name.nil?
+            result << skill.name
+          end
         end
       end
       return result.uniq.join(', ') if result != []
