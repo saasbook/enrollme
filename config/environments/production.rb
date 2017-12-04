@@ -94,5 +94,6 @@ Rails.application.configure do
   		domain: ENV['MAIL_GUN_DOMAIN']
   }
 
-  config.action_mailer.default_url_options = { :host => "enrollme.herokuapp.com" }
+  # config.action_mailer.default_url_options = { :host => "enrollme.herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => "enrollme-test.herokuapp.com" }
 end
