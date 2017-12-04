@@ -1,7 +1,7 @@
-Feature: Optional Display Username on Teams Page
+Feature: Optional Display Username on Team List Page
     As a user
     So that I can control my anonymity
-    I want to be able to choose whether my name is displayed on the teams page.
+    I want to be able to choose whether my name is displayed on the team list page.
 
   Background:
     Given the following users exist
@@ -13,17 +13,17 @@ Feature: Optional Display Username on Teams Page
     And I log in as a user with email "eecs666@hotmail.com"
     And I follow "My Info"
 
-  Scenario: I want to display my name on the teams page
+  Scenario: I want to display my name on the team list page
     Given I follow "Edit"
     And I check "Name Visible to Other Teams" 
     And I press "Update Information"
-    And I am on the teams page
+    And I am on the team list page
     Then I should see "Sahai"
 
-  Scenario: I do not want to display my name on the teams page
+  Scenario: I do not want to display my name on the team list page
     Given I follow "Edit"
     And I uncheck "Name Visible to Other Teams" 
     And I press "Update Information"
-    And I am on the teams page
+    And I am on the team list page
     Then I should not see "Sahai"
 
