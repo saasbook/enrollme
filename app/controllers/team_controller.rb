@@ -21,7 +21,14 @@ class TeamController < ApplicationController
 
   def do_email
     @to.each_with_index do |to_email, counter|
-        TeamMailer.email_team(to_email, @user.name, @names[counter], @subject, @body, @user.email, @team).deliver_now
+      email_team_paramters = {:to=>to_email,
+                              :from_name=>@user.name,
+                              :to_name=>@names[counter],
+                              :subject=>@subject,
+                              :body=>@body,
+                              :reply_to=>@user.email,
+                              :team=>@team}
+      TeamMailer.email_team(email_team_paramters).deliver_now
     end
     @user.email_team(@team.id)
     @user.save!
@@ -73,8 +80,8 @@ class TeamController < ApplicationController
   def fetch_team
     @team = Team.find_by_id(params[:id])
     @to = @team.users.map(&:email).compact
-    @subject = params["Subject"]
-    @body = params["Message"]
+    @subject = params['Subject']
+    @body = params['Message']
     @names = @team.users.map(&:name)
   end
 
