@@ -39,8 +39,7 @@ class User < ActiveRecord::Base
     end
     skills = []
     talents.each do |talent|
-      # if !talent.skill.nil? && talent.skill.active
-      if !talent.skill.nil?
+      if !talent.skill.nil? && talent.skill.active
         skill_name = talent.skill.name
         skills << skill_name unless skill_name.nil?
       end

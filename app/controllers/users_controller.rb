@@ -73,8 +73,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    puts params
-    permitted = [:name, :email, :sid, :major, :show_name, :talent_attributes=>[:id, :enable]]
+    permitted = [:name, :email, :sid, :major, :show_name, :talent_attributes]
     params.require(:user).permit(permitted)
   end
 end

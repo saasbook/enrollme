@@ -7,12 +7,19 @@ Feature: edit user information
   Background:
     Given the following users exist
      | name    |       email          |team_passcode | major | sid  | skill |
- 	   | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  | Backend |
-    Given the following skills exist
-     | name       | 
-     | Backend    |
-     | Frontend   |
-   	And I am on the login page
+     | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  | Backend |
+    Given the following admins exist
+      | name | email                  | password |
+      | Bob  | eecs667@hotmail.com    | ilikcats |
+    And I am on the login page
+    And I log in as an admin with email "eecs667@hotmail.com"
+    And I am on the skills page
+    And I fill in "Skill" with "Frontend"
+    And I press "Add Skill"
+    And I fill in "Skill" with "Backend"
+    And I press "Add Skill"
+    And I log out
+    And I am on the login page
     And I log in as a user with email "eecs666@hotmail.com"
     And I follow "My Info"
     And I should see "Backend"
