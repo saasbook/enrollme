@@ -21,13 +21,13 @@ class TeamController < ApplicationController
 
   def do_email
     @to.each_with_index do |to_email, counter|
-      email_team_paramters = {:to=>to_email,
-                              :from_name=>@user.name,
-                              :to_name=>@names[counter],
-                              :subject=>@subject,
-                              :body=>@body,
-                              :reply_to=>@user.email,
-                              :team=>@team}
+      email_team_paramters = {to: to_email,
+                              from_name: @user.name,
+                              to_name: @names[counter],
+                              subject: @subject,
+                              body: @body,
+                              reply_to: @user.email,
+                              team: @team}
       TeamMailer.email_team(email_team_paramters).deliver_now
     end
     @user.email_team(@team.id)
