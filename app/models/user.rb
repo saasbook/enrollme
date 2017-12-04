@@ -17,17 +17,18 @@ class User < ActiveRecord::Base
 
   NUM_EMAILS_ALLOWED = 2
 
-  def init_talents
-    [].tap do |o|
-      Skill.all.each do |skill|
-        params = { skill_id: skill.id, user_id: id }
-        tlist = Talent.where(params)
-        t = tlist[0]
-        t = Talent.create!(params) if tlist.length.zero?
-        o << t.tap { |sub_t| sub_t.enable ||= true }
-      end
-    end
-  end
+  # DEPRECATED
+  # def init_talents
+  #   [].tap do |o|
+  #     Skill.all.each do |skill|
+  #       params = { skill_id: skill.id, user_id: id }
+  #       tlist = Talent.where(params)
+  #       t = tlist[0]
+  #       t = Talent.create!(params) if tlist.length.zero?
+  #       o << t.tap { |sub_t| sub_t.enable ||= true }
+  #     end
+  #   end
+  # end
 
   def emailed_team?(id)
     !emails_sent.nil? && emails_sent.key?(id)
