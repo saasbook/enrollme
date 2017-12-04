@@ -4,18 +4,11 @@ Feature: Student creates a new account
   I want to create an account on EnrollMe
 
   Background:
-    Given the following admins exist
-      | name | email                  | password |
-      | Bob  | eecs666@hotmail.com    | ilikcats |
-    And I am on the login page
-    And I log in as an admin with email "eecs666@hotmail.com"
-    And I am on the skills page
-    And I fill in "Skill" with "Frontend"
-    And I press "Add Skill"
-    And I log out
-    And print page body
+    Given the following skills exist
+        | name     |
+        | Frontend |
+    And I am on the home page
     And I follow "sign_up"
-    And print page body
 
   Scenario: User successfully creates an account and logs in
     When I fill in "Name" with "David"
@@ -32,8 +25,8 @@ Feature: Student creates a new account
   Scenario: An admin cannot sign up as a user
     Given the following admins exist
      | name  | email                  |
-  	 | Bob   | eecs666@hotmail.com  |
-  	And I fill in "Name" with "Bob"
+     | Bob   | eecs666@hotmail.com    |
+    And I fill in "Name" with "Bob"
     And I fill in "Sid" with "98745632"
     And I select "Other Major" from "major"
     And I press "Sign Up"

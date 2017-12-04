@@ -7,13 +7,12 @@ Feature: view teams
     Given the following users exist
      | name  |       email                    |team_passcode | major           | sid  | skill      |
      | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | JavaScript |
-     | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | Back-end   |
+     | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | Backend    |
      | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  | CSS        |
-
 
   Scenario: A user is looking for a team
     Given I am on the home page
     Given I log in as a user with email "justanotheremail@aol.com"
     And I am on the team list page
     And I should see "2"
-    And I should see "JavaScript, Back-end"
+    And I should see "JavaScript, Backend"
