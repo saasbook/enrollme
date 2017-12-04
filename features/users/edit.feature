@@ -22,7 +22,6 @@ Feature: edit user information
     And I follow "Edit"
     And I fill in "Name" with "NewName"
     And I check "Frontend"
-    And print page body
     And I press "Update Information"
     Then I should see "NewName"
     And I should see "Frontend"
