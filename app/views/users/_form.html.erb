@@ -11,11 +11,12 @@
     <%= f.label :show_name, 'Name Visible to Other Teams', class: "col-lg-3 control-label checkbox-inline"%>
     <%= f.check_box :show_name %><br />
     <%= f.label :skills, class: "col-lg-2 control-label checkbox-inline" %>
-      <%= f.fields_for :talents, @user.init_talents do |builder| %>
-        <% skill = builder.object.skill %>
-        <%= builder.label :enable, skill.name %>
-        <%= builder.check_box :enable %>
+    <div>
+      <% Skill.all.each do |skill| %>
+        <%= check_box_tag "user[skill_ids][]", skill.id, f.object.skills.include?(skill) %>
+        <%= skill.name %>
       <% end %>
+    </div> 
 </div>
 
 
