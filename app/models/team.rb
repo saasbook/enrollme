@@ -9,7 +9,7 @@ class Team < ActiveRecord::Base
 
     def interested_users
       User.all.select do |user|
-        user.emailed_team?(id) && !users.include?(user)
+        user.emailed_team?(id) && !users.include?(user) && !user.team_id.nil?
       end
     end
 
@@ -18,7 +18,9 @@ class Team < ActiveRecord::Base
       self.users.each do |user|
         user.talents.each do |talent|
           skill = Skill.find(talent.skill_id)
-          result << skill.name unless skill.name.nil?
+          if !skill.name.nil? && skill.active
+            result << skill.name
+          end
         end
       end
       return result.uniq.join(', ') if result != []

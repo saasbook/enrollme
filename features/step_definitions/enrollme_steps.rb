@@ -91,7 +91,7 @@ Given /^the following users exist$/ do |table|
   table.rows.each do |name, email, team_passcode, major, sid, skill|
     next if name == "name" # skipping table header
 
-    skill = Skill.create!(:name => skill)
+    skill = Skill.create!(:name => skill, :active => true)
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
       @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
@@ -107,7 +107,7 @@ end
 
 Given /^the following skills exist$/ do |table|
   table.rows.each do |name|
-    Skill.create!(:name => name[0])
+    Skill.create!(:name => name[0], :active => true)
   end
 end
 
@@ -223,3 +223,14 @@ end
 Then /^I should not see "([^"]*)" listed as a team member/ do |user_name|
   page.should have_no_css("#teamMembers", text: user_name)
 end
+
+And /^I check skill "([^"]*)"/ do |skill|
+  skill_model = Skill.where(name: skill)[0]
+  find(:css, "#user_skill_ids_[value='#{skill_model.id}']").set(true)
+end
+
+And /^I uncheck skill "([^"]*)"/ do |skill|
+  skill_model = Skill.where(name: skill)[0]
+  find(:css, "#user_skill_ids_[value='#{skill_model.id}']").set(false)
+end
+  

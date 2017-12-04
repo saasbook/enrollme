@@ -6,7 +6,7 @@ Feature: admin manages skills that students can add to profile
   Background:
     Given the following admins exist
       | name | email                  | password |
-  	  | Bob  | eecs666@hotmail.com  | ilikcats |
+      | Bob  | eecs666@hotmail.com  | ilikcats |
     And I am on the login page
     And I log in as an admin with email "eecs666@hotmail.com"
     And I am on the skills page

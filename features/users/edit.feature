@@ -7,11 +7,11 @@ Feature: edit user information
   Background:
     Given the following users exist
      | name    |       email          |team_passcode | major | sid  | skill |
- 	   | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  | Backend |
+     | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  | Backend |
     Given the following skills exist
-     | name    |
-     | Frontend   |
-   	And I am on the login page
+      | name     |
+      | Frontend |
+    And I am on the login page
     And I log in as a user with email "eecs666@hotmail.com"
     And I follow "My Info"
     And I should see "Backend"
@@ -21,7 +21,7 @@ Feature: edit user information
     And I should see "Sahai"
     And I follow "Edit"
     And I fill in "Name" with "NewName"
-    And I check "Frontend"
+    And I check skill "Frontend"
     And I press "Update Information"
     Then I should see "NewName"
     And I should see "Frontend"
@@ -31,3 +31,11 @@ Feature: edit user information
     And I follow "Edit"
     And I follow "Cancel"
     Then I should see "Sahai"
+    
+  Scenario: A user unchecks a skill
+    Given I should see "Sahai"
+    And I follow "Edit"
+    And I uncheck skill "Frontend"
+    And I press "Update Information"
+    Then I should not see "Frontend"
+    
