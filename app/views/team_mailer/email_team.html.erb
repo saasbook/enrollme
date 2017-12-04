@@ -5,16 +5,19 @@
    </head>
 
    <body>
-      Hi, <%= @to_name %>
+       Hi, <%= @to_name %>,
       <br>
-      You are receiving an email from enrollme.com. <%= @from_name %> has sent you the following message.
+      You have received the following message from another student, <%= @from_name %>, on EnrollMe regarding your CS 169 team.
       <br>
+      <h4>
       <%= simple_format(@body) %>
+      </h4>
       <br>
-      You can accept or reject this request to join your team at <%= link_to("link", @team) %>.
+      If you are interested in having this person on your team, you can add them via this <%= link_to("page", @team) %>.
+      <br>
       Thanks and happy enrolling!
       <br>
       Best,
-      The Enrollme Team
+      The EnrollMe Team
    </body>
 </html>
