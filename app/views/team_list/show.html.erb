@@ -14,22 +14,24 @@
             <td>Contact</td>
           </tr>
           <% @teams.each do |team| %>
-            <tr>
-              <td>
+            <% if team.users.length>0 %>
+              <tr>
+                <td>
                 <%= team.id %>
-              </td>
-              <td>
+                </td>
+                <td>
                 <%= team.visible_users.join(", ") %>
-              </td>
-              <td>
+                </td>
+                <td>
                 <%= team.users.length %>
-              </td>
-              <td>
+                </td>
+                <td>
                 <%= team.team_skills %>
-              </td>
-              <td><%= link_to "Contact Team #{team.id}", email_team_path(team.id) %></td>
-            </tr>
+                </td>
+                <td><%= link_to "Contact Team #{team.id}", email_team_path(team.id) %></td>
+              </tr>
             <% end %>
+          <% end %>
         </table>
       </div>
     </div>
