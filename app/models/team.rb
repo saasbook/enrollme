@@ -22,7 +22,6 @@ class Team < ActiveRecord::Base
         end
       end
       return result.uniq.join(', ') if result != []
-      #return result[0..(result.length - 3)] if result != ''
     end
 
     def self.approved_teams
@@ -83,9 +82,7 @@ class Team < ActiveRecord::Base
     def visible_users
         user_names = []
         users.each do |user|
-            if user.show_name
-                user_names << user.name
-            end
+            user_names << user.name if user.show_name
         end
         user_names
     end
