@@ -73,8 +73,8 @@ class TeamController < ApplicationController
   def fetch_team
     @team = Team.find_by_id(params[:id])
     @to = @team.users.map(&:email).compact
-    @subject = params[:subject]
-    @body = params[:body]
+    @subject = params["Subject"]
+    @body = params["Message"]
     @names = @team.users.map(&:name)
   end
 
