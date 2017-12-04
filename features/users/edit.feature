@@ -8,18 +8,6 @@ Feature: edit user information
     Given the following users exist
      | name    |       email          |team_passcode | major | sid  | skill |
      | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  | Backend |
-    #Given the following admins exist
-      #| name | email                  | password |
-      #| Bob  | eecs667@hotmail.com    | ilikcats |
-    #And I am on the login page
-    #And I log in as an admin with email "eecs667@hotmail.com"
-    #And I am on the skills page
-    #And I fill in "Skill" with "Frontend"
-    #And I press "Add Skill"
-    #And I fill in "Skill" with "Backend"
-    #And I press "Add Skill"
-    #And I log out
-    #And I am on the login page
     Given the following skills exist
       | name     |
       | Frontend |
@@ -33,8 +21,7 @@ Feature: edit user information
     And I should see "Sahai"
     And I follow "Edit"
     And I fill in "Name" with "NewName"
-    And print page body
-    And I check "Frontend"
+    And I check skill "Frontend"
     And I press "Update Information"
     Then I should see "NewName"
     And I should see "Frontend"
@@ -44,3 +31,11 @@ Feature: edit user information
     And I follow "Edit"
     And I follow "Cancel"
     Then I should see "Sahai"
+    
+  Scenario: A user unchecks a skill
+    Given I should see "Sahai"
+    And I follow "Edit"
+    And I uncheck skill "Frontend"
+    And I press "Update Information"
+    Then I should not see "Frontend"
+    

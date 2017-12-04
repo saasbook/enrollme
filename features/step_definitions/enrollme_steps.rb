@@ -223,3 +223,14 @@ end
 Then /^I should not see "([^"]*)" listed as a team member/ do |user_name|
   page.should have_no_css("#teamMembers", text: user_name)
 end
+
+And /^I check skill "([^"]*)"/ do |skill|
+  skill_model = Skill.where(name: skill)[0]
+  find(:css, "#user_skill_ids_[value='#{skill_model.id}']").set(true)
+end
+
+And /^I uncheck skill "([^"]*)"/ do |skill|
+  skill_model = Skill.where(name: skill)[0]
+  find(:css, "#user_skill_ids_[value='#{skill_model.id}']").set(false)
+end
+  
