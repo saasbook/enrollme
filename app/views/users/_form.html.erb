@@ -14,14 +14,14 @@
     <%= f.label :show_name, 'Name Visible to Other Teams', class: "col-lg-2 control-label"%>
 </div>
 <div class="field form-group">
-    <%= f.label :skills, class: "col-lg-2 control-label" %>
+<%= f.label :skills, class: "col-lg-2 control-label" %>
 </div>
 <div class="field form-group">
-    <%= f.fields_for :talents, @user.init_talents do |builder| %>
-        <% skill = builder.object.skill %>
-        <%= builder.label :enable, skill.name %>
-        <%= builder.check_box :enable %>
-    <% end %>
+<%= f.fields_for :talents, @user.init_talents do |builder| %>
+<% skill = builder.object.skill %>
+<%= builder.label :enable, skill.name %>
+<%= builder.check_box :enable %>
+<% end %>
 </div>
 
 
