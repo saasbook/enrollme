@@ -59,7 +59,6 @@ class User < ActiveRecord::Base
 
   def downcase_email
     email.downcase!
-    puts()
   end
 
   def can_email_team(team_id)
