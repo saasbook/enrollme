@@ -19,7 +19,6 @@ class Team < ActiveRecord::Base
         user.talents.each do |talent|
           skill = Skill.find(talent.skill_id)
           if !skill.name.nil? && skill.active
-        #   result << skill.name unless skill.name.nil?
             result << skill.name
           end
         end

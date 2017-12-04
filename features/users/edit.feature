@@ -9,7 +9,8 @@ Feature: edit user information
      | name    |       email          |team_passcode | major | sid  | skill |
  	   | Sahai   | eecs666@hotmail.com  | penguindrool | EECS  | 000  | Backend |
     Given the following skills exist
-     | name    |
+     | name       | 
+     | Backend    |
      | Frontend   |
    	And I am on the login page
     And I log in as a user with email "eecs666@hotmail.com"
