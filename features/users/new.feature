@@ -14,7 +14,8 @@ Feature: Student creates a new account
     And I press "Add Skill"
     And I log out
     And print page body
-    And I press "sign_up"
+    And I follow "sign_up"
+    And print page body
 
   Scenario: User successfully creates an account and logs in
     When I fill in "Name" with "David"
