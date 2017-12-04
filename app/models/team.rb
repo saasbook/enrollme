@@ -21,7 +21,7 @@ class Team < ActiveRecord::Base
           result << skill.name unless skill.name.nil?
         end
       end
-      return result.uniq!.join(', ') if result != []
+      return result.uniq.join(', ') if result != []
       #return result[0..(result.length - 3)] if result != ''
     end
 
