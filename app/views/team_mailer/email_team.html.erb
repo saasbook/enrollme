@@ -1,10 +1,20 @@
 <html>
-   
+
    <head>
       <meta content = 'text/html; charset = UTF-8' http-equiv = 'Content-Type' />
    </head>
-   
+
    <body>
-       <%= simple_format(@body) %>
+      Hi, <%= @to_name %>
+      <br>
+      You are receiving an email from enrollme.com. <%= @from_name %> has sent you the following message.
+      <br>
+      <%= simple_format(@body) %>
+      <br>
+      You can accept or reject this request to join your team at <%= link_to("link", @team) %>.
+      Thanks and happy enrolling!
+      <br>
+      Best,
+      The Enrollme Team
    </body>
 </html>

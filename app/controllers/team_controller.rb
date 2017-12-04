@@ -20,7 +20,9 @@ class TeamController < ApplicationController
   end
 
   def do_email
-    TeamMailer.email_team(@to, @subject, @body, @user.email).deliver_now
+    @to.each_with_index do |to_email, counter|
+        TeamMailer.email_team(to_email, @user.name, @names[counter], @subject, @body, @user.email, @team).deliver_now
+    end
     @user.email_team(@team.id)
     @user.save!
     redirect_to teams_path, notice: 'Email sent successfully.'
@@ -73,6 +75,7 @@ class TeamController < ApplicationController
     @to = @team.users.map(&:email).compact
     @subject = params[:subject]
     @body = params[:body]
+    @names = @team.users.map(&:name)
   end
 
   def set_user
