@@ -9,6 +9,9 @@ class TeamMailer < ApplicationMailer
     @from_name = from_name
     @team = team
 
+    puts('to')
+    puts(to)
+
     mail(to: to, reply_to: reply_to, subject: subject, &:html)
   end
 end
