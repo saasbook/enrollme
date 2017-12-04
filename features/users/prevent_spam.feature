@@ -12,7 +12,7 @@ Feature: Prevent Spam
      | Jorge | legueoflegends667@hotmail.com  | 0            | Football Player | 999  |            |
     Given I am on the home page
     Given I log in as a user with email "legueoflegends667@hotmail.com"
-    And I am on the teams page
+    And I am on the team list page
 
   Scenario: User can still email
     Given I contact "Team 1" with the message "I would like to join your team"
