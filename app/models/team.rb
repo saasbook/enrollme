@@ -9,7 +9,7 @@ class Team < ActiveRecord::Base
 
     def interested_users
       User.all.select do |user|
-        user.emailed_team?(id) && !users.include?(user)
+        user.emailed_team?(id) && !users.include?(user) && !user.team_id.nil?
       end
     end
 
