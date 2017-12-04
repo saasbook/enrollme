@@ -94,6 +94,9 @@ Rails.application.configure do
   		domain: ENV['MAIL_GUN_DOMAIN']
   }
 
+  # The host needs to be "enrollme.herokuapp.com" when using
+  # actual production heroku app.
+  # It currently uses "enrollme-test.herokuapp.com" for testing.
   # config.action_mailer.default_url_options = { :host => "enrollme.herokuapp.com" }
   config.action_mailer.default_url_options = { :host => "enrollme-test.herokuapp.com" }
 end
