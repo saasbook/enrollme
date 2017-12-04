@@ -14,6 +14,6 @@ Feature: view teams
   Scenario: A user is looking for a team
     Given I am on the home page
     Given I log in as a user with email "justanotheremail@aol.com"
-    And I am on the teams page
+    And I am on the team list page
     And I should see "2"
     And I should see "JavaScript, Back-end"

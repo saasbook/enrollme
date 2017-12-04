@@ -32,7 +32,7 @@ class TeamController < ApplicationController
     end
     @user.email_team(@team.id)
     @user.save!
-    redirect_to teams_path, notice: 'Email sent successfully.'
+    redirect_to team_list_path, notice: 'Email sent successfully.'
   end
 
   def show

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/join_team', to: 'users#join_team'
   get '/help', to: 'users#user_help'
 
-  get '/teams', to: 'teams#show', as: 'teams'
+  get '/team_list', to: 'team_list#show', as: 'team_list'
   get '/team/:id/email', to: 'team#email', as: 'email_team'
   post '/team/:id/email', to: 'team#do_email', as: 'do_email_team'
 

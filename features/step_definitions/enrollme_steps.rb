@@ -202,7 +202,7 @@ Given /^"([^"]*)" contacts the team/ do |user_name|
   team_id = curr_user.team.id
   step %Q{I follow "Logout"}
   step %Q{I log in as a user with email "#{user.email}"}
-  step %Q{I am on the teams page}
+  step %Q{I am on the team list page}
   step %Q{I contact "Team #{team_id}" with the message "hello"}
   step %Q{I follow "Logout"}
   step %Q{I log in as a user with email "#{curr_user.email}"}
