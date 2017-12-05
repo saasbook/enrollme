@@ -10,6 +10,7 @@ Feature: A User edits their team
  	   | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  |
   	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  |
   	 | Kandi | justanotheremail@aol.com       | anotherteam  | EECS            | 567  |
+
   	And I am on the login page
     And I log in as a user with email "eecs666@hotmail.com"
     And I am on the home page
@@ -31,14 +32,3 @@ Feature: A User edits their team
   Scenario: A user fails removal of a user not on their own team
     When I go to the removal page for "Kandi"
     Then I should see "Permission denied"
-
-  Scenario: A user adding another user who had contacted the team,
-  and the added user should be on the team page
-    Given I should not see "Kandi" listed as a team member
-    And I should not see "Kandi" listed as a prospective member
-    And "Kandi" contacts the team
-    Then I should see "Kandi" listed as a prospective member
-    And I should not see "Kandi" listed as a team member
-    When I press "add_Kandi"
-    Then I should see "Kandi" listed as a team member
-    And I should not see "Kandi" listed as a prospective member
