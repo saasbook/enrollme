@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :users do
+    collection { post :import }
+  end
+
   get '/without_team', to: 'users#without'
   post '/create_team', to: 'users#start_team'
   post '/join_team', to: 'users#join_team'
@@ -10,6 +13,7 @@ Rails.application.routes.draw do
 
   post 'team/:id/submit', to: 'team#submit', as: "submit_team"
   post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
+  get 'team/:id/mygroup', to: 'team#showgroup', as: "mygroup"
 
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
@@ -19,6 +23,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   
   resources :admins
+  get '/admin/unapproved_teams', to: 'admins#unapproved', as: 'unapproved_teams'
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
   get '/admin/undo_approve_team', to: 'admins#undo_approve'
@@ -30,6 +35,10 @@ Rails.application.routes.draw do
   get '/admin/tutorial', to: 'admins#admin_tutorial'
   get '/admin/download', to: 'admins#download'
 
+  get '/admin/email', to: 'admins#email', as: 'admins_send_email'
+  post '/admin/create_email', to: 'admins#create_email', as: 'create_email'
+  get '/admin/email_success', to: 'admins#email_success', as: 'success_email'
+  
   post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
   
   get '/download_team_info', to: "file#download_approved_teams"
@@ -43,6 +52,20 @@ Rails.application.routes.draw do
   resources :discussion
 
   resources :submissions
+  
+  resources :group
+  
+  get '/admin/select_group', to:'group#select_group'
+  
+  post '/admin/select_group', to:'group#select_group', as: 'select_group'
+  
+  post '/admin/merge', to:'group#merge', as: 'merge_group'
+  
+  post '/admin/unmerge', to:'group#unmerge', as: 'unmerge_group'
+  
+  post '/admin/random', to:'group#random', as: 'random_group'
+  
+  get '/admin/im', to: 'admins#show_import', as: 'import_page'
   
   root 'session#new'
 

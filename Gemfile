@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
+# ruby '2.3.4'
 
+gem 'rails_12factor'
+
+gem 'coveralls', require: false
 
 gem 'rails', '4.2.6'
 
@@ -11,6 +15,7 @@ gem 'haml'
 
 gem "omniauth-google-oauth2", "~> 0.2.1"
 gem "figaro"
+
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

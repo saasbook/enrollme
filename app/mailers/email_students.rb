@@ -23,4 +23,16 @@ class EmailStudents < ApplicationMailer
       end
     end
     
+    def email_group(email, message, subject="")
+      if subject == ""
+          subject_text = 'You have a new message for CS169 from EnrollMe'
+      else
+          subject_text = subject
+      end
+        
+      mail(to: email, subject: subject_text) do |format|
+              format.text { render plain: message }
+      end
+    end
+    
 end

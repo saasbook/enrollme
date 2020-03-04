@@ -1,6 +1,9 @@
 class Team < ActiveRecord::Base
     has_many :users
     has_one :submission
+    
+    belongs_to :group # Yonas added this
+    
     validates :passcode, uniqueness: true
 
     def self.generate_hash(length=36)
@@ -59,6 +62,7 @@ class Team < ActiveRecord::Base
     
     def add_submission(id)
         self.update(submitted: true)
+        self.submission = Submission.find_by_id id
         self.submission_id = id
         self.save!
     end
@@ -67,5 +71,42 @@ class Team < ActiveRecord::Base
       ! passcode.nil?  &&
         ! approved     &&
         users.size < Option.maximum_team_size
+    end
+    
+    def self.approved_teams_from_csv(users_hash)
+      approved_teams = []
+      unapproved_teams = []
+      Team.all.each do |t|
+        each_team_user_found = true
+        t.users.each do |u|
+          if users_hash[u.sid.to_i].nil?
+              each_team_user_found = false 
+          end
+        end
+        if each_team_user_found
+            approved_teams << t 
+        else
+            unapproved_teams << t
+        end
+      end
+      return approved_teams, unapproved_teams
+    end
+    
+    def self.add_teams_to_discussions(approved_teams)
+      approved_teams.each do |t|
+        count, index = 100, false
+        team_subm, team_prefs = t.submission, []
+        if t.approved || !t.eligible? || team_subm.nil? then next end
+        team_prefs << team_subm.disc1id
+        team_prefs << team_subm.disc2id
+        team_prefs << team_subm.disc3id
+        team_prefs.each do |d_id|
+          d = Discussion.find_by_id d_id
+          if d.count_students < count
+            count, index = d.count_students, d.id
+          end
+        end
+        if index then t.approve_with_discussion(index) end
+      end
     end
 end

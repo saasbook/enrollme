@@ -1,5 +1,5 @@
 class AdminMailer < ApplicationMailer
-    default from: 'enrollmeberkeley@gmail.com'
+   default from: 'enrollmeberkeley@gmail.com'
    
    def invite_new_admin(admin)
       @admin = admin
@@ -9,36 +9,37 @@ class AdminMailer < ApplicationMailer
       end
    end
    
-   def team_list_email(admin)
+   def team_list_email(admin, status)
       @admin = admin
       @url  = 'http://www.gmail.com'
-      mail(to: @admin.email, subject: 'Here is list of' + params[:status] + 'teams in EnrollMe') do |format|
-        format.html
+      puts "!!!!!"
+      puts status
+      puts "!!!!!"
+      mail(to: @admin.email, subject: 'Here is list of ' + status + ' teams in EnrollMe') do |format|
+         puts "hello"
+         @status = status
+         puts "hello1"
+         format.html
       end
    end
-   
-   def send_approved_email(team)
+
+   def email_team_members(team, message)
       @team = team
-      
-      @team.users.each do |approved_user|
-         @user = approved_user
-         @url = ENV["SERVER_EMAIL"]
-         mail(to: @user.email, subject: 'Your team has been approved') do |format|
-            format.html
-         end
-      end
-   end
-   
-   def send_disapproved_email(team)
-      @team = team
-      
       @team.users.each do |disapproved_user|
          @user = disapproved_user
          @url = ENV["SERVER_EMAIL"]
-         mail(to: @user.email, subject: 'Your team has been disapproved') do |format|
+         mail(to: @user.email, subject: message) do |format|
             format.html
          end
       end
+   end
+
+   def send_approved_email(team)
+      email_team_members(team, 'Your team has been approved')
+   end
+   
+   def send_disapproved_email(team)
+      email_team_members(team, 'Your team has been disapproved')
    end
    
    def look_at_submission(email)

@@ -11,14 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417002226) do
+ActiveRecord::Schema.define(version: 20171119032010) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.boolean  "superadmin"
+    t.boolean  "enrollmeadmin"
+    t.boolean  "TAadmin"
   end
 
   create_table "discussions", force: :cascade do |t|
@@ -30,6 +32,14 @@ ActiveRecord::Schema.define(version: 20170417002226) do
   end
 
   add_index "discussions", ["submission_id"], name: "index_discussions_on_submission_id"
+
+  create_table "groups", force: :cascade do |t|
+    t.integer  "team1_id"
+    t.integer  "team2_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "discussion_id"
+  end
 
   create_table "options", force: :cascade do |t|
     t.integer "minimum_team_size"

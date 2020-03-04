@@ -84,6 +84,21 @@ RSpec.describe AdminMailer, type: :mailer do
     ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
   end
   
+  it 'Send an email that states all data was deleted' do
+    AdminMailer.all_data(@admin).deliver_now
+    ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
+  end
+  
+  it 'Send an email to the TA telling them that there emails waiting their submission' do
+    AdminMailer.look_at_submission("mr.monty@berkeley.edu").deliver_now
+    ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
+  end
+  
+  it 'Send an email that tells the TA to look at this submission' do
+    AdminMailer.send_look_at_submission
+    ActionMailer::Base.deliveries.first.from.should == ['enrollmeberkeley@gmail.com']
+  end
+  
   after(:each) do
     ActionMailer::Base.deliveries.clear
   end

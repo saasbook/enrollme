@@ -30,3 +30,15 @@ Feature: Super admin deletes an admin
     Then I should see "Successfully transferred superadmin powers."
     And I should not see "Manage Admins"
     
+  Scenario: Super Admin unsuccessfully transfers super admin ability to nobody
+    When I log in as an admin with email "supreme_ruler@aol.com"
+    And I follow "Manage Admins"
+    And I press "Transfer"
+    Then I should see "No admin selected for transfer."
+    
+  Scenario: Super Admin unsuccessfully transfers super admin ability to nobody
+    When I log in as an admin with email "abc@abc.com"
+    And I follow "Help"
+    
+
+    

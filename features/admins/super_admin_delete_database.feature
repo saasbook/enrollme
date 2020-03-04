@@ -8,6 +8,8 @@ Feature: Super admin deletes all data
     Given the following admins exist
       | name | email                  | superadmin |
   	  | Bob  | supreme_ruler@aol.com  | true       |
+  	  | Tim  | sahai@berkeley.edu     | false      |
+  	  
     Given the following users exist
   	  |   name    |       email                       | team      | major             |       sid         |  
 	    | Jorge     |    legueoflegends667@hotmail.com  | somepassc | Football Player   | 999               |
@@ -26,7 +28,6 @@ Feature: Super admin deletes all data
     And I log in as an admin with email "supreme_ruler@aol.com"
 
   Scenario: Super admin successfully deletes everything from database
-    Then print page body
     When I follow "Reset Semester"
     Then I should see "Warning: Resetting the semester will result in all users, teams, and discussions being deleted."
     And I should see "Password"
@@ -36,3 +37,21 @@ Feature: Super admin deletes all data
     And I should not see "Jorge"
     When I press "Discussions"
     Then I should not see "54321"
+    
+  Scenario: Admin cannot delete database
+    When I follow "Reset Semester"
+    Then I should see "Warning: Resetting the semester will result in all users, teams, and discussions being deleted."
+    And I should see "Password"
+    When I fill in "reset_password" with the incorrect password
+    And I press "Reset"
+    Then I should see "Incorrect password"
+    
+  Scenario: Super admin can create a new enrollme admin
+    When I follow "Register New Admin"
+    When I fill in "Name" with "monty"
+    When I fill in "Email" with "monty@berkeley.edu"
+    When I choose "type_admin_enroll"
+    And I press "Create"
+    Then I should see "You created admin monty successfully!"
+    
+  

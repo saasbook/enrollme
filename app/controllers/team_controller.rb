@@ -8,12 +8,36 @@ class TeamController < ApplicationController
   def show
     @discussions = Discussion.valid_discs_for(@team)
     if @team.submitted and !(@team.approved)
-      @s = Submission.find(@team.submission_id)
-      @d1 = Discussion.find(@s.disc1id)
-      @d2 = Discussion.find_by_id(@s.disc2id)
-      @d3 = Discussion.find_by_id(@s.disc3id)
+      show_setup
     end
     render "team"
+  end
+  
+  def show_setup
+    @s = Submission.find(@team.submission_id)
+    @d1 = Discussion.find(@s.disc1id)
+    @d2 = Discussion.find_by_id(@s.disc2id)
+    @d3 = Discussion.find_by_id(@s.disc3id)
+  end
+  
+  def showgroup
+    @groupt1 = Group.find_by_team1_id(@team.id)
+    @groupt2 = Group.find_by_team2_id(@team.id)
+    
+    # @discussions = Discussion.valid_discs_for(@team)
+    # if @team.submitted and !(@team.approved)
+    #   show_setup
+    # end
+    if @groupt1 != nil
+      @group = @groupt1
+      render "mygroup"
+    elsif @groupt2 != nil
+      @group = @groupt2
+      render "mygroup"
+    else
+      flash[:success] = "You are not in a group yet!"
+      redirect_to team_path
+    end
   end
   
   def submit
@@ -23,6 +47,12 @@ class TeamController < ApplicationController
   end
   
   def unsubmit
+    # puts "-------"
+    # puts @team.inspect
+    # puts "!!!!!!"
+    # puts Team.all.inspect
+    # puts Submission.all.inspect
+    # puts "======="
     @submission = @team.submission
     @submission.destroy!
     @team.withdraw_submission

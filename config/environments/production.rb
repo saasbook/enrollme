@@ -86,6 +86,6 @@ Rails.application.configure do
     user_name: 'enrollmeberkeley@gmail.com',
     password: ENV['API_KEY'],
     authentication: 'plain',
-    #enable_starttls_auto: true
+    enable_starttls_auto: true
   }
 end
