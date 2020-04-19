@@ -1,0 +1,36 @@
+<body>
+  <title>Admin Home</title>
+    <div class="container">
+      <h2><%= "View Groups" %></h2>
+        </br></br></br></br></br>
+        <div class="row">
+        <div class="col-md-8">
+          <table class="table table-striped table-hover">
+            <tr>
+              <td></td>
+              <td>Group ID</td>
+              <td>Team 1 ID</td>
+              <td>Team 2 ID</td>
+              <td>Discussion</td>
+            </tr>
+            
+            <%= form_tag({:action => "unmerge", :method => "post"}) do %>
+            <% @groups_li.each do |g| %>
+              <tr>
+                <td><%= check_box(g.id, "group") %></td>
+                <td><%= g.id %></td>
+                <td><%= g.team1_id %></td>
+                <td><%= g.team2_id %></td>
+                <td><%= g.discussion_id %></td>
+              </tr>
+            <% end %>
+          </table>
+          
+          <%= submit_tag("Destroy Group", :class => 'btn btn-xs btn-danger') %>
+          <% end %>
+          
+        </div>
+      </div>
+      
+    </div>
+</body>

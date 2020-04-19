@@ -6,6 +6,7 @@ class Admin < ActiveRecord::Base
     format: VALID_EMAIL_REGEX, exclusion: { in: lambda { |a| a.all_user_emails } }
   
   def self.admin_from_oauth(auth)
+
     return Admin.find_by(:email => auth[:info][:email])
   end
   

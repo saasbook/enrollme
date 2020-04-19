@@ -104,6 +104,20 @@ Given /^the following discussions exist$/ do |table|
   end
 end
 
+Given /^the following teams exist$/ do |table|
+  table.rows.each do |submission_id, approved, passcode, submitted, discussion_id|
+    next if submission_id == :submission_id # skipping table header
+    Team.create!(:submission_id => submission_id.to_i, :approved => approved=="true", :passcode => passcode, :submitted => submitted=="true", :discussion_id => discussion_id.to_i)
+  end
+end
+
+Given /^the following groups exist$/ do |table|
+  table.rows.each do |team1_id, team2_id, discussion|
+    next if team1_id == :team1_id # skipping table header
+    Group.create!(:team1_id => team1_id.to_i, :team2_id => team2_id.to_i, :discussion_id => discussion.to_i)
+  end
+end
+
 Then /^(?:|I )should not be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
   if current_path.respond_to? :should
