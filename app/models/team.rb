@@ -6,11 +6,30 @@ class Team < ActiveRecord::Base
     def self.generate_hash(length=36)
         return SecureRandom.urlsafe_base64(length, false)
     end
-    
+
+    def interested_users
+      User.all.select do |user|
+        user.emailed_team?(id) && !users.include?(user) && user.team_id.nil?
+      end
+    end
+
+    def team_skills
+      result = []
+      self.users.each do |user|
+        user.talents.each do |talent|
+          skill = Skill.find(talent.skill_id)
+          if !skill.name.nil? && skill.active
+            result << skill.name
+          end
+        end
+      end
+      return result.uniq.join(', ') if result != []
+    end
+
     def self.approved_teams
         return Team.where(:approved => true)
     end
-    
+
     def withdraw_submission
         self.submitted = false
         self.save!
@@ -26,24 +45,23 @@ class Team < ActiveRecord::Base
         self.approved = false
         self.save!
     end
-    
+
     def approve_with_discussion(id)
         self.approved = true
         self.discussion_id = id
         self.save!
     end
-    
+
     def send_submission_reminder_email
         self.users.each do |user|
             #EmailStudents.submit_email(user).deliver_later
         end
     end
-    
+
     def eligible?
         users.count.between?(Option.minimum_team_size, Option.maximum_team_size)
     end
-    
-    
+
     def self.filter_by(status)
         if status.nil? or status == "Pending | Approved"
             return Team.where(approved: true) + Team.where(approved: false, submitted: true)
@@ -56,13 +74,21 @@ class Team < ActiveRecord::Base
         end
         return Team.all.each
     end
-    
+
     def add_submission(id)
         self.update(submitted: true)
         self.submission_id = id
         self.save!
     end
-    
+
+    def visible_users
+        user_names = []
+        users.each do |user|
+            user_names << user.name if user.show_name
+        end
+        user_names
+    end
+
     def can_join?
       ! passcode.nil?  &&
         ! approved     &&

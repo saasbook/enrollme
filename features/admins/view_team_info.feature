@@ -3,15 +3,15 @@ Feature: admin can view more information about teams
   As an administrator
   So that I can decide whether or not to approve a team
   I want to click on team IDs and User names to check out their information
-  
+
   Background:
     Given the following users exist
-     | name  |       email                    |team_passcode | major           | sid  |
-     | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  |
-     | Saha2 | eecs667@hotmail.com            | penguindrool | EECS            | 001  |
-     | Saha3 | eecs668@hotmail.com            | penguindrool | EECS            | 002  |
-     | Saha4 | eecs669@hotmail.com            | penguindrool | EECS            | 003  |
-  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  |
+     | name  |       email                    |team_passcode | major           | sid  | skill
+     | Sahai | eecs666@hotmail.com            | penguindrool | EECS            | 000  | JS
+     | Saha2 | eecs667@hotmail.com            | penguindrool | EECS            | 001  | Backend
+     | Saha3 | eecs668@hotmail.com            | penguindrool | EECS            | 002  | Frontend
+     | Saha4 | eecs669@hotmail.com            | penguindrool | EECS            | 003  | JS
+  	 | Jorge | legueoflegends667@hotmail.com  | penguindrool | Football Player | 999  | CSS
   	And the following admins exist
   	 | name  | email                  |
   	 | Bob   | supreme_ruler@aol.com  |
@@ -27,9 +27,8 @@ Feature: admin can view more information about teams
   	Given I follow "1"
   	Then I should see "Team has been submitted!"
   	Then I should see "Selected Discussion Sections"
-  	
+
   Scenario: An admin accesses a user's information
     Given I follow "Sahai"
     Then I should see "SID: 000"
     And I should see "Major: EECS"
-    

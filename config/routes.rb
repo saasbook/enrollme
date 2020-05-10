@@ -5,45 +5,55 @@ Rails.application.routes.draw do
   post '/create_team', to: 'users#start_team'
   post '/join_team', to: 'users#join_team'
   get '/help', to: 'users#user_help'
-  
+
+  get '/team_list', to: 'team_list#show', as: 'team_list'
+  get '/team/:id/email', to: 'team#email', as: 'email_team'
+  post '/team/:id/email', to: 'team#do_email', as: 'do_email_team'
+
   resources :team
 
-  post 'team/:id/submit', to: 'team#submit', as: "submit_team"
-  post 'team/:id/unsubmit', to: 'team#unsubmit', as: "unsubmit_team"
+  post 'team/:id/submit', to: 'team#submit', as: 'submit_team'
+  post 'team/:id/unsubmit', to: 'team#unsubmit', as: 'unsubmit_team'
+  patch 'team/:id/add_teammate', to: 'team#add_teammate', as: 'add_teammate'
 
   get 'login', to: 'session#new'
   post 'login', to: 'session#create'
   get 'logout', to: 'session#destroy'
-  
+
   get 'auth/:provider/callback', to: 'session#create'
   get 'auth/failure', to: redirect('/')
-  
+
   resources :admins
   get '/admin/approve_team', to: 'admins#approve'
   get '/admin/disapprove_team', to: 'admins#disapprove'
   get '/admin/undo_approve_team', to: 'admins#undo_approve'
-  get '/admin/superadmin', to: 'admins#superadmin', as: "superadmin"
-  get '/admin/reset_semester', to: 'admins#reset_semester', as: "reset_semester"
-  post '/admin/reset_database', to: 'admins#reset_database', as: "reset_database"
+  get '/admin/superadmin', to: 'admins#superadmin', as: 'superadmin'
+  get '/admin/reset_semester', to: 'admins#reset_semester', as: 'reset_semester'
+  post '/admin/reset_database', to: 'admins#reset_database', as: 'reset_database'
   patch '/admin/transfer', to: 'admins#transfer', as: 'admin_transfer'
   patch '/admin/delete', to: 'admins#delete', as: 'admin_delete'
   get '/admin/tutorial', to: 'admins#admin_tutorial'
   get '/admin/download', to: 'admins#download'
+  get '/admin/skills', to: 'admins#skills', as: 'skills'
+  get '/admin/skill/:id/edit', to: 'admins#edit_skill', as: 'edit_skill'
+  patch '/admin/skill/:id/edit', to: 'admins#edit_skill'
+  post '/admin/add_skill', to: 'admins#add_skill', as: 'add_skill'
+  patch '/admin/skill/:id/delete', to: 'admins#delete_skill', as: 'delete_skill'
 
-  post '/admin/email', to: "admins#team_list_email", as: 'admins_email'
-  
-  get '/download_team_info', to: "file#download_approved_teams"
-  
-  get '/discussion/edit', to: "discussion#edit_index", as: "edit_discussion_index"
-  
-  post '/discussion/edit', to: "discussion#edit_index_post"
-  
-  post '/discussion/edit_index', to:'discussion#edit_disc', as: "edit_discussion_post"
-  
+  post '/admin/email', to: 'admins#team_list_email', as: 'admins_email'
+
+  get '/download_team_info', to: 'file#download_approved_teams'
+
+  get '/discussion/edit', to: 'discussion#edit_index', as: 'edit_discussion_index'
+
+  post '/discussion/edit', to: 'discussion#edit_index_post'
+
+  post '/discussion/edit_index', to:'discussion#edit_disc', as: 'edit_discussion_post'
+
   resources :discussion
 
   resources :submissions
-  
+
   root 'session#new'
 
   # TODO: something for route not found

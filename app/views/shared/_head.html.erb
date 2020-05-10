@@ -11,7 +11,7 @@
       </button>
       <a class="navbar-brand" href="/">EnrollMe</a>
     </div>
-    
+
 
     <div class="navbar-collapse collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
@@ -21,11 +21,13 @@
                 <li><%= link_to "Log In", "/auth/google_oauth2", id: "log_in_header" %></li>
             <% else %>
               <% if session[:is_admin].nil? %>
+                <li><%= link_to "Teams", '/team_list' %></li>
                 <li><%= link_to "Help", help_path %></li>
                 <li><%= link_to "My Info", user_path(session[:user_id]), {method: 'get'} %></li>
               <% else %>
                   <li><%= link_to "Help", '/admin/tutorial' %></li>
                   <li><%= link_to "My Info", admin_path(session[:user_id]), {method: 'get'} %></li>
+                  <li><%= link_to "Manage Skills", skills_path, {method: 'get'} %></li>
                   <li><%= link_to "Register New Admin", new_admin_path, {method: 'get'} %></li>
                   <% if Admin.find(session[:user_id]).superadmin == true %>
                     <li><%= link_to "Manage Admins", superadmin_path, {method: :get} %></li>

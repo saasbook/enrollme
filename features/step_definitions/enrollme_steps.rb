@@ -18,11 +18,13 @@ end
 
 Given /^I log in as an admin with email "([^"]*)"$/ do | email |
   mock_auth_hash(email)
+  @email = email
   click_link "log_in"
 end
 
 Given /^I log in as a user with email "([^"]*)"$/ do | email |
   mock_auth_hash(email)
+  @email = email
   click_link "log_in"
 end
 
@@ -66,8 +68,9 @@ And /^the team with passcode "([^"]*)" is not approved$/ do | passcode |
 end
 
 And /^my team is submitted$/ do
-  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1, :team => @team)
-  @team.add_submission(1)
+  team = User.where(email: @email).first.team
+  Submission.create!(:disc1id => 1, :disc2id => 1, :disc3id => 1, :team => team)
+  team.add_submission(1)
 end
 
 And /^the team with passcode "([^"]*)" should be (.*)$/ do | passcode, status |
@@ -85,15 +88,26 @@ end
 
 # Note: use "0" as team to indicate that this student isn't on a team yet
 Given /^the following users exist$/ do |table|
-  table.rows.each do |name, email, team_passcode, major, sid|
+  table.rows.each do |name, email, team_passcode, major, sid, skill|
     next if name == "name" # skipping table header
+
+    skill = Skill.create!(:name => skill, :active => true)
     @team = Team.where(:passcode => team_passcode).first
     if team_passcode != "0"
       @team = Team.create!(:approved => false, :submitted => false, :passcode => team_passcode) if @team.nil?
-      User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid)
+      user = User.create!(:team => @team, :major => major, :name => name, :email => email, :sid => sid)
     else
-      User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid)
+      user = User.create!(:team => nil, :major => major, :name => name, :email => email, :sid => sid)
     end
+    talent = Talent.create!(:skill_id => skill.id, :user_id => user.id)
+    user.talents.append(talent)
+    user.save!
+  end
+end
+
+Given /^the following skills exist$/ do |table|
+  table.rows.each do |name|
+    Skill.create!(:name => name[0], :active => true)
   end
 end
 
@@ -162,6 +176,61 @@ Then /^"([^']*?)" should receive (\d+) emails?$/ do |address, n|
   unread_emails_for(address).size.should == n.to_i
 end
 
+Given /^I contact "([^"]*)"$/ do |team|
+  step %Q{I follow "Contact #{team}"}
+end
+
+And /^I contacted "Team ([^"]*)" the max number of times$/ do |id|
+  User::NUM_EMAILS_ALLOWED.times do
+    step %Q{I contact "Team #{id}" with the message "hello"}
+  end
+end
+
+And /^I contact "([^"]*)" with the message "([^"]*)"$/ do |team, message|
+  step %Q{I follow "Contact #{team}"}
+  step %Q{I fill in "Message" with "#{message}"}
+  step %Q{I press "Send"}
+end
+
 When(/^I fill in "([^"]*)" with API\['ADMIN_DELETE_DATA_PASSWORD'\]$/) do |field|
   fill_in(field, :with => ENV["ADMIN_DELETE_DATA_PASSWORD"])
 end
+
+Given /^"([^"]*)" contacts the team/ do |user_name|
+  user = User.where(:name => user_name)[0]
+  curr_user = User.where(:email => @email).first
+  team_id = curr_user.team.id
+  step %Q{I follow "Logout"}
+  step %Q{I log in as a user with email "#{user.email}"}
+  step %Q{I am on the team list page}
+  step %Q{I contact "Team #{team_id}" with the message "hello"}
+  step %Q{I follow "Logout"}
+  step %Q{I log in as a user with email "#{curr_user.email}"}
+end
+
+Then /^I should see "([^"]*)" listed as a prospective member/ do |user_name|
+  page.should have_css("#interestedUsers", text: user_name)
+end
+
+Then /^I should not see "([^"]*)" listed as a prospective member/ do |user_name|
+  page.should have_no_css("#interestedUsers", text: user_name)
+end
+
+Then /^I should see "([^"]*)" listed as a team member/ do |user_name|
+  page.should have_css("#teamMembers", text: user_name)
+end
+
+Then /^I should not see "([^"]*)" listed as a team member/ do |user_name|
+  page.should have_no_css("#teamMembers", text: user_name)
+end
+
+And /^I check skill "([^"]*)"/ do |skill|
+  skill_model = Skill.where(name: skill)[0]
+  find(:css, "#user_skill_ids_[value='#{skill_model.id}']").set(true)
+end
+
+And /^I uncheck skill "([^"]*)"/ do |skill|
+  skill_model = Skill.where(name: skill)[0]
+  find(:css, "#user_skill_ids_[value='#{skill_model.id}']").set(false)
+end
+  
